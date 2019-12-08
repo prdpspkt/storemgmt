@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of item:</strong>
+  <%= @repair_application_form_item.name_of_item %>
+</p>
+
+<p>
+  <strong>Item identification no:</strong>
+  <%= @repair_application_form_item.item_identification_no %>
+</p>
+
+<p>
+  <strong>Approx repair cost:</strong>
+  <%= @repair_application_form_item.approx_repair_cost %>
+</p>
+
+<p>
+  <strong>Reason toprepair:</strong>
+  <%= @repair_application_form_item.reason_toPrepair %>
+</p>
+
+<p>
+  <strong>Applicant sign:</strong>
+  <%= @repair_application_form_item.applicant_sign %>
+</p>
+
+<p>
+  <strong>Remarks:</strong>
+  <%= @repair_application_form_item.remarks %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @repair_application_form_item.user_id %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @repair_application_form_item.office_id %>
+</p>
+
+<p>
+  <strong>Repair application form:</strong>
+  <%= @repair_application_form_item.repair_application_form_id %>
+</p>
+
+<%= link_to 'Edit', edit_repair_application_form_item_path(@repair_application_form_item) %> |
+<%= link_to 'Back', repair_application_form_items_path %>

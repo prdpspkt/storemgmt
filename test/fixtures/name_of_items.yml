@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_identification_no: MyString
+  approx_repair_cost: 9.99
+  reason_toPrepair: MyString
+  applicant_sign: MyString
+  remarks: MyString
+  user_id: 1
+  office_id: 1
+  repair_application_form_id: 1
+
+two:
+  item_identification_no: MyString
+  approx_repair_cost: 9.99
+  reason_toPrepair: MyString
+  applicant_sign: MyString
+  remarks: MyString
+  user_id: 1
+  office_id: 1
+  repair_application_form_id: 1

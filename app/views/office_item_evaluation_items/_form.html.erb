@@ -1,0 +1,142 @@
+<%= form_with(model: office_item_evaluation_item, local: true) do |form| %>
+  <% if office_item_evaluation_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(office_item_evaluation_item.errors.count, "error") %> prohibited this office_item_evaluation_item from being saved:</h2>
+
+      <ul>
+      <% office_item_evaluation_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :item_classification_no %>
+    <%= form.number_field :item_classification_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_register_page_no %>
+    <%= form.number_field :item_register_page_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_of_item %>
+    <%= form.text_field :name_of_item %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit %>
+    <%= form.text_field :unit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :mached %>
+    <%= form.text_field :mached %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unmatched %>
+    <%= form.text_field :unmatched %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decreased_quantity %>
+    <%= form.text_field :decreased_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :increased_quantity %>
+    <%= form.text_field :increased_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decreased_increased_quantity %>
+    <%= form.text_field :decreased_increased_quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :working %>
+    <%= form.text_field :working %>
+  </div>
+
+  <div class="field">
+    <%= form.label :notworking %>
+    <%= form.text_field :notworking %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_be_repaired %>
+    <%= form.text_field :to_be_repaired %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_be_auctioned %>
+    <%= form.text_field :to_be_auctioned %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_be_dispose %>
+    <%= form.text_field :to_be_dispose %>
+  </div>
+
+  <div class="field">
+    <%= form.label :to_be_conserved %>
+    <%= form.text_field :to_be_conserved %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_amount %>
+    <%= form.text_field :total_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_id %>
+    <%= form.number_field :item_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_item_id %>
+    <%= form.number_field :office_item_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

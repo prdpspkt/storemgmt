@@ -1,0 +1,30 @@
+<h1>Repair Record Register Items</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-repair_record_register_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="date">Date</th>
+      <th data-data="repair_application_no">Repair application no</th>
+      <th data-data="applicat_name">Applicat name</th>
+      <th data-data="changed_part_name">Changed part name</th>
+      <th data-data="changesd_part_cost">Changesd part cost</th>
+      <th data-data="other_expense">Other expense</th>
+      <th data-data="other_expense_cost">Other expense cost</th>
+      <th data-data="total_expense">Total expense</th>
+      <th data-data="vendor_name">Vendor name</th>
+      <th data-data="justified_by">Justified by</th>
+      <th data-data="remarks">Remarks</th>
+      <th data-data="user_id">User</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="fy">Fy</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="repair_record_register_id">Repair record register</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Repair Record Register Item', new_repair_record_register_item_path %>

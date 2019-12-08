@@ -1,0 +1,95 @@
+<h1>खरिद आदेश</h1>
+<table class="table table-sm table-condensed table-bordered">
+  <tr>
+    <th>खरिद आदेश नं</th>
+    <th>मिति</th>
+    <th>निर्णय मिति</th>
+    <th>निर्णय नं</th>
+    <th>आदेश पाउने</th>
+    <th>दाखिला गर्नुपर्ने मिति</th>
+    <th>आदेश दिने</th>
+  </tr>
+  <tr>
+    <td><%= @purchase_order.order_no %></td>
+    <td><%= ndate @purchase_order.order_date %></td>
+    <td><%= ndate @purchase_order.order_decision_date %></td>
+    <td><%= nd @purchase_order.order_decision_no %></td>
+    <td><%= @purchase_order.vendor_name %></td>
+    <td><%= ndate @purchase_order.date_to_receive_goods %></td>
+    <td><%= @purchase_order.office_cheif_name %></td>
+  </tr>
+</table>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, purchase_orders_path %>
+  <%= link_to edit_big_btn.html_safe, edit_purchase_order_path(@purchase_order) %>
+  <% if @purchase_order.marked_as_final != true %>
+    <%= link_to final_btn.html_safe, mark_po_as_final_url(@purchase_order), method: :post, data: {confirm: "के तपाइँ स्वीकृत गर्न चाहानु हुन्छ ? You will have only 3 days to modify data."} %>
+  <% end %>
+  <% if can_unmark(@purchase_order) %>
+    <%= link_to before_final_btn.html_safe, mark_po_as_final_url(@purchase_order), method: :post %>
+  <% end %>
+  <%= link_to print_big_btn.html_safe, "/report/purchase_order/#{@purchase_order.id}" %>
+</div>
+<div class="separator"></div>
+<h2>खरिद गर्नुपर्ने सामाग्री थप्ने</h2>
+<%= render "purchase_item_form", purchase_order_item: @purchase_order_item %>
+<div class="separator"></div>
+<h2>खरिद माग भएका सामानहरू</h2>
+<table class="table table-sm table-condensed table-bordered">
+  <tr>
+    <th>जिन्सी वर्गीकरण नं</th>
+    <th>जिन्सी सामानको नाम</th>
+    <th>इकाई</th>
+    <th>दर</th>
+    <th>परिमाण</th>
+    <th>जम्मा</th>
+    <th>कैफियत</th>
+    <th class="no-print"></th>
+  </tr>
+  <% @purchase_order_items.each do |item| %>
+    <tr id="poi-<%= item.id %>">
+      <td><%= nd item.item_classification_no %></td>
+      <td><%= item.name_of_item_ne %></td>
+      <td><%= item.unit_ne %></td>
+      <td><%= nd item.rate %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= nd item.amount %></td>
+      <td><%= item.remarks %></td>
+      <td class="no-print">
+        <% if @purchase_order.marked_as_final != true %>
+          <%= link_to(destroy_btn.html_safe, purchase_order_item_path(item), method: :delete, remote: true, data: {confirm: "Are you sure?"}) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>जम्मा</td>
+    <td><%= nd @purchase_order_items.sum(:amount) %></td>
+    <td></td>
+    <td class="no-print"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>भ्याट (१३%)</td>
+    <td><%= nd @purchase_order_items.sum(:amount) * 0.13 %></td>
+    <td></td>
+    <td class="no-print"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>कुल जम्मा</td>
+    <td><%= nd @purchase_order_items.sum(:amount) + @purchase_order_items.sum(:amount) * 0.13 %></td>
+    <td></td>
+    <td class="no-print"></td>
+  </tr>
+</table>

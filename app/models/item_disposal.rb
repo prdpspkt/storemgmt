@@ -1,0 +1,2 @@
+class ItemDisposal < ApplicationRecord
+end

@@ -1,0 +1,62 @@
+<%= form_with(model: repair_application_form_item, local: true) do |form| %>
+  <% if repair_application_form_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(repair_application_form_item.errors.count, "error") %> prohibited this repair_application_form_item from being saved:</h2>
+
+      <ul>
+      <% repair_application_form_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_of_item %>
+    <%= form.text_field :name_of_item %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_identification_no %>
+    <%= form.text_field :item_identification_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :approx_repair_cost %>
+    <%= form.text_field :approx_repair_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :reason_toPrepair %>
+    <%= form.text_field :reason_toPrepair %>
+  </div>
+
+  <div class="field">
+    <%= form.label :applicant_sign %>
+    <%= form.text_field :applicant_sign %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :repair_application_form_id %>
+    <%= form.number_field :repair_application_form_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

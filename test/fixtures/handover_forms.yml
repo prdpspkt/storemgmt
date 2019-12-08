@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  decision_date: 2019-09-03 13:45:17
+  fy: MyString
+  decision_no: 1
+  handovered_office_name: MyString
+  date: 2019-09-03 13:45:17
+  handover_form_no: 1
+  handover_store_chief_name: MyString
+  handover_store_chief_designation: MyString
+  handover_store_chief_signed_date: 2019-09-03 13:45:17
+  handover_chief_name: MyString
+  handover_chief_designation: MyString
+  handover_chief_signed_date: 2019-09-03 13:45:17
+  receiver_store_chief_name: MyString
+  receiver_store_chief_designation: MyString
+  receiver_store_chief_signed_date: 2019-09-03 13:45:17
+  receiver_chief_name: MyString
+  receiver_chief_desination: MyString
+  receiver_chief_signed_date: 2019-09-03 13:45:17
+  office_id: 1
+  user_id: 1
+  fiscal_year_id: 1
+
+two:
+  decision_date: 2019-09-03 13:45:17
+  fy: MyString
+  decision_no: 1
+  handovered_office_name: MyString
+  date: 2019-09-03 13:45:17
+  handover_form_no: 1
+  handover_store_chief_name: MyString
+  handover_store_chief_designation: MyString
+  handover_store_chief_signed_date: 2019-09-03 13:45:17
+  handover_chief_name: MyString
+  handover_chief_designation: MyString
+  handover_chief_signed_date: 2019-09-03 13:45:17
+  receiver_store_chief_name: MyString
+  receiver_store_chief_designation: MyString
+  receiver_store_chief_signed_date: 2019-09-03 13:45:17
+  receiver_chief_name: MyString
+  receiver_chief_desination: MyString
+  receiver_chief_signed_date: 2019-09-03 13:45:17
+  office_id: 1
+  user_id: 1
+  fiscal_year_id: 1

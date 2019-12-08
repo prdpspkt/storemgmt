@@ -1,0 +1,2 @@
+json.extract! item_assistance_register_item, :id, :date, :order_release_no, :name_of_item, :specification, :item_identification_no, :model_no, :quantity, :amount, :taken_date, :date_to_be_returned, :returned_quantity, :returned_date, :name_of_user, :user_id, :office_id, :fy, :fiscal_year_id, :created_at, :updated_at
+json.url item_assistance_register_item_url(item_assistance_register_item, format: :json)

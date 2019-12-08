@@ -1,0 +1,1 @@
+json.partial! "item_assistance_register_items/item_assistance_register_item", item_assistance_register_item: @item_assistance_register_item

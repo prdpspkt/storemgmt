@@ -1,0 +1,112 @@
+<%= form_with(model: rental_record_register_item, local: true) do |form| %>
+  <% if rental_record_register_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(rental_record_register_item.errors.count, "error") %> prohibited this rental_record_register_item from being saved:</h2>
+
+      <ul>
+      <% rental_record_register_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_of_vendor %>
+    <%= form.text_field :name_of_vendor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address_of_vendor %>
+    <%= form.text_field :address_of_vendor %>
+  </div>
+
+  <div class="field">
+    <%= form.label :approval_date %>
+    <%= form.datetime_select :approval_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :start_date %>
+    <%= form.datetime_select :start_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :end_date %>
+    <%= form.datetime_select :end_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit %>
+    <%= form.text_field :unit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :duration %>
+    <%= form.text_field :duration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate %>
+    <%= form.text_field :rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_amount %>
+    <%= form.text_field :total_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :receipt_or_voucher_no %>
+    <%= form.number_field :receipt_or_voucher_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_amount %>
+    <%= form.text_field :total_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :returned_date %>
+    <%= form.datetime_select :returned_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rental_record_register_id %>
+    <%= form.number_field :rental_record_register_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

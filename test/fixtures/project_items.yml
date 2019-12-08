@@ -1,0 +1,37 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_of_item_ne: MyString
+  name_of_item_en: MyString
+  unit_ne: MyString
+  unit_en: MyString
+  item_register_page_no: 1
+  type: 
+  to_be_repaired: 9.99
+  to_be_auctioned: 9.99
+  to_be_conserved: 9.99
+  working: 9.99
+  not_working: 9.99
+  project_id: 1
+  item_id: 1
+  user_id: 1
+  office_id: 1
+  fy_id: 1
+
+two:
+  name_of_item_ne: MyString
+  name_of_item_en: MyString
+  unit_ne: MyString
+  unit_en: MyString
+  item_register_page_no: 1
+  type: 
+  to_be_repaired: 9.99
+  to_be_auctioned: 9.99
+  to_be_conserved: 9.99
+  working: 9.99
+  not_working: 9.99
+  project_id: 1
+  item_id: 1
+  user_id: 1
+  office_id: 1
+  fy_id: 1

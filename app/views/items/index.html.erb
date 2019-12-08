@@ -1,0 +1,18 @@
+<h1>सामाग्रीहरू</h1>
+
+<table class="table data-table" id="dttb-items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="name_of_item_ne">सामानको नाम(नेपाली)</th>
+      <th data-data="name_of_item_en">सामानको नाम(अंग्रेजी)</th>
+      <th data-data="unit_ne">इकाई</th>
+      <th data-data="item_category">सामाग्रीको वर्ग</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to new_btn.html_safe, new_item_path %>

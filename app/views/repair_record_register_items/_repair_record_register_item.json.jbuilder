@@ -1,0 +1,2 @@
+json.extract! repair_record_register_item, :id, :date, :repair_application_no, :applicat_name, :changed_part_name, :changesd_part_cost, :other_expense, :other_expense_cost, :total_expense, :vendor_name, :justified_by, :remarks, :user_id, :office_id, :fy, :fiscal_year_id, :repair_record_register_id, :created_at, :updated_at
+json.url repair_record_register_item_url(repair_record_register_item, format: :json)

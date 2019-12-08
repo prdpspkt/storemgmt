@@ -1,0 +1,39 @@
+<h1>Office Item Evaluation Items</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-office_item_evaluation_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="item_classification_no">Item classification no</th>
+      <th data-data="item_register_page_no">Item register page no</th>
+      <th data-data="name_of_item">Name of item</th>
+      <th data-data="unit">Unit</th>
+      <th data-data="quantity">Quantity</th>
+      <th data-data="amount">Amount</th>
+      <th data-data="mached">Mached</th>
+      <th data-data="unmatched">Unmatched</th>
+      <th data-data="decreased_quantity">Decreased quantity</th>
+      <th data-data="increased_quantity">Increased quantity</th>
+      <th data-data="decreased_increased_quantity">Decreased increased quantity</th>
+      <th data-data="working">Working</th>
+      <th data-data="notworking">Notworking</th>
+      <th data-data="to_be_repaired">To be repaired</th>
+      <th data-data="to_be_auctioned">To be auctioned</th>
+      <th data-data="to_be_dispose">To be dispose</th>
+      <th data-data="to_be_conserved">To be conserved</th>
+      <th data-data="total_amount">Total amount</th>
+      <th data-data="remarks">Remarks</th>
+      <th data-data="item_id">Item</th>
+      <th data-data="office_item_id">Office item</th>
+      <th data-data="user_id">User</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="fy">Fy</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Office Item Evaluation Item', new_office_item_evaluation_item_path %>

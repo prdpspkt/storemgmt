@@ -1,0 +1,142 @@
+<%= form_with(model: land_and_structure_record_book_item, local: true) do |form| %>
+  <% if land_and_structure_record_book_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(land_and_structure_record_book_item.errors.count, "error") %> prohibited this land_and_structure_record_book_item from being saved:</h2>
+
+      <ul>
+      <% land_and_structure_record_book_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :district %>
+    <%= form.text_field :district %>
+  </div>
+
+  <div class="field">
+    <%= form.label :local_level %>
+    <%= form.text_field :local_level %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ward_no %>
+    <%= form.number_field :ward_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :map_sheet_no %>
+    <%= form.text_field :map_sheet_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :plot_no %>
+    <%= form.text_field :plot_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :area %>
+    <%= form.text_field :area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type %>
+    <%= form.text_field :type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :owner_name %>
+    <%= form.text_field :owner_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :certificate_no %>
+    <%= form.text_field :certificate_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :received_date %>
+    <%= form.datetime_select :received_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :structure_laying_land_area %>
+    <%= form.text_field :structure_laying_land_area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :structure_covered_area %>
+    <%= form.text_field :structure_covered_area %>
+  </div>
+
+  <div class="field">
+    <%= form.label :structure_type %>
+    <%= form.text_field :structure_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :decision_date %>
+    <%= form.datetime_select :decision_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :structure_cost %>
+    <%= form.text_field :structure_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :land_and_structure_total_cost %>
+    <%= form.text_field :land_and_structure_total_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evaluated_date %>
+    <%= form.datetime_select :evaluated_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :evaluated_price %>
+    <%= form.text_field :evaluated_price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :land_and_structure_record_book_id %>
+    <%= form.number_field :land_and_structure_record_book_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of item:</strong>
+  <%= @office_release_item.name_of_item %>
+</p>
+
+<p>
+  <strong>Item register page no:</strong>
+  <%= @office_release_item.item_register_page_no %>
+</p>
+
+<p>
+  <strong>Code no:</strong>
+  <%= @office_release_item.code_no %>
+</p>
+
+<p>
+  <strong>Specification:</strong>
+  <%= @office_release_item.specification %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @office_release_item.unit %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @office_release_item.quantity %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @office_release_item.rate %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @office_release_item.amount %>
+</p>
+
+<p>
+  <strong>Remarks:</strong>
+  <%= @office_release_item.remarks %>
+</p>
+
+<p>
+  <strong>Office release:</strong>
+  <%= @office_release_item.office_release_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @office_release_item.user_id %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @office_release_item.office_id %>
+</p>
+
+<p>
+  <strong>Fiscal year:</strong>
+  <%= @office_release_item.fiscal_year_id %>
+</p>
+
+<%= link_to 'Edit', edit_office_release_item_path(@office_release_item) %> |
+<%= link_to 'Back', office_release_items_path %>

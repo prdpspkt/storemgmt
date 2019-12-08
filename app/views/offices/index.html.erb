@@ -1,0 +1,53 @@
+<div class="row">
+  <h1>
+    कार्यालय सम्बन्धी विवरण
+  </h1>
+</div>
+<div class="row">
+  <div class="col-sm-4">
+    <b>सरकारको तह:</b> <%= @office.gov %>
+  </div>
+
+  <div class="col-sm-4">
+    <b>मन्त्रालय:</b> <%= @office.ministry %>
+  </div>
+
+  <div class="col-sm-4">
+    <b>विभाग:</b> <%= @office.department %>
+  </div>
+
+  <div class="col-sm-4">
+    <b>कार्यालय:</b> <%= @office.office %>
+  </div>
+
+  <div class="col-sm-4">
+    <b>ठेगाना:</b> <%= @office.address %>
+  </div>
+
+  <div class="col-sm-4">
+    <b>फोन:</b> <%= @office.phone %>
+  </div>
+
+  <div class="col-sm-4">
+    <b>इमेल:</b> <%= @office.email %>
+  </div>
+
+  <div class="col-sm-4">
+    <b>फ्याक्स:</b> <%= @office.fax %>
+  </div>
+
+    <div class="col-sm-4">
+    <b>कार्यालय प्रमुख:</b> <%= @office_chief.name_ne %>
+  </div>
+
+    <div class="col-sm-4">
+    <b>प्रशासन शाखा प्रमुख:</b> <%= @section_chief.name_ne %>
+  </div>
+
+    <div class="col-sm-4">
+    <b>स्टोर प्रमुख:</b> <%=  @store_keeper.name_ne %>
+  </div>
+  </div>
+  <div class="col-sm-12">
+    <a href="<%= edit_office_path(@office) %>"> <%= edit_btn.html_safe %> </a>
+  </div>

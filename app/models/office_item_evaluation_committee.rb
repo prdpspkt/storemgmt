@@ -1,0 +1,2 @@
+class OfficeItemEvaluationCommittee < ApplicationRecord
+end

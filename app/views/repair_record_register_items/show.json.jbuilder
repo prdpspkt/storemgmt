@@ -1,0 +1,1 @@
+json.partial! "repair_record_register_items/repair_record_register_item", repair_record_register_item: @repair_record_register_item

@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-12">
+    <h1>जिन्सी सहायक खाता: <%= @item_assistance_register.name_of_item_ne %></h1>
+    <table class="table table-sm table-bordered">
+      <tr>
+        <th>खाता पाना नं.</th>
+        <th>जिन्सी खाता पाना नं</th>
+        <th>जिन्सी सामानको नाम</th>
+      </tr>
+      <tr>
+        <td><%= @item_assistance_register.register_page_no %></td>
+        <td><%= @item_assistance_register.item_register_page_no %></td>
+        <td><%= @item_assistance_register.name_of_item_ne %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="text-center">
+  <%= link_to back_btn.html_safe, item_assistance_registers_path %>
+  <%= link_to edit_big_btn.html_safe, edit_item_assistance_register_path(@item_assistance_register) %>
+  <%= link_to print_big_btn.html_safe, "/report/office_item_assistance_register/#{@item_assistance_register.id}" %>
+</div>
+<div class="separator"></div>
+<h2>सामान लिएको विवरण प्रविष्ट गर्ने</h2>
+<%= render "iarf_1", item_assistance_register_item: @item_assistance_register_item %>
+<h2>जिन्सी प्रयोगको विवरण</h2>
+<table class="table table-sm table-bordered">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>इकाई</th>
+    <th>परिमाण</th>
+    <th>प्रयोगकर्ताको नाम</th>
+    <th>सामान बुझेको मिति</th>
+    <th>फिर्ता गर्नुपर्ने मिति</th>
+  </tr>
+  <% @i = 1 %>
+  <% @item_assistance_register_items.each do |item| %>
+    <tr>
+      <td><%= @i %></td>
+      <td><%= item.name_of_item_ne %></td>
+      <td><%= item.item_assistance_register.unit_ne %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.name_of_user %></td>
+      <td><%= item.date %></td>
+      <td><%= item.date_to_be_returned %></td>
+    </tr>
+    <% @i = @i + 1 %>
+  <% end %>
+</table>

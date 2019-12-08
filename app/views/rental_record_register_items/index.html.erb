@@ -1,0 +1,33 @@
+<h1>Rental Record Register Items</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-rental_record_register_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="date">Date</th>
+      <th data-data="name_of_vendor">Name of vendor</th>
+      <th data-data="address_of_vendor">Address of vendor</th>
+      <th data-data="approval_date">Approval date</th>
+      <th data-data="start_date">Start date</th>
+      <th data-data="end_date">End date</th>
+      <th data-data="unit">Unit</th>
+      <th data-data="duration">Duration</th>
+      <th data-data="rate">Rate</th>
+      <th data-data="total_amount">Total amount</th>
+      <th data-data="receipt_or_voucher_no">Receipt or voucher no</th>
+      <th data-data="total_amount">Total amount</th>
+      <th data-data="returned_date">Returned date</th>
+      <th data-data="remarks">Remarks</th>
+      <th data-data="user_id">User</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="fy">Fy</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="rental_record_register_id">Rental record register</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Rental Record Register Item', new_rental_record_register_item_path %>

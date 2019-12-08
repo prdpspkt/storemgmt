@@ -1,0 +1,2 @@
+class RepairRecordRegisterItem < ApplicationRecord
+end

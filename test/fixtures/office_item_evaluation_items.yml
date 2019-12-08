@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_classification_no: 1
+  item_register_page_no: 1
+  name_of_item: MyString
+  unit: MyString
+  quantity: 9.99
+  amount: 9.99
+  mached: 9.99
+  unmatched: 9.99
+  decreased_quantity: 9.99
+  increased_quantity: 9.99
+  decreased_increased_quantity: 9.99
+  working: 9.99
+  notworking: 9.99
+  to_be_repaired: 9.99
+  to_be_auctioned: 9.99
+  to_be_dispose: 9.99
+  to_be_conserved: 9.99
+  total_amount: 9.99
+  remarks: MyString
+  item_id: 1
+  office_item_id: 1
+  user_id: 1
+  office_id: 1
+  fy: MyString
+  fiscal_year_id: 1
+
+two:
+  item_classification_no: 1
+  item_register_page_no: 1
+  name_of_item: MyString
+  unit: MyString
+  quantity: 9.99
+  amount: 9.99
+  mached: 9.99
+  unmatched: 9.99
+  decreased_quantity: 9.99
+  increased_quantity: 9.99
+  decreased_increased_quantity: 9.99
+  working: 9.99
+  notworking: 9.99
+  to_be_repaired: 9.99
+  to_be_auctioned: 9.99
+  to_be_dispose: 9.99
+  to_be_conserved: 9.99
+  total_amount: 9.99
+  remarks: MyString
+  item_id: 1
+  office_item_id: 1
+  user_id: 1
+  office_id: 1
+  fy: MyString
+  fiscal_year_id: 1

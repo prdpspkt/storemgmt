@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-09-03 16:32:22
+  entry_release_no: 1
+  quantity: 9.99
+  rate: 9.99
+  amount: 9.99
+  transaction_type: 1
+  remarks: MyString
+  user_id: 1
+  office_id: 1
+  fy: MyString
+  fiscal_year_id: 1
+  project_id: 1
+
+two:
+  date: 2019-09-03 16:32:22
+  entry_release_no: 1
+  quantity: 9.99
+  rate: 9.99
+  amount: 9.99
+  transaction_type: 1
+  remarks: MyString
+  user_id: 1
+  office_id: 1
+  fy: MyString
+  fiscal_year_id: 1
+  project_id: 1

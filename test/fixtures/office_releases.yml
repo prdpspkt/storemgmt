@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fy: MyString
+  release_no: 1
+  release_date: 2019-09-02 11:03:11
+  store_chief_name: MyString
+  store_chief_signed_date: 2019-09-02 11:03:11
+  office_cheif_name: MyString
+  office_cheif_signed_date: 2019-09-02 11:03:11
+  user_id: 1
+  office_id: 1
+  fiscal_year_id: 1
+
+two:
+  fy: MyString
+  release_no: 1
+  release_date: 2019-09-02 11:03:11
+  store_chief_name: MyString
+  store_chief_signed_date: 2019-09-02 11:03:11
+  office_cheif_name: MyString
+  office_cheif_signed_date: 2019-09-02 11:03:11
+  user_id: 1
+  office_id: 1
+  fiscal_year_id: 1

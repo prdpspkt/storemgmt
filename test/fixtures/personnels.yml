@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  post: MyString
+  phone: MyString
+  address: MyString
+  level_class: MyString
+  service: MyString
+  group: MyString
+  sub_group: MyString
+  ctroll: MyString
+
+two:
+  name: MyString
+  post: MyString
+  phone: MyString
+  address: MyString
+  level_class: MyString
+  service: MyString
+  group: MyString
+  sub_group: MyString
+  ctroll: MyString

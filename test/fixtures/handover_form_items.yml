@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_classification_no: 1
+  item_register_page_no: 1
+  name_of_item: MyString
+  specification: MyString
+  item_identification_no: 1
+  model_no: MyString
+  unit: MyString
+  quantity: 9.99
+  amount: 9.99
+  received_date: 2019-09-03 13:56:03
+  physical_status: MyString
+  fy: MyString
+  fiscal_year_id: 1
+  user_id: 1
+  office_id: 1
+  project_id: 1
+  handover_form_id: 1
+
+two:
+  item_classification_no: 1
+  item_register_page_no: 1
+  name_of_item: MyString
+  specification: MyString
+  item_identification_no: 1
+  model_no: MyString
+  unit: MyString
+  quantity: 9.99
+  amount: 9.99
+  received_date: 2019-09-03 13:56:03
+  physical_status: MyString
+  fy: MyString
+  fiscal_year_id: 1
+  user_id: 1
+  office_id: 1
+  project_id: 1
+  handover_form_id: 1

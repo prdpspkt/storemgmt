@@ -1,0 +1,1 @@
+json.partial! "office_purchase_entry_items/office_purchase_entry_item", office_purchase_entry_item: @office_purchase_entry_item

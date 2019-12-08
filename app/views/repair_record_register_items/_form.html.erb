@@ -1,0 +1,97 @@
+<%= form_with(model: repair_record_register_item, local: true) do |form| %>
+  <% if repair_record_register_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(repair_record_register_item.errors.count, "error") %> prohibited this repair_record_register_item from being saved:</h2>
+
+      <ul>
+      <% repair_record_register_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :repair_application_no %>
+    <%= form.number_field :repair_application_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :applicat_name %>
+    <%= form.text_field :applicat_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :changed_part_name %>
+    <%= form.text_field :changed_part_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :changesd_part_cost %>
+    <%= form.text_field :changesd_part_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_expense %>
+    <%= form.text_field :other_expense %>
+  </div>
+
+  <div class="field">
+    <%= form.label :other_expense_cost %>
+    <%= form.text_field :other_expense_cost %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_expense %>
+    <%= form.text_field :total_expense %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_name %>
+    <%= form.text_field :vendor_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :justified_by %>
+    <%= form.text_field :justified_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :repair_record_register_id %>
+    <%= form.number_field :repair_record_register_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

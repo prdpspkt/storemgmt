@@ -1,0 +1,39 @@
+<h1>Land And Structure Record Book Items</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-land_and_structure_record_book_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="district">District</th>
+      <th data-data="local_level">Local level</th>
+      <th data-data="ward_no">Ward no</th>
+      <th data-data="map_sheet_no">Map sheet no</th>
+      <th data-data="plot_no">Plot no</th>
+      <th data-data="area">Area</th>
+      <th data-data="type">Type</th>
+      <th data-data="owner_name">Owner name</th>
+      <th data-data="certificate_no">Certificate no</th>
+      <th data-data="received_date">Received date</th>
+      <th data-data="price">Price</th>
+      <th data-data="structure_laying_land_area">Structure laying land area</th>
+      <th data-data="structure_covered_area">Structure covered area</th>
+      <th data-data="structure_type">Structure type</th>
+      <th data-data="decision_date">Decision date</th>
+      <th data-data="structure_cost">Structure cost</th>
+      <th data-data="land_and_structure_total_cost">Land and structure total cost</th>
+      <th data-data="evaluated_date">Evaluated date</th>
+      <th data-data="evaluated_price">Evaluated price</th>
+      <th data-data="remarks">Remarks</th>
+      <th data-data="user_id">User</th>
+      <th data-data="fy">Fy</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="land_and_structure_record_book_id">Land and structure record book</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Land And Structure Record Book Item', new_land_and_structure_record_book_item_path %>

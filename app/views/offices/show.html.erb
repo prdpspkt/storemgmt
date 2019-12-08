@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gov:</strong>
+  <%= @office.gov %>
+</p>
+
+<p>
+  <strong>Ministry:</strong>
+  <%= @office.ministry %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @office.department %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @office.office %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @office.address %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @office.phone %>
+</p>
+
+<p>
+  <strong>Fax:</strong>
+  <%= @office.fax %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @office.email %>
+</p>
+
+<p>
+  <strong>Office chief:</strong>
+  <%= @office.office_chief %>
+</p>
+
+<p>
+  <strong>Section chief:</strong>
+  <%= @office.section_chief %>
+</p>
+
+<p>
+  <strong>Store chief:</strong>
+  <%= @office.store_chief %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @office.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_office_path(@office) %> |
+<%= link_to 'Back', offices_path %>

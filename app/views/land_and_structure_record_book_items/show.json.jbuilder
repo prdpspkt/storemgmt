@@ -1,0 +1,1 @@
+json.partial! "land_and_structure_record_book_items/land_and_structure_record_book_item", land_and_structure_record_book_item: @land_and_structure_record_book_item

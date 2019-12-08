@@ -1,0 +1,102 @@
+<%= form_with(model: handover_form_item, local: true) do |form| %>
+  <% if handover_form_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(handover_form_item.errors.count, "error") %> prohibited this handover_form_item from being saved:</h2>
+
+      <ul>
+      <% handover_form_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :item_classification_no %>
+    <%= form.number_field :item_classification_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_register_page_no %>
+    <%= form.number_field :item_register_page_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_of_item %>
+    <%= form.text_field :name_of_item %>
+  </div>
+
+  <div class="field">
+    <%= form.label :specification %>
+    <%= form.text_field :specification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_identification_no %>
+    <%= form.number_field :item_identification_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model_no %>
+    <%= form.text_field :model_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit %>
+    <%= form.text_field :unit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :received_date %>
+    <%= form.datetime_select :received_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :physical_status %>
+    <%= form.text_field :physical_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :handover_form_id %>
+    <%= form.number_field :handover_form_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

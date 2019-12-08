@@ -1,0 +1,2 @@
+json.extract! land_and_structure_record_book_item, :id, :district, :local_level, :ward_no, :map_sheet_no, :plot_no, :area, :type, :owner_name, :certificate_no, :received_date, :price, :structure_laying_land_area, :structure_covered_area, :structure_type, :decision_date, :structure_cost, :land_and_structure_total_cost, :evaluated_date, :evaluated_price, :remarks, :user_id, :fy, :fiscal_year_id, :office_id, :land_and_structure_record_book_id, :created_at, :updated_at
+json.url land_and_structure_record_book_item_url(land_and_structure_record_book_item, format: :json)

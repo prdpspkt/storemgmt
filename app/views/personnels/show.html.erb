@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @personnel.name %>
+</p>
+
+<p>
+  <strong>Post:</strong>
+  <%= @personnel.post %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @personnel.phone %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @personnel.address %>
+</p>
+
+<p>
+  <strong>Level class:</strong>
+  <%= @personnel.level_class %>
+</p>
+
+<p>
+  <strong>Service:</strong>
+  <%= @personnel.service %>
+</p>
+
+<p>
+  <strong>Group:</strong>
+  <%= @personnel.group %>
+</p>
+
+<p>
+  <strong>Sub group:</strong>
+  <%= @personnel.sub_group %>
+</p>
+
+<p>
+  <strong>Ctroll:</strong>
+  <%= @personnel.ctroll %>
+</p>
+
+<%= link_to 'Edit', edit_personnel_path(@personnel) %> |
+<%= link_to 'Back', personnels_path %>

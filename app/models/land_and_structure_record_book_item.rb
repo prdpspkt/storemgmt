@@ -1,0 +1,2 @@
+class LandAndStructureRecordBookItem < ApplicationRecord
+end

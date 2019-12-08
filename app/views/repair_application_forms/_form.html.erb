@@ -1,0 +1,142 @@
+<%= form_with(model: repair_application_form, local: true) do |form| %>
+  <% if repair_application_form.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(repair_application_form.errors.count, "error") %> prohibited this repair_application_form from being saved:</h2>
+
+      <ul>
+      <% repair_application_form.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :application_no %>
+    <%= form.number_field :application_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date %>
+    <%= form.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.text_field :year %>
+  </div>
+
+  <div class="field">
+    <%= form.label :month %>
+    <%= form.text_field :month %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_name %>
+    <%= form.text_field :vendor_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_address %>
+    <%= form.text_field :vendor_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_phone %>
+    <%= form.text_field :vendor_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_registration_no %>
+    <%= form.text_field :vendor_registration_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_pan %>
+    <%= form.text_field :vendor_pan %>
+  </div>
+
+  <div class="field">
+    <%= form.label :within_date %>
+    <%= form.datetime_select :within_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_name %>
+    <%= form.text_field :office_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_address %>
+    <%= form.text_field :office_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_name %>
+    <%= form.text_field :section_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_designation %>
+    <%= form.text_field :section_chief_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_signed_date %>
+    <%= form.datetime_select :section_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tecnical_person_name %>
+    <%= form.text_field :tecnical_person_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :technical_person_designation %>
+    <%= form.text_field :technical_person_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :technical_person_signed_date %>
+    <%= form.datetime_select :technical_person_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_name %>
+    <%= form.text_field :office_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_designation %>
+    <%= form.text_field :office_chief_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_signed_date %>
+    <%= form.datetime_select :office_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

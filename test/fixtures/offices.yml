@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gov: MyString
+  ministry: MyString
+  department: MyString
+  office: MyString
+  address: MyString
+  phone: MyString
+  fax: MyString
+  email: MyString
+  office_chief: 1
+  section_chief: 1
+  store_chief: 1
+  user_id: 1
+
+two:
+  gov: MyString
+  ministry: MyString
+  department: MyString
+  office: MyString
+  address: MyString
+  phone: MyString
+  fax: MyString
+  email: MyString
+  office_chief: 1
+  section_chief: 1
+  store_chief: 1
+  user_id: 1

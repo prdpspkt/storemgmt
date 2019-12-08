@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  mark_as_final: MyString
+  demand_form: MyString
+  purchase_order: MyString
+
+two:
+  mark_as_final: MyString
+  demand_form: MyString
+  purchase_order: MyString

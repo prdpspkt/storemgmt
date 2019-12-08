@@ -1,0 +1,39 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fy: MyString
+  demand_no: 1
+  demand_date: 2019-09-02 10:07:38
+  demand_by: MyString
+  recommended_by: MyString
+  project_name: MyString
+  project_id: 1
+  project_no: 1
+  recommended_date: 2019-09-02 10:07:38
+  needed_to_purchase: 
+  ordered_by: MyString
+  ordered_date: 2019-09-02 10:07:38
+  recorded_by: MyString
+  recorded_date: MyString
+  user_id: 1
+  fiscal_year: 1
+  office_id: 1
+
+two:
+  fy: MyString
+  demand_no: 1
+  demand_date: 2019-09-02 10:07:38
+  demand_by: MyString
+  recommended_by: MyString
+  project_name: MyString
+  project_id: 1
+  project_no: 1
+  recommended_date: 2019-09-02 10:07:38
+  needed_to_purchase: 
+  ordered_by: MyString
+  ordered_date: 2019-09-02 10:07:38
+  recorded_by: MyString
+  recorded_date: MyString
+  user_id: 1
+  fiscal_year: 1
+  office_id: 1

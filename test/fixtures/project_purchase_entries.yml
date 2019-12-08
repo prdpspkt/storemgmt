@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  entry_date: 2019-09-02 10:59:08
+  entry_no: 1
+  store_chief_name: MyString
+  store_chief_designation: MyString
+  store_cheif_sign_date: 2019-09-02 10:59:08
+  section_chief_name: MyString
+  section_chief_designation: MyString
+  section_chief_signed_date: 2019-09-02 10:59:08
+  office_chief_name: MyString
+  office_chief_designation: MyString
+  office_chief_signed_date: 2019-09-02 10:59:08
+  user_id: 1
+  office_id: 1
+  fy: MyString
+  fiscal_year_id: 1
+
+two:
+  entry_date: 2019-09-02 10:59:08
+  entry_no: 1
+  store_chief_name: MyString
+  store_chief_designation: MyString
+  store_cheif_sign_date: 2019-09-02 10:59:08
+  section_chief_name: MyString
+  section_chief_designation: MyString
+  section_chief_signed_date: 2019-09-02 10:59:08
+  office_chief_name: MyString
+  office_chief_designation: MyString
+  office_chief_signed_date: 2019-09-02 10:59:08
+  user_id: 1
+  office_id: 1
+  fy: MyString
+  fiscal_year_id: 1

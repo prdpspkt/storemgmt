@@ -1,0 +1,2 @@
+json.extract! item_disposal, :id, :fy, :decision_date, :decision_made_by, :store_chief_name, :store_chief_designation, :store_chief_signed_date, :section_chief_name, :section_chief_designation, :section_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :office_id, :user_id, :fiscal_year_id, :created_at, :updated_at
+json.url item_disposal_url(item_disposal, format: :json)

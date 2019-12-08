@@ -1,0 +1,48 @@
+require 'test_helper'
+
+class ProjectWiseNonExpensableItemRegisterTransactionsControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    @project_wise_non_expensable_item_register_transaction = project_wise_non_expensable_item_register_transactions(:one)
+  end
+
+  test "should get index" do
+    get project_wise_non_expensable_item_register_transactions_url
+    assert_response :success
+  end
+
+  test "should get new" do
+    get new_project_wise_non_expensable_item_register_transaction_url
+    assert_response :success
+  end
+
+  test "should create project_wise_non_expensable_item_register_transaction" do
+    assert_difference('ProjectWiseNonExpensableItemRegisterTransaction.count') do
+      post project_wise_non_expensable_item_register_transactions_url, params: { project_wise_non_expensable_item_register_transaction: { age: @project_wise_non_expensable_item_register_transaction.age, amount: @project_wise_non_expensable_item_register_transaction.amount, borrowed_from: @project_wise_non_expensable_item_register_transaction.borrowed_from, company_or_country: @project_wise_non_expensable_item_register_transaction.company_or_country, date: @project_wise_non_expensable_item_register_transaction.date, entry_release_no: @project_wise_non_expensable_item_register_transaction.entry_release_no, fiscal_year_id: @project_wise_non_expensable_item_register_transaction.fiscal_year_id, fy: @project_wise_non_expensable_item_register_transaction.fy, item_id: @project_wise_non_expensable_item_register_transaction.item_id, item_identification_no: @project_wise_non_expensable_item_register_transaction.item_identification_no, lended_to: @project_wise_non_expensable_item_register_transaction.lended_to, model_no: @project_wise_non_expensable_item_register_transaction.model_no, office_id: @project_wise_non_expensable_item_register_transaction.office_id, project_id: @project_wise_non_expensable_item_register_transaction.project_id, project_item_id: @project_wise_non_expensable_item_register_transaction.project_item_id, project_main_non_expensable_item_register_id: @project_wise_non_expensable_item_register_transaction.project_main_non_expensable_item_register_id, quantity: @project_wise_non_expensable_item_register_transaction.quantity, rate: @project_wise_non_expensable_item_register_transaction.rate, remarks: @project_wise_non_expensable_item_register_transaction.remarks, size: @project_wise_non_expensable_item_register_transaction.size, source: @project_wise_non_expensable_item_register_transaction.source, specification: @project_wise_non_expensable_item_register_transaction.specification, transaction_type: @project_wise_non_expensable_item_register_transaction.transaction_type, user_id: @project_wise_non_expensable_item_register_transaction.user_id } }
+    end
+
+    assert_redirected_to project_wise_non_expensable_item_register_transaction_url(ProjectWiseNonExpensableItemRegisterTransaction.last)
+  end
+
+  test "should show project_wise_non_expensable_item_register_transaction" do
+    get project_wise_non_expensable_item_register_transaction_url(@project_wise_non_expensable_item_register_transaction)
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get edit_project_wise_non_expensable_item_register_transaction_url(@project_wise_non_expensable_item_register_transaction)
+    assert_response :success
+  end
+
+  test "should update project_wise_non_expensable_item_register_transaction" do
+    patch project_wise_non_expensable_item_register_transaction_url(@project_wise_non_expensable_item_register_transaction), params: { project_wise_non_expensable_item_register_transaction: { age: @project_wise_non_expensable_item_register_transaction.age, amount: @project_wise_non_expensable_item_register_transaction.amount, borrowed_from: @project_wise_non_expensable_item_register_transaction.borrowed_from, company_or_country: @project_wise_non_expensable_item_register_transaction.company_or_country, date: @project_wise_non_expensable_item_register_transaction.date, entry_release_no: @project_wise_non_expensable_item_register_transaction.entry_release_no, fiscal_year_id: @project_wise_non_expensable_item_register_transaction.fiscal_year_id, fy: @project_wise_non_expensable_item_register_transaction.fy, item_id: @project_wise_non_expensable_item_register_transaction.item_id, item_identification_no: @project_wise_non_expensable_item_register_transaction.item_identification_no, lended_to: @project_wise_non_expensable_item_register_transaction.lended_to, model_no: @project_wise_non_expensable_item_register_transaction.model_no, office_id: @project_wise_non_expensable_item_register_transaction.office_id, project_id: @project_wise_non_expensable_item_register_transaction.project_id, project_item_id: @project_wise_non_expensable_item_register_transaction.project_item_id, project_main_non_expensable_item_register_id: @project_wise_non_expensable_item_register_transaction.project_main_non_expensable_item_register_id, quantity: @project_wise_non_expensable_item_register_transaction.quantity, rate: @project_wise_non_expensable_item_register_transaction.rate, remarks: @project_wise_non_expensable_item_register_transaction.remarks, size: @project_wise_non_expensable_item_register_transaction.size, source: @project_wise_non_expensable_item_register_transaction.source, specification: @project_wise_non_expensable_item_register_transaction.specification, transaction_type: @project_wise_non_expensable_item_register_transaction.transaction_type, user_id: @project_wise_non_expensable_item_register_transaction.user_id } }
+    assert_redirected_to project_wise_non_expensable_item_register_transaction_url(@project_wise_non_expensable_item_register_transaction)
+  end
+
+  test "should destroy project_wise_non_expensable_item_register_transaction" do
+    assert_difference('ProjectWiseNonExpensableItemRegisterTransaction.count', -1) do
+      delete project_wise_non_expensable_item_register_transaction_url(@project_wise_non_expensable_item_register_transaction)
+    end
+
+    assert_redirected_to project_wise_non_expensable_item_register_transactions_url
+  end
+end

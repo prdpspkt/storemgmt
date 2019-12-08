@@ -1,0 +1,2 @@
+json.extract! office_item_evaluation_item, :id, :item_classification_no, :item_register_page_no, :name_of_item, :unit, :quantity, :amount, :mached, :unmatched, :decreased_quantity, :increased_quantity, :decreased_increased_quantity, :working, :notworking, :to_be_repaired, :to_be_auctioned, :to_be_dispose, :to_be_conserved, :total_amount, :remarks, :item_id, :office_item_id, :user_id, :office_id, :fy, :fiscal_year_id, :created_at, :updated_at
+json.url office_item_evaluation_item_url(office_item_evaluation_item, format: :json)

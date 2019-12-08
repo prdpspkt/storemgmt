@@ -1,0 +1,49 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  vendor_name: MyString
+  vendor_address: MyString
+  vendor_registration: MyString
+  vendor_phone: MyString
+  vendor_pan: MyString
+  order_no: 1
+  order_date: 2019-09-02 10:17:50
+  order_decision_no: 1
+  order_decision_date: 2019-09-02 10:17:50
+  date_to_receive_goods: 2019-09-02 10:17:50
+  office_name: MyString
+  office_address: MyString
+  store_chief_name: MyString
+  store_chief_signed_date: 2019-09-02 10:17:50
+  section_chief_name: MyString
+  section_chief_signed_date: 2019-09-02 10:17:50
+  office_cheif_signed_date: 2019-09-02 10:17:50
+  office_cheif_name: MyString
+  user_id: 1
+  fy: MyString
+  fiscal_year_id: 1
+  office_id: 1
+
+two:
+  vendor_name: MyString
+  vendor_address: MyString
+  vendor_registration: MyString
+  vendor_phone: MyString
+  vendor_pan: MyString
+  order_no: 1
+  order_date: 2019-09-02 10:17:50
+  order_decision_no: 1
+  order_decision_date: 2019-09-02 10:17:50
+  date_to_receive_goods: 2019-09-02 10:17:50
+  office_name: MyString
+  office_address: MyString
+  store_chief_name: MyString
+  store_chief_signed_date: 2019-09-02 10:17:50
+  section_chief_name: MyString
+  section_chief_signed_date: 2019-09-02 10:17:50
+  office_cheif_signed_date: 2019-09-02 10:17:50
+  office_cheif_name: MyString
+  user_id: 1
+  fy: MyString
+  fiscal_year_id: 1
+  office_id: 1

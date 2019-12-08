@@ -1,0 +1,23 @@
+<h1>Personnels</h1>
+
+<table class="table data-table" id="dttb-personnels" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="name">Name</th>
+      <th data-data="post">Post</th>
+      <th data-data="phone">Phone</th>
+      <th data-data="address">Address</th>
+      <th data-data="level_class">Level class</th>
+      <th data-data="service">Service</th>
+      <th data-data="group">Group</th>
+      <th data-data="sub_group">Sub group</th>
+      <th data-data="ctroll">Ctroll</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Personnel', new_personnel_path %>

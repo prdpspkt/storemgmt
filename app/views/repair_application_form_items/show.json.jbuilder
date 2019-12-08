@@ -1,0 +1,1 @@
+json.partial! "repair_application_form_items/repair_application_form_item", repair_application_form_item: @repair_application_form_item

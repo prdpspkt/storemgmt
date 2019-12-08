@@ -1,0 +1,113 @@
+#office_purchase_entry_item_item_classification_no{
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+}
+#oneirt-items{
+    display: none;
+}
+.item_name{
+    width: 300px!important;
+}
+.separator{
+    clear:both;
+    height: 20px;
+    border-bottom: 1px gray solid;
+    margin-bottom: 20px
+}
+body{
+    font-family: "kokila"!important;
+    font-size: 20px!important;
+}
+input{
+    font-size: 20px!important;
+    color: black!important;
+    font-weight: bold;
+}
+.gov_name{
+	font-size: 14px;
+}
+.min_name{
+	font-size: 18px;
+}
+.off_name{
+	font-size: 22px;
+	font-weight: bold;
+}
+.form_name{
+	font-size: 22px;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+
+.table-black-border td, .table-black-border th{
+    border: 1px black solid!important;
+}
+.borderless td, .borderless th {
+    border: none;
+}
+.preeti{
+    font-family: "preeti", Kokila;
+}
+.select2-container--default .select2-selection--single {
+    background-color: #fff;
+    border: 1px solid #aaa;
+    border-radius: 0px;
+    font-size: 20px;
+    height: 35px;
+    width: 100%!important;
+}
+.container{
+  
+}
+th{
+    font-size: 16px!important;
+}
+.d-vertical{
+    text-orientation: vertical
+}
+
+@media print
+{
+    .item_name{
+        width: 300px!important;
+    }
+
+th{
+    font-size: 16px!important;
+}
+.pagebreak { page-break-before: always!important; } 
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+
+a {
+    text-decoration: none!important;
+    color: black!important;
+}
+.container{
+    margin-top: 0px!important;
+    padding: 0px!important 
+}
+
+.bibaran{
+    width: 350px!important
+}
+
+html, body{
+  margin-top: 0.1in!important;
+  margin-left: 0.25in!important; 
+  margin-right: 0.1in!important; 
+}
+}

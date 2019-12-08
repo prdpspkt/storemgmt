@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  item_registration_page_no: 1
+  office_item_id: 1
+  rate: 9.99
+  quantity: 9.99
+  amount: 9.99
+  user_id: 1
+  office_id: 1
+  fiscal_year_id: 1
+
+two:
+  item_registration_page_no: 1
+  office_item_id: 1
+  rate: 9.99
+  quantity: 9.99
+  amount: 9.99
+  user_id: 1
+  office_id: 1
+  fiscal_year_id: 1

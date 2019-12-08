@@ -1,0 +1,112 @@
+<%= form_with(model: repair_record_register, local: true) do |form| %>
+  <% if repair_record_register.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(repair_record_register.errors.count, "error") %> prohibited this repair_record_register from being saved:</h2>
+
+      <ul>
+      <% repair_record_register.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_of_item %>
+    <%= form.text_field :name_of_item %>
+  </div>
+
+  <div class="field">
+    <%= form.label :page_no %>
+    <%= form.text_field :page_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :specificaiton %>
+    <%= form.text_field :specificaiton %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_identification %>
+    <%= form.text_field :item_identification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :model %>
+    <%= form.text_field :model %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_register_page_no %>
+    <%= form.number_field :item_register_page_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :price %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_name %>
+    <%= form.text_field :store_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sotre_chief_designation %>
+    <%= form.text_field :sotre_chief_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_signed_date %>
+    <%= form.datetime_select :store_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_name %>
+    <%= form.text_field :office_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_designation %>
+    <%= form.text_field :office_chief_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_signed_date %>
+    <%= form.datetime_select :office_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :month %>
+    <%= form.text_field :month %>
+  </div>
+
+  <div class="field">
+    <%= form.label :year %>
+    <%= form.text_field :year %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+json.extract! repair_record_register, :id, :name_of_item, :page_no, :specificaiton, :item_identification, :model, :item_register_page_no, :price, :store_chief_name, :sotre_chief_designation, :store_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :user_id, :office_id, :fy, :fiscal_year_id, :month, :year, :created_at, :updated_at
+json.url repair_record_register_url(repair_record_register, format: :json)

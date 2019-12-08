@@ -1,0 +1,2 @@
+class OfficeHandoverFormItem < ApplicationRecord
+end

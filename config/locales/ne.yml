@@ -1,0 +1,134 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  activerecord:
+    attributes:
+        item:
+          name_ne: "जिन्सीको नाम(नेपालीमा)"
+          name_en: "जिन्सीको नाम(अंग्रेजीमा)"
+          unit: "इकाई"
+          item_category_id: "सामाग्रीको बर्गिकरण"
+          specification: "स्पेसिफिकेसन"
+          unit_en: "एकाई (अंग्रेजीमा)"
+          model_no: "मोडल नं"
+          item_identification_no: "जिन्सी पहिचान नं"
+        item_category:
+          name: "जिन्सी बर्गिकरणको नाम"
+          unit_ne: "जिन्सी सामानको इकाई(नेपाली)"
+          unit_en: "जिन्सी सामानको इकाई (अंग्रेजी)"
+        demand:
+          demand_no: "माग फाराम नं."
+          demand_date: "माग गरेको मिति"
+          demand_by: "माग गर्नेको नाम"
+          recommended_by: "सिफारिस गर्नेको नाम"
+          recommended_date: "सिफारिस गरिएको मिति"
+          needed_to_purchase: "बजारबाट खरिद गर्नुपर्ने"
+          ordered_by: "आदेश दिनेको नाम"
+          ordered_date: "आदेश मिति"
+          recorded_by: "जिन्सी खातामा चढाउनेको सहि"
+          recorded_date: "जिन्सी खातामा चढाएको मिति"
+        demand_item:
+          item_id: "सामाग्रीको नाम"
+          quantity: "परिमाण"
+          remark: "कैफियत"
+        office_item:
+          item_id: "जिन्सी सामानको नाम"
+          type: "जिन्सी वर्गीकरण नं"
+        vendor:
+          vendor_name: "व्यवसायको नाम"
+          vendor_address: "व्यवसायको ठेगाना"
+          vendor_pan: "भ्याट/प्यान"
+          vendor_phone: "फोन"
+          vendor_email: "इमेल"
+          vendor_registration: "दर्ता नं"
+          vendor_representive: "प्रतिनिधि"
+          vendor_name_en: "व्यवसायको नाम(अंग्रेजीमा)"
+        purchase_order:
+          vendor_name: "व्यवसायको नाम"
+          order_no: "खरिद आदेश नं"
+          order_date: "मिति"
+          order_decision_no: "निर्णय नं"
+          order_decision_date: "निर्णय मिति"
+          date_to_receive_goods: "कार्यालयमा मालसामान दाखिला गर्नुपर्ने मिति"
+          store_chief_signed_date: "भण्डार प्रमुखको हस्ताक्षर मिति"
+          section_chief_signed_date: "शाखा प्रमुखको हस्ताक्षर मिति"
+          office_cheif_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
+        purchase_order_item:
+          item_classification_no: "जिन्सी वर्गीकरण नं"
+          name_of_item: "जिन्सी सामानको नाम"
+          quantity: "परिमाण"
+          rate: "दर"
+          remarks: "कैफियत"
+        office_purchase_entry:
+          entry_no: "दाखिला नं"
+          entry_date: "दाखिला मिति"
+          store_cheif_sign_date: "भण्डार प्रमुखको हस्ताक्षर मिति"
+          section_chief_signed_date: "शाखा प्रमुख हस्ताक्षर मिति"
+          office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
+          purchase_handover_no: "खरिद/हस्तान्तरण नं"
+        office_purchase_entry_item:
+          is_vatable: "कर योग्य सामाग्री हो ?"
+          item_classification_no: "जिन्सी वर्गीकरण"
+          name_of_item: "जिन्सी सामाग्रीको नाम"
+          item_identification_no: "जिन्सी पहिचान नं"
+          model_no: "मोडल नं"
+          quantity: "परिमाण"
+          rate: "दर"
+          country: "देश वा कम्पनी"
+          approx_age: "अनुमानित आयु"
+          size: "साइज"
+          source: "प्राप्तिको श्रोत"
+          remarks: "कैफियत"
+          purchase_handover_no: "खरिद/हस्तान्तरण नं"
+        office_release:
+          release_no: "निकासा नं"
+          release_date: "निकासा मिति"
+          store_chief_signed_date: "स्टोर प्रमुखले हस्ताक्षर गर्ने मिति"
+          office_chief_signed_date: "कार्यालय प्रमुखले हस्ताक्षर गर्ने मिति"
+        office_release_item:
+          name_of_item:  "सामानको नाम"
+          quantity: "परिमाण"
+          remarks: "कैफियत"
+        item_assistance_register:
+          register_page_no: "खाता पाना नं"
+          name_of_item: "जिन्सी सामानको नाम"
+          store_chief_signed_date: "स्टोर प्रमुखको दस्तखत मिति"
+          office_chief_signed_date: "कार्यालय प्रमुखको दस्तखत मिति"
+        item_assistance_register_item:
+          name_of_item: "सामानको नाम"
+          date: "मिति"
+          order_release_no: "माग/निकासा फाराम"
+          quantity: "परिमाण"
+          taken_date: "सामान लागेको मिति"
+          date_to_be_returned: "सामान फिर्ता गर्नुपर्ने मिति"
+          name_of_user: "प्रयोग कर्ताको नाम"
