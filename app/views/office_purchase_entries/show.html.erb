@@ -18,9 +18,9 @@
 <div class="separator"></div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_purchase_entries_path %>
-  <%= link_to edit_big_btn.html_safe, edit_office_purchase_entry_path(@office_purchase_entry) %>
   <%= link_to print_big_btn.html_safe, "/report/office_purchase_entry/#{@office_purchase_entry.id}" %>
   <% if @office_purchase_entry.marked_as_final != true %>
+  <%= link_to edit_big_btn.html_safe, edit_office_purchase_entry_path(@office_purchase_entry) %>
   <%= link_to final_btn.html_safe, mark_ope_as_final_url(@office_purchase_entry), id: :mark_as_final, method: :post, data: "Are you sure ? You can undo this work within 3 days only." %>
   <% end %>
   <% if can_unmark(@office_purchase_entry) %>
@@ -28,9 +28,11 @@
   <% end %>
 </div>
 <div class="separator"></div>
+<% if @office_purchase_entry.marked_as_final != true %>
 <h2>सामाग्री दाखिला गर्ने</h2>
 <%= render "office_purchase_entry_form", office_purchase_entry_item: @office_purchase_entry_item %>
 <div class="separator"></div>
+<% end %>
 <h2>दाखिला भएका जिन्सि सामाग्रीहरु</h2>
 <table class="table table-sm table-condensed">
   <tr>
@@ -76,4 +78,3 @@
     <td></td>
   </tr>
 </table>
-

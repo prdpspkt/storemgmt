@@ -21,7 +21,9 @@
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, purchase_orders_path %>
+  <% if purchase_order.marked_as_final != true %>
   <%= link_to edit_big_btn.html_safe, edit_purchase_order_path(@purchase_order) %>
+  <% end %>
   <% if @purchase_order.marked_as_final != true %>
     <%= link_to final_btn.html_safe, mark_po_as_final_url(@purchase_order), method: :post, data: {confirm: "के तपाइँ स्वीकृत गर्न चाहानु हुन्छ ? You will have only 3 days to modify data."} %>
   <% end %>
@@ -31,9 +33,11 @@
   <%= link_to print_big_btn.html_safe, "/report/purchase_order/#{@purchase_order.id}" %>
 </div>
 <div class="separator"></div>
+<% if @purchase_order.marked_as_final != true %>
 <h2>खरिद गर्नुपर्ने सामाग्री थप्ने</h2>
 <%= render "purchase_item_form", purchase_order_item: @purchase_order_item %>
 <div class="separator"></div>
+<% end %>
 <h2>खरिद माग भएका सामानहरू</h2>
 <table class="table table-sm table-condensed table-bordered">
   <tr>

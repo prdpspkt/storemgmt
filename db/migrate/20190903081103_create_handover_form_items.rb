@@ -1,4 +1,4 @@
-class CreateHandoverFormItems < ActiveRecord::Migration[5.2]
+class CreateOfficeHandoverFormItems < ActiveRecord::Migration[5.2]
   def change
     create_table :office_handover_form_items do |t|
       t.integer :item_classification_no
@@ -19,7 +19,7 @@ class CreateHandoverFormItems < ActiveRecord::Migration[5.2]
       t.integer :user_id
       t.integer :office_id
       t.integer :project_id
-      t.integer :handover_form_id
+      t.integer :office_handover_form_id
       t.integer :item_id
 
       t.timestamps

@@ -39,11 +39,12 @@ class OfficeReleaseItemsController < ApplicationController
         office_release_item.amount = quantity * item.rate
         office_release_item = create_office_release_item(office_release_item)
         office_release_item.released_from = item.id
-        office_release_item.save
-        item.sku = item.sku - quantity
-        item.save
-        quantity = 0
-        break;
+        if office_release_item.save
+          item.sku = item.sku - quantity
+          item.save
+          quantity = 0
+          break;
+        end
       end
 
       if (item.sku < quantity && item.sku > 0)
@@ -55,10 +56,11 @@ class OfficeReleaseItemsController < ApplicationController
         office_release_item.office_id = current_office.id
         office_release_item.amount = item.sku * item.rate
         office_release_item = create_office_release_item(office_release_item)
-        office_release_item.save
-        quantity = quantity - item.sku
-        item.sku = 0
-        item.save
+        if office_release_item.save
+          quantity = quantity - item.sku
+          item.sku = 0
+          item.save
+        end
       end
     end
 
@@ -128,6 +130,7 @@ class OfficeReleaseItemsController < ApplicationController
     ori.unit_en = @item.unit_ne
     ori.fiscal_year_id = current_fiscal_year.id
     ori.user_id = current_user.id
+    ori.office_id = current_office.id
     ori
   end
 end

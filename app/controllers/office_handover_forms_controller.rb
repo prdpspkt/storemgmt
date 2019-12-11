@@ -11,6 +11,7 @@ class OfficeHandoverFormsController < ApplicationController
   # GET /handover_forms/1.json
   def show
     @handover_form_item = OfficeHandoverFormItem.new
+    @handover_form_items = @handover_form.office_handover_form_items
   end
 
   # GET /handover_forms/new
@@ -51,6 +52,17 @@ class OfficeHandoverFormsController < ApplicationController
         format.json { render json: @handover_form.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def mark_as_final
+    @handover_form = OfficeHandoverForm.find(params[:id])
+    if(@handover_form.marked_as_final != true)
+      @handover_form.marked_as_final = true
+   else
+      @handover_form.marked_as_final = false
+    end
+    @handover_form.save
+    redirect_to(office_handover_form_path(@handover_form))
   end
 
   # DELETE /handover_forms/1

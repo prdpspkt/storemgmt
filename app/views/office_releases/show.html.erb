@@ -15,9 +15,11 @@
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_releases_path %>
+  <% if @office_release.marked_as_final != true %>
   <%= link_to edit_big_btn.html_safe, edit_office_release_path(@office_release) %>
+  <% end %>
   <%= link_to print_big_btn.html_safe, "/report/office_release/#{@office_release.id}" %>
-  <% if @office_release.marked_as_final == false %>
+  <% if @office_release.marked_as_final != true %>
     <%= link_to final_btn.html_safe, "/office_releases/mark_as_final/#{@office_release.id}", method: :post %>
   <% end %>
   <% if can_unmark(@office_release) %>
@@ -25,9 +27,11 @@
   <% end %>
 </div>
 <div class="separator"></div>
+<% if @office_release.marked_as_final != true %>
 <h2>निकासा गर्ने सामाग्री थप गर्ने</h2>
 <%= render "office_release_item_form", office_release_item: @office_release_item %>
 <div class="separator"></div>
+<% end %>
 <h2> निकासा गर्न थप गरिएका जिन्सी सामानहरू</h2>
 <table class="table table-sm table-bordered table-condensed">
   <thead>
@@ -59,4 +63,3 @@
   </tbody>
 
 </table>
-

@@ -19,6 +19,9 @@ module ApplicationHelper
   def show_btn
     '<span class="btn btn-sm btn-success"><i class="fa fa-eye"></i></span>'
   end
+  def show_big_btn
+    '<span class="btn  btn-success"><i class="fa fa-eye"></i> हेर्ने </span>'
+  end
 
   def save_btn
     'सुरक्षित गर्ने '

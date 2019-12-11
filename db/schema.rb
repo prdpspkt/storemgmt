@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_10_054539) do
+ActiveRecord::Schema.define(version: 2019_12_11_133247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,6 +270,10 @@ ActiveRecord::Schema.define(version: 2019_12_10_054539) do
     t.datetime "updated_at", null: false
     t.integer "office_item_id"
     t.integer "office_handover_form_id"
+    t.integer "handovered_from"
+    t.string "country"
+    t.string "size"
+    t.string "age_approx"
   end
 
   create_table "office_handover_forms", force: :cascade do |t|
@@ -296,6 +300,7 @@ ActiveRecord::Schema.define(version: 2019_12_10_054539) do
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "marked_as_final"
   end
 
   create_table "office_item_entries", force: :cascade do |t|

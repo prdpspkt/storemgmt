@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   resources :item_disposals
   resources :office_handover_form_items
   resources :office_handover_forms
+  post "/office_handover_form/mark_as_final/:id" => "office_handover_forms#mark_as_final", as: :mark_office_handover_form_as_final
   resources :office_release_items
   post "/office_releases/mark_as_final/:id" => "office_releases#mark_as_final"
   resources :office_releases
