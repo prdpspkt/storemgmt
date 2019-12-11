@@ -11,14 +11,13 @@
 // about supported directives.
 //= require rails-ujs
 //= require jquery3
-//= require angular.min
 //= require popper
 //= require bootstrap-sprockets
 //= require activestorage
 //= require datatables
-//= require select2-full
 //= require nepali-datepicker
 //= require all_rules.js
 //= require converter.js
 //= require app.js
+//= require turbolinks
 //= require_tree .

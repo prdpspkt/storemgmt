@@ -1,6 +1,6 @@
 class CreateHandoverFormItems < ActiveRecord::Migration[5.2]
   def change
-    create_table :handover_form_items do |t|
+    create_table :office_handover_form_items do |t|
       t.integer :item_classification_no
       t.integer :item_register_page_no
       t.string :name_of_item_ne

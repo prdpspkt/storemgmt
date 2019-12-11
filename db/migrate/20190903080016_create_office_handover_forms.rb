@@ -1,18 +1,18 @@
-class CreateHandoverForms < ActiveRecord::Migration[5.2]
+class CreateOfficeHandoverForms < ActiveRecord::Migration[5.2]
   def change
-    create_table :handover_forms do |t|
+    create_table :office_handover_forms do |t|
       t.datetime :decision_date
       t.string :fy
       t.integer :decision_no
       t.string :handovered_office_name
       t.datetime :date
-      t.integer :handover_form_no
-      t.string :handover_store_chief_name
-      t.string :handover_store_chief_designation
-      t.datetime :handover_store_chief_signed_date
-      t.string :handover_chief_name
-      t.string :handover_chief_designation
-      t.datetime :handover_chief_signed_date
+      t.integer :form_no
+      t.string :store_chief_name
+      t.string :store_chief_designation
+      t.datetime :store_chief_signed_date
+      t.string :office_chief_name
+      t.string :office_chief_designation
+      t.datetime :office_chief_signed_date
       t.string :receiver_store_chief_name
       t.string :receiver_store_chief_designation
       t.datetime :receiver_store_chief_signed_date

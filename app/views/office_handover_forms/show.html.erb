@@ -1,109 +1,47 @@
-<p id="notice"><%= notice %></p>
+<h1>हस्तान्तरण फाराम</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>हस्तान्तरण नं</th>
+    <th>हस्तान्तरण मिति</th>
+    <th>हस्तान्तरण गरिएको कार्यालय</th>
+  </tr>
+  <tr>
+    <td><%= @handover_form.form_no %></td>
+    <td><%= ndate @handover_form.date %></td>
+    <td><%= @handover_form.handovered_office_name %></td>
+  </tr>
+</table>
 
-<p>
-  <strong>Decision date:</strong>
-  <%= @handover_form.decision_date %>
-</p>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, office_handover_forms_path %>
+  <%= link_to edit_big_btn.html_safe, edit_office_handover_form_path(@handover_form) %>
+  <%= link_to print_big_btn.html_safe,office_handover_report_path(@handover_form) %>
+  <%= link_to final_btn.html_safe, edit_office_handover_form_path(@handover_form) %>
+</div>
+<h2>हस्तान्तरण गर्नुपर्ने सामाग्री थप्ने</h2>
 
-<p>
-  <strong>Fy:</strong>
-  <%= @handover_form.fy %>
-</p>
+<%= render('office_handover_forms/handover_form_item_form', handover_form_item: @handover_form_item) %>
+<div class="separator"></div>
 
-<p>
-  <strong>Decision no:</strong>
-  <%= @handover_form.decision_no %>
-</p>
+<h2>हस्तान्तरण गर्ने सामाग्रीहरु</h2>
 
-<p>
-  <strong>Handovered office name:</strong>
-  <%= @handover_form.handovered_office_name %>
-</p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @handover_form.date %>
-</p>
-
-<p>
-  <strong>Handover form no:</strong>
-  <%= @handover_form.handover_form_no %>
-</p>
-
-<p>
-  <strong>Handover store chief name:</strong>
-  <%= @handover_form.handover_store_chief_name %>
-</p>
-
-<p>
-  <strong>Handover store chief designation:</strong>
-  <%= @handover_form.handover_store_chief_designation %>
-</p>
-
-<p>
-  <strong>Handover store chief signed date:</strong>
-  <%= @handover_form.handover_store_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Handover chief name:</strong>
-  <%= @handover_form.handover_chief_name %>
-</p>
-
-<p>
-  <strong>Handover chief designation:</strong>
-  <%= @handover_form.handover_chief_designation %>
-</p>
-
-<p>
-  <strong>Handover chief signed date:</strong>
-  <%= @handover_form.handover_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Receiver store chief name:</strong>
-  <%= @handover_form.receiver_store_chief_name %>
-</p>
-
-<p>
-  <strong>Receiver store chief designation:</strong>
-  <%= @handover_form.receiver_store_chief_designation %>
-</p>
-
-<p>
-  <strong>Receiver store chief signed date:</strong>
-  <%= @handover_form.receiver_store_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Receiver chief name:</strong>
-  <%= @handover_form.receiver_chief_name %>
-</p>
-
-<p>
-  <strong>Receiver chief desination:</strong>
-  <%= @handover_form.receiver_chief_desination %>
-</p>
-
-<p>
-  <strong>Receiver chief signed date:</strong>
-  <%= @handover_form.receiver_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @handover_form.office_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @handover_form.user_id %>
-</p>
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @handover_form.fiscal_year_id %>
-</p>
-
-<%= link_to 'Edit', edit_handover_form_path(@handover_form) %> |
-<%= link_to 'Back', handover_forms_path %>
+<table class="table">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>मोडल  नं</th>
+    <th>परिमाण</th>
+    <th>जम्मा रकम</th>
+    <th>कैफियत</th>
+    <th class="no-print"></th>
+  </tr>
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+</table>

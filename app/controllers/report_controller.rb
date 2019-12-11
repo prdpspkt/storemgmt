@@ -44,6 +44,11 @@ class ReportController < ApplicationController
     @items = OfficeItem.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id)
   end
 
+  def office_handover_form
+    @office_handover_form = OfficeHandoverForm.find(params[:id])
+    @office_handover_form_items = @office_handover_form.office_handover_form_items
+  end
+
   private
   def set_office_information
     @office = current_office

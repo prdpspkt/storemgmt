@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get '/report/office_item_assistance_register/:id' => "report#office_item_assistance_register"
   get '/report/oeirt_ledger' => "report#oeirt_ledger", as: :oeirt_ledger
   get '/report/oneirt_ledger' => "report#oneirt_ledger", as: :oneirt_ledger
+  get '/report/office_handover_form/:id' => "report#office_handover_form", as: :office_handover_report
 
   resources :land_and_structure_record_book_items
   resources :land_and_structure_record_books

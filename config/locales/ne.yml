@@ -132,3 +132,15 @@ en:
           taken_date: "सामान लागेको मिति"
           date_to_be_returned: "सामान फिर्ता गर्नुपर्ने मिति"
           name_of_user: "प्रयोग कर्ताको नाम"
+        office_handover_form:
+          handover_form_no: "हस्तान्तरण फाराम नं"
+          date: "हस्तान्तरण मिति"
+          decision_date: "निर्णय मिति"
+          decision_no: "निर्णय नं"
+          handovered_office_name: "हस्तान्तरण गरिएको कार्यालय"
+          store_chief_signed_date: "स्टोर प्रमुखको हस्ताक्षर मिति"
+          office_chief_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
+        office_handover_form_item:
+          name_of_item_ne: "सामानको नाम"
+          quantity: "परिमाण"
+          physical_status: "भौतिक अवस्था"

@@ -1,29 +1,11 @@
-<h1>Handover Forms</h1>
+<h1>हस्तान्तरण फारामहरू</h1>
 
-<table class="responsive nowrap table table-hover" id="dttb-handover_forms" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="responsive nowrap table table-hover data-table" id="dttb-handover_forms" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="decision_date">Decision date</th>
-      <th data-data="fy">Fy</th>
-      <th data-data="decision_no">Decision no</th>
-      <th data-data="handovered_office_name">Handovered office name</th>
-      <th data-data="date">Date</th>
-      <th data-data="handover_form_no">Handover form no</th>
-      <th data-data="handover_store_chief_name">Handover store chief name</th>
-      <th data-data="handover_store_chief_designation">Handover store chief designation</th>
-      <th data-data="handover_store_chief_signed_date">Handover store chief signed date</th>
-      <th data-data="handover_chief_name">Handover chief name</th>
-      <th data-data="handover_chief_designation">Handover chief designation</th>
-      <th data-data="handover_chief_signed_date">Handover chief signed date</th>
-      <th data-data="receiver_store_chief_name">Receiver store chief name</th>
-      <th data-data="receiver_store_chief_designation">Receiver store chief designation</th>
-      <th data-data="receiver_store_chief_signed_date">Receiver store chief signed date</th>
-      <th data-data="receiver_chief_name">Receiver chief name</th>
-      <th data-data="receiver_chief_desination">Receiver chief desination</th>
-      <th data-data="receiver_chief_signed_date">Receiver chief signed date</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="user_id">User</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="form_no">हस्तान्तरण नं </th>
+      <th data-data="handovered_office_name">सामान हस्तान्तरण गरिएको कार्यालयको नाम</th>
+      <th data-data="date">हस्तान्तरण मिति</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -32,4 +14,4 @@
 
 <br>
 
-<%= link_to 'New Handover Form', new_handover_form_path %>
+<%= link_to new_btn.html_safe, new_office_handover_form_path %>
