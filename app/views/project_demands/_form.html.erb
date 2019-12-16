@@ -1,0 +1,92 @@
+<%= form_with(model: project_demand, local: true) do |form| %>
+  <% if project_demand.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_demand.errors.count, "error") %> prohibited this project_demand from being saved:</h2>
+
+      <ul>
+      <% project_demand.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :demand_no %>
+    <%= form.number_field :demand_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :demand_date %>
+    <%= form.datetime_select :demand_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :demand_by %>
+    <%= form.text_field :demand_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recommended_by %>
+    <%= form.text_field :recommended_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :needed_to_purchase %>
+    <%= form.check_box :needed_to_purchase %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ordered_by %>
+    <%= form.text_field :ordered_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ordered_date %>
+    <%= form.datetime_select :ordered_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recorded_by %>
+    <%= form.text_field :recorded_by %>
+  </div>
+
+  <div class="field">
+    <%= form.label :recorded_date %>
+    <%= form.datetime_select :recorded_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_id %>
+    <%= form.number_field :item_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :marked_as_final %>
+    <%= form.check_box :marked_as_final %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

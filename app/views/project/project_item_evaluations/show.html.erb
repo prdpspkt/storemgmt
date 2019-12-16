@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Office code:</strong>
+  <%= @office_item_evaluation.office_code %>
+</p>
+
+<p>
+  <strong>Fy:</strong>
+  <%= @office_item_evaluation.fy %>
+</p>
+
+<p>
+  <strong>Committee formation date:</strong>
+  <%= @office_item_evaluation.committee_formation_date %>
+</p>
+
+<p>
+  <strong>Report submission date:</strong>
+  <%= @office_item_evaluation.report_submission_date %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @office_item_evaluation.office_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @office_item_evaluation.user_id %>
+</p>
+
+<p>
+  <strong>Fiscal year:</strong>
+  <%= @office_item_evaluation.fiscal_year_id %>
+</p>
+
+<%= link_to 'Edit', edit_office_item_evaluation_path(@office_item_evaluation) %> |
+<%= link_to 'Back', office_item_evaluations_path %>

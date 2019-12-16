@@ -1,0 +1,24 @@
+<%= form_with(model: demand_item, local: true) do |form| %>
+ <%= form.hidden_field :demand_id, value: @demand.id %>
+<div class="row">
+  <div class="col-sm-3">
+    <%= form.label :item_id %>
+    <%= form.select(:office_item_id, OfficeItem.all.collect{|p| [p.name_of_item_en, p.id]}, {include_blank: true}, {class: "form-control"}) %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity, class: "form-control" %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= form.label :remark %>
+    <%= form.text_field :remark, class: "form-control" %>
+  </div>
+   
+  <div class="col-sm-3">
+    <br>
+    <%= form.submit save_btn.html_safe, class: "btn btn-success" %>
+  </div>
+</div>
+<% end %>

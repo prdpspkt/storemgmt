@@ -73,9 +73,7 @@ input{
 th{
     font-size: 16px!important;
 }
-.d-vertical{
-    text-orientation: vertical
-}
+
 
 @media print
 {
@@ -101,13 +99,12 @@ a {
     padding: 0px!important 
 }
 
-.bibaran{
-    width: 350px!important
-}
-
 html, body{
   margin-top: 0.1in!important;
   margin-left: 0.25in!important; 
   margin-right: 0.1in!important; 
 }
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
 }

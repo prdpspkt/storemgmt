@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_133247) do
+ActiveRecord::Schema.define(version: 2019_12_13_033337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,9 @@ ActiveRecord::Schema.define(version: 2019_12_11_133247) do
     t.string "fy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "store_chief"
+    t.string "office_chief"
+    t.string "section_chief"
   end
 
   create_table "item_assistance_register_items", force: :cascade do |t|
@@ -245,7 +248,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_133247) do
     t.integer "entry_no"
   end
 
-  create_table "office_handover_form_items", force: :cascade do |t|
+  create_table "handover_form_items", force: :cascade do |t|
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
     t.string "name_of_item_ne"
@@ -274,6 +277,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_133247) do
     t.string "country"
     t.string "size"
     t.string "age_approx"
+    t.string "source"
   end
 
   create_table "office_handover_forms", force: :cascade do |t|
@@ -328,7 +332,7 @@ ActiveRecord::Schema.define(version: 2019_12_11_133247) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "office_item_evaluation_items", force: :cascade do |t|
+  create_table "project_item_evaluation_items", force: :cascade do |t|
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
     t.string "name_of_item_en"

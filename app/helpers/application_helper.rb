@@ -19,6 +19,7 @@ module ApplicationHelper
   def show_btn
     '<span class="btn btn-sm btn-success"><i class="fa fa-eye"></i></span>'
   end
+
   def show_big_btn
     '<span class="btn  btn-success"><i class="fa fa-eye"></i> हेर्ने </span>'
   end
@@ -28,14 +29,14 @@ module ApplicationHelper
   end
 
   def edit_big_btn
-     '<span class="btn  btn-primary"><i class="fa fa-pencil"></i> सम्पादन गर्ने</span>'
+    '<span class="btn  btn-primary"><i class="fa fa-pencil"></i> सम्पादन गर्ने</span>'
   end
 
   def print_big_btn
-     '<span class="btn  btn-success"><i class="fa fa-print"></i> प्रिन्ट गर्ने</span>'
+    '<span class="btn  btn-success"><i class="fa fa-print"></i> प्रिन्ट गर्ने</span>'
   end
 
-  def add_big_btn 
+  def add_big_btn
     '<span class="btn  btn-warning"><i class="fa fa-plus"></i> जिन्सी थप गर्ने</span>'
   end
 
@@ -48,7 +49,7 @@ module ApplicationHelper
   end
 
   def can_unmark obj
-   (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
+    (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
   end
 
   def nd input
@@ -64,6 +65,7 @@ module ApplicationHelper
     end
     @num
   end
+
   def ndate input
     nd DateTime.parse(input.to_s).strftime("%Y-%m-%d")
   end

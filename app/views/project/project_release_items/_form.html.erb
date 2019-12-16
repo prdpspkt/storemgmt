@@ -1,0 +1,82 @@
+<%= form_with(model: office_release_item, local: true) do |form| %>
+  <% if office_release_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(office_release_item.errors.count, "error") %> prohibited this office_release_item from being saved:</h2>
+
+      <ul>
+      <% office_release_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name_of_item %>
+    <%= form.text_field :name_of_item %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_register_page_no %>
+    <%= form.number_field :item_register_page_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :code_no %>
+    <%= form.text_field :code_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :specification %>
+    <%= form.text_field :specification %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit %>
+    <%= form.text_field :unit %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate %>
+    <%= form.text_field :rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_release_id %>
+    <%= form.number_field :office_release_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+json.extract! project_handover_form, :id, :decision_no, :decision_date, :fy, :handovered_project_name, :date, :form_no, :store_chief_name, :store_chief_designation, :store_chief_sign_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :office_id, :user_id, :fiscal_year_id, :marked_as_final, :created_at, :updated_at
+json.url project_handover_form_url(project_handover_form, format: :json)

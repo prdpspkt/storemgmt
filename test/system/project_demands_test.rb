@@ -17,17 +17,15 @@ class ProjectDemandsTest < ApplicationSystemTestCase
     fill_in "Demand by", with: @project_demand.demand_by
     fill_in "Demand date", with: @project_demand.demand_date
     fill_in "Demand no", with: @project_demand.demand_no
-    fill_in "Fiscal year", with: @project_demand.fiscal_year
-    fill_in "Fy", with: @project_demand.fy
-    fill_in "Needed to purchase", with: @project_demand.needed_to_purchase
+    fill_in "Fiscal year", with: @project_demand.fiscal_year_id
+    fill_in "Item", with: @project_demand.item_id
+    check "Marked as final" if @project_demand.marked_as_final
+    check "Needed to purchase" if @project_demand.needed_to_purchase
     fill_in "Office", with: @project_demand.office_id
     fill_in "Ordered by", with: @project_demand.ordered_by
     fill_in "Ordered date", with: @project_demand.ordered_date
     fill_in "Project", with: @project_demand.project_id
-    fill_in "Project name", with: @project_demand.project_name
-    fill_in "Project no", with: @project_demand.project_no
     fill_in "Recommended by", with: @project_demand.recommended_by
-    fill_in "Recommended date", with: @project_demand.recommended_date
     fill_in "Recorded by", with: @project_demand.recorded_by
     fill_in "Recorded date", with: @project_demand.recorded_date
     fill_in "User", with: @project_demand.user_id
@@ -44,17 +42,15 @@ class ProjectDemandsTest < ApplicationSystemTestCase
     fill_in "Demand by", with: @project_demand.demand_by
     fill_in "Demand date", with: @project_demand.demand_date
     fill_in "Demand no", with: @project_demand.demand_no
-    fill_in "Fiscal year", with: @project_demand.fiscal_year
-    fill_in "Fy", with: @project_demand.fy
-    fill_in "Needed to purchase", with: @project_demand.needed_to_purchase
+    fill_in "Fiscal year", with: @project_demand.fiscal_year_id
+    fill_in "Item", with: @project_demand.item_id
+    check "Marked as final" if @project_demand.marked_as_final
+    check "Needed to purchase" if @project_demand.needed_to_purchase
     fill_in "Office", with: @project_demand.office_id
     fill_in "Ordered by", with: @project_demand.ordered_by
     fill_in "Ordered date", with: @project_demand.ordered_date
     fill_in "Project", with: @project_demand.project_id
-    fill_in "Project name", with: @project_demand.project_name
-    fill_in "Project no", with: @project_demand.project_no
     fill_in "Recommended by", with: @project_demand.recommended_by
-    fill_in "Recommended date", with: @project_demand.recommended_date
     fill_in "Recorded by", with: @project_demand.recorded_by
     fill_in "Recorded date", with: @project_demand.recorded_date
     fill_in "User", with: @project_demand.user_id

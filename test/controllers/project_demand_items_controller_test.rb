@@ -17,7 +17,7 @@ class ProjectDemandItemsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create project_demand_item" do
     assert_difference('ProjectDemandItem.count') do
-      post project_demand_items_url, params: { project_demand_item: { fiscal_year_id: @project_demand_item.fiscal_year_id, fy: @project_demand_item.fy, name_of_item: @project_demand_item.name_of_item, office_id: @project_demand_item.office_id, project_demand_id: @project_demand_item.project_demand_id, project_item_id: @project_demand_item.project_item_id, quantity: @project_demand_item.quantity, remark: @project_demand_item.remark, specification: @project_demand_item.specification, unit: @project_demand_item.unit, user_id: @project_demand_item.user_id } }
+      post project_demand_items_url, params: { project_demand_item: { amount: @project_demand_item.amount, fiscal_year_id: @project_demand_item.fiscal_year_id, fy: @project_demand_item.fy, item_id: @project_demand_item.item_id, name_of_item_en: @project_demand_item.name_of_item_en, name_of_item_ne: @project_demand_item.name_of_item_ne, office_id: @project_demand_item.office_id, project_demand_id: @project_demand_item.project_demand_id, project_id: @project_demand_item.project_id, project_item_id: @project_demand_item.project_item_id, quantity: @project_demand_item.quantity, rate: @project_demand_item.rate, remark: @project_demand_item.remark, specification: @project_demand_item.specification, unit_en: @project_demand_item.unit_en, unit_ne: @project_demand_item.unit_ne, user_id: @project_demand_item.user_id } }
     end
 
     assert_redirected_to project_demand_item_url(ProjectDemandItem.last)
@@ -34,7 +34,7 @@ class ProjectDemandItemsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update project_demand_item" do
-    patch project_demand_item_url(@project_demand_item), params: { project_demand_item: { fiscal_year_id: @project_demand_item.fiscal_year_id, fy: @project_demand_item.fy, name_of_item: @project_demand_item.name_of_item, office_id: @project_demand_item.office_id, project_demand_id: @project_demand_item.project_demand_id, project_item_id: @project_demand_item.project_item_id, quantity: @project_demand_item.quantity, remark: @project_demand_item.remark, specification: @project_demand_item.specification, unit: @project_demand_item.unit, user_id: @project_demand_item.user_id } }
+    patch project_demand_item_url(@project_demand_item), params: { project_demand_item: { amount: @project_demand_item.amount, fiscal_year_id: @project_demand_item.fiscal_year_id, fy: @project_demand_item.fy, item_id: @project_demand_item.item_id, name_of_item_en: @project_demand_item.name_of_item_en, name_of_item_ne: @project_demand_item.name_of_item_ne, office_id: @project_demand_item.office_id, project_demand_id: @project_demand_item.project_demand_id, project_id: @project_demand_item.project_id, project_item_id: @project_demand_item.project_item_id, quantity: @project_demand_item.quantity, rate: @project_demand_item.rate, remark: @project_demand_item.remark, specification: @project_demand_item.specification, unit_en: @project_demand_item.unit_en, unit_ne: @project_demand_item.unit_ne, user_id: @project_demand_item.user_id } }
     assert_redirected_to project_demand_item_url(@project_demand_item)
   end
 

@@ -1,0 +1,31 @@
+<h1>Project Demand Items</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-project_demand_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="name_of_item_ne">Name of item ne</th>
+      <th data-data="name_of_item_en">Name of item en</th>
+      <th data-data="specification">Specification</th>
+      <th data-data="unit_ne">Unit ne</th>
+      <th data-data="unit_en">Unit en</th>
+      <th data-data="quantity">Quantity</th>
+      <th data-data="amount">Amount</th>
+      <th data-data="rate">Rate</th>
+      <th data-data="remark">Remark</th>
+      <th data-data="user_id">User</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="project_id">Project</th>
+      <th data-data="project_item_id">Project item</th>
+      <th data-data="fy">Fy</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="item_id">Item</th>
+      <th data-data="project_demand_id">Project demand</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Project Demand Item', new_project_demand_item_path %>

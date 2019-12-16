@@ -13,12 +13,17 @@
 <div class="row">
   <div class="col-sm-6">
     <%= form.label :vendor_name %>
-    <%= form.select(:vendor_id, Vendor.all.collect { |p| [p.vendor_name_en, p.id]}, {include_blank: "छनोट गर्ने"}, {class: "form-control"}) %>
+    <% if @vendors.blank? != true %>
+    <%= form.select(:vendor_id, @vendors.collect { |p| [p.vendor_name_en, p.id]}, {include_blank: "छनोट गर्ने"}, {class: "form-control"}) %>
+      <% else %>
+    <b class="badge badge-danger">कृपया सूची दर्ता गर्नुहोस</b>
+      <a href="<%= new_vendor_path %>"><b class="badge badge-success">सूची दर्ता गर्ने </b></a>
+    <% end %>
   </div>
  
   <div class="col-sm-6">
     <%= form.label :order_no %>
-    <%= form.number_field :order_no, class: "form-control" %>
+    <%= form.number_field :order_no, class: "form-control", readOnly: :true %>
   </div>
 
   <div class="col-sm-6">
@@ -57,6 +62,7 @@
     <%= form.text_field :office_cheif_signed_date, class: "form-control date-picker" %>
   </div>
 </div>
+  <div class="separator"></div>
   <div class="float-right">
     <%= form.submit :save, class: "btn btn-success"%>
   </div>

@@ -1,0 +1,2 @@
+class ProjectItemEvaluationItem < ApplicationRecord
+end

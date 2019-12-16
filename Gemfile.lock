@@ -126,6 +126,9 @@ GEM
     nokogiri (1.10.7-x86-mingw32)
       mini_portile2 (~> 2.4.0)
     orm_adapter (0.5.0)
+    passenger (6.0.4)
+      rack
+      rake (>= 0.8.1)
     pg (1.1.4-x64-mingw32)
     pg (1.1.4-x86-mingw32)
     popper_js (1.14.5)
@@ -247,6 +250,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-datatables
   jquery-rails
+  passenger (>= 5.0.25)
   pg
   pry
   puma (~> 4.3.1)

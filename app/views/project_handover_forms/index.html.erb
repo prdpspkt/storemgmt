@@ -1,0 +1,30 @@
+<h1>Project Handover Forms</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-project_handover_forms" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="decision_no">Decision no</th>
+      <th data-data="decision_date">Decision date</th>
+      <th data-data="fy">Fy</th>
+      <th data-data="handovered_project_name">Handovered project name</th>
+      <th data-data="date">Date</th>
+      <th data-data="form_no">Form no</th>
+      <th data-data="store_chief_name">Store chief name</th>
+      <th data-data="store_chief_designation">Store chief designation</th>
+      <th data-data="store_chief_sign_date">Store chief sign date</th>
+      <th data-data="office_chief_name">Office chief name</th>
+      <th data-data="office_chief_designation">Office chief designation</th>
+      <th data-data="office_chief_signed_date">Office chief signed date</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="user_id">User</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="marked_as_final">Marked as final</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Project Handover Form', new_project_handover_form_path %>

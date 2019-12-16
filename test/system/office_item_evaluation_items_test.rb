@@ -6,12 +6,12 @@ class OfficeItemEvaluationItemsTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
-    visit office_item_evaluation_items_url
+    visit project_item_evaluation_items_url
     assert_selector "h1", text: "Office Item Evaluation Items"
   end
 
   test "creating a Office item evaluation item" do
-    visit office_item_evaluation_items_url
+    visit project_item_evaluation_items_url
     click_on "New Office Item Evaluation Item"
 
     fill_in "Amount", with: @office_item_evaluation_item.amount
@@ -46,7 +46,7 @@ class OfficeItemEvaluationItemsTest < ApplicationSystemTestCase
   end
 
   test "updating a Office item evaluation item" do
-    visit office_item_evaluation_items_url
+    visit project_item_evaluation_items_url
     click_on "Edit", match: :first
 
     fill_in "Amount", with: @office_item_evaluation_item.amount
@@ -81,7 +81,7 @@ class OfficeItemEvaluationItemsTest < ApplicationSystemTestCase
   end
 
   test "destroying a Office item evaluation item" do
-    visit office_item_evaluation_items_url
+    visit project_item_evaluation_items_url
     page.accept_confirm do
       click_on "Destroy", match: :first
     end

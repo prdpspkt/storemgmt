@@ -1,0 +1,44 @@
+<%= form_with(model: office_purchase_entry_item, local: true) do |form| %>
+<%= render 'layouts/form_errors', object: office_purchase_entry_item %>
+   <div class="row">
+    <div class="col-sm-2">
+      <%= form.label :item_classification_no %>
+      <%= form.number_field :item_classification_no, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-6">
+      <%= form.label :name_of_item %>
+      <%= form.select(:item_id, Item.all.collect{|i| [i.name_of_item_en, i.id]}, {include_blank: "select"}, {class: "form-control"}) %>
+    </div>
+
+    <div class="col-sm-2">
+      <%= form.label :item_identification_no %>
+      <%= form.text_field :item_identification_no, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-2">
+      <%= form.label :model_no %>
+      <%= form.text_field :model_no, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-3">
+      <%= form.label :quantity %>
+      <%= form.text_field :quantity, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-3">
+      <%= form.label :rate %>
+      <%= form.text_field :rate, class: "form-control" %>
+    </div>
+
+
+    <div class="col-sm-4">
+      <%= form.label :remarks %>
+      <%= form.text_field :remarks, class: "form-control" %>
+    </div>
+    <div class="col-sm-2">
+      <br>
+      <%= form.submit :save, class: "float-right btn btn-success" %>
+    </div>
+  </div>
+<% end %>

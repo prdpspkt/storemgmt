@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Demand no:</strong>
+  <%= @project_demand.demand_no %>
+</p>
+
+<p>
+  <strong>Demand date:</strong>
+  <%= @project_demand.demand_date %>
+</p>
+
+<p>
+  <strong>Demand by:</strong>
+  <%= @project_demand.demand_by %>
+</p>
+
+<p>
+  <strong>Recommended by:</strong>
+  <%= @project_demand.recommended_by %>
+</p>
+
+<p>
+  <strong>Needed to purchase:</strong>
+  <%= @project_demand.needed_to_purchase %>
+</p>
+
+<p>
+  <strong>Ordered by:</strong>
+  <%= @project_demand.ordered_by %>
+</p>
+
+<p>
+  <strong>Ordered date:</strong>
+  <%= @project_demand.ordered_date %>
+</p>
+
+<p>
+  <strong>Recorded by:</strong>
+  <%= @project_demand.recorded_by %>
+</p>
+
+<p>
+  <strong>Recorded date:</strong>
+  <%= @project_demand.recorded_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_demand.user_id %>
+</p>
+
+<p>
+  <strong>Fiscal year:</strong>
+  <%= @project_demand.fiscal_year_id %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @project_demand.office_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_demand.project_id %>
+</p>
+
+<p>
+  <strong>Item:</strong>
+  <%= @project_demand.item_id %>
+</p>
+
+<p>
+  <strong>Marked as final:</strong>
+  <%= @project_demand.marked_as_final %>
+</p>
+
+<%= link_to 'Edit', edit_project_demand_path(@project_demand) %> |
+<%= link_to 'Back', project_demands_path %>

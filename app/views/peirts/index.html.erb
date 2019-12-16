@@ -1,0 +1,30 @@
+<h1>Peirts</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-peirts" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="project_item_id">Project item</th>
+      <th data-data="item_id">Item</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="project_id">Project</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="user_id">User</th>
+      <th data-data="transaction_date">Transaction date</th>
+      <th data-data="transaction_type">Transaction type</th>
+      <th data-data="rate">Rate</th>
+      <th data-data="amount">Amount</th>
+      <th data-data="quantity">Quantity</th>
+      <th data-data="remarks">Remarks</th>
+      <th data-data="office_purchase_entry_item_id">Office purchase entry item</th>
+      <th data-data="sku">Sku</th>
+      <th data-data="project_release_item_id">Project release item</th>
+      <th data-data="entry_no">Entry no</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Peirt', new_peirt_path %>

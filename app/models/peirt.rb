@@ -1,0 +1,2 @@
+class Peirt < ApplicationRecord
+end

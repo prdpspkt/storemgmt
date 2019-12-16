@@ -1,0 +1,82 @@
+<%= form_with(model: office_stock, local: true) do |form| %>
+  <% if office_stock.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(office_stock.errors.count, "error") %> prohibited this office_stock from being saved:</h2>
+
+      <ul>
+      <% office_stock.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_name %>
+    <%= form.text_field :store_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_designation %>
+    <%= form.text_field :store_chief_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_sign_date %>
+    <%= form.datetime_select :store_chief_sign_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_name %>
+    <%= form.text_field :section_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_designation %>
+    <%= form.text_field :section_chief_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_signed_date %>
+    <%= form.datetime_select :section_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_name %>
+    <%= form.text_field :office_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_designation %>
+    <%= form.text_field :office_chief_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_signed_date %>
+    <%= form.datetime_select :office_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

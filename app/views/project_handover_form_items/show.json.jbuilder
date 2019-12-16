@@ -1,0 +1,1 @@
+json.partial! "project_handover_form_items/project_handover_form_item", project_handover_form_item: @project_handover_form_item

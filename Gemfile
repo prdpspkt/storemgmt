@@ -13,6 +13,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'turbolinks'
+gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 #gem 'jquery-turbolinks'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'

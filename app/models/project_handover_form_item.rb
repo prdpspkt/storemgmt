@@ -1,0 +1,2 @@
+class ProjectHandoverFormItem < ApplicationRecord
+end

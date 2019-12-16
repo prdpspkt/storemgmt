@@ -37,11 +37,11 @@ class ReportController < ApplicationController
 
 
   def oeirt_ledger
-
+    @items = OfficeItem.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id).where(item_classification_no: 52)
   end
 
   def oneirt_ledger
-    @items = OfficeItem.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id)
+    @items = OfficeItem.where(office_id: @office.id).where(item_classification_no: 47)
   end
 
   def office_handover_form
@@ -54,5 +54,10 @@ class ReportController < ApplicationController
     @office = current_office
     @fiscal_year = current_fiscal_year
     @usesr = current_user
+    #TODO: Store these variables in a table and relate table to each of documents so each
+    # document has different information that doesn't  affect data to next fiscal year
+    @store_keeper = current_store_keeper
+    @office_chief = current_office_chief
+    @section_chief = current_office_chief
   end
 end

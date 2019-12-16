@@ -30,7 +30,7 @@
   </tr>
   <tr>
     <td colspan="9">सामान हस्तान्तरण गरिएको कार्यालयको नामः <%= @office_handover_form.handovered_office_name %></td>
-    <td >हस्तान्तरण फारम नं: <%= nd @office_handover_form.handover_form_no %></td>
+    <td >हस्तान्तरण फारम नं: <%= nd @office_handover_form.form_no %></td>
   </tr>
   </tbody>
 </table>
@@ -64,21 +64,23 @@
     <td>११</td>
     <td>१२</td>
   </tr>
+  <% @id = 1 %>
   <% @office_handover_form_items.each do |item| %>
   <tr>
-    <td><%= item.id %></td>
-    <td><%= item.item_classification_no %></td>
-    <td><%= item.item_register_page_no %></td>
+    <td><%= nd @id %></td>
+    <td><%= nd item.item_classification_no %></td>
+    <td><%= nd item.item_register_page_no %></td>
     <td><%= item.name_of_item_ne %></td>
     <td><%= item.specification %></td>
     <td><%= item.item_identification_no %></td>
     <td><%= item.model_no %></td>
     <td><%= item.unit_ne %></td>
-    <td><%= item.quantity %></td>
-    <td><%= item.amount %></td>
-    <td><%= item.received_date %></td>
+    <td><%= nd item.quantity %></td>
+    <td><%= nd item.amount %></td>
+    <td><%= ndate item.received_date %></td>
     <td><%= item.physical_status %></td>
   </tr>
+  <% @id = @id + 1 %>
     <% end %>
   </tbody>
 </table>
@@ -103,7 +105,7 @@
     <td >नामः</td>
   </tr>
   <tr>
-    <td>पदः <%= ndate @office_handover_form.store_chief_designation %></td>
+    <td>पदः <%= @office_handover_form.store_chief_designation %></td>
     <td>पदः <%= @office_handover_form.office_chief_designation %></td>
     <td>पदः</td>
     <td>पदः</td>
@@ -115,8 +117,8 @@
     <td>दस्तखतः</td>
   </tr>
   <tr>
-    <td>मितिः <%= @office_handover_form.store_chief_signed_date %></td>
-    <td>मितिः <%= @office_handover_form.office_chief_signed_date %></td>
+    <td>मितिः <%= ndate @office_handover_form.store_chief_signed_date %></td>
+    <td>मितिः <%= ndate @office_handover_form.office_chief_signed_date %></td>
     <td>मितिः</td>
     <td>मितिः</td>
   </tr>

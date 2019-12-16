@@ -1,4 +1,13 @@
 Rails.application.routes.draw do
+  resources :project_items
+  resources :project_item_stocks
+  resources :project_evaluations
+  resources :project_evaluation_items
+  resources :project_handover_forms
+  resources :project_handover_form_items
+  resources :peirts
+  resources :project_demands
+  resources :project_demand_items
   resources :vendors, :except => ['show']
   #report printing
   get '/report/office_demand_form/:id' => "report#office_demand_form"
@@ -23,12 +32,12 @@ Rails.application.routes.draw do
   resources :office_stocks
   resources :item_assistance_register_items
   resources :item_assistance_registers
-  resources :office_item_evaluation_items
+  resources :project_item_evaluation_items
   resources :evaluation_committees
   resources :office_item_evaluations
   resources :item_disposal_items
   resources :item_disposals
-  resources :office_handover_form_items
+  resources :handover_form_items
   resources :office_handover_forms
   post "/office_handover_form/mark_as_final/:id" => "office_handover_forms#mark_as_final", as: :mark_office_handover_form_as_final
   resources :office_release_items

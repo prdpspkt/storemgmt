@@ -1,0 +1,21 @@
+<h1>Project Evaluations</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-project_evaluations" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="fy">Fy</th>
+      <th data-data="committee_formation_date">Committee formation date</th>
+      <th data-data="report_submission_date">Report submission date</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="user_id">User</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="marked_as_final">Marked as final</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Project Evaluation', new_project_evaluation_path %>

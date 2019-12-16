@@ -102,6 +102,10 @@ class OfficeHandoverFormsController < ApplicationController
     hf.user_id = current_user.id
     hf.fy = current_fiscal_year.fy
     hf.fiscal_year_id = current_fiscal_year.id
+    hf.store_chief_name = current_store_keeper.name
+    hf.office_chief_name = current_office_chief.name
+    hf.store_chief_designation = current_store_keeper.post
+    hf.office_chief_designation = current_office_chief.post
     hf
   end
 end

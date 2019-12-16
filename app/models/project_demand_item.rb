@@ -1,0 +1,2 @@
+class ProjectDemandItem < ApplicationRecord
+end
