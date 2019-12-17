@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_13_033337) do
+ActiveRecord::Schema.define(version: 2019_12_15_102124) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -248,7 +248,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_033337) do
     t.integer "entry_no"
   end
 
-  create_table "handover_form_items", force: :cascade do |t|
+  create_table "office_handover_form_items", force: :cascade do |t|
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
     t.string "name_of_item_ne"
@@ -267,12 +267,11 @@ ActiveRecord::Schema.define(version: 2019_12_13_033337) do
     t.integer "user_id"
     t.integer "office_id"
     t.integer "project_id"
-    t.integer "handover_form_id"
+    t.integer "office_handover_form_id"
     t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "office_item_id"
-    t.integer "office_handover_form_id"
     t.integer "handovered_from"
     t.string "country"
     t.string "size"
@@ -332,7 +331,7 @@ ActiveRecord::Schema.define(version: 2019_12_13_033337) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "project_item_evaluation_items", force: :cascade do |t|
+  create_table "office_item_evaluation_items", force: :cascade do |t|
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
     t.string "name_of_item_en"
@@ -589,6 +588,27 @@ ActiveRecord::Schema.define(version: 2019_12_13_033337) do
     t.integer "office_handover_form_item_id"
   end
 
+  create_table "peirts", force: :cascade do |t|
+    t.integer "project_item_id"
+    t.integer "item_id"
+    t.integer "office_id"
+    t.integer "project_id"
+    t.integer "fiscal_year_id"
+    t.integer "user_id"
+    t.datetime "transaction_date"
+    t.integer "transaction_type"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.decimal "quantity"
+    t.string "remarks"
+    t.integer "office_purchase_entry_item_id"
+    t.decimal "sku"
+    t.integer "project_release_item_id"
+    t.integer "entry_no"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "personnels", force: :cascade do |t|
     t.string "name_ne"
     t.string "name_en"
@@ -600,6 +620,176 @@ ActiveRecord::Schema.define(version: 2019_12_13_033337) do
     t.string "group"
     t.string "sub_group"
     t.string "ctroll"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_demand_items", force: :cascade do |t|
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
+    t.string "specification"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.decimal "quantity"
+    t.decimal "amount"
+    t.decimal "rate"
+    t.string "remark"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.integer "project_id"
+    t.integer "project_item_id"
+    t.string "fy"
+    t.integer "fiscal_year_id"
+    t.integer "item_id"
+    t.integer "project_demand_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_demands", force: :cascade do |t|
+    t.integer "demand_no"
+    t.datetime "demand_date"
+    t.string "demand_by"
+    t.string "recommended_by"
+    t.boolean "needed_to_purchase"
+    t.string "ordered_by"
+    t.datetime "ordered_date"
+    t.string "recorded_by"
+    t.datetime "recorded_date"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.integer "office_id"
+    t.integer "project_id"
+    t.integer "item_id"
+    t.boolean "marked_as_final"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_evaluation_items", force: :cascade do |t|
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.decimal "quantity"
+    t.decimal "amount"
+    t.decimal "mached"
+    t.decimal "unmatched"
+    t.decimal "decreased_quantity"
+    t.decimal "increased_quantity"
+    t.decimal "dein_quantity"
+    t.decimal "working"
+    t.decimal "not_working"
+    t.decimal "to_be_repaired"
+    t.decimal "to_be_auctioned"
+    t.decimal "to_be_dispose"
+    t.decimal "to_be_conserved"
+    t.decimal "total_amount"
+    t.string "remarks"
+    t.integer "item_id"
+    t.integer "project_item_id"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.string "fy"
+    t.boolean "marked_as_final"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_evaluations", force: :cascade do |t|
+    t.string "fy"
+    t.datetime "committee_formation_date"
+    t.datetime "report_submission_date"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.boolean "marked_as_final"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_handover_form_items", force: :cascade do |t|
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
+    t.string "specification"
+    t.string "item_identification_no"
+    t.string "model_no"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.string "quantity"
+    t.string "amount"
+    t.string "received_date"
+    t.string "physical_status"
+    t.string "fy"
+    t.integer "fiscal_year_id"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.integer "project_id"
+    t.integer "handover_form_id"
+    t.integer "item_id"
+    t.integer "project_item_id"
+    t.integer "project_handover_form_id"
+    t.string "country"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_handover_forms", force: :cascade do |t|
+    t.integer "decision_no"
+    t.datetime "decision_date"
+    t.string "fy"
+    t.string "handovered_project_name"
+    t.datetime "date"
+    t.integer "form_no"
+    t.string "store_chief_name"
+    t.string "store_chief_designation"
+    t.datetime "store_chief_sign_date"
+    t.string "office_chief_name"
+    t.string "office_chief_designation"
+    t.datetime "office_chief_signed_date"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.boolean "marked_as_final"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_item_stocks", force: :cascade do |t|
+    t.decimal "quantity"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.integer "item_id"
+    t.integer "project_item_id"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_items", force: :cascade do |t|
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
+    t.string "specification"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.integer "item_register_page_no"
+    t.integer "item_classification_no"
+    t.integer "item_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.integer "project_id"
+    t.string "model_no"
+    t.integer "item_identification_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
