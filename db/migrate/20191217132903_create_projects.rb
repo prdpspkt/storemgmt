@@ -12,7 +12,7 @@ class CreateProjects < ActiveRecord::Migration[5.2]
       t.string :phone_of_contrator_representative
       t.string :name_of_contractor_representative
       t.integer :user_id
-      t.iteger :office_id
+      t.integer :office_id
       t.integer :fiscal_year_id
       t.integer :project_status
 
