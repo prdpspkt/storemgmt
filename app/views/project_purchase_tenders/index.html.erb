@@ -1,0 +1,23 @@
+<h1>Project Purchase Tenders</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-project_purchase_tenders" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="office_id">Office</th>
+      <th data-data="user_id">User</th>
+      <th data-data="fiscal_yeaer_id">Fiscal yeaer</th>
+      <th data-data="tender_no">Tender no</th>
+      <th data-data="tender_name">Tender name</th>
+      <th data-data="tender_date">Tender date</th>
+      <th data-data="marked_as_final">Marked as final</th>
+      <th data-data="bidders_name">Bidders name</th>
+      <th data-data="bidders_address">Bidders address</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Project Purchase Tender', new_project_purchase_tender_path %>

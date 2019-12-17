@@ -1,0 +1,2 @@
+class Pneirt < ApplicationRecord
+end

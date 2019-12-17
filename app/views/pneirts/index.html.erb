@@ -1,0 +1,37 @@
+<h1>Pneirts</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-pneirts" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="model_no">Model no</th>
+      <th data-data="item_identificaiton_no">Item identificaiton no</th>
+      <th data-data="country">Country</th>
+      <th data-data="project_item_id">Project item</th>
+      <th data-data="item_id">Item</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="user_id">User</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="transaction_date">Transaction date</th>
+      <th data-data="transaction_type">Transaction type</th>
+      <th data-data="rate">Rate</th>
+      <th data-data="amount">Amount</th>
+      <th data-data="quantity">Quantity</th>
+      <th data-data="project_purchase_entry_item_id">Project purchase entry item</th>
+      <th data-data="breakdown_id">Breakdown</th>
+      <th data-data="remarks">Remarks</th>
+      <th data-data="sku">Sku</th>
+      <th data-data="project_handover_form_id">Project handover form</th>
+      <th data-data="entry_no">Entry no</th>
+      <th data-data="country">Country</th>
+      <th data-data="size">Size</th>
+      <th data-data="approx_age">Approx age</th>
+      <th data-data="source">Source</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Pneirt', new_pneirt_path %>

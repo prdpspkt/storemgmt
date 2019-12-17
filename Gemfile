@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.5'
-gem 'dotenv-rails'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'pry'

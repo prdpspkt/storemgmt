@@ -1,6 +1,18 @@
 Rails.application.routes.draw do
+  resources :project_tender_breakdowns
+  resources :project_tender_items
+  resources :project_purchase_tenders
+  resources :project_purchase_orders
+  resources :project_purchase_order_items
+  resources :pneirts
+  resources :projects
+  resources :project_stocks
+  resources :project_stock_items
+  resources :project_releases
+  resources :project_release_items
+  resources :project_purchase_entry_items
+  resources :project_purchase_entries
   resources :project_items
-  resources :project_item_stocks
   resources :project_evaluations
   resources :project_evaluation_items
   resources :project_handover_forms

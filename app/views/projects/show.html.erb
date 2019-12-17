@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of project ne:</strong>
+  <%= @project.name_of_project_ne %>
+</p>
+
+<p>
+  <strong>Name of project en:</strong>
+  <%= @project.name_of_project_en %>
+</p>
+
+<p>
+  <strong>Name of consumer committee:</strong>
+  <%= @project.name_of_consumer_committee %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @project.address %>
+</p>
+
+<p>
+  <strong>Phone of committee representative:</strong>
+  <%= @project.phone_of_committee_representative %>
+</p>
+
+<p>
+  <strong>Name of committee representative:</strong>
+  <%= @project.name_of_committee_representative %>
+</p>
+
+<p>
+  <strong>Post of representative:</strong>
+  <%= @project.post_of_representative %>
+</p>
+
+<p>
+  <strong>Contractor:</strong>
+  <%= @project.contractor %>
+</p>
+
+<p>
+  <strong>Phone of contrator representative:</strong>
+  <%= @project.phone_of_contrator_representative %>
+</p>
+
+<p>
+  <strong>Name of contractor representative:</strong>
+  <%= @project.name_of_contractor_representative %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project.user_id %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @project.office_id %>
+</p>
+
+<p>
+  <strong>Fiscal year:</strong>
+  <%= @project.fiscal_year_id %>
+</p>
+
+<p>
+  <strong>Project status:</strong>
+  <%= @project.project_status %>
+</p>
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

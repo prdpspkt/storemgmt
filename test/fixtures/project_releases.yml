@@ -3,27 +3,27 @@
 one:
   fy: MyString
   release_no: 1
-  release_date: 2019-09-02 11:04:01
+  release_date: 2019-12-17 18:24:57
   store_chief_name: MyString
-  store_chief_signed_date: 2019-09-02 11:04:01
-  office_cheif_name: MyString
-  office_cheif_signed_date: 2019-09-02 11:04:01
+  store_chief_signed_date: 2019-12-17 18:24:57
+  office_chief_name: MyString
+  office_chief_signed_date: 2019-12-17 18:24:57
   user_id: 1
   office_id: 1
-  fiscal_year_id: 1
-  project_name: MyString
   project_id: 1
+  fiscal_year_id: 1
+  marked_as_final: 1
 
 two:
   fy: MyString
   release_no: 1
-  release_date: 2019-09-02 11:04:01
+  release_date: 2019-12-17 18:24:57
   store_chief_name: MyString
-  store_chief_signed_date: 2019-09-02 11:04:01
-  office_cheif_name: MyString
-  office_cheif_signed_date: 2019-09-02 11:04:01
+  store_chief_signed_date: 2019-12-17 18:24:57
+  office_chief_name: MyString
+  office_chief_signed_date: 2019-12-17 18:24:57
   user_id: 1
   office_id: 1
-  fiscal_year_id: 1
-  project_name: MyString
   project_id: 1
+  fiscal_year_id: 1
+  marked_as_final: 1

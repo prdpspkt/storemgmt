@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of item ne:</strong>
+  <%= @project_tender_item.name_of_item_ne %>
+</p>
+
+<p>
+  <strong>Name of item en:</strong>
+  <%= @project_tender_item.name_of_item_en %>
+</p>
+
+<p>
+  <strong>Unit ne:</strong>
+  <%= @project_tender_item.unit_ne %>
+</p>
+
+<p>
+  <strong>Unit en:</strong>
+  <%= @project_tender_item.unit_en %>
+</p>
+
+<p>
+  <strong>Quantity:</strong>
+  <%= @project_tender_item.quantity %>
+</p>
+
+<p>
+  <strong>Rate:</strong>
+  <%= @project_tender_item.rate %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @project_tender_item.amount %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @project_tender_item.office_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_tender_item.user_id %>
+</p>
+
+<p>
+  <strong>Received date:</strong>
+  <%= @project_tender_item.received_date %>
+</p>
+
+<p>
+  <strong>Project purchase tender:</strong>
+  <%= @project_tender_item.project_purchase_tender_id %>
+</p>
+
+<p>
+  <strong>Fy:</strong>
+  <%= @project_tender_item.fy %>
+</p>
+
+<p>
+  <strong>Fiscal year:</strong>
+  <%= @project_tender_item.fiscal_year_id %>
+</p>
+
+<%= link_to 'Edit', edit_project_tender_item_path(@project_tender_item) %> |
+<%= link_to 'Back', project_tender_items_path %>

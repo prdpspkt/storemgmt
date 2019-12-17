@@ -1,0 +1,132 @@
+<%= form_with(model: project_purchase_order, local: true) do |form| %>
+  <% if project_purchase_order.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_purchase_order.errors.count, "error") %> prohibited this project_purchase_order from being saved:</h2>
+
+      <ul>
+      <% project_purchase_order.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :vendor_name %>
+    <%= form.text_field :vendor_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_address %>
+    <%= form.text_field :vendor_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_registration %>
+    <%= form.text_field :vendor_registration %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_phone %>
+    <%= form.text_field :vendor_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :vendor_pan %>
+    <%= form.text_field :vendor_pan %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_no %>
+    <%= form.text_field :order_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_date %>
+    <%= form.datetime_select :order_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_decision_no %>
+    <%= form.number_field :order_decision_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :order_decision_date %>
+    <%= form.datetime_select :order_decision_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_name %>
+    <%= form.text_field :office_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_address %>
+    <%= form.text_field :office_address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_name %>
+    <%= form.text_field :store_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_signed_date %>
+    <%= form.datetime_select :store_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_name %>
+    <%= form.text_field :office_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_signed_date %>
+    <%= form.datetime_select :office_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_name %>
+    <%= form.text_field :section_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_cheif_signed_date %>
+    <%= form.datetime_select :section_cheif_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_signed_date %>
+    <%= form.datetime_select :fiscal_year_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :marked_as_final %>
+    <%= form.check_box :marked_as_final %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

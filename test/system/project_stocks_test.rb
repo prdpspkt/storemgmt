@@ -16,16 +16,19 @@ class ProjectStocksTest < ApplicationSystemTestCase
 
     fill_in "Fiscal year", with: @project_stock.fiscal_year_id
     fill_in "Fy", with: @project_stock.fy
+    fill_in "Item", with: @project_stock.item_id
+    check "Marked as final" if @project_stock.marked_as_final
     fill_in "Office chief designation", with: @project_stock.office_chief_designation
     fill_in "Office chief name", with: @project_stock.office_chief_name
     fill_in "Office chief signed date", with: @project_stock.office_chief_signed_date
     fill_in "Office", with: @project_stock.office_id
-    fill_in "Section chief designation", with: @project_stock.section_chief_designation
+    fill_in "Project", with: @project_stock.project_id
+    fill_in "Section chief degination", with: @project_stock.section_chief_degination
     fill_in "Section chief name", with: @project_stock.section_chief_name
     fill_in "Section chief signed date", with: @project_stock.section_chief_signed_date
     fill_in "Store chief designation", with: @project_stock.store_chief_designation
     fill_in "Store chief name", with: @project_stock.store_chief_name
-    fill_in "Store chief sign date", with: @project_stock.store_chief_sign_date
+    fill_in "Store chief signed date", with: @project_stock.store_chief_signed_date
     fill_in "User", with: @project_stock.user_id
     click_on "Create Project stock"
 
@@ -39,16 +42,19 @@ class ProjectStocksTest < ApplicationSystemTestCase
 
     fill_in "Fiscal year", with: @project_stock.fiscal_year_id
     fill_in "Fy", with: @project_stock.fy
+    fill_in "Item", with: @project_stock.item_id
+    check "Marked as final" if @project_stock.marked_as_final
     fill_in "Office chief designation", with: @project_stock.office_chief_designation
     fill_in "Office chief name", with: @project_stock.office_chief_name
     fill_in "Office chief signed date", with: @project_stock.office_chief_signed_date
     fill_in "Office", with: @project_stock.office_id
-    fill_in "Section chief designation", with: @project_stock.section_chief_designation
+    fill_in "Project", with: @project_stock.project_id
+    fill_in "Section chief degination", with: @project_stock.section_chief_degination
     fill_in "Section chief name", with: @project_stock.section_chief_name
     fill_in "Section chief signed date", with: @project_stock.section_chief_signed_date
     fill_in "Store chief designation", with: @project_stock.store_chief_designation
     fill_in "Store chief name", with: @project_stock.store_chief_name
-    fill_in "Store chief sign date", with: @project_stock.store_chief_sign_date
+    fill_in "Store chief signed date", with: @project_stock.store_chief_signed_date
     fill_in "User", with: @project_stock.user_id
     click_on "Update Project stock"
 

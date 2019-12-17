@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @project_purchase_tender.office_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_purchase_tender.user_id %>
+</p>
+
+<p>
+  <strong>Fiscal yeaer:</strong>
+  <%= @project_purchase_tender.fiscal_yeaer_id %>
+</p>
+
+<p>
+  <strong>Tender no:</strong>
+  <%= @project_purchase_tender.tender_no %>
+</p>
+
+<p>
+  <strong>Tender name:</strong>
+  <%= @project_purchase_tender.tender_name %>
+</p>
+
+<p>
+  <strong>Tender date:</strong>
+  <%= @project_purchase_tender.tender_date %>
+</p>
+
+<p>
+  <strong>Marked as final:</strong>
+  <%= @project_purchase_tender.marked_as_final %>
+</p>
+
+<p>
+  <strong>Bidders name:</strong>
+  <%= @project_purchase_tender.bidders_name %>
+</p>
+
+<p>
+  <strong>Bidders address:</strong>
+  <%= @project_purchase_tender.bidders_address %>
+</p>
+
+<%= link_to 'Edit', edit_project_purchase_tender_path(@project_purchase_tender) %> |
+<%= link_to 'Back', project_purchase_tenders_path %>

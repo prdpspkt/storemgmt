@@ -1,0 +1,77 @@
+<%= form_with(model: project_release, local: true) do |form| %>
+  <% if project_release.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_release.errors.count, "error") %> prohibited this project_release from being saved:</h2>
+
+      <ul>
+      <% project_release.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :fy %>
+    <%= form.text_field :fy %>
+  </div>
+
+  <div class="field">
+    <%= form.label :release_no %>
+    <%= form.number_field :release_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :release_date %>
+    <%= form.datetime_select :release_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_name %>
+    <%= form.text_field :store_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_chief_signed_date %>
+    <%= form.datetime_select :store_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_name %>
+    <%= form.text_field :office_chief_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_signed_date %>
+    <%= form.datetime_select :office_chief_signed_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :marked_as_final %>
+    <%= form.number_field :marked_as_final %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

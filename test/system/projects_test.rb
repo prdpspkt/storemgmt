@@ -15,14 +15,18 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on "New Project"
 
     fill_in "Address", with: @project.address
-    fill_in "Committee name", with: @project.committee_name
+    fill_in "Contractor", with: @project.contractor
     fill_in "Fiscal year", with: @project.fiscal_year_id
-    fill_in "Name en", with: @project.name_en
-    fill_in "Name ne", with: @project.name_ne
+    fill_in "Name of committee representative", with: @project.name_of_committee_representative
+    fill_in "Name of consumer committee", with: @project.name_of_consumer_committee
+    fill_in "Name of contractor representative", with: @project.name_of_contractor_representative
+    fill_in "Name of project en", with: @project.name_of_project_en
+    fill_in "Name of project ne", with: @project.name_of_project_ne
     fill_in "Office", with: @project.office_id
-    fill_in "Phone", with: @project.phone
-    fill_in "President", with: @project.president
-    fill_in "Started fy", with: @project.started_fy
+    fill_in "Phone of committee representative", with: @project.phone_of_committee_representative
+    fill_in "Phone of contrator representative", with: @project.phone_of_contrator_representative
+    fill_in "Post of representative", with: @project.post_of_representative
+    fill_in "Project status", with: @project.project_status
     fill_in "User", with: @project.user_id
     click_on "Create Project"
 
@@ -35,14 +39,18 @@ class ProjectsTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Address", with: @project.address
-    fill_in "Committee name", with: @project.committee_name
+    fill_in "Contractor", with: @project.contractor
     fill_in "Fiscal year", with: @project.fiscal_year_id
-    fill_in "Name en", with: @project.name_en
-    fill_in "Name ne", with: @project.name_ne
+    fill_in "Name of committee representative", with: @project.name_of_committee_representative
+    fill_in "Name of consumer committee", with: @project.name_of_consumer_committee
+    fill_in "Name of contractor representative", with: @project.name_of_contractor_representative
+    fill_in "Name of project en", with: @project.name_of_project_en
+    fill_in "Name of project ne", with: @project.name_of_project_ne
     fill_in "Office", with: @project.office_id
-    fill_in "Phone", with: @project.phone
-    fill_in "President", with: @project.president
-    fill_in "Started fy", with: @project.started_fy
+    fill_in "Phone of committee representative", with: @project.phone_of_committee_representative
+    fill_in "Phone of contrator representative", with: @project.phone_of_contrator_representative
+    fill_in "Post of representative", with: @project.post_of_representative
+    fill_in "Project status", with: @project.project_status
     fill_in "User", with: @project.user_id
     click_on "Update Project"
 

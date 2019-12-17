@@ -1,0 +1,97 @@
+<%= form_with(model: project_stock_item, local: true) do |form| %>
+  <% if project_stock_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_stock_item.errors.count, "error") %> prohibited this project_stock_item from being saved:</h2>
+
+      <ul>
+      <% project_stock_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :item_register_page_no %>
+    <%= form.number_field :item_register_page_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_classification_no %>
+    <%= form.number_field :item_classification_no %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_of_item_en %>
+    <%= form.text_field :name_of_item_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :name_of_item_ne %>
+    <%= form.text_field :name_of_item_ne %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit_en %>
+    <%= form.text_field :unit_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit_ne %>
+    <%= form.text_field :unit_ne %>
+  </div>
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate %>
+    <%= form.text_field :rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :physical_status %>
+    <%= form.text_field :physical_status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remarks %>
+    <%= form.text_field :remarks %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :item_id %>
+    <%= form.number_field :item_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

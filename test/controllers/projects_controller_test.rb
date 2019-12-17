@@ -17,7 +17,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create project" do
     assert_difference('Project.count') do
-      post projects_url, params: { project: { address: @project.address, committee_name: @project.committee_name, fiscal_year_id: @project.fiscal_year_id, name_en: @project.name_en, name_ne: @project.name_ne, office_id: @project.office_id, phone: @project.phone, president: @project.president, started_fy: @project.started_fy, user_id: @project.user_id } }
+      post projects_url, params: { project: { address: @project.address, contractor: @project.contractor, fiscal_year_id: @project.fiscal_year_id, name_of_committee_representative: @project.name_of_committee_representative, name_of_consumer_committee: @project.name_of_consumer_committee, name_of_contractor_representative: @project.name_of_contractor_representative, name_of_project_en: @project.name_of_project_en, name_of_project_ne: @project.name_of_project_ne, office_id: @project.office_id, phone_of_committee_representative: @project.phone_of_committee_representative, phone_of_contrator_representative: @project.phone_of_contrator_representative, post_of_representative: @project.post_of_representative, project_status: @project.project_status, user_id: @project.user_id } }
     end
 
     assert_redirected_to project_url(Project.last)
@@ -34,7 +34,7 @@ class ProjectsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update project" do
-    patch project_url(@project), params: { project: { address: @project.address, committee_name: @project.committee_name, fiscal_year_id: @project.fiscal_year_id, name_en: @project.name_en, name_ne: @project.name_ne, office_id: @project.office_id, phone: @project.phone, president: @project.president, started_fy: @project.started_fy, user_id: @project.user_id } }
+    patch project_url(@project), params: { project: { address: @project.address, contractor: @project.contractor, fiscal_year_id: @project.fiscal_year_id, name_of_committee_representative: @project.name_of_committee_representative, name_of_consumer_committee: @project.name_of_consumer_committee, name_of_contractor_representative: @project.name_of_contractor_representative, name_of_project_en: @project.name_of_project_en, name_of_project_ne: @project.name_of_project_ne, office_id: @project.office_id, phone_of_committee_representative: @project.phone_of_committee_representative, phone_of_contrator_representative: @project.phone_of_contrator_representative, post_of_representative: @project.post_of_representative, project_status: @project.project_status, user_id: @project.user_id } }
     assert_redirected_to project_url(@project)
   end
 

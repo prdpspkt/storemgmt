@@ -1,0 +1,34 @@
+<h1>Project Purchase Entries</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-project_purchase_entries" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="entry_date">Entry date</th>
+      <th data-data="bill_no">Bill no</th>
+      <th data-data="entry_no">Entry no</th>
+      <th data-data="store_chief_name">Store chief name</th>
+      <th data-data="store_chief_designation">Store chief designation</th>
+      <th data-data="store_chief_signed_date">Store chief signed date</th>
+      <th data-data="section_chief_name">Section chief name</th>
+      <th data-data="section_chief_designation">Section chief designation</th>
+      <th data-data="section_chief_signed_date">Section chief signed date</th>
+      <th data-data="office_chief_name">Office chief name</th>
+      <th data-data="office_chief_designation">Office chief designation</th>
+      <th data-data="office_chief_signed_date">Office chief signed date</th>
+      <th data-data="user_id">User</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="item_id">Item</th>
+      <th data-data="item_register_page_no">Item register page no</th>
+      <th data-data="purchase_handover_no">Purchase handover no</th>
+      <th data-data="fy">Fy</th>
+      <th data-data="marked_as_final">Marked as final</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Project Purchase Entry', new_project_purchase_entry_path %>

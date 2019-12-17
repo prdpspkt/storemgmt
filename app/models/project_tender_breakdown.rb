@@ -1,0 +1,2 @@
+class ProjectTenderBreakdown < ApplicationRecord
+end

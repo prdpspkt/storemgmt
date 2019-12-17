@@ -1,25 +1,33 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name_ne: MyString
-  name_en: MyString
+  name_of_project_ne: MyString
+  name_of_project_en: MyString
+  name_of_consumer_committee: MyString
   address: MyString
-  committee_name: MyString
-  president: MyString
-  phone: MyString
+  phone_of_committee_representative: MyString
+  name_of_committee_representative: MyString
+  post_of_representative: MyString
+  contractor: MyString
+  phone_of_contrator_representative: MyString
+  name_of_contractor_representative: MyString
   user_id: 1
-  office_id: 1
+  office_id: 
   fiscal_year_id: 1
-  started_fy: MyString
+  project_status: 1
 
 two:
-  name_ne: MyString
-  name_en: MyString
+  name_of_project_ne: MyString
+  name_of_project_en: MyString
+  name_of_consumer_committee: MyString
   address: MyString
-  committee_name: MyString
-  president: MyString
-  phone: MyString
+  phone_of_committee_representative: MyString
+  name_of_committee_representative: MyString
+  post_of_representative: MyString
+  contractor: MyString
+  phone_of_contrator_representative: MyString
+  name_of_contractor_representative: MyString
   user_id: 1
-  office_id: 1
+  office_id: 
   fiscal_year_id: 1
-  started_fy: MyString
+  project_status: 1

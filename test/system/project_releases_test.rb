@@ -16,11 +16,11 @@ class ProjectReleasesTest < ApplicationSystemTestCase
 
     fill_in "Fiscal year", with: @project_release.fiscal_year_id
     fill_in "Fy", with: @project_release.fy
-    fill_in "Office cheif name", with: @project_release.office_cheif_name
-    fill_in "Office cheif signed date", with: @project_release.office_cheif_signed_date
+    fill_in "Marked as final", with: @project_release.marked_as_final
+    fill_in "Office chief name", with: @project_release.office_chief_name
+    fill_in "Office chief signed date", with: @project_release.office_chief_signed_date
     fill_in "Office", with: @project_release.office_id
     fill_in "Project", with: @project_release.project_id
-    fill_in "Project name", with: @project_release.project_name
     fill_in "Release date", with: @project_release.release_date
     fill_in "Release no", with: @project_release.release_no
     fill_in "Store chief name", with: @project_release.store_chief_name
@@ -38,11 +38,11 @@ class ProjectReleasesTest < ApplicationSystemTestCase
 
     fill_in "Fiscal year", with: @project_release.fiscal_year_id
     fill_in "Fy", with: @project_release.fy
-    fill_in "Office cheif name", with: @project_release.office_cheif_name
-    fill_in "Office cheif signed date", with: @project_release.office_cheif_signed_date
+    fill_in "Marked as final", with: @project_release.marked_as_final
+    fill_in "Office chief name", with: @project_release.office_chief_name
+    fill_in "Office chief signed date", with: @project_release.office_chief_signed_date
     fill_in "Office", with: @project_release.office_id
     fill_in "Project", with: @project_release.project_id
-    fill_in "Project name", with: @project_release.project_name
     fill_in "Release date", with: @project_release.release_date
     fill_in "Release no", with: @project_release.release_no
     fill_in "Store chief name", with: @project_release.store_chief_name

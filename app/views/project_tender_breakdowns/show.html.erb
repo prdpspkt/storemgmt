@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @project_tender_breakdown.office_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_tender_breakdown.user_id %>
+</p>
+
+<p>
+  <strong>Project tender:</strong>
+  <%= @project_tender_breakdown.project_tender_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_tender_breakdown.project_id %>
+</p>
+
+<p>
+  <strong>Project name en:</strong>
+  <%= @project_tender_breakdown.project_name_en %>
+</p>
+
+<p>
+  <strong>Project name ne:</strong>
+  <%= @project_tender_breakdown.project_name_ne %>
+</p>
+
+<p>
+  <strong>Marked as final:</strong>
+  <%= @project_tender_breakdown.marked_as_final %>
+</p>
+
+<%= link_to 'Edit', edit_project_tender_breakdown_path(@project_tender_breakdown) %> |
+<%= link_to 'Back', project_tender_breakdowns_path %>

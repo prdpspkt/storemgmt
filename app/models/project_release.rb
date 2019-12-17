@@ -1,0 +1,2 @@
+class ProjectRelease < ApplicationRecord
+end

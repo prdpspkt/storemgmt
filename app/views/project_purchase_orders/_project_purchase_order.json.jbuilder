@@ -1,0 +1,2 @@
+json.extract! project_purchase_order, :id, :vendor_name, :vendor_address, :vendor_registration, :vendor_phone, :vendor_pan, :order_no, :order_date, :order_decision_no, :order_decision_date, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :office_chief_name, :office_chief_signed_date, :section_chief_name, :section_cheif_signed_date, :user_id, :fy, :fiscal_year_signed_date, :office_id, :project_id, :marked_as_final, :created_at, :updated_at
+json.url project_purchase_order_url(project_purchase_order, format: :json)

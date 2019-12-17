@@ -1,0 +1,2 @@
+class ProjectTenderItem < ApplicationRecord
+end

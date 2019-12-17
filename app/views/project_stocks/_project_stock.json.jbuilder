@@ -1,0 +1,2 @@
+json.extract! project_stock, :id, :fy, :store_chief_name, :store_chief_designation, :store_chief_signed_date, :section_chief_name, :section_chief_signed_date, :section_chief_degination, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :office_id, :project_id, :user_id, :fiscal_year_id, :item_id, :marked_as_final, :created_at, :updated_at
+json.url project_stock_url(project_stock, format: :json)

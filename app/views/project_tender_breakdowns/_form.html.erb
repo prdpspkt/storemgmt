@@ -1,0 +1,52 @@
+<%= form_with(model: project_tender_breakdown, local: true) do |form| %>
+  <% if project_tender_breakdown.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_tender_breakdown.errors.count, "error") %> prohibited this project_tender_breakdown from being saved:</h2>
+
+      <ul>
+      <% project_tender_breakdown.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_tender_id %>
+    <%= form.number_field :project_tender_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_id %>
+    <%= form.number_field :project_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_name_en %>
+    <%= form.text_field :project_name_en %>
+  </div>
+
+  <div class="field">
+    <%= form.label :project_name_ne %>
+    <%= form.text_field :project_name_ne %>
+  </div>
+
+  <div class="field">
+    <%= form.label :marked_as_final %>
+    <%= form.check_box :marked_as_final %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

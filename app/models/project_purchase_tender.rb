@@ -1,0 +1,2 @@
+class ProjectPurchaseTender < ApplicationRecord
+end

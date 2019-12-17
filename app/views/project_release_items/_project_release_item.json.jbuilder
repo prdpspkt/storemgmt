@@ -1,0 +1,2 @@
+json.extract! project_release_item, :id, :name_of_item_ne, :name_of_item_en, :item_register_page_no, :code_no, :specificaiton, :unit_en, :unit_ne, :quantity, :rate, :amount, :remarks, :project_item_id, :project_release_id, :user_id, :office_id, :item_id, :fiscal_year_id, :release_from, :item_classification_no, :created_at, :updated_at
+json.url project_release_item_url(project_release_item, format: :json)

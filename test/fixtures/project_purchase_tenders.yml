@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  office_id: 1
+  user_id: 1
+  fiscal_yeaer_id: 1
+  tender_no: MyString
+  tender_name: MyString
+  tender_date: 2019-12-17 21:12:20
+  marked_as_final: false
+  bidders_name: MyString
+  bidders_address: MyString
+
+two:
+  office_id: 1
+  user_id: 1
+  fiscal_yeaer_id: 1
+  tender_no: MyString
+  tender_name: MyString
+  tender_date: 2019-12-17 21:12:20
+  marked_as_final: false
+  bidders_name: MyString
+  bidders_address: MyString

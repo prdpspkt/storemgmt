@@ -1,0 +1,2 @@
+module ProjectReleasesHelper
+end

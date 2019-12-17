@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Fy:</strong>
+  <%= @project_release.fy %>
+</p>
+
+<p>
+  <strong>Release no:</strong>
+  <%= @project_release.release_no %>
+</p>
+
+<p>
+  <strong>Release date:</strong>
+  <%= @project_release.release_date %>
+</p>
+
+<p>
+  <strong>Store chief name:</strong>
+  <%= @project_release.store_chief_name %>
+</p>
+
+<p>
+  <strong>Store chief signed date:</strong>
+  <%= @project_release.store_chief_signed_date %>
+</p>
+
+<p>
+  <strong>Office chief name:</strong>
+  <%= @project_release.office_chief_name %>
+</p>
+
+<p>
+  <strong>Office chief signed date:</strong>
+  <%= @project_release.office_chief_signed_date %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @project_release.user_id %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @project_release.office_id %>
+</p>
+
+<p>
+  <strong>Project:</strong>
+  <%= @project_release.project_id %>
+</p>
+
+<p>
+  <strong>Fiscal year:</strong>
+  <%= @project_release.fiscal_year_id %>
+</p>
+
+<p>
+  <strong>Marked as final:</strong>
+  <%= @project_release.marked_as_final %>
+</p>
+
+<%= link_to 'Edit', edit_project_release_path(@project_release) %> |
+<%= link_to 'Back', project_releases_path %>

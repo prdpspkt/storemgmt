@@ -1,0 +1,2 @@
+json.extract! project, :id, :name_of_project_ne, :name_of_project_en, :name_of_consumer_committee, :address, :phone_of_committee_representative, :name_of_committee_representative, :post_of_representative, :contractor, :phone_of_contrator_representative, :name_of_contractor_representative, :user_id, :office_id, :fiscal_year_id, :project_status, :created_at, :updated_at
+json.url project_url(project, format: :json)
