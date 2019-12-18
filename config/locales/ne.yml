@@ -144,3 +144,15 @@ en:
           name_of_item_ne: "सामानको नाम"
           quantity: "परिमाण"
           physical_status: "भौतिक अवस्था"
+        personnel:
+          name_ne: "नाम/थर"
+          name_en: "नाम/थर (अँग्रेजी)"
+          post: "पद"
+          phone: "फोन"
+          address: "ठेगाना"
+          level_class: "तह/श्रेणी"
+          service: "सेवा"
+          group: "समूह"
+          sub_group: "उपसमूह"
+          ctroll: "सिट्रोल"
+

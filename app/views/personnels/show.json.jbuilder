@@ -1,1 +1,1 @@
-json.partial! "personnels/personnel", personnel: @personnel
+json.partial! "personnels.html.erb/personnel", personnel: @personnel

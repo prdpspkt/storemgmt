@@ -10,53 +10,61 @@
       </ul>
     </div>
   <% end %>
+<div class="row">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :post %>
-    <%= form.text_field :post %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone %>
-    <%= form.text_field :phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :level_class %>
-    <%= form.text_field :level_class %>
-  </div>
-
-  <div class="field">
-    <%= form.label :service %>
-    <%= form.text_field :service %>
-  </div>
-
-  <div class="field">
-    <%= form.label :group %>
-    <%= form.text_field :group %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sub_group %>
-    <%= form.text_field :sub_group %>
-  </div>
-
-  <div class="field">
+  <div class="col-6">
     <%= form.label :ctroll %>
-    <%= form.text_field :ctroll %>
+    <%= form.text_field :ctroll, class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="col-6">
+    <%= form.label :name_ne %>
+    <%= form.text_field :name_ne, class: "form-control" %>
+  </div>
+
+
+  <div class="col-6">
+    <%= form.label :name_en %>
+    <%= form.text_field :name_en, class: "form-control" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.label :phone %>
+    <%= form.text_field :phone, class: "form-control" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.label :address %>
+    <%= form.text_field :address, class: "form-control" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.label :post %>
+    <%= form.text_field :post, class: "form-control" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.label :level_class %>
+    <%= form.text_field :level_class, class: "form-control" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.label :service %>
+    <%= form.text_field :service, class: "form-control" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.label :group %>
+    <%= form.text_field :group, class: "form-control" %>
+  </div>
+
+  <div class="col-6">
+    <%= form.label :sub_group %>
+    <%= form.text_field :sub_group, class: "form-control" %>
+  </div>
+</div>
+  <div class="separator"></div>
+  <div class="actions float-right">
+    <%= form.submit :save, class: "btn btn-success" %>
   </div>
 <% end %>

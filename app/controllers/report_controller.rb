@@ -49,6 +49,10 @@ class ReportController < ApplicationController
     @office_handover_form_items = @office_handover_form.office_handover_form_items
   end
 
+  def personnels
+    @personnels = Personnel.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
+  end
+
   private
   def set_office_information
     @office = current_office

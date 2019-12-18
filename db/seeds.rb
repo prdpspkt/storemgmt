@@ -20,6 +20,9 @@
 @person1.name_en = "Ramchandra Pandit"
 @person1.name_ne = "रामचन्द्र पण्डित"
 @person1.post = "Officer"
+@person1.office_id = 1
+@person1.user_id = 1
+@person1.fiscal_year_id = 1
 @person1.level_class = "6th Level Officer"
 @person1.save
 
@@ -28,6 +31,9 @@
 @person1.name_en = "Hari Prasad Timilsina"
 @person1.name_ne = "हरि प्रसाद तिमिल्सिना"
 @person1.post = "Office Chief"
+@person1.office_id = 1
+@person1.user_id = 1
+@person1.fiscal_year_id = 1
 @person1.level_class = "9th Level Officer"
 @person1.save
 
@@ -35,6 +41,9 @@
 @person1.name_en = "Bamdev Paudel"
 @person1.name_ne = "बामदेव पौडेल"
 @person1.post = "Engineer"
+@person1.office_id = 1
+@person1.user_id = 1
+@person1.fiscal_year_id = 1
 @person1.level_class = "8th Level Officer"
 @person1.save
 

@@ -1,30 +1,33 @@
 class PersonnelsController < ApplicationController
   before_action :set_personnel, only: [:show, :edit, :update, :destroy]
 
-  # GET /personnels
-  # GET /personnels.json
+  # GET /personnels.html.erb
+  # GET /personnels.html.erb.json
   def index
-    @personnels = Personnel.all
+    @personnels = Personnel.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id)
   end
 
-  # GET /personnels/1
-  # GET /personnels/1.json
+  # GET /personnels.html.erb/1
+  # GET /personnels.html.erb/1.json
   def show
   end
 
-  # GET /personnels/new
+  # GET /personnels.html.erb/new
   def new
     @personnel = Personnel.new
   end
 
-  # GET /personnels/1/edit
+  # GET /personnels.html.erb/1/edit
   def edit
   end
 
-  # POST /personnels
-  # POST /personnels.json
+  # POST /personnels.html.erb
+  # POST /personnels.html.erb.json
   def create
     @personnel = Personnel.new(personnel_params)
+    @personnel.user_id = current_user.id
+    @personnel.office_id = current_office.id
+    @personnel.fiscal_year_id = current_fiscal_year.id
 
     respond_to do |format|
       if @personnel.save
@@ -37,8 +40,8 @@ class PersonnelsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /personnels/1
-  # PATCH/PUT /personnels/1.json
+  # PATCH/PUT /personnels.html.erb/1
+  # PATCH/PUT /personnels.html.erb/1.json
   def update
     respond_to do |format|
       if @personnel.update(personnel_params)
@@ -51,8 +54,8 @@ class PersonnelsController < ApplicationController
     end
   end
 
-  # DELETE /personnels/1
-  # DELETE /personnels/1.json
+  # DELETE /personnels.html.erb/1
+  # DELETE /personnels.html.erb/1.json
   def destroy
     @personnel.destroy
     respond_to do |format|
@@ -69,6 +72,6 @@ class PersonnelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def personnel_params
-      params.require(:personnel).permit(:name, :post, :phone, :address, :level_class, :service, :group, :sub_group, :ctroll)
+      params.require(:personnel).permit(:name_ne, :name_en, :post, :phone, :address, :level_class, :service, :group, :sub_group, :ctroll)
     end
 end

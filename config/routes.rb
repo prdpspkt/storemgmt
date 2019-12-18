@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resources :project_demand_items
   resources :vendors, :except => ['show']
   #report printing
+  get '/report/personnels' => "report#personnels", as: :personnels_print
   get '/report/office_demand_form/:id' => "report#office_demand_form"
   get '/report/purchase_order/:id' => "report#purchase_order"
   get '/report/office_purchase_entry/:id' => "report#office_purchase_entry"

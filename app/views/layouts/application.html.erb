@@ -66,8 +66,13 @@
           </div>
         </li>
 
-        <li class="nav-item">
-          <a class="nav-link" href="<%= personnels_path %>">कर्मचारीहरू</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">कर्मचारीहरू</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown09">
+            <a class="dropdown-item" href="<%= personnels_path %>">कर्मचारीहरू</a>
+            <a class="dropdown-item" href="<%= personnels_print_path %>">कर्मचारी सम्पर्क विवरण</a>
+            <a class="dropdown-item" href="<%= new_personnel_path %>">नयाँ कर्मचारी थप्ने</a>
+          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="<%= vendors_path %>">सूची दर्ता</a>
