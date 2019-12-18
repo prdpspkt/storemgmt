@@ -53,6 +53,11 @@ class ReportController < ApplicationController
     @personnels = Personnel.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
   end
 
+
+  def vendors
+    @vendors = Vendor.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
+  end
+
   private
   def set_office_information
     @office = current_office
