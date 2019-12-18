@@ -1,33 +1,12 @@
-<h1>Repair Application Forms</h1>
+<h1>मर्मत सम्भार आवेदन फारामहरू</h1>
 
 <table class="responsive nowrap table table-hover" id="dttb-repair_application_forms" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="application_no">Application no</th>
-      <th data-data="date">Date</th>
-      <th data-data="year">Year</th>
-      <th data-data="month">Month</th>
-      <th data-data="vendor_name">Vendor name</th>
-      <th data-data="vendor_address">Vendor address</th>
-      <th data-data="vendor_phone">Vendor phone</th>
-      <th data-data="vendor_registration_no">Vendor registration no</th>
-      <th data-data="vendor_pan">Vendor pan</th>
-      <th data-data="within_date">Within date</th>
-      <th data-data="office_name">Office name</th>
-      <th data-data="office_address">Office address</th>
-      <th data-data="section_chief_name">Section chief name</th>
-      <th data-data="section_chief_designation">Section chief designation</th>
-      <th data-data="section_chief_signed_date">Section chief signed date</th>
-      <th data-data="tecnical_person_name">Tecnical person name</th>
-      <th data-data="technical_person_designation">Technical person designation</th>
-      <th data-data="technical_person_signed_date">Technical person signed date</th>
-      <th data-data="office_chief_name">Office chief name</th>
-      <th data-data="office_chief_designation">Office chief designation</th>
-      <th data-data="office_chief_signed_date">Office chief signed date</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="fy">Fy</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
-      <th data-data="user_id">User</th>
+      <th data-data="application_no">आवेदन नं</th>
+      <th data-data="date">मिति</th>
+      <th data-data="vendor_name">मर्मत गर्ने व्यवसायको नाम</th>
+      <th data-data="within_date">मर्मत गरिसक्नुपर्ने मिति</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -36,4 +15,4 @@
 
 <br>
 
-<%= link_to 'New Repair Application Form', new_repair_application_form_path %>
+<%= link_to new_btn.html_safe, new_repair_application_form_path %>

@@ -16,7 +16,7 @@ class CreateRepairApplicationForms < ActiveRecord::Migration[5.2]
       t.string :section_chief_name
       t.string :section_chief_designation
       t.datetime :section_chief_signed_date
-      t.string :tecnical_person_name
+      t.string :technical_person_name
       t.string :technical_person_designation
       t.datetime :technical_person_signed_date
       t.string :office_chief_name

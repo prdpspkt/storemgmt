@@ -155,4 +155,16 @@ en:
           group: "समूह"
           sub_group: "उपसमूह"
           ctroll: "सिट्रोल"
+        repair_application_form:
+          application_no: "आवेदन नं"
+          date: "मिति"
+          year: "बर्ष"
+          month: "महिना"
+          vendor_name: "व्यवसायको नाम"
+          within_date: "मिति भित्र"
+          section_chief_signed_date: "शाखा प्रमुख हस्ताक्षर मिति"
+          tecnical_person_name: "प्राविधिक व्यक्तिको नाम"
+          technical_person_designation: "प्राविधिक व्यक्तिको पद"
+          technical_person_signed_date: "प्राविधिकको हस्ताक्षर मिति"
+          office_chief_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
 

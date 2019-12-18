@@ -1,2 +1,2 @@
-json.extract! repair_application_form, :id, :application_no, :date, :year, :month, :vendor_name, :vendor_address, :vendor_phone, :vendor_registration_no, :vendor_pan, :within_date, :office_name, :office_address, :section_chief_name, :section_chief_designation, :section_chief_signed_date, :tecnical_person_name, :technical_person_designation, :technical_person_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :office_id, :fy, :fiscal_year_id, :user_id, :created_at, :updated_at
+json.extract! repair_application_form, :id, :application_no, :date, :vendor_name,  :within_date
 json.url repair_application_form_url(repair_application_form, format: :json)

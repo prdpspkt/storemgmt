@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_024311) do
+ActiveRecord::Schema.define(version: 2019_12_18_095429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -609,7 +609,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_024311) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "personnels.html.erb", force: :cascade do |t|
+  create_table "personnels", force: :cascade do |t|
     t.string "name_ne"
     t.string "name_en"
     t.string "post"
@@ -1207,7 +1207,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_024311) do
     t.string "section_chief_name"
     t.string "section_chief_designation"
     t.datetime "section_chief_signed_date"
-    t.string "tecnical_person_name"
+    t.string "technical_person_name"
     t.string "technical_person_designation"
     t.datetime "technical_person_signed_date"
     t.string "office_chief_name"

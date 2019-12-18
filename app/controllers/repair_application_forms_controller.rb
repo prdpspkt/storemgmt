@@ -69,6 +69,6 @@ class RepairApplicationFormsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_application_form_params
-      params.require(:repair_application_form).permit(:application_no, :date, :year, :month, :vendor_name, :vendor_address, :vendor_phone, :vendor_registration_no, :vendor_pan, :within_date, :office_name, :office_address, :section_chief_name, :section_chief_designation, :section_chief_signed_date, :tecnical_person_name, :technical_person_designation, :technical_person_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :office_id, :fy, :fiscal_year_id, :user_id)
+      params.require(:repair_application_form).permit(:application_no, :date, :year, :month, :vendor_name,  :within_date, :section_chief_signed_date, :technical_person_name, :technical_person_designation, :technical_person_signed_date,  :office_chief_signed_date)
     end
 end

@@ -10,133 +10,65 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+<div class="row">
+  <div class="col-4">
     <%= form.label :application_no %>
-    <%= form.number_field :application_no %>
+    <%= form.number_field :application_no, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :date %>
-    <%= form.datetime_select :date %>
+    <%= form.text_field :date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :year %>
-    <%= form.text_field :year %>
+    <%= form.text_field :year, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :month %>
-    <%= form.text_field :month %>
+    <%= form.text_field :month, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :vendor_name %>
-    <%= form.text_field :vendor_name %>
+    <%= form.text_field :vendor_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :vendor_address %>
-    <%= form.text_field :vendor_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vendor_phone %>
-    <%= form.text_field :vendor_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vendor_registration_no %>
-    <%= form.text_field :vendor_registration_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vendor_pan %>
-    <%= form.text_field :vendor_pan %>
-  </div>
-
-  <div class="field">
+  <div class="col-4">
     <%= form.label :within_date %>
-    <%= form.datetime_select :within_date %>
+    <%= form.text_field :within_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :office_name %>
-    <%= form.text_field :office_name %>
-  </div>
 
-  <div class="field">
-    <%= form.label :office_address %>
-    <%= form.text_field :office_address %>
-  </div>
-
-  <div class="field">
-    <%= form.label :section_chief_name %>
-    <%= form.text_field :section_chief_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :section_chief_designation %>
-    <%= form.text_field :section_chief_designation %>
-  </div>
-
-  <div class="field">
+  <div class="col-4">
     <%= form.label :section_chief_signed_date %>
-    <%= form.datetime_select :section_chief_signed_date %>
+    <%= form.text_field :section_chief_signed_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :tecnical_person_name %>
-    <%= form.text_field :tecnical_person_name %>
+    <%= form.text_field :technical_person_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :technical_person_designation %>
-    <%= form.text_field :technical_person_designation %>
+    <%= form.text_field :technical_person_designation, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :technical_person_signed_date %>
-    <%= form.datetime_select :technical_person_signed_date %>
+    <%= form.text_field :technical_person_signed_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :office_chief_name %>
-    <%= form.text_field :office_chief_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_chief_designation %>
-    <%= form.text_field :office_chief_designation %>
-  </div>
-
-  <div class="field">
+  <div class="col-4">
     <%= form.label :office_chief_signed_date %>
-    <%= form.datetime_select :office_chief_signed_date %>
+    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker" %>
   </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+</div>
+  <div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :save, class:"btn btn-success" %>
   </div>
 <% end %>
