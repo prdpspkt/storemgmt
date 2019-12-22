@@ -52,3 +52,5 @@ private
     current_user.office.office
   end
 end
+
+#TODO Remove all unnessary methods from items controllers

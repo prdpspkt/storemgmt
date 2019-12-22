@@ -1,27 +1,13 @@
-<h1>Repair Record Registers</h1>
+<h1>मर्मत सम्भार अभिलेख खाताहरु</h1>
 
-<table class="responsive nowrap table table-hover" id="dttb-repair_record_registers" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="table data-table" id="dttb-repair_record_registers" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="name_of_item">Name of item</th>
-      <th data-data="page_no">Page no</th>
-      <th data-data="specificaiton">Specificaiton</th>
-      <th data-data="item_identification">Item identification</th>
-      <th data-data="model">Model</th>
-      <th data-data="item_register_page_no">Item register page no</th>
-      <th data-data="price">Price</th>
-      <th data-data="store_chief_name">Store chief name</th>
-      <th data-data="sotre_chief_designation">Sotre chief designation</th>
-      <th data-data="store_chief_signed_date">Store chief signed date</th>
-      <th data-data="office_chief_name">Office chief name</th>
-      <th data-data="office_chief_designation">Office chief designation</th>
-      <th data-data="office_chief_signed_date">Office chief signed date</th>
-      <th data-data="user_id">User</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="fy">Fy</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
-      <th data-data="month">Month</th>
-      <th data-data="year">Year</th>
+      <th data-data="name_of_item">सामानको नाम</th>
+      <th data-data="page_no">पेज नं</th>
+      <th data-data="fy">आर्थिक वर्ष</th>
+      <th data-data="month">महिना</th>
+      <th data-data="year">साल</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -30,4 +16,4 @@
 
 <br>
 
-<%= link_to 'New Repair Record Register', new_repair_record_register_path %>
+<%= link_to new_btn.html_safe, new_repair_record_register_path %>

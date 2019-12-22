@@ -10,103 +10,46 @@
       </ul>
     </div>
   <% end %>
+  <div class="row">
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :name_of_item %>
-    <%= form.text_field :name_of_item %>
+    <%= form.text_field :name_of_item, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :page_no %>
-    <%= form.text_field :page_no %>
+    <%= form.text_field :page_no, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :specificaiton %>
-    <%= form.text_field :specificaiton %>
-  </div>
 
-  <div class="field">
-    <%= form.label :item_identification %>
-    <%= form.text_field :item_identification %>
-  </div>
-
-  <div class="field">
-    <%= form.label :model %>
-    <%= form.text_field :model %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_register_page_no %>
-    <%= form.number_field :item_register_page_no %>
-  </div>
-
-  <div class="field">
+  <div class="col-6">
     <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.text_field :price, class: "form-control"%>
   </div>
 
-  <div class="field">
-    <%= form.label :store_chief_name %>
-    <%= form.text_field :store_chief_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :sotre_chief_designation %>
-    <%= form.text_field :sotre_chief_designation %>
-  </div>
-
-  <div class="field">
+  <div class="col-6">
     <%= form.label :store_chief_signed_date %>
-    <%= form.datetime_select :store_chief_signed_date %>
+    <%= form.text_field :store_chief_signed_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :office_chief_name %>
-    <%= form.text_field :office_chief_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_chief_designation %>
-    <%= form.text_field :office_chief_designation %>
-  </div>
-
-  <div class="field">
+  <div class="col-6">
     <%= form.label :office_chief_signed_date %>
-    <%= form.datetime_select :office_chief_signed_date %>
+    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
+  <div class="col-6">
     <%= form.label :month %>
-    <%= form.text_field :month %>
+    <%= form.text_field :month, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :year %>
-    <%= form.text_field :year %>
+    <%= form.text_field :year, class: "form-control" %>
   </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  </div>
+<div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :save, class: "btn btn-success" %>
   </div>
 <% end %>

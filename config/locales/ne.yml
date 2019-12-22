@@ -167,4 +167,12 @@ en:
           technical_person_designation: "प्राविधिक व्यक्तिको पद"
           technical_person_signed_date: "प्राविधिकको हस्ताक्षर मिति"
           office_chief_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
+        repair_record_register:
+          name_of_item: "सामानको नाम"
+          page_no: "पेज नं"
+          price: "मूल्य"
+          store_chief_signed_date: "स्टोर प्रमुख हस्ताक्षर मिति"
+          office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
+          month: "महीना"
+          year: "साल"
 
