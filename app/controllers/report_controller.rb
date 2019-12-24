@@ -58,6 +58,10 @@ class ReportController < ApplicationController
     @vendors = Vendor.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
   end
 
+  def repair_application_form
+    @repair_application_form = RepairApplicationForm.find(params[:id])
+    @repair_application_form_items = @repair_application_form.repair_application_form_items
+  end
   private
   def set_office_information
     @office = current_office

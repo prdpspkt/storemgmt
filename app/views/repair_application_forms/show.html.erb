@@ -1,5 +1,19 @@
-<p id="notice"><%= notice %></p>
+<h1>मर्मत आवेदन फाराम</h1>
 
+<table class="table table-sm table-bordered">
+  <tr>
+    <th>आर्थिक वर्ष</th>
+    <th>आवेदन नं</th>
+    <th>आवेदन मिति</th>
+    <th>कैफियत</th>
+  </tr>
+  <tr>
+    <td><%= nd @repair_application_form.fy %></td>
+    <td><%= nd @repair_application_form.application_no %></td>
+    <td><%= ndate @repair_application_form.date %></td>
+    <td></td>
+  </tr>
+</table>
 <p>
   <strong>Application no:</strong>
   <%= @repair_application_form.application_no %>

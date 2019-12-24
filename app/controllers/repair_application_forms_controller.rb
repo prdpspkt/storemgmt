@@ -45,6 +45,8 @@ class RepairApplicationFormsController < ApplicationController
   # PATCH/PUT /repair_application_forms/1
   # PATCH/PUT /repair_application_forms/1.json
   def update
+    @vendor_id = params[:repair_application_form][:vendor_id]
+    @repair_application_form = update_vendor_info @repair_application_form, @vendor_id
     respond_to do |format|
       if @repair_application_form.update(repair_application_form_params)
         format.html { redirect_to @repair_application_form, notice: 'Repair application form was successfully updated.' }
