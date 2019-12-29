@@ -14,6 +14,9 @@ class Ability
     #     can :read, :all
     #   end
     #
+    #(can :manage, :all) if (:user_id == user.id && :marked_as_final == false)
+
+
     # The first argument to `can` is the action you are giving the user
     # permission to do.
     # If you pass :manage it will apply to every action. Other common actions
@@ -41,5 +44,6 @@ class Ability
     if user.is_admin == false
       cannot :manage, User
     end
+
   end
 end

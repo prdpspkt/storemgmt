@@ -1,0 +1,4 @@
+<% form_for @active_fiscal_year do |form| %>
+  <%= form.label :select_fiscal_year %>
+  <%= form.select(:fiscal_year_id, current_office.fiscal_years.collect { |fy| [fy.name, fy.id ]}) %>
+<% end %>

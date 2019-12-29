@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  resources :store_bodies
   resources :project_tender_breakdowns
   resources :project_tender_items
   resources :project_purchase_tenders
+  post "project_purchase_tender/mark_as_final/:id" => "project_purchase_tenders#mark_as_final", as: :project_purchase_tender_maf
   resources :project_purchase_orders
   resources :project_purchase_order_items
   resources :pneirts
@@ -79,6 +81,10 @@ Rails.application.routes.draw do
       sessions: 'users/sessions'
   }
   resources :users
+
+  def blank
+    render 'layouts/blank', notice: "Please use menu."
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

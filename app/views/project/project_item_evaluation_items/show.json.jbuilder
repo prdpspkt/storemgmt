@@ -1,1 +1,0 @@
-json.partial! "project_item_evaluation_items/office_item_evaluation_item", office_item_evaluation_item: @office_item_evaluation_item

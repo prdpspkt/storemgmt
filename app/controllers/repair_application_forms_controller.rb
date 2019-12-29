@@ -10,6 +10,8 @@ class RepairApplicationFormsController < ApplicationController
   # GET /repair_application_forms/1
   # GET /repair_application_forms/1.json
   def show
+    @repair_application_form_items = @repair_application_form.repair_application_form_items
+    @repair_application_form_item = RepairApplicationFormItem.new
   end
 
   # GET /repair_application_forms/new

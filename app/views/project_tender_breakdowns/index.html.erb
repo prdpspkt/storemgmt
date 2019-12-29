@@ -1,15 +1,11 @@
-<h1>Project Tender Breakdowns</h1>
+<h1> आयोजनागत टेन्डर ब्रेकडाउन</h1>
 
 <table class="responsive nowrap table table-hover" id="dttb-project_tender_breakdowns" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="office_id">Office</th>
-      <th data-data="user_id">User</th>
-      <th data-data="project_tender_id">Project tender</th>
-      <th data-data="project_id">Project</th>
-      <th data-data="project_name_en">Project name en</th>
-      <th data-data="project_name_ne">Project name ne</th>
-      <th data-data="marked_as_final">Marked as final</th>
+      <th data-data="project_tender_no">टेन्डर सङ्ख्या</th>
+      <th data-data="project_tender_name">टेण्डरको नाम</th>
+      <th data-data="project_name_en">आयोजनाको नाम</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -18,4 +14,4 @@
 
 <br>
 
-<%= link_to 'New Project Tender Breakdown', new_project_tender_breakdown_path %>
+<%= link_to new_btn.html_safe, new_project_tender_breakdown_path %>

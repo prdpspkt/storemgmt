@@ -10,53 +10,40 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+  <div class="row">
+  <%= form.hidden_field :repair_application_form_id, value: @repair_application_form.id %>
+  <div class="col-6">
     <%= form.label :name_of_item %>
     <%= form.text_field :name_of_item %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :item_identification_no %>
     <%= form.text_field :item_identification_no %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :approx_repair_cost %>
     <%= form.text_field :approx_repair_cost %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :reason_toPrepair %>
     <%= form.text_field :reason_toPrepair %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :applicant_sign %>
     <%= form.text_field :applicant_sign %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :remarks %>
     <%= form.text_field :remarks %>
   </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
   </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :repair_application_form_id %>
-    <%= form.number_field :repair_application_form_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :save, class: "btn btn-success" %>
   </div>
 <% end %>

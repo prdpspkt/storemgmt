@@ -4,5 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-   has_one :office
+  has_one :office
+  has_many :projects
+  has_many :project_purchase_tenders
+  has_many :personnels
 end

@@ -25,10 +25,12 @@ class ProjectTenderItemsController < ApplicationController
   # POST /project_tender_items.json
   def create
     @project_tender_item = ProjectTenderItem.new(project_tender_item_params)
-
+    @project_tender_item = update_item_information @project_tender_item
+    @project_tender_item.amount = @project_tender_item.rate * @project_tender_item.quantity
+    @project_tender_item = update_general_information @project_tender_item
     respond_to do |format|
       if @project_tender_item.save
-        format.html { redirect_to @project_tender_item, notice: 'Project tender item was successfully created.' }
+        format.html { redirect_to @project_tender_item.project_purchase_tender, notice: 'Project tender item was successfully created.' }
         format.json { render :show, status: :created, location: @project_tender_item }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class ProjectTenderItemsController < ApplicationController
   def update
     respond_to do |format|
       if @project_tender_item.update(project_tender_item_params)
-        format.html { redirect_to @project_tender_item, notice: 'Project tender item was successfully updated.' }
+        format.html { redirect_to @project_tender_item.project_purchase_tender, notice: 'Project tender item was successfully updated.' }
         format.json { render :show, status: :ok, location: @project_tender_item }
       else
         format.html { render :edit }
@@ -54,9 +56,10 @@ class ProjectTenderItemsController < ApplicationController
   # DELETE /project_tender_items/1
   # DELETE /project_tender_items/1.json
   def destroy
+    project_purchase_tender = @project_tender_item.project_purchase_tender
     @project_tender_item.destroy
     respond_to do |format|
-      format.html { redirect_to project_tender_items_url, notice: 'Project tender item was successfully destroyed.' }
+      format.html { redirect_to project_purchase_tender, notice: 'Project tender item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +72,22 @@ class ProjectTenderItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_tender_item_params
-      params.require(:project_tender_item).permit(:name_of_item_ne, :name_of_item_en, :unit_ne, :unit_en, :quantity, :rate, :amount, :office_id, :user_id, :received_date, :project_purchase_tender_id, :fy, :fiscal_year_id)
+      params.require(:project_tender_item).permit(:quantity, :rate, :amount, :received_date, :project_purchase_tender_id, :item_id)
     end
+
+  def update_general_information object
+    object.office_id = current_office.id
+    object.user_id = current_user.id
+    object.fiscal_year_id = current_fiscal_year.id
+    object
+  end
+
+  def update_item_information object
+    item = Item.find(object.item_id)
+    object.name_of_item_ne = item.name_of_item_ne
+    object.name_of_item_en = item.name_of_item_en
+    object.unit_ne = item.unit_ne
+    object.unit_en = item.unit_en
+    object
+  end
 end

@@ -1,6 +1,6 @@
 class CreatePersonnels < ActiveRecord::Migration[5.2]
   def change
-    create_table :'personnels.html.erb' do |t|
+    create_table :'personnels' do |t|
       t.string :name_ne
       t.string :name_en
       t.string :post

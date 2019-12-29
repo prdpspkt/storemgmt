@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_18_095429) do
+ActiveRecord::Schema.define(version: 2019_12_29_075833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_fiscal_years", force: :cascade do |t|
+    t.string "fy"
+    t.integer "fiscal_year_id"
+    t.integer "office_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "demand_items", force: :cascade do |t|
     t.string "name_of_item_ne"
@@ -60,9 +68,8 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
     t.string "fy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "store_chief"
-    t.string "office_chief"
-    t.string "section_chief"
+    t.integer "office_id"
+    t.boolean "status"
   end
 
   create_table "item_assistance_register_items", force: :cascade do |t|
@@ -554,9 +561,6 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
     t.string "fax"
     t.string "email"
     t.string "code"
-    t.integer "office_chief"
-    t.integer "section_chief"
-    t.integer "store_chief"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -793,19 +797,6 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "project_item_stocks", force: :cascade do |t|
-    t.decimal "quantity"
-    t.decimal "rate"
-    t.decimal "amount"
-    t.integer "item_id"
-    t.integer "project_item_id"
-    t.integer "office_id"
-    t.integer "user_id"
-    t.integer "fiscal_year_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "project_items", force: :cascade do |t|
     t.string "name_of_item_ne"
     t.string "name_of_item_en"
@@ -935,7 +926,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
   create_table "project_purchase_tenders", force: :cascade do |t|
     t.integer "office_id"
     t.integer "user_id"
-    t.integer "fiscal_yeaer_id"
+    t.integer "fiscal_year_id"
     t.string "tender_no"
     t.string "tender_name"
     t.datetime "tender_date"
@@ -1032,13 +1023,15 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
   create_table "project_tender_breakdowns", force: :cascade do |t|
     t.integer "office_id"
     t.integer "user_id"
-    t.integer "project_tender_id"
+    t.integer "project_purchase_tender_id"
     t.integer "project_id"
     t.string "project_name_en"
     t.string "project_name_ne"
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "fiscal_year_id"
+    t.string "fy"
   end
 
   create_table "project_tender_items", force: :cascade do |t|
@@ -1057,6 +1050,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -1068,7 +1062,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
     t.string "name_of_committee_representative"
     t.string "post_of_representative"
     t.string "contractor"
-    t.string "phone_of_contrator_representative"
+    t.string "phone_of_contractor_representative"
     t.string "name_of_contractor_representative"
     t.integer "user_id"
     t.integer "office_id"
@@ -1269,6 +1263,20 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "store_bodies", force: :cascade do |t|
+    t.string "office_chief"
+    t.string "office_chief_degination"
+    t.string "section_chief"
+    t.string "section_chief_degination"
+    t.string "store_keeper_designation"
+    t.string "store_keeper_name"
+    t.boolean "status"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -1280,6 +1288,7 @@ ActiveRecord::Schema.define(version: 2019_12_18_095429) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "office_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

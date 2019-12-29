@@ -10,15 +10,37 @@ class ApplicationController < ActionController::Base
  #    end
   # end
   #
+  #
+ def after_sign_in_path_for(user)
+   #check if office has been created for user
+   url = '/'
+   if current_user.office.blank?
+    url = new_office_path
+   end
+   #check if office has fiscal year
+   if current_user.office.blank? == false
+     if current_office.fiscal_years.blank?
+        url = new_fiscal_year_path
+     end
+   end
 
-private
+
+   url
+ end
+
+
+
+
+  private
   def after_sign_out_path_for(resource_or_scope)
     root_path
   end
   def current_office
-    cf = false
+    cf = Office.new
     if user_signed_in?
-      cf = current_user.office
+      if current_user.office.blank? != true
+        cf = current_user.office
+      end
     end
     cf
   end
@@ -26,30 +48,33 @@ private
   def current_fiscal_year
     cfy = false
     if user_signed_in?
-      cfy = FiscalYear.find(current_user.active_fiscal_year)
+      cfy = FiscalYear.find(current_office.active_fiscal_year.fiscal_year_id)
     end
     cfy
   end
 
 
   def current_office_chief
-    Personnel.find(current_user.office.office_chief)
+    office_chief = Personnel.new
+    if current_fiscal_year.office.blank? == false
+      office_chief = current_user.office.office_chief
+    end
+    office_chief
   end
 
   def current_store_keeper
-    Personnel.find(current_user.office.store_chief)
+    store_chief = Personnel.new
+   if current_user.office.blank? == false
+     store_chief = current_user.office.store_chief
+   end
+    store_chief
   end
 
   def current_section_chief
-    @personnel = Personnel.new
-    if current_user.office.section_chief.blank? == false
-      @name = Personnel.find(current_user.office.section_chief)
+    section_chief = Personnel.new
+    if  current_user.office.blank? == false
+      section_chief = current_user.office.section_chief
     end
-    @personnel
-  end
-
-  def office_name
-    current_user.office.office
   end
 end
 

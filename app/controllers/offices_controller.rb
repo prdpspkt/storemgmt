@@ -6,6 +6,9 @@ class OfficesController < ApplicationController
   # GET /offices
   # GET /offices.json
   def index
+    if current_office.new_record?
+      redirect_to(new_office_path) and return
+    end
     @office = current_user.office
     @office_chief = current_office_chief
     @section_chief = current_section_chief
@@ -20,6 +23,7 @@ class OfficesController < ApplicationController
   # GET /offices/new
   def new
     @office = Office.new
+    @personnels = current_user.personnels
   end
 
   # GET /offices/1/edit
@@ -30,10 +34,10 @@ class OfficesController < ApplicationController
   # POST /offices.json
   def create
     @office = Office.new(office_params)
-
+    @office.user_id = current_user.id
     respond_to do |format|
       if @office.save
-        format.html { redirect_to @office, notice: 'Office was successfully created.' }
+        format.html { redirect_to new_fiscal_year_path, notice: 'Office was successfully created.' }
         format.json { render :show, status: :created, location: @office }
       else
         format.html { render :new }
@@ -74,6 +78,6 @@ class OfficesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def office_params
-      params.require(:office).permit(:gov, :ministry, :department, :office, :address, :phone, :fax, :email, :office_chief, :section_chief, :store_chief, :user_id)
+      params.require(:office).permit(:gov, :ministry, :department, :office, :address, :phone, :fax, :email, :user_id)
     end
 end

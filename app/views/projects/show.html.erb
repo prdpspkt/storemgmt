@@ -1,74 +1,39 @@
-<p id="notice"><%= notice %></p>
+<h1> आयोजना विवरण</h1>
+<div class="separator"></div>
+<table class="table table-sm">
+  <tr>
+    <th>आयोजनाको नाम:</th>
+    <td><%= @project.name_of_project_ne %></td>
+    <th>Name of Project</th>
+    <td><%= @project.name_of_project_en %></td>
+  </tr>
+  <tr>
+    <th>उपभोक्ता समितिको नाम:</th>
+    <td><%= @project.name_of_consumer_committee %></td>
+    <th>ठेगाना:</th>
+    <td><%= @project.address %></td>
+  </tr>
+  <tr>
+    <th>समिति प्रतिनिधिको नाम: </th>
+    <td><%= @project.name_of_committee_representative %> (<%= @project.post_of_representative %>)</td>
+    <th>समिति प्रतिनिधिको सम्पर्क नं</th>
+    <td><%= @project.phone_of_committee_representative %></td>
+  </tr>
 
-<p>
-  <strong>Name of project ne:</strong>
-  <%= @project.name_of_project_ne %>
-</p>
+  <tr>
+    <th>ठेकेदारको नाम: </th>
+    <td><%= @project.contractor %></td>
+    <th>ठेकेदार प्रतिनिधिको नाम</th>
+    <td><%= @project.name_of_contractor_representative %></td>
+  </tr>
 
-<p>
-  <strong>Name of project en:</strong>
-  <%= @project.name_of_project_en %>
-</p>
+  <tr>
+    <th>ठेकेदारको फोन </th>
+    <td><%= @project.phone_of_contractor_representative %></td>
+    <th>आयोजनाको अवस्था</th>
+    <td><%= @project.project_status %></td>
+  </tr>
+</table>
 
-<p>
-  <strong>Name of consumer committee:</strong>
-  <%= @project.name_of_consumer_committee %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @project.address %>
-</p>
-
-<p>
-  <strong>Phone of committee representative:</strong>
-  <%= @project.phone_of_committee_representative %>
-</p>
-
-<p>
-  <strong>Name of committee representative:</strong>
-  <%= @project.name_of_committee_representative %>
-</p>
-
-<p>
-  <strong>Post of representative:</strong>
-  <%= @project.post_of_representative %>
-</p>
-
-<p>
-  <strong>Contractor:</strong>
-  <%= @project.contractor %>
-</p>
-
-<p>
-  <strong>Phone of contrator representative:</strong>
-  <%= @project.phone_of_contrator_representative %>
-</p>
-
-<p>
-  <strong>Name of contractor representative:</strong>
-  <%= @project.name_of_contractor_representative %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @project.user_id %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @project.office_id %>
-</p>
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @project.fiscal_year_id %>
-</p>
-
-<p>
-  <strong>Project status:</strong>
-  <%= @project.project_status %>
-</p>
-
-<%= link_to 'Edit', edit_project_path(@project) %> |
-<%= link_to 'Back', projects_path %>
+<%= link_to back_btn.html_safe, projects_path %>
+<%= link_to edit_big_btn.html_safe, edit_project_path(@project) %>

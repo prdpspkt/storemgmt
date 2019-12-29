@@ -33,6 +33,15 @@ en:
   hello: "Hello world"
   activerecord:
     attributes:
+        office:
+          gov: "सरकारको नाम"
+          ministry: "मन्त्रालय"
+          department: "विभाग"
+          office: "कार्यालय"
+          address: "ठेगाना"
+          phone: "फोन"
+          fax: "फ्याक्स"
+          email: "इमेल"
         item:
           name_ne: "जिन्सीको नाम(नेपालीमा)"
           name_en: "जिन्सीको नाम(अंग्रेजीमा)"
@@ -175,4 +184,34 @@ en:
           office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
           month: "महीना"
           year: "साल"
-
+        repair_application_form_item:
+          name_of_item: "सामाग्रीको नाम"
+          item_identification_no: "जिन्सी पहिचान नं"
+          approx_repair_cost: "अनुमानित मर्मत लागत"
+          reason_to_repair: "मर्मत गर्नुपर्ने कारण"
+          remarks: "कैफियत"
+        project:
+          name_of_project_ne: "आयोजनाको नाम"
+          name_of_project_en: "आयोजनाको नाम अँग्रेजी"
+          name_of_consumer_committee: "उपभोक्ता समितिको नाम"
+          address: "ठेगाना"
+          phone_of_committee_representative: "समितिको प्रतिनिधिको फोन"
+          name_of_committee_representative: "समितिको प्रतिनिधिको नाम"
+          post_of_representative: "प्रतिनिधिको पद"
+          contractor: "ठेकेदार/कम्पनीको नाम"
+          phone_of_contractor_representative: "ठेकेदारको प्रतिनिधिको फोन नं"
+          name_of_contractor_representative: "ठेकेदारको प्रतिनिधिको नाम"
+          project_status: "आयोजनाको अवस्था"
+        project_purchase_tender:
+          tender_no: "बोलपत्र सुचना नं"
+          tender_name: "बोलपत्रको नाम"
+          tender_date: "बोलपत्र प्रकाशित मिति"
+          bidders_name: "छनोट भएको बोलपत्र दाता"
+          bidders_address: "बोलपत्र दाताको ठेगाना"
+        project_tender_item:
+          name_of_item: "सामानको नाम"
+          quantity: "परिमाण"
+          rate: "दर"
+          received_date: "प्राप्ति मिति"
+        active_fiscal_year:
+          select_fiscal_year: "आर्थिक वर्ष छान्नुहोस्"

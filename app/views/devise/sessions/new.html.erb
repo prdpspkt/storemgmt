@@ -4,11 +4,6 @@
 <h2>Log in to continue</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  
-   <div class="field">
-    <%= f.label "आर्थिक वर्ष" %><br />
-    <%= f.select(:active_fiscal_year, FiscalYear.all.collect {|p| [p.fy, p.id]}, {include_blank: 'छान्नुहोस्'}, {class: 'form-control', required: :required}) %>
-  </div>
 
   <div class="field">
     <%= f.label "इमेल वा युजरनेम" %><br />

@@ -6,13 +6,9 @@ class Users::SessionsController < Devise::SessionsController
   # GET /resource/sign_in
   # def new
   #   super
-  # end
-
+  # end super
   # POST /resource/sign_in
   def create
-    @user = User.find(current_user.id)
-    @user.active_fiscal_year = params['user']['active_fiscal_year']
-    @user.save
     super
   end
 

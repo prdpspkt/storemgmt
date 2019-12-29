@@ -1,0 +1,2 @@
+module StoreBodiesHelper
+end

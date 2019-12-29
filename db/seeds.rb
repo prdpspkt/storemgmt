@@ -54,10 +54,6 @@
 @office.department = ""
 @office.office = "Water Supply and Sanitation Divison Office"
 @office.address = "Tanahu, Gandaki Pradesh"
-@office.store_chief = 1
-@office.section_chief = 3
-@office.office_chief = 2
-@office.user_id = 1
 @office.save
 
 ItemCategory.create([{name_en: 'Stationary', unit_en: '', name_ne: 'स्टेसनरी', unit_ne: ''},

@@ -25,6 +25,7 @@ class ProjectsController < ApplicationController
   # POST /projects.json
   def create
     @project = Project.new(project_params)
+    @project = update_general_information @project
 
     respond_to do |format|
       if @project.save
@@ -69,6 +70,13 @@ class ProjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name_of_project_ne, :name_of_project_en, :name_of_consumer_committee, :address, :phone_of_committee_representative, :name_of_committee_representative, :post_of_representative, :contractor, :phone_of_contrator_representative, :name_of_contractor_representative, :user_id, :office_id, :fiscal_year_id, :project_status)
+      params.require(:project).permit(:name_of_project_ne, :name_of_project_en, :name_of_consumer_committee, :address, :phone_of_committee_representative, :name_of_committee_representative, :post_of_representative, :contractor, :phone_of_contractor_representative, :name_of_contractor_representative, :project_status)
+    end
+
+    def update_general_information object
+      object.office_id = current_office.id
+      object.user_id = current_user.id
+      object.fiscal_year_id = current_fiscal_year.id
+      object
     end
 end

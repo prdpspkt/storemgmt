@@ -71,4 +71,21 @@ class ProjectTenderBreakdownsController < ApplicationController
     def project_tender_breakdown_params
       params.require(:project_tender_breakdown).permit(:office_id, :user_id, :project_tender_id, :project_id, :project_name_en, :project_name_ne, :marked_as_final)
     end
+
+  def update_general_information object
+      object.user_id = current_user.id
+      object.office_id = current_office.id
+      object.fiscal_year_id = current_fiscal_year.id
+      object.fy = current_fiscal_year.fy
+      object
+  end
+
+  def update_tender_and_project_information object
+      project = Project.find(object.project_id)
+      project_purchase_tender= ProjectPurchaseTender.find(object.project_purchase_tender_id)
+      object.project_name_ne = project.name_of_project_ne
+      object.project_name_en = project.name_of_project_en
+
+
+  end
 end

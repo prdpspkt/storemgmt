@@ -1,0 +1,62 @@
+<%= form_with(model: store_body, local: true) do |form| %>
+  <% if store_body.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(store_body.errors.count, "error") %> prohibited this store_body from being saved:</h2>
+
+      <ul>
+      <% store_body.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :office_chief %>
+    <%= form.text_field :office_chief %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_chief_degination %>
+    <%= form.text_field :office_chief_degination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief %>
+    <%= form.text_field :section_chief %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_chief_degination %>
+    <%= form.text_field :section_chief_degination %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_keeper_designation %>
+    <%= form.text_field :store_keeper_designation %>
+  </div>
+
+  <div class="field">
+    <%= form.label :store_keeper_name %>
+    <%= form.text_field :store_keeper_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.check_box :status %>
+  </div>
+
+  <div class="field">
+    <%= form.label :office_id %>
+    <%= form.number_field :office_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fiscal_year_id %>
+    <%= form.number_field :fiscal_year_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

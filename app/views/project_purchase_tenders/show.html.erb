@@ -1,49 +1,59 @@
-<p id="notice"><%= notice %></p>
+<h1>टेन्डर विवरण</h1>
+<table class="table table-sm table-bordered">
+  <tr>
+    <th>बोलपत्र सूचना नं</th>
+    <th>बोलपत्रको विवरण</th>
+    <th>छनोट भएको बोलपत्र दाताको नाम</th>
+    <th>बोलपत्र दाताको ठेगाना</th>
+  </tr>
+  <tr>
+    <td><%= nd @project_purchase_tender.tender_no %></td>
+    <td><%= @project_purchase_tender.tender_name %></td>
+    <td><%= @project_purchase_tender.bidders_name %></td>
+    <td><%= @project_purchase_tender.bidders_address %></td>
+  </tr>
+</table>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, project_purchase_tenders_path %>
+  <%= link_to edit_big_btn.html_safe, edit_project_purchase_tender_path(@project_purchase_tender) %>
+  <% if can_unmark @project_purchase_tender %>
+    <%= link_to before_final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), method: :post %>
+  <% end %>
+  <% if @project_purchase_tender.marked_as_final != true %>
+    <%= link_to final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), method: :post %>
+  <% end %>
+  <%= link_to print_big_btn.html_safe, edit_project_purchase_tender_path(@project_purchase_tender) %>
+</div>
 
-<p>
-  <strong>Office:</strong>
-  <%= @project_purchase_tender.office_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @project_purchase_tender.user_id %>
-</p>
-
-<p>
-  <strong>Fiscal yeaer:</strong>
-  <%= @project_purchase_tender.fiscal_yeaer_id %>
-</p>
-
-<p>
-  <strong>Tender no:</strong>
-  <%= @project_purchase_tender.tender_no %>
-</p>
-
-<p>
-  <strong>Tender name:</strong>
-  <%= @project_purchase_tender.tender_name %>
-</p>
-
-<p>
-  <strong>Tender date:</strong>
-  <%= @project_purchase_tender.tender_date %>
-</p>
-
-<p>
-  <strong>Marked as final:</strong>
-  <%= @project_purchase_tender.marked_as_final %>
-</p>
-
-<p>
-  <strong>Bidders name:</strong>
-  <%= @project_purchase_tender.bidders_name %>
-</p>
-
-<p>
-  <strong>Bidders address:</strong>
-  <%= @project_purchase_tender.bidders_address %>
-</p>
-
-<%= link_to 'Edit', edit_project_purchase_tender_path(@project_purchase_tender) %> |
-<%= link_to 'Back', project_purchase_tenders_path %>
+<h2> खरिद गर्ने सामानहरू थप्ने </h2>
+<%= render 'project_purchase_tenders/purchase_tender_item_form', project_tender_item: @project_tender_item %>
+<div class="separator"></div>
+<h2>थप गरिएका सामाग्रीहरू</h2>
+<table class="table table-sm table-bordered">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>इकाई</th>
+    <th>परिमाण</th>
+    <th>दर</th>
+    <th>जम्मा</th>
+    <th></th>
+  </tr>
+  <% @i = 1 %>
+  <% @project_tender_items.each do |item| %>
+    <tr>
+      <td><%= nd @i %></td>
+      <td><%= item.name_of_item_ne %></td>
+      <td><%= item.unit_ne %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= nd item.rate %></td>
+      <td><%= nd item.amount %></td>
+      <td>
+        <% if @project_purchase_tender.marked_as_final != true %>
+          <%= link_to(destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure ? This cannot be undone."}) %>
+        <% end %>
+      </td>
+    </tr>
+    <% @i = @i + 1 %>
+  <% end %>
+</table>
