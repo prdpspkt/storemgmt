@@ -35,12 +35,12 @@ class OfficePurchaseEntriesController < ApplicationController
     @office_purchase_entry.office_id = current_office.id
     @office_purchase_entry.fy = current_fiscal_year.fy
     @office_purchase_entry.entry_no = new_entry_no
-    @office_purchase_entry.store_chief_name = current_store_keeper.name_ne
-    @office_purchase_entry.section_chief_name = current_section_chief.name_ne
-    @office_purchase_entry.office_chief_name = current_office_chief.name_ne
-    @office_purchase_entry.store_chief_designation = current_store_keeper.post
-    @office_purchase_entry.section_chief_designation = current_section_chief.post
-    @office_purchase_entry.office_chief_designation = current_office_chief.post
+    @office_purchase_entry.store_chief_name = current_control_body.store_keeper_name
+    @office_purchase_entry.section_chief_name = current_control_body.section_chief_name
+    @office_purchase_entry.office_chief_name = current_control_body.office_chief_name
+    @office_purchase_entry.store_chief_designation = current_control_body.store_keeper_designation
+    @office_purchase_entry.section_chief_designation = current_control_body.section_chief_degination
+    @office_purchase_entry.office_chief_designation = current_control_body.office_chief_degination
     @office_purchase_entry.marked_as_final = false
     respond_to do |format|
       if @office_purchase_entry.save

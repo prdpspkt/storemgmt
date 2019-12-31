@@ -36,9 +36,9 @@ class PurchaseOrdersController < ApplicationController
     @purchase_order.vendor_registration = @vendor.vendor_registration
     @purchase_order.vendor_pan = @vendor.vendor_pan
     @purchase_order.vendor_phone = @vendor.vendor_phone
-    @purchase_order.office_cheif_name = current_office_chief.name_ne
-    @purchase_order.section_chief_name = current_section_chief.name_ne
-    @purchase_order.store_chief_name = current_store_keeper.name_ne
+    @purchase_order.office_cheif_name = current_control_body.office_chief_name
+    @purchase_order.section_chief_name = current_control_body.section_chief_name
+    @purchase_order.store_chief_name = current_control_body.store_keeper_name
     @purchase_order.user_id = current_user.id
     @purchase_order.office_id = current_office.id
     @purchase_order.fiscal_year_id = current_fiscal_year.id

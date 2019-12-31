@@ -14,17 +14,15 @@ class ApplicationController < ActionController::Base
  def after_sign_in_path_for(user)
    #check if office has been created for user
    url = '/'
-   if current_user.office.blank?
+   if user.office.blank?
     url = new_office_path
    end
    #check if office has fiscal year
-   if current_user.office.blank? == false
+   if user.office.blank? == false
      if current_office.fiscal_years.blank?
         url = new_fiscal_year_path
      end
    end
-
-
    url
  end
 
@@ -53,28 +51,14 @@ class ApplicationController < ActionController::Base
     cfy
   end
 
-
-  def current_office_chief
-    office_chief = Personnel.new
-    if current_fiscal_year.office.blank? == false
-      office_chief = current_user.office.office_chief
+  def current_control_body
+    store_body = StoreBody.new
+    if current_office.store_bodies.empty?
+      redirect_to new_store_body_path
+    else
+      store_body = current_office.store_bodies.last
     end
-    office_chief
-  end
-
-  def current_store_keeper
-    store_chief = Personnel.new
-   if current_user.office.blank? == false
-     store_chief = current_user.office.store_chief
-   end
-    store_chief
-  end
-
-  def current_section_chief
-    section_chief = Personnel.new
-    if  current_user.office.blank? == false
-      section_chief = current_user.office.section_chief
-    end
+    store_body
   end
 end
 

@@ -23,8 +23,13 @@
         <li class="nav-item">
           <a class="nav-link" href="#">ड्यासबोर्ड</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<%= vendors_path %>">सूची दर्ता</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सेटिङ्ग</a>
+          <div class="dropdown-menu" aria-labelledby="dropdown01">
+            <a class="dropdown-item" href="<%= store_bodies_path %>">नियन्त्रण संयन्त्र</a>
+            <a class="dropdown-item" href="<%= set_active_fiscal_year_path %>">सक्रिय आर्थिक वर्ष</a>
+            <a class="dropdown-item" href="<%= fiscal_years_path %>">आ.व.हरू</a>
+          </div>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">जिन्सी

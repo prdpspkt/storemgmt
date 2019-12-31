@@ -69,8 +69,6 @@ class ReportController < ApplicationController
     @usesr = current_user
     #TODO: Store these variables in a table and relate table to each of documents so each
     # document has different information that doesn't  affect data to next fiscal year
-    @store_keeper = current_store_keeper
-    @office_chief = current_office_chief
-    @section_chief = current_office_chief
+   @cb = current_control_body
   end
 end

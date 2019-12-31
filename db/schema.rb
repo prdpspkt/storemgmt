@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_29_075833) do
+ActiveRecord::Schema.define(version: 2019_12_29_145655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1264,15 +1264,13 @@ ActiveRecord::Schema.define(version: 2019_12_29_075833) do
   end
 
   create_table "store_bodies", force: :cascade do |t|
-    t.string "office_chief"
+    t.string "office_chief_name"
     t.string "office_chief_degination"
-    t.string "section_chief"
+    t.string "section_chief_name"
     t.string "section_chief_degination"
     t.string "store_keeper_designation"
     t.string "store_keeper_name"
-    t.boolean "status"
     t.integer "office_id"
-    t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
