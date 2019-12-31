@@ -1,28 +1,28 @@
-class HandoverFormItemsController < ApplicationController
+class OfficeHandoverFormItemsController < ApplicationController
   before_action :set_handover_form_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /handover_form_items
-  # GET /handover_form_items.json
+  # GET /office_handover_form_items
+  # GET /office_handover_form_items.json
   def index
     @handover_form_items = OfficeHandoverFormItem.all
   end
 
-  # GET /handover_form_items/1
-  # GET /handover_form_items/1.json
+  # GET /office_handover_form_items/1
+  # GET /office_handover_form_items/1.json
   def show
   end
 
-  # GET /handover_form_items/new
+  # GET /office_handover_form_items/new
   def new
     @handover_form_item = OfficeHandoverFormItem.new
   end
 
-  # GET /handover_form_items/1/edit
+  # GET /office_handover_form_items/1/edit
   def edit
   end
 
-  # POST /handover_form_items
-  # POST /handover_form_items.json
+  # POST /office_handover_form_items
+  # POST /office_handover_form_items.json
   def create
     office_item_id = (params[:office_handover_form_item][:office_item_id]).to_d
     handover_form_id =  (params[:office_handover_form_item][:office_handover_form_id]).to_d
@@ -64,8 +64,8 @@ class HandoverFormItemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /handover_form_items/1
-  # PATCH/PUT /handover_form_items/1.json
+  # PATCH/PUT /office_handover_form_items/1
+  # PATCH/PUT /office_handover_form_items/1.json
   def update
     respond_to do |format|
       if @handover_form_item.update(handover_form_item_params)
@@ -78,8 +78,8 @@ class HandoverFormItemsController < ApplicationController
     end
   end
 
-  # DELETE /handover_form_items/1
-  # DELETE /handover_form_items/1.json
+  # DELETE /office_handover_form_items/1
+  # DELETE /office_handover_form_items/1.json
   def destroy
     hf = @handover_form_item.office_handover_form
     @handover_form_item.destroy

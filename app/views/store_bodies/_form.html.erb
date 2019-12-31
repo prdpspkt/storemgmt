@@ -4,59 +4,44 @@
       <h2><%= pluralize(store_body.errors.count, "error") %> prohibited this store_body from being saved:</h2>
 
       <ul>
-      <% store_body.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% store_body.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <div class="col-6">
+      <%= form.label :office_chief %>
+      <%= form.text_field :office_chief_name, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :office_chief %>
-    <%= form.text_field :office_chief %>
+    <div class="col-6">
+      <%= form.label :office_chief_degination %>
+      <%= form.text_field :office_chief_degination, class: "form-control" %>
+    </div>
+
+    <div class="col-6">
+      <%= form.label :section_chief %>
+      <%= form.text_field :section_chief_name, class: "form-control" %>
+    </div>
+
+    <div class="col-6">
+      <%= form.label :section_chief_degination %>
+      <%= form.text_field :section_chief_degination, class: "form-control" %>
+    </div>
+    <div class="col-6">
+      <%= form.label :store_keeper_name %>
+      <%= form.text_field :store_keeper_name, class: "form-control" %>
+    </div>
+    <div class="col-6">
+      <%= form.label :store_keeper_designation %>
+      <%= form.text_field :store_keeper_designation, class: "form-control" %>
+    </div>
+
   </div>
-
-  <div class="field">
-    <%= form.label :office_chief_degination %>
-    <%= form.text_field :office_chief_degination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :section_chief %>
-    <%= form.text_field :section_chief %>
-  </div>
-
-  <div class="field">
-    <%= form.label :section_chief_degination %>
-    <%= form.text_field :section_chief_degination %>
-  </div>
-
-  <div class="field">
-    <%= form.label :store_keeper_designation %>
-    <%= form.text_field :store_keeper_designation %>
-  </div>
-
-  <div class="field">
-    <%= form.label :store_keeper_name %>
-    <%= form.text_field :store_keeper_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :status %>
-    <%= form.check_box :status %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :save, class: "btn btn-success" %>
   </div>
 <% end %>

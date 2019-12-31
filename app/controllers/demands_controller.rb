@@ -28,8 +28,8 @@ class DemandsController < ApplicationController
   def create
     @demand = Demand.new(demand_params)
     @demand.recommended_by = Personnel.find(demand_params[:recommended_by]).name_ne
-    @demand.ordered_by = current_office_chief.name_ne
-    @demand.recorded_by = current_store_keeper.name_ne
+    @demand.ordered_by = current_control_body.office_chief_name
+    @demand.recorded_by = current_control_body.store_keeper_name
     @demand.user_id = current_user.id
     @demand.office_id = current_office.id
     @demand.fiscal_year_id = current_fiscal_year.id

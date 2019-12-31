@@ -1,4 +1,13 @@
-<% form_for @active_fiscal_year do |form| %>
-  <%= form.label :select_fiscal_year %>
-  <%= form.select(:fiscal_year_id, current_office.fiscal_years.collect { |fy| [fy.name, fy.id ]}) %>
+<%= form_for(@active_fiscal_year, url: "/active_fiscal_year/#{@active_fiscal_year.id}") do |form| %>
+  <div class="row">
+    <div class="col-3">
+      <%= form.label :select_fiscal_year %>
+    </div>
+    <div class="col-6">
+      <%= form.select(:fiscal_year_id, @office.fiscal_years.collect { |fy| [fy.fy, fy.id] }, {}, {class: "form-control"}) %>
+    </div>
+    <div class="col-3">
+      <%= form.submit :choose, class: "btn btn-success" %>
+    </div>
+  </div>
 <% end %>

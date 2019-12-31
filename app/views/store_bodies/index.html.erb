@@ -1,23 +1,25 @@
-<h1>Store Bodies</h1>
-
-<table class="responsive nowrap table table-hover" id="dttb-store_bodies" data-sort="true" data-source="<%= url_for(format: :json)%>">
-  <thead>
-    <tr>
-      <th data-data="office_chief">Office chief</th>
-      <th data-data="office_chief_degination">Office chief degination</th>
-      <th data-data="section_chief">Section chief</th>
-      <th data-data="section_chief_degination">Section chief degination</th>
-      <th data-data="store_keeper_designation">Store keeper designation</th>
-      <th data-data="store_keeper_name">Store keeper name</th>
-      <th data-data="status">Status</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
-    </tr>
-  </thead>
-
+<h1>नियन्त्रण संयन्त्र</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>कार्यालय प्रमुख</th>
+    <td><%= @store_body.office_chief_name %></td>
+    <th>पद</th>
+    <td><%= @store_body.office_chief_degination %></td>
+  </tr>
+  <tr>
+    <th> शाखा प्रमुख</th>
+    <td> <%= @store_body.section_chief_name %></td>
+    <th>पद</th>
+    <td><%= @store_body.section_chief_degination %></td>
+  </tr>
+  <tr>
+    <th>भण्डार प्रमुख</th>
+    <td><%= @store_body.store_keeper_name %></td>
+    <th>पद</th>
+    <td><%= @store_body.store_keeper_designation %></td>
+  </tr>
 </table>
 
 <br>
 
-<%= link_to 'New Store Body', new_store_body_path %>
+<%= link_to new_btn.html_safe, new_store_body_path %>

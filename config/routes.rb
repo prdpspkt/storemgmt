@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/active_fiscal_year' => "active_fiscal_year#new", as: :set_active_fiscal_year
+  patch '/active_fiscal_year/:id' => "active_fiscal_year#create"
   resources :store_bodies
   resources :project_tender_breakdowns
   resources :project_tender_items
@@ -54,7 +56,7 @@ Rails.application.routes.draw do
   resources :office_item_evaluations
   resources :item_disposal_items
   resources :item_disposals
-  resources :handover_form_items
+  resources :office_handover_form_items
   resources :office_handover_forms
   post "/office_handover_form/mark_as_final/:id" => "office_handover_forms#mark_as_final", as: :mark_office_handover_form_as_final
   resources :office_release_items

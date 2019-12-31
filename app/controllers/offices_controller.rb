@@ -9,10 +9,8 @@ class OfficesController < ApplicationController
     if current_office.new_record?
       redirect_to(new_office_path) and return
     end
-    @office = current_user.office
-    @office_chief = current_office_chief
-    @section_chief = current_section_chief
-    @store_keeper = current_store_keeper
+    @office = current_office
+    @store_body = current_control_body
   end
 
   # GET /offices/1
@@ -51,7 +49,7 @@ class OfficesController < ApplicationController
   def update
     respond_to do |format|
       if @office.update(office_params)
-        format.html { redirect_to @office, notice: 'Office was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'Office was successfully updated.' }
         format.json { render :show, status: :ok, location: @office }
       else
         format.html { render :edit }

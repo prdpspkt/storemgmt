@@ -28,8 +28,8 @@ class OfficeReleasesController < ApplicationController
   # POST /office_releases.json
   def create
     @office_release = OfficeRelease.new(office_release_params)
-    @office_release.store_chief_name = current_store_keeper.name_ne
-    @office_release.office_chief_name = current_office_chief.name_ne
+    @office_release.store_chief_name = current_control_body.store_keeper_name
+    @office_release.office_chief_name = current_control_body.office_chief_name
     @office_release.user_id = current_user.id
     @office_release.office_id = current_office.id
     @office_release.fiscal_year_id = current_fiscal_year.id

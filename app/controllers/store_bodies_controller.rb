@@ -4,12 +4,13 @@ class StoreBodiesController < ApplicationController
   # GET /store_bodies
   # GET /store_bodies.json
   def index
-    @store_bodies = StoreBody.all
+    @store_body = current_office.store_bodies.last
   end
 
   # GET /store_bodies/1
   # GET /store_bodies/1.json
   def show
+
   end
 
   # GET /store_bodies/new
@@ -25,10 +26,10 @@ class StoreBodiesController < ApplicationController
   # POST /store_bodies.json
   def create
     @store_body = StoreBody.new(store_body_params)
-
+    @store_body.office_id = current_office.id
     respond_to do |format|
       if @store_body.save
-        format.html { redirect_to @store_body, notice: 'Store body was successfully created.' }
+        format.html { redirect_to set_active_fiscal_year_path, notice: 'Store body was successfully created.' }
         format.json { render :show, status: :created, location: @store_body }
       else
         format.html { render :new }
@@ -69,6 +70,6 @@ class StoreBodiesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_body_params
-      params.require(:store_body).permit(:office_chief, :office_chief_degination, :section_chief, :section_chief_degination, :store_keeper_designation, :store_keeper_name, :status, :office_id, :fiscal_year_id)
+      params.require(:store_body).permit(:office_chief_name, :office_chief_degination, :section_chief_name, :section_chief_degination, :store_keeper_designation, :store_keeper_name, :status, :office_id, :fiscal_year_id)
     end
 end
