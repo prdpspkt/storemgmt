@@ -82,12 +82,12 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-adapter: postgresql
-encoding: unicode
-database: storeman
-pool: 5
-host: localhost
-port: 5432
-username: postgres
-password: Br41n@H4ck3d
+  adapter: postgresql
+  encoding: unicode
+  database: storeman
+  pool: 5
+  host: localhost
+  port: 5432
+  username: postgres
+  password: Br41n@H4ck3d
 
