@@ -11,14 +11,14 @@ class ApplicationController < ActionController::Base
   # end
   #
   #
- def after_sign_in_path_for(user)
+ def after_sign_in_path_for(resource_or_scope)
    #check if office has been created for user
    url = '/'
-   if user.office.blank?
+   if resource_or_scope.office.blank?
     url = new_office_path
    end
    #check if office has fiscal year
-   if user.office.blank? == false
+   if resource_or_scope.office.blank? == false
      if current_office.fiscal_years.blank?
         url = new_fiscal_year_path
      end
