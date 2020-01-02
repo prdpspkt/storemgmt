@@ -1,0 +1,27 @@
+<h1>Project Tender Breakdown Items</h1>
+
+<table class="responsive nowrap table table-hover" id="dttb-project_tender_breakdown_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+      <th data-data="name_of_item_ne">Name of item ne</th>
+      <th data-data="name_item_en">Name item en</th>
+      <th data-data="unit_en">Unit en</th>
+      <th data-data="unit_ne">Unit ne</th>
+      <th data-data="quantity">Quantity</th>
+      <th data-data="rate">Rate</th>
+      <th data-data="amount">Amount</th>
+      <th data-data="office_id">Office</th>
+      <th data-data="user_id">User</th>
+      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="received_date">Received date</th>
+      <th data-data="project_tender_breakdown_id">Project tender breakdown</th>
+      <th data-data="project_tender_item_id">Project tender item</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+
+<%= link_to 'New Project Tender Breakdown Item', new_project_tender_breakdown_item_path %>
