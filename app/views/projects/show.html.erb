@@ -1,6 +1,5 @@
 <h1> आयोजना विवरण</h1>
-<div class="separator"></div>
-<table class="table table-sm">
+<table class="table table-sm table-bordered">
   <tr>
     <th>आयोजनाको नाम:</th>
     <td><%= @project.name_of_project_ne %></td>
@@ -34,6 +33,43 @@
     <td><%= @project.project_status %></td>
   </tr>
 </table>
-
+<div class="text-center">
 <%= link_to back_btn.html_safe, projects_path %>
 <%= link_to edit_big_btn.html_safe, edit_project_path(@project) %>
+</div>
+<div class="separator"></div>
+<h2>सामाग्री थप्ने</h2>
+<%= form_for(@project_item) do |form| %>
+<%= form.hidden_field :project_id %>
+<div class="row">
+  <div class="col-2">सामानको नाम</div>
+  <div class="col-3"><%= form.select(:item_id, Item.all.collect{ |item| [item.name_of_item_en, item.id] }, {include_blank: "सामानको नाम छान्नुहोस्"}, {class: "form-control"}) %></div>
+  <div class="col-2">सामानको प्रकार</div>
+  <div class="col-3"><%= form.select(:item_classification_no, {"47" => "खर्च भएर नजाने", "57" => "खर्च भएर जाने"}.collect { |no| [no.last, no.first]},{include_blank: "सामानको प्रकार छान्नुहोस्"},{class: "form-control"}) %></div>
+  <div class="col-2">
+    <%= form.submit :save, class: "btn btn-success"%>
+  </div>
+</div>
+<% end %>
+<div class="separator"></div>
+<h2>आयोजनाको सामाग्रीहरु </h2>
+<table class="table table-sm table-bordered">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>Name of Item</th>
+    <th>परिमाण</th>
+    <th class="no-print"></th>
+  </tr>
+  <% @i = 1 %>
+  <% @project_items.each do |item| %>
+  <tr>
+    <td><%= nd @i %></td>
+    <td><%= item.name_of_item_ne %></td>
+    <td><%= item.name_of_item_en %></td>
+    <td></td>
+    <td class="no-print"></td>
+  </tr>
+  <% @i = @i + 1 %>
+  <% end %>
+</table>

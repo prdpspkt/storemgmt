@@ -59,6 +59,7 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">आयोजना</a>
           <div class="dropdown-menu" aria-labelledby="dropdown09">
+      
             <a class="dropdown-item" href="<%= projects_path %>">आयोजनाहरू</a>
             <a class="dropdown-item" href="<%= project_purchase_tenders_path %>">खरिद टेन्डरहरू</a>
             <a class="dropdown-item" href="<%= project_tender_breakdowns_path %>">खरिद टेन्डर ब्रेकडाउनहरू</a>
@@ -112,6 +113,14 @@
   <% end %>
 </nav>
 <div class="container" style="margin-top: 20px">
+  <% if notice %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>जानकारी</strong> प्रक्रिया सफल रह्यो |
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  <% end %>
   <%= yield %>
 </div>
 <script type="text/javascript">

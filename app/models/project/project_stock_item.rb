@@ -1,2 +1,0 @@
-class ProjectStockItem < ApplicationRecord
-end

@@ -24,6 +24,7 @@ class OfficeItemsController < ApplicationController
   # POST /office_items
   # POST /office_items.json
   def create
+    begin
     @office_item = OfficeItem.new(office_item_params)
     @item = Item.find(@office_item.item_id)
     @office_item.name_of_item_ne = @item.name_of_item_ne
@@ -44,6 +45,9 @@ class OfficeItemsController < ApplicationController
         format.json { render json: @office_item.errors, status: :unprocessable_entity }
       end
     end
+  rescue Exeption => error
+    redirect_to :back, notice: error.message
+  end
   end
 
   # PATCH/PUT /office_items/1

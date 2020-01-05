@@ -1,21 +1,15 @@
-<h1>Project Items</h1>
+<h1>आयोजनागत सामाग्रीहरु</h1>
 
 <table class="responsive nowrap table table-hover" id="dttb-project_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="name_of_item_ne">Name of item ne</th>
-      <th data-data="name_of_item_en">Name of item en</th>
-      <th data-data="specification">Specification</th>
-      <th data-data="unit_ne">Unit ne</th>
-      <th data-data="unit_en">Unit en</th>
-      <th data-data="item_register_page_no">Item register page no</th>
-      <th data-data="item_classification_no">Item classification no</th>
-      <th data-data="item_id">Item</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
-      <th data-data="project_id">Project</th>
-      <th data-data="model_no">Model no</th>
-      <th data-data="item_identification_no">Item identification no</th>
+      <th data-data="item_register_page_no">जिन्सी खाता पाना नं</th>
+      <th data-data="item_classification_no">जिन्सी वर्गीकरण नं</th>
+      <th data-data="item_identification_no">जिन्सी पहिचान नं</th>
+      <th data-data="name_of_item_ne">सामाग्रीको नाम</th>
+      <th data-data="name_of_item_en">सामाग्रीको नाम(अंग्रेजीमा)</th>
+      <th data-data="specification">स्पेसिफिकेसन</th>
+      <th data-data="unit_ne">इकाई</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -24,4 +18,4 @@
 
 <br>
 
-<%= link_to 'New Project Item', new_project_item_path %>
+<%= link_to new_btn.html_safe, new_project_item_path %>
