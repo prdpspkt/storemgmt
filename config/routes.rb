@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   patch '/active_fiscal_year/:id' => "active_fiscal_year#create"
   resources :store_bodies
   resources :project_tender_breakdowns
+  post "project_tender_breakdowns/marked_as_final/:id" => "project_tender_breakdowns#marked_as_final", as: :ptm_marked_as_final
   resources :project_tender_items
   resources :project_purchase_tenders
   post "project_purchase_tender/mark_as_final/:id" => "project_purchase_tenders#mark_as_final", as: :project_purchase_tender_maf

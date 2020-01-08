@@ -1,5 +1,5 @@
 class ProjectTenderBreakdownsController < ApplicationController
-  before_action :set_project_tender_breakdown, only: [:show, :edit, :update, :destroy]
+  before_action :set_project_tender_breakdown, only: [:show, :edit, :update, :destroy, :marked_as_final]
 
   # GET /project_tender_breakdowns
   # GET /project_tender_breakdowns.json
@@ -66,6 +66,17 @@ class ProjectTenderBreakdownsController < ApplicationController
       format.html { redirect_to project_tender_breakdowns_url, notice: 'Project tender breakdown was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+
+  def marked_as_final
+    if @project_tender_breakdown.marked_as_final.present? || @project_tender_breakdown.marked_as_final  != false
+      @project_tender_breakdown.marked_as_final = false
+    else
+      @project_tender_breakdown.marked_as_final = true
+    end
+    @project_tender_breakdown.save
+    redirect_to @project_tender_breakdown, notice: "Item successfully updated"
   end
 
   private

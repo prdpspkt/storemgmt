@@ -48,7 +48,7 @@ class ProjectItemsController < ApplicationController
       end
     end
   else
-    redirect_to @project, notice: "Item already exists."
+    redirect_to @project, notice: "तपाइले थप गर्न खोज्नु भएको सामान पहिले देखि नै लिस्टमा छ|"
   end
   end
 

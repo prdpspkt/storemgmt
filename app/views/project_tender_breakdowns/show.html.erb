@@ -3,7 +3,7 @@
   <tr>
     <th>टेन्डरको नाम:</th>
     <td><%= @project_tender_breakdown.project_purchase_tender.tender_name %></td>
-    <th>आयोजनाको नाम: </th>
+    <th>आयोजनाको नाम:</th>
     <td><%= @project_tender_breakdown.project_name_ne %></td>
   </tr>
 </table>
@@ -11,13 +11,19 @@
 <div class="text-center">
   <%= link_to(back_btn.html_safe, project_tender_breakdowns_path) %>
   <%= link_to(edit_big_btn.html_safe, edit_project_tender_breakdown_path(@project_tender_breakdown)) %>
-  <%= link_to(before_final_btn.html_safe, project_tender_breakdowns_path) %>
-  <%= link_to(final_btn.html_safe, project_tender_breakdowns_path) %>
+  <% if @project_tender_breakdown.marked_as_final == false %>
+    <%= link_to(final_btn.html_safe, ptm_marked_as_final_path(@project_tender_breakdown), method: :post) %>
+  <% end %>
+  <% if can_unmark(@project_tender_breakdown) %>
+    <%= link_to(before_final_btn.html_safe, ptm_marked_as_final_path(@project_tender_breakdown), method: :post) %>
+  <% end %>
   <%= link_to(print_big_btn.html_safe, project_tender_breakdowns_path) %>
 </div>
+<% if @project_tender_breakdown.marked_as_final != true %>
 <div class="separator"></div>
 <h2>सामाग्रीहरु थप्ने</h2>
 <%= render 'project_tender_breakdowns/project_tender_breakdown_item_form/', project_tender_breakdown_item: @project_tender_breakdown_item %>
+  <% end %>
 <div class="separator"></div>
 <table class="table table-bordered">
   <tr>
@@ -31,17 +37,19 @@
   </tr>
   <% @i = 1 %>
   <% @project_tender_breakdown_items.each do |item| %>
-  <tr>
-    <td><%=nd  @i %></td>
-    <td><%= item.name_of_item_ne %></td>
-    <td><%= item.unit_ne %></td>
-    <td><%= nd item.quantity %></td>
-    <td><%= nd item.rate %></td>
-    <td><%= nd item.amount %></td>
-    <td class="no-print">
-      <%= link_to(destroy_btn.html_safe,project_tender_breakdown_item_path(item), data: { method: :delete, confirm: "Are you sure ?"}) %>
-    </td>
-  </tr>
+    <tr>
+      <td><%= nd @i %></td>
+      <td><%= item.name_of_item_ne %></td>
+      <td><%= item.unit_ne %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= nd item.rate %></td>
+      <td><%= nd item.amount %></td>
+      <td class="no-print">
+        <% if @project_tender_breakdown.marked_as_final != true %>
+        <%= link_to(destroy_btn.html_safe, project_tender_breakdown_item_path(item), data: {method: :delete, confirm: "Are you sure ?"}) %>
+      <% end %>
+          </td>
+    </tr>
     <% @i = @i + 1 %>
   <% end %>
   <tr>
