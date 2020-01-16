@@ -1,4 +1,4 @@
 class ProjectTenderItem < ApplicationRecord
   belongs_to :project_purchase_tender
-  has_one :project_tender_breakdown
+  has_many :project_tender_breakdown_items, dependent: :destroy
 end

@@ -1,104 +1,30 @@
-<p id="notice"><%= notice %></p>
+<h1>दाखिला फाराम (आयोजना तर्फ)</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>दाखिला मिति</th>
+    <th>दाखिला नं </th>
+    <th>विल नं</th>
+  </tr>
+  <tr>
+    <td><%= ndate @project_purchase_entry.entry_date %></td>
+    <td><%= nd @project_purchase_entry.entry_no %></td>
+    <td><%= @project_purchase_entry.bill_no %></td>
+  </tr>
+</table>
+<div class="separator"></div>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, project_purchase_entries_path %>
+  <%= link_to edit_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
+  <% if @project_purchase_entry.marked_as_final != true %>
+  <%= link_to final_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
+    <% end %>
+  <% if can_unmark(@project_purchase_entry) %>
+  <%= link_to before_final_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
+    <%end %>
+  <%= link_to print_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
 
-<p>
-  <strong>Entry date:</strong>
-  <%= @project_purchase_entry.entry_date %>
-</p>
+</div>
+<div class="separator"></div>
+<h2>दाखिला गर्नुपर्ने सामान प्रविष्ट गर्ने</h2>
 
-<p>
-  <strong>Bill no:</strong>
-  <%= @project_purchase_entry.bill_no %>
-</p>
 
-<p>
-  <strong>Entry no:</strong>
-  <%= @project_purchase_entry.entry_no %>
-</p>
-
-<p>
-  <strong>Store chief name:</strong>
-  <%= @project_purchase_entry.store_chief_name %>
-</p>
-
-<p>
-  <strong>Store chief designation:</strong>
-  <%= @project_purchase_entry.store_chief_designation %>
-</p>
-
-<p>
-  <strong>Store chief signed date:</strong>
-  <%= @project_purchase_entry.store_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Section chief name:</strong>
-  <%= @project_purchase_entry.section_chief_name %>
-</p>
-
-<p>
-  <strong>Section chief designation:</strong>
-  <%= @project_purchase_entry.section_chief_designation %>
-</p>
-
-<p>
-  <strong>Section chief signed date:</strong>
-  <%= @project_purchase_entry.section_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Office chief name:</strong>
-  <%= @project_purchase_entry.office_chief_name %>
-</p>
-
-<p>
-  <strong>Office chief designation:</strong>
-  <%= @project_purchase_entry.office_chief_designation %>
-</p>
-
-<p>
-  <strong>Office chief signed date:</strong>
-  <%= @project_purchase_entry.office_chief_signed_date %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @project_purchase_entry.user_id %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @project_purchase_entry.office_id %>
-</p>
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @project_purchase_entry.fiscal_year_id %>
-</p>
-
-<p>
-  <strong>Item:</strong>
-  <%= @project_purchase_entry.item_id %>
-</p>
-
-<p>
-  <strong>Item register page no:</strong>
-  <%= @project_purchase_entry.item_register_page_no %>
-</p>
-
-<p>
-  <strong>Purchase handover no:</strong>
-  <%= @project_purchase_entry.purchase_handover_no %>
-</p>
-
-<p>
-  <strong>Fy:</strong>
-  <%= @project_purchase_entry.fy %>
-</p>
-
-<p>
-  <strong>Marked as final:</strong>
-  <%= @project_purchase_entry.marked_as_final %>
-</p>
-
-<%= link_to 'Edit', edit_project_purchase_entry_path(@project_purchase_entry) %> |
-<%= link_to 'Back', project_purchase_entries_path %>

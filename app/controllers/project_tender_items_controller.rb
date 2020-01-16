@@ -1,5 +1,5 @@
 class ProjectTenderItemsController < ApplicationController
-  before_action :set_project_tender_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_project_tender_item, only: [ :destroy]
 
   # GET /project_tender_items
   # GET /project_tender_items.json
@@ -7,15 +7,6 @@ class ProjectTenderItemsController < ApplicationController
     @project_tender_items = ProjectTenderItem.all
   end
 
-  # GET /project_tender_items/1
-  # GET /project_tender_items/1.json
-  def show
-  end
-
-  # GET /project_tender_items/new
-  def new
-    @project_tender_item = ProjectTenderItem.new
-  end
 
   # GET /project_tender_items/1/edit
   def edit
@@ -28,6 +19,7 @@ class ProjectTenderItemsController < ApplicationController
     @project_tender_item = update_item_information @project_tender_item
     @project_tender_item.amount = @project_tender_item.rate * @project_tender_item.quantity
     @project_tender_item = update_general_information @project_tender_item
+    @project_tender_item.sku = @project_tender_item.quantity
     respond_to do |format|
       if @project_tender_item.save
         format.html { redirect_to @project_tender_item.project_purchase_tender, notice: 'Project tender item was successfully created.' }
@@ -39,19 +31,6 @@ class ProjectTenderItemsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /project_tender_items/1
-  # PATCH/PUT /project_tender_items/1.json
-  def update
-    respond_to do |format|
-      if @project_tender_item.update(project_tender_item_params)
-        format.html { redirect_to @project_tender_item.project_purchase_tender, notice: 'Project tender item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @project_tender_item }
-      else
-        format.html { render :edit }
-        format.json { render json: @project_tender_item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /project_tender_items/1
   # DELETE /project_tender_items/1.json
