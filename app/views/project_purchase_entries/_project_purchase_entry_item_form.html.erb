@@ -10,153 +10,72 @@
       </ul>
     </div>
   <% end %>
-<div class="row">
-  <div class="field">
-    <%= form.label :item_classification_no %>
-    <%= form.number_field :item_classification_no %>
-  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= form.label :item_classification_no %>
+      <%= form.select(:item_classification_no, {"खर्च भएर जाने" => 52, "खर्च भएर नजाने" => 47}, {include_blank: true}, {class: "form-control", required: :required}) %>
+    </div>
 
-  <div class="field">
-    <%= form.label :item_register_page_no %>
-    <%= form.number_field :item_register_page_no %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :name_of_item %>
+      <%= form.select(:item_id, Item.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control", required: :required}) %>
+    </div>
 
-  <div class="field">
-    <%= form.label :name_of_item_ne %>
-    <%= form.text_field :name_of_item_ne %>
+    <div class="col-sm-2">
+      <span class="badge badge-danger"> <%= form.label :is_vatable %></span>
+      <%= form.check_box(:is_vatable, class: "", checked: true) %>
+    </div>
   </div>
+  <div id="oneirt-items">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= form.label :item_identification_no %>
+        <%= form.text_field :item_identification_no, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :name_of_item_en %>
-    <%= form.text_field :name_of_item_en %>
-  </div>
+      <div class="col-sm-2">
+        <%= form.label :model_no %>
+        <%= form.text_field :model_no, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :specification %>
-    <%= form.text_field :specification %>
-  </div>
+      <div class="col-sm-2">
+        <%= form.label :country %>
+        <%= form.text_field :country, class: "form-control" %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.label :approx_age %>
+        <%= form.text_field :approx_age, class: "form-control" %>
+      </div>
 
-  <div class="field">
-    <%= form.label :item_identification_no %>
-    <%= form.text_field :item_identification_no %>
+      <div class="col-sm-2">
+        <%= form.label :source %>
+        <%= form.text_field :source, class: "form-control" %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.label :size %>
+        <%= form.text_field :size, class: "form-control" %>
+      </div>
+    </div>
   </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <%= form.label :quantity %>
+      <%= form.text_field :quantity, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :model_no %>
-    <%= form.text_field :model_no %>
-  </div>
+    <div class="col-sm-3">
+      <%= form.label :rate %>
+      <%= form.text_field :rate, class: "form-control" %>
+    </div>
 
-  <div class="field">
-    <%= form.label :unit_ne %>
-    <%= form.text_field :unit_ne %>
-  </div>
 
-  <div class="field">
-    <%= form.label :unit_en %>
-    <%= form.text_field :unit_en %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rate %>
-    <%= form.text_field :rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount_without_vat %>
-    <%= form.text_field :amount_without_vat %>
-  </div>
-
-  <div class="field">
-    <%= form.label :vat %>
-    <%= form.text_field :vat %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total_amount %>
-    <%= form.text_field :total_amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :other_expenses %>
-    <%= form.text_field :other_expenses %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :remarks %>
-    <%= form.text_field :remarks %>
-  </div>
-
-  <div class="field">
-    <%= form.label :project_purchase_entry_id %>
-    <%= form.number_field :project_purchase_entry_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.number_field :item_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :project_item_id %>
-    <%= form.number_field :project_item_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :country %>
-    <%= form.text_field :country %>
-  </div>
-
-  <div class="field">
-    <%= form.label :size %>
-    <%= form.text_field :size %>
-  </div>
-
-  <div class="field">
-    <%= form.label :approx_age %>
-    <%= form.text_field :approx_age %>
-  </div>
-
-  <div class="field">
-    <%= form.label :source %>
-    <%= form.text_field :source %>
-  </div>
-
-  <div class="field">
-    <%= form.label :is_vatable %>
-    <%= form.check_box :is_vatable %>
-  </div>
-</div>
-  <div class="actions">
-    <%= form.submit %>
+    <div class="col-sm-4">
+      <%= form.label :remarks %>
+      <%= form.text_field :remarks, class: "form-control" %>
+    </div>
+    <div class="col-sm-2">
+      <br>
+      <%= form.submit :save, class: "float-right btn btn-success" %>
+    </div>
   </div>
 <% end %>

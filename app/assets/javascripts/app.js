@@ -16,5 +16,13 @@ $(function(){
             $("#oneirt-items").hide();
         }
     });
+    $("#project_purchase_entry_item_item_classification_no").on("change", function () {
+        if($(this).val() == 47){
+            $("#oneirt-items").show();
+        }
+        else{
+            $("#oneirt-items").hide();
+        }
+    });
 
 });

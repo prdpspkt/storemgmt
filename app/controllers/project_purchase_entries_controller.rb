@@ -10,6 +10,8 @@ class ProjectPurchaseEntriesController < ApplicationController
   # GET /project_purchase_entries/1
   # GET /project_purchase_entries/1.json
   def show
+    @project_purchase_entry_item = ProjectPurchaseEntryItem.new
+    @project_purchase_entry_item.project_purchase_entry_id = @project_purchase_entry.id
   end
 
   # GET /project_purchase_entries/new
