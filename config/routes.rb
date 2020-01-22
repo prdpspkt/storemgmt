@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   resources :project_release_items
   resources :project_purchase_entry_items
   resources :project_purchase_entries
+  post "project_purchase_entry/mark_as_final/:id" => "project_purchase_entries#mark_as_final", as: :ppe_mark_as_final
   resources :project_items
   resources :project_evaluations
   resources :project_evaluation_items

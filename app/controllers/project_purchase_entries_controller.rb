@@ -1,5 +1,5 @@
 class ProjectPurchaseEntriesController < ApplicationController
-  before_action :set_project_purchase_entry, only: [:show, :edit, :update, :destroy]
+  before_action :set_project_purchase_entry, only: [:show, :edit, :update, :destroy, :mark_as_final]
 
   # GET /project_purchase_entries
   # GET /project_purchase_entries.json
@@ -61,6 +61,10 @@ class ProjectPurchaseEntriesController < ApplicationController
       format.html { redirect_to project_purchase_entries_url, notice: 'Project purchase entry was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def mark_as_final
+    redirect_to @project_purchase_entry
   end
 
   private

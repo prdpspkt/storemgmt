@@ -12,7 +12,7 @@ class ProjectTenderBreakdownsController < ApplicationController
   def show
     @project_tender_breakdown_item = ProjectTenderBreakdownItem.new
     @project_tender_breakdown_item.project_tender_breakdown_id = @project_tender_breakdown.id
-    @items = @project_tender_breakdown.project_purchase_tender.project_tender_items
+    @items = @project_tender_breakdown.project_purchase_entry.project_purchase_entry_items
     @project_tender_breakdown_items = @project_tender_breakdown.project_tender_breakdown_items
   end
 
@@ -88,7 +88,7 @@ class ProjectTenderBreakdownsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_tender_breakdown_params
-    params.require(:project_tender_breakdown).permit( :project_purchase_tender_id, :project_id)
+    params.require(:project_tender_breakdown).permit( :project_purchase_entry_id, :project_id)
   end
 
   def update_general_information object
@@ -102,7 +102,6 @@ class ProjectTenderBreakdownsController < ApplicationController
 
   def update_tender_and_project_information object
     project = Project.find(object.project_id)
-    project_purchase_tender = ProjectPurchaseTender.find(object.project_purchase_tender_id)
     object.project_name_ne = project.name_of_project_ne
     object.project_name_en = project.name_of_project_en
     object

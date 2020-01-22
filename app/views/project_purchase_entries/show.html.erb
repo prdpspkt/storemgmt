@@ -1,5 +1,5 @@
 <h1>दाखिला फाराम (आयोजना तर्फ)</h1>
-<table class="table table-bordered">
+<table class="table table-sm table-bordered text-center">
   <tr>
     <th>दाखिला मिति</th>
     <th>दाखिला नं </th>
@@ -14,12 +14,12 @@
 <div class="separator"></div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_purchase_entries_path %>
-  <%= link_to edit_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
+ <%= link_to edit_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
   <% if @project_purchase_entry.marked_as_final != true %>
-  <%= link_to final_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
+  <%= link_to final_btn.html_safe, ppe_mark_as_final_path(@project_purchase_entry), data: {method: :post} %>
     <% end %>
   <% if can_unmark(@project_purchase_entry) %>
-  <%= link_to before_final_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
+  <%= link_to before_final_btn.html_safe, ppe_mark_as_final_path(@project_purchase_entry), data: {method: :post} %>
     <%end %>
   <%= link_to print_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
 
@@ -27,4 +27,29 @@
 <div class="separator"></div>
 <h2>दाखिला गर्नुपर्ने सामान प्रविष्ट गर्ने</h2>
 <%= render 'project_purchase_entry_item_form', project_purchase_entry_item: @project_purchase_entry_item %>
+<div class="separator"></div>
+<h2>दाखिला गर्नुपर्ने सामाग्री</h2>
+<table class="table table-sm">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>इकाई</th>
+    <th>परिमाण</th>
+    <th>दर</th>
+    <th>जम्मा</th>
+    <th></th>
+  </tr>
+  <% @project_purchase_entry.project_purchase_entry_items.each do |item| %>
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td><%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure ?"} %></td>
+</tr>
 
+  <% end %>
+</table>

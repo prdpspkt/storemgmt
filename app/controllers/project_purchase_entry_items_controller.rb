@@ -71,4 +71,11 @@ class ProjectPurchaseEntryItemsController < ApplicationController
     def project_purchase_entry_item_params
       params.require(:project_purchase_entry_item).permit(:item_classification_no, :item_register_page_no, :name_of_item_ne, :name_of_item_en, :specification, :item_identification_no, :model_no, :unit_ne, :unit_en, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expenses, :amount, :remarks, :project_purchase_entry_id, :user_id, :office_id, :fy, :item_id, :fiscal_year_id, :project_item_id, :country, :size, :approx_age, :source, :is_vatable)
     end
+
+  def update_general_information item
+    item.office_id = current_office.id
+    item.fiscal_year = current_fiscal_year.id
+    item.user_id = current_user.id
+    item
+  end
 end

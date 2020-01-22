@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_31_110207) do
+ActiveRecord::Schema.define(version: 2020_01_17_065418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1042,7 +1042,6 @@ ActiveRecord::Schema.define(version: 2019_12_31_110207) do
   create_table "project_tender_breakdowns", force: :cascade do |t|
     t.integer "office_id"
     t.integer "user_id"
-    t.integer "project_purchase_tender_id"
     t.integer "project_id"
     t.string "project_name_en"
     t.string "project_name_ne"
@@ -1051,6 +1050,7 @@ ActiveRecord::Schema.define(version: 2019_12_31_110207) do
     t.datetime "updated_at", null: false
     t.integer "fiscal_year_id"
     t.string "fy"
+    t.integer "project_purchase_entry_id"
   end
 
   create_table "project_tender_items", force: :cascade do |t|

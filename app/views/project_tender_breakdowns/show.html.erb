@@ -1,8 +1,8 @@
 <h1>बोलपत्रको आयोजनागत विभाजन</h1>
 <table class="table table-bordered">
   <tr>
-    <th>टेन्डरको नाम:</th>
-    <td><%= @project_tender_breakdown.project_purchase_tender.tender_name %></td>
+    <th>दाखिला नं:</th>
+    <td><%= nd @project_tender_breakdown.project_purchase_entry.entry_no %></td>
     <th>आयोजनाको नाम:</th>
     <td><%= @project_tender_breakdown.project_name_ne %></td>
   </tr>
@@ -22,7 +22,7 @@
 <% if @project_tender_breakdown.marked_as_final != true %>
 <div class="separator"></div>
 <h2>सामाग्रीहरु थप्ने</h2>
-<%= render 'project_tender_breakdowns/project_tender_breakdown_item_form/', project_tender_breakdown_item: @project_tender_breakdown_item %>
+<%= render 'project_tender_breakdown_item_form', project_tender_breakdown_item: @project_tender_breakdown_item %>
   <% end %>
 <div class="separator"></div>
 <table class="table table-bordered">
