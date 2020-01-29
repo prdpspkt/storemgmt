@@ -39,17 +39,18 @@
     <th>जम्मा</th>
     <th></th>
   </tr>
+  <% @i = 1 %>
   <% @project_purchase_entry.project_purchase_entry_items.each do |item| %>
 <tr>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
+  <td><%= nd @i %></td>
+  <td><%= item.item.name_of_item_ne %></td>
+  <td><%= item.item.unit_ne %></td>
+  <td><%= nd item.quantity %></td>
+  <td><%= nd item.rate %></td>
+  <td><%= nd item.amount %></td>
   <td></td>
   <td><%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure ?"} %></td>
 </tr>
-
+<% @i = @i + 1 %>
   <% end %>
 </table>

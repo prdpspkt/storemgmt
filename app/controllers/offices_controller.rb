@@ -1,14 +1,14 @@
 class OfficesController < ApplicationController
   before_action :authenticate_user!
-  load_and_authorize_resource
   before_action :set_office, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /offices
   # GET /offices.json
   def index
     if current_office.new_record?
       redirect_to(new_office_path) and return
     end
+
     @office = current_office
     @store_body = current_control_body
   end
