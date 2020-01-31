@@ -15,19 +15,20 @@
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_purchase_tenders_path %>
-  <%= link_to edit_big_btn.html_safe, edit_project_purchase_tender_path(@project_purchase_tender) %>
   <% if can_unmark @project_purchase_tender %>
     <%= link_to before_final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), method: :post %>
   <% end %>
   <% if @project_purchase_tender.marked_as_final != true %>
+    <%= link_to edit_big_btn.html_safe, edit_project_purchase_tender_path(@project_purchase_tender) %>
     <%= link_to final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), method: :post %>
   <% end %>
   <%= link_to print_big_btn.html_safe, edit_project_purchase_tender_path(@project_purchase_tender) %>
 </div>
-
+<% if @project_purchase_tender.marked_as_final != true %>
 <h2> खरिद गर्ने सामानहरू थप्ने </h2>
 <%= render 'project_purchase_tenders/purchase_tender_item_form', project_tender_item: @project_tender_item %>
 <div class="separator"></div>
+  <% end %>
 <h2>थप गरिएका सामाग्रीहरू</h2>
 <table class="table table-sm table-bordered">
   <tr>

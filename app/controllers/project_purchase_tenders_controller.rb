@@ -62,6 +62,17 @@ class ProjectPurchaseTendersController < ApplicationController
         @project_purchase_tender.marked_as_final = true
         @project_purchase_entry = ProjectPurchaseEntry.new
         @project_purchase_entry.entry_no = new_purchase_entry_no
+        @project_purchase_entry.store_chief_name = @project_purchase_tender.store_keeper_name
+        @project_purchase_entry.store_chief_designation = @project_purchase_tender.store_keeper_designation
+        @project_purchase_entry.section_chief_name = @project_purchase_tender.section_chief_name
+        @project_purchase_entry.section_chief_designation = @project_purchase_tender.section_chief_designation
+        @project_purchase_entry.office_chief_name = @project_purchase_tender.office_chief_name
+        @project_purchase_entry.office_chief_designation = @project_purchase_tender.office_chief_designation
+        @project_purchase_entry.save
+
+        @project_purchase_tender.project_tender_items.each do |item|
+          create_purchase_entry_item item, @project_purchase_entry
+        end
 
       end
     @project_purchase_tender.save
@@ -92,14 +103,29 @@ class ProjectPurchaseTendersController < ApplicationController
     object.user_id = current_user.id
     object.office_id = current_office.id
     object.fiscal_year_id = current_fiscal_year.id
+    object.store_keeper_name = current_control_body.store_keeper_name
+    object.store_keeper_designation = current_control_body.store_keeper_designation
+    object.section_chief_name = current_control_body.section_chief_name
+    object.section_chief_designation = current_control_body.section_chief_degination
+    object.office_chief_name = current_control_body.office_chief_name
+    object.office_chief_designation = current_control_body.office_chief_degination
     object
   end
 
   def new_purchase_entry_no
     pen = 1
-    @project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
-    if @project_purchase_entry.blank? == false
-      @pen = @project_purchase_entry.entry_no + 1
+    project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
+    if project_purchase_entry.blank? == false
+      pen = project_purchase_entry.entry_no + 1
     end
+    pen
+  end
+
+  def create_purchase_entry_item tender_item, ppe
+    ppei = ProjectPurchaseEntryItem.new
+    ppei.name_of_item_en = tender_item.name_of_item_en
+    ppei.name_of_item_ne = tender_item.name_of_item_ne
+    ppei.specification = tender_item.name_of_item_en
+
   end
 end

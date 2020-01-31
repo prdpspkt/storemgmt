@@ -104,9 +104,10 @@ class ProjectPurchaseEntriesController < ApplicationController
 
     def new_purchase_entry_no
       pen = 1
-      @project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
-      if @project_purchase_entry.blank? == false
-        @pen = @project_purchase_entry.entry_no + 1
+      project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
+      if project_purchase_entry.blank? == false
+        pen = project_purchase_entry.entry_no + 1
       end
+      pen
     end
 end
