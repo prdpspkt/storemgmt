@@ -56,8 +56,13 @@ class ProjectPurchaseTendersController < ApplicationController
   def mark_as_final
       if @project_purchase_tender.marked_as_final == true
         @project_purchase_tender.marked_as_final = false
+        @project_purchase_tender.project_purchase_entry.destroy
+
       else
         @project_purchase_tender.marked_as_final = true
+        @project_purchase_entry = ProjectPurchaseEntry.new
+        @project_purchase_entry.entry_no = new_purchase_entry_no
+
       end
     @project_purchase_tender.save
     redirect_to @project_purchase_tender
@@ -88,5 +93,13 @@ class ProjectPurchaseTendersController < ApplicationController
     object.office_id = current_office.id
     object.fiscal_year_id = current_fiscal_year.id
     object
+  end
+
+  def new_purchase_entry_no
+    pen = 1
+    @project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
+    if @project_purchase_entry.blank? == false
+      @pen = @project_purchase_entry.entry_no + 1
+    end
   end
 end

@@ -17,6 +17,7 @@ class ProjectPurchaseEntriesController < ApplicationController
   # GET /project_purchase_entries/new
   def new
     @project_purchase_entry = ProjectPurchaseEntry.new
+    @project_purchase_entry.entry_no = new_purchase_entry_no
   end
 
   # GET /project_purchase_entries/1/edit
@@ -27,7 +28,7 @@ class ProjectPurchaseEntriesController < ApplicationController
   # POST /project_purchase_entries.json
   def create
     @project_purchase_entry = ProjectPurchaseEntry.new(project_purchase_entry_params)
-
+    @project_purchase_entry = update_office_information @project_purchase_entry
     respond_to do |format|
       if @project_purchase_entry.save
         format.html { redirect_to @project_purchase_entry, notice: 'Project purchase entry was successfully created.' }
@@ -64,6 +65,15 @@ class ProjectPurchaseEntriesController < ApplicationController
   end
 
   def mark_as_final
+    if @project_purchase_entry.marked_as_final != true
+      @project_purchase_entry.marked_as_final = false
+    end
+
+    if @project_purchase_entry.marked_as_final == false
+      @project_purchase_entry.marked_as_final = true
+    end
+
+    @project_purchase_entry.save
     redirect_to @project_purchase_entry
   end
 
@@ -76,5 +86,27 @@ class ProjectPurchaseEntriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_purchase_entry_params
       params.require(:project_purchase_entry).permit(:entry_date, :bill_no, :entry_no, :store_chief_name, :store_chief_designation, :store_chief_signed_date, :section_chief_name, :section_chief_designation, :section_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :user_id, :office_id, :fiscal_year_id, :item_id, :item_register_page_no, :purchase_handover_no, :fy, :marked_as_final)
+    end
+
+    def update_office_information obj
+      store_body = current_control_body
+      obj.office_id = current_office.id
+      obj.fiscal_year_id = current_fiscal_year.id
+      obj.user_id = current_user.id
+      obj.store_chief_name = store_body.store_keeper_name
+      obj.store_chief_designation = store_body.store_keeper_designation
+      obj.office_chief_designation = store_body.office_chief_degination
+      obj.office_chief_name = store_body.office_chief_name
+      obj.section_chief_name = store_body.section_chief_name
+      obj.section_chief_designation = store_body.section_chief_degination
+      obj
+    end
+
+    def new_purchase_entry_no
+      pen = 1
+      @project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
+      if @project_purchase_entry.blank? == false
+        @pen = @project_purchase_entry.entry_no + 1
+      end
     end
 end

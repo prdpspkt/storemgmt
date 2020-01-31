@@ -14,14 +14,14 @@
 <div class="separator"></div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_purchase_entries_path %>
- <%= link_to edit_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
   <% if @project_purchase_entry.marked_as_final != true %>
+  <%= link_to edit_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
   <%= link_to final_btn.html_safe, ppe_mark_as_final_path(@project_purchase_entry), data: {method: :post} %>
     <% end %>
   <% if can_unmark(@project_purchase_entry) %>
   <%= link_to before_final_btn.html_safe, ppe_mark_as_final_path(@project_purchase_entry), data: {method: :post} %>
     <%end %>
-  <%= link_to print_big_btn.html_safe, edit_project_purchase_entry_path(@project_purchase_entry) %>
+  <%= link_to print_big_btn.html_safe, ppe_report_path(@project_purchase_entry) %>
 
 </div>
 <div class="separator"></div>
@@ -39,17 +39,22 @@
     <th>जम्मा</th>
     <th></th>
   </tr>
+  <% @i = 1 %>
   <% @project_purchase_entry.project_purchase_entry_items.each do |item| %>
 <tr>
+  <td><%= nd @i %></td>
+  <td><%= item.item.name_of_item_ne %></td>
+  <td><%= item.item.unit_ne %></td>
+  <td><%= nd item.quantity %></td>
+  <td><%= nd item.rate %></td>
+  <td><%= nd item.amount %></td>
   <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td><%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure ?"} %></td>
+  <td>
+    <% if @project_purchase_entry.marked_as_final != true %>
+    <%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure ?"} %>
+      <% end %>
+    </td>
 </tr>
-
+<% @i = @i + 1 %>
   <% end %>
 </table>

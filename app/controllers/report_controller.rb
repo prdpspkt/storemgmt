@@ -62,6 +62,16 @@ class ReportController < ApplicationController
     @repair_application_form = RepairApplicationForm.find(params[:id])
     @repair_application_form_items = @repair_application_form.repair_application_form_items
   end
+
+  def project_purchase_entry
+    @project_purchase_entry = ProjectPurchaseEntry.find(params[:id])
+    @project_purchase_entry_items = @project_purchase_entry.project_purchase_entry_items
+    @total_amount = @project_purchase_entry_items.sum(:total_amount)
+    @amount = @project_purchase_entry_items.sum(:amount)
+    @amount_without_vat = @project_purchase_entry_items.sum(:amount_without_vat)
+    @vat = @project_purchase_entry_items.sum(:vat)
+    @other_expense = @project_purchase_entry_items.sum(:other_expense)
+  end
   private
   def set_office_information
     @office = current_office
