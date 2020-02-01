@@ -126,6 +126,8 @@ class ProjectPurchaseTendersController < ApplicationController
     ppei.name_of_item_en = tender_item.name_of_item_en
     ppei.name_of_item_ne = tender_item.name_of_item_ne
     ppei.specification = tender_item.name_of_item_en
+    ppei.project_purchase_entry_id = ppe.id
+
 
   end
 end

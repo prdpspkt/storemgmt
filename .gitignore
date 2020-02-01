@@ -32,3 +32,6 @@
 
 .idea
 /.idea
+/.idea/*
+/.idea/.generators
+/.idea/.storemgmt.iml
