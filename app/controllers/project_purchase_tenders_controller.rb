@@ -71,7 +71,8 @@ class ProjectPurchaseTendersController < ApplicationController
         @project_purchase_entry.save
 
         @project_purchase_tender.project_tender_items.each do |item|
-          create_purchase_entry_item item, @project_purchase_entry
+          ppei = ProjectPurchaseEntryItem.new(item.attributes.select{ |key, _| ProjectPurchaseEntryItem.attribute_names.include? key})
+          ppei.save
         end
 
       end
@@ -119,15 +120,5 @@ class ProjectPurchaseTendersController < ApplicationController
       pen = project_purchase_entry.entry_no + 1
     end
     pen
-  end
-
-  def create_purchase_entry_item tender_item, ppe
-    ppei = ProjectPurchaseEntryItem.new
-    ppei.name_of_item_en = tender_item.name_of_item_en
-    ppei.name_of_item_ne = tender_item.name_of_item_ne
-    ppei.specification = tender_item.name_of_item_en
-    ppei.project_purchase_entry_id = ppe.id
-
-
   end
 end
