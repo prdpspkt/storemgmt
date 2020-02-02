@@ -1,2 +1,0 @@
-module ProjectPurchaseOrderItemsHelper
-end

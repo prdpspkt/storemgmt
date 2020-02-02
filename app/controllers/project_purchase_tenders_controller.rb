@@ -62,17 +62,23 @@ class ProjectPurchaseTendersController < ApplicationController
         @project_purchase_tender.marked_as_final = true
         @project_purchase_entry = ProjectPurchaseEntry.new
         @project_purchase_entry.entry_no = new_purchase_entry_no
+        @project_purchase_entry.entry_date = @project_purchase_tender.tender_date
         @project_purchase_entry.store_chief_name = @project_purchase_tender.store_keeper_name
         @project_purchase_entry.store_chief_designation = @project_purchase_tender.store_keeper_designation
         @project_purchase_entry.section_chief_name = @project_purchase_tender.section_chief_name
         @project_purchase_entry.section_chief_designation = @project_purchase_tender.section_chief_designation
         @project_purchase_entry.office_chief_name = @project_purchase_tender.office_chief_name
         @project_purchase_entry.office_chief_designation = @project_purchase_tender.office_chief_designation
-        @project_purchase_entry.save
+        @project_purchase_entry.project_purchase_tender_id = @project_purchase_tender.id
+        @project_purchase_entry.office_id = current_office.id
+        @project_purchase_entry.user_id = current_user.id
+        @project_purchase_entry.fiscal_year_id = current_fiscal_year.id
+        @project_purchase_entry.save!
 
         @project_purchase_tender.project_tender_items.each do |item|
           ppei = ProjectPurchaseEntryItem.new(item.attributes.select{ |key, _| ProjectPurchaseEntryItem.attribute_names.include? key})
-          ppei.save
+          ppei.project_purchase_entry_id = @project_purchase_entry.id
+          ppei.save!
         end
 
       end
