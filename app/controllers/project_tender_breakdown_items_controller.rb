@@ -25,7 +25,7 @@ class ProjectTenderBreakdownItemsController < ApplicationController
   # POST /project_tender_breakdown_items.json
   def create
     @project_tender_breakdown_item = ProjectTenderBreakdownItem.new(project_tender_breakdown_item_params)
-    @item = ProjectTenderItem.find(@project_tender_breakdown_item.project_purchase_entry_item_id)
+    @item = ProjectPurchaseEntryItem.find(@project_tender_breakdown_item.project_purchase_entry_item_id)
     @project_tender_breakdown_item.rate = @item.rate
     if @project_tender_breakdown_item.quantity > @item.sku
       @project_tender_breakdown_item.amount = @item.rate * @item.sku
@@ -80,6 +80,6 @@ class ProjectTenderBreakdownItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_tender_breakdown_item_params
-    params.require(:project_tender_breakdown_item).permit(:quantity, :project_tender_breakdown_id, :project_tender_item_id)
+    params.require(:project_tender_breakdown_item).permit(:quantity, :project_tender_breakdown_id, :project_purchase_entry_item_id)
   end
 end

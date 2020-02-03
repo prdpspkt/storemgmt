@@ -16,11 +16,11 @@
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_purchase_tenders_path %>
   <% if can_unmark @project_purchase_tender %>
-    <%= link_to before_final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), method: :post %>
+    <%= link_to before_final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), data: { method: :post} %>
   <% end %>
   <% if @project_purchase_tender.marked_as_final != true %>
     <%= link_to edit_big_btn.html_safe, edit_project_purchase_tender_path(@project_purchase_tender) %>
-    <%= link_to final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), method: :post %>
+    <%= link_to final_btn.html_safe, project_purchase_tender_maf_path(@project_purchase_tender), data: {method: :post} %>
   <% end %>
   <%= link_to print_big_btn.html_safe, edit_project_purchase_tender_path(@project_purchase_tender) %>
 </div>

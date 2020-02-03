@@ -54,37 +54,40 @@ class ProjectPurchaseTendersController < ApplicationController
   end
 
   def mark_as_final
-      if @project_purchase_tender.marked_as_final == true
-        @project_purchase_tender.marked_as_final = false
+    if @project_purchase_tender.marked_as_final == true
+      @project_purchase_tender.marked_as_final = false
+      if @project_purchase_tender.project_purchase_entry.blank? == false
         @project_purchase_tender.project_purchase_entry.destroy
-
-      else
-        @project_purchase_tender.marked_as_final = true
-        @project_purchase_entry = ProjectPurchaseEntry.new
-        @project_purchase_entry.entry_no = new_purchase_entry_no
-        @project_purchase_entry.entry_date = @project_purchase_tender.tender_date
-        @project_purchase_entry.store_chief_name = @project_purchase_tender.store_keeper_name
-        @project_purchase_entry.store_chief_designation = @project_purchase_tender.store_keeper_designation
-        @project_purchase_entry.section_chief_name = @project_purchase_tender.section_chief_name
-        @project_purchase_entry.section_chief_designation = @project_purchase_tender.section_chief_designation
-        @project_purchase_entry.office_chief_name = @project_purchase_tender.office_chief_name
-        @project_purchase_entry.office_chief_designation = @project_purchase_tender.office_chief_designation
-        @project_purchase_entry.project_purchase_tender_id = @project_purchase_tender.id
-        @project_purchase_entry.office_id = current_office.id
-        @project_purchase_entry.user_id = current_user.id
-        @project_purchase_entry.fiscal_year_id = current_fiscal_year.id
-        @project_purchase_entry.save!
-
-        @project_purchase_tender.project_tender_items.each do |item|
-          ppei = ProjectPurchaseEntryItem.new(item.attributes.select{ |key, _| ProjectPurchaseEntryItem.attribute_names.include? key})
-          ppei.project_purchase_entry_id = @project_purchase_entry.id
-          ppei.save!
-        end
-
       end
-    @project_purchase_tender.save
+    else
+      @project_purchase_tender.marked_as_final = true
+      @project_purchase_entry = ProjectPurchaseEntry.new
+      @project_purchase_entry.entry_no = new_purchase_entry_no
+      @project_purchase_entry.entry_date = @project_purchase_tender.tender_date
+      @project_purchase_entry.store_chief_name = @project_purchase_tender.store_keeper_name
+      @project_purchase_entry.store_chief_designation = @project_purchase_tender.store_keeper_designation
+      @project_purchase_entry.section_chief_name = @project_purchase_tender.section_chief_name
+      @project_purchase_entry.section_chief_designation = @project_purchase_tender.section_chief_designation
+      @project_purchase_entry.office_chief_name = @project_purchase_tender.office_chief_name
+      @project_purchase_entry.office_chief_designation = @project_purchase_tender.office_chief_designation
+      @project_purchase_entry.project_purchase_tender_id = @project_purchase_tender.id
+      @project_purchase_entry.office_id = current_office.id
+      @project_purchase_entry.user_id = current_user.id
+      @project_purchase_entry.fiscal_year_id = current_fiscal_year.id
+      @project_purchase_entry.save!
+
+      @project_purchase_tender.project_tender_items.each do |item|
+        ppei = ProjectPurchaseEntryItem.new(item.attributes.select { |key, _| ProjectPurchaseEntryItem.attribute_names.include? key })
+        ppei.id = nil
+        ppei.project_purchase_entry_id = @project_purchase_entry.id
+        ppei.save!
+      end
+
+    end
+    @project_purchase_tender.save!
     redirect_to @project_purchase_tender
   end
+
   # DELETE /project_purchase_tenders/1
   # DELETE /project_purchase_tenders/1.json
   def destroy
@@ -96,15 +99,16 @@ class ProjectPurchaseTendersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project_purchase_tender
-      @project_purchase_tender = ProjectPurchaseTender.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_purchase_tender_params
-      params.require(:project_purchase_tender).permit(:tender_no, :tender_name, :tender_date, :marked_as_final, :bidders_name, :bidders_address)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project_purchase_tender
+    @project_purchase_tender = ProjectPurchaseTender.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_purchase_tender_params
+    params.require(:project_purchase_tender).permit(:tender_no, :tender_name, :tender_date, :marked_as_final, :bidders_name, :bidders_address)
+  end
 
   def update_general_information object
     object.user_id = current_user.id
