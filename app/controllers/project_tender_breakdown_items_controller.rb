@@ -45,7 +45,7 @@ class ProjectTenderBreakdownItemsController < ApplicationController
         format.html { redirect_to project_tender_breakdown_path(@project_tender_breakdown_item.project_tender_breakdown), notice: 'Project tender breakdown item was successfully created.' }
         format.json { render :show, status: :created, location: @project_tender_breakdown_item }
       else
-        format.html { render :new }
+        format.html { project_tender_breakdown_path(@project_tender_breakdown_item.project_tender_breakdown)}
         format.json { render json: @project_tender_breakdown_item.errors, status: :unprocessable_entity }
       end
     end
@@ -55,13 +55,13 @@ class ProjectTenderBreakdownItemsController < ApplicationController
   # DELETE /project_tender_breakdown_items/1
   # DELETE /project_tender_breakdown_items/1.json
   def destroy
-    project_tender_item_id = @project_tender_breakdown_item.project_tender_item_id
-    project_tender_item = ProjectTenderItem.find(project_tender_item_id)
+    project_purchase_item_id = @project_tender_breakdown_item.project_purchase_entry_item_id
+    project_purchase_entry_item = ProjectPurchaseEntryItem.find(project_tender_item_id)
     project_tender_breakdown = @project_tender_breakdown_item.project_tender_breakdown
-    project_tender_item.sku = project_tender_item.sku + @project_tender_breakdown_item.quantity
+    project_purchase_entry_item.sku = project_purchase_entry_item.sku + @project_tender_breakdown_item.quantity
     respond_to do |format|
     if @project_tender_breakdown_item.destroy
-      project_tender_item.save
+      project_purchase_entry_item.save
         format.html { redirect_to project_tender_breakdown_path(project_tender_breakdown), notice: 'Project tender breakdown item was successfully destroyed.' }
         format.json { head :no_content }
     else

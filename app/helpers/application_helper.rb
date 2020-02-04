@@ -67,6 +67,10 @@ module ApplicationHelper
   end
 
   def ndate input
+    begin
     nd DateTime.parse(input.to_s).strftime("%Y-%m-%d")
+    rescue ArgumentError
+      "Invalid Date"
+    end
   end
 end

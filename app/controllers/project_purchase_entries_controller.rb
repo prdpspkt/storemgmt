@@ -66,11 +66,9 @@ class ProjectPurchaseEntriesController < ApplicationController
 
   def mark_as_final
     if @project_purchase_entry.marked_as_final != true
-      @project_purchase_entry.marked_as_final = false
-    end
-
-    if @project_purchase_entry.marked_as_final == false
       @project_purchase_entry.marked_as_final = true
+    else
+      @project_purchase_entry.marked_as_final = false
     end
 
     @project_purchase_entry.save
