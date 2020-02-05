@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_053151) do
+ActiveRecord::Schema.define(version: 2020_02_05_120256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -895,6 +895,8 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "amount_with_out_vat"
+    t.decimal "vat"
   end
 
   create_table "project_purchase_orders", force: :cascade do |t|
@@ -917,12 +919,13 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
     t.datetime "section_cheif_signed_date"
     t.integer "user_id"
     t.string "fy"
-    t.datetime "fiscal_year_signed_date"
+    t.datetime "fiscal_year_id"
     t.integer "office_id"
     t.integer "project_id"
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vendor_id"
   end
 
   create_table "project_purchase_tenders", force: :cascade do |t|

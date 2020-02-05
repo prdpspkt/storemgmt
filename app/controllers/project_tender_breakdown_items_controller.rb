@@ -55,8 +55,8 @@ class ProjectTenderBreakdownItemsController < ApplicationController
   # DELETE /project_tender_breakdown_items/1
   # DELETE /project_tender_breakdown_items/1.json
   def destroy
-    project_purchase_item_id = @project_tender_breakdown_item.project_purchase_entry_item_id
-    project_purchase_entry_item = ProjectPurchaseEntryItem.find(project_tender_item_id)
+    project_purchase_entry_item_id = @project_tender_breakdown_item.project_purchase_entry_item_id
+    project_purchase_entry_item = ProjectPurchaseEntryItem.find(project_purchase_entry_item_id)
     project_tender_breakdown = @project_tender_breakdown_item.project_tender_breakdown
     project_purchase_entry_item.sku = project_purchase_entry_item.sku + @project_tender_breakdown_item.quantity
     respond_to do |format|

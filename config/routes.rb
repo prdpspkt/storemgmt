@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :project_purchase_tenders
   post "project_purchase_tender/mark_as_final/:id" => "project_purchase_tenders#mark_as_final", as: :project_purchase_tender_maf
   resources :project_purchase_orders
+  post "project_purchase_orders/mark_as_final/:id" => "project_purchase_orders#mark_as_final", as: :ppo_maf
   resources :project_purchase_order_items
   resources :pneirts
   resources :projects

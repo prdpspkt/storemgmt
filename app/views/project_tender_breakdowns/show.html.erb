@@ -10,8 +10,8 @@
 <div class="separator"></div>
 <div class="text-center">
   <%= link_to(back_btn.html_safe, project_tender_breakdowns_path) %>
-  <%= link_to(edit_big_btn.html_safe, edit_project_tender_breakdown_path(@project_tender_breakdown)) %>
   <% if @project_tender_breakdown.marked_as_final == false %>
+    <%= link_to(edit_big_btn.html_safe, edit_project_tender_breakdown_path(@project_tender_breakdown)) %>
     <%= link_to(final_btn.html_safe, ptm_marked_as_final_path(@project_tender_breakdown), method: :post) %>
   <% end %>
   <% if can_unmark(@project_tender_breakdown) %>
