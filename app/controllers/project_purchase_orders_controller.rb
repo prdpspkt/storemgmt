@@ -49,6 +49,11 @@ class ProjectPurchaseOrdersController < ApplicationController
       ppe = ProjectPurchaseEntry.new(@project_purchase_order.attributes.select { |key, _| ProjectPurchaseEntry.attribute_names.include? key })
       ppe.id = nil
       ppe.project_purchase_order_id = @project_purchase_order.id
+      ppe.entry_no = new_purchase_entry_no
+      ppe.entry_date = bs_today
+      ppe = control_information ppe
+      ppe.updated_at = Date.today
+      ppe.marked_as_final = false
       ppe.save!
       @project_purchase_order.project_purchase_order_items.each do |item|
         ppei = ProjectPurchaseEntryItem.new(item.attributes.select { |key, _| ProjectPurchaseEntryItem.attribute_names.include? key })
@@ -58,8 +63,12 @@ class ProjectPurchaseOrdersController < ApplicationController
       end
     else
       @project_purchase_order.marked_as_final = false
-      @project_purchase_order.project_purchase_entry.destroy
+      if @project_purchase_order.project_purchase_entry.blank? == false
+        @project_purchase_order.project_purchase_entry.destroy
+      end
     end
+    @project_purchase_order.save
+    redirect_to @project_purchase_order
   end
 
   # PATCH/PUT /project_purchase_orders/1
@@ -113,6 +122,16 @@ class ProjectPurchaseOrdersController < ApplicationController
     object.vendor_address = vendor.vendor_address
     object.vendor_registration = vendor.vendor_registration
     object.vendor_pan = vendor.vendor_pan
+    object
+  end
+
+  def control_information object
+    object.store_chief_name = current_control_body.store_keeper_name
+    object.store_chief_designation = current_control_body.store_keeper_designation
+    object.section_chief_name = current_control_body.section_chief_name
+    object.section_chief_designation = current_control_body.section_chief_degination
+    object.office_chief_name = current_control_body.section_chief_name
+    object.office_chief_designation = current_control_body.office_chief_degination
     object
   end
 

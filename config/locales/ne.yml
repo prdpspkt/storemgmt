@@ -255,3 +255,13 @@ en:
           quantity: "परिमाण"
           rate: "दर"
           remarks: "कैफियत"
+        project_demand:
+          demand_no: "माग नं"
+          demand_date: "माग गरिएको मिति"
+          demand_by: "माग गर्नेको नाम"
+          recommended_by: "सिफारिस गर्ने नाम"
+          needed_to_purchase: "खरिद गर्नुपर्ने"
+          ordered_date: "आदेश दिएको मिति"
+          recorded_date: "अभिलेख राखेको मिति"
+          project_id: "आयोजनाको नाम"
+

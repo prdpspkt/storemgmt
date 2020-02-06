@@ -10,7 +10,7 @@ json.set! :data do
                "
     else
       json.url "
-               #{link_to show_bth.html_safe, project_purchase_order }
+               #{link_to show_btn.html_safe, project_purchase_order }
                "
     end
     json.sn "#{nd @i}"

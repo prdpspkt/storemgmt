@@ -1,0 +1,41 @@
+<%= form_with(model: project_demand_item, local: true) do |form| %>
+  <% if project_demand_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_demand_item.errors.count, "error") %> prohibited this project_demand_item from being saved:</h2>
+
+      <ul>
+      <% project_demand_item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+    <%= form.hidden_field :project_demand_id %>
+
+<table class="row">
+
+  <div class="field">
+    <%= form.label :quantity %>
+    <%= form.text_field :quantity %>
+  </div>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :rate %>
+    <%= form.text_field :rate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :remark %>
+    <%= form.text_field :remark %>
+  </div>
+
+</table>
+  <div class="float-right">
+    <%= form.submit %>
+  </div>
+<% end %>

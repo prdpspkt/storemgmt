@@ -5,4 +5,5 @@ class Office < ApplicationRecord
 	has_many :store_bodies
 	has_many :project_purchase_tenders
 	has_many :project_tender_breakdowns
+	has_many :projects
 end
