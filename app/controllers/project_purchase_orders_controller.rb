@@ -1,5 +1,5 @@
 class ProjectPurchaseOrdersController < ApplicationController
-  before_action :set_project_purchase_order, only: [:show, :edit, :update, :destroy]
+  before_action :set_project_purchase_order, only: [:mark_as_final, :show, :edit, :update, :destroy]
 
   # GET /project_purchase_orders
   # GET /project_purchase_orders.json
@@ -44,7 +44,22 @@ class ProjectPurchaseOrdersController < ApplicationController
   end
 
   def mark_as_final
-
+    if @project_purchase_order.marked_as_final != true
+      @project_purchase_order.marked_as_final = true
+      ppe = ProjectPurchaseEntry.new(@project_purchase_order.attributes.select { |key, _| ProjectPurchaseEntry.attribute_names.include? key })
+      ppe.id = nil
+      ppe.project_purchase_order_id = @project_purchase_order.id
+      ppe.save!
+      @project_purchase_order.project_purchase_order_items.each do |item|
+        ppei = ProjectPurchaseEntryItem.new(item.attributes.select { |key, _| ProjectPurchaseEntryItem.attribute_names.include? key })
+        ppei.id = nil
+        ppei.project_purchase_entry_id = ppe.id
+        ppei.save!
+      end
+    else
+      @project_purchase_order.marked_as_final = false
+      @project_purchase_order.project_purchase_entry.destroy
+    end
   end
 
   # PATCH/PUT /project_purchase_orders/1
@@ -72,15 +87,16 @@ class ProjectPurchaseOrdersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project_purchase_order
-      @project_purchase_order = ProjectPurchaseOrder.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_purchase_order_params
-      params.require(:project_purchase_order).permit(:vendor_id, :order_no, :order_date, :order_decision_no, :order_decision_date, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :office_chief_name, :office_chief_signed_date, :section_chief_name, :section_cheif_signed_date, :user_id, :fy, :fiscal_year_signed_date, :office_id, :project_id, :marked_as_final)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project_purchase_order
+    @project_purchase_order = ProjectPurchaseOrder.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_purchase_order_params
+    params.require(:project_purchase_order).permit(:vendor_id, :order_no, :order_date, :order_decision_no, :order_decision_date, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :office_chief_name, :office_chief_signed_date, :section_chief_name, :section_cheif_signed_date, :user_id, :fy, :fiscal_year_signed_date, :office_id, :project_id, :marked_as_final)
+  end
 
   def general_information object
     object.fiscal_year_id = current_fiscal_year.id
@@ -98,5 +114,14 @@ class ProjectPurchaseOrdersController < ApplicationController
     object.vendor_registration = vendor.vendor_registration
     object.vendor_pan = vendor.vendor_pan
     object
+  end
+
+  def new_purchase_entry_no
+    pen = 1
+    project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
+    if project_purchase_entry.blank? == false
+      pen = project_purchase_entry.entry_no + 1
+    end
+    pen
   end
 end

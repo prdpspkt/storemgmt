@@ -19,9 +19,13 @@
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_purchase_orders_path %>
-  <%= link_to edit_big_btn.html_safe, edit_project_purchase_order_path(@project_purchase_order) %>
-  <%= link_to final_btn.html_safe, "#" %>
-  <%= link_to before_final_btn.html_safe, "#" %>
+  <% if @project_purchase_order.marked_as_final != true %>
+    <%= link_to edit_big_btn.html_safe, edit_project_purchase_order_path(@project_purchase_order) %>
+    <%= link_to final_btn.html_safe, ppo_maf_path(@project_purchase_order), data: { method: :post} %>
+  <% end %>
+  <% if can_unmark @project_purchase_order %>
+    <%= link_to before_final_btn.html_safe, ppo_maf_path(@project_purchase_order), data: {method: :post} %>
+  <% end %>
   <%= link_to print_big_btn.html_safe, project_purchase_orders_path %>
 </div>
 <div class="separator"></div>
@@ -51,16 +55,16 @@
       <td><%= nd item.amount %></td>
       <td><%= item.remarks %></td>
     </tr>
-    <%@i = @i + 1 %>
+    <% @i = @i + 1 %>
   <% end %>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>जम्मा भ्याट सहित</td>
-      <td><%= nd @project_purchase_order_items.sum(:amount) %></td>
-      <td></td>
-    </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>जम्मा भ्याट सहित</td>
+    <td><%= nd @project_purchase_order_items.sum(:amount) %></td>
+    <td></td>
+  </tr>
 </table>

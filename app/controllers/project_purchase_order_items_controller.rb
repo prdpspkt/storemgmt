@@ -27,7 +27,11 @@ class ProjectPurchaseOrderItemsController < ApplicationController
     @project_purchase_order_item = ProjectPurchaseOrderItem.new(project_purchase_order_item_params)
     @project_purchase_order_item = update_item_information @project_purchase_order_item
     @project_purchase_order_item = update_general_information @project_purchase_order_item
-    @project_purchase_order_item.amount = (@project_purchase_order_item.rate * @project_purchase_order_item.quantity)*1.13
+    @project_purchase_order_item.amount_with_out_vat = @project_purchase_order_item.rate * @project_purchase_order_item.quantity
+    if @project_purchase_order_item.is_vatable == true
+    @project_purchase_order_item.amount = @project_purchase_order_item.amount_with_out_vat*1.13
+    @project_purchase_order_item.vat = @project_purchase_order_item.amount-@project_purchase_order_item.amount_with_out_vat
+    end
     @project_purchase_order =  ProjectPurchaseOrder.find(@project_purchase_order_item.project_purchase_order_id)
     respond_to do |format|
       if @project_purchase_order_item.save
@@ -73,7 +77,7 @@ class ProjectPurchaseOrderItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_purchase_order_item_params
-    params.require(:project_purchase_order_item).permit(:item_classification_no, :name_of_item_en, :quantity, :rate, :amount, :remarks, :project_purchase_order_id, :item_id)
+    params.require(:project_purchase_order_item).permit(:is_vatable, :item_classification_no, :name_of_item_en, :quantity, :rate, :amount, :remarks, :project_purchase_order_id, :item_id)
   end
 
   def update_item_information object
