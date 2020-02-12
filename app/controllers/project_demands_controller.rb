@@ -12,6 +12,8 @@ class ProjectDemandsController < ApplicationController
   def show
     @project_demand_item = ProjectDemandItem.new
     @project_demand_item.project_demand_id = @project_demand.id
+    @project_items = ProjectItem.where(project_id: @project_demand.project_id)
+    @items = @project_demand.project_demand_items
   end
 
   # GET /project_demands/new

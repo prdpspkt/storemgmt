@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_06_034309) do
+ActiveRecord::Schema.define(version: 2020_02_12_095424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -605,7 +605,7 @@ ActiveRecord::Schema.define(version: 2020_02_06_034309) do
     t.decimal "amount"
     t.decimal "quantity"
     t.string "remarks"
-    t.integer "office_purchase_entry_item_id"
+    t.integer "project_purchase_entry_item_id"
     t.decimal "sku"
     t.integer "project_release_item_id"
     t.integer "entry_no"
@@ -633,7 +633,7 @@ ActiveRecord::Schema.define(version: 2020_02_06_034309) do
 
   create_table "pneirts", force: :cascade do |t|
     t.string "model_no"
-    t.string "item_identificaiton_no"
+    t.string "item_identification_no"
     t.string "country"
     t.integer "project_item_id"
     t.integer "item_id"

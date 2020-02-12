@@ -25,9 +25,6 @@
 
 </div>
 <div class="separator"></div>
-<h2>दाखिला गर्नुपर्ने सामान प्रविष्ट गर्ने</h2>
-<%= render 'project_purchase_entry_item_form', project_purchase_entry_item: @project_purchase_entry_item %>
-<div class="separator"></div>
 <h2>दाखिला गर्नुपर्ने सामाग्री</h2>
 <table class="table table-sm">
   <tr>
@@ -51,7 +48,9 @@
   <td></td>
   <td>
     <% if @project_purchase_entry.marked_as_final != true %>
+      <%= link_to edit_btn.html_safe, edit_project_purchase_entry_item_path(item) %>
     <%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure ?"} %>
+
       <% end %>
     </td>
 </tr>

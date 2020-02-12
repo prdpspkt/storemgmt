@@ -69,6 +69,10 @@ class ProjectDemandItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_demand_item_params
-      params.require(:project_demand_item).permit(:name_of_item_ne, :name_of_item_en, :specification, :unit_ne, :unit_en, :quantity, :amount, :rate, :remark, :user_id, :office_id, :project_id, :project_item_id, :fy, :fiscal_year_id, :item_id, :project_demand_id)
+      params.require(:project_demand_item).permit(:project_demand_id, :quantity, :remarks, :project_id, :project_item_id)
+    end
+
+    def update_item_information object
+
     end
 end

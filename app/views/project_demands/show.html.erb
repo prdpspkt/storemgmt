@@ -13,5 +13,36 @@
     <td><%= @project_demand.demand_by %></td>
   </tr>
 </table>
+<div class="text-center">
+  <%= link_to(back_btn.html_safe, project_demands_path) %>
+  <%= link_to(edit_big_btn.html_safe, edit_project_demand_path(@project_demand)) %>
+  <%= link_to(final_btn.html_safe, project_demands_path) %>
+  <%= link_to(before_final_btn.html_safe, project_demands_path) %>
+  <%= link_to(print_big_btn.html_safe, project_demands_path) %>
+</div>
+<div class="separator"></div>
 <h2>सामाग्री थप गर्ने</h2>
 <%= render 'project_demands/project_demand_item_form', project_demand_item: @project_demand_item %>
+<div class="separator"></div>
+<table class="table table-bordered">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>इकाई</th>
+    <th>परिमाण</th>
+    <th>दर</th>
+    <th>जम्मा</th>
+  </tr>
+  <% @i = 1 %>
+  <% @items.each do |item| %>
+  <tr>
+    <td><%= nd @i %></td>
+    <td></td>
+    <td></td>
+    <td><%= nd item.quantity %></td>
+    <td></td>
+    <td></td>
+  </tr>
+    <% @i = @i + 1 %>
+    <% end %>
+</table>

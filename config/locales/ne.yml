@@ -264,4 +264,9 @@ en:
           ordered_date: "आदेश दिएको मिति"
           recorded_date: "अभिलेख राखेको मिति"
           project_id: "आयोजनाको नाम"
+        project_demand_item:
+          name_of_item: "सामाग्रीको नाम"
+          quantity: "परिमाण"
+          remark: "कैफियत"
+
 

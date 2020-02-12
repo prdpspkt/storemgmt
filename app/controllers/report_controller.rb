@@ -72,6 +72,13 @@ class ReportController < ApplicationController
     @vat = @project_purchase_entry_items.sum(:vat)
     @other_expense = @project_purchase_entry_items.sum(:other_expense)
   end
+
+
+  def project_item_transactions
+    project_item_id = params[:project_item_id]
+    @item = ProjectItem.find(project_item_id)
+    @transactions = Peirt.where(item_id: @item.item_id).where(project_id: nil)
+  end
   private
   def set_office_information
     @office = current_office
