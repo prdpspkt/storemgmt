@@ -29,6 +29,8 @@
 <table class="table table-sm">
   <tr>
     <th>क्र.स.</th>
+    <th>जिन्सी वर्गीकरण नं</th>
+    <th>खाता पाना नं</th>
     <th>सामानको नाम</th>
     <th>इकाई</th>
     <th>परिमाण</th>
@@ -40,6 +42,8 @@
   <% @project_purchase_entry.project_purchase_entry_items.each do |item| %>
 <tr>
   <td><%= nd @i %></td>
+  <td><%= nd item.item_classification_no %></td>
+  <td><%= nd item.item_register_page_no %></td>
   <td><%= item.item.name_of_item_ne %></td>
   <td><%= item.item.unit_ne %></td>
   <td><%= nd item.quantity %></td>

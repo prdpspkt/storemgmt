@@ -72,9 +72,7 @@
               <td></td>
               <td><%= t.remarks %></td>
               <td class="no-print">
-                <% if t.created_at.today?  %>
-                <%= link_to delete_btn.html_safe, t, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                <% end %>
+              </td>
             <% else %>
               <td> <% if t.transaction_date %>
                 <%= nd (t.transaction_date).strftime("%Y-%m-%d") %>
@@ -98,9 +96,7 @@
                 <% end %>
               </td>
               <td class="no-print">
-                <% if t.created_at.today?  %>
-                <%= link_to delete_btn.html_safe, t, remote: true, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-                  <% end %>
+              </td>
             <% end %>
           </tr>
         <% end %>

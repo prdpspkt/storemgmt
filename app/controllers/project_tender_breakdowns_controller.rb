@@ -19,6 +19,7 @@ class ProjectTenderBreakdownsController < ApplicationController
   # GET /project_tender_breakdowns/new
   def new
     @project_tender_breakdown = ProjectTenderBreakdown.new
+    @purchase_entries = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
   end
 
   # GET /project_tender_breakdowns/1/edit

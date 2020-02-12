@@ -25,7 +25,7 @@ class ProjectPurchaseEntryItemsController < ApplicationController
   # POST /project_purchase_entry_items.json
   def create
     @project_purchase_entry_item = ProjectPurchaseEntryItem.new(project_purchase_entry_item_params)
-    create_project_item_if_doesnt_exists @project_purchase_entry_item.item_id
+    # @project_purchase_entry_item.item_register_page_no = create_project_item_if_doesnt_exists @project_purchase_entry_item.item_id
     @project_purchase_entry_item.sku = @project_purchase_entry_item.quantity
     respond_to do |format|
       if @project_purchase_entry_item.save
@@ -84,38 +84,6 @@ class ProjectPurchaseEntryItemsController < ApplicationController
     item.fiscal_year = current_fiscal_year.id
     item.user_id = current_user.id
     item
-  end
-
-  def create_project_item_if_doesnt_exists item_id
-    @irpn = false
-    @item = Item.find(item_id)
-    @pi = ProjectItem.where(item_id: item_id).where(fiscal_year_id: current_fiscal_year.id).first
-    if @pi.blank?
-      @project_item = ProjectItem.new
-      @project_item.item_register_page_no = generate_item_register_no
-      @project_item.name_of_item_ne = @item.name_of_item_ne
-      @project_item.name_of_item_en = @item.name_of_item_en
-      @project_item.unit_ne = @item.unit_ne
-      @project_item.item_id = @item.id
-      @project_item.unit_en = @item.unit_en
-      @project_item.model_no = @item.model_no
-      @project_item.item_identification_no = @item.item_identification_no
-      @project_item.office_id = current_office.id
-      @project_item.fiscal_year_id = current_fiscal_year.id
-      @project_item.save
-      @irpn = @project_item.item_register_page_no
-    else
-      @irpn = @pi.item_register_page_no
-    end
-    @irpn
-  end
-  def generate_item_register_no
-    item_register_no = 1
-    items = ProjectItem.where(fiscal_year_id: current_fiscal_year.id).where(project_id: nil)
-    if items.count > 0
-      item_register_no = items.last.item_register_no + 1
-    end
-    item_register_no
   end
 
 end

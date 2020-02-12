@@ -74,7 +74,7 @@ class ReportController < ApplicationController
   end
 
 
-  def project_item_transactions
+  def project_eitem_transactions
     project_item_id = params[:project_item_id]
     @item = ProjectItem.find(project_item_id)
     @transactions = Peirt.where(item_id: @item.item_id).where(project_id: nil)

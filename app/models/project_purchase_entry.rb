@@ -2,8 +2,6 @@ class ProjectPurchaseEntry < ApplicationRecord
   has_many :project_purchase_entry_items, dependent: :destroy
   belongs_to :project_purchase_tender, optional: true
   belongs_to :project_purchase_order, optional: true
-  has_many :peirts, dependent:  :destroy
-  has_many :pneirts, dependent: :destroy
   after_update :create_peirt_or_pneirt
 
   private
@@ -26,7 +24,7 @@ class ProjectPurchaseEntry < ApplicationRecord
                                 "amount" => item.total_amount,
                                 "project_purchase_entry_item_id" => item.id,
                                 "sku" => item.sku,
-                                "entry_no" => self.entry_no
+                                "entry_release_no" => self.entry_no
                             })
           peirt.save
         end
@@ -47,7 +45,7 @@ class ProjectPurchaseEntry < ApplicationRecord
                                 "amount" => item.total_amount,
                                 "project_purchase_entry_item_id" => item.id,
                                 "sku" => item.sku,
-                                "entry_no" => self.entry_no,
+                                "entry_release_no" => self.entry_no,
                                 "size" => item.size,
                                 "approx_age" =>item.approx_age,
                                 "source" => item.source,
