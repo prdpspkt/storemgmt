@@ -11,7 +11,6 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project_items = ProjectItem.where(fiscal_year_id: current_fiscal_year.id).where(project_id: @project.id)
-    binding.pry
     @project_item = ProjectItem.new
     @project_item.project_id = @project.id
   end

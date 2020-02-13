@@ -73,6 +73,9 @@ class ProjectTenderBreakdownsController < ApplicationController
   def marked_as_final
     if @project_tender_breakdown.marked_as_final.present? || @project_tender_breakdown.marked_as_final  != false
       @project_tender_breakdown.marked_as_final = false
+      @project_tender_breakdown.project_tender_breakdown_items.each do |ptbi|
+        ptbi.peirt.destroy
+      end
     else
       @project_tender_breakdown.marked_as_final = true
     end

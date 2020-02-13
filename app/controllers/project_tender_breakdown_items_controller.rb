@@ -38,10 +38,12 @@ class ProjectTenderBreakdownItemsController < ApplicationController
     if @project_tender_breakdown_item.quantity > @item.sku
       ptbi.amount = @item.rate * @item.sku
       ptbi.quantity = @item.sku
+      ptbi.sku = @item.sku
       @item.sku = 0
     else
       ptbi.quantity = @project_tender_breakdown_item.quantity
       ptbi.amount = @item.rate * ptbi.quantity
+      ptbi.sku = ptbi.quantity
       @item.sku = @item.sku - ptbi.quantity
     end
     ptbi.name_of_item_ne = @item.name_of_item_ne
@@ -63,12 +65,12 @@ class ProjectTenderBreakdownItemsController < ApplicationController
   # DELETE /project_tender_breakdown_items/1
   # DELETE /project_tender_breakdown_items/1.json
   def destroy
-    project_purchase_entry_item_id = ptbi.project_purchase_entry_item_id
+    project_purchase_entry_item_id = @project_tender_breakdown_item.project_purchase_entry_item_id
     project_purchase_entry_item = ProjectPurchaseEntryItem.find(project_purchase_entry_item_id)
-    project_tender_breakdown = ptbi.project_tender_breakdown
-    project_purchase_entry_item.sku = project_purchase_entry_item.sku + ptbi.quantity
+    project_tender_breakdown = @project_tender_breakdown_item.project_tender_breakdown
+    project_purchase_entry_item.sku = project_purchase_entry_item.sku + @project_tender_breakdown_item.quantity
     respond_to do |format|
-      if ptbi.destroy
+      if @project_tender_breakdown_item.destroy
         project_purchase_entry_item.save
         format.html { redirect_to project_tender_breakdown_path(project_tender_breakdown), notice: 'Project tender breakdown item was successfully destroyed.' }
         format.json { head :no_content }
@@ -83,7 +85,7 @@ class ProjectTenderBreakdownItemsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project_tender_breakdown_item
-    ptbi = ProjectTenderBreakdownItem.find(params[:id])
+    @project_tender_breakdown_item = ProjectTenderBreakdownItem.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

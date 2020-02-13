@@ -29,6 +29,8 @@ class ProjectTenderBreakdown < ApplicationRecord
                                 "entry_release_no" => self.project_purchase_entry.entry_no
                             })
           peirt.save
+          item.sku = 0
+          item.save
         end
         if item.item_classification_no == 47
           pneirt = Pneirt.new({
@@ -54,6 +56,8 @@ class ProjectTenderBreakdown < ApplicationRecord
                                   "source" => item.source,
                               })
           pneirt.save
+          item.sku = 0
+          item.save
         end
       end
     end
