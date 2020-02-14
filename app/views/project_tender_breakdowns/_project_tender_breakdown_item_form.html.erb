@@ -12,10 +12,14 @@
   <% end %>
   <%= form.hidden_field :project_tender_breakdown_id %>
 <div class="row">
-  <div class="col-2"> <%= form.label :"सामानको नाम" %></div>
-  <div class="col-3">
-       <%= form.select(:project_purchase_entry_item_id, @items.collect { |item| [item.name_of_item_en, item.id] }, {include_blank: "सामानको नाम"}, {class: "form-control", required: :required}) %>
+  <div class="col-2">
+    <select name="item_classification_no" id="item_classification_no">
+      <option value="52">खर्च भएर जाने</option>
+      <option value="47">खर्च भएर नजाने</option>
+    </select>
   </div>
+  <div class="col-2"> <%= form.label :"सामानको नाम" %></div>
+
   <div class="col-2"> <%= form.label :"परिमाण" %></div>
   <div class="col-3">
     <%= form.text_field :quantity, class: "form-control", required: :required %>

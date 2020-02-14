@@ -82,6 +82,15 @@ class ProjectTenderBreakdownsController < ApplicationController
     redirect_to @project_tender_breakdown, notice: "Item successfully updated"
   end
 
+  def data_47
+    @items = ProjectItem.joins(:pneirts).where("pneirts.sku > 0").distinct.pluck(:item_id)
+    render
+  end
+
+  end
+
+  def data_52
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
