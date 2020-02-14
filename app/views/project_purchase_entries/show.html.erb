@@ -25,13 +25,12 @@
 
 </div>
 <div class="separator"></div>
-<h2>दाखिला गर्नुपर्ने सामान प्रविष्ट गर्ने</h2>
-<%= render 'project_purchase_entry_item_form', project_purchase_entry_item: @project_purchase_entry_item %>
-<div class="separator"></div>
 <h2>दाखिला गर्नुपर्ने सामाग्री</h2>
 <table class="table table-sm">
   <tr>
     <th>क्र.स.</th>
+    <th>जिन्सी वर्गीकरण नं</th>
+    <th>खाता पाना नं</th>
     <th>सामानको नाम</th>
     <th>इकाई</th>
     <th>परिमाण</th>
@@ -43,6 +42,8 @@
   <% @project_purchase_entry.project_purchase_entry_items.each do |item| %>
 <tr>
   <td><%= nd @i %></td>
+  <td><%= nd item.item_classification_no %></td>
+  <td><%= nd item.item_register_page_no %></td>
   <td><%= item.item.name_of_item_ne %></td>
   <td><%= item.item.unit_ne %></td>
   <td><%= nd item.quantity %></td>
@@ -51,7 +52,9 @@
   <td></td>
   <td>
     <% if @project_purchase_entry.marked_as_final != true %>
+      <%= link_to edit_btn.html_safe, edit_project_purchase_entry_item_path(item) %>
     <%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure ?"} %>
+
       <% end %>
     </td>
 </tr>

@@ -243,3 +243,30 @@ en:
           approx_age: "अनुमानित आयु"
           source: "प्राप्तिको श्रोत"
           size: "साइज"
+        project_purchase_order:
+          vendor_name: "व्यवसायीको नाम"
+          order_no: "खरिद आदेश नं"
+          order_date: "खरिद आदेशको मिति"
+          order_decision_no: "खरिदको निर्णय नं"
+          order_decision_date: "खरिदको निर्णय मिति"
+        project_purchase_order_item:
+          item_classification_no: "जिन्सी वर्गीकरण संकेत नं"
+          name_of_item_en: "सामानको नाम"
+          quantity: "परिमाण"
+          rate: "दर"
+          remarks: "कैफियत"
+        project_demand:
+          demand_no: "माग नं"
+          demand_date: "माग गरिएको मिति"
+          demand_by: "माग गर्नेको नाम"
+          recommended_by: "सिफारिस गर्ने नाम"
+          needed_to_purchase: "खरिद गर्नुपर्ने"
+          ordered_date: "आदेश दिएको मिति"
+          recorded_date: "अभिलेख राखेको मिति"
+          project_id: "आयोजनाको नाम"
+        project_demand_item:
+          name_of_item: "सामाग्रीको नाम"
+          quantity: "परिमाण"
+          remark: "कैफियत"
+
+

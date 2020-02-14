@@ -12,13 +12,13 @@ class ProjectTenderBreakdownsController < ApplicationController
   def show
     @project_tender_breakdown_item = ProjectTenderBreakdownItem.new
     @project_tender_breakdown_item.project_tender_breakdown_id = @project_tender_breakdown.id
-    @items = @project_tender_breakdown.project_purchase_entry.project_purchase_entry_items
     @project_tender_breakdown_items = @project_tender_breakdown.project_tender_breakdown_items
   end
 
   # GET /project_tender_breakdowns/new
   def new
     @project_tender_breakdown = ProjectTenderBreakdown.new
+    @purchase_entries = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
   end
 
   # GET /project_tender_breakdowns/1/edit
@@ -72,6 +72,9 @@ class ProjectTenderBreakdownsController < ApplicationController
   def marked_as_final
     if @project_tender_breakdown.marked_as_final.present? || @project_tender_breakdown.marked_as_final  != false
       @project_tender_breakdown.marked_as_final = false
+      @project_tender_breakdown.project_tender_breakdown_items.each do |ptbi|
+        ptbi.peirt.destroy
+      end
     else
       @project_tender_breakdown.marked_as_final = true
     end

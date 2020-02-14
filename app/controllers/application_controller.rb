@@ -59,6 +59,15 @@ class ApplicationController < ActionController::Base
     end
     store_body
   end
+
+  def bs_today
+    date = Date.today()
+    y = date.year
+    m = date.month
+    d = date.day
+    bs = NepaliDateConverter::Convert.to_nepali(y, m, d)
+    "#{bs[:year]}-#{bs[:month]}-#{bs[:date]}"
+  end
 end
 
 #TODO Remove all unnessary methods from items controllers

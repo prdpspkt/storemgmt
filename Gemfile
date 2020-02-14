@@ -11,6 +11,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'turbolinks'
+gem 'nepali_date_converter'
 
 #gem 'jquery-turbolinks'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

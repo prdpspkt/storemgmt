@@ -49,7 +49,7 @@ module ApplicationHelper
   end
 
   def can_unmark obj
-    (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
+    (obj.marked_as_final == true) && (DateTime.now < 30.days.after(obj.updated_at))
   end
 
   def nd input
@@ -67,6 +67,10 @@ module ApplicationHelper
   end
 
   def ndate input
+    begin
     nd DateTime.parse(input.to_s).strftime("%Y-%m-%d")
+    rescue ArgumentError
+      "Invalid Date"
+    end
   end
 end

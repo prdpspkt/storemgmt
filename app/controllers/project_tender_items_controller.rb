@@ -1,5 +1,5 @@
 class ProjectTenderItemsController < ApplicationController
-  before_action :set_project_tender_item, only: [ :destroy]
+  before_action :set_project_tender_item, only: [:destroy]
 
   # GET /project_tender_items
   # GET /project_tender_items.json
@@ -44,15 +44,16 @@ class ProjectTenderItemsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project_tender_item
-      @project_tender_item = ProjectTenderItem.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_tender_item_params
-      params.require(:project_tender_item).permit(:quantity, :rate, :amount, :received_date, :project_purchase_tender_id, :item_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project_tender_item
+    @project_tender_item = ProjectTenderItem.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_tender_item_params
+    params.require(:project_tender_item).permit(:quantity, :rate, :amount, :received_date, :project_purchase_tender_id, :item_id)
+  end
 
   def update_general_information object
     object.office_id = current_office.id

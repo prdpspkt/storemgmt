@@ -10,83 +10,45 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :demand_no %>
-    <%= form.number_field :demand_no %>
-  </div>
-
-  <div class="field">
+  <%= form.hidden_field :demand_no, class: "form-control", readonly: :readonly %>
+<div class="row">
+  <div class="col-4">
     <%= form.label :demand_date %>
-    <%= form.datetime_select :demand_date %>
+    <%= form.text_field :demand_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :demand_by %>
-    <%= form.text_field :demand_by %>
+    <%= form.text_field :demand_by, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :recommended_by %>
-    <%= form.text_field :recommended_by %>
+    <%= form.text_field :recommended_by, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-4">
     <%= form.label :needed_to_purchase %>
     <%= form.check_box :needed_to_purchase %>
   </div>
 
-  <div class="field">
-    <%= form.label :ordered_by %>
-    <%= form.text_field :ordered_by %>
-  </div>
-
-  <div class="field">
+  <div class="col-4">
     <%= form.label :ordered_date %>
-    <%= form.datetime_select :ordered_date %>
+    <%= form.text_field :ordered_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :recorded_by %>
-    <%= form.text_field :recorded_by %>
-  </div>
-
-  <div class="field">
+  <div class="col-4">
     <%= form.label :recorded_date %>
-    <%= form.datetime_select :recorded_date %>
+    <%= form.text_field :recorded_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
+  <div class="col-4">
     <%= form.label :project_id %>
-    <%= form.number_field :project_id %>
+    <%= form.select(:project_id, @projects.all.collect{ |p| [p.name_of_project_ne, p.id]}, {include_blank: true}, {class: "form-control", required: :required}) %>
   </div>
 
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.number_field :item_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :marked_as_final %>
-    <%= form.check_box :marked_as_final %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+</div>
+  <div class="float-right">
+    <%= form.submit :save, class: "btn btn-success" %>
   </div>
 <% end %>

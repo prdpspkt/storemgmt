@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_03_053151) do
+ActiveRecord::Schema.define(version: 2020_12_31_051234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -605,12 +605,15 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
     t.decimal "amount"
     t.decimal "quantity"
     t.string "remarks"
-    t.integer "office_purchase_entry_item_id"
+    t.integer "project_purchase_entry_item_id"
     t.decimal "sku"
     t.integer "project_release_item_id"
-    t.integer "entry_no"
+    t.integer "entry_release_no"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_tender_breakdown_item_id"
+    t.integer "taken_from"
+    t.integer "given_to"
   end
 
   create_table "personnels", force: :cascade do |t|
@@ -633,7 +636,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
 
   create_table "pneirts", force: :cascade do |t|
     t.string "model_no"
-    t.string "item_identificaiton_no"
+    t.string "item_identification_no"
     t.string "country"
     t.integer "project_item_id"
     t.integer "item_id"
@@ -650,12 +653,16 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
     t.string "remarks"
     t.decimal "sku"
     t.integer "project_handover_form_id"
-    t.integer "entry_no"
+    t.integer "entry_release_no"
     t.string "size"
     t.string "approx_age"
     t.string "source"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_tender_breakdown_item_id"
+    t.integer "taken_from"
+    t.integer "given_to"
+    t.integer "project_id"
   end
 
   create_table "project_demand_items", force: :cascade do |t|
@@ -839,6 +846,7 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "project_purchase_tender_id"
+    t.integer "project_purchase_order_id"
   end
 
   create_table "project_purchase_entry_items", force: :cascade do |t|
@@ -895,6 +903,9 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
     t.integer "project_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.decimal "amount_with_out_vat"
+    t.decimal "vat"
+    t.boolean "is_vatable"
   end
 
   create_table "project_purchase_orders", force: :cascade do |t|
@@ -917,12 +928,13 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
     t.datetime "section_cheif_signed_date"
     t.integer "user_id"
     t.string "fy"
-    t.datetime "fiscal_year_signed_date"
+    t.datetime "fiscal_year_id"
     t.integer "office_id"
     t.integer "project_id"
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vendor_id"
   end
 
   create_table "project_purchase_tenders", force: :cascade do |t|
@@ -1029,22 +1041,39 @@ ActiveRecord::Schema.define(version: 2020_02_03_053151) do
   end
 
   create_table "project_tender_breakdown_items", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "project_tender_breakdown_id"
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
     t.string "name_of_item_ne"
-    t.string "name_item_en"
-    t.string "unit_en"
+    t.string "name_of_item_en"
+    t.string "specification"
+    t.string "item_identification_no"
+    t.string "model_no"
     t.string "unit_ne"
+    t.string "unit_en"
     t.decimal "quantity"
     t.decimal "rate"
+    t.decimal "amount_without_vat"
+    t.decimal "vat"
+    t.decimal "total_amount"
+    t.decimal "other_expense"
     t.decimal "amount"
-    t.integer "office_id"
+    t.string "remarks"
     t.integer "user_id"
+    t.integer "office_id"
+    t.string "fy"
+    t.integer "item_id"
     t.integer "fiscal_year_id"
-    t.datetime "received_date"
-    t.integer "project_tender_breakdown_id"
-    t.integer "project_tender_item_id"
+    t.integer "project_item_id"
+    t.string "country"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.boolean "is_vatable"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "project_item_id"
+    t.decimal "sku"
     t.integer "project_purchase_entry_item_id"
   end
 

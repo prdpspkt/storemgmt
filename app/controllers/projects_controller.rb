@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project_items = @project.project_items
+    @project_items = ProjectItem.where(fiscal_year_id: current_fiscal_year.id).where(project_id: @project.id)
     @project_item = ProjectItem.new
     @project_item.project_id = @project.id
   end

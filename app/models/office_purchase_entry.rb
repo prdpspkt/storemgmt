@@ -3,6 +3,7 @@ class OfficePurchaseEntry < ApplicationRecord
   belongs_to :user
   belongs_to :office
   belongs_to :fiscal_year
+  has_one :project_tender_breakdown, dependent: :destroy
 
 
   after_update :create_or_update_transactions
