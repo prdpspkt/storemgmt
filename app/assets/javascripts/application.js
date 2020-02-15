@@ -15,6 +15,7 @@
 //= require bootstrap-sprockets
 //= require activestorage
 //= require datatables
+//= require select2.min
 //= require nepali-datepicker
 //= require all_rules.js
 //= require converter.js
