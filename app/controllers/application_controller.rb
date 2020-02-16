@@ -68,6 +68,15 @@ class ApplicationController < ActionController::Base
     bs = NepaliDateConverter::Convert.to_nepali(y, m, d)
     "#{bs[:year]}-#{bs[:month]}-#{bs[:date]}"
   end
+  
+  
+  def current object
+    object.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id)
+  end
+
+  def office object
+    object.where(office_id: current_office.id)
+  end
 end
 
 #TODO Remove all unnessary methods from items controllers

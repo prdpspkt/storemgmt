@@ -4,4 +4,5 @@ class ProjectItem < ApplicationRecord
 	has_many :peirts
 	has_many :pneirts
 
+
 end

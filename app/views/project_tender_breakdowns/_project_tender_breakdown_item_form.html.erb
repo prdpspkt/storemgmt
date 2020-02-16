@@ -13,19 +13,25 @@
   <%= form.hidden_field :project_tender_breakdown_id %>
 <div class="row">
   <div class="col-2">
-    <select name="item_classification_no" id="item_classification_no">
+    <label>सामानको प्रकार</label>
+    <select name="item_classification_no" id="item_classification_no", class="form-control" required="required">
+      <option>छान्नुहोस्</option>
       <option value="52">खर्च भएर जाने</option>
       <option value="47">खर्च भएर नजाने</option>
     </select>
   </div>
-  <div class="col-2"> <%= form.label :"सामानको नाम" %></div>
+  <div class="col-6">
+    <%= form.label "सामानको नाम" %>
+    <%= form.select(:project_item_id, @project_items.collect{|item|[item.name_of_item_ne, item.id]}, {include_blank: "सामानको नाम छान्नुहोस्"}, {class: "form-control", id: "project-item-holder"}) %>
 
-  <div class="col-2"> <%= form.label :"परिमाण" %></div>
+  </div>
+
   <div class="col-3">
+    <%= form.label :"परिमाण" %>
     <%= form.text_field :quantity, class: "form-control", required: :required %>
   </div>
-  <div class="col-2">
+</div>
+  <div class="float-right">
     <%= form.submit :save, class: "btn btn-success" %>
   </div>
-</div>
 <% end %>

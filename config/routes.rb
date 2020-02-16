@@ -90,9 +90,10 @@ Rails.application.routes.draw do
   }
   resources :users
 
-  def blank
-    render 'layouts/blank', notice: "Please use menu."
-  end
+
+
+  #json-section
+  get "/project_items/data/:classification_no" => "project_items#tender_breakdown_data"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -4,7 +4,7 @@ class ItemCategoriesController < ApplicationController
   # GET /item_categories
   # GET /item_categories.json
   def index
-    @item_categories = ItemCategory.all
+    @item_categories = office(ItemCategory)
   end
 
   # GET /item_categories/1

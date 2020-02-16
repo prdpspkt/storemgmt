@@ -13,6 +13,7 @@ class ProjectTenderBreakdownsController < ApplicationController
     @project_tender_breakdown_item = ProjectTenderBreakdownItem.new
     @project_tender_breakdown_item.project_tender_breakdown_id = @project_tender_breakdown.id
     @project_tender_breakdown_items = @project_tender_breakdown.project_tender_breakdown_items
+    @pi1 = ProjectItem.includes(:peirts).where.("project_items.office_id = #{current_office.id}").where("fiscal_year_id = #{current_fiscal_year.id}").where("peirts.sku > 0").where(project_id: nil)
   end
 
   # GET /project_tender_breakdowns/new
@@ -82,14 +83,6 @@ class ProjectTenderBreakdownsController < ApplicationController
     redirect_to @project_tender_breakdown, notice: "Item successfully updated"
   end
 
-  def data_47
-    @items = ProjectItem.joins(:pneirts).where("pneirts.sku > 0").distinct.pluck(:item_id)
-    render
-  end
-
-  end
-
-  def data_52
 
   private
 

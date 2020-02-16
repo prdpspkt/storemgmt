@@ -4,7 +4,7 @@ class DemandsController < ApplicationController
   # GET /demands
   # GET /demands.json
   def index
-    @demands = Demand.all
+    @demands = current(Demand)
   end
 
   # GET /demands/1
