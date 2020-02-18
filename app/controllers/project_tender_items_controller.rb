@@ -17,7 +17,14 @@ class ProjectTenderItemsController < ApplicationController
   def create
     @project_tender_item = ProjectTenderItem.new(project_tender_item_params)
     @project_tender_item = update_item_information @project_tender_item
-    @project_tender_item.amount = @project_tender_item.rate * @project_tender_item.quantity
+    @project_tender_item.amount_without_vat = @project_tender_item.rate * @project_tender_item.quantity
+    if @project_tender_item.is_vatable
+      @project_tender_item.vat = @project_tender_item.amount_without_vat * 0.13
+      @project_tender_item.amount = @project_tender_item.amount_without_vat + @project_tender_item.vat
+    else
+      @project_tender_item.amount = @project_tender_item.amount_without_vat
+    end
+
     @project_tender_item = update_general_information @project_tender_item
     @project_tender_item.sku = @project_tender_item.quantity
     respond_to do |format|
@@ -52,7 +59,7 @@ class ProjectTenderItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_tender_item_params
-    params.require(:project_tender_item).permit(:quantity, :rate, :amount, :received_date, :project_purchase_tender_id, :item_id)
+    params.require(:project_tender_item).permit(:item_classification_no, :quantity, :rate, :amount, :is_vatable, :project_purchase_tender_id, :item_id)
   end
 
   def update_general_information object

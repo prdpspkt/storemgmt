@@ -4,7 +4,7 @@ class ProjectPurchaseTendersController < ApplicationController
   # GET /project_purchase_tenders
   # GET /project_purchase_tenders.json
   def index
-    @project_purchase_tenders = ProjectPurchaseTender.all
+    @project_purchase_tenders = current(ProjectPurchaseTender)
   end
 
   # GET /project_purchase_tenders/1
@@ -83,6 +83,7 @@ class ProjectPurchaseTendersController < ApplicationController
         ppei.id = nil
         ppei.item_register_page_no = irpn
         ppei.project_purchase_entry_id = @project_purchase_entry.id
+        ppei.total_amount = ppei.amount
         ppei.save!
       end
 

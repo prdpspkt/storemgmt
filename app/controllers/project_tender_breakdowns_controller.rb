@@ -12,18 +12,33 @@ class ProjectTenderBreakdownsController < ApplicationController
   def show
     @project_tender_breakdown_item = ProjectTenderBreakdownItem.new
     @project_tender_breakdown_item.project_tender_breakdown_id = @project_tender_breakdown.id
+    @items = ProjectPurchaseTender.find(@project_tender_breakdown.project_purchase_tender_id).project_tender_items
     @project_tender_breakdown_items = @project_tender_breakdown.project_tender_breakdown_items
-    @pi1 = ProjectItem.includes(:peirts).where.("project_items.office_id = #{current_office.id}").where("fiscal_year_id = #{current_fiscal_year.id}").where("peirts.sku > 0").where(project_id: nil)
+
+  end
+
+  def project_items
+    @icn = params[:icn]
+    if @icn == '52'
+      @pids = Peirt.select(:project_item_id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where("sku > 0").where(project_id: nil).distinct(:item_id)
+      @project_items = ProjectItem.where(id: @pids)
+    end
+    if @icn == '47'
+      @pids = Pneirt.select(:project_item_id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where("sku > 0").where(project_id: nil).distinct(:item_id)
+      @project_items = ProjectItem.where(id: @pids)
+    end
+    render layout: false
   end
 
   # GET /project_tender_breakdowns/new
   def new
     @project_tender_breakdown = ProjectTenderBreakdown.new
-    @purchase_entries = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
+    @tenders = ProjectPurchaseTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
   end
 
   # GET /project_tender_breakdowns/1/edit
   def edit
+    @tenders = ProjectPurchaseTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
   end
 
   # POST /project_tender_breakdowns
@@ -71,7 +86,7 @@ class ProjectTenderBreakdownsController < ApplicationController
 
 
   def marked_as_final
-    if @project_tender_breakdown.marked_as_final.present? || @project_tender_breakdown.marked_as_final  != false
+    if @project_tender_breakdown.marked_as_final.present? || @project_tender_breakdown.marked_as_final != false
       @project_tender_breakdown.marked_as_final = false
       @project_tender_breakdown.project_tender_breakdown_items.each do |ptbi|
         ptbi.peirt.destroy
@@ -93,7 +108,7 @@ class ProjectTenderBreakdownsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_tender_breakdown_params
-    params.require(:project_tender_breakdown).permit( :project_purchase_entry_id, :project_id)
+    params.require(:project_tender_breakdown).permit(:project_purchase_tender_id, :project_id, :entry_date)
   end
 
   def update_general_information object
@@ -110,5 +125,9 @@ class ProjectTenderBreakdownsController < ApplicationController
     object.project_name_ne = project.name_of_project_ne
     object.project_name_en = project.name_of_project_en
     object
+  end
+
+  def create_ptb_entry_no
+
   end
 end

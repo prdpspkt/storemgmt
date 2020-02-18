@@ -24,33 +24,16 @@ class ProjectTenderBreakdownItemsController < ApplicationController
   # POST /project_tender_breakdown_items
   # POST /project_tender_breakdown_items.json
   def create
-    @project_tender_breakdown_item = ProjectTenderBreakdownItem.new(project_tender_breakdown_item_params)
-    @item = ProjectPurchaseEntryItem.find(@project_tender_breakdown_item.project_purchase_entry_item_id)
-    irpn = create_project_item_if_doesnt_exists @item.item_id, @project_tender_breakdown_item.project_tender_breakdown.project_id
-    ptbi = ProjectTenderBreakdownItem.new(@item.attributes.select { |key, _| ProjectTenderBreakdownItem.attribute_names.include? key })
-    ptbi.project_purchase_entry_item_id = @project_tender_breakdown_item.project_purchase_entry_item_id
-    ptbi.id = nil
-    ptbi.project_tender_breakdown_id = @project_tender_breakdown_item.project_tender_breakdown_id
-    ptbi.item_register_page_no = irpn.item_register_page_no
-    ptbi.project_item_id = irpn.id
-    ptbi.rate = @item.rate
-    ptbi.item_id = @item.item_id
-    if @project_tender_breakdown_item.quantity > @item.sku
-      ptbi.amount = @item.rate * @item.sku
-      ptbi.quantity = @item.sku
-      ptbi.sku = @item.sku
-      @item.sku = 0
+    @icn = params[:item_classification_no]
+    @project_item_id = params[:project_tender_breakdown_item][:project_item_id]
+    @quantity = params[:project_tender_breakdown_item][:quantity]
+    if @icn == 52
+      create_peirts @project_item_id, @quantity
     else
-      ptbi.quantity = @project_tender_breakdown_item.quantity
-      ptbi.amount = @item.rate * ptbi.quantity
-      ptbi.sku = ptbi.quantity
-      @item.sku = @item.sku - ptbi.quantity
+      create_pneirts @project_item_id, @quantity
     end
-    ptbi.name_of_item_ne = @item.name_of_item_ne
-    ptbi.unit_ne = @item.unit_ne
-    ptbi.unit_en = @item.unit_en
     respond_to do |format|
-        if ptbi.save
+      if ptbi.save
         @item.save
         format.html { redirect_to project_tender_breakdown_path(ptbi.project_tender_breakdown), notice: 'Project tender breakdown item was successfully created.' }
         format.json { render :show, status: :created, location: ptbi }
@@ -117,6 +100,7 @@ class ProjectTenderBreakdownItemsController < ApplicationController
     end
     @irpn
   end
+
   def generate_item_register_no project_id
     item_register_no = 1
     items = ProjectItem.where(project_id: project_id).where(fiscal_year_id: current_fiscal_year.id).where(project_id: nil)
@@ -124,5 +108,57 @@ class ProjectTenderBreakdownItemsController < ApplicationController
       item_register_no = items.last.item_register_no + 1
     end
     item_register_no
+  end
+
+  def create_peirts project_item_id, quantity
+    peirts = current(Peirt).where(project_id: nil).where("sku > 0")
+    peirts.each do |item|
+      if item.sku >= quantity
+        ptbi = ProjectTenderBreakdownItem.new(item.attributes.select { |key, _| ProjectTenderBreakdownItem.column_names.include? key })
+        ptbi.id = nil
+        ptbi.project_item_id = project_item_id
+        item.sku = item.sku - quantity
+        ptbi.peirt_id = item.id
+        if ptbi.save
+          item.save
+        end
+        break
+      else
+        ptbi = ProjectTenderBreakdownItem.new(item.attributes.select { |key, _| ProjectTenderBreakdownItem.column_names.include? key })
+        ptbi.id = nil
+        ptbi.project_item_id = project_item_id
+        ptbi.peirt_id = item.id
+        item.sku = 0
+        if ptbi.save
+          item.save
+        end
+      end
+    end
+  end
+
+  def create_pneirts project_item_id, quantity
+    peirts = current(Pneirt).where(project_id: nil).where("sku > 0")
+    peirts.each do |item|
+      if item.sku >= quantity
+        ptbi = ProjectTenderBreakdownItem.new(item.attributes.select { |key, _| ProjectTenderBreakdownItem.column_names.include? key })
+        ptbi.id = nil
+        ptbi.project_item_id = project_item_id
+        item.sku = item.sku - quantity
+        ptbi.pneirt_id = item.id
+        if ptbi.save
+          item.save
+        end
+        break
+      else
+        ptbi = ProjectTenderBreakdownItem.new(item.attributes.select { |key, _| ProjectTenderBreakdownItem.column_names.include? key })
+        ptbi.id = nil
+        ptbi.project_item_id = project_item_id
+        item.sku = 0
+        ptbi.pneirt_id = item.id
+        if ptbi.save
+          item.save
+        end
+      end
+    end
   end
 end

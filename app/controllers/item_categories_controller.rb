@@ -25,7 +25,7 @@ class ItemCategoriesController < ApplicationController
   # POST /item_categories.json
   def create
     @item_category = ItemCategory.new(item_category_params)
-
+    @item_category.office_id = current_office.id
     respond_to do |format|
       if @item_category.save
         format.html { redirect_to item_categories_path, notice: 'Item category was successfully created.' }
