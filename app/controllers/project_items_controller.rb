@@ -4,7 +4,7 @@ class ProjectItemsController < ApplicationController
   # GET /project_items
   # GET /project_items.json
   def index
-    @project_items = ProjectItem.where(fiscal_year_id: current_fiscal_year.id).where(project_id: nil)
+    @project_items = office(ProjectItem)
   end
 
   # GET /project_items/1
@@ -15,6 +15,7 @@ class ProjectItemsController < ApplicationController
   # GET /project_items/new
   def new
     @project_item = ProjectItem.new
+    @item_categories = ProjectItemCategory.all
   end
 
   # GET /project_items/1/edit

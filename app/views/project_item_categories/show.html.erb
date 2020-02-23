@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item_category.name %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @item_category.unit %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item_category.user_id %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @item_category.office_id %>
+</p>
+
+<%= link_to 'Edit', edit_item_category_path(@item_category) %> |
+<%= link_to 'Back', item_categories_path %>

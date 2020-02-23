@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :project_tender_breakdown_items
+  resources :project_item_categories
   get '/active_fiscal_year' => "active_fiscal_year#new", as: :set_active_fiscal_year
   patch '/active_fiscal_year/:id' => "active_fiscal_year#create"
   resources :store_bodies
