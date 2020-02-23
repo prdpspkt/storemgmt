@@ -25,24 +25,6 @@
     <%= form.text_field :specification, class: "form-control" %>
   </div>
   <div class="col-sm-6">
-    <%= form.label :model_no %>
-    <%= form.text_field :model_no, class: "form-control" %>
-  </div>
-  <div class="col-sm-6">
-    <%= form.label :item_identification_no %>
-    <%= form.text_field :item_identification_no, class: "form-control" %>
-  </div>
-  <div class="col-sm-6">
-    <%= form.label :unit %>
-    <%= form.text_field :unit_ne, class: "form-control" %>
-  </div>
-
-  <div class="col-sm-6">
-    <%= form.label :unit_en %>
-    <%= form.text_field :unit_en, class: "form-control" %>
-  </div>
-
-  <div class="col-sm-6">
     <%= form.label :item_category_id %>
     <%= form.select(:item_category_id, ItemCategory.all.collect {|p| [p.name_en, p.id]}, {include_blank: '-select-'}, {class: 'form-control'}) %>
   </div>

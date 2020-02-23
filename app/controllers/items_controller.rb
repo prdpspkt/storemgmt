@@ -27,6 +27,9 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     @item.office_id = current_office.id
     @item.user_id = current_user.id
+    @item_category = ItemCategory.find(@item.item_category_id)
+    @item.unit_en = @item_category.unit_en
+    @item.unit_ne = @item_category.unit_ne
     respond_to do |format|
       if @item.save
         format.html { redirect_to items_path, notice: 'Item was successfully created.' }

@@ -201,6 +201,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
       t.string "specification"
+      t.integer "project_item_category_id"
       t.integer "office_id"
     end
 
