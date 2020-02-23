@@ -11,24 +11,40 @@ class ApplicationController < ActionController::Base
   end
 
 
- def after_sign_in_path_for(resource_or_scope)
-   #check if office has been created for user
-   url = '/'
-   if resource_or_scope.office.blank?
-    url = new_office_path
-   end
-   #check if office has fiscal year
-   if resource_or_scope.office.blank? == false
-     if current_office.fiscal_years.blank?
-        url = new_fiscal_year_path
-     end
-   end
-   url
- end
-
   private
-  def after_sign_out_path_for(resource_or_scope)
-    root_path
+  def current_office
+    current_user.office
+  end
+  def current_control_body
+    store_body = StoreBody.new
+    if current_office.store_bodies.empty?
+      redirect_to new_store_body_path
+    else
+      store_body = current_office.store_bodies.last
+    end
+    store_body
+  end
+
+  def current_fiscal_year
+    cfy = false
+    if user_signed_in?
+      cfy = FiscalYear.find(current_office.active_fiscal_year.fiscal_year_id)
+    end
+    cfy
+  end
+  def after_sign_in_path_for(resource_or_scope)
+    #check if office has been created for user
+    url = '/'
+    if resource_or_scope.office.blank?
+      url = new_office_path
+    end
+    #check if office has fiscal year
+    if resource_or_scope.office.blank? == false
+      if current_office.fiscal_years.blank?
+        url = new_fiscal_year_path
+      end
+    end
+    url
   end
 
 end
