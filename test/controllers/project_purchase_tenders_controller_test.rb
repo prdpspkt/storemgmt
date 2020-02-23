@@ -6,43 +6,43 @@ class ProjectPurchaseTendersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get project_purchase_tenders_url
+    get project_tenders_url
     assert_response :success
   end
 
   test "should get new" do
-    get new_project_purchase_tender_url
+    get new_project_tender_url
     assert_response :success
   end
 
   test "should create project_purchase_tender" do
     assert_difference('ProjectPurchaseTender.count') do
-      post project_purchase_tenders_url, params: { project_purchase_tender: { bidders_address: @project_purchase_tender.bidders_address, bidders_name: @project_purchase_tender.bidders_name, fiscal_yeaer_id: @project_purchase_tender.fiscal_yeaer_id, marked_as_final: @project_purchase_tender.marked_as_final, office_id: @project_purchase_tender.office_id, tender_date: @project_purchase_tender.tender_date, tender_name: @project_purchase_tender.tender_name, tender_no: @project_purchase_tender.tender_no, user_id: @project_purchase_tender.user_id } }
+      post project_tenders_url, params: {project_purchase_tender: {bidders_address: @project_purchase_tender.bidders_address, bidders_name: @project_purchase_tender.bidders_name, fiscal_yeaer_id: @project_purchase_tender.fiscal_yeaer_id, marked_as_final: @project_purchase_tender.marked_as_final, office_id: @project_purchase_tender.office_id, tender_date: @project_purchase_tender.tender_date, tender_name: @project_purchase_tender.tender_name, tender_no: @project_purchase_tender.tender_no, user_id: @project_purchase_tender.user_id } }
     end
 
-    assert_redirected_to project_purchase_tender_url(ProjectPurchaseTender.last)
+    assert_redirected_to project_tender_url(ProjectPurchaseTender.last)
   end
 
   test "should show project_purchase_tender" do
-    get project_purchase_tender_url(@project_purchase_tender)
+    get project_tender_url(@project_purchase_tender)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_project_purchase_tender_url(@project_purchase_tender)
+    get edit_project_tender_url(@project_purchase_tender)
     assert_response :success
   end
 
   test "should update project_purchase_tender" do
-    patch project_purchase_tender_url(@project_purchase_tender), params: { project_purchase_tender: { bidders_address: @project_purchase_tender.bidders_address, bidders_name: @project_purchase_tender.bidders_name, fiscal_yeaer_id: @project_purchase_tender.fiscal_yeaer_id, marked_as_final: @project_purchase_tender.marked_as_final, office_id: @project_purchase_tender.office_id, tender_date: @project_purchase_tender.tender_date, tender_name: @project_purchase_tender.tender_name, tender_no: @project_purchase_tender.tender_no, user_id: @project_purchase_tender.user_id } }
-    assert_redirected_to project_purchase_tender_url(@project_purchase_tender)
+    patch project_tender_url(@project_purchase_tender), params: {project_purchase_tender: {bidders_address: @project_purchase_tender.bidders_address, bidders_name: @project_purchase_tender.bidders_name, fiscal_yeaer_id: @project_purchase_tender.fiscal_yeaer_id, marked_as_final: @project_purchase_tender.marked_as_final, office_id: @project_purchase_tender.office_id, tender_date: @project_purchase_tender.tender_date, tender_name: @project_purchase_tender.tender_name, tender_no: @project_purchase_tender.tender_no, user_id: @project_purchase_tender.user_id } }
+    assert_redirected_to project_tender_url(@project_purchase_tender)
   end
 
   test "should destroy project_purchase_tender" do
     assert_difference('ProjectPurchaseTender.count', -1) do
-      delete project_purchase_tender_url(@project_purchase_tender)
+      delete project_tender_url(@project_purchase_tender)
     end
 
-    assert_redirected_to project_purchase_tenders_url
+    assert_redirected_to project_tenders_url
   end
 end

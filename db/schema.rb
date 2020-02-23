@@ -937,7 +937,7 @@ ActiveRecord::Schema.define(version: 2020_12_31_051234) do
     t.integer "vendor_id"
   end
 
-  create_table "project_purchase_tenders", force: :cascade do |t|
+  create_table "project_tenders", force: :cascade do |t|
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"

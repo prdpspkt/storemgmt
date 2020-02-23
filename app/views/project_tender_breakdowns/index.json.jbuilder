@@ -2,8 +2,8 @@ json.set! :data do
   json.array! @project_tender_breakdowns do |project_tender_breakdown|
     json.partial! 'project_tender_breakdowns/project_tender_breakdown', project_tender_breakdown: project_tender_breakdown
     json.project_name_en "#{ project_tender_breakdown.project.name_of_project_en}"
-    json.project_purchase_entry_no "#{ nd project_tender_breakdown.project_purchase_entry.entry_no}"
-    json.project_purchase_entry_date "#{ ndate project_tender_breakdown.project_purchase_entry.entry_date}"
+    json.project_purchase_entry_no "#{ nd project_tender_breakdown.entry_no}"
+    json.project_purchase_entry_date "#{ ndate project_tender_breakdown.entry_date}"
     if (project_tender_breakdown.marked_as_final != true)
       json.url "
                #{link_to show_btn.html_safe, project_tender_breakdown }

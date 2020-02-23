@@ -1,30 +1,30 @@
-class ProjectPurchaseTendersController < ApplicationController
+class ProjectTendersController < ApplicationController
   before_action :set_project_purchase_tender, only: [:show, :edit, :update, :destroy, :mark_as_final]
 
-  # GET /project_purchase_tenders
-  # GET /project_purchase_tenders.json
+  # GET /project_tenders
+  # GET /project_tenders.json
   def index
     @project_purchase_tenders = current(ProjectPurchaseTender)
   end
 
-  # GET /project_purchase_tenders/1
-  # GET /project_purchase_tenders/1.json
+  # GET /project_tenders/1
+  # GET /project_tenders/1.json
   def show
     @project_tender_item = ProjectTenderItem.new
     @project_tender_items = @project_purchase_tender.project_tender_items
   end
 
-  # GET /project_purchase_tenders/new
+  # GET /project_tenders/new
   def new
     @project_purchase_tender = ProjectPurchaseTender.new
   end
 
-  # GET /project_purchase_tenders/1/edit
+  # GET /project_tenders/1/edit
   def edit
   end
 
-  # POST /project_purchase_tenders
-  # POST /project_purchase_tenders.json
+  # POST /project_tenders
+  # POST /project_tenders.json
   def create
     @project_purchase_tender = ProjectPurchaseTender.new(project_purchase_tender_params)
     @project_purchase_tender = update_general_information @project_purchase_tender
@@ -39,8 +39,8 @@ class ProjectPurchaseTendersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /project_purchase_tenders/1
-  # PATCH/PUT /project_purchase_tenders/1.json
+  # PATCH/PUT /project_tenders/1
+  # PATCH/PUT /project_tenders/1.json
   def update
     respond_to do |format|
       if @project_purchase_tender.update(project_purchase_tender_params)
@@ -92,12 +92,12 @@ class ProjectPurchaseTendersController < ApplicationController
     redirect_to @project_purchase_tender
   end
 
-  # DELETE /project_purchase_tenders/1
-  # DELETE /project_purchase_tenders/1.json
+  # DELETE /project_tenders/1
+  # DELETE /project_tenders/1.json
   def destroy
     @project_purchase_tender.destroy
     respond_to do |format|
-      format.html { redirect_to project_purchase_tenders_url, notice: 'Project purchase tender was successfully destroyed.' }
+      format.html { redirect_to project_tenders_url, notice: 'Project purchase tender was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

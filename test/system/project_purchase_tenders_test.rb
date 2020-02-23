@@ -6,12 +6,12 @@ class ProjectPurchaseTendersTest < ApplicationSystemTestCase
   end
 
   test "visiting the index" do
-    visit project_purchase_tenders_url
+    visit project_tenders_url
     assert_selector "h1", text: "Project Purchase Tenders"
   end
 
   test "creating a Project purchase tender" do
-    visit project_purchase_tenders_url
+    visit project_tenders_url
     click_on "New Project Purchase Tender"
 
     fill_in "Bidders address", with: @project_purchase_tender.bidders_address
@@ -30,7 +30,7 @@ class ProjectPurchaseTendersTest < ApplicationSystemTestCase
   end
 
   test "updating a Project purchase tender" do
-    visit project_purchase_tenders_url
+    visit project_tenders_url
     click_on "Edit", match: :first
 
     fill_in "Bidders address", with: @project_purchase_tender.bidders_address
@@ -49,7 +49,7 @@ class ProjectPurchaseTendersTest < ApplicationSystemTestCase
   end
 
   test "destroying a Project purchase tender" do
-    visit project_purchase_tenders_url
+    visit project_tenders_url
     page.accept_confirm do
       click_on "Destroy", match: :first
     end
