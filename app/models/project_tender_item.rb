@@ -1,3 +1,3 @@
 class ProjectTenderItem < ApplicationRecord
-  belongs_to :project_purchase_tender
+  belongs_to :project_tender
 end

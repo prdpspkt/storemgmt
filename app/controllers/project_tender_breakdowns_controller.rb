@@ -12,7 +12,7 @@ class ProjectTenderBreakdownsController < ApplicationController
   def show
     @project_tender_breakdown_item = ProjectTenderBreakdownItem.new
     @project_tender_breakdown_item.project_tender_breakdown_id = @project_tender_breakdown.id
-    @items = ProjectPurchaseTender.find(@project_tender_breakdown.project_purchase_tender_id).project_tender_items
+    @items = ProjectTender.find(@project_tender_breakdown.project_purchase_tender_id).project_tender_items
     @project_tender_breakdown_items = @project_tender_breakdown.project_tender_breakdown_items
 
   end
@@ -33,12 +33,12 @@ class ProjectTenderBreakdownsController < ApplicationController
   # GET /project_tender_breakdowns/new
   def new
     @project_tender_breakdown = ProjectTenderBreakdown.new
-    @tenders = ProjectPurchaseTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
+    @tenders = ProjectTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
   end
 
   # GET /project_tender_breakdowns/1/edit
   def edit
-    @tenders = ProjectPurchaseTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
+    @tenders = ProjectTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
   end
 
   # POST /project_tender_breakdowns

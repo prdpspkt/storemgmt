@@ -1,82 +1,61 @@
-<%= form_with(model: project_tender_item, local: true) do |form| %>
-  <% if project_tender_item.errors.any? %>
+<%= form_with(model: project_purchase_entry_item, local: true) do |form| %>
+  <% if project_purchase_entry_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_tender_item.errors.count, "error") %> prohibited this project_tender_item from being saved:</h2>
+      <h2><%= pluralize(project_purchase_entry_item.errors.count, "error") %> prohibited this
+        project_purchase_entry_item from being saved:</h2>
 
       <ul>
-      <% project_tender_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% project_purchase_entry_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :project_purchase_entry_id %>
+  <%= form.hidden_field :project_purchase_entry_item_id %>
+  <div class="row">
+    <div class="col-3">
+      <%= form.label :item_classification_no %>
+      <%= form.select(:item_classification_no, {"खर्च भएर जाने" => "52", "खर्च भएर नजाने"=> "47"}, {include_blank: true}, { class: "form-control", required: :required}) %>
+    </div>
 
-  <div class="field">
-    <%= form.label :name_of_item_ne %>
-    <%= form.text_field :name_of_item_ne %>
+    <div class="col-3">
+      <%= form.label :item_identification_no %>
+      <%= form.text_field :item_identification_no, class: "form-control" %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :model_no %>
+      <%= form.text_field :model_no, class: "form-control" %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :remarks %>
+      <%= form.text_field :remarks, class: "form-control" %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :country %>
+      <%= form.text_field :country, class: "form-control" %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :size %>
+      <%= form.text_field :size, class: "form-control" %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :approx_age %>
+      <%= form.text_field :approx_age, class: "form-control" %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :source %>
+      <%= form.text_field :source, class: "form-control" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :name_of_item_en %>
-    <%= form.text_field :name_of_item_en %>
-  </div>
-
-  <div class="field">
-    <%= form.label :unit_ne %>
-    <%= form.text_field :unit_ne %>
-  </div>
-
-  <div class="field">
-    <%= form.label :unit_en %>
-    <%= form.text_field :unit_en %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :rate %>
-    <%= form.text_field :rate %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :received_date %>
-    <%= form.datetime_select :received_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :project_purchase_tender_id %>
-    <%= form.number_field :project_purchase_tender_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :update, class: "btn btn-success"%>
   </div>
 <% end %>

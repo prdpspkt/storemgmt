@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_23_112044) do
+ActiveRecord::Schema.define(version: 2020_02_23_120522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1045,12 +1045,12 @@ ActiveRecord::Schema.define(version: 2020_02_23_112044) do
     t.integer "office_id"
     t.integer "user_id"
     t.datetime "received_date"
-    t.integer "project_purchase_tender_id"
+    t.integer "project_tender_id"
     t.string "fy"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "item_id"
+    t.integer "project_item_id"
     t.decimal "sku"
     t.integer "item_classification_no"
     t.string "specification"

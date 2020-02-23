@@ -16,11 +16,11 @@ class ProjectPurchaseTendersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create project_purchase_tender" do
-    assert_difference('ProjectPurchaseTender.count') do
+    assert_difference('ProjectTender.count') do
       post project_tenders_url, params: {project_purchase_tender: {bidders_address: @project_purchase_tender.bidders_address, bidders_name: @project_purchase_tender.bidders_name, fiscal_yeaer_id: @project_purchase_tender.fiscal_yeaer_id, marked_as_final: @project_purchase_tender.marked_as_final, office_id: @project_purchase_tender.office_id, tender_date: @project_purchase_tender.tender_date, tender_name: @project_purchase_tender.tender_name, tender_no: @project_purchase_tender.tender_no, user_id: @project_purchase_tender.user_id } }
     end
 
-    assert_redirected_to project_tender_url(ProjectPurchaseTender.last)
+    assert_redirected_to project_tender_url(ProjectTender.last)
   end
 
   test "should show project_purchase_tender" do
@@ -39,7 +39,7 @@ class ProjectPurchaseTendersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should destroy project_purchase_tender" do
-    assert_difference('ProjectPurchaseTender.count', -1) do
+    assert_difference('ProjectTender.count', -1) do
       delete project_tender_url(@project_purchase_tender)
     end
 

@@ -6,6 +6,6 @@ class User < ApplicationRecord
 
   has_one :office
   has_many :projects
-  has_many :project_purchase_tenders
+  has_many :project_tenders
   has_many :personnels
 end

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   post "project_tender_breakdowns/marked_as_final/:id" => "project_tender_breakdowns#marked_as_final", as: :ptm_marked_as_final
   resources :project_tender_items
   resources :project_tenders
-  post "project_purchase_tender/mark_as_final/:id" => "project_tenders#mark_as_final", as: :project_purchase_tender_maf
+  post "project_purchase_tender/mark_as_final/:id" => "project_tenders#mark_as_final", as: :project_tender_maf
   resources :project_purchase_orders
   post "project_purchase_orders/mark_as_final/:id" => "project_purchase_orders#mark_as_final", as: :ppo_maf
   resources :project_purchase_order_items

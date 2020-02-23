@@ -29,7 +29,7 @@ class ProjectTenderItemsController < ApplicationController
     @project_tender_item.sku = @project_tender_item.quantity
     respond_to do |format|
       if @project_tender_item.save
-        format.html { redirect_to @project_tender_item.project_purchase_tender, notice: 'Project tender item was successfully created.' }
+        format.html { redirect_to @project_tender_item.project_tender, notice: 'Project tender item was successfully created.' }
         format.json { render :show, status: :created, location: @project_tender_item }
       else
         format.html { render :new }
@@ -42,10 +42,10 @@ class ProjectTenderItemsController < ApplicationController
   # DELETE /project_tender_items/1
   # DELETE /project_tender_items/1.json
   def destroy
-    project_purchase_tender = @project_tender_item.project_purchase_tender
+    project_tender = @project_tender_item.project_purchase_tender
     @project_tender_item.destroy
     respond_to do |format|
-      format.html { redirect_to project_purchase_tender, notice: 'Project tender item was successfully destroyed.' }
+      format.html { redirect_to project_tender, notice: 'Project tender item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -59,7 +59,7 @@ class ProjectTenderItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_tender_item_params
-    params.require(:project_tender_item).permit(:item_classification_no, :quantity, :rate, :amount, :is_vatable, :project_purchase_tender_id, :item_id)
+    params.require(:project_tender_item).permit(:item_classification_no, :quantity, :rate, :amount, :is_vatable, :project_tender_id, :project_item_id)
   end
 
   def update_general_information object
@@ -70,7 +70,7 @@ class ProjectTenderItemsController < ApplicationController
   end
 
   def update_item_information object
-    item = Item.find(object.item_id)
+    item = ProjectItem.find(object.project_item_id)
     object.name_of_item_ne = item.name_of_item_ne
     object.name_of_item_en = item.name_of_item_en
     object.unit_ne = item.unit_ne
