@@ -883,23 +883,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "project_items" do |t|
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.string "specification"
-      t.string "unit_ne"
-      t.string "unit_en"
-      t.integer "item_register_page_no"
-      t.integer "item_classification_no"
-      t.integer "item_id"
-      t.integer "office_id"
-      t.integer "fiscal_year_id"
-      t.integer "project_id"
-      t.string "model_no"
-      t.integer "item_identification_no"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-    end
 
     create_table "project_purchase_entries" do |t|
       t.datetime "entry_date"
