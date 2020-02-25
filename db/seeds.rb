@@ -64,8 +64,8 @@ ItemCategory.create([{name_en: 'Stationary', unit_en: '', name_ne: 'स्टे
                      {name_en: 'Assembled Desktop Computers', unit_en: 'set', name_ne: 'एसेम्बल्ड डेस्कटप कम्प्युटर', unit_ne: 'सेट'},
                      {name_en: 'Laptops', unit_en: 'set', name_ne: 'ल्यापटप', unit_ne: 'सेट'},
                      {name_en: 'Computer Accesories', unit_en: 'pcs', name_ne: 'कम्प्युटरका परिपुरकहरू', unit_ne: 'गोटा'},
-                     {name_en: 'Misc', unit_en: '',name_ne: 'विविध', unit_ne: ''},
-                     {name_en: 'HDPE Pipes', unit_en: 'mtr', name_ne: 'एच. डी. पि. इ. पाइप', unit_ne: 'मि.'},
+                     {name_en: 'Misc', unit_en: '',name_ne: 'विविध', unit_ne: ''}])
+ProjectItemCategory.create([{name_en: 'HDPE Pipes', unit_en: 'mtr', name_ne: 'एच. डी. पि. इ. पाइप', unit_ne: 'मि.'},
                      {name_en: 'HDPE Socket', unit_en: 'pcs', name_ne: 'एच. डि. पि. ई. सकेट', unit_ne: 'गोटा'},
                      {name_en: 'HDPE Reducers', unit_en: 'pcs', name_ne: 'एच. डी. पि. ई. रेड्युसर', unit_ne: 'गोटा'},
                      {name_en: 'HDPE Unions', unit_en: 'pcs', name_ne: 'एच. डी. पि. ई. युनियन', unit_ne: 'गोटा'},
@@ -110,5 +110,5 @@ ItemCategory.create([{name_en: 'Stationary', unit_en: '', name_ne: 'स्टे
                      {name_en: 'Sanitation Items', unit_en: 'pcs', name_ne: 'सरसफाई सामाग्री', unit_ne: 'गोटा'},
                      {name_en: 'Construction Tools', unit_en: 'pcs', name_ne: 'निर्माण सामाग्री', unit_ne: 'गोटा'},
                     ])
-Item.create([{name_of_item_ne: "जेनेरेटर ६४ कि.वा.", name_of_item_en: "Generator 64 Kw", unit_ne: "सेट", unit_en: "set", item_category_id: 47}])
+ProjectItem.create([{name_of_item_ne: "जेनेरेटर ६४ कि.वा.", name_of_item_en: "Generator 64 Kw", unit_ne: "सेट", unit_en: "set", project_item_category_id: 15}])
 Vendor.create([{fiscal_year_id: 1, office_id: 1, user_id:1, vendor_name_en: "Saraswati Stationery", vendor_name: "सरस्वती पुस्तक पसल", vendor_pan: "000000000", vendor_registration: "0000-000", vendor_address: "मालपोत लाइन दमौली", vendor_phone: "0000000000", vendor_email: "email@email.com.np", vendor_representive: "किशोर गौतम"}])
