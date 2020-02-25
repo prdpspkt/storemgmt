@@ -5,6 +5,7 @@ class ProjectTendersController < ApplicationController
   # GET /project_tenders.json
   def index
     @project_tenders = current(ProjectTender)
+
   end
 
   # GET /project_tenders/1
@@ -98,45 +99,4 @@ class ProjectTendersController < ApplicationController
     object
   end
 
-  def new_purchase_entry_no
-    pen = 1
-    project_purchase_entry = ProjectPurchaseEntry.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
-    if project_purchase_entry.blank? == false
-      pen = project_purchase_entry.entry_no + 1
-    end
-    pen
-  end
-
-
-  def create_project_item_if_doesnt_exists item_id
-    @irpn = false
-    @item = Item.find(item_id)
-    @pi = ProjectItem.where(item_id: item_id).where(fiscal_year_id: current_fiscal_year.id).first
-    if @pi.blank?
-      @project_item = ProjectItem.new
-      @project_item.item_register_page_no = generate_item_register_no
-      @project_item.name_of_item_ne = @item.name_of_item_ne
-      @project_item.name_of_item_en = @item.name_of_item_en
-      @project_item.unit_ne = @item.unit_ne
-      @project_item.item_id = @item.id
-      @project_item.unit_en = @item.unit_en
-      @project_item.model_no = @item.model_no
-      @project_item.item_identification_no = @item.item_identification_no
-      @project_item.office_id = current_office.id
-      @project_item.fiscal_year_id = current_fiscal_year.id
-      @project_item.save
-      @irpn = @project_item.item_register_page_no
-    else
-      @irpn = @pi.item_register_page_no
-    end
-    @irpn
-  end
-  def generate_item_register_no
-    item_register_no = 1
-    items = ProjectItem.where(fiscal_year_id: current_fiscal_year.id).where(project_id: nil)
-    if items.count > 0
-      item_register_no = items.last.item_register_no + 1
-    end
-    item_register_no
-  end
 end
