@@ -5,6 +5,7 @@ class ProjectItemCategoriesController < ApplicationController
   # GET /item_categories.json
   def index
     @project_item_categories = office(ProjectItemCategory)
+    
   end
 
   # GET /item_categories/1
