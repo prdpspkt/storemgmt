@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_25_031806) do
+ActiveRecord::Schema.define(version: 2020_02_25_072452) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1064,6 +1064,8 @@ ActiveRecord::Schema.define(version: 2020_02_25_031806) do
     t.decimal "amount_without_vat"
     t.decimal "vat"
     t.decimal "other_expense"
+    t.string "country"
+    t.string "remarks"
   end
 
   create_table "project_tenders", force: :cascade do |t|

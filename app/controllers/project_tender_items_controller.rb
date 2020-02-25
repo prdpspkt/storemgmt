@@ -1,5 +1,5 @@
 class ProjectTenderItemsController < ApplicationController
-  before_action :set_project_tender_item, only: [:destroy]
+  before_action :set_project_tender_item, only: [:destroy, :edit, :update]
 
   # GET /project_tender_items
   # GET /project_tender_items.json
@@ -38,11 +38,21 @@ class ProjectTenderItemsController < ApplicationController
     end
   end
 
-
+  def update
+    respond_to do |format|
+      if@project_tender_item.update(project_tender_item_update_params)
+        format.html { redirect_to@project_tender_item.project_tender, notice: 'Project Tender Item was successfully updated.' }
+        format.json { render :show, status: :ok, location:@project_tender_item }
+      else
+        format.html { render :edit }
+        format.json { render json:@project_tender_item.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   # DELETE /project_tender_items/1
   # DELETE /project_tender_items/1.json
   def destroy
-    project_tender = @project_tender_item.project_purchase_tender
+    project_tender = @project_tender_item.project_tender
     @project_tender_item.destroy
     respond_to do |format|
       format.html { redirect_to project_tender, notice: 'Project tender item was successfully destroyed.' }
@@ -60,6 +70,9 @@ class ProjectTenderItemsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_tender_item_params
     params.require(:project_tender_item).permit(:item_classification_no, :quantity, :rate, :amount, :is_vatable, :project_tender_id, :project_item_id)
+  end
+  def project_tender_item_update_params
+    params.require(:project_tender_item).permit(:item_identification_no, :model_no, :remarks, :country, :size, :approx_age, :source )
   end
 
   def update_general_information object

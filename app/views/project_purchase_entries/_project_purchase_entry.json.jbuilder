@@ -1,2 +1,0 @@
-json.extract! project_purchase_entry, :id, :entry_date, :bill_no, :entry_no, :store_chief_name, :store_chief_designation, :store_chief_signed_date, :section_chief_name, :section_chief_designation, :section_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :user_id, :office_id, :fiscal_year_id, :item_id, :item_register_page_no, :purchase_handover_no, :fy, :marked_as_final, :created_at, :updated_at
-json.url project_purchase_entry_url(project_purchase_entry, format: :json)

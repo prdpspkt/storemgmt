@@ -1,6 +1,6 @@
-<h1>Editing Project Tender Item</h1>
+<h1>ठेक्का अन्तर्गतको जिन्सीको अतिरिक्त विवरण</h1>
+<p><b>जिन्सी सामानको नाम: </b><%= @project_tender_item.name_of_item_ne %></p>
 
 <%= render 'form', project_tender_item: @project_tender_item %>
 
-<%= link_to 'Show', @project_tender_item %> |
-<%= link_to 'Back', project_tender_items_path %>
+<%= link_to back_btn.html_safe, project_tender_path(@project_tender_item.project_tender) %>

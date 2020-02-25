@@ -56,37 +56,8 @@ class ProjectTendersController < ApplicationController
   def mark_as_final
     if @project_tender.marked_as_final == true
       @project_tender.marked_as_final = false
-      if @project_tender.project_purchase_entry.blank? == false
-        @project_tender.project_purchase_entry.destroy
-      end
     else
       @project_tender.marked_as_final = true
-      @project_purchase_entry = ProjectPurchaseEntry.new
-      @project_purchase_entry.entry_no = new_purchase_entry_no
-      @project_purchase_entry.entry_date = @project_tender.tender_date
-      @project_purchase_entry.store_chief_name = @project_tender.store_keeper_name
-      @project_purchase_entry.store_chief_designation = @project_tender.store_keeper_designation
-      @project_purchase_entry.section_chief_name = @project_tender.section_chief_name
-      @project_purchase_entry.section_chief_designation = @project_tender.section_chief_designation
-      @project_purchase_entry.office_chief_name = @project_tender.office_chief_name
-      @project_purchase_entry.office_chief_designation = @project_tender.office_chief_designation
-      @project_purchase_entry.project_tender_id = @project_tender.id
-      @project_purchase_entry.office_id = current_office.id
-      @project_purchase_entry.user_id = current_user.id
-      @project_purchase_entry.fiscal_year_id = current_fiscal_year.id
-      @project_purchase_entry.purchase_handover_no = "Tender/#{@project_tender.tender_no}"
-      @project_purchase_entry.save!
-
-      @project_tender.project_tender_items.each do |item|
-        irpn = create_project_item_if_doesnt_exists item.item_id
-        ppei = ProjectPurchaseEntryItem.new(item.attributes.select { |key, _| ProjectPurchaseEntryItem.attribute_names.include? key })
-        ppei.id = nil
-        ppei.item_register_page_no = irpn
-        ppei.project_purchase_entry_id = @project_purchase_entry.id
-        ppei.total_amount = ppei.amount
-        ppei.save!
-      end
-
     end
     @project_tender.save!
     redirect_to @project_tender
