@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :project_tender_items
   resources :project_tenders
   post "project_purchase_tender/mark_as_final/:id" => "project_tenders#mark_as_final", as: :project_tender_maf
+  post "project_purchase_tender/generate_entry/:id" => "project_tenders#generate_entry", as: :project_main_entry
   resources :project_purchase_orders
   post "project_purchase_orders/mark_as_final/:id" => "project_purchase_orders#mark_as_final", as: :ppo_maf
   resources :project_purchase_order_items
@@ -40,7 +41,7 @@ Rails.application.routes.draw do
   get '/report/oneirt_ledger' => "report#oneirt_ledger", as: :oneirt_ledger
   get '/report/office_handover_form/:id' => "report#office_handover_form", as: :office_handover_report
   get '/report/repair_application_form/:id' => "report#repair_application_form", as: :repair_application_report
-  get '/report/project_purchase_entry/:id' => "report#project_purchase_entry", as: :ppe_report
+  get '/report/project_purchase_entry/:id' => "report#project_purchase_entry", as: :project_main_entry_report
 
   resources :land_and_structure_record_book_items
   resources :land_and_structure_record_books
@@ -88,10 +89,6 @@ Rails.application.routes.draw do
   }
   resources :users
 
-
-
-  #json-section
-  get "/project_items/data/:classification_no" => "project_items#tender_breakdown_data"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

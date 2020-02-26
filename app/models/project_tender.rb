@@ -3,13 +3,11 @@ class ProjectTender < ApplicationRecord
   belongs_to :office
   has_one :project_purchase_entry
   after_update :create_entry
-  after_update :delete_entry
-
 
   private
   def create_entry
     items = self.project_tender_items
-    if self.marked_as_final == true
+    if self.entry_generated == true
       items.each do |item|
         if item.item_classification_no == 47
           create_pteits item
@@ -21,15 +19,6 @@ class ProjectTender < ApplicationRecord
     end
   end
 
-  def delete_entry
-    items = self.project_tender_items
-    if self.marked_as_final == false
-      items.each do |item|
-        item.ptneit.destroy if item.ptneit.blank? == false
-        item.pteit.destroy if item.pteit.blank? == false
-      end
-    end
-  end
 
   def create_pteits item
     pteits = Project::Pteit.new(item.attributes.select{|key, _| Project::Pteit.column_names.include? key})

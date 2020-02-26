@@ -64,8 +64,8 @@ class ReportController < ApplicationController
   end
 
   def project_purchase_entry
-    @project_purchase_entry = ProjectPurchaseEntry.find(params[:id])
-    @project_purchase_entry_items = @project_purchase_entry.project_purchase_entry_items
+    @project_purchase_entry = ProjectTender.find(params[:id])
+    @project_purchase_entry_items = @project_purchase_entry.project_tender_items
     @total_amount = @project_purchase_entry_items.sum(:total_amount)
     @amount = @project_purchase_entry_items.sum(:amount)
     @amount_without_vat = @project_purchase_entry_items.sum(:amount_without_vat)

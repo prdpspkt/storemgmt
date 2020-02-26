@@ -15,10 +15,13 @@
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_tenders_path %>
-  <% if can_unmark @project_tender %>
+  <% if can_unmark(@project_tender) && @project_tender.entry_generated != true %>
     <%= link_to before_final_btn.html_safe, project_tender_maf_path(@project_tender), data: { method: :post} %>
   <% end %>
-  <% if @project_tender.marked_as_final != true %>
+  <% if @project_tender.entry_generated == true %>
+    <%= link_to print_entry_big_btn.html_safe, project_main_entry_report_path(@project_tender) %>
+  <% end  %>
+  <% if @project_tender.marked_as_final != true  %>
     <%= link_to edit_big_btn.html_safe, edit_project_tender_path(@project_tender) %>
     <%= link_to final_btn.html_safe, project_tender_maf_path(@project_tender), data: {method: :post} %>
   <% end %>

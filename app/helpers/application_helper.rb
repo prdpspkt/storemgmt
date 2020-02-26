@@ -36,6 +36,9 @@ module ApplicationHelper
     '<span class="btn  btn-success"><i class="fa fa-print"></i> प्रिन्ट गर्ने</span>'
   end
 
+  def print_entry_big_btn
+    '<span class="btn  btn-success"><i class="fa fa-print"></i> दाखिला रिपोर्ट प्रिन्ट गर्ने</span>'
+  end
   def add_big_btn
     '<span class="btn  btn-warning"><i class="fa fa-plus"></i> जिन्सी थप गर्ने</span>'
   end

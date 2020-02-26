@@ -1,5 +1,5 @@
 class ProjectTendersController < ApplicationController
-  before_action :set_project_tender, only: [:show, :edit, :update, :destroy, :mark_as_final]
+  before_action :set_project_tender, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_entry]
 
   # GET /project_tenders
   # GET /project_tenders.json
@@ -62,6 +62,14 @@ class ProjectTendersController < ApplicationController
     end
     @project_tender.save!
     redirect_to @project_tender
+  end
+
+  def generate_entry
+    if @project_tender.entry_generated != true
+      @project_tender.entry_generated = true
+    else
+      @project_tender.entry_generated  = false
+    end
   end
 
   # DELETE /project_tenders/1
