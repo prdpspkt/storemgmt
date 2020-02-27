@@ -1,2 +1,0 @@
-json.extract! pneirt, :id, :model_no, :item_identificaiton_no, :country, :project_item_id, :item_id, :office_id, :user_id, :fiscal_year_id, :transaction_date, :transaction_type, :rate, :amount, :quantity, :project_purchase_entry_item_id, :breakdown_id, :remarks, :sku, :project_handover_form_id, :entry_no, :country, :size, :approx_age, :source, :created_at, :updated_at
-json.url pneirt_url(pneirt, format: :json)
