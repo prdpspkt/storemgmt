@@ -24,7 +24,6 @@ class ProjectTenderItemsController < ApplicationController
     else
       @project_tender_item.amount = @project_tender_item.amount_without_vat
     end
-
     @project_tender_item = update_general_information @project_tender_item
     @project_tender_item.sku = @project_tender_item.quantity
     respond_to do |format|

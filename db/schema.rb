@@ -413,9 +413,9 @@ ActiveRecord::Schema.define(version: 2020_02_26_080238) do
     t.string "model_no"
     t.string "item_identification_no"
   end
-
   create_table "office_purchase_entries", force: :cascade do |t|
     t.datetime "entry_date"
+    t.string "tender_no"
     t.string "bill_no"
     t.integer "entry_no"
     t.string "store_chief_name"

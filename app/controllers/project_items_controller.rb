@@ -30,6 +30,7 @@ class ProjectItemsController < ApplicationController
     @project_item_category = ProjectItemCategory.find(@project_item.project_item_category_id)
     @project_item.unit_ne = @project_item_category.unit_ne
     @project_item.unit_en = @project_item_category.unit_en
+    @project_item.item_register_page_no = new_item_register_page_no
     respond_to do |format|
       if @project_item.save
         format.html { redirect_to project_items_path, notice: 'ProjectItem was successfully created.' }
@@ -74,5 +75,14 @@ class ProjectItemsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
     params.require(:project_item).permit(:name_of_item_ne, :specification, :name_of_item_en, :project_item_category_id)
+  end
+
+  def new_item_register_page_no
+    project_items = current(ProjectItem)
+    irpn = 1
+    if project_items.count > 0
+      irpn = project_items.last.item_register_page_no + 1
+    end
+    irpn
   end
 end
