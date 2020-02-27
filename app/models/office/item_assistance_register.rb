@@ -1,0 +1,3 @@
+class Office::ItemAssistanceRegister < ApplicationRecord
+  has_many :item_assistance_register_items, class_name: "Office::ItemAssistanceRegister"
+end

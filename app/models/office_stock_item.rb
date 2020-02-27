@@ -1,2 +1,0 @@
-class OfficeStockItem < ApplicationRecord
-end

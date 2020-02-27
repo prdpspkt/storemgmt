@@ -1,2 +1,0 @@
-class StoreBody < ApplicationRecord
-end

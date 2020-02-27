@@ -1,2 +1,0 @@
-class LandAndStructureRecordBook < ApplicationRecord
-end

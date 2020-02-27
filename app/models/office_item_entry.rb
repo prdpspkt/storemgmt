@@ -1,2 +1,0 @@
-class OfficeItemEntry < ApplicationRecord
-end
