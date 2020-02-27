@@ -1,24 +1,24 @@
-class ProjectPurchaseEntriesController < ApplicationController
+class Project::PurchaseEntriesController < ApplicationController
   before_action :set_project_entry, only: [:show, :edit, :update, :destroy, :mark_as_final]
 
   # GET /ProjectPurchaseEntries
   # GET /ProjectPurchaseEntries.json
   def index
-    @project_purchase_entries = ProjectPurchaseEntry.where(user_id: current_user.id, fiscal_year_id: current_fiscal_year.id, project_id: current_project.id)
+    @project_purchase_entries = current(Project::PurchaseEntry)
     end
 
 
   # GET /ProjectPurchaseEntries/1
   # GET /ProjectPurchaseEntries/1.json
   def show
-    @project_purchase_entry_item = ProjectPurchaseEntryItem.new
+    @project_purchase_entry_item = Project::PurchaseEntryItem.new
     @project_purchase_entry_items = @project_purchase_entry.project_purchase_entry_items
 
   end
 
   # GET /ProjectPurchaseEntries/new
   def new
-    @project_purchase_entry = ProjectPurchaseEntry.new
+    @project_purchase_entry = Project::PurchaseEntry.new
     @project_purchase_entry.entry_no = new_entry_no
   end
 
@@ -29,18 +29,18 @@ class ProjectPurchaseEntriesController < ApplicationController
   # POST /ProjectPurchaseEntries
   # POST /ProjectPurchaseEntries.json
   def create
-    @project_purchase_entry = ProjectPurchaseEntry.new(project_entry_params)
+    @project_purchase_entry = Project::PurchaseEntry.new(project_entry_params)
     @project_purchase_entry.fiscal_year_id = current_fiscal_year.id
     @project_purchase_entry.user_id = current_user.id
     @project_purchase_entry.project_id = current_project.id
     @project_purchase_entry.fy = current_fiscal_year.fy
     @project_purchase_entry.entry_no = new_entry_no
-    @project_purchase_entry.store_chief_name = current_store_keeper.name_ne
-    @project_purchase_entry.section_chief_name = current_section_chief.name_ne
-    @project_purchase_entry.project_chief_name = current_project_chief.name_ne
-    @project_purchase_entry.store_chief_designation = current_store_keeper.post
-    @project_purchase_entry.section_chief_designation = current_section_chief.post
-    @project_purchase_entry.project_chief_designation = current_project_chief.post
+    @project_purchase_entry.store_chief_name = current_control_body.store_keeper_name
+    @project_purchase_entry.section_chief_name = current_control_body.section_chief_name
+    @project_purchase_entry.office_chief_name = current_control_body.project_chief_name
+    @project_purchase_entry.store_chief_designation = current_control_body.store_keeper_designation
+    @project_purchase_entry.section_chief_designation = current_control_body.section_chief_degination
+    @project_purchase_entry.office_chief_designation = current_control_body.project_chief_degination
     @project_purchase_entry.marked_as_final = false
     respond_to do |format|
       if @project_purchase_entry.save
@@ -94,7 +94,7 @@ class ProjectPurchaseEntriesController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_project_entry
-      @project_purchase_entry = ProjectPurchaseEntry.find(params[:id])
+      @project_purchase_entry = Project::PurchaseEntry.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -103,7 +103,7 @@ class ProjectPurchaseEntriesController < ApplicationController
     end
 
   def new_entry_no
-    loe = ProjectPurchaseEntry.last
+    loe = Project::PurchaseEntry.last
     if(!loe.blank? && loe.entry_no.present?)
       noeen = loe.entry_no + 1
     else

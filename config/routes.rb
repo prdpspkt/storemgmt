@@ -88,7 +88,10 @@ Rails.application.routes.draw do
       sessions: 'users/sessions'
   }
   resources :users
-
+namespace :project do
+  resources :purchase_entries
+  resources :purchase_entry_items
+end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

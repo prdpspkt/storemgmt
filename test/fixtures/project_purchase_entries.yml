@@ -1,45 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  entry_date: 2019-12-17 18:11:23
-  bill_no: MyString
-  entry_no: 1
-  store_chief_name: MyString
-  store_chief_designation: MyString
-  store_chief_signed_date: 2019-12-17 18:11:23
-  section_chief_name: MyString
-  section_chief_designation: MyString
-  section_chief_signed_date: 2019-12-17 18:11:23
-  office_chief_name: MyString
-  office_chief_designation: MyString
-  office_chief_signed_date: 2019-12-17 18:11:23
-  user_id: 1
-  office_id: 1
-  fiscal_year_id: 1
-  item_id: 1
-  item_register_page_no: 1
-  purchase_handover_no: MyString
-  fy: MyString
-  marked_as_final: false
-
-two:
-  entry_date: 2019-12-17 18:11:23
-  bill_no: MyString
-  entry_no: 1
-  store_chief_name: MyString
-  store_chief_designation: MyString
-  store_chief_signed_date: 2019-12-17 18:11:23
-  section_chief_name: MyString
-  section_chief_designation: MyString
-  section_chief_signed_date: 2019-12-17 18:11:23
-  office_chief_name: MyString
-  office_chief_designation: MyString
-  office_chief_signed_date: 2019-12-17 18:11:23
-  user_id: 1
-  office_id: 1
-  fiscal_year_id: 1
-  item_id: 1
-  item_register_page_no: 1
-  purchase_handover_no: MyString
-  fy: MyString
-  marked_as_final: false
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+# column: value
