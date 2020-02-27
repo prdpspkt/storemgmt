@@ -42,16 +42,7 @@ en:
           phone: "फोन"
           fax: "फ्याक्स"
           email: "इमेल"
-        item:
-          name_ne: "जिन्सीको नाम(नेपालीमा)"
-          name_en: "जिन्सीको नाम(अंग्रेजीमा)"
-          unit: "इकाई"
-          item_category_id: "सामाग्रीको बर्गिकरण"
-          specification: "स्पेसिफिकेसन"
-          unit_en: "एकाई (अंग्रेजीमा)"
-          model_no: "मोडल नं"
-          item_identification_no: "जिन्सी पहिचान नं"
-        item_category:
+        office_item_category:
           name: "जिन्सी बर्गिकरणको नाम"
           unit_ne: "जिन्सी सामानको इकाई(नेपाली)"
           unit_en: "जिन्सी सामानको इकाई (अंग्रेजी)"

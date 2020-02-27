@@ -4,7 +4,7 @@ class Office::ItemCategoriesController < ApplicationController
   # GET /item_categories
   # GET /item_categories.json
   def index
-    @item_categories = office(ItemCategory)
+    @item_categories = office(Office::ItemCategory)
   end
 
   # GET /item_categories/1
@@ -14,7 +14,7 @@ class Office::ItemCategoriesController < ApplicationController
 
   # GET /item_categories/new
   def new
-    @item_category = ItemCategory.new
+    @item_category = Office::ItemCategory.new
   end
 
   # GET /item_categories/1/edit
@@ -24,11 +24,11 @@ class Office::ItemCategoriesController < ApplicationController
   # POST /item_categories
   # POST /item_categories.json
   def create
-    @item_category = ItemCategory.new(item_category_params)
+    @item_category = Office::ItemCategory.new(item_category_params)
     @item_category.office_id = current_office.id
     respond_to do |format|
       if @item_category.save
-        format.html { redirect_to item_categories_path, notice: 'Item category was successfully created.' }
+        format.html { redirect_to office_item_categories_path, notice: 'Item category was successfully created.' }
         format.json { render :show, status: :created, location: @item_category }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class Office::ItemCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @item_category.update(item_category_params)
-        format.html { redirect_to item_categories_path, notice: 'Item category was successfully updated.' }
+        format.html { redirect_to office_item_categories_path, notice: 'Item category was successfully updated.' }
         format.json { render :show, status: :ok, location: @item_category }
       else
         format.html { render :edit }
@@ -56,7 +56,7 @@ class Office::ItemCategoriesController < ApplicationController
   def destroy
     @item_category.destroy
     respond_to do |format|
-      format.html { redirect_to item_categories_url, notice: 'Item category was successfully destroyed.' }
+      format.html { redirect_to office_item_categories_url, notice: 'Item category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +64,11 @@ class Office::ItemCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item_category
-      @item_category = ItemCategory.find(params[:id])
+      @item_category = Office::ItemCategory.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_category_params
-      params.require(:item_category).permit(:name_ne, :name_en,  :unit_ne, :unit_en, :user_id, :office_id)
+      params.require(:office_item_category).permit(:name_ne, :name_en,  :unit_ne, :unit_en, :user_id, :office_id)
     end
 end

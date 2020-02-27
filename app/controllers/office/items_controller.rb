@@ -1,10 +1,10 @@
-class Office::OfficeItemsController < ApplicationController
+class Office::ItemsController < ApplicationController
   before_action :set_office_item, only: [:show, :edit, :update, :destroy]
 
   # GET /office_items
   # GET /office_items.json
   def index
-    @office_items = OfficeItem.all
+    @items = office(Office::Item)
   end
 
   # GET /office_items/1
@@ -14,7 +14,7 @@ class Office::OfficeItemsController < ApplicationController
 
   # GET /office_items/new
   def new
-    @office_item = OfficeItem.new
+    @item = Office::Item.new
   end
 
   # GET /office_items/1/edit
@@ -24,18 +24,11 @@ class Office::OfficeItemsController < ApplicationController
   # POST /office_items
   # POST /office_items.json
   def create
-    begin
-    @office_item = OfficeItem.new(office_item_params)
-    @item = Item.find(@office_item.item_id)
-    @office_item.name_of_item_ne = @item.name_of_item_ne
-    @office_item.name_of_item_en = @item.name_of_item_en
-    @office_item.unit_ne = @item.unit_ne
-    @office_item.unit_en = @item.unit_en
-    @office_item.model_no = @item.model_no
-    @office_item.item_identification_no = @item.item_identification_no
+    @office_item = Office::Item.new(office_item_params)
     @office_item.user_id = current_user.id
     @office_item.office_id = current_office.id
     @office_item.fiscal_year_id = current_fiscal_year.id
+    binding.pry
     respond_to do |format|
       if @office_item.save
         format.html { redirect_to office_items_path, notice: 'Office item was successfully created.' }
@@ -45,9 +38,6 @@ class Office::OfficeItemsController < ApplicationController
         format.json { render json: @office_item.errors, status: :unprocessable_entity }
       end
     end
-  rescue Exeption => error
-    redirect_to :back, notice: error.message
-  end
   end
 
   # PATCH/PUT /office_items/1
@@ -77,7 +67,7 @@ class Office::OfficeItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_office_item
-      @office_item = OfficeItem.find(params[:id])
+      @office_item = Office::Item.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

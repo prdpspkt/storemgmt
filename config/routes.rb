@@ -58,42 +58,41 @@ namespace :office do
   resources :item_entries
   resources :items
   resources :personnels
-  resources :items
   resources :item_categories, except: [:show]
   resources :fiscal_years
   resources :offices
+  resources :store_bodies
+  get '/active_fiscal_year' => "active_fiscal_year#new", as: :set_active_fiscal_year
+  patch '/active_fiscal_year/:id' => "active_fiscal_year#create"
 end
 namespace :project do
   resources :purchase_entries
   resources :purchase_entry_items
-  resources :project_tender_breakdown_items
-  resources :project_item_categories
-  get '/active_fiscal_year' => "active_fiscal_year#new", as: :set_active_fiscal_year
-  patch '/active_fiscal_year/:id' => "active_fiscal_year#create"
-  resources :store_bodies
-  resources :project_tender_breakdowns
-  post "project_tender_breakdowns/marked_as_final/:id" => "project_tender_breakdowns#marked_as_final", as: :ptm_marked_as_final
-  resources :project_tender_items
-  resources :project_tenders
-  post "project_purchase_tender/mark_as_final/:id" => "project_tenders#mark_as_final", as: :project_tender_maf
-  post "project_purchase_tender/generate_entry/:id" => "project_tenders#generate_entry", as: :project_main_entry
-  resources :project_purchase_orders
-  post "project_purchase_orders/mark_as_final/:id" => "project_purchase_orders#mark_as_final", as: :ppo_maf
-  resources :project_purchase_order_items
+  resources :tender_breakdown_items
+  resources :item_categories
+  resources :tender_breakdowns
+  post "tender_breakdowns/marked_as_final/:id" => "project_tender_breakdowns#marked_as_final", as: :ptm_marked_as_final
+  resources :tender_items
+  resources :tenders
+  post "purchase_tender/mark_as_final/:id" => "project_tenders#mark_as_final", as: :project_tender_maf
+  post "purchase_tender/generate_entry/:id" => "project_tenders#generate_entry", as: :project_main_entry
+  resources :purchase_orders
+  post "purchase_orders/mark_as_final/:id" => "project_purchase_orders#mark_as_final", as: :ppo_maf
+  resources :purchase_order_items
   resources :pneirts
   resources :projects
-  resources :project_stocks
-  resources :project_stock_items
-  resources :project_releases
-  resources :project_release_items
-  resources :project_items
-  get "project_items/transactions/:project_item_id" => "report#project_eitem_transactions", as: :pits_report
-  resources :project_evaluations
-  resources :project_evaluation_items
-  resources :project_handover_forms
-  resources :project_handover_form_items
-  resources :project_demands
-  resources :project_demand_items
+  resources :stocks
+  resources :stock_items
+  resources :releases
+  resources :release_items
+  resources :items
+  get "items/transactions/:project_item_id" => "report#project_eitem_transactions", as: :pits_report
+  resources :evaluations
+  resources :evaluation_items
+  resources :handover_forms
+  resources :handover_form_items
+  resources :demands
+  resources :demand_items
 end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

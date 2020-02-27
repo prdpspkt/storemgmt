@@ -1,4 +1,5 @@
 class Office::Item < ApplicationRecord
+  self.table_name = "office_items"
   has_many :oeirt, class_name: "Office::Oeirt"
   has_many :oneirt, class_name: "Office::Oneirt"
   has_many :release_items, class_name: "Office::ReleaseItem"

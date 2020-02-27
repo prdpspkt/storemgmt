@@ -1,4 +1,4 @@
-class Store::BodiesController < ApplicationController
+class Office::StoreBodiesController < ApplicationController
   before_action :set_store_body, only: [:show, :edit, :update, :destroy]
 
   # GET /store_bodies

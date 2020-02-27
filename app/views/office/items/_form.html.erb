@@ -26,7 +26,7 @@
   </div>
   <div class="col-sm-6">
     <%= form.label :item_category_id %>
-    <%= form.select(:item_category_id, ItemCategory.all.collect {|p| [p.name_en, p.id]}, {include_blank: '-select-'}, {class: 'form-control'}) %>
+    <%= form.select(:item_category_id, Office::ItemCategory.all.collect {|p| [p.name_en, p.id]}, {include_blank: '-select-'}, {class: 'form-control'}) %>
   </div>
 
   <div class="col-sm-12">

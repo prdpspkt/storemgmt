@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_26_080238) do
+ActiveRecord::Schema.define(version: 2020_02_27_024629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -311,6 +311,17 @@ ActiveRecord::Schema.define(version: 2020_02_26_080238) do
     t.boolean "marked_as_final"
   end
 
+  create_table "office_item_categories", force: :cascade do |t|
+    t.string "name_ne"
+    t.string "name_en"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "office_item_entries", force: :cascade do |t|
     t.integer "item_registration_page_no"
     t.integer "office_item_id"
@@ -413,9 +424,9 @@ ActiveRecord::Schema.define(version: 2020_02_26_080238) do
     t.string "model_no"
     t.string "item_identification_no"
   end
+
   create_table "office_purchase_entries", force: :cascade do |t|
     t.datetime "entry_date"
-    t.string "tender_no"
     t.string "bill_no"
     t.integer "entry_no"
     t.string "store_chief_name"

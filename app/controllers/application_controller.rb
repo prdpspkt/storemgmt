@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     current_user.office
   end
   def current_control_body
-    store_body = StoreBody.new
+    store_body = Office::StoreBody.new
     if current_office.store_bodies.empty?
       redirect_to new_store_body_path
     else
@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
   def current_fiscal_year
     cfy = false
     if user_signed_in?
-      cfy = FiscalYear.find(current_office.active_fiscal_year.fiscal_year_id)
+      cfy = Office::FiscalYear.find(current_office.active_fiscal_year.fiscal_year_id)
     end
     cfy
   end
