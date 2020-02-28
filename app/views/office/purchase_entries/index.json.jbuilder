@@ -1,7 +1,7 @@
 @serial = 1
 json.set! :data do
   json.array! @office_purchase_entries do |office_entry|
-    json.partial! 'office_purchase_entries/office_purchase_entry', office_purchase_entry: office_entry
+    json.partial! 'office/purchase_entries/office_purchase_entry', office_purchase_entry: office_entry
     if office_entry.marked_as_final != true
       json.url "
                #{link_to show_btn.html_safe, office_entry }

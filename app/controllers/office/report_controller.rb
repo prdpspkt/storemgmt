@@ -17,7 +17,7 @@ class Office::ReportController < ApplicationController
 
   def office_purchase_entry
     @office_purchase_entry = Office::PurchaseEntry.find(params[:id])
-    @office_purchase_entry_items = @office_purchase_entry.office_purchase_entry_items
+    @office_purchase_entry_items = @office_purchase_entry.purchase_entry_items
     @total_amount = @office_purchase_entry_items.sum(:total_amount)
     @amount = @office_purchase_entry_items.sum(:amount)
     @amount_without_vat = @office_purchase_entry_items.sum(:amount_without_vat)

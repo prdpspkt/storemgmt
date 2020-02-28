@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_061548) do
+ActiveRecord::Schema.define(version: 2020_02_28_072845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1200,6 +1200,9 @@ ActiveRecord::Schema.define(version: 2020_02_28_061548) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "office_item_id"
+    t.decimal "vat"
+    t.decimal "amount_without_vat"
+    t.boolean "is_vatable"
   end
 
   create_table "purchase_orders", force: :cascade do |t|
