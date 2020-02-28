@@ -1,19 +1,7 @@
 Rails.application.routes.draw do
   root "office/offices#index"
   
-  #report printing
-  get '/report/vendors' => "report#vendors", as: :vendors_report
-  get '/report/personnels' => "report#personnels", as: :personnels_print
-  get '/report/office_demand_form/:id' => "report#office_demand_form"
-  get '/report/purchase_order/:id' => "report#purchase_order"
-  get '/report/office_purchase_entry/:id' => "report#office_purchase_entry"
-  get '/report/office_release/:id' => "report#office_release"
-  get '/report/office_item_assistance_register/:id' => "report#office_item_assistance_register"
-  get '/report/oeirt_ledger' => "report#oeirt_ledger", as: :oeirt_ledger
-  get '/report/oneirt_ledger' => "report#oneirt_ledger", as: :oneirt_ledger
-  get '/report/office_handover_form/:id' => "report#office_handover_form", as: :office_handover_report
-  get '/report/repair_application_form/:id' => "report#repair_application_form", as: :repair_application_report
-  get '/report/project_purchase_entry/:id' => "report#project_purchase_entry", as: :project_main_entry_report
+
 
   devise_for :users, controllers: {
       registrations: 'users/registrations',
@@ -63,6 +51,21 @@ namespace :office do
   resources :offices
   resources :store_bodies
   resources :active_fiscal_year
+
+  #office_report
+  #report printing
+  get '/report/vendors' => "report#vendors", as: :vendors_report
+  get '/report/personnels' => "report#personnels", as: :personnels_print
+  get '/report/office_demand_form/:id' => "report#office_demand_form"
+  get '/report/purchase_order/:id' => "report#purchase_order"
+  get '/report/office_purchase_entry/:id' => "report#office_purchase_entry"
+  get '/report/office_release/:id' => "report#office_release"
+  get '/report/office_item_assistance_register/:id' => "report#office_item_assistance_register"
+  get '/report/oeirt_ledger' => "report#oeirt_ledger", as: :oeirt_ledger
+  get '/report/oneirt_ledger' => "report#oneirt_ledger", as: :oneirt_ledger
+  get '/report/office_handover_form/:id' => "report#office_handover_form", as: :office_handover_report
+  get '/report/repair_application_form/:id' => "report#repair_application_form", as: :repair_application_report
+  get '/report/project_purchase_entry/:id' => "report#project_purchase_entry", as: :project_main_entry_report
 end
 namespace :project do
   resources :purchase_entries

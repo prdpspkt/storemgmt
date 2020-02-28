@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_28_031632) do
+ActiveRecord::Schema.define(version: 2020_02_28_061548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -408,11 +408,21 @@ ActiveRecord::Schema.define(version: 2020_02_28_031632) do
     t.string "specification"
     t.string "unit_ne"
     t.string "unit_en"
+    t.integer "item_register_page_no"
+    t.integer "item_classification_no"
+    t.decimal "to_be_repaired"
+    t.decimal "to_be_auctioned"
+    t.decimal "to_be_conserved"
+    t.decimal "working"
+    t.decimal "not_working"
+    t.integer "item_id"
     t.integer "user_id"
     t.integer "office_id"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "model_no"
+    t.string "item_identification_no"
     t.integer "item_category_id"
   end
 
@@ -457,7 +467,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_031632) do
     t.decimal "other_expense"
     t.decimal "amount"
     t.string "remarks"
-    t.integer "office_purchase_entry_id"
+    t.integer "purchase_entry_id"
     t.integer "user_id"
     t.integer "office_id"
     t.string "fy"
@@ -1189,6 +1199,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_031632) do
     t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "office_item_id"
   end
 
   create_table "purchase_orders", force: :cascade do |t|
@@ -1217,6 +1228,7 @@ ActiveRecord::Schema.define(version: 2020_02_28_031632) do
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vendor_id"
   end
 
   create_table "pweits", force: :cascade do |t|

@@ -1,22 +1,22 @@
-class ReportController < ApplicationController
+class Office::ReportController < ApplicationController
   before_action :set_office_information
   def office_demand_form
-    @demand = Demand.find(params[:id])
+    @demand = Office::Demand.find(params[:id])
     @demand_items = @demand.demand_items
-    @fy = FiscalYear.find(@demand.fiscal_year_id).fy
+    @fy = Office::FiscalYear.find(@demand.fiscal_year_id).fy
   end
 
   def purchase_order
-    @purchase_order = PurchaseOrder.find(params[:id])
+    @purchase_order = Office::PurchaseOrder.find(params[:id])
     @purchase_order_items = @purchase_order.purchase_order_items
-    @fy = FiscalYear.find(@purchase_order.fiscal_year_id).fy
-    @amount = PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).sum(:amount)
+    @fy =  Office::FiscalYear.find(@purchase_order.fiscal_year_id).fy
+    @amount =  Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).sum(:amount)
     @vat = @amount * 0.13
     @total = @amount + @vat
   end
 
   def office_purchase_entry
-    @office_purchase_entry = OfficePurchaseEntry.find(params[:id])
+    @office_purchase_entry = Office::PurchaseEntry.find(params[:id])
     @office_purchase_entry_items = @office_purchase_entry.office_purchase_entry_items
     @total_amount = @office_purchase_entry_items.sum(:total_amount)
     @amount = @office_purchase_entry_items.sum(:amount)
@@ -26,45 +26,45 @@ class ReportController < ApplicationController
   end
 
   def office_item_assistance_register
-    @item_assistance_register = ItemAssistanceRegister.find(params[:id])
+    @item_assistance_register =  Office::ItemAssistanceRegister.find(params[:id])
     @item_assistance_register_items = @item_assistance_register.item_assistance_register_items
   end
 
   def office_release
-    @office_release = OfficeRelease.find(params[:id])
+    @office_release = Office::Release.find(params[:id])
     @office_release_items = @office_release.office_release_items
   end
 
 
   def oeirt_ledger
-    @items = OfficeItem.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id).where(item_classification_no: 52)
+    @items = Office::Item.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id).where(item_classification_no: 52)
   end
 
   def oneirt_ledger
-    @items = OfficeItem.where(office_id: @office.id).where(item_classification_no: 47)
+    @items = Office::Item.where(office_id: @office.id).where(item_classification_no: 47)
   end
 
   def office_handover_form
-    @office_handover_form = OfficeHandoverForm.find(params[:id])
+    @office_handover_form = Office::HandoverForm.find(params[:id])
     @office_handover_form_items = @office_handover_form.office_handover_form_items
   end
 
   def personnels
-    @personnels = Personnel.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
+    @personnels =  Office::Personnel.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
   end
 
 
   def vendors
-    @vendors = Vendor.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
+    @vendors =  Office::Vendor.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year)
   end
 
   def repair_application_form
-    @repair_application_form = RepairApplicationForm.find(params[:id])
+    @repair_application_form =  Office::RepairApplicationForm.find(params[:id])
     @repair_application_form_items = @repair_application_form.repair_application_form_items
   end
 
   def project_purchase_entry
-    @project_purchase_entry = ProjectTender.find(params[:id])
+    @project_purchase_entry = Project::Tender.find(params[:id])
     @project_purchase_entry_items = @project_purchase_entry.project_tender_items
     @total_amount = @project_purchase_entry_items.sum(:total_amount)
     @amount = @project_purchase_entry_items.sum(:amount)
@@ -76,8 +76,8 @@ class ReportController < ApplicationController
 
   def project_eitem_transactions
     project_item_id = params[:project_item_id]
-    @item = ProjectItem.find(project_item_id)
-    @transactions = Peirt.where(item_id: @item.item_id).where(project_id: nil)
+    @item = Project::Item.find(project_item_id)
+    @transactions = Project::Peirt.where(item_id: @item.item_id).where(project_id: nil)
   end
   private
   def set_office_information

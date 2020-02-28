@@ -20,17 +20,17 @@
   </tr>
 </table>
 <div class="text-center">
-  <%= link_to back_btn.html_safe, purchase_orders_path %>
+  <%= link_to back_btn.html_safe, office_purchase_orders_path %>
   <% if @purchase_order.marked_as_final != true %>
-  <%= link_to edit_big_btn.html_safe, edit_purchase_order_path(@purchase_order) %>
+  <%= link_to edit_big_btn.html_safe, edit_office_purchase_order_path(@purchase_order) %>
   <% end %>
   <% if @purchase_order.marked_as_final != true %>
-    <%= link_to final_btn.html_safe, mark_po_as_final_url(@purchase_order), method: :post, data: {confirm: "के तपाइँ स्वीकृत गर्न चाहानु हुन्छ ? You will have only 3 days to modify data."} %>
+    <%= link_to final_btn.html_safe, office_mark_po_as_final_url(@purchase_order), method: :post, data: {confirm: "के तपाइँ स्वीकृत गर्न चाहानु हुन्छ ? You will have only 3 days to modify data."} %>
   <% end %>
   <% if can_unmark(@purchase_order) %>
-    <%= link_to before_final_btn.html_safe, mark_po_as_final_url(@purchase_order), method: :post %>
+    <%= link_to before_final_btn.html_safe, office_mark_po_as_final_url(@purchase_order), method: :post %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, "/report/purchase_order/#{@purchase_order.id}" %>
+  <%= link_to print_big_btn.html_safe, "/office/report/purchase_order/#{@purchase_order.id}" %>
 </div>
 <div class="separator"></div>
 <% if @purchase_order.marked_as_final != true %>
@@ -61,7 +61,7 @@
       <td><%= item.remarks %></td>
       <td class="no-print">
         <% if @purchase_order.marked_as_final != true %>
-          <%= link_to(destroy_btn.html_safe, purchase_order_item_path(item), method: :delete, remote: true, data: {confirm: "Are you sure?"}) %>
+          <%= link_to(destroy_btn.html_safe, office_purchase_order_item_path(item), method: :delete, remote: true, data: {confirm: "Are you sure?"}) %>
         <% end %>
       </td>
     </tr>

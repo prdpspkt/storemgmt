@@ -4,21 +4,21 @@ class Office::PurchaseOrdersController < ApplicationController
   # GET /purchase_orders
   # GET /purchase_orders.json
   def index
-    @purchase_orders = PurchaseOrder.where(user_id: current_user.id, office_id: current_office.id, fiscal_year_id: current_fiscal_year.id)
+    @purchase_orders = current(Office::PurchaseOrder)
   end
 
   # GET /purchase_orders/1
   # GET /purchase_orders/1.json
   def show
-    @purchase_order_item = PurchaseOrderItem.new
-    @purchase_order_items = PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
+    @purchase_order_item = Office::PurchaseOrderItem.new
+    @purchase_order_items = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
   end
 
   # GET /purchase_orders/new
   def new
-    @purchase_order = PurchaseOrder.new
+    @purchase_order = Office::PurchaseOrder.new
     @purchase_order.order_no = new_purchase_order_no
-    @vendors = Vendor.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id)
+    @vendors = current(Office::Vendor)
   end
 
   # GET /purchase_orders/1/edit
@@ -28,8 +28,8 @@ class Office::PurchaseOrdersController < ApplicationController
   # POST /purchase_orders
   # POST /purchase_orders.json
   def create
-    @purchase_order = PurchaseOrder.new(purchase_order_params)
-    @vendor = Vendor.find(params[:purchase_order][:vendor_id])
+    @purchase_order = Office::PurchaseOrder.new(purchase_order_params)
+    @vendor = Office::Vendor.find(@purchase_order.vendor_id)
     @purchase_order.order_no = new_purchase_order_no
     @purchase_order.vendor_name = @vendor.vendor_name
     @purchase_order.vendor_address = @vendor.vendor_address
@@ -105,15 +105,15 @@ class Office::PurchaseOrdersController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_purchase_order
-      @purchase_order = PurchaseOrder.find(params[:id])
+      @purchase_order = Office::PurchaseOrder.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_order_params
-      params.require(:purchase_order).permit(:vendor_name, :vendor_address, :vendor_registration, :vendor_phone, :vendor_pan, :order_no, :order_date, :order_decision_no, :order_decision_date, :date_to_receive_goods, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :section_chief_name, :section_chief_signed_date, :office_cheif_signed_date, :office_cheif_name, :user_id, :fy, :fiscal_year_id, :office_id)
+      params.require(:office_purchase_order).permit(:vendor_name, :vendor_address, :vendor_registration, :vendor_phone, :vendor_pan, :order_no, :order_date, :order_decision_no, :order_decision_date, :date_to_receive_goods, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :section_chief_name, :section_chief_signed_date, :office_cheif_signed_date, :office_cheif_name, :user_id, :fy, :fiscal_year_id, :vendor_id, :office_id)
     end
   def new_purchase_order_no
-    lpo = PurchaseOrder.last
+    lpo = current(Office::PurchaseOrder).last
     if(!(lpo.blank?) && lpo.order_no.present?)
       npon = lpo.order_no + 1
     else

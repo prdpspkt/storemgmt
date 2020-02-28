@@ -6,7 +6,7 @@ class Office::OfficesController < ApplicationController
   # GET /offices.json
   def index
     if current_office.new_record?
-      redirect_to(new_office_path) and return
+      redirect_to(new_office_office_path) and return
     end
 
     @office = current_office
@@ -20,7 +20,7 @@ class Office::OfficesController < ApplicationController
 
   # GET /offices/new
   def new
-    @office = Office.new
+    @office = Office::Office.new
     @personnels = current_user.personnels
   end
 
@@ -31,7 +31,7 @@ class Office::OfficesController < ApplicationController
   # POST /offices
   # POST /offices.json
   def create
-    @office = Office.new(office_params)
+    @office = Office::Office.new(office_params)
     @office.user_id = current_user.id
     respond_to do |format|
       if @office.save
@@ -71,11 +71,11 @@ class Office::OfficesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_office
-      @office = Office.find(params[:id])
+      @office = Office::Office.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def office_params
-      params.require(:office).permit(:gov, :ministry, :department, :office, :address, :phone, :fax, :email, :user_id)
+      params.require(:office_office).permit(:gov, :ministry, :department, :office, :address, :phone, :fax, :email, :user_id)
     end
 end

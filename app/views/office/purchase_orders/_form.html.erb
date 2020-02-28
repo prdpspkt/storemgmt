@@ -14,10 +14,10 @@
   <div class="col-sm-6">
     <%= form.label :vendor_name %>
     <% if @vendors.blank? != true %>
-    <%= form.select(:vendor_id, @vendors.collect { |p| [p.vendor_name_en, p.id]}, {include_blank: "छनोट गर्ने"}, {class: "form-control"}) %>
+    <%= form.select(:vendor_id, @vendors.collect { |p| [p.vendor_name_en, p.id]}, {include_blank: "छनोट गर्ने"}, {class: "form-control", required: :required}) %>
       <% else %>
     <b class="badge badge-danger">कृपया सूची दर्ता गर्नुहोस</b>
-      <a href="<%= new_vendor_path %>"><b class="badge badge-success">सूची दर्ता गर्ने </b></a>
+      <a href="<%= new_office_vendor_path %>"><b class="badge badge-success">सूची दर्ता गर्ने </b></a>
     <% end %>
   </div>
  

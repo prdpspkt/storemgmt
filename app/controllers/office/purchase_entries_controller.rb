@@ -1,24 +1,24 @@
-class Office::OfficePurchaseEntriesController < ApplicationController
+class Office::PurchaseEntriesController < ApplicationController
   before_action :set_office_entry, only: [:show, :edit, :update, :destroy, :mark_as_final]
 
   # GET /OfficePurchaseEntries
   # GET /OfficePurchaseEntries.json
   def index
-    @office_purchase_entries = OfficePurchaseEntry.where(user_id: current_user.id, fiscal_year_id: current_fiscal_year.id, office_id: current_office.id)
+    @office_purchase_entries = current(Office::PurchaseEntry)
     end
 
 
   # GET /OfficePurchaseEntries/1
   # GET /OfficePurchaseEntries/1.json
   def show
-    @office_purchase_entry_item = OfficePurchaseEntryItem.new
-    @office_purchase_entry_items = @office_purchase_entry.office_purchase_entry_items
+    @office_purchase_entry_item = Office::PurchaseEntryItem.new
+    @office_purchase_entry_items = @office_purchase_entry.purchase_entry_items
 
   end
 
   # GET /OfficePurchaseEntries/new
   def new
-    @office_purchase_entry = OfficePurchaseEntry.new
+    @office_purchase_entry = Office::PurchaseEntry.new
     @office_purchase_entry.entry_no = new_entry_no
   end
 
@@ -29,7 +29,7 @@ class Office::OfficePurchaseEntriesController < ApplicationController
   # POST /OfficePurchaseEntries
   # POST /OfficePurchaseEntries.json
   def create
-    @office_purchase_entry = OfficePurchaseEntry.new(office_entry_params)
+    @office_purchase_entry = Office::PurchaseEntry.new(office_entry_params)
     @office_purchase_entry.fiscal_year_id = current_fiscal_year.id
     @office_purchase_entry.user_id = current_user.id
     @office_purchase_entry.office_id = current_office.id
@@ -94,7 +94,7 @@ class Office::OfficePurchaseEntriesController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_office_entry
-      @office_purchase_entry = OfficePurchaseEntry.find(params[:id])
+      @office_purchase_entry = Office::PurchaseEntry.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -103,7 +103,7 @@ class Office::OfficePurchaseEntriesController < ApplicationController
     end
 
   def new_entry_no
-    loe = OfficePurchaseEntry.last
+    loe = Office::PurchaseEntry.last
     if(!loe.blank? && loe.entry_no.present?)
       noeen = loe.entry_no + 1
     else

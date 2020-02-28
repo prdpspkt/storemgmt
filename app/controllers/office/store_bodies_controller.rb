@@ -4,7 +4,7 @@ class Office::StoreBodiesController < ApplicationController
   # GET /store_bodies
   # GET /store_bodies.json
   def index
-    @store_body = current_office.store_bodies.last
+    @store_body = office(Office::StoreBody).last
   end
 
   # GET /store_bodies/1
@@ -15,7 +15,7 @@ class Office::StoreBodiesController < ApplicationController
 
   # GET /store_bodies/new
   def new
-    @store_body = StoreBody.new
+    @store_body = Office::StoreBody.new
   end
 
   # GET /store_bodies/1/edit
@@ -25,7 +25,7 @@ class Office::StoreBodiesController < ApplicationController
   # POST /store_bodies
   # POST /store_bodies.json
   def create
-    @store_body = StoreBody.new(store_body_params)
+    @store_body = Office::StoreBody.new(store_body_params)
     @store_body.office_id = current_office.id
     respond_to do |format|
       if @store_body.save
@@ -65,11 +65,11 @@ class Office::StoreBodiesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store_body
-      @store_body = StoreBody.find(params[:id])
+      @store_body = Office::StoreBody.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def store_body_params
-      params.require(:store_body).permit(:office_chief_name, :office_chief_degination, :section_chief_name, :section_chief_degination, :store_keeper_designation, :store_keeper_name, :status, :office_id, :fiscal_year_id)
+      params.require(:office_store_body).permit(:office_chief_name, :office_chief_degination, :section_chief_name, :section_chief_degination, :store_keeper_designation, :store_keeper_name, :status, :office_id, :fiscal_year_id)
     end
 end

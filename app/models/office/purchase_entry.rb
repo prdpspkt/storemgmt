@@ -1,9 +1,9 @@
 class Office::PurchaseEntry < ApplicationRecord
-  has_many :purchase_entry_items,class_name: "OfficePurchaseEntryItem", dependent: :delete_all
+  self.table_name = "office_purchase_entries"
+  has_many :purchase_entry_items,class_name: "Office::PurchaseEntryItem", dependent: :delete_all
   belongs_to :user
   belongs_to :office, class_name: "Office::Office"
   belongs_to :fiscal_year, class_name: "Office::FiscalYear"
-  has_one :project_tender_breakdown, dependent: :destroy, class_name: "Project::TenderBreakdownItem"
 
 
   after_update :create_or_update_transactions
@@ -13,7 +13,7 @@ class Office::PurchaseEntry < ApplicationRecord
 
   def create_or_update_transactions
     if self.marked_as_final == true
-      items = self.office_purchase_entry_items
+      items = self.purchase_entry_items
       items.each do |opei|
         if opei.item_classification_no == 47
           create_non_expensable_item_transaction opei
@@ -24,7 +24,7 @@ class Office::PurchaseEntry < ApplicationRecord
       end
     end
     if self.marked_as_final == false
-      items = self.office_purchase_entry_items
+      items = self.purchase_entry_items
       items.each do |opei|
         if (opei.oeirt)
           opei.oeirt.destroy

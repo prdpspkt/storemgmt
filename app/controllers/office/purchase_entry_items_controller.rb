@@ -1,21 +1,6 @@
-class Office::OfficePurchaseEntryItemsController < ApplicationController
+class Office::PurchaseEntryItemsController < ApplicationController
   before_action :set_office_purchase_entry_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /office_purchase_entry_items
-  # GET /office_purchase_entry_items.json
-  def index
-    @office_purchase_entry_items = OfficePurchaseEntryItem.all
-  end
-
-  # GET /office_purchase_entry_items/1
-  # GET /office_purchase_entry_items/1.json
-  def show
-  end
-
-  # GET /office_purchase_entry_items/new
-  def new
-    @office_purchase_entry_item = OfficePurchaseEntryItem.new
-  end
 
   # GET /office_purchase_entry_items/1/edit
   def edit
@@ -24,18 +9,18 @@ class Office::OfficePurchaseEntryItemsController < ApplicationController
   # POST /office_purchase_entry_items
   # POST /office_purchase_entry_items.json
   def create
-    @office_purchase_entry_item = OfficePurchaseEntryItem.new(office_purchase_entry_item_params)
-    @office_purchase_entry_item.user_id = current_user.id
-    @office_purchase_entry_item.fy = current_fiscal_year.fy
-    @office_purchase_entry_item.fiscal_year_id = current_fiscal_year.id
-    @office_purchase_entry_item.office_id = current_office.id
+    @purchase_entry_item = Office::PurchaseEntryItem.new(office_purchase_entry_item_params)
+    @purchase_entry_item.user_id = current_user.id
+    @purchase_entry_item.fy = current_fiscal_year.fy
+    @purchase_entry_item.fiscal_year_id = current_fiscal_year.id
+    @purchase_entry_item.office_id = current_office.id
     respond_to do |format|
-      if @office_purchase_entry_item.save
-        format.html { redirect_to "/office_purchase_entries/#{@office_purchase_entry_item.office_purchase_entry.id}", notice: 'Office purchase entry item was successfully created.' }
-        format.json { render :show, status: :created, location: @office_purchase_entry_item }
+      if @purchase_entry_item.save
+        format.html { redirect_to @purchase_entry_item.purchase_entry, notice: 'Office purchase entry item was successfully created.' }
+        format.json { render :show, status: :created, location: @purchase_entry_item }
       else
-        format.html { render :new }
-        format.json { render json: @office_purchase_entry_item.errors, status: :unprocessable_entity }
+        format.html { redirect_to office_purchase_entry_path(Office::PurchaseEntry.find(@purchase_entry_item.purchase_entry_id))}
+        format.json { render json: @purchase_entry_item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -44,14 +29,14 @@ class Office::OfficePurchaseEntryItemsController < ApplicationController
   # PATCH/PUT /office_purchase_entry_items/1.json
   def update
     respond_to do |format|
-      if @office_purchase_entry_item.update(office_purchase_entry_item_params)
-        @office_purchase_entry_item = prepare_data(@office_purchase_entry_item)
-        @office_purchase_entry_item.save
-        format.html { redirect_to "/office_purchase_entries/#{@office_purchase_entry_item.office_purchase_entry.id}", notice: 'Office purchase entry item was successfully updated.' }
-        format.json { render :show, status: :ok, location: @office_purchase_entry_item }
+      if @purchase_entry_item.update(office_purchase_entry_item_params)
+        @purchase_entry_item = prepare_data(@purchase_entry_item)
+        @purchase_entry_item.save
+        format.html { redirect_to @purchase_entry_item.purchase_entry, notice: 'Office purchase entry item was successfully updated.' }
+        format.json { render :show, status: :ok, location: @purchase_entry_item }
       else
         format.html { render :edit }
-        format.json { render json: @office_purchase_entry_item.errors, status: :unprocessable_entity }
+        format.json { render json: @purchase_entry_item.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -59,10 +44,10 @@ class Office::OfficePurchaseEntryItemsController < ApplicationController
   # DELETE /office_purchase_entry_items/1
   # DELETE /office_purchase_entry_items/1.json
   def destroy
-    @id = @office_purchase_entry_item.id
-    @office_purchase_entry_item.destroy
+    @purchase_entry = @purchase_entry_item.purchase_entry
+    @purchase_entry_item.destroy
     respond_to do |format|
-      format.html { redirect_to office_purchase_entry_items_url, notice: 'Office purchase entry item was successfully destroyed.' }
+      format.html { redirect_to @purchase_entry, notice: 'Office purchase entry item was successfully destroyed.' }
       format.json { head :no_content }
       format.js
     end
@@ -72,12 +57,12 @@ class Office::OfficePurchaseEntryItemsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_office_purchase_entry_item
-    @office_purchase_entry_item = OfficePurchaseEntryItem.find(params[:id])
+    @purchase_entry_item = Office::PurchaseEntryItem.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def office_purchase_entry_item_params
-    params.require(:office_purchase_entry_item).permit(:item_id, :is_vatable, :item_classification_no, :item_registration_page_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :country, :size, :approx_age, :source, :remarks, :office_purchase_entry_id, :user_id, :office_id, :fy, :fiscal_year)
+    params.require(:office_purchase_entry_item).permit(:office_item_id, :is_vatable, :item_classification_no, :item_registration_page_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :country, :size, :approx_age, :source, :remarks, :purchase_entry_id, :user_id, :office_id, :fy, :fiscal_year)
   end
 
 end

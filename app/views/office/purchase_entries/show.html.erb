@@ -18,13 +18,13 @@
 <div class="separator"></div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_purchase_entries_path %>
-  <%= link_to print_big_btn.html_safe, "/report/office_purchase_entry/#{@office_purchase_entry.id}" %>
+  <%= link_to print_big_btn.html_safe, "/office/report/office_purchase_entry/#{@office_purchase_entry.id}" %>
   <% if @office_purchase_entry.marked_as_final != true %>
   <%= link_to edit_big_btn.html_safe, edit_office_purchase_entry_path(@office_purchase_entry) %>
-  <%= link_to final_btn.html_safe, mark_ope_as_final_url(@office_purchase_entry), id: :mark_as_final, method: :post, data: "Are you sure ? You can undo this work within 3 days only." %>
+  <%= link_to final_btn.html_safe, office_mark_ope_as_final_url(@office_purchase_entry), id: :mark_as_final, method: :post, data: "Are you sure ? You can undo this work within 3 days only." %>
   <% end %>
   <% if can_unmark(@office_purchase_entry) %>
-    <%= link_to before_final_btn.html_safe, mark_ope_as_final_url(@office_purchase_entry), id: :mark_as_not_final, method: :post %>
+    <%= link_to before_final_btn.html_safe, office_mark_ope_as_final_url(@office_purchase_entry), id: :mark_as_not_final, method: :post %>
   <% end %>
 </div>
 <div class="separator"></div>
