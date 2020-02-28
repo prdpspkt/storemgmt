@@ -4,8 +4,7 @@ class Office::Item < ApplicationRecord
   has_many :oneirt, class_name: "Office::Oneirt"
   has_many :release_items, class_name: "Office::ReleaseItem"
   before_create :add_item_register_page_no
-  validates :item_id, uniqueness: true
-  validates :item_classification_no, numericality: true
+  validates :item_category_id, numericality: true
 
 
   private

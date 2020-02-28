@@ -62,8 +62,7 @@ namespace :office do
   resources :fiscal_years
   resources :offices
   resources :store_bodies
-  get '/active_fiscal_year' => "active_fiscal_year#new", as: :set_active_fiscal_year
-  patch '/active_fiscal_year/:id' => "active_fiscal_year#create"
+  resources :active_fiscal_year
 end
 namespace :project do
   resources :purchase_entries

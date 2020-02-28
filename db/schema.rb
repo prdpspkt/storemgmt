@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_27_024629) do
+ActiveRecord::Schema.define(version: 2020_02_28_031632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -408,21 +408,12 @@ ActiveRecord::Schema.define(version: 2020_02_27_024629) do
     t.string "specification"
     t.string "unit_ne"
     t.string "unit_en"
-    t.integer "item_register_page_no"
-    t.integer "item_classification_no"
-    t.decimal "to_be_repaired"
-    t.decimal "to_be_auctioned"
-    t.decimal "to_be_conserved"
-    t.decimal "working"
-    t.decimal "not_working"
-    t.integer "item_id"
     t.integer "user_id"
     t.integer "office_id"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "model_no"
-    t.string "item_identification_no"
+    t.integer "item_category_id"
   end
 
   create_table "office_purchase_entries", force: :cascade do |t|

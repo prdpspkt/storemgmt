@@ -14,7 +14,7 @@ class Office::ItemsController < ApplicationController
 
   # GET /office_items/new
   def new
-    @item = Office::Item.new
+    @office_item = Office::Item.new
   end
 
   # GET /office_items/1/edit
@@ -28,7 +28,9 @@ class Office::ItemsController < ApplicationController
     @office_item.user_id = current_user.id
     @office_item.office_id = current_office.id
     @office_item.fiscal_year_id = current_fiscal_year.id
-    binding.pry
+    @item_category = Office::ItemCategory.find(@office_item.item_category_id)
+    @office_item.unit_en = @item_category.unit_en
+    @office_item.unit_ne = @item_category.unit_ne
     respond_to do |format|
       if @office_item.save
         format.html { redirect_to office_items_path, notice: 'Office item was successfully created.' }
@@ -72,7 +74,7 @@ class Office::ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def office_item_params
-      params.require(:office_item).permit(:item_id, :item_classification_no)
+      params.require(:office_item).permit(:specification,:item_category_id, :name_of_item_ne, :name_of_item_en, :item_category_id)
     end
 
 end

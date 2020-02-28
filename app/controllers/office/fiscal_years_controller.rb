@@ -4,17 +4,13 @@ class Office::FiscalYearsController < ApplicationController
   # GET /fiscal_years
   # GET /fiscal_years.json
   def index
-    @fiscal_years = FiscalYear.all
+    @fiscal_years = office(Office::FiscalYear)
   end
 
-  # GET /fiscal_years/1
-  # GET /fiscal_years/1.json
-  def show
-  end
 
   # GET /fiscal_years/new
   def new
-    @fiscal_year = FiscalYear.new
+    @fiscal_year = Office::FiscalYear.new
   end
 
   # GET /fiscal_years/1/edit
@@ -24,7 +20,7 @@ class Office::FiscalYearsController < ApplicationController
   # POST /fiscal_years
   # POST /fiscal_years.json
   def create
-    @fiscal_year = FiscalYear.new(fiscal_year_params)
+    @fiscal_year = Office::FiscalYear.new(fiscal_year_params)
     @fiscal_year.office_id = current_office.id
     respond_to do |format|
       if @fiscal_year.save
@@ -49,7 +45,7 @@ class Office::FiscalYearsController < ApplicationController
   def update
     respond_to do |format|
       if @fiscal_year.update(fiscal_year_params)
-        format.html { redirect_to @fiscal_year, notice: 'Fiscal year was successfully updated.' }
+        format.html { redirect_to office_fiscal_years_path, notice: 'Fiscal year was successfully updated.' }
         format.json { render :show, status: :ok, location: @fiscal_year }
       else
         format.html { render :edit }
@@ -71,11 +67,11 @@ class Office::FiscalYearsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_fiscal_year
-      @fiscal_year = FiscalYear.find(params[:id])
+      @fiscal_year = Office::FiscalYear.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fiscal_year_params
-      params.require(:fiscal_year).permit(:fy)
+      params.require(:office_fiscal_year).permit(:fy)
     end
 end
