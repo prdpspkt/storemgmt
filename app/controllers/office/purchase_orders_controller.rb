@@ -30,23 +30,11 @@ class Office::PurchaseOrdersController < ApplicationController
   def create
     @purchase_order = Office::PurchaseOrder.new(purchase_order_params)
     @vendor = Office::Vendor.find(@purchase_order.vendor_id)
-    @purchase_order.order_no = new_purchase_order_no
-    @purchase_order.vendor_name = @vendor.vendor_name
-    @purchase_order.vendor_address = @vendor.vendor_address
-    @purchase_order.vendor_registration = @vendor.vendor_registration
-    @purchase_order.vendor_pan = @vendor.vendor_pan
-    @purchase_order.vendor_phone = @vendor.vendor_phone
-    @purchase_order.office_cheif_name = current_control_body.office_chief_name
-    @purchase_order.section_chief_name = current_control_body.section_chief_name
-    @purchase_order.store_chief_name = current_control_body.store_keeper_name
     @purchase_order.user_id = current_user.id
     @purchase_order.office_id = current_office.id
     @purchase_order.fiscal_year_id = current_fiscal_year.id
-    @purchase_order.fy = current_fiscal_year.fy
-    @purchase_order.office_name = current_office.office
-    @purchase_order.office_address = current_office.address
+    @purchase_order.store_body_id = current_control_body.id
     @purchase_order.marked_as_final = false
-
     respond_to do |format|
       if @purchase_order.save
         format.html { redirect_to @purchase_order, notice: 'Purchase order was successfully created.' }
@@ -61,12 +49,6 @@ class Office::PurchaseOrdersController < ApplicationController
   # PATCH/PUT /purchase_orders/1
   # PATCH/PUT /purchase_orders/1.json
   def update
-    @vendor = Vendor.find(params[:purchase_order][:vendor_id])
-    @purchase_order.vendor_name = @vendor.vendor_name
-    @purchase_order.vendor_address = @vendor.vendor_address
-    @purchase_order.vendor_registration = @vendor.vendor_registration
-    @purchase_order.vendor_pan = @vendor.vendor_pan
-    @purchase_order.vendor_phone = @vendor.vendor_phone
     respond_to do |format|
       if @purchase_order.update(purchase_order_params)
         format.html { redirect_to @purchase_order, notice: 'Purchase order was successfully updated.' }
@@ -83,7 +65,7 @@ class Office::PurchaseOrdersController < ApplicationController
   def destroy
     @purchase_order.destroy
     respond_to do |format|
-      format.html { redirect_to purchase_orders_url, notice: 'Purchase order was successfully destroyed.' }
+      format.html { redirect_to office_purchase_orders_url, notice: 'Purchase order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
