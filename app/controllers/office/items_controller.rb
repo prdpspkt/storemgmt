@@ -31,6 +31,7 @@ class Office::ItemsController < ApplicationController
     @item_category = Office::ItemCategory.find(@office_item.item_category_id)
     @office_item.unit_en = @item_category.unit_en
     @office_item.unit_ne = @item_category.unit_ne
+    @office_item.item_register_page_no = new_item_register_page_no @office_item.item_classification_no
     respond_to do |format|
       if @office_item.save
         format.html { redirect_to office_items_path, notice: 'Office item was successfully created.' }
@@ -74,7 +75,15 @@ class Office::ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def office_item_params
-      params.require(:office_item).permit(:specification,:item_category_id, :name_of_item_ne, :name_of_item_en, :item_category_id)
+      params.require(:office_item).permit(:specification,:item_category_id, :item_classification_no, :name_of_item_ne, :name_of_item_en, :item_category_id)
     end
+
+  def new_item_register_page_no item_classification_no
+    @items= office(Office::Item).where(item_classification_no: item_classification_no)
+    if @items.count > 0
+      item_register_page_no = @items.last.item_register_page_no + 1
+    end
+    item_register_page_no
+  end
 
 end

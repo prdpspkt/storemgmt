@@ -46,17 +46,21 @@
     <th>इकाई</th>
     <th>दर</th>
     <th>परिमाण</th>
+    <th>मु. अ. कर बाहेक</th>
+    <th>मु. अ. कर</th>
     <th>जम्मा</th>
     <th>कैफियत</th>
     <th class="no-print"></th>
   </tr>
   <% @purchase_order_items.each do |item| %>
     <tr id="poi-<%= item.id %>">
-      <td><%= nd item.item_classification_no %></td>
-      <td><%= item.name_of_item_ne %></td>
-      <td><%= item.unit_ne %></td>
+      <td><%= nd item.office_item.item_classification_no %></td>
+      <td><%= item.office_item.name_of_item_ne %></td>
+      <td><%= item.office_item.unit_ne %></td>
       <td><%= nd item.rate %></td>
       <td><%= nd item.quantity %></td>
+      <td><%= nd item.amount_without_vat %></td>
+      <td><%= nd item.vat %></td>
       <td><%= nd item.amount %></td>
       <td><%= item.remarks %></td>
       <td class="no-print">
@@ -71,28 +75,10 @@
     <td></td>
     <td></td>
     <td></td>
-    <td>जम्मा</td>
-    <td><%= nd @purchase_order_items.sum(:amount) %></td>
-    <td></td>
-    <td class="no-print"></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>भ्याट (१३%)</td>
-    <td><%= nd @purchase_order_items.sum(:amount) * 0.13 %></td>
-    <td></td>
-    <td class="no-print"></td>
-  </tr>
-  <tr>
-    <td></td>
-    <td></td>
     <td></td>
     <td></td>
     <td>कुल जम्मा</td>
-    <td><%= nd @purchase_order_items.sum(:amount) + @purchase_order_items.sum(:amount) * 0.13 %></td>
+    <td><%= nd @purchase_order_items.sum(:amount)  %></td>
     <td></td>
     <td class="no-print"></td>
   </tr>

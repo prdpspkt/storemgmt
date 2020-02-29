@@ -31,14 +31,16 @@
       <%= form.label :rate %>
       <%= form.number_field :rate, class: "form-control", required: :required, step: :any %>
     </div>
-
+    <div class="col-sm-1">
+      <%= form.label :is_vatable %>
+      <%= form.check_box :is_vatable, class: "form-control", :checked => true %>
+    </div>
     <div class="col-sm-2">
       <%= form.label :remarks %>
       <%= form.text_field :remarks, class: "preeti form-control" %>
     </div>
-    <div class="col-sm-1">
-      <br>
-      <%= form.submit :save, class: "btn btn-success" %>
-    </div>
   </div>
+ <div class="separator"></div>
+      <%= form.submit :save, class: "btn btn-success float-right" %>
+
 <% end %>
