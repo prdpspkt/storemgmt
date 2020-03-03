@@ -61,6 +61,37 @@ class Office::ItemCategoriesController < ApplicationController
     end
   end
 
+  def create_import
+    file = params[:file]
+    spreadsheet = case File.extname(file.original_filename)
+                  when ".csv" then Csv.new(file.path, nil, :ignore)
+                  when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
+                  when ".xlsx" then Roo::Excelx.new(file.path)
+                  else raise "Unknown file type: #{file.original_filename}"
+                  end
+    header = spreadsheet.row(1)
+    items = (2..spreadsheet.last_row).map do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      item = Office::ItemCategory.find_by_id(row["id"]) || Office::ItemCategory.new
+      item.attributes = row.to_hash
+      item.office_id = current_office.id
+      item.user_id = current_user.id
+      item
+    end
+    if items.map(&:valid?).all?
+      items.each(&:save!)
+      true
+    else
+      items.each_with_index do |item, index|
+        item.errors.full_messages.each do |msg|
+          errors.add :base, "Row #{index + 6}: #{msg}"
+        end
+      end
+      false
+    end
+    redirect_to office_item_categories_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item_category
@@ -71,4 +102,5 @@ class Office::ItemCategoriesController < ApplicationController
     def item_category_params
       params.require(:office_item_category).permit(:name_ne, :name_en,  :unit_ne, :unit_en, :user_id, :office_id)
     end
+
 end

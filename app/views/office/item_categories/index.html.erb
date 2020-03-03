@@ -1,4 +1,8 @@
 <h1>जिन्सी सामाग्रीको बर्गिकरणहरु</h1>
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#import_item_category">
+  फाइलबाट अपलोड गर्ने
+</button>
 
 <table class="table data-table" id="dttb-item_categories" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -16,3 +20,5 @@
 <br>
 
 <%= link_to new_btn.html_safe, new_office_item_category_path %>
+
+<%= render 'office/item_categories/new_import_form' %>

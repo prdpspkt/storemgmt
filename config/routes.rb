@@ -1,9 +1,6 @@
 Rails.application.routes.draw do
-  root "office/offices#index"
-  
-
-
-  devise_for :users, controllers: {
+   root "office/offices#index"
+   devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions'
   }
@@ -51,6 +48,14 @@ namespace :office do
   resources :offices
   resources :store_bodies
   resources :active_fiscal_year
+
+  #Office_Data_import
+  get '/item_categories/import' => "item_categories#new_import", as: :item_category_import
+  post '/item_categories/import' => "item_categories#create_import", as: :item_category_create
+
+
+  #Office_Data_export
+  get '/item_categories/export' => "item_categories#new_import", as: :item_category_export
 
   #office_report
   #report printing
