@@ -64,10 +64,14 @@ class Office::ItemCategoriesController < ApplicationController
   def create_import
     file = params[:file]
     spreadsheet = case File.extname(file.original_filename)
-                  when ".csv" then Csv.new(file.path, nil, :ignore)
-                  when ".xls" then Roo::Excel.new(file.path, nil, :ignore)
-                  when ".xlsx" then Roo::Excelx.new(file.path)
-                  else raise "Unknown file type: #{file.original_filename}"
+                  when ".csv" then
+                    Csv.new(file.path, nil, :ignore)
+                  when ".xls" then
+                    Roo::Excel.new(file.path, nil, :ignore)
+                  when ".xlsx" then
+                    Roo::Excelx.new(file.path)
+                  else
+                    raise "Unknown file type: #{file.original_filename}"
                   end
     header = spreadsheet.row(1)
     items = (2..spreadsheet.last_row).map do |i|
@@ -92,15 +96,34 @@ class Office::ItemCategoriesController < ApplicationController
     redirect_to office_item_categories_path
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item_category
-      @item_category = Office::ItemCategory.find(params[:id])
+  def export
+    item_categories = office(Office::ItemCategory)
+    @csv =  CSV.generate({encoding: Encoding::UTF_8}) do |csv|
+      csv << ["id", "name_ne", "name_en", "unit_ne", "unit_en"]
+      item_categories.each do |ic|
+        csv << [ic.id, ic.name_ne, ic.name_en, ic.unit_ne, ic.unit_en]
+      end
     end
+    respond_to do |format|
+      format.html
+      format.csv {
+        send_data (@csv).encode(Encoding::UTF_8),
+                  filename: 'item_categories.csv',
+                  type: 'text/csv; charset=utf8'
+      }
+    end
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_category_params
-      params.require(:office_item_category).permit(:name_ne, :name_en,  :unit_ne, :unit_en, :user_id, :office_id)
-    end
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item_category
+    @item_category = Office::ItemCategory.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_category_params
+    params.require(:office_item_category).permit(:name_ne, :name_en, :unit_ne, :unit_en, :user_id, :office_id)
+  end
 
 end

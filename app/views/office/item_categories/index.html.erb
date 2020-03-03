@@ -1,9 +1,11 @@
 <h1>जिन्सी सामाग्रीको बर्गिकरणहरु</h1>
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#import_item_category">
-  फाइलबाट अपलोड गर्ने
-</button>
-
+<div class="float-right">
+<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
+  Import
+</a>
+<%= link_to("Export", office_item_category_export_path, class: "btn btn-success" ) %>
+</div>
 <table class="table data-table" id="dttb-item_categories" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>

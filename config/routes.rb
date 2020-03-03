@@ -55,7 +55,7 @@ namespace :office do
 
 
   #Office_Data_export
-  get '/item_categories/export' => "item_categories#new_import", as: :item_category_export
+  get '/item_categories/export' => "item_categories#export", as: :item_category_export
 
   #office_report
   #report printing
