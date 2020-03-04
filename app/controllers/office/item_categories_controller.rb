@@ -10,6 +10,7 @@ class Office::ItemCategoriesController < ApplicationController
   # GET /item_categories/1
   # GET /item_categories/1.json
   def show
+    @items = @item_category.items
   end
 
   # GET /item_categories/new
@@ -56,8 +57,14 @@ class Office::ItemCategoriesController < ApplicationController
   def destroy
     @item_category.destroy
     respond_to do |format|
-      format.html { redirect_to office_item_categories_url, notice: 'Item category was successfully destroyed.' }
-      format.json { head :no_content }
+      if Office::ItemCategory.exists?(@item_category.id)
+        flash[:error] = @item_category.errors[:base][0].to_s
+        format.html { redirect_to office_item_categories_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to office_item_categories_url, notice: "Successfully deleted." }
+        format.json { head :no_content }
+      end
     end
   end
 
@@ -79,10 +86,10 @@ class Office::ItemCategoriesController < ApplicationController
       row = Hash[[header, spreadsheet.row(i)].transpose]
       item = Office::ItemCategory.find_by_id(row["id"]) || Office::ItemCategory.new
       begin
-      item.attributes = row.to_hash
+        item.attributes = row.to_hash
       rescue Exception => error
-      flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
-      redirect_to office_item_categories_path and return
+        flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
+        redirect_to office_item_categories_path and return
       end
       item.office_id = current_office.id
       item.user_id = current_user.id
@@ -92,7 +99,7 @@ class Office::ItemCategoriesController < ApplicationController
       items.each(&:save!)
       true
     else
-       items.each_with_index do |item, index|
+      items.each_with_index do |item, index|
         item.errors.full_messages.each do |msg|
           errors.add :base, "Row #{index + 6}: #{msg}"
         end

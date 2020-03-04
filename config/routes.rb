@@ -43,7 +43,7 @@ namespace :office do
   resources :item_entries
   resources :items
   resources :personnels
-  resources :item_categories, except: [:show]
+  resources :item_categories
   resources :fiscal_years
   resources :offices
   resources :store_bodies
