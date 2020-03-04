@@ -135,6 +135,16 @@
   </button>
 </div>
   <% end %>
+  <% flash.each do |key, value| %>
+    <% if key == "error" %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>त्रुटी</strong> <br> <%= value.html_safe %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+      <% end %>
+  <% end %>
   <%= yield %>
 </div>
 <script type="text/javascript">

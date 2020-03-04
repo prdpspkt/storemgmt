@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "items") do |sheet|
+sheet.add_row [:id, :name_ne, :name_en, :unit_ne, :unit_en]
+@item_categories.each do |category|
+sheet.add_row [category.id, category.name_ne, category.name_en, category.unit_ne, category.unit_en]
+end
+end

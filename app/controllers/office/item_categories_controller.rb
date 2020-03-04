@@ -71,13 +71,19 @@ class Office::ItemCategoriesController < ApplicationController
                   when ".xlsx" then
                     Roo::Excelx.new(file.path)
                   else
-                    raise "Unknown file type: #{file.original_filename}"
+                    flash[:error] = " अपलोड गरिएको फाइल <b> #{file.original_filename} </b> को पहिचान हुन सकेन |"
+                    redirect_to office_item_categories_path and return
                   end
     header = spreadsheet.row(1)
     items = (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       item = Office::ItemCategory.find_by_id(row["id"]) || Office::ItemCategory.new
+      begin
       item.attributes = row.to_hash
+      rescue Exception => error
+      flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
+      redirect_to office_item_categories_path and return
+      end
       item.office_id = current_office.id
       item.user_id = current_user.id
       item
@@ -86,7 +92,7 @@ class Office::ItemCategoriesController < ApplicationController
       items.each(&:save!)
       true
     else
-      items.each_with_index do |item, index|
+       items.each_with_index do |item, index|
         item.errors.full_messages.each do |msg|
           errors.add :base, "Row #{index + 6}: #{msg}"
         end
@@ -97,20 +103,9 @@ class Office::ItemCategoriesController < ApplicationController
   end
 
   def export
-    item_categories = office(Office::ItemCategory)
-    @csv =  CSV.generate({encoding: Encoding::UTF_8}) do |csv|
-      csv << ["id", "name_ne", "name_en", "unit_ne", "unit_en"]
-      item_categories.each do |ic|
-        csv << [ic.id, ic.name_ne, ic.name_en, ic.unit_ne, ic.unit_en]
-      end
-    end
+    @item_categories = office(Office::ItemCategory)
     respond_to do |format|
-      format.html
-      format.csv {
-        send_data (@csv).encode(Encoding::UTF_8),
-                  filename: 'item_categories.csv',
-                  type: 'text/csv; charset=utf8'
-      }
+      format.xlsx
     end
   end
 

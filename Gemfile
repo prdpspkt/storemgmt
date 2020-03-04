@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'roo'
+gem 'caxlsx_rails'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'pry'
