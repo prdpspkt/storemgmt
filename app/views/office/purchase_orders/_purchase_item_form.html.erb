@@ -12,14 +12,10 @@
   <% end %>
   <%= form.hidden_field :purchase_order_id, value: @purchase_order.id %>
   <div class="row">
-    <div class="col-sm-2">
-      <%= form.label :item_classification_no %>
-      <%= form.select(:item_classification_no, {"खर्च भएर जाने" => 52, "खर्च भएर नजाने" => 47}, {include_blank: true}, {class: "form-control", required: :required}) %>
-    </div>
 
-    <div class="col-sm-3">
+    <div class="col-sm-4">
       <%= form.label :name_of_item %>
-      <%= form.select(:office_item_id, Office::Item.all.collect {|item| [item.name_of_item_en, item.id]}, {include_blank: "select"}, {class: "form-control", required: :required}) %>
+      <%= form.select(:item_id, Office::Item.all.collect {|item| [item.name_of_item_en, item.id]}, {include_blank: "select"}, {class: "form-control", required: :required}) %>
     </div>
 
     <div class="col-sm-2">
@@ -31,7 +27,7 @@
       <%= form.label :rate %>
       <%= form.number_field :rate, class: "form-control", required: :required, step: :any %>
     </div>
-    <div class="col-sm-1">
+    <div class="col-sm-2">
       <%= form.label :is_vatable %>
       <%= form.check_box :is_vatable, class: "form-control", :checked => true %>
     </div>

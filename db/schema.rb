@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_29_050529) do
+ActiveRecord::Schema.define(version: 2020902024526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -104,12 +104,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.string "unit_ne"
     t.integer "register_page_no"
     t.integer "item_register_page_no"
-    t.string "store_chief_name"
-    t.string "store_chief_designation"
-    t.datetime "store_chief_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
-    t.datetime "office_chief_signed_date"
+    t.integer "store_body_id"
     t.integer "user_id"
     t.integer "office_id"
     t.integer "office_item_id"
@@ -161,14 +156,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "decision_date"
     t.string "decision_made_by"
     t.string "store_chief_name"
-    t.string "store_chief_designation"
-    t.datetime "store_chief_signed_date"
-    t.string "section_chief_name"
-    t.string "section_chief_designation"
-    t.datetime "section_chief_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
-    t.datetime "office_chief_signed_date"
+    t.integer "store_body_id"
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
@@ -236,7 +224,6 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
   end
 
   create_table "oeirts", force: :cascade do |t|
-    t.integer "office_item_id"
     t.integer "item_id"
     t.integer "office_id"
     t.integer "fiscal_year_id"
@@ -247,9 +234,9 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.decimal "amount"
     t.decimal "quantity"
     t.string "remarks"
-    t.integer "office_purchase_entry_item_id"
+    t.integer "purchase_entry_item_id"
     t.decimal "sku"
-    t.integer "office_release_item_id"
+    t.integer "release_item_id"
     t.integer "entry_no"
   end
 
@@ -272,7 +259,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.integer "user_id"
     t.integer "office_id"
     t.integer "project_id"
-    t.integer "office_handover_form_id"
+    t.integer "handover_form_id"
     t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -291,12 +278,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.string "handovered_office_name"
     t.datetime "date"
     t.integer "form_no"
-    t.string "store_chief_name"
-    t.string "store_chief_designation"
-    t.datetime "store_chief_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
-    t.datetime "office_chief_signed_date"
+    t.integer "store_body_id"
     t.string "receiver_store_chief_name"
     t.string "receiver_store_chief_designation"
     t.datetime "receiver_store_chief_signed_date"
@@ -447,6 +429,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "purchase_handover_no"
+    t.integer "store_body_id"
   end
 
   create_table "office_purchase_entry_items", force: :cascade do |t|
@@ -475,7 +458,6 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "office_item_id"
     t.string "country"
     t.string "size"
     t.string "approx_age"
@@ -495,8 +477,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.decimal "rate"
     t.decimal "amount"
     t.string "remarks"
-    t.integer "office_item_id"
-    t.integer "office_release_id"
+    t.integer "release_id"
     t.integer "user_id"
     t.integer "office_id"
     t.integer "item_id"
@@ -511,10 +492,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.string "fy"
     t.integer "release_no"
     t.datetime "release_date"
-    t.string "store_chief_name"
-    t.datetime "store_chief_signed_date"
-    t.string "office_chief_name"
-    t.datetime "office_chief_signed_date"
+    t.integer "store_body_id"
     t.integer "user_id"
     t.integer "office_id"
     t.integer "fiscal_year_id"
@@ -545,20 +523,47 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
 
   create_table "office_stocks", force: :cascade do |t|
     t.string "fy"
-    t.string "store_chief_name"
-    t.string "store_chief_designation"
-    t.datetime "store_chief_sign_date"
-    t.string "section_chief_name"
-    t.string "section_chief_designation"
-    t.datetime "section_chief_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
-    t.datetime "office_chief_signed_date"
+    t.integer "store_body_id"
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "office_tender_items", force: :cascade do |t|
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.decimal "quantity"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.datetime "received_date"
+    t.integer "tender_id"
+    t.string "fy"
+    t.integer "fiscal_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_item_id"
+    t.decimal "sku"
+    t.integer "item_classification_no"
+    t.string "specification"
+    t.string "item_identification_no"
+    t.string "model_no"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.boolean "is_vatable"
+    t.decimal "amount_without_vat"
+    t.decimal "vat"
+    t.decimal "other_expense"
+    t.string "country"
+    t.string "remarks"
+    t.decimal "total_amount"
+    t.integer "item_register_page_no"
   end
 
   create_table "offices", force: :cascade do |t|
@@ -590,16 +595,16 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.decimal "rate"
     t.decimal "amount"
     t.decimal "quantity"
-    t.integer "office_purchase_entry_item_id"
+    t.integer "purchase_entry_item_id"
     t.string "remarks"
     t.decimal "sku"
-    t.integer "office_release_item_id"
+    t.integer "release_item_id"
     t.integer "entry_no"
     t.string "country"
     t.string "size"
     t.string "approx_age"
     t.string "source"
-    t.integer "office_handover_form_item_id"
+    t.integer "handover_form_item_id"
   end
 
   create_table "personnels", force: :cascade do |t|
@@ -743,7 +748,6 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.integer "handover_form_id"
     t.integer "item_id"
     t.integer "project_item_id"
-    t.integer "project_handover_form_id"
     t.string "country"
     t.string "size"
     t.string "approx_age"
@@ -795,7 +799,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "specification"
-    t.integer "project_item_category_id"
+    t.integer "item_category_id"
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
   end
@@ -804,14 +808,8 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "entry_date"
     t.string "bill_no"
     t.integer "entry_no"
-    t.string "store_chief_name"
-    t.string "store_chief_designation"
     t.datetime "store_chief_signed_date"
-    t.string "section_chief_name"
-    t.string "section_chief_designation"
     t.datetime "section_chief_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
     t.datetime "office_chief_signed_date"
     t.integer "user_id"
     t.integer "office_id"
@@ -823,8 +821,8 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "project_purchase_tender_id"
-    t.integer "project_purchase_order_id"
+    t.integer "purchase_tender_id"
+    t.integer "purchase_order_id"
   end
 
   create_table "project_purchase_entry_items", force: :cascade do |t|
@@ -845,7 +843,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.decimal "other_expense"
     t.decimal "amount"
     t.string "remarks"
-    t.integer "project_purchase_entry_id"
+    t.integer "purchase_entry_id"
     t.integer "user_id"
     t.integer "office_id"
     t.string "fy"
@@ -873,7 +871,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.decimal "rate"
     t.decimal "amount"
     t.string "remarks"
-    t.integer "project_purchase_order_id"
+    t.integer "purchase_order_id"
     t.integer "office_id"
     t.integer "item_id"
     t.string "fy"
@@ -898,11 +896,9 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "order_decision_date"
     t.string "office_name"
     t.string "office_address"
-    t.string "store_chief_name"
+    t.integer "store_body_id"
     t.datetime "store_chief_signed_date"
-    t.string "office_chief_name"
     t.datetime "office_chief_signed_date"
-    t.string "section_chief_name"
     t.datetime "section_cheif_signed_date"
     t.integer "user_id"
     t.string "fy"
@@ -928,7 +924,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.decimal "amount"
     t.string "remarks"
     t.integer "project_item_id"
-    t.integer "project_release_id"
+    t.integer "release_id"
     t.integer "user_id"
     t.integer "office_id"
     t.integer "item_id"
@@ -943,9 +939,8 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.string "fy"
     t.integer "release_no"
     t.datetime "release_date"
-    t.string "store_chief_name"
+    t.integer "store_body_id"
     t.datetime "store_chief_signed_date"
-    t.string "office_chief_name"
     t.datetime "office_chief_signed_date"
     t.integer "user_id"
     t.integer "office_id"
@@ -979,15 +974,10 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
 
   create_table "project_stocks", force: :cascade do |t|
     t.string "fy"
-    t.string "store_chief_name"
-    t.string "store_chief_designation"
     t.datetime "store_chief_signed_date"
-    t.string "section_chief_name"
     t.datetime "section_chief_signed_date"
-    t.string "section_chief_degination"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
     t.datetime "office_chief_signed_date"
+    t.integer "store_body_id"
     t.integer "office_id"
     t.integer "project_id"
     t.integer "user_id"
@@ -1000,7 +990,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
 
   create_table "project_tender_breakdown_items", force: :cascade do |t|
     t.integer "project_id"
-    t.integer "project_tender_breakdown_id"
+    t.integer "tender_breakdown_id"
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
     t.string "name_of_item_ne"
@@ -1032,7 +1022,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.decimal "sku"
-    t.integer "project_purchase_entry_item_id"
+    t.integer "purchase_entry_item_id"
   end
 
   create_table "project_tender_breakdowns", force: :cascade do |t|
@@ -1046,42 +1036,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "updated_at", null: false
     t.integer "fiscal_year_id"
     t.string "fy"
-    t.integer "project_purchase_entry_id"
-  end
-
-  create_table "project_tender_items", force: :cascade do |t|
-    t.string "name_of_item_ne"
-    t.string "name_of_item_en"
-    t.string "unit_ne"
-    t.string "unit_en"
-    t.decimal "quantity"
-    t.decimal "rate"
-    t.decimal "amount"
-    t.integer "office_id"
-    t.integer "user_id"
-    t.datetime "received_date"
-    t.integer "project_tender_id"
-    t.string "fy"
-    t.integer "fiscal_year_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "project_item_id"
-    t.decimal "sku"
-    t.integer "item_classification_no"
-    t.string "specification"
-    t.string "item_identification_no"
-    t.string "model_no"
-    t.string "size"
-    t.string "approx_age"
-    t.string "source"
-    t.boolean "is_vatable"
-    t.decimal "amount_without_vat"
-    t.decimal "vat"
-    t.decimal "other_expense"
-    t.string "country"
-    t.string "remarks"
-    t.decimal "total_amount"
-    t.integer "item_register_page_no"
+    t.integer "purchase_entry_id"
   end
 
   create_table "project_tenders", force: :cascade do |t|
@@ -1235,59 +1190,6 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.integer "store_body_id"
   end
 
-  create_table "pweits", force: :cascade do |t|
-    t.integer "project_item_id"
-    t.integer "item_id"
-    t.integer "office_id"
-    t.integer "project_id"
-    t.integer "fiscal_year_id"
-    t.integer "user_id"
-    t.datetime "transaction_date"
-    t.integer "transaction_type"
-    t.decimal "rate"
-    t.decimal "amount"
-    t.decimal "quantity"
-    t.string "remarks"
-    t.decimal "sku"
-    t.integer "project_release_item_id"
-    t.integer "entry_release_no"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "project_tender_breakdown_item_id"
-    t.integer "taken_from"
-    t.integer "given_to"
-  end
-
-  create_table "pwneits", force: :cascade do |t|
-    t.string "model_no"
-    t.string "item_identification_no"
-    t.string "country"
-    t.integer "project_item_id"
-    t.integer "item_id"
-    t.integer "office_id"
-    t.integer "user_id"
-    t.integer "fiscal_year_id"
-    t.datetime "transaction_date"
-    t.integer "transaction_type"
-    t.decimal "rate"
-    t.decimal "amount"
-    t.decimal "quantity"
-    t.integer "breakdown_id"
-    t.string "remarks"
-    t.decimal "sku"
-    t.integer "project_handover_form_id"
-    t.integer "entry_release_no"
-    t.string "size"
-    t.string "approx_age"
-    t.string "source"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "project_tender_breakdown_item_id"
-    t.integer "taken_from"
-    t.integer "given_to"
-    t.integer "project_id"
-  end
-
   create_table "rental_record_register_items", force: :cascade do |t|
     t.datetime "date"
     t.string "name_of_vendor"
@@ -1322,17 +1224,14 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.string "item_identification_no"
     t.integer "item_register_page_no"
     t.decimal "total_price"
-    t.string "sotre_chief_name"
-    t.string "store_chief_designation"
     t.datetime "store_chief_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
     t.datetime "office_chief_signed_date"
     t.integer "item_id"
     t.integer "office_id"
     t.integer "user_id"
     t.string "fy"
     t.integer "fiscal_year_id"
+    t.integer "store_body_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -1365,14 +1264,11 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.datetime "within_date"
     t.string "office_name"
     t.string "office_address"
-    t.string "section_chief_name"
-    t.string "section_chief_designation"
     t.datetime "section_chief_signed_date"
     t.string "technical_person_name"
     t.string "technical_person_designation"
     t.datetime "technical_person_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
+    t.integer "store_body_id"
     t.datetime "office_chief_signed_date"
     t.integer "office_id"
     t.string "fy"
@@ -1412,11 +1308,8 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.string "model"
     t.integer "item_register_page_no"
     t.decimal "price"
-    t.string "store_chief_name"
-    t.string "sotre_chief_designation"
+    t.integer "store_body_id"
     t.datetime "store_chief_signed_date"
-    t.string "office_chief_name"
-    t.string "office_chief_designation"
     t.datetime "office_chief_signed_date"
     t.integer "user_id"
     t.integer "office_id"
@@ -1438,6 +1331,7 @@ ActiveRecord::Schema.define(version: 2020_02_29_050529) do
     t.string "store_keeper_designation"
     t.string "store_keeper_name"
     t.integer "office_id"
+    t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

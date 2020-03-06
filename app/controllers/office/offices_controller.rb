@@ -35,7 +35,7 @@ class Office::OfficesController < ApplicationController
     @office.user_id = current_user.id
     respond_to do |format|
       if @office.save
-        format.html { redirect_to new_fiscal_year_path, notice: 'Office was successfully created.' }
+        format.html { redirect_to new_office_fiscal_year_path, notice: 'Office was successfully created.' }
         format.json { render :show, status: :created, location: @office }
       else
         format.html { render :new }

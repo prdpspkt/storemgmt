@@ -23,6 +23,7 @@ class Office::PurchaseOrdersController < ApplicationController
 
   # GET /purchase_orders/1/edit
   def edit
+    @vendors = current(Office::Vendor)
   end
 
   # POST /purchase_orders
@@ -76,31 +77,70 @@ class Office::PurchaseOrdersController < ApplicationController
       @purchase_order.save
     else
       @purchase_order.marked_as_final = true
+      purchase_entry_id = create_purchase_entry @purchase_order
+      items = @purchase_order.purchase_order_items
+      items.each do |item|
+        entry_item = Office::PurchaseEntryItem.new(item.attributes.select{|key, _| Office::PurchaseEntryItem.column_names.include? key})
+        entry_item.id = nil
+        entry_item.purchase_entry_id = purchase_entry_id
+        entry_item.save
+      end
       @purchase_order.save
     end
     redirect_to @purchase_order
   end
 
   private
+
   def can_unmark obj
     (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
   end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_purchase_order
-      @purchase_order = Office::PurchaseOrder.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def purchase_order_params
-      params.require(:office_purchase_order).permit(:vendor_name, :vendor_address, :vendor_registration, :vendor_phone, :vendor_pan, :order_no, :order_date, :order_decision_no, :order_decision_date, :date_to_receive_goods, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :section_chief_name, :section_chief_signed_date, :office_cheif_signed_date, :office_cheif_name, :user_id, :fy, :fiscal_year_id, :vendor_id, :office_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_purchase_order
+    @purchase_order = Office::PurchaseOrder.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def purchase_order_params
+    params.require(:office_purchase_order).permit(:vendor_name, :vendor_address, :vendor_registration, :vendor_phone, :vendor_pan, :order_no, :order_date, :order_decision_no, :order_decision_date, :date_to_receive_goods, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :section_chief_name, :section_chief_signed_date, :office_cheif_signed_date, :office_cheif_name, :user_id, :fy, :fiscal_year_id, :vendor_id, :office_id)
+  end
+
   def new_purchase_order_no
-    lpo = current(Office::PurchaseOrder).last
-    if(!(lpo.blank?) && lpo.order_no.present?)
+    pos = current(Office::PurchaseOrder)
+    npon = 1
+    if pos.count > 0
       npon = lpo.order_no + 1
-    else
-      npon = 1
     end
     npon
   end
+
+  def create_purchase_entry purchase_order
+    purchase_entry = Office::PurchaseEntry.new
+    purchase_entry.entry_no = purchase_entry_no
+    purchase_entry.entry_date = bs_today
+    purchase_entry = set_current_information purchase_entry
+    purchase_entry = set_signed_date_information_today purchase_entry
+    purchase_entry.purchase_handover_no = purchase_order.order_no
+    purchase_entry.store_body_id = current_control_body.id
+    purchase_entry.save
+    purchase_entry.id
+  end
+
+  def purchase_entry_no
+    purchase_entries = current(Office::PurchaseEntry)
+    purchase_entry_no = 1
+    if purchase_entries.count > 0
+      purchase_entry_no = purchase_entries.last.entry_no + 1
+    end
+    purchase_entry_no
+  end
+
+  def set_signed_date_information_today object
+    object.store_chief_signed_date = bs_today
+    object.section_chief_signed_date = bs_today
+    object.office_chief_signed_date = bs_today
+    object
+  end
+
 end

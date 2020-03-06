@@ -13,33 +13,33 @@
 <div class="row">
   <div class="col-sm-6">
     <%= form.label :purchase_handover_no %>
-    <%= form.text_field :purchase_handover_no, class: "form-control" %>
+    <%= form.text_field :purchase_handover_no, class: "form-control", required: :required %>
   </div>
   <div class="col-sm-6">
     <%= form.label :entry_date %>
-    <%= form.text_field :entry_date, class: "form-control date-picker" %>
+    <%= form.text_field :entry_date, class: "form-control date-picker", required: :required %>
   </div>
 
   <div class="col-sm-6">
     <%= form.label :entry_no %>
-    <%= form.number_field :entry_no, class: "form-control" %>
+    <%= form.number_field :entry_no, class: "form-control", readonly: :readonly %>
   </div>
   
   <div class="col-sm-6">
     <%= form.label :store_cheif_sign_date %>
-    <%= form.text_field :store_chief_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :store_chief_signed_date, class: "form-control date-picker", required: :required %>
   </div>
 
 
   <div class="col-sm-6">
     <%= form.label :section_chief_signed_date %>
-    <%= form.text_field :section_chief_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :section_chief_signed_date, class: "form-control date-picker", required: :required %>
   </div>
 
 
   <div class="col-sm-6">
     <%= form.label :office_chief_signed_date %>
-    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker", required: :required %>
   </div>
 </div>
   <div class="separator"></div>

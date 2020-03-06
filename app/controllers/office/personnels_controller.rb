@@ -4,7 +4,7 @@ class Office::PersonnelsController < ApplicationController
   # GET /personnels.html.erb
   # GET /personnels.html.erb.json
   def index
-    @personnels = Personnel.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id)
+    @personnels = current(Office::Personnel)
   end
 
   # GET /personnels.html.erb/1
@@ -14,7 +14,7 @@ class Office::PersonnelsController < ApplicationController
 
   # GET /personnels.html.erb/new
   def new
-    @personnel = Personnel.new
+    @personnel = Office::Personnel.new
   end
 
   # GET /personnels.html.erb/1/edit
@@ -24,7 +24,7 @@ class Office::PersonnelsController < ApplicationController
   # POST /personnels.html.erb
   # POST /personnels.html.erb.json
   def create
-    @personnel = Personnel.new(personnel_params)
+    @personnel = Office::Personnel.new(personnel_params)
     @personnel.user_id = current_user.id
     @personnel.office_id = current_office.id
     @personnel.fiscal_year_id = current_fiscal_year.id
@@ -59,7 +59,7 @@ class Office::PersonnelsController < ApplicationController
   def destroy
     @personnel.destroy
     respond_to do |format|
-      format.html { redirect_to personnels_url, notice: 'Personnel was successfully destroyed.' }
+      format.html { redirect_to office_personnels_url, notice: 'Personnel was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,7 +67,7 @@ class Office::PersonnelsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_personnel
-      @personnel = Personnel.find(params[:id])
+      @personnel = Office::Personnel.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

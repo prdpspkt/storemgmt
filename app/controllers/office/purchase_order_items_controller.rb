@@ -89,6 +89,6 @@ class Office::PurchaseOrderItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def purchase_order_item_params
-      params.require(:office_purchase_order_item).permit(:item_classification_no, :office_item_id, :is_vatable, :quantity, :rate, :remarks, :purchase_order_id)
+      params.require(:office_purchase_order_item).permit(:item_classification_no, :item_id, :is_vatable, :quantity, :rate, :remarks, :purchase_order_id)
     end
 end

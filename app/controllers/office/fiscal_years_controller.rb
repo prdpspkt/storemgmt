@@ -31,7 +31,7 @@ class Office::FiscalYearsController < ApplicationController
           @active_fiscal_year.office_id = @fiscal_year.office_id
           @active_fiscal_year.save
         end
-        format.html { redirect_to new_store_body_path, notice: 'Fiscal year was successfully created.' }
+        format.html { redirect_to new_office_store_body_path, notice: 'Fiscal year was successfully created.' }
         format.json { render :show, status: :created, location: @fiscal_year }
       else
         format.html { render :new }

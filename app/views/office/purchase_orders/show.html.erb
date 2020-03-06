@@ -14,9 +14,9 @@
     <td><%= ndate @purchase_order.order_date %></td>
     <td><%= ndate @purchase_order.order_decision_date %></td>
     <td><%= nd @purchase_order.order_decision_no %></td>
-    <td><%= @purchase_order.vendor_name %></td>
+    <td><%= @purchase_order.vendor.vendor_name %></td>
     <td><%= ndate @purchase_order.date_to_receive_goods %></td>
-    <td><%= @purchase_order.office_cheif_name %></td>
+    <td><%= @purchase_order.store_body.office_chief_name %></td>
   </tr>
 </table>
 <div class="text-center">
@@ -54,9 +54,9 @@
   </tr>
   <% @purchase_order_items.each do |item| %>
     <tr id="poi-<%= item.id %>">
-      <td><%= nd item.office_item.item_classification_no %></td>
-      <td><%= item.office_item.name_of_item_ne %></td>
-      <td><%= item.office_item.unit_ne %></td>
+      <td><%= nd item.item.item_classification_no %></td>
+      <td><%= item.item.name_of_item_ne %></td>
+      <td><%= item.item.unit_ne %></td>
       <td><%= nd item.rate %></td>
       <td><%= nd item.quantity %></td>
       <td><%= nd item.amount_without_vat %></td>

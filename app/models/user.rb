@@ -5,7 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :office, class_name: "Office::Office"
-  has_many :projects
-  has_many :project_tenders
-  has_many :personnels
+  has_many :personnels, class_name: "Office::Personnel"
 end

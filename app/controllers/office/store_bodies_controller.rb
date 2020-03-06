@@ -29,7 +29,7 @@ class Office::StoreBodiesController < ApplicationController
     @store_body.office_id = current_office.id
     respond_to do |format|
       if @store_body.save
-        format.html { redirect_to set_active_fiscal_year_path, notice: 'Store body was successfully created.' }
+        format.html { redirect_to new_office_active_fiscal_year_path, notice: 'Store body was successfully created.' }
         format.json { render :show, status: :created, location: @store_body }
       else
         format.html { render :new }

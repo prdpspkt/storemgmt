@@ -1,4 +1,5 @@
 include ModelHelper
+include ApplicationHelper
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 	protect_from_forgery
@@ -36,7 +37,7 @@ class ApplicationController < ActionController::Base
     #check if office has been created for user
     url = '/'
     if resource_or_scope.office.blank?
-      url = new_office_path
+      url = new_office_office_path
     end
     #check if office has fiscal year
     if resource_or_scope.office.blank? == false
@@ -45,6 +46,13 @@ class ApplicationController < ActionController::Base
       end
     end
     url
+  end
+
+  def set_current_information object
+    object.office_id = current_office.id
+    object.fiscal_year_id = current_fiscal_year.id
+    object.user_id = current_user.id
+    object
   end
 
 end

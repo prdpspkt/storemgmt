@@ -3,6 +3,7 @@ class Office::Item < ApplicationRecord
   has_many :oeirt, class_name: "Office::Oeirt"
   has_many :oneirt, class_name: "Office::Oneirt"
   has_many :release_items, class_name: "Office::ReleaseItem"
+  belongs_to :item_category, :class_name => 'Office::ItemCategory'
   before_create :add_item_register_page_no
   validates :item_category_id, numericality: true
 

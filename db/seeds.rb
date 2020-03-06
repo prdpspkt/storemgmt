@@ -13,10 +13,10 @@
 @user.save
 
 
-@fiscal_year = FiscalYear.create([{fy: "०७६/०७७"},
+@fiscal_year = Office::FiscalYear.create([{fy: "०७६/०७७"},
                                    {fy: "०७७/०७८"}])
 
-@person1 = Personnel.new
+@person1 = Office::Personnel.new
 @person1.name_en = "Ramchandra Pandit"
 @person1.name_ne = "रामचन्द्र पण्डित"
 @person1.post = "Officer"
@@ -27,7 +27,7 @@
 @person1.save
 
 
-@person1 = Personnel.new
+@person1 = Office::Personnel.new
 @person1.name_en = "Hari Prasad Timilsina"
 @person1.name_ne = "हरि प्रसाद तिमिल्सिना"
 @person1.post = "Office Chief"
@@ -37,7 +37,7 @@
 @person1.level_class = "9th Level Officer"
 @person1.save
 
-@person1 = Personnel.new
+@person1 = Office::Personnel.new
 @person1.name_en = "Bamdev Paudel"
 @person1.name_ne = "बामदेव पौडेल"
 @person1.post = "Engineer"
@@ -48,7 +48,7 @@
 @person1.save
 
 
-@office = Office.new
+@office = Office::Office.new
 @office.gov ="Provincial Government"
 @office.ministry ="Ministry of Physical Infrastructure Development"
 @office.department = ""
@@ -56,7 +56,7 @@
 @office.address = "Tanahu, Gandaki Pradesh"
 @office.save
 
-ItemCategory.create([{name_en: 'Stationary', unit_en: '', name_ne: 'स्टेसनरी', unit_ne: ''},
+Office::ItemCategory.create([{name_en: 'Stationary', unit_en: '', name_ne: 'स्टेसनरी', unit_ne: ''},
                      {name_en: 'Furniture & Fixtures', unit_en: '', name_ne: 'फर्निचर तथा फिक्सर्स', unit_ne: ''},
                      {name_en: 'Machines', unit_en: 'set', name_ne: 'मेशिनरी', unit_ne: 'सेट'},
                      {name_en: "Vehicles", unit_en: "nos", name_ne: "सवारी साधन", unit_ne: "संख्या"},
@@ -65,7 +65,7 @@ ItemCategory.create([{name_en: 'Stationary', unit_en: '', name_ne: 'स्टे
                      {name_en: 'Laptops', unit_en: 'set', name_ne: 'ल्यापटप', unit_ne: 'सेट'},
                      {name_en: 'Computer Accesories', unit_en: 'pcs', name_ne: 'कम्प्युटरका परिपुरकहरू', unit_ne: 'गोटा'},
                      {name_en: 'Misc', unit_en: '',name_ne: 'विविध', unit_ne: ''}])
-ProjectItemCategory.create([{name_en: 'HDPE Pipes', unit_en: 'mtr', name_ne: 'एच. डी. पि. इ. पाइप', unit_ne: 'मि.'},
+Project::ItemCategory.create([{name_en: 'HDPE Pipes', unit_en: 'mtr', name_ne: 'एच. डी. पि. इ. पाइप', unit_ne: 'मि.'},
                      {name_en: 'HDPE Socket', unit_en: 'pcs', name_ne: 'एच. डि. पि. ई. सकेट', unit_ne: 'गोटा'},
                      {name_en: 'HDPE Reducers', unit_en: 'pcs', name_ne: 'एच. डी. पि. ई. रेड्युसर', unit_ne: 'गोटा'},
                      {name_en: 'HDPE Unions', unit_en: 'pcs', name_ne: 'एच. डी. पि. ई. युनियन', unit_ne: 'गोटा'},
@@ -110,5 +110,5 @@ ProjectItemCategory.create([{name_en: 'HDPE Pipes', unit_en: 'mtr', name_ne: '�
                      {name_en: 'Sanitation Items', unit_en: 'pcs', name_ne: 'सरसफाई सामाग्री', unit_ne: 'गोटा'},
                      {name_en: 'Construction Tools', unit_en: 'pcs', name_ne: 'निर्माण सामाग्री', unit_ne: 'गोटा'},
                     ])
-ProjectItem.create([{name_of_item_ne: "जेनेरेटर ६४ कि.वा.", name_of_item_en: "Generator 64 Kw", unit_ne: "सेट", unit_en: "set", project_item_category_id: 15}])
-Vendor.create([{fiscal_year_id: 1, office_id: 1, user_id:1, vendor_name_en: "Saraswati Stationery", vendor_name: "सरस्वती पुस्तक पसल", vendor_pan: "000000000", vendor_registration: "0000-000", vendor_address: "मालपोत लाइन दमौली", vendor_phone: "0000000000", vendor_email: "email@email.com.np", vendor_representive: "किशोर गौतम"}])
+Project::Item.create([{name_of_item_ne: "जेनेरेटर ६४ कि.वा.", name_of_item_en: "Generator 64 Kw", unit_ne: "सेट", unit_en: "set", item_category_id: 15}])
+Office::Vendor.create([{fiscal_year_id: 1, office_id: 1, user_id:1, vendor_name_en: "Saraswati Stationery", vendor_name: "सरस्वती पुस्तक पसल", vendor_pan: "000000000", vendor_registration: "0000-000", vendor_address: "मालपोत लाइन दमौली", vendor_phone: "0000000000", vendor_email: "email@email.com.np", vendor_representive: "किशोर गौतम"}])

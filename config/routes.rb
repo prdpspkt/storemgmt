@@ -50,12 +50,9 @@ namespace :office do
   resources :active_fiscal_year
 
   #Office_Data_import
-  get '/item_categories/import' => "item_categories#new_import", as: :item_category_import
-  post '/item_categories/import' => "item_categories#create_import", as: :item_category_create
+  post '/item_categories/import' => "item_categories#create_import", as: :item_categories_import
+  post '/items/import' => "items#create_import", as: :items_import
 
-
-  #Office_Data_export
-  get '/item_categories/export' => "item_categories#export", as: :item_category_export
 
   #office_report
   #report printing

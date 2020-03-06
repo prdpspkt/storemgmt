@@ -5,6 +5,11 @@ class Office::ItemCategoriesController < ApplicationController
   # GET /item_categories.json
   def index
     @item_categories = office(Office::ItemCategory)
+    respond_to do |format|
+      format.xlsx
+      format.html
+      format.json
+    end
   end
 
   # GET /item_categories/1

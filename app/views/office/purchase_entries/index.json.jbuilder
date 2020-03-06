@@ -1,6 +1,6 @@
 @serial = 1
 json.set! :data do
-  json.array! @office_purchase_entries do |office_entry|
+  json.array! @purchase_entries do |office_entry|
     json.partial! 'office/purchase_entries/office_purchase_entry', office_purchase_entry: office_entry
     if office_entry.marked_as_final != true
       json.url "

@@ -10,10 +10,7 @@ class Office::PurchaseEntryItemsController < ApplicationController
   # POST /office_purchase_entry_items.json
   def create
     @purchase_entry_item = Office::PurchaseEntryItem.new(office_purchase_entry_item_params)
-    @purchase_entry_item.user_id = current_user.id
-    @purchase_entry_item.fy = current_fiscal_year.fy
-    @purchase_entry_item.fiscal_year_id = current_fiscal_year.id
-    @purchase_entry_item.office_id = current_office.id
+    @purchase_entry_item = set_current_information @purchase_entry_item
     respond_to do |format|
       if @purchase_entry_item.save
         format.html { redirect_to @purchase_entry_item.purchase_entry, notice: 'Office purchase entry item was successfully created.' }
@@ -30,7 +27,6 @@ class Office::PurchaseEntryItemsController < ApplicationController
   def update
     respond_to do |format|
       if @purchase_entry_item.update(office_purchase_entry_item_params)
-        @purchase_entry_item = prepare_data(@purchase_entry_item)
         @purchase_entry_item.save
         format.html { redirect_to @purchase_entry_item.purchase_entry, notice: 'Office purchase entry item was successfully updated.' }
         format.json { render :show, status: :ok, location: @purchase_entry_item }
@@ -62,7 +58,7 @@ class Office::PurchaseEntryItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def office_purchase_entry_item_params
-    params.require(:office_purchase_entry_item).permit(:office_item_id, :is_vatable, :item_classification_no, :item_registration_page_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :country, :size, :approx_age, :source, :remarks, :purchase_entry_id, :user_id, :office_id, :fy, :fiscal_year)
+    params.require(:office_purchase_entry_item).permit(:item_id, :is_vatable, :item_classification_no, :item_registration_page_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :country, :size, :approx_age, :source, :remarks, :purchase_entry_id, :user_id, :office_id, :fy, :fiscal_year)
   end
 
 end

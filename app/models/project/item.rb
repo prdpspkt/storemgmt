@@ -1,3 +1,3 @@
-class ProjectItem < ApplicationRecord
+class Project::Item < ApplicationRecord
 
 end

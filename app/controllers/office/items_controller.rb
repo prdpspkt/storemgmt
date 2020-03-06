@@ -4,7 +4,7 @@ class Office::ItemsController < ApplicationController
   # GET /office_items
   # GET /office_items.json
   def index
-    @items = office(Office::Item)
+    @office_items = office(Office::Item)
   end
 
   # GET /office_items/1
@@ -66,6 +66,51 @@ class Office::ItemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def create_import
+    file = params[:file]
+    spreadsheet = case File.extname(file.original_filename)
+                  when ".csv" then
+                    Csv.new(file.path, nil, :ignore)
+                  when ".xls" then
+                    Roo::Excel.new(file.path, nil, :ignore)
+                  when ".xlsx" then
+                    Roo::Excelx.new(file.path)
+                  else
+                    flash[:error] = " अपलोड गरिएको फाइल <b> #{file.original_filename} </b> को पहिचान हुन सकेन |"
+                    redirect_to office_items_path and return
+                  end
+    header = spreadsheet.row(1)
+    items = (2..spreadsheet.last_row).map do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      item = Office::Item.find_by_id(row["id"]) || Office::Item.new
+      begin
+        item.attributes = row.to_hash
+      rescue Exception => error
+        flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
+        redirect_to office_items_path and return
+      end
+      item.office_id = current_office.id
+      item.user_id = current_user.id
+      if item.item_register_page_no.present? == false
+        item.item_register_page_no = new_item_register_page_no item.item_classification_no
+      end
+      item
+    end
+    if items.map(&:valid?).all?
+      items.each(&:save!)
+      true
+    else
+      items.each_with_index do |item, index|
+        item.errors.full_messages.each do |msg|
+          errors.add :base, "Row #{index + 6}: #{msg}"
+        end
+      end
+      false
+    end
+    redirect_to office_items_path
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
