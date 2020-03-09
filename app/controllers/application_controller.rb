@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
     #check if office has fiscal year
     if resource_or_scope.office.blank? == false
       if current_office.fiscal_years.blank?
-        url = new_fiscal_year_path
+        url = new_office_fiscal_year_path
       end
     end
     url

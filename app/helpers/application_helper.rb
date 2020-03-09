@@ -24,6 +24,15 @@ module ApplicationHelper
     '<span class="btn  btn-success"><i class="fa fa-eye"></i> हेर्ने </span>'
   end
 
+  def ledger_entry_btn
+    '<span class="btn  btn-success"><i class="fa fa-sign-in"></i> जिन्सी खातामा प्रविष्ट गर्ने</span>'
+  end
+
+  def purchase_entry_btn
+    '<span class="btn  btn-success"><i class="fa fa-sign-in"></i> दाखिला तयार गर्ने </span>'
+  end
+
+
   def save_btn
     'सुरक्षित गर्ने '
   end

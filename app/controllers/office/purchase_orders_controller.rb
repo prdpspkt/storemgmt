@@ -1,5 +1,5 @@
 class Office::PurchaseOrdersController < ApplicationController
-  before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :mark_as_final]
+  before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_purchase_entry]
 
   # GET /purchase_orders
   # GET /purchase_orders.json
@@ -36,6 +36,7 @@ class Office::PurchaseOrdersController < ApplicationController
     @purchase_order.fiscal_year_id = current_fiscal_year.id
     @purchase_order.store_body_id = current_control_body.id
     @purchase_order.marked_as_final = false
+    @purchase_order.entry_generated = false
     respond_to do |format|
       if @purchase_order.save
         format.html { redirect_to @purchase_order, notice: 'Purchase order was successfully created.' }
@@ -74,20 +75,28 @@ class Office::PurchaseOrdersController < ApplicationController
   def mark_as_final
     if can_unmark(@purchase_order)
       @purchase_order.marked_as_final = false
-      @purchase_order.save
     else
       @purchase_order.marked_as_final = true
-      purchase_entry_id = create_purchase_entry @purchase_order
+    end
+    @purchase_order.save
+    redirect_to @purchase_order
+  end
+
+  def generate_purchase_entry
+    if @purchase_order.marked_as_final == true
+      purchase_entry = create_purchase_entry @purchase_order
       items = @purchase_order.purchase_order_items
       items.each do |item|
-        entry_item = Office::PurchaseEntryItem.new(item.attributes.select{|key, _| Office::PurchaseEntryItem.column_names.include? key})
+        entry_item = Office::PurchaseEntryItem.new(item.attributes.select { |key, _| Office::PurchaseEntryItem.column_names.include? key })
         entry_item.id = nil
-        entry_item.purchase_entry_id = purchase_entry_id
+        entry_item.purchase_entry_id = purchase_entry.id
+        entry_item.total_amount = item.amount
         entry_item.save
       end
+      @purchase_order.entry_generated = true
       @purchase_order.save
     end
-    redirect_to @purchase_order
+    redirect_to purchase_entry
   end
 
   private
@@ -110,7 +119,7 @@ class Office::PurchaseOrdersController < ApplicationController
     pos = current(Office::PurchaseOrder)
     npon = 1
     if pos.count > 0
-      npon = lpo.order_no + 1
+      npon = pos.last.order_no + 1
     end
     npon
   end
@@ -123,8 +132,9 @@ class Office::PurchaseOrdersController < ApplicationController
     purchase_entry = set_signed_date_information_today purchase_entry
     purchase_entry.purchase_handover_no = purchase_order.order_no
     purchase_entry.store_body_id = current_control_body.id
+    purchase_entry.purchase_order_id = purchase_order.id
     purchase_entry.save
-    purchase_entry.id
+    purchase_entry
   end
 
   def purchase_entry_no

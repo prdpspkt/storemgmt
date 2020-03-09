@@ -1,11 +1,14 @@
 class Office::Item < ApplicationRecord
   self.table_name = "office_items"
-  has_many :oeirt, class_name: "Office::Oeirt"
-  has_many :oneirt, class_name: "Office::Oneirt"
+  has_many :item_transactions, class_name: "Office::ItemTransaction"
+  has_many :purchase_entry_items, :class_name => 'Office::PurchaseEntryItem'
   has_many :release_items, class_name: "Office::ReleaseItem"
+  has_many :purchase_order_items, :class_name => 'Office::PurchaseOrderItem'
   belongs_to :item_category, :class_name => 'Office::ItemCategory'
   before_create :add_item_register_page_no
   validates :item_category_id, numericality: true
+
+  before_destroy :check_if_used
 
 
   private
@@ -17,4 +20,18 @@ class Office::Item < ApplicationRecord
       self.item_register_page_no = 1
     end
   end
+
+
+  def check_if_used
+    if_used = false
+    if_used = true if self.purchase_order_items.count > 0
+    if_used = true if self.purchase_entry_items.count > 0
+    if_used = true if self.release_items.count > 0
+    if_used = true if self.expense_transactions.count > 0
+    if if_used
+      errors[:base] << "यो जिन्सी सामानसंग सम्बन्धित कारोबार अन्य दाखिला, खरिद आदेश, मागफरामहरूमा देखिएकोले हटाउन सकिएन |"
+      throw(:abort)
+    end
+  end
+
 end

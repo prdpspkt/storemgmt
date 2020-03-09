@@ -21,10 +21,11 @@
   <%= link_to print_big_btn.html_safe, "/office/report/office_purchase_entry/#{@purchase_entry.id}" %>
   <% if @purchase_entry.marked_as_final != true %>
     <%= link_to edit_big_btn.html_safe, edit_office_purchase_entry_path(@purchase_entry) %>
-    <%= link_to final_btn.html_safe, office_mark_ope_as_final_url(@purchase_entry), id: :mark_as_final, method: :post, data: "Are you sure ? You can undo this work within 3 days only." %>
+    <%= link_to final_btn.html_safe, office_mark_ope_as_final_url(@purchase_entry), id: :mark_as_final, method: :post, data: {confirm: "तपाई जिन्सी खातामा दाखिला गर्दै हुनुहुन्छ, कृपया दाखिला रिपोर्ट सहि छ भन्ने यकिन गर्नुहोस् |"} %>
   <% end %>
-  <% if can_unmark(@purchase_entry) %>
+  <% if @purchase_entry.marked_as_final == true && @purchase_entry.ledger_entry_generated != true %>
     <%= link_to before_final_btn.html_safe, office_mark_ope_as_final_url(@purchase_entry), id: :mark_as_not_final, method: :post %>
+    <%= link_to ledger_entry.html_safe, office_generate_ledger_entry_with_purchase_entry_url(@purchase_entry), method: :post %>
   <% end %>
 </div>
 <div class="separator"></div>
@@ -63,14 +64,16 @@
       <td><%= nd item.other_expense %></td>
       <td><%= nd item.total_amount %></td>
       <td>
-        <% if item.item.item_classification_no == 47 %>
-        <%= link_to(edit_btn.html_safe, edit_office_purchase_entry_item_path(item)) %>
-        <% end %>
-        <% if (@purchase_entry.marked_as_final != true) %> <%= link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure to delete ?"} %>
+        <% if @purchase_entry.marked_as_final != true %>
+          <% if item.item.item_classification_no == 47 %>
+            <%= link_to(edit_btn.html_safe, edit_office_purchase_entry_item_path(item)) %>
+          <% end %>
+          <%= link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure to delete ?"} %>
         <% end %></td>
     </tr>
   <% end %>
   <tr>
+    <td></td>
     <td></td>
     <td></td>
     <td></td>

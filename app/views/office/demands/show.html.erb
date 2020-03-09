@@ -9,8 +9,8 @@
     <th>जिन्सिमा चढाउने</th>
   </tr>
   <tr>
-    <td><%= @demand.demand_no %></td>
-    <td><%= @demand.demand_date %></td>
+    <td><%= nd @demand.demand_no %></td>
+    <td><%= ndate @demand.demand_date %></td>
     <td><%= @demand.demand_by %></td>
     <td><%= @demand.recommended_by %></td>
     <td><%= @demand.ordered_by %></td>
@@ -18,15 +18,15 @@
   </tr>
 </table>
 <div class="text-center">
-<%= link_to back_btn.html_safe, demands_path %>
+<%= link_to back_btn.html_safe, office_demands_path %>
   <% if @demand.marked_as_final != true %>
-  <%= link_to edit_big_btn.html_safe, edit_demand_path(@demand) %>
-<%= link_to final_btn.html_safe, mark_demand_as_final_url(@demand), method: :post, data:{confirm: "If you want to modify data you will have only 3 days."} %>
+  <%= link_to edit_big_btn.html_safe, edit_office_demand_path(@demand) %>
+<%= link_to final_btn.html_safe, office_mark_demand_as_final_url(@demand), method: :post, data:{confirm: "If you want to modify data you will have only 3 days."} %>
     <% end %>
   <% if can_unmark(@demand) %>
-    <%= link_to before_final_btn.html_safe, mark_demand_as_final_url(@demand), id: :mark_as_not_final, method: :post %>
+    <%= link_to before_final_btn.html_safe, office_mark_demand_as_final_url(@demand), id: :mark_as_not_final, method: :post %>
   <% end %>
-<%= link_to print_big_btn.html_safe, "/report/office_demand_form/#{@demand.id}" %>
+<%= link_to print_big_btn.html_safe, "/office/report/office_demand_form/#{@demand.id}" %>
 
 </div>
 <div class="separator"></div>
@@ -52,7 +52,7 @@
     <td><%= item.remark %></td>
     <td>
       <% if @demand.marked_as_final != true %>
-      <%= link_to(destroy_btn.html_safe, demand_item_path(item), method: :delete, remote: true, "data-confirm": "Are you sure ?") %>
+      <%= link_to(destroy_btn.html_safe, office_demand_item_path(item), method: :delete, remote: true, "data-confirm": "Are you sure ?") %>
       <% end %>
     </td>
   </tr>

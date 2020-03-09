@@ -1,6 +1,5 @@
 <h1>सामाग्री सम्पादन गर्ने</h1>
 
-<%= render 'form', item: @office_item %>
+<%= render 'form', item: @item %>
 
-<%= link_to 'Show', @office_item %> |
-<%= link_to 'Back', office_items_path %>
+<%= link_to back_btn.html_safe, office_items_path %>

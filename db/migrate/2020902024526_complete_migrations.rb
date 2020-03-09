@@ -11,7 +11,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "demand_items" do |t|
+    create_table "office_demand_items" do |t|
       t.string "name_of_item_ne"
       t.string "name_of_item_en"
       t.integer "office_item_id"
@@ -32,7 +32,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "demands" do |t|
+    create_table "office_demands" do |t|
       t.integer "demand_no"
       t.datetime "demand_date"
       t.string "demand_by"
@@ -85,7 +85,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "office_item_id"
     end
 
-    create_table "item_assistance_registers" do |t|
+    create_table "office_item_assistance_registers" do |t|
       t.string "name_of_item_ne"
       t.string "name_of_item_en"
       t.string "unit_en"
@@ -103,7 +103,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "item_categories" do |t|
+    create_table "office_item_categories" do |t|
       t.string "name_ne"
       t.string "name_en"
       t.string "unit_ne"
@@ -114,7 +114,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "item_disposal_items" do |t|
+    create_table "office_item_disposal_items" do |t|
       t.integer "item_classification_no"
       t.integer "item_register_page_no"
       t.integer "item_id"
@@ -139,7 +139,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "item_disposals" do |t|
+    create_table "office_item_disposals" do |t|
       t.string "fy"
       t.datetime "decision_date"
       t.string "decision_made_by"
@@ -152,7 +152,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "items" do |t|
+    create_table "office_items" do |t|
       t.string "name_of_item_ne"
       t.string "name_of_item_en"
       t.string "unit_ne"
@@ -163,10 +163,11 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
       t.string "specification"
+      t.integer "item_classification"
       t.integer "item_category_id"
     end
 
-    create_table "land_and_structure_record_book_items" do |t|
+    create_table "office_property_register_items" do |t|
       t.string "district"
       t.string "local_level"
       t.integer "ward_no"
@@ -196,13 +197,10 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "land_and_structure_record_books" do |t|
-      t.string "store_chief_name"
-      t.string "store_chief_designation"
+    create_table "office_property_registers" do |t|
       t.datetime "store_chief_signed_date"
-      t.string "office_chief_name"
-      t.string "office_chief_designation"
       t.string "office_chief_signed_date"
+      t.integer "store_body_id"
       t.integer "user_id"
       t.string "fy"
       t.integer "fiscal_year_id"
@@ -211,33 +209,11 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "oeirts" do |t|
-      t.integer "item_id"
-      t.integer "office_id"
-      t.integer "fiscal_year_id"
-      t.integer "user_id"
-      t.datetime "transaction_date"
-      t.integer "transaction_type"
-      t.decimal "rate"
-      t.decimal "amount"
-      t.decimal "quantity"
-      t.string "remarks"
-      t.integer "purchase_entry_item_id"
-      t.decimal "sku"
-      t.integer "release_item_id"
-      t.integer "entry_no"
-    end
 
     create_table "office_handover_form_items" do |t|
-      t.integer "item_classification_no"
-      t.integer "item_register_page_no"
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
       t.string "specification"
       t.integer "item_identification_no"
       t.string "model_no"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "amount"
       t.datetime "received_date"
@@ -251,8 +227,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "item_id"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.integer "office_item_id"
-      t.integer "handovered_from"
+      t.integer "item_id"
       t.string "country"
       t.string "size"
       t.string "age_approx"
@@ -266,13 +241,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.string "handovered_office_name"
       t.datetime "date"
       t.integer "form_no"
-     t.integer "store_body_id"
-      t.string "receiver_store_chief_name"
-      t.string "receiver_store_chief_designation"
-      t.datetime "receiver_store_chief_signed_date"
-      t.string "receiver_chief_name"
-      t.string "receiver_chief_desination"
-      t.datetime "receiver_chief_signed_date"
+      t.integer "store_body_id"
       t.integer "office_id"
       t.integer "user_id"
       t.integer "fiscal_year_id"
@@ -281,7 +250,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.boolean "marked_as_final"
     end
 
-    create_table "office_item_categories" do |t|
+    create_table "project_item_categories" do |t|
       t.string "name_ne"
       t.string "name_en"
       t.string "unit_ne"
@@ -318,12 +287,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "office_item_evaluation_items" do |t|
-      t.integer "item_classification_no"
-      t.integer "item_register_page_no"
-      t.string "name_of_item_en"
-      t.string "name_of_item_ne"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "amount"
       t.decimal "mached"
@@ -372,29 +335,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "fiscal_year_id"
     end
 
-    create_table "office_items" do |t|
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.string "specification"
-      t.string "unit_ne"
-      t.string "unit_en"
-      t.integer "item_register_page_no"
-      t.integer "item_classification_no"
-      t.decimal "to_be_repaired"
-      t.decimal "to_be_auctioned"
-      t.decimal "to_be_conserved"
-      t.decimal "working"
-      t.decimal "not_working"
-      t.integer "item_id"
-      t.integer "user_id"
-      t.integer "office_id"
-      t.integer "fiscal_year_id"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.string "model_no"
-      t.string "item_identification_no"
-      t.integer "item_category_id"
-    end
 
     create_table "office_purchase_entries" do |t|
       t.datetime "entry_date"
@@ -481,7 +421,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.string "fy"
       t.integer "release_no"
       t.datetime "release_date"
-     t.integer "store_body_id"
+      t.integer "store_body_id"
       t.integer "user_id"
       t.integer "office_id"
       t.integer "fiscal_year_id"
@@ -535,33 +475,8 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "oneirts" do |t|
-      t.string "model"
-      t.string "item_identification_no"
-      t.string "country_of_origin"
-      t.integer "office_item_id"
-      t.integer "item_id"
-      t.integer "office_id"
-      t.integer "fiscal_year_id"
-      t.integer "user_id"
-      t.datetime "transaction_date"
-      t.integer "transaction_type"
-      t.decimal "rate"
-      t.decimal "amount"
-      t.decimal "quantity"
-      t.integer "purchase_entry_item_id"
-      t.string "remarks"
-      t.decimal "sku"
-      t.integer "release_item_id"
-      t.integer "entry_no"
-      t.string "country"
-      t.string "size"
-      t.string "approx_age"
-      t.string "source"
-      t.integer "handover_form_item_id"
-    end
 
-    create_table "personnels" do |t|
+    create_table "office_personnels" do |t|
       t.string "name_ne"
       t.string "name_en"
       t.string "post"
@@ -579,7 +494,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "fiscal_year_id"
     end
 
-    create_table "project_based_items" do |t|
+    create_table "project_project_items" do |t|
       t.string "name_of_item_ne"
       t.string "name_of_item_en"
       t.string "unit_ne"
@@ -594,11 +509,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "project_demand_items" do |t|
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.string "specification"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "amount"
       t.decimal "rate"
@@ -637,11 +547,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
 
     create_table "project_evaluation_items" do |t|
       t.integer "item_classification_no"
-      t.integer "item_register_page_no"
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "amount"
       t.decimal "mached"
@@ -669,27 +574,21 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "project_evaluations" do |t|
-      t.string "fy"
       t.datetime "committee_formation_date"
       t.datetime "report_submission_date"
       t.integer "office_id"
       t.integer "user_id"
       t.integer "fiscal_year_id"
+      t.integer "evaluation_committee_id"
       t.boolean "marked_as_final"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
 
     create_table "project_handover_form_items" do |t|
-      t.integer "item_classification_no"
-      t.integer "item_register_page_no"
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
       t.string "specification"
       t.string "item_identification_no"
       t.string "model_no"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.string "quantity"
       t.string "amount"
       t.string "received_date"
@@ -700,7 +599,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "office_id"
       t.integer "project_id"
       t.integer "handover_form_id"
-      t.integer "item_id"
       t.integer "project_item_id"
       t.string "country"
       t.string "size"
@@ -713,34 +611,20 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     create_table "project_handover_forms" do |t|
       t.integer "decision_no"
       t.datetime "decision_date"
-      t.string "fy"
-      t.string "handovered_project_name"
       t.datetime "date"
       t.integer "form_no"
-      t.string "store_chief_name"
-      t.string "store_chief_designation"
       t.datetime "store_chief_sign_date"
-      t.string "office_chief_name"
-      t.string "office_chief_designation"
       t.datetime "office_chief_signed_date"
       t.integer "office_id"
       t.integer "user_id"
+      t.integer "project_id"
       t.integer "fiscal_year_id"
       t.boolean "marked_as_final"
+      t.integer "store_body_id"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
 
-    create_table "project_item_categories" do |t|
-      t.string "name_ne"
-      t.string "name_en"
-      t.string "unit_ne"
-      t.string "unit_en"
-      t.integer "user_id"
-      t.integer "office_id"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-    end
 
     create_table "project_items" do |t|
       t.string "name_of_item_ne"
@@ -771,7 +655,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "item_id"
       t.integer "item_register_page_no"
       t.string "purchase_handover_no"
-      t.string "fy"
       t.boolean "marked_as_final"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
@@ -780,15 +663,9 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "project_purchase_entry_items" do |t|
-      t.integer "item_classification_no"
-      t.integer "item_register_page_no"
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
       t.string "specification"
       t.string "item_identification_no"
       t.string "model_no"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "rate"
       t.decimal "amount_without_vat"
@@ -815,12 +692,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "project_purchase_order_items" do |t|
-      t.integer "item_classification_no"
-      t.string "name_of_item_en"
-      t.string "name_of_item_ne"
       t.string "specification"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "rate"
       t.decimal "amount"
@@ -839,11 +711,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "project_purchase_orders" do |t|
-      t.string "vendor_name"
-      t.string "vendor_address"
-      t.string "vendor_registration"
-      t.string "vendor_phone"
-      t.string "vendor_pan"
       t.string "order_no"
       t.datetime "order_date"
       t.integer "order_decision_no"
@@ -866,13 +733,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "project_release_items" do |t|
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.integer "item_register_page_no"
-      t.string "code_no"
-      t.string "specificaiton"
-      t.string "unit_en"
-      t.string "unit_ne"
       t.decimal "quantity"
       t.decimal "rate"
       t.decimal "amount"
@@ -884,13 +744,11 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "item_id"
       t.integer "fiscal_year_id"
       t.integer "release_from"
-      t.string "item_classification_no"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
 
     create_table "project_releases" do |t|
-      t.string "fy"
       t.integer "release_no"
       t.datetime "release_date"
       t.integer "store_body_id"
@@ -906,12 +764,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
     create_table "project_stock_items" do |t|
-      t.integer "item_register_page_no"
-      t.integer "item_classification_no"
-      t.string "name_of_item_en"
-      t.string "name_of_item_ne"
-      t.string "unit_en"
-      t.string "unit_ne"
       t.decimal "quantity"
       t.decimal "rate"
       t.decimal "amount"
@@ -945,15 +797,6 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     create_table "project_tender_breakdown_items" do |t|
       t.integer "project_id"
       t.integer "tender_breakdown_id"
-      t.integer "item_classification_no"
-      t.integer "item_register_page_no"
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.string "specification"
-      t.string "item_identification_no"
-      t.string "model_no"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "rate"
       t.decimal "amount_without_vat"
@@ -976,6 +819,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
       t.decimal "sku"
+      t.integer "store_body_id"
       t.integer "purchase_entry_item_id"
     end
 
@@ -983,21 +827,15 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "office_id"
       t.integer "user_id"
       t.integer "project_id"
-      t.string "project_name_en"
-      t.string "project_name_ne"
       t.boolean "marked_as_final"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
       t.integer "fiscal_year_id"
-      t.string "fy"
       t.integer "purchase_entry_id"
     end
 
     create_table "office_tender_items" do |t|
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.string "unit_ne"
-      t.string "unit_en"
+      t.integer "store_body_id"
       t.decimal "quantity"
       t.decimal "rate"
       t.decimal "amount"
@@ -1009,7 +847,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "fiscal_year_id"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.integer "project_item_id"
+      t.integer "item_id"
       t.decimal "sku"
       t.integer "item_classification_no"
       t.string "specification"
@@ -1028,7 +866,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "item_register_page_no"
     end
 
-    create_table "project_tenders" do |t|
+    create_table "office_tenders" do |t|
       t.integer "office_id"
       t.integer "user_id"
       t.integer "fiscal_year_id"
@@ -1040,16 +878,8 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.string "bidders_address"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.string "store_keeper_name"
-      t.string "store_keeper_designation"
-      t.string "section_chief_name"
-      t.string "section_chief_designation"
-      t.string "office_chief_name"
-      t.string "office_chief_designation"
+      t.integer "store_body_id"
       t.boolean "entry_generated"
-      t.datetime "entry_date"
-      t.integer "entry_no"
-      t.string "purchase_handover_no"
     end
 
     create_table "projects" do |t|
@@ -1071,66 +901,8 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "pteits" do |t|
-      t.integer "project_item_id"
-      t.integer "item_id"
-      t.integer "office_id"
-      t.integer "project_id"
-      t.integer "fiscal_year_id"
-      t.integer "user_id"
-      t.datetime "transaction_date"
-      t.integer "transaction_type"
-      t.decimal "rate"
-      t.decimal "amount"
-      t.decimal "quantity"
-      t.string "remarks"
-      t.decimal "sku"
-      t.integer "project_release_item_id"
-      t.integer "entry_release_no"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.integer "project_tender_item_id"
-      t.integer "taken_from"
-      t.integer "given_to"
-    end
-
-    create_table "ptneits" do |t|
-      t.string "model_no"
-      t.string "item_identification_no"
-      t.string "country"
-      t.integer "project_item_id"
-      t.integer "item_id"
-      t.integer "office_id"
-      t.integer "user_id"
-      t.integer "fiscal_year_id"
-      t.datetime "transaction_date"
-      t.integer "transaction_type"
-      t.decimal "rate"
-      t.decimal "amount"
-      t.decimal "quantity"
-      t.integer "breakdown_id"
-      t.string "remarks"
-      t.decimal "sku"
-      t.integer "project_handover_form_id"
-      t.integer "entry_release_no"
-      t.string "size"
-      t.string "approx_age"
-      t.string "source"
-      t.datetime "created_at", null: false
-      t.datetime "updated_at", null: false
-      t.integer "project_tender_item_id"
-      t.integer "taken_from"
-      t.integer "given_to"
-      t.integer "project_id"
-    end
-
-    create_table "purchase_order_items" do |t|
-      t.integer "item_classification_no"
-      t.string "name_of_item_en"
-      t.string "name_of_item_ne"
+    create_table "office_purchase_order_items" do |t|
       t.string "specification"
-      t.string "unit_ne"
-      t.string "unit_en"
       t.decimal "quantity"
       t.decimal "rate"
       t.decimal "amount"
@@ -1143,13 +915,12 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "item_id"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
-      t.integer "office_item_id"
       t.decimal "vat"
       t.decimal "amount_without_vat"
       t.boolean "is_vatable"
     end
 
-    create_table "purchase_orders" do |t|
+    create_table "office_purchase_orders" do |t|
       t.string "vendor_name"
       t.string "vendor_address"
       t.string "vendor_registration"
@@ -1180,9 +951,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
     end
 
 
-
-
-    create_table "rental_record_register_items" do |t|
+    create_table "office_rental_record_register_items" do |t|
       t.datetime "date"
       t.string "name_of_vendor"
       t.string "address_of_vendor"
@@ -1205,10 +974,8 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "rental_record_registers" do |t|
-      t.string "name_of_item_ne"
-      t.string "name_of_item_en"
-      t.integer "item_classification_no"
+    create_table "office_rental_record_registers" do |t|
+      t.integer "store_body_id"
       t.boolean "is_taken_in_rent"
       t.boolean "is_given_in_rent"
       t.string "specification"
@@ -1221,14 +988,13 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.integer "item_id"
       t.integer "office_id"
       t.integer "user_id"
-      t.string "fy"
       t.integer "fiscal_year_id"
       t.integer "store_body_id"
       t.datetime "created_at", null: false
       t.datetime "updated_at", null: false
     end
 
-    create_table "repair_application_form_items" do |t|
+    create_table "office_repair_application_form_items" do |t|
       t.string "name_of_item_ne"
       t.string "name_of_item_en"
       t.string "item_identification_no"
@@ -1243,7 +1009,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "repair_application_forms" do |t|
+    create_table "office_repair_application_forms" do |t|
       t.integer "application_no"
       t.datetime "date"
       t.string "year"
@@ -1270,7 +1036,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "repair_record_register_items" do |t|
+    create_table "office_repair_record_register_items" do |t|
       t.datetime "date"
       t.integer "repair_application_no"
       t.string "applicat_name"
@@ -1291,7 +1057,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "repair_record_registers" do |t|
+    create_table "office_repair_record_registers" do |t|
       t.string "name_of_item_ne"
       t.string "name_of_item_en"
       t.string "page_no"
@@ -1315,7 +1081,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.datetime "updated_at", null: false
     end
 
-    create_table "store_bodies" do |t|
+    create_table "office_store_bodies" do |t|
       t.string "office_chief_name"
       t.string "office_chief_degination"
       t.string "section_chief_name"
@@ -1344,7 +1110,7 @@ class CompleteMigrations < ActiveRecord::Migration[5.2]
       t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     end
 
-    create_table "vendors" do |t|
+    create_table "office_vendors" do |t|
       t.string "vendor_name"
       t.string "vendor_registration"
       t.string "vendor_pan"

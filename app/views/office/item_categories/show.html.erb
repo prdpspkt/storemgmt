@@ -7,4 +7,15 @@
     <th>सामानको नाम(अंग्रेजी)</th>
     <th></th>
   </tr>
+  <% @i = 1 %>
+  <% @items.each do |item| %>
+  <tr>
+    <td><%= nd @i %></td>
+    <td><%= item.name_of_item_ne %></td>
+    <td><%= item.name_of_item_en %></td>
+    <td>
+      <%= link_to destroy_btn.html_safe, office_item_path(item), method: :delete, confirm: "Are you sure ?" %>
+    </td>
+  </tr>
+  <% end %>
 </table>

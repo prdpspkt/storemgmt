@@ -1,11 +1,11 @@
 class Office::PurchaseEntriesController < ApplicationController
-  before_action :set_office_entry, only: [:show, :edit, :update, :destroy, :mark_as_final]
+  before_action :set_office_entry, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_ledger_entry]
 
   # GET /OfficePurchaseEntries
   # GET /OfficePurchaseEntries.json
   def index
     @purchase_entries = current(Office::PurchaseEntry)
-    end
+  end
 
 
   # GET /OfficePurchaseEntries/1
@@ -35,7 +35,7 @@ class Office::PurchaseEntriesController < ApplicationController
     @purchase_entry.office_id = current_office.id
     @purchase_entry.fy = current_fiscal_year.fy
     @purchase_entry.entry_no = new_entry_no
-   @purchase_entry.store_body_id = current_control_body.id
+    @purchase_entry.store_body_id = current_control_body.id
     @purchase_entry.marked_as_final = false
     respond_to do |format|
       if @purchase_entry.save
@@ -65,44 +65,69 @@ class Office::PurchaseEntriesController < ApplicationController
   # DELETE /OfficePurchaseEntries/1
   # DELETE /OfficePurchaseEntries/1.json
   def destroy
+    if @purchase_entry.purchase_order.blank? == false
+      @purchase_order = @purchase_entry.purchase_order
+      @purchase_order.entry_generated = false
+      @purchase_order.save
+    end
     @purchase_entry.destroy
     respond_to do |format|
-      format.html { redirect_to office_purchase_entries_url, notice: 'Office entry was successfully destroyed.' }
+      format.html { redirect_to @purchase_order, notice: 'Office entry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def mark_as_final
-    if (can_unmark(@purchase_entry))
+    if @purchase_entry.marked_as_final == true
       @purchase_entry.marked_as_final = false
-      @purchase_entry.save
     else
       @purchase_entry.marked_as_final = true
-      @purchase_entry.save
     end
+    @purchase_entry.save
+    redirect_to @purchase_entry
+  end
+
+  def generate_ledger_entry
+    @purchase_entry.ledger_entry_generated = true
+    create_item_transaction @purchase_entry
+    @purchase_entry.save
     redirect_to @purchase_entry
   end
 
   private
-  def can_unmark obj
-    (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
-  end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_office_entry
-      @purchase_entry = Office::PurchaseEntry.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def office_entry_params
-      params.require(:office_purchase_entry).permit(:purchase_handover_no, :entry_date, :entry_no, :store_chief_signed_date,  :section_chief_signed_date, :office_chief_signed_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_office_entry
+    @purchase_entry = Office::PurchaseEntry.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def office_entry_params
+    params.require(:office_purchase_entry).permit(:purchase_handover_no, :entry_date, :entry_no, :store_chief_signed_date, :section_chief_signed_date, :office_chief_signed_date)
+  end
 
   def new_entry_no
     ope = current(Office::PurchaseEntry)
     nopen = 1
     if ope.count > 0
-      nopen = loe.entry_no + 1
+      nopen = ope.last.entry_no + 1
     end
     nopen
   end
+
+  def create_item_transaction purchase_entry
+    purchase_entry.purchase_entry_items.each do |entry_item|
+      transaction = Office::ItemTransaction.new(entry_item.attributes.select { |key, _| Office::ItemTransaction.column_names.include? key })
+      transaction.id = nil
+      transaction.item_classification_no = entry_item.item.item_classification_no
+      transaction.rate = entry_item.rate * 1.13
+      transaction.purchase_entry_item_id = entry_item.id
+      transaction.transaction_type = 1
+      transaction.sku = transaction.quantity
+      transaction.transaction_date = bs_today
+      transaction = set_current_information transaction
+      transaction.save
+    end
+  end
+
 end

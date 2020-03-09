@@ -34,12 +34,16 @@ namespace :office do
   resources :purchase_entry_items
   resources :purchase_entries
   post '/purchase_entries/mark_as_final/:id' => "purchase_entries#mark_as_final", as: :mark_ope_as_final
+  post "/purchase_entries/generate_ledger_entry/:id" => "purchase_entries#generate_ledger_entry", as: :generate_ledger_entry_with_purchase_entry
   resources :purchase_order_items
   resources :purchase_orders
   post '/purchase_orders/marked_as_final/:id' => "purchase_orders#mark_as_final", as: :mark_po_as_final
+  post "/purchase_orders/generate_purchase_entry/:id" => "purchase_orders#generate_purchase_entry", as: :generate_purchase_entry
+
   resources :demand_items
   resources :demands
   post '/demands/mark_as_final/:id' => "demands#mark_as_final", as: :mark_demand_as_final
+  post '/demands/generate_ledger_entry/:id' => "demands#generate_ledger_entry", as: :generate_ledger_entry_with_demand
   resources :item_entries
   resources :items
   resources :personnels

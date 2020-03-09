@@ -1,10 +1,10 @@
-class ProjectsController < ApplicationController
+class Project::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current(Project)
+    @projects = current(Project::Project)
   end
 
   # GET /projects/1

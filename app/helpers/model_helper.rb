@@ -20,6 +20,14 @@ module ModelHelper
     object.office_item_id = @office_item.id
     object
   end
-
-
+  def can_unmark_purchase_entry purchase_entry
+    can_unmark = true
+    items = purchase_entry.purchase_entry_items
+    items.each do |item|
+      if item.item_transaction.quantity < item.item_transaction.sku
+        can_unmark = false
+      end
+    end
+    can_unmark
+  end
 end

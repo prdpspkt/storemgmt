@@ -5,7 +5,7 @@ class Project::PurchaseEntriesController < ApplicationController
   # GET /ProjectPurchaseEntries.json
   def index
     @project_purchase_entries = current(Project::PurchaseEntry)
-    end
+  end
 
 
   # GET /ProjectPurchaseEntries/1
@@ -70,9 +70,14 @@ class Project::PurchaseEntriesController < ApplicationController
   # DELETE /ProjectPurchaseEntries/1
   # DELETE /ProjectPurchaseEntries/1.json
   def destroy
+    if @project_purchase_entry.purchase_order.blank? == false
+      @project_order = @project_purchase_entry.purchase_order
+      @project_order.entry_generated = false
+      @project_order.save
+    end
     @project_purchase_entry.destroy
     respond_to do |format|
-      format.html { redirect_to project_purchase_entries_url, notice: 'Project entry was successfully destroyed.' }
+      format.html { redirect_to @project_order, notice: 'Project entry was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -89,22 +94,24 @@ class Project::PurchaseEntriesController < ApplicationController
   end
 
   private
+
   def can_unmark obj
     (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
   end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project_entry
-      @project_purchase_entry = Project::PurchaseEntry.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_entry_params
-      params.require(:project_purchase_entry).permit(:purchase_handover_no, :entry_date, :entry_no, :store_chief_signed_date,  :section_chief_signed_date, :project_chief_signed_date)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project_entry
+    @project_purchase_entry = Project::PurchaseEntry.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_entry_params
+    params.require(:project_purchase_entry).permit(:purchase_handover_no, :entry_date, :entry_no, :store_chief_signed_date, :section_chief_signed_date, :project_chief_signed_date)
+  end
 
   def new_entry_no
     loe = Project::PurchaseEntry.last
-    if(!loe.blank? && loe.entry_no.present?)
+    if (!loe.blank? && loe.entry_no.present?)
       noeen = loe.entry_no + 1
     else
       noeen = 1

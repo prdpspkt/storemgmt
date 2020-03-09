@@ -26,7 +26,7 @@ class Office::Release < ApplicationRecord
   end
 
   def create_expensable_item_transaction ori
-    oeirt = Oeirt.find_or_create_by({office_release_item_id: ori.id})
+    oeirt = Transaction.find_or_create_by({office_release_item_id: ori.id})
     oeirt.update({
                      office_item_id: ori.office_item_id,
                      item_id: ori.item_id,

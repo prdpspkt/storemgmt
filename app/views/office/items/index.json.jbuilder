@@ -1,5 +1,5 @@
 json.set! :data do
-  json.array! @office_items do |item|
+  json.array! @items do |item|
     json.item_category "
                        #{item.item_category.name_ne}
                        "

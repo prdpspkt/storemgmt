@@ -26,7 +26,7 @@ class Office::ReleaseItemsController < ApplicationController
   def create
     office_item_id = params[:office_release_item][:office_item_id]
     quantity = (params[:office_release_item][:quantity]).to_d
-    @incomes = Oeirt.where(office_item_id: office_item_id)
+    @incomes = Transaction.where(office_item_id: office_item_id)
                    .where(transaction_type: 1)
                    .where("sku > 0")
     @incomes.each do |item|
