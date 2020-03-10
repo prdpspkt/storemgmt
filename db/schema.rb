@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_07_162148) do
+ActiveRecord::Schema.define(version: 2020_03_09_032745) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,6 +290,8 @@ ActiveRecord::Schema.define(version: 2020_03_07_162148) do
     t.datetime "updated_at", null: false
     t.string "specification"
     t.integer "item_category_id"
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
   end
 
   create_table "office_personnels", force: :cascade do |t|
@@ -495,6 +497,8 @@ ActiveRecord::Schema.define(version: 2020_03_07_162148) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "marked_as_final"
+    t.string "received_by"
+    t.datetime "received_date"
   end
 
   create_table "office_rental_record_register_items", force: :cascade do |t|

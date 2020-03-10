@@ -1,5 +1,5 @@
 class Office::DemandsController < ApplicationController
-  before_action :set_demand, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_ledger_entry]
+  before_action :set_demand, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_release_form]
 
   # GET /demands
   # GET /demands.json
@@ -28,11 +28,7 @@ class Office::DemandsController < ApplicationController
   def create
     @demand = Office::Demand.new(demand_params)
     @demand.recommended_by = Office::Personnel.find(demand_params[:recommended_by]).name_ne
-    @demand.ordered_by = current_control_body.office_chief_name
-    @demand.recorded_by = current_control_body.store_keeper_name
-    @demand.user_id = current_user.id
-    @demand.office_id = current_office.id
-    @demand.fiscal_year_id = current_fiscal_year.id
+    @demand = set_current_information @demand
     @demand.demand_no = get_new_office_demand_no
     @demand.marked_as_final = false
     @demand.entry_generated = false
@@ -82,9 +78,35 @@ class Office::DemandsController < ApplicationController
     @demand.save
     redirect_to office_demand_path(@demand)
   end
+  def generate_release_form
+    @release_form = Office::Release.new
+    @release_form.received_by = @demand.demand_by
+    @release_form.received_date = @demand.demand_date
+    @release_form = set_current_information @release_form
+    @release_form.store_body_id = current_control_body.id
+    @release_form.marked_as_final = false
+    @release_form.release_date = bs_today
+    @release_form.release_no = new_release_no
+    @release_form.save
+    create_release_items @release_form
+    @demand.entry_generated = true
+    @demand.save
+    redirect_to @release_form
+  end
+
 
 
   private
+  def create_release_items release
+    @demand_items = @demand.demand_items
+    @demand_items.each do |item|
+      release_item = Office::ReleaseItem.new(item.attributes.select{ |key, _| Office::ReleaseItem.column_names.include? key})
+      release_item.id = nil
+      release_item.release_id = release.id
+      release_item = set_current_information release_item
+      release_item.save
+    end
+  end
     # Use callbacks to share common setup or constraints between actions.
     def set_demand
       @demand = Office::Demand.find(params[:id])
@@ -102,5 +124,14 @@ class Office::DemandsController < ApplicationController
       demand_no = @demands.last.demand_no + 1
     end
     demand_no
-  end
+    end
+
+    def new_release_no
+      nrn = 1
+      @releases = current(Office::Release)
+      if @releases.count > 0
+        nrn = @releases.last.release_no + 1
+      end
+      nrn
+    end
 end

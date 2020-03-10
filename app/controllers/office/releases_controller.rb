@@ -4,19 +4,19 @@ class Office::ReleasesController < ApplicationController
   # GET /office_releases
   # GET /office_releases.json
   def index
-    @office_releases = OfficeRelease.all
+    @office_releases = Office::Release.all
   end
 
   # GET /office_releases/1
   # GET /office_releases/1.json
   def show
-    @office_release_items = @office_release.office_release_items
-    @office_release_item = OfficeReleaseItem.new
+    @office_release_items = @office_release.release_items
+    @office_release_item = Office::ReleaseItem.new
   end
 
   # GET /office_releases/new
   def new
-    @office_release = OfficeRelease.new
+    @office_release = Office::Release.new
     @office_release.release_no = new_release_no
   end
 
@@ -27,7 +27,7 @@ class Office::ReleasesController < ApplicationController
   # POST /office_releases
   # POST /office_releases.json
   def create
-    @office_release = OfficeRelease.new(office_release_params)
+    @office_release = Office::Release.new(office_release_params)
     @office_release.store_chief_name = current_control_body.store_keeper_name
     @office_release.office_chief_name = current_control_body.office_chief_name
     @office_release.user_id = current_user.id
@@ -90,7 +90,7 @@ class Office::ReleasesController < ApplicationController
   end
     # Use callbacks to share common setup or constraints between actions.
     def set_office_release
-      @office_release = OfficeRelease.find(params[:id])
+      @office_release = Office::Release.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -99,7 +99,7 @@ class Office::ReleasesController < ApplicationController
     end
 
   def new_release_no
-    lor = OfficeRelease.last
+    lor = Office::Release.last
     @lorn = false
     if (!lor.blank? && lor.release_no.present?)
       @lorn = lor.release_no + 1
