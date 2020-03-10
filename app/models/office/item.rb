@@ -5,6 +5,7 @@ class Office::Item < ApplicationRecord
   has_many :release_items, class_name: "Office::ReleaseItem"
   has_many :purchase_order_items, :class_name => 'Office::PurchaseOrderItem'
   belongs_to :item_category, :class_name => 'Office::ItemCategory'
+  has_many :item_transaction, class_name: "Office::ItemTransaction"
   before_create :add_item_register_page_no
   validates :item_category_id, numericality: true
 

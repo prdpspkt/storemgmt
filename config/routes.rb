@@ -29,7 +29,7 @@ namespace :office do
   resources :handover_forms
   post "/handover_form/mark_as_final/:id" => "handover_forms#mark_as_final", as: :mark_office_handover_form_as_final
   resources :release_items
-  post "/office_releases/mark_as_final/:id" => "releases#mark_as_final"
+  post "/releases/mark_as_final/:id" => "releases#mark_as_final", as: :mark_release_as_final
   resources :releases
   resources :purchase_entry_items
   resources :purchase_entries
@@ -65,7 +65,7 @@ namespace :office do
   get '/report/office_demand_form/:id' => "report#office_demand_form"
   get '/report/purchase_order/:id' => "report#purchase_order"
   get '/report/office_purchase_entry/:id' => "report#office_purchase_entry"
-  get '/report/office_release/:id' => "report#office_release"
+  get '/report/office_release/:id' => "report#office_release", as: :release_report
   get '/report/office_item_assistance_register/:id' => "report#office_item_assistance_register"
   get '/report/oeirt_ledger' => "report#oeirt_ledger", as: :oeirt_ledger
   get '/report/oneirt_ledger' => "report#oneirt_ledger", as: :oneirt_ledger

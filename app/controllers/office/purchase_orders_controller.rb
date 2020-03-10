@@ -128,11 +128,13 @@ class Office::PurchaseOrdersController < ApplicationController
     purchase_entry = Office::PurchaseEntry.new
     purchase_entry.entry_no = purchase_entry_no
     purchase_entry.entry_date = bs_today
+    purchase_entry.purchase_handover_no = purchase_order.order_no
     purchase_entry = set_current_information purchase_entry
     purchase_entry = set_signed_date_information_today purchase_entry
-    purchase_entry.purchase_handover_no = purchase_order.order_no
     purchase_entry.store_body_id = current_control_body.id
     purchase_entry.purchase_order_id = purchase_order.id
+    purchase_entry.marked_as_final = false
+    purchase_entry.ledger_entry_generated = false
     purchase_entry.save
     purchase_entry
   end

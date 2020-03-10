@@ -30,4 +30,7 @@ module ModelHelper
     end
     can_unmark
   end
+  def office_item_transactions_with_stock item_id
+    @transactions = current(Office::ItemTransaction).where(item_id: item_id).where(item_classification_no: 52).where("sku > 0")
+  end
 end

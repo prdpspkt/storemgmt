@@ -18,20 +18,13 @@
   <tr>
     <td colspan="10" class="text-center off_name">खर्च/निकासा फाराम</td>
   </tr>
-  <tr class="text-right">
-    <td colspan="9">आ.व.</td>
-    <td></td>
-  </tr>
-  <tr class="text-right">
-    <td colspan="9">निकासा नं:</td>
-    <td></td>
-  </tr>
-  <tr class="text-right">
-    <td colspan="9">मितिः</td>
-    <td></td>
-  </tr>
   </tbody>
 </table>
+<div class="row">
+  <div class="col-12 text-right">
+    आ.व.: <%= @office_release.fiscal_year.fy %><br>निकाशा नं: <%= nd @office_release.release_no %><br>  निकाशा मिति: <%=  ndate @office_release.release_date %>
+  </div>
+</div>
 <table class="table table-bordered table-sm">
   <tr>
     <td>क्र.सं.</td>
@@ -72,15 +65,15 @@
   <% @i = 1 %>
   <% @office_release_items.each do |item| %>
   <tr>
-    <td><%= @i %></td>
-    <td><%= item.name_of_item_ne %></td>
-    <td><%= item.code_no %></td>
-    <td><%= item.specification %></td>
-    <td><%= item.unit_ne %></td>
-    <td><%= item.quantity %></td>
-    <td><%= item.rate %></td>
-    <td><%= item.amount %></td>
-    <td><%= item.item_register_page_no %></td>
+    <td><%= nd @i %></td>
+    <td><%= item.item.name_of_item_ne %></td>
+    <td><%= nd item.item.item_classification_no %></td>
+    <td><%= item.item.specification %></td>
+    <td><%= item.item.unit_ne %></td>
+    <td><%= nd item.quantity %></td>
+    <td><%= nd item.rate %></td>
+    <td><%= nd item.amount %></td>
+    <td><%= nd item.item.item_register_page_no %></td>
     <td><%= item.remarks %></td>
   </tr>
     <% end %>
@@ -101,19 +94,19 @@
   <tr>
     <td></td>
     <td>नामः</td>
-    <td><%= @office_release.store_chief_name %></td>
+    <td><%= @office_release.store_body.store_keeper_name %></td>
     <td></td>
     <td></td>
     <td></td>
     <td></td>
     <td>नामः</td>
-    <td><%= @office_release.office_chief_name %></td>
+    <td><%= @office_release.store_body.office_chief_name %></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>मितिः</td>
-    <td><%= @office_release.store_chief_signed_date %></td>
+    <td><%= @office_release.store_keeper_signed_date %></td>
     <td></td>
     <td></td>
     <td></td>

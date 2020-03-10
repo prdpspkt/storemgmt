@@ -32,12 +32,12 @@ class Office::ReportController < ApplicationController
 
   def office_release
     @office_release = Office::Release.find(params[:id])
-    @office_release_items = @office_release.office_release_items
+    @office_release_items = @office_release.release_items
   end
 
 
   def oeirt_ledger
-    @items = Office::Item.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id).where(item_classification_no: 52)
+    @items = Office::Item.joins(:item_transactions).where("office_transactions.sku > 0").where(item_classification_no: 52).distinct(:item_id)
   end
 
   def oneirt_ledger

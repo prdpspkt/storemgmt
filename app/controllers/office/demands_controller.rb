@@ -87,6 +87,9 @@ class Office::DemandsController < ApplicationController
     @release_form.marked_as_final = false
     @release_form.release_date = bs_today
     @release_form.release_no = new_release_no
+    @release_form.demand_id = @demand.id
+    @release_form.received_by = @demand.demand_by
+    @release_form.received_date = bs_today
     @release_form.save
     create_release_items @release_form
     @demand.entry_generated = true
@@ -100,11 +103,36 @@ class Office::DemandsController < ApplicationController
   def create_release_items release
     @demand_items = @demand.demand_items
     @demand_items.each do |item|
-      release_item = Office::ReleaseItem.new(item.attributes.select{ |key, _| Office::ReleaseItem.column_names.include? key})
-      release_item.id = nil
-      release_item.release_id = release.id
-      release_item = set_current_information release_item
-      release_item.save
+      item_transactions = office_item_transactions_with_stock item.item_id
+      item_transactions.each do |it|
+        if it.sku >= item.quantity
+          release_item = Office::ReleaseItem.new(item.attributes.select{ |key, _| Office::ReleaseItem.column_names.include? key})
+          release_item.id = nil
+          release_item.release_id = release.id
+          release_item = set_current_information release_item
+          release_item.quantity = item.quantity
+          release_item.rate = it.rate
+          release_item.amount = release_item.quantity * release_item.rate
+          it.sku = it.sku - item.quantity
+          release_item.item_transaction_id = it.id
+          release_item.save
+          it.save
+          break
+        else
+          release_item = Office::ReleaseItem.new(item.attributes.select{ |key, _| Office::ReleaseItem.column_names.include? key})
+          release_item.id = nil
+          release_item.release_id = release.id
+          release_item = set_current_information release_item
+          release_item.quantity = it.sku
+          release_item.rate = it.rate
+          release_item.amount = release_item.quantity * release_item.rate
+          item.quantity = item.quantity - it.sku
+          release_item.item_transaction_id = it.id
+          release_item.save
+          it.save
+        end
+      end
+
     end
   end
     # Use callbacks to share common setup or constraints between actions.
@@ -134,4 +162,5 @@ class Office::DemandsController < ApplicationController
       end
       nrn
     end
+
 end
