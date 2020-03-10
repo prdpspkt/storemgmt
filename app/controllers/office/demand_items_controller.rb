@@ -59,12 +59,11 @@ class Office::DemandItemsController < ApplicationController
   # DELETE /demand_items/1
   # DELETE /demand_items/1.json
   def destroy
-    @id = @demand_item.id
+    @demand = @demand_item.demand
     @demand_item.destroy
     respond_to do |format|
-      format.html { redirect_to demand_items_url, notice: 'Demand item was successfully destroyed.' }
+      format.html { redirect_to @demand, notice: 'Demand item was successfully destroyed.' }
       format.json { head :no_content }
-      format.js
     end
   end
 

@@ -43,7 +43,7 @@ namespace :office do
   resources :demand_items
   resources :demands
   post '/demands/mark_as_final/:id' => "demands#mark_as_final", as: :mark_demand_as_final
-  post '/demands/generate_ledger_entry/:id' => "demands#generate_ledger_entry", as: :generate_ledger_entry_with_demand
+  post '/demands/generate_release/:id' => "demands#generate_release_form", as: :generate_release_form
   resources :item_entries
   resources :items
   resources :personnels
