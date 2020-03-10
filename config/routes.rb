@@ -30,6 +30,7 @@ namespace :office do
   post "/handover_form/mark_as_final/:id" => "handover_forms#mark_as_final", as: :mark_office_handover_form_as_final
   resources :release_items
   post "/releases/mark_as_final/:id" => "releases#mark_as_final", as: :mark_release_as_final
+  post "/releases/generate_ledger_entry/:id" => "releases#generate_ledger_entry", as: :generate_ledger_entry_with_release
   resources :releases
   resources :purchase_entry_items
   resources :purchase_entries
