@@ -27,7 +27,6 @@ class Office::ItemsController < ApplicationController
     @item = Office::Item.new(office_item_params)
     @item.user_id = current_user.id
     @item.office_id = current_office.id
-    @item.fiscal_year_id = current_fiscal_year.id
     @item_category = Office::ItemCategory.find(@item.item_category_id)
     @item.unit_en = @item_category.unit_en
     @item.unit_ne = @item_category.unit_ne
