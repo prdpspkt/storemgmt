@@ -90,6 +90,7 @@ class Office::DemandsController < ApplicationController
     @release_form.demand_id = @demand.id
     @release_form.received_by = @demand.demand_by
     @release_form.received_date = bs_today
+    @release_form.entry_generated = false
     @release_form.save
     create_release_items @release_form
     @demand.entry_generated = true
