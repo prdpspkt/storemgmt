@@ -8,8 +8,10 @@ class Office::ItemTransaction < ApplicationRecord
 
   private
   def check_if_items_are_released
-    if self.quantity > self.sku
+    if transaction_type == 1
+      if self.quantity > self.sku
       throw(:abort)
+      end
     end
   end
 end

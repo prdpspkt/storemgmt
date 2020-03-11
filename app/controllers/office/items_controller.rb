@@ -1,6 +1,6 @@
 class Office::ItemsController < ApplicationController
   before_action :set_office_item, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /office_items
   # GET /office_items.json
   def index

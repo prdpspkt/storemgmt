@@ -1,6 +1,6 @@
 class Office::EvaluationCommitteesController < ApplicationController
   before_action :set_office_item_evaluation_committee, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /office_item_evaluation_committees
   # GET /office_item_evaluation_committees.json
   def index

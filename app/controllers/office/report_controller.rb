@@ -1,5 +1,6 @@
 class Office::ReportController < ApplicationController
   before_action :set_office_information
+  load_and_authorize_resource
   def office_demand_form
     @demand = Office::Demand.find(params[:id])
     @demand_items = @demand.demand_items
@@ -41,7 +42,7 @@ class Office::ReportController < ApplicationController
   end
 
   def oneirt_ledger
-    @items = Office::Item.where(office_id: @office.id).where(item_classification_no: 47)
+    @items = Office::Item.joins(:item_transactions).where("office_transactions.sku > 0").where(item_classification_no: 47).distinct(:item_id)
   end
 
   def office_handover_form

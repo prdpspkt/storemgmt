@@ -1,6 +1,6 @@
 class Office::VendorsController < ApplicationController
   before_action :set_vendor, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /vendors
   # GET /vendors.json
   def index

@@ -1,6 +1,6 @@
 class Office::RentalRecordRegistersController < ApplicationController
   before_action :set_rental_record_register, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /rental_record_registers
   # GET /rental_record_registers.json
   def index

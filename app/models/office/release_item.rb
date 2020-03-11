@@ -7,7 +7,7 @@ class Office::ReleaseItem < ApplicationRecord
 
   private
   def restore_transactions
-    transaction = Office::ItemTransaction.find(self.item_transaction_id)
+    transaction = Office::ItemTransaction.find(self.subed_from)
     transaction.sku = transaction.sku + self.quantity
     transaction.save
   end

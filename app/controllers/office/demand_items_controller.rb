@@ -1,6 +1,6 @@
 class Office::DemandItemsController < ApplicationController
   before_action :set_demand_item, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /demand_items
   # GET /demand_items.json
   def index
@@ -27,9 +27,6 @@ class Office::DemandItemsController < ApplicationController
   def create
     @demand_item = Office::DemandItem.new(demand_item_params)
     @office_item = Office::Item.find(demand_item_params[:item_id])
-    @demand_item.name_of_item_ne = @office_item.name_of_item_ne
-    @demand_item.name_of_item_en = @office_item.name_of_item_en
-    @demand_item.specification = @office_item.specification
     @demand = Office::Demand.find(@demand_item.demand_id)
     respond_to do |format|
       if @demand_item.save

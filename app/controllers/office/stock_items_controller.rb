@@ -1,6 +1,6 @@
 class Office::StockItemsController < ApplicationController
   before_action :set_office_stock_item, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /office_stock_items
   # GET /office_stock_items.json
   def index

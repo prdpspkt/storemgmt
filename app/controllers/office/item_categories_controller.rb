@@ -1,6 +1,6 @@
 class Office::ItemCategoriesController < ApplicationController
   before_action :set_item_category, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /item_categories
   # GET /item_categories.json
   def index

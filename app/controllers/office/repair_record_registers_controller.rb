@@ -1,6 +1,6 @@
 class Office::RepairRecordRegistersController < ApplicationController
   before_action :set_repair_record_register, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /repair_record_registers
   # GET /repair_record_registers.json
   def index

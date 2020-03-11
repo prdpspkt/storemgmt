@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_10_121211) do
+ActiveRecord::Schema.define(version: 2020_03_11_091447) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -465,13 +465,8 @@ ActiveRecord::Schema.define(version: 2020_03_10_121211) do
   end
 
   create_table "office_release_items", force: :cascade do |t|
-    t.string "name_of_item_ne"
-    t.string "name_of_item_en"
     t.integer "item_register_page_no"
     t.string "code_no"
-    t.string "specification"
-    t.string "unit_ne"
-    t.string "unit_en"
     t.decimal "quantity"
     t.decimal "rate"
     t.decimal "amount"
@@ -752,6 +747,7 @@ ActiveRecord::Schema.define(version: 2020_03_10_121211) do
     t.string "source"
     t.integer "handover_form_item_id"
     t.integer "item_classification_no"
+    t.integer "subed_from"
   end
 
   create_table "office_vendors", force: :cascade do |t|

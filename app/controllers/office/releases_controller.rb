@@ -1,16 +1,25 @@
 class Office::ReleasesController < ApplicationController
-  before_action :set_office_release, only: [:generate_ledger_entry, :mark_as_final, :show]
-
+  before_action :set_office_release, only: [:generate_ledger_entry, :mark_as_final, :show, :edit, :update, :destroy]
+  load_and_authorize_resource
   # GET /office_releases
   # GET /office_releases.json
   def index
-    @office_releases = Office::Release.all
+    @office_releases = current(Office::Release)
   end
 
   # GET /office_releases/1
   # GET /office_releases/1.json
   def show
     @office_release_items = @office_release.release_items
+  end
+
+  def edit
+
+  end
+
+  def update
+   @office_release.update(release_params)
+   redirect_to @office_release
   end
 
   # GET /office_releases/new
@@ -58,4 +67,7 @@ class Office::ReleasesController < ApplicationController
     def set_office_release
       @office_release = Office::Release.find(params[:id])
     end
+  def release_params
+    params.required(:office_release).permit(:id, :received_by, :store_keeper_signed_date, :office_chief_signed_date)
+  end
 end

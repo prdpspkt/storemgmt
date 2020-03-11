@@ -1,6 +1,6 @@
 class Office::LandAndStructureRecordBookItemsController < ApplicationController
   before_action :set_land_and_structure_record_book_item, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /land_and_structure_record_book_items
   # GET /land_and_structure_record_book_items.json
   def index
