@@ -1,6 +1,6 @@
 class Office::HandoverFormsController < ApplicationController
   before_action :set_handover_form, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /handover_forms
   # GET /handover_forms.json
   def index

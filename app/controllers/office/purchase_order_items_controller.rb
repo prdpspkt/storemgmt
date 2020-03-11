@@ -1,5 +1,6 @@
 class Office::PurchaseOrderItemsController < ApplicationController
   before_action :set_purchase_order_item, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
 
   # GET /purchase_order_items/1

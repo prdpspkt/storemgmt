@@ -2,6 +2,8 @@ class Office::ReleaseItemsController < ApplicationController
   before_action :set_office_release_item, only: [:destroy]
 # DELETE /office_release_items/1
 # DELETE /office_release_items/1.json
+
+
   def destroy
     @release = @release_item.release
     @release_item.destroy
@@ -17,6 +19,7 @@ class Office::ReleaseItemsController < ApplicationController
   def set_office_release_item
     @release_item = Office::ReleaseItem.find(params[:id])
   end
+
 end
 
 

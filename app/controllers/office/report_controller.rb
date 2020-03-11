@@ -37,12 +37,21 @@ class Office::ReportController < ApplicationController
 
 
   def oeirt_ledger
-    @items = Office::Item.joins(:item_transactions).where("office_transactions.sku > 0").where(item_classification_no: 52).distinct(:item_id)
+    @items = Office::Item.joins(:item_transactions)
+                 .where("office_transactions.office_id = #{current_office.id}")
+                 .where("office_transactions.user_id = #{current_office.id}")
+                 .where("office_transactions.fiscal_year_id = #{current_office.id}")
+                 .where(item_classification_no: 52)
+                 .distinct(:item_id)
   end
 
   def oneirt_ledger
-    @items = Office::Item.where(office_id: @office.id).where(item_classification_no: 47)
-  end
+    @items = Office::Item.joins(:item_transactions)
+                 .where("office_transactions.office_id = #{current_office.id}")
+                 .where("office_transactions.user_id = #{current_office.id}")
+                 .where("office_transactions.fiscal_year_id = #{current_office.id}")
+                 .where(item_classification_no: 47)
+                 .distinct(:item_id) end
 
   def office_handover_form
     @office_handover_form = Office::HandoverForm.find(params[:id])

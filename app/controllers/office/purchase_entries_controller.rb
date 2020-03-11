@@ -1,6 +1,6 @@
 class Office::PurchaseEntriesController < ApplicationController
   before_action :set_office_entry, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_ledger_entry]
-
+  load_and_authorize_resource
   # GET /OfficePurchaseEntries
   # GET /OfficePurchaseEntries.json
   def index
@@ -123,6 +123,7 @@ class Office::PurchaseEntriesController < ApplicationController
       transaction.rate = entry_item.rate * 1.13
       transaction.purchase_entry_item_id = entry_item.id
       transaction.transaction_type = 1
+      transaction.entry_no = purchase_entry.entry_no
       transaction.sku = transaction.quantity
       transaction.transaction_date = bs_today
       transaction = set_current_information transaction

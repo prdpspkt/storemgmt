@@ -3,13 +3,27 @@
 class Ability
   include CanCan::Ability
 
-  def initialize(user)
-    #cannot :manage, :all
-    #can  [:index, :edit, :update, :destroy], :all, user_id: user.id
-    #can [:index, :edit, :update, :destroy], FiscalYear, office_id: user.office.id
-    #can :create, :all
-    #(can :manage, :all) if user.is_admin == true
-    can :manage, :all
-
+  def initialize(current_user)
+    user = current_user || User.new
+    cannot :manage, :all
+    can [:view, :show, :edit, :destroy, :update, :index], Office, user_id: user.id
+    can :manage, Office::Item, user_id: user.id
+    can :manage, Office::ItemCategory, user_id: user.id
+    can :manage, Office::PurchaseOrder, user_id: user.id
+    can :manage, Office::PurchaseOrderItem, user_id: user.id
+    can :manage, Office::PurchaseEntry, user_id: user.id
+    can :manage, Office::PurchaseEntryItem, user_id: user.id
+    can :manage, Office::Release, user_id: user.id
+    can :manage, Office::ReleaseItem, user_id: user.id
+    can :manage, Office::Demand, user_id: user.id
+    can :manage, Office::DemandItem, user_id: user.id
+    can :manage, Office::Personnel, user_id: user.id
+    can :manage, Office::Vendor, user_id: user.id
+    can :manage, Office::FiscalYear, user_id: user.id
+    can :manage, Office::ActiveFiscalYear, user_id: user.id
+    can :manage, Office::ItemTransaction, user_id: user.id
+    if user.is_admin == true
+      can :manage, User
+    end
   end
 end

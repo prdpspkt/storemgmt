@@ -1,6 +1,6 @@
 class Office::DemandsController < ApplicationController
   before_action :set_demand, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_release_form]
-
+  load_and_authorize_resource
   # GET /demands
   # GET /demands.json
   def index
@@ -90,6 +90,7 @@ class Office::DemandsController < ApplicationController
     @release_form.demand_id = @demand.id
     @release_form.received_by = @demand.demand_by
     @release_form.received_date = bs_today
+    @release_form.entry_generated = false
     @release_form.save
     create_release_items @release_form
     @demand.entry_generated = true
@@ -114,7 +115,7 @@ class Office::DemandsController < ApplicationController
           release_item.rate = it.rate
           release_item.amount = release_item.quantity * release_item.rate
           it.sku = it.sku - item.quantity
-          release_item.item_transaction_id = it.id
+          release_item.subed_from = it.id
           release_item.save
           it.save
           break
@@ -127,7 +128,7 @@ class Office::DemandsController < ApplicationController
           release_item.rate = it.rate
           release_item.amount = release_item.quantity * release_item.rate
           item.quantity = item.quantity - it.sku
-          release_item.item_transaction_id = it.id
+          release_item.subed_from = it.id
           release_item.save
           it.save
         end

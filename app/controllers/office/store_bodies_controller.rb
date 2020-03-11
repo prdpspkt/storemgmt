@@ -1,6 +1,6 @@
 class Office::StoreBodiesController < ApplicationController
   before_action :set_store_body, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /store_bodies
   # GET /store_bodies.json
   def index

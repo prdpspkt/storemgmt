@@ -1,6 +1,6 @@
 class Office::OfficeItemEvaluationsController < ApplicationController
   before_action :set_office_item_evaluation, only: [:show, :edit, :update, :destroy]
-
+  load_and_authorize_resource
   # GET /office_item_evaluations
   # GET /office_item_evaluations.json
   def index
