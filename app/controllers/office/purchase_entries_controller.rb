@@ -1,6 +1,6 @@
 class Office::PurchaseEntriesController < ApplicationController
   before_action :set_office_entry, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_ledger_entry]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /OfficePurchaseEntries
   # GET /OfficePurchaseEntries.json
   def index

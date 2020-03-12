@@ -1,7 +1,7 @@
 class Office::OfficesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_office, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource :except => :index
+  load_and_authorize_resource except: [:create, :new, :index]
   # GET /offices
   # GET /offices.json
   def index

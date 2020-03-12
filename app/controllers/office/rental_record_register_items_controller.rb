@@ -1,6 +1,6 @@
 class Office::RentalRecordRegisterItemsController < ApplicationController
   before_action :set_rental_record_register_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /rental_record_register_items
   # GET /rental_record_register_items.json
   def index

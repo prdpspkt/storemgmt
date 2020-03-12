@@ -1,6 +1,6 @@
 class Office::ItemsController < ApplicationController
   before_action :set_office_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /office_items
   # GET /office_items.json
   def index
@@ -126,13 +126,14 @@ class Office::ItemsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def office_item_params
-    params.require(:office_item).permit(:specification, :item_category_id, :item_classification_no, :name_of_item_ne, :name_of_item_en, :item_category_id)
+    params.require(:office_item).permit(:specification, :item_classification_no, :name_of_item_ne, :name_of_item_en, :item_category_id)
   end
 
   def new_item_register_page_no item_classification_no
-    @items = office(Office::Item).where(item_classification_no: item_classification_no)
-    if @items.count > 0
-      item_register_page_no = @items.last.item_register_page_no + 1
+    item_register_page_no = 1
+    items = office(Office::Item).where(item_classification_no: item_classification_no)
+    if items.count > 0
+      item_register_page_no = items.last.item_register_page_no + 1
     end
     item_register_page_no
   end

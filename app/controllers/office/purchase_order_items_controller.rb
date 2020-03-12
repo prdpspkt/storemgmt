@@ -1,7 +1,6 @@
 class Office::PurchaseOrderItemsController < ApplicationController
   before_action :set_purchase_order_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
-
+  load_and_authorize_resource except: [:create, :new]
 
   # GET /purchase_order_items/1
   # GET /purchase_order_items/1.json

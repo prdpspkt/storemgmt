@@ -1,6 +1,6 @@
 class Office::DemandItemsController < ApplicationController
   before_action :set_demand_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /demand_items
   # GET /demand_items.json
   def index

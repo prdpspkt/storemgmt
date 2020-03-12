@@ -1,6 +1,6 @@
 class Office::DemandsController < ApplicationController
   before_action :set_demand, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_release_form]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /demands
   # GET /demands.json
   def index

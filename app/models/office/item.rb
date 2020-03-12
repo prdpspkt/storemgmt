@@ -6,23 +6,13 @@ class Office::Item < ApplicationRecord
   has_many :purchase_order_items, :class_name => 'Office::PurchaseOrderItem'
   belongs_to :item_category, :class_name => 'Office::ItemCategory'
   has_many :item_transaction, class_name: "Office::ItemTransaction"
-  before_create :add_item_register_page_no
+
   validates :item_category_id, numericality: true
 
   before_destroy :check_if_used
 
 
   private
-
-  def add_item_register_page_no
-    if Office::Item.count > 0
-      self.item_register_page_no = Office::Item.last.item_register_page_no + 1
-    else
-      self.item_register_page_no = 1
-    end
-  end
-
-
   def check_if_used
     if_used = false
     if_used = true if self.purchase_order_items.count > 0

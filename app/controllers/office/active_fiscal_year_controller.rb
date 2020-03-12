@@ -1,5 +1,5 @@
 class Office::ActiveFiscalYearController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   before_action :set_active_fiscal_year, only: [:update]
   def new
     @office = current_office

@@ -1,7 +1,6 @@
 class Office::PurchaseEntryItemsController < ApplicationController
   before_action :set_office_purchase_entry_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
-
+  load_and_authorize_resource except: [:create, :new]
 
   # GET /office_purchase_entry_items/1/edit
   def edit

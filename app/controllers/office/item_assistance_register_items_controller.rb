@@ -1,6 +1,6 @@
 class Office::ItemAssistanceRegisterItemsController < ApplicationController
   before_action :set_item_assistance_register_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /item_assistance_register_items
   # GET /item_assistance_register_items.json
   def index

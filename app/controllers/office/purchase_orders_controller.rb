@@ -1,6 +1,6 @@
 class Office::PurchaseOrdersController < ApplicationController
   before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_purchase_entry]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /purchase_orders
   # GET /purchase_orders.json
   def index

@@ -1,6 +1,6 @@
 class Office::RepairApplicationFormItemsController < ApplicationController
   before_action :set_repair_application_form_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /repair_application_form_items
   # GET /repair_application_form_items.json
   def index

@@ -92,9 +92,7 @@ class Office::ReportController < ApplicationController
   def set_office_information
     @office = current_office
     @fiscal_year = current_fiscal_year
-    @usesr = current_user
-    #TODO: Store these variables in a table and relate table to each of documents so each
-    # document has different information that doesn't  affect data to next fiscal year
-   @cb = current_control_body
+    @user = current_user
+    @cb = current_control_body
   end
 end

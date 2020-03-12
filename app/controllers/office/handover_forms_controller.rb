@@ -1,22 +1,22 @@
 class Office::HandoverFormsController < ApplicationController
   before_action :set_handover_form, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /handover_forms
   # GET /handover_forms.json
   def index
-    @handover_forms = OfficeHandoverForm.all
+    @handover_forms = current(Office::HandoverForm)
   end
 
   # GET /handover_forms/1
   # GET /handover_forms/1.json
   def show
-    @handover_form_item = OfficeHandoverFormItem.new
+    @handover_form_item = Office::HandoverFormItem.new
     @handover_form_items = @handover_form.office_handover_form_items
   end
 
   # GET /handover_forms/new
   def new
-    @handover_form = OfficeHandoverForm.new
+    @handover_form = Office::HandoverForm.new
     @handover_form.form_no = new_office_handover_no
   end
 
@@ -27,7 +27,7 @@ class Office::HandoverFormsController < ApplicationController
   # POST /handover_forms
   # POST /handover_forms.json
   def create
-    @handover_form = OfficeHandoverForm.new(handover_form_params)
+    @handover_form = Office::HandoverForm.new(handover_form_params)
     @handover_form = prepare_data(@handover_form)
     respond_to do |format|
       if @handover_form.save
@@ -87,7 +87,7 @@ class Office::HandoverFormsController < ApplicationController
     end
 
   def new_office_handover_no
-    ohf = OfficeHandoverForm.last
+    ohf = Office::HandoverForm.last
     if(ohf.blank? || ohf.form_no.present? == false)
       nohf =  1
     else
@@ -101,11 +101,7 @@ class Office::HandoverFormsController < ApplicationController
     hf.office_id = current_office.id
     hf.user_id = current_user.id
     hf.fy = current_fiscal_year.fy
-    hf.fiscal_year_id = current_fiscal_year.id
-    hf.store_chief_name = current_control_body.store_keeper_name
-    hf.office_chief_name = current_control_body.office_chief_name
-    hf.store_chief_designation = current_control_body.store_keeper_designation
-    hf.office_chief_designation = current_control_body.office_chief_degination
+    hf.store_body_id = current_control_body.id
     hf
   end
 end

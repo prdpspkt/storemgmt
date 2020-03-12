@@ -1,6 +1,6 @@
 class Office::RepairRecordRegisterItemsController < ApplicationController
   before_action :set_repair_record_register_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /repair_record_register_items
   # GET /repair_record_register_items.json
   def index

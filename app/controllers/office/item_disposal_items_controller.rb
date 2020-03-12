@@ -1,6 +1,6 @@
 class Office::ItemDisposalItemsController < ApplicationController
   before_action :set_item_disposal_item, only: [:show, :edit, :update, :destroy]
-  load_and_authorize_resource
+  load_and_authorize_resource except: [:create, :new]
   # GET /item_disposal_items
   # GET /item_disposal_items.json
   def index

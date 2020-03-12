@@ -1,4 +1,5 @@
 class Office::HandoverForm < ApplicationRecord
+  self.table_name = "office_handover_forms"
   has_many :handover_form_items,class_name: "Office::HandoverFormItem", :dependent => :destroy
 
   after_update :create_or_update_transactions
