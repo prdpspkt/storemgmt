@@ -289,6 +289,7 @@ ActiveRecord::Schema.define(version: 2020_03_11_091447) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "specification"
+    t.integer "item_classification"
     t.integer "item_category_id"
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
