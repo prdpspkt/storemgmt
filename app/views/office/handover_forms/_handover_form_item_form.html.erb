@@ -10,11 +10,11 @@
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :office_handover_form_id, value: @handover_form.id %>
+  <%= form.hidden_field :handover_form_id, value: @handover_form.id %>
   <div class="row">
     <div class="col-4">
       <%= form.label :name_of_item_ne %>
-      <%= form.select(:office_item_id, OfficeItem.where( item_classification_no: 47).map{|office_item| [office_item.name_of_item_en, office_item.id] },{include_blank: true}, {class: "form-control"}) %>
+      <%= form.select(:transaction_id, @transactions.collect.map{|transaction| ["#{transaction.item.name_of_item_en} ( SKU: #{transaction.sku} MOD: #{transaction.model} IDN: #{transaction.item_identification_no})", transaction.id] },{include_blank: true}, {class: "form-control"}) %>
     </div>
     <div class="col-4">
       <%= form.label :quantity %>

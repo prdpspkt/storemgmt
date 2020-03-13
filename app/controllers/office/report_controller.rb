@@ -55,7 +55,7 @@ class Office::ReportController < ApplicationController
 
   def office_handover_form
     @office_handover_form = Office::HandoverForm.find(params[:id])
-    @office_handover_form_items = @office_handover_form.office_handover_form_items
+    @office_handover_form_items = @office_handover_form.handover_form_items
   end
 
   def personnels

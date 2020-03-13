@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_064816) do
+ActiveRecord::Schema.define(version: 2020_03_12_095018) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 2020_03_12_064816) do
     t.string "size"
     t.string "age_approx"
     t.string "source"
+    t.integer "subed_from"
+    t.decimal "rate"
   end
 
   create_table "office_handover_forms", force: :cascade do |t|
