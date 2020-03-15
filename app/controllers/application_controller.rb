@@ -6,8 +6,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
 
   rescue_from Exception do |exception|
-    flash[:error] = "#{exception_message exception.class.to_s}"
-    logger.debug "#{exception.class.to_s} #{exception.message}"
+    flash[:error] = "#{exception_message exception}"
+    logger.debug("#{exception.class.to_s}: #{exception.message}")
     redirect_to request.referrer || root_path
   end
 
@@ -58,11 +58,15 @@ class ApplicationController < ActionController::Base
     object
   end
 
-  def exception_message type
+  def exception_message exception
     {
         "ActiveRecord::RecordNotFound" => "तपाईले खोज्नु भएको रेकर्ड कुनै कागजातमा फेला परेन |",
-        "CanCan::AccessDenied" => "तपाईलाई यो कार्य गर्न अनुमती छैन |"
-    }[type]
+        "CanCan::AccessDenied" => "तपाईलाई यो कार्य गर्न अनुमती छैन |",
+        "ActiveRecord::StatementInvalid" => "डेटाबेस स्टेटमेन्ट एरर: #{exception.message}",
+        "ActionView::Template::Error" => "टेम्प्लेट एरर: #{exception.message}",
+        "NameError" => "नेम एरर: #{exception.message}",
+        "NoMethodError" => "नो मेथड एरर: #{exception.message}"
+    }[exception.class.to_s]
 
   end
 

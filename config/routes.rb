@@ -27,7 +27,8 @@ namespace :office do
   resources :item_disposals
   resources :handover_form_items
   resources :handover_forms
-  post "/handover_form/mark_as_final/:id" => "handover_forms#mark_as_final", as: :mark_office_handover_form_as_final
+  post "/handover_forms/mark_as_final/:id" => "handover_forms#mark_as_final", as: :mark_office_handover_form_as_final
+  post "/handover_forms/generate_ledger_entry/:id" => "handover_forms#generate_ledger_entry", as: :generate_ledger_entry_with_handover_form
   resources :release_items
   post "/releases/mark_as_final/:id" => "releases#mark_as_final", as: :mark_release_as_final
   post "/releases/generate_ledger_entry/:id" => "releases#generate_ledger_entry", as: :generate_ledger_entry_with_release

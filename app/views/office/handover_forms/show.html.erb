@@ -14,22 +14,22 @@
 
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_handover_forms_path %>
-  <% if @handover_form.marked_as_final != true %>
-  <%= link_to edit_big_btn.html_safe, edit_office_handover_form_path(@handover_form) %>
-  <% end %>
-  <%= link_to print_big_btn.html_safe, office_office_handover_report_path(@handover_form) %>
-  <% if can_unmark @handover_form %>
-    <%= link_to before_final_btn.html_safe, office_mark_office_handover_form_as_final_path(@handover_form), method: :post %>
-  <% else %>
+  <% if @handover_form.marked_as_final == false && @handover_form.entry_generated == false %>
+    <%= link_to edit_big_btn.html_safe, edit_office_handover_form_path(@handover_form) %>
     <%= link_to final_btn.html_safe, office_mark_office_handover_form_as_final_path(@handover_form), method: :post %>
   <% end %>
+  <%= link_to print_big_btn.html_safe, office_office_handover_report_path(@handover_form) %>
+  <% if @handover_form.marked_as_final == true && @handover_form.entry_generated == false %>
+    <%= link_to before_final_btn.html_safe, office_mark_office_handover_form_as_final_path(@handover_form), method: :post %>
+    <%= link_to ledger_entry_btn.html_safe, office_generate_ledger_entry_with_handover_form_path(@handover_form), method: :post %>
+<% end %>
 
 </div>
 <% if @handover_form.marked_as_final != true %>
-<h2>हस्तान्तरण गर्नुपर्ने सामाग्री थप्ने</h2>
+  <h2>हस्तान्तरण गर्नुपर्ने सामाग्री थप्ने</h2>
 
-<%= render('office/handover_forms/handover_form_item_form', handover_form_item: @handover_form_item) %>
-<div class="separator"></div>
+  <%= render('office/handover_forms/handover_form_item_form', handover_form_item: @handover_form_item) %>
+  <div class="separator"></div>
 <% end %>
 
 <h2>हस्तान्तरण गर्ने सामाग्रीहरु</h2>
@@ -55,7 +55,7 @@
       <td><%= item.physical_status %></td>
       <td class="no-print">
         <% if @handover_form.marked_as_final != true %>
-        <%= link_to destroy_btn.html_safe, item, method: :delete, confirm: "Are you sure ?" %>
+          <%= link_to destroy_btn.html_safe, item, method: :delete, confirm: "Are you sure ?" %>
         <% end %>
       </td>
     </tr>

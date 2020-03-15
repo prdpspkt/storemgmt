@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_12_095018) do
+ActiveRecord::Schema.define(version: 2020_03_15_075933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,24 +140,21 @@ ActiveRecord::Schema.define(version: 2020_03_12_095018) do
     t.datetime "office_chief_signed_date"
     t.datetime "section_chief_signed_date"
     t.datetime "store_keeper_signed_date"
+    t.boolean "entry_generated"
   end
 
   create_table "office_item_assistance_registers", force: :cascade do |t|
-    t.string "name_of_item_ne"
-    t.string "name_of_item_en"
-    t.string "unit_en"
-    t.string "unit_ne"
     t.integer "register_page_no"
-    t.integer "item_register_page_no"
     t.integer "store_body_id"
     t.integer "user_id"
     t.integer "office_id"
-    t.integer "office_item_id"
     t.integer "item_id"
-    t.string "fy"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "personnel_name_ne"
+    t.string "designation"
+    t.integer "personnel_id"
   end
 
   create_table "office_item_categories", force: :cascade do |t|
