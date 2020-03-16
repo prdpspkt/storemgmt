@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_15_075933) do
+ActiveRecord::Schema.define(version: 2020_03_16_024437) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -155,6 +155,7 @@ ActiveRecord::Schema.define(version: 2020_03_15_075933) do
     t.string "personnel_name_ne"
     t.string "designation"
     t.integer "personnel_id"
+    t.datetime "office_chief_signed_date"
   end
 
   create_table "office_item_categories", force: :cascade do |t|

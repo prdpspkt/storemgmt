@@ -17,13 +17,13 @@
   </div>
 
   <div class="col-sm-6">
-    <%= form.label :name_of_item %>
-    <%= form.select(:item_id, Office::Item.all.collect{ |item| [item.name_of_item_en, item.id]}, {include_blank: "--select--"}, {class: "form-control"})%>
+    <%= form.label :name_of_person %>
+    <%= form.select(:personnel_id, Office::Personnel.all.collect{ |personnel| [personnel.name_en, personnel.id]}, {include_blank: "--select--"}, {class: "form-control"})%>
   </div>
 
   <div class="col-sm-6">
-    <%= form.label :store_chief_signed_date %>
-    <%= form.text_field :store_chief_signed_date, class:"form-control date-picker" %>
+    <%= form.label :store_keeper_signed_date %>
+    <%= form.text_field :store_keeper_signed_date, class:"form-control date-picker" %>
   </div>
 
   <div class="col-sm-6">

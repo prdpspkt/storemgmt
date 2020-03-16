@@ -29,22 +29,10 @@ class Office::ItemAssistanceRegistersController < ApplicationController
   # POST /item_assistance_registers.json
   def create
     @item_assistance_register = Office::ItemAssistanceRegister.new(item_assistance_register_params)
-    @item = Office::Item.find(@item_assistance_register.item_id)
-    @item_assistance_register.item_register_page_no = @item.item_register_page_no
-    @item_assistance_register.name_of_item_ne = @item.name_of_item_ne
-    @item_assistance_register.name_of_item_en = @item.name_of_item_en
-    @item_assistance_register.register_page_no = new_register_no
-    @item_assistance_register.unit_en = @item.unit_en
-    @item_assistance_register.unit_ne = @item.unit_ne
-    @item_assistance_register.fy = current_fiscal_year.fy
-    @item_assistance_register.fiscal_year_id = current_fiscal_year.id
-    @item_assistance_register.user_id = current_user.id
     @item_assistance_register.office_id = current_office.id
-    @item_assistance_register.store_chief_name = current_store_keeper.name_ne
-    @item_assistance_register.store_chief_designation = current_store_keeper.post
-    @item_assistance_register.office_chief_name = current_office_chief.name_ne
-    @item_assistance_register.office_chief_designation = current_office_chief.post
-
+    @item_assistance_register.user_id = current_user.id
+    @item_assistance_register.store_body_id = current_control_body.id
+    @item_assistance_register.register_page_no = new_register_no
     respond_to do |format|
       if @item_assistance_register.save
         format.html { redirect_to @item_assistance_register, notice: 'Item assistance register was successfully created.' }
@@ -61,13 +49,6 @@ class Office::ItemAssistanceRegistersController < ApplicationController
   def update
       respond_to do |format|
       if @item_assistance_register.update(item_assistance_register_params)
-        @item = Office::Item.find(@item_assistance_register.item_id)
-        @item_assistance_register.item_register_page_no = @item.item_register_page_no
-        @item_assistance_register.name_of_item_ne = @item.name_of_item_ne
-        @item_assistance_register.name_of_item_en = @item.name_of_item_en
-        @item_assistance_register.register_page_no = new_register_no
-        @item_assistance_register.unit_en = @item.unit_en
-        @item_assistance_register.unit_ne = @item.unit_ne
         @item_assistance_register.save
         format.html { redirect_to @item_assistance_register, notice: 'Item assistance register was successfully updated.' }
         format.json { render :show, status: :ok, location: @item_assistance_register }
@@ -91,19 +72,18 @@ class Office::ItemAssistanceRegistersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item_assistance_register
-      @item_assistance_register = ItemAssistanceRegister.find(params[:id])
+      @item_assistance_register = Office::ItemAssistanceRegister.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_assistance_register_params
-      params.require(:office_item_assistance_register).permit( :store_chief_signed_date, :office_chief_signed_date, :item_id)
+      params.require(:office_item_assistance_register).permit( :store_chief_signed_date, :office_chief_signed_date, :personnel_id)
     end
     def new_register_no
       liars = office(Office::ItemAssistanceRegister)
+      niar = 1
       if liars.count > 0
         niar = liars.last.register_page_no + 1
-      else
-        niar = 1
       end
       niar
     end

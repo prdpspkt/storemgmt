@@ -1,2 +1,2 @@
-json.extract! item_assistance_register, :id, :name_of_item_ne, :unit_ne, :register_page_no, :item_register_page_no, :store_chief_name, :store_chief_designation, :store_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :user_id, :office_id, :office_item_id, :item_id, :fy, :fiscal_year_id, :created_at, :updated_at
-json.url item_assistance_register_url(item_assistance_register, format: :json)
+json.extract! item_assistance_register, :id, :register_page_no, :personnel_id
+json.url office_item_assistance_register_url(item_assistance_register, format: :json)
