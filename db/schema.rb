@@ -751,7 +751,6 @@ ActiveRecord::Schema.define(version: 2020_03_12_064816) do
     t.string "source"
     t.integer "handover_form_item_id"
     t.integer "item_classification_no"
-    t.integer "subed_from"
   end
 
   create_table "office_vendors", force: :cascade do |t|
