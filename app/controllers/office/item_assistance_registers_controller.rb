@@ -4,20 +4,20 @@ class Office::ItemAssistanceRegistersController < ApplicationController
   # GET /item_assistance_registers
   # GET /item_assistance_registers.json
   def index
-    @item_assistance_registers = ItemAssistanceRegister.all
+    @item_assistance_registers = Office::ItemAssistanceRegister.all
   end
 
   # GET /item_assistance_registers/1
   # GET /item_assistance_registers/1.json
   def show
-    @item_assistance_register_item = ItemAssistanceRegisterItem.new
+    @item_assistance_register_item = Office::ItemAssistanceRegisterItem.new
     @item_assistance_register_item.item_assistance_register_id = params[:id]
     @item_assistance_register_items = @item_assistance_register.item_assistance_register_items
   end
 
   # GET /item_assistance_registers/new
   def new
-    @item_assistance_register = ItemAssistanceRegister.new
+    @item_assistance_register = Office::ItemAssistanceRegister.new
     @item_assistance_register.register_page_no = new_register_no
   end
 
@@ -28,8 +28,8 @@ class Office::ItemAssistanceRegistersController < ApplicationController
   # POST /item_assistance_registers
   # POST /item_assistance_registers.json
   def create
-    @item_assistance_register = ItemAssistanceRegister.new(item_assistance_register_params)
-    @item = OfficeItem.find(@item_assistance_register.office_item_id)
+    @item_assistance_register = Office::ItemAssistanceRegister.new(item_assistance_register_params)
+    @item = Office::Item.find(@item_assistance_register.item_id)
     @item_assistance_register.item_register_page_no = @item.item_register_page_no
     @item_assistance_register.name_of_item_ne = @item.name_of_item_ne
     @item_assistance_register.name_of_item_en = @item.name_of_item_en
@@ -61,7 +61,7 @@ class Office::ItemAssistanceRegistersController < ApplicationController
   def update
       respond_to do |format|
       if @item_assistance_register.update(item_assistance_register_params)
-        @item = OfficeItem.find(@item_assistance_register.office_item_id)
+        @item = Office::Item.find(@item_assistance_register.item_id)
         @item_assistance_register.item_register_page_no = @item.item_register_page_no
         @item_assistance_register.name_of_item_ne = @item.name_of_item_ne
         @item_assistance_register.name_of_item_en = @item.name_of_item_en
@@ -96,12 +96,12 @@ class Office::ItemAssistanceRegistersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_assistance_register_params
-      params.require(:item_assistance_register).permit( :store_chief_signed_date, :office_chief_signed_date, :office_item_id)
+      params.require(:office_item_assistance_register).permit( :store_chief_signed_date, :office_chief_signed_date, :item_id)
     end
     def new_register_no
-      liar = ItemAssistanceRegister.last
-      if (!liar.blank? && liar.register_page_no.present?)
-        niar = liar.register_page_no + 1
+      liars = office(Office::ItemAssistanceRegister)
+      if liars.count > 0
+        niar = liars.last.register_page_no + 1
       else
         niar = 1
       end

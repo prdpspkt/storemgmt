@@ -2,17 +2,22 @@ include ModelHelper
 include ApplicationHelper
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-	protect_from_forgery
-	rescue_from CanCan::AccessDenied do |exception|
-    flash[:error] = "Action you are trying to run doesn't exist. Or you don't have permission."
-    redirect_to root_url
+
+  protect_from_forgery
+
+  rescue_from Exception do |exception|
+    flash[:error] = "#{exception_message exception}"
+    logger.debug("#{exception.class.to_s}: #{exception.message}")
+    redirect_to request.referrer || root_path
   end
 
 
   private
+
   def current_office
     current_user.office
   end
+
   def current_control_body
     store_body = Office::StoreBody.new
     if current_office.store_bodies.empty?
@@ -30,6 +35,7 @@ class ApplicationController < ActionController::Base
     end
     cfy
   end
+
   def after_sign_in_path_for(resource_or_scope)
     #check if office has been created for user
     url = '/'
@@ -52,6 +58,16 @@ class ApplicationController < ActionController::Base
     object
   end
 
-end
+  def exception_message exception
+    {
+        "ActiveRecord::RecordNotFound" => "तपाईले खोज्नु भएको रेकर्ड कुनै कागजातमा फेला परेन |",
+        "CanCan::AccessDenied" => "तपाईलाई यो कार्य गर्न अनुमती छैन |",
+        "ActiveRecord::StatementInvalid" => "डेटाबेस स्टेटमेन्ट एरर: #{exception.message}",
+        "ActionView::Template::Error" => "टेम्प्लेट एरर: #{exception.message}",
+        "NameError" => "नेम एरर: #{exception.message}",
+        "NoMethodError" => "नो मेथड एरर: #{exception.message}"
+    }[exception.class.to_s]
 
-#TODO Remove all unnessary methods from items controllers
+  end
+
+  end
