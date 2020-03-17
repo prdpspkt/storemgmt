@@ -14,7 +14,7 @@ namespace :office do
   resources :rental_record_registers
   resources :repair_record_register_items
   resources :repair_record_registers
-  resources :repair_application_form_items
+    resources :repair_application_form_items
   resources :repair_application_forms
   resources :stock_items
   resources :stocks
@@ -74,6 +74,7 @@ namespace :office do
   get '/report/office_handover_form/:id' => "report#office_handover_form", as: :office_handover_report
   get '/report/repair_application_form/:id' => "report#repair_application_form", as: :repair_application_report
   get '/report/project_purchase_entry/:id' => "report#project_purchase_entry", as: :project_main_entry_report
+  get '/report/repair_record_register/:id' => "report#repair_record_register", as: :repair_record_report
 end
 namespace :project do
   resources :purchase_entries
