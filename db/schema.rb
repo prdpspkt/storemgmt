@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_16_024437) do
+ActiveRecord::Schema.define(version: 2020_03_17_062016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,31 +29,6 @@ ActiveRecord::Schema.define(version: 2020_03_16_024437) do
     t.datetime "updated_at", null: false
     t.integer "office_id"
     t.boolean "status"
-  end
-
-  create_table "item_assistance_register_items", force: :cascade do |t|
-    t.datetime "date"
-    t.integer "order_release_no"
-    t.string "name_of_item_ne"
-    t.string "name_of_item_en"
-    t.string "specification"
-    t.string "item_identification_no"
-    t.string "model_no"
-    t.decimal "quantity"
-    t.decimal "amount"
-    t.datetime "taken_date"
-    t.datetime "date_to_be_returned"
-    t.decimal "returned_quantity"
-    t.datetime "returned_date"
-    t.string "name_of_user"
-    t.integer "user_id"
-    t.integer "office_id"
-    t.string "fy"
-    t.integer "fiscal_year_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "item_assistance_register_id"
-    t.integer "office_item_id"
   end
 
   create_table "office_demand_items", force: :cascade do |t|
@@ -141,6 +116,30 @@ ActiveRecord::Schema.define(version: 2020_03_16_024437) do
     t.datetime "section_chief_signed_date"
     t.datetime "store_keeper_signed_date"
     t.boolean "entry_generated"
+  end
+
+  create_table "office_item_assistance_register_items", force: :cascade do |t|
+    t.datetime "date"
+    t.integer "order_release_no"
+    t.string "specification"
+    t.string "item_identification_no"
+    t.string "model_no"
+    t.decimal "quantity"
+    t.decimal "amount"
+    t.datetime "taken_date"
+    t.datetime "date_to_be_returned"
+    t.decimal "returned_quantity"
+    t.datetime "returned_date"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.string "fy"
+    t.integer "fiscal_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "item_assistance_register_id"
+    t.integer "item_id"
+    t.integer "item_transaction_id"
+    t.string "returned_by"
   end
 
   create_table "office_item_assistance_registers", force: :cascade do |t|
@@ -751,6 +750,8 @@ ActiveRecord::Schema.define(version: 2020_03_16_024437) do
     t.string "source"
     t.integer "handover_form_item_id"
     t.integer "item_classification_no"
+    t.integer "subed_from"
+    t.boolean "in_use"
   end
 
   create_table "office_vendors", force: :cascade do |t|

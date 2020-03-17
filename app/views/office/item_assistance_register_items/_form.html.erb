@@ -10,93 +10,24 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
+<div class="row">
+  <div class="col-6">
+    <%= form.label :returned_by %>
+    <%= form.text_field :returned_by, class: "form-control" %>
   </div>
-
-  <div class="field">
-    <%= form.label :order_release_no %>
-    <%= form.number_field :order_release_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name_of_item %>
-    <%= form.text_field :name_of_item %>
-  </div>
-
-  <div class="field">
-    <%= form.label :specification %>
-    <%= form.text_field :specification %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_identification_no %>
-    <%= form.text_field :item_identification_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :model_no %>
-    <%= form.text_field :model_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity %>
-  </div>
-
-  <div class="field">
-    <%= form.label :amount %>
-    <%= form.text_field :amount %>
-  </div>
-
-  <div class="field">
-    <%= form.label :taken_date %>
-    <%= form.datetime_select :taken_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :date_to_be_returned %>
-    <%= form.datetime_select :date_to_be_returned %>
-  </div>
-
-  <div class="field">
+  <div class="col-6">
     <%= form.label :returned_quantity %>
-    <%= form.text_field :returned_quantity %>
+    <%= form.text_field :returned_quantity, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-6">
     <%= form.label :returned_date %>
-    <%= form.datetime_select :returned_date %>
+    <%= form.text_field :returned_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :name_of_user %>
-    <%= form.text_field :name_of_user %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+</div>
+<div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :save, class: "btn btn-success" %>
   </div>
 <% end %>

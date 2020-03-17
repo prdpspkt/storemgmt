@@ -13,6 +13,7 @@ class Office::ItemAssistanceRegistersController < ApplicationController
     @item_assistance_register_item = Office::ItemAssistanceRegisterItem.new
     @item_assistance_register_item.item_assistance_register_id = params[:id]
     @item_assistance_register_items = @item_assistance_register.item_assistance_register_items
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0").where("in_use IS NOT true")
   end
 
   # GET /item_assistance_registers/new
@@ -64,7 +65,7 @@ class Office::ItemAssistanceRegistersController < ApplicationController
   def destroy
     @item_assistance_register.destroy
     respond_to do |format|
-      format.html { redirect_to item_assistance_registers_url, notice: 'Item assistance register was successfully destroyed.' }
+      format.html { redirect_to office_item_assistance_registers_url, notice: 'Item assistance register was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
