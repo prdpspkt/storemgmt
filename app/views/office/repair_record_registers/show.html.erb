@@ -19,3 +19,42 @@
     <td><%= nd @repair_record_register.item_transaction.rate * 1.13 %></td>
   </tr>
 </table>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, office_repair_record_registers_path %>
+  <%= link_to edit_big_btn.html_safe, edit_office_repair_record_register_path(@repair_record_register) %>
+  <%= link_to print_big_btn.html_safe, print_office_repair_record_register_path(@repair_record_register) %>
+</div>
+<h2>मर्मत अभिलेख प्रविष्ट गर्ने</h2>
+<%= render 'office/repair_record_registers/item_form', repair_record_register_item: @repair_record_register_item %>
+<h2>मर्मत संरक्षण अभिलेख विवरण</h2>
+<table class="table table-sm table-bordered">
+  <tr>
+    <th>क्र.स.</th>
+    <th>मिति</th>
+    <th>मर्मत आवेदन नं</th>
+    <th>परिवर्तित सामान</th>
+    <th>परिवर्तित सामानको मुल्य</th>
+    <th>अन्य खर्च</th>
+    <th>जम्मा खर्च</th>
+    <th>आवेदक</th>
+    <th>कैफियत</th>
+    <th></th>
+  </tr>
+  <% @i = 1 %>
+  <% @repair_record_register_items.each do |item| %>
+  <tr>
+    <td><%= nd @i %></td>
+    <td><%= ndate item.date %></td>
+    <td><%= nd item.repair_application_no %></td>
+    <td><%= item.changed_part_name %></td>
+    <td><%= nd item.changed_part_cost %></td>
+    <td><%= nd item.other_expense_cost %></td>
+    <td><%= nd item.total_expense %></td>
+    <td><%= item.applicant_name %></td>
+    <td><%= item.remarks %></td>
+    <td><%= link_to destroy_btn.html_safe, office_repair_record_register_item_path(item), data: {confirm: "Are you sure ?", method: :delete} %>
+    </td>
+  </tr>
+    <% @i = @i + 1 %>
+    <% end %>
+</table>

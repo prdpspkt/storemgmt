@@ -10,87 +10,60 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
+    <%= form.number_field :repair_record_register_id, value: @repair_record_register.id %>
+<div class="row">
+  <div class="col-3">
     <%= form.label :date %>
-    <%= form.datetime_select :date %>
+    <%= form.text_field :date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :repair_application_no %>
-    <%= form.number_field :repair_application_no %>
+    <%= form.number_field :repair_application_no, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :applicat_name %>
-    <%= form.text_field :applicat_name %>
+    <%= form.text_field :applicat_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :changed_part_name %>
-    <%= form.text_field :changed_part_name %>
+    <%= form.text_field :changed_part_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :changesd_part_cost %>
-    <%= form.text_field :changesd_part_cost %>
+  <div class="col-3">
+    <%= form.label :changed_part_cost %>
+    <%= form.text_field :changed_part_cost, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :other_expense %>
-    <%= form.text_field :other_expense %>
+    <%= form.text_field :other_expense, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :other_expense_cost %>
-    <%= form.text_field :other_expense_cost %>
+    <%= form.text_field :other_expense_cost, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :total_expense %>
-    <%= form.text_field :total_expense %>
-  </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :vendor_name %>
-    <%= form.text_field :vendor_name %>
+    <%= form.text_field :vendor_name, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :justified_by %>
-    <%= form.text_field :justified_by %>
+    <%= form.text_field :justified_by, class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="col-3">
     <%= form.label :remarks %>
-    <%= form.text_field :remarks %>
+    <%= form.text_field :remarks, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :repair_record_register_id %>
-    <%= form.number_field :repair_record_register_id %>
-  </div>
-
+</div>
   <div class="actions">
     <%= form.submit %>
   </div>

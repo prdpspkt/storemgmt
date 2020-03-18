@@ -1,5 +1,6 @@
 class Office::RepairRecordRegistersController < ApplicationController
-  before_action :set_repair_record_register, only: [:show, :edit, :update, :destroy]
+  before_action :set_repair_record_register, only: [:show, :edit, :update, :destroy, :print]
+  before_action :set_office_information, only: [:print]
   load_and_authorize_resource except: [:create, :new]
   # GET /repair_record_registers
   # GET /repair_record_registers.json
@@ -10,6 +11,10 @@ class Office::RepairRecordRegistersController < ApplicationController
   # GET /repair_record_registers/1
   # GET /repair_record_registers/1.json
   def show
+    @repair_record_register_items = @repair_record_register.repair_record_register_items
+    @repair_record_register_item = Office::RepairRecordRegisterItem.new
+    @repair_record_register_item.repair_record_register_id = @repair_record_register.id
+    @vendors = current(Office::Vendor)
   end
 
   # GET /repair_record_registers/new
@@ -66,11 +71,19 @@ class Office::RepairRecordRegistersController < ApplicationController
     end
   end
 
+  def print
+
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_repair_record_register
       @repair_record_register = Office::RepairRecordRegister.find(params[:id])
     end
+
+  def set_office_information
+    @office = @repair_record_register.office
+  end
 
   def new_page_no
     rrrs = office(Office::RepairRecordRegister)
