@@ -28,6 +28,9 @@ class Ability
     can :manage, Office::ItemAssistanceRegister, user_id: user.id
     can :manage, Office::ItemAssistanceRegisterItem, user_id: user.id
     can :manage, Office::RepairApplicationForm, user_id: user.id
+    can :manage, Office::RepairApplicationFormItem, user_id: user.id
+    can :manage, Office::RepairRecordRegister, user_id: user.id
+    can :manage, Office::RepairRecordRegisterItem, user_id: user.id
     if user.is_admin == true
       can :manage, User
     end

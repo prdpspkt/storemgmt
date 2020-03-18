@@ -1,5 +1,6 @@
 class Office::RepairApplicationFormsController < ApplicationController
-  before_action :set_repair_application_form, only: [:show, :edit, :update, :destroy]
+  before_action :set_repair_application_form, only: [:show, :edit, :update, :destroy, :print]
+  before_action :set_office_for_printing, only: [:print]
   load_and_authorize_resource except: [:create, :new]
   # GET /repair_application_forms
   # GET /repair_application_forms.json
@@ -47,7 +48,7 @@ class Office::RepairApplicationFormsController < ApplicationController
   # PATCH/PUT /repair_application_forms/1
   # PATCH/PUT /repair_application_forms/1.json
   def update
-    @vendor_id = params[:repair_application_form][:vendor_id]
+    @vendor_id = params[:office_repair_application_form][:vendor_id]
     @repair_application_form = update_vendor_info @repair_application_form, @vendor_id
     respond_to do |format|
       if @repair_application_form.update(repair_application_form_params)
@@ -70,11 +71,18 @@ class Office::RepairApplicationFormsController < ApplicationController
     end
   end
 
+  def print
+    @repair_application_form_items = @repair_application_form.repair_application_form_items
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_repair_application_form
       @repair_application_form =  Office::RepairApplicationForm.find(params[:id])
     end
+  def set_office_for_printing
+    @office = @repair_application_form.office
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_application_form_params
@@ -82,7 +90,7 @@ class Office::RepairApplicationFormsController < ApplicationController
     end
 
   def update_vendor_info repair_application_form, vendor_id
-    vendor = Vendor.find(vendor_id)
+    vendor = Office::Vendor.find(vendor_id)
     repair_application_form.vendor_name = vendor.vendor_name
     repair_application_form.vendor_address = vendor.vendor_address
     repair_application_form.vendor_phone = vendor.vendor_phone

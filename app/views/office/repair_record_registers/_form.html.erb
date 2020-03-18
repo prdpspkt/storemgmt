@@ -14,38 +14,12 @@
 
   <div class="col-6">
     <%= form.label :name_of_item %>
-    <%= form.text_field :name_of_item, class: "form-control" %>
+    <%= form.select(:item_transaction_id, Office::ItemTransaction.where(item_classification_no: 47).where(transaction_type: 1).collect{ |item| [item.item.name_of_item_en, item.id]}, {include_blank: "choose"}, {class: "form-control", required: :required})  %>
   </div>
 
   <div class="col-6">
     <%= form.label :page_no %>
-    <%= form.text_field :page_no, class: "form-control" %>
-  </div>
-
-
-  <div class="col-6">
-    <%= form.label :price %>
-    <%= form.text_field :price, class: "form-control"%>
-  </div>
-
-  <div class="col-6">
-    <%= form.label :store_chief_signed_date %>
-    <%= form.text_field :store_chief_signed_date, class: "form-control date-picker" %>
-  </div>
-
-  <div class="col-6">
-    <%= form.label :office_chief_signed_date %>
-    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker" %>
-  </div>
-
-  <div class="col-6">
-    <%= form.label :month %>
-    <%= form.text_field :month, class: "form-control" %>
-  </div>
-
-  <div class="col-6">
-    <%= form.label :year %>
-    <%= form.text_field :year, class: "form-control" %>
+    <%= form.text_field :page_no, class: "form-control", readonly: true %>
   </div>
   </div>
 <div class="separator"></div>

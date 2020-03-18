@@ -4,7 +4,7 @@ class Office::RepairRecordRegistersController < ApplicationController
   # GET /repair_record_registers
   # GET /repair_record_registers.json
   def index
-    @repair_record_registers = RepairRecordRegister.all
+    @repair_record_registers = current(Office::RepairRecordRegister)
   end
 
   # GET /repair_record_registers/1
@@ -14,7 +14,8 @@ class Office::RepairRecordRegistersController < ApplicationController
 
   # GET /repair_record_registers/new
   def new
-    @repair_record_register = RepairRecordRegister.new
+    @repair_record_register = Office::RepairRecordRegister.new
+    @repair_record_register.page_no = new_page_no
   end
 
   # GET /repair_record_registers/1/edit
@@ -24,8 +25,12 @@ class Office::RepairRecordRegistersController < ApplicationController
   # POST /repair_record_registers
   # POST /repair_record_registers.json
   def create
-    @repair_record_register = RepairRecordRegister.new(repair_record_register_params)
-
+    @repair_record_register = Office::RepairRecordRegister.new(repair_record_register_params)
+    @item_transaction = Office::ItemTransaction.find(repair_record_register_params[:item_transaction_id])
+    @repair_record_register.item_id = @item_transaction.item_id
+    @repair_record_register.page_no = new_page_no
+    @repair_record_register = set_current_information @repair_record_register
+    @repair_record_register.store_body_id = current_control_body.id
     respond_to do |format|
       if @repair_record_register.save
         format.html { redirect_to @repair_record_register, notice: 'Repair record register was successfully created.' }
@@ -64,11 +69,20 @@ class Office::RepairRecordRegistersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_repair_record_register
-      @repair_record_register = RepairRecordRegister.find(params[:id])
+      @repair_record_register = Office::RepairRecordRegister.find(params[:id])
     end
+
+  def new_page_no
+    rrrs = office(Office::RepairRecordRegister)
+    new_rrr_no = 1
+    if rrrs.count > 0
+      new_rrr_no = rrrs.last.page_no + 1
+    end
+    new_rrr_no
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_record_register_params
-      params.require(:repair_record_register).permit(:name_of_item, :page_no, :specificaiton, :item_identification, :model, :item_register_page_no, :price, :store_chief_name, :sotre_chief_designation, :store_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :user_id, :office_id, :fy, :fiscal_year_id, :month, :year)
+      params.require(:office_repair_record_register).permit(:item_transaction_id)
     end
 end

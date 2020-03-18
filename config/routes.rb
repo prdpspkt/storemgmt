@@ -14,8 +14,12 @@ namespace :office do
   resources :rental_record_registers
   resources :repair_record_register_items
   resources :repair_record_registers
-    resources :repair_application_form_items
-  resources :repair_application_forms
+  resources :repair_application_form_items
+  resources :repair_application_forms do
+    member do
+    get "print"
+    end
+  end
   resources :stock_items
   resources :stocks
   resources :item_assistance_register_items

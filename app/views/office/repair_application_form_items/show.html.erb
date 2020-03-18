@@ -2,7 +2,7 @@
 
 <p>
   <strong>Name of item:</strong>
-  <%= @repair_application_form_item.name_of_item %>
+  <%= @repair_application_form_item.item.name_of_item_ne %>
 </p>
 
 <p>
@@ -17,7 +17,7 @@
 
 <p>
   <strong>Reason toprepair:</strong>
-  <%= @repair_application_form_item.reason_toPrepair %>
+  <%= @repair_application_form_item.reason_to_repair %>
 </p>
 
 <p>
@@ -45,5 +45,5 @@
   <%= @repair_application_form_item.repair_application_form_id %>
 </p>
 
-<%= link_to 'Edit', edit_repair_application_form_item_path(@repair_application_form_item) %> |
-<%= link_to 'Back', repair_application_form_items_path %>
+<%= link_to 'Edit', edit_office_repair_application_form_item_path(@repair_application_form_item) %> |
+<%= link_to 'Back', office_repair_application_form_items_path %>

@@ -24,11 +24,13 @@ class Office::RepairApplicationFormItemsController < ApplicationController
   # POST /repair_application_form_items
   # POST /repair_application_form_items.json
   def create
-    @repair_application_form_item = RepairApplicationFormItem.new(repair_application_form_item_params)
+    @repair_application_form_item = Office::RepairApplicationFormItem.new(repair_application_form_item_params)
+    @repair_application_form_item = set_current_information @repair_application_form_item
+    @repair_application_form_item.item_id = Office::ItemTransaction.find(repair_application_form_item_params[:item_transaction_id]).item.id
 
     respond_to do |format|
       if @repair_application_form_item.save
-        format.html { redirect_to @repair_application_form_item, notice: 'Repair application form item was successfully created.' }
+        format.html { redirect_to @repair_application_form_item.repair_application_form, notice: 'Repair application form item was successfully created.' }
         format.json { render :show, status: :created, location: @repair_application_form_item }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class Office::RepairApplicationFormItemsController < ApplicationController
   def update
     respond_to do |format|
       if @repair_application_form_item.update(repair_application_form_item_params)
-        format.html { redirect_to @repair_application_form_item, notice: 'Repair application form item was successfully updated.' }
+        format.html { redirect_to @repair_application_form_item.repair_application_form, notice: 'Repair application form item was successfully updated.' }
         format.json { render :show, status: :ok, location: @repair_application_form_item }
       else
         format.html { render :edit }
@@ -54,9 +56,10 @@ class Office::RepairApplicationFormItemsController < ApplicationController
   # DELETE /repair_application_form_items/1
   # DELETE /repair_application_form_items/1.json
   def destroy
+    @raf = @repair_application_form_item.repair_application_form
     @repair_application_form_item.destroy
     respond_to do |format|
-      format.html { redirect_to repair_application_form_items_url, notice: 'Repair application form item was successfully destroyed.' }
+      format.html { redirect_to @raf, notice: 'Repair application form item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,11 +67,11 @@ class Office::RepairApplicationFormItemsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_repair_application_form_item
-      @repair_application_form_item = RepairApplicationFormItem.find(params[:id])
+      @repair_application_form_item = Office::RepairApplicationFormItem.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def repair_application_form_item_params
-      params.require(:repair_application_form_item).permit(:name_of_item, :item_identification_no, :approx_repair_cost, :reason_toPrepair, :applicant_sign, :remarks, :user_id, :office_id, :repair_application_form_id)
+      params.require(:office_repair_application_form_item).permit(  :approx_repair_cost, :applicant_sign, :reason_to_repair, :remarks, :item_transaction_id, :repair_application_form_id)
     end
 end
