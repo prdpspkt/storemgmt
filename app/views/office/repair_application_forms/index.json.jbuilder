@@ -8,5 +8,7 @@ json.set! :data do
               "
     json.application_no "#{ nd repair_application_form.application_no}"
     json.date "#{ ndate repair_application_form.date}"
+    json.vendor_name "#{ repair_application_form.vendor.vendor_name}"
+    json.within_date "#{ndate repair_application_form.within_date}"
   end
 end

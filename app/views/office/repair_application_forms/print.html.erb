@@ -114,14 +114,18 @@
     <td>यस अघि मर्मत गरिएको मितिः</td>
     <td>अगाडि मर्मत गरिएको रकमः</td>
   </tr>
-  <% @items.each do |item| %>
+  <% @repair_application_form_items.each do |item| %>
+    <% if get_current_repair_count(item) != false %>
   <tr>
     <td class="text-center"><%= nd item.item.item_register_page_no %></td>
     <td></td>
-    <td class="text-center"><%= nd item.item.repair_record_register.repair_record_register_items.count %></td>
-    <td><%=  %></td>
-    <td>&nbsp;</td>
+    <td class="text-center">
+      <%= nd get_current_repair_count(item) %>
+    </td>
+    <td><%= ndate get_last_repair_record(item).date  %></td>
+    <td><%= nd get_current_repair_cost(item) %></td>
   </tr>
+  <% end %>
     <% end %>
   </tbody>
 </table>
@@ -145,15 +149,6 @@
     <td colspan="7">माथि उल्लिखित सामानको मर्मत गरि मिति <%= @repair_application_form.within_date %> भित्र <%= @repair_application_form.office.office %>,  <%= @repair_application_form.office.address %> स्थानमा बिल
       /इन्भाइससहित बुझाउनुहोला ।
     </td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
   </tr>
   <tr>
     <td colspan="3">सिफारिस गर्ने शाखा प्रमुखको सहीः</td>

@@ -71,7 +71,6 @@ class Office::RepairApplicationFormsController < ApplicationController
 
   def print
     @repair_application_form_items = @repair_application_form.repair_application_form_items
-    @items = @repair_application_form.repair_application_form_items.distinct(:item_id)
   end
 
   private

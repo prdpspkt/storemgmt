@@ -31,6 +31,7 @@ class Office::RepairRecordRegisterItemsController < ApplicationController
     else
       @repair_record_register_item.total_expense = @repair_record_register_item.changed_part_cost
     end
+    @repair_record_register_item.item_id = Office::RepairRecordRegister.find(@repair_record_register_item.repair_record_register_id).item_id
     respond_to do |format|
       if @repair_record_register_item.save
         format.html { redirect_to @repair_record_register_item.repair_record_register, notice: 'Repair record register item was successfully created.' }
