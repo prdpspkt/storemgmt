@@ -1,0 +1,21 @@
+<h1 class="text-center">सूची दर्ता विवरण</h1>
+<table class="table table-black-border">
+  <tr>
+    <th>क्र.स.</th>
+    <th>नाम</th>
+    <th>ठेगाना</th>
+    <th>प्रतिनिधि</th>
+    <th>सम्पर्क नं</th>
+  </tr>
+  <% @i = 1 %>
+  <% @vendors.each do |v| %>
+    <tr>
+      <td><%= nd @i %></td>
+      <td><%= v.vendor_name %></td>
+      <td><%= v.vendor_address %></td>
+      <td><%= v.vendor_representive %></td>
+      <td><%= v.vendor_phone %></td>
+    </tr>
+    <% @i = @i+1 %>
+  <% end %>
+</table>

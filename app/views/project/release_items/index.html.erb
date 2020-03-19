@@ -1,27 +1,21 @@
-<h1>Project Release Items</h1>
+<h1>Office Release Items</h1>
 
-<table class="responsive nowrap table table-hover" id="dttb-project_release_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="responsive nowrap table table-hover" id="dttb-office_release_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="name_of_item_ne">Name of item ne</th>
-      <th data-data="name_of_item_en">Name of item en</th>
+      <th data-data="name_of_item">Name of item</th>
       <th data-data="item_register_page_no">Item register page no</th>
       <th data-data="code_no">Code no</th>
-      <th data-data="specificaiton">Specificaiton</th>
-      <th data-data="unit_en">Unit en</th>
-      <th data-data="unit_ne">Unit ne</th>
+      <th data-data="specification">Specification</th>
+      <th data-data="unit">Unit</th>
       <th data-data="quantity">Quantity</th>
       <th data-data="rate">Rate</th>
       <th data-data="amount">Amount</th>
       <th data-data="remarks">Remarks</th>
-      <th data-data="project_item_id">Project item</th>
-      <th data-data="project_release_id">Project release</th>
+      <th data-data="office_release_id">Office release</th>
       <th data-data="user_id">User</th>
       <th data-data="office_id">Office</th>
-      <th data-data="item_id">Item</th>
       <th data-data="fiscal_year_id">Fiscal year</th>
-      <th data-data="release_from">Release from</th>
-      <th data-data="item_classification_no">Item classification no</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -30,4 +24,4 @@
 
 <br>
 
-<%= link_to 'New Project Release Item', new_project_release_item_path %>
+<%= link_to 'New Office Release Item', new_office_release_item_path %>

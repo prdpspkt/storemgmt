@@ -1,84 +1,64 @@
-<p id="notice"><%= notice %></p>
+<h1>हस्तान्तरण फाराम</h1>
+<table class="table table-bordered">
+  <tr>
+    <th>हस्तान्तरण नं</th>
+    <th>हस्तान्तरण मिति</th>
+    <th>हस्तान्तरण गरिएको कार्यालय</th>
+  </tr>
+  <tr>
+    <td><%= @handover_form.form_no %></td>
+    <td><%= ndate @handover_form.date %></td>
+    <td><%= @handover_form.handovered_office_name %></td>
+  </tr>
+</table>
 
-<p>
-  <strong>Decision no:</strong>
-  <%= @project_handover_form.decision_no %>
-</p>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, office_handover_forms_path %>
+  <% if @handover_form.marked_as_final == false && @handover_form.entry_generated == false %>
+    <%= link_to edit_big_btn.html_safe, edit_office_handover_form_path(@handover_form) %>
+    <%= link_to final_btn.html_safe, office_mark_office_handover_form_as_final_path(@handover_form), method: :post %>
+  <% end %>
+  <%= link_to print_big_btn.html_safe, office_office_handover_report_path(@handover_form) %>
+  <% if @handover_form.marked_as_final == true && @handover_form.entry_generated == false %>
+    <%= link_to before_final_btn.html_safe, office_mark_office_handover_form_as_final_path(@handover_form), method: :post %>
+    <%= link_to ledger_entry_btn.html_safe, office_generate_ledger_entry_with_handover_form_path(@handover_form), method: :post %>
+<% end %>
 
-<p>
-  <strong>Decision date:</strong>
-  <%= @project_handover_form.decision_date %>
-</p>
+</div>
+<% if @handover_form.marked_as_final != true %>
+  <h2>हस्तान्तरण गर्नुपर्ने सामाग्री थप्ने</h2>
 
-<p>
-  <strong>Fy:</strong>
-  <%= @project_handover_form.fy %>
-</p>
+  <%= render('office/handover_forms/handover_form_item_form', handover_form_item: @handover_form_item) %>
+  <div class="separator"></div>
+<% end %>
 
-<p>
-  <strong>Handovered project name:</strong>
-  <%= @project_handover_form.handovered_project_name %>
-</p>
+<h2>हस्तान्तरण गर्ने सामाग्रीहरु</h2>
 
-<p>
-  <strong>Date:</strong>
-  <%= @project_handover_form.date %>
-</p>
-
-<p>
-  <strong>Form no:</strong>
-  <%= @project_handover_form.form_no %>
-</p>
-
-<p>
-  <strong>Store chief name:</strong>
-  <%= @project_handover_form.store_chief_name %>
-</p>
-
-<p>
-  <strong>Store chief designation:</strong>
-  <%= @project_handover_form.store_chief_designation %>
-</p>
-
-<p>
-  <strong>Store chief sign date:</strong>
-  <%= @project_handover_form.store_chief_sign_date %>
-</p>
-
-<p>
-  <strong>Office chief name:</strong>
-  <%= @project_handover_form.office_chief_name %>
-</p>
-
-<p>
-  <strong>Office chief designation:</strong>
-  <%= @project_handover_form.office_chief_designation %>
-</p>
-
-<p>
-  <strong>Office chief signed date:</strong>
-  <%= @project_handover_form.office_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @project_handover_form.office_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @project_handover_form.user_id %>
-</p>
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @project_handover_form.fiscal_year_id %>
-</p>
-
-<p>
-  <strong>Marked as final:</strong>
-  <%= @project_handover_form.marked_as_final %>
-</p>
-
-<%= link_to 'Edit', edit_project_handover_form_path(@project_handover_form) %> |
-<%= link_to 'Back', project_handover_forms_path %>
+<table class="table">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>मोडल नं</th>
+    <th>परिमाण</th>
+    <th>जम्मा रकम</th>
+    <th>भौतिक अवस्था</th>
+    <th class="no-print"></th>
+  </tr>
+  <% @i = 1 %>
+  <% @handover_form_items.each do |item| %>
+    <tr>
+      <td><%= nd @i %></td>
+      <td><%= item.item.name_of_item_ne %></td>
+      <td><%= item.model_no %></td>
+      <td><%= item.quantity %></td>
+      <td><%= item.amount %></td>
+      <td><%= item.physical_status %></td>
+      <td class="no-print">
+        <% if @handover_form.marked_as_final != true %>
+          <%= link_to destroy_btn.html_safe, item, method: :delete, confirm: "Are you sure ?" %>
+        <% end %>
+      </td>
+    </tr>
+    <% @i = @i + 1 %>
+  <% end %>
+</table>

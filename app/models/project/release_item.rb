@@ -1,2 +1,3 @@
-class ProjectReleaseItem < ApplicationRecord
+class Project::ReleaseItem < ApplicationRecord
+
 end

@@ -1,97 +1,50 @@
-<%= form_with(model: project_handover_form, local: true) do |form| %>
-  <% if project_handover_form.errors.any? %>
+<%= form_with(model: handover_form, local: true) do |form| %>
+  <% if handover_form.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_handover_form.errors.count, "error") %> prohibited this project_handover_form from being saved:</h2>
+      <h2><%= pluralize(handover_form.errors.count, "error") %> prohibited this handover_form from being saved:</h2>
 
       <ul>
-      <% project_handover_form.errors.full_messages.each do |message| %>
+      <% handover_form.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :decision_no %>
-    <%= form.number_field :decision_no %>
-  </div>
-
-  <div class="field">
-    <%= form.label :decision_date %>
-    <%= form.datetime_select :decision_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
-  </div>
-
-  <div class="field">
-    <%= form.label :handovered_project_name %>
-    <%= form.text_field :handovered_project_name %>
-  </div>
-
-  <div class="field">
+<div class="row">
+    <div class="col-6">
+      <%= form.label :handover_form_no %>
+      <%= form.number_field :form_no, class: "form-control", readonly: true  %>
+    </div>
+  <div class="col-6">
     <%= form.label :date %>
-    <%= form.datetime_select :date %>
+    <%= form.text_field :date, class: "form-control date-picker" %>
+  </div>
+  <div class="col-6">
+    <%= form.label :decision_date %>
+    <%= form.text_field :decision_date, class: "form-control date-picker" %>
+  </div>
+  <div class="col-6">
+    <%= form.label :decision_no %>
+    <%= form.number_field :decision_no, class: "form-control"  %>
+  </div>
+  <div class="col-6">
+    <%= form.label :handovered_office_name %>
+    <%= form.text_field :handovered_office_name, class: "form-control" %>
   </div>
 
-  <div class="field">
-    <%= form.label :form_no %>
-    <%= form.number_field :form_no %>
+  <div class="col-6">
+    <%= form.label :store_keeper_signed_date %>
+    <%= form.text_field :store_keeper_signed_date, class: "form-control date-picker" %>
   </div>
 
-  <div class="field">
-    <%= form.label :store_chief_name %>
-    <%= form.text_field :store_chief_name %>
-  </div>
 
-  <div class="field">
-    <%= form.label :store_chief_designation %>
-    <%= form.text_field :store_chief_designation %>
-  </div>
-
-  <div class="field">
-    <%= form.label :store_chief_sign_date %>
-    <%= form.datetime_select :store_chief_sign_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_chief_name %>
-    <%= form.text_field :office_chief_name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_chief_designation %>
-    <%= form.text_field :office_chief_designation %>
-  </div>
-
-  <div class="field">
+  <div class="col-6">
     <%= form.label :office_chief_signed_date %>
-    <%= form.datetime_select :office_chief_signed_date %>
+    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker" %>
   </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :marked_as_final %>
-    <%= form.check_box :marked_as_final %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+</div>
+  <div class="separator"></div>
+  <div class="actions pull-right">
+    <%= form.submit "save", class: "btn btn-success" %>
   </div>
 <% end %>

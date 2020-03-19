@@ -1,1 +1,1 @@
-json.partial! "project_stocks/project_stock", project_stock: @project_stock
+json.partial! "office_stocks/office_stock", office_stock: @office_stock

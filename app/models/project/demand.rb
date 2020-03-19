@@ -1,4 +1,4 @@
-class ProjectDemand < ApplicationRecord
+class Project::Demand < ApplicationRecord
   belongs_to :project
-  has_many :project_demand_items
+  has_many :demand_items, class_name: "Project::DemandItem"
 end

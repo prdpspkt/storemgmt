@@ -1,6 +1,7 @@
-<h1>Editing Project Handover Form</h1>
+<h1>हस्तान्तरण फाराम सम्पादन गर्ने</h1>
 
-<%= render 'form', project_handover_form: @project_handover_form %>
+<%= render 'form', handover_form: @handover_form %>
 
-<%= link_to 'Show', @project_handover_form %> |
-<%= link_to 'Back', project_handover_forms_path %>
+<%= link_to back_btn.html_safe, office_handover_forms_path %>
+<%= link_to show_big_btn.html_safe, @handover_form %>
+

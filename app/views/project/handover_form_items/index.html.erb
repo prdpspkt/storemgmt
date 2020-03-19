@@ -1,17 +1,15 @@
-<h1>Project Handover Form Items</h1>
+<h1>Handover Form Items</h1>
 
-<table class="responsive nowrap table table-hover" id="dttb-project_handover_form_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="responsive nowrap table table-hover" id="dttb-handover_form_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="item_classification_no">Item classification no</th>
       <th data-data="item_register_page_no">Item register page no</th>
-      <th data-data="name_of_item_ne">Name of item ne</th>
-      <th data-data="name_of_item_en">Name of item en</th>
+      <th data-data="name_of_item">Name of item</th>
       <th data-data="specification">Specification</th>
       <th data-data="item_identification_no">Item identification no</th>
       <th data-data="model_no">Model no</th>
-      <th data-data="unit_ne">Unit ne</th>
-      <th data-data="unit_en">Unit en</th>
+      <th data-data="unit">Unit</th>
       <th data-data="quantity">Quantity</th>
       <th data-data="amount">Amount</th>
       <th data-data="received_date">Received date</th>
@@ -22,13 +20,6 @@
       <th data-data="office_id">Office</th>
       <th data-data="project_id">Project</th>
       <th data-data="handover_form_id">Handover form</th>
-      <th data-data="item_id">Item</th>
-      <th data-data="project_item_id">Project item</th>
-      <th data-data="project_handover_form_id">Project handover form</th>
-      <th data-data="country">Country</th>
-      <th data-data="size">Size</th>
-      <th data-data="approx_age">Approx age</th>
-      <th data-data="source">Source</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -37,4 +28,4 @@
 
 <br>
 
-<%= link_to 'New Project Handover Form Item', new_project_handover_form_item_path %>
+<%= link_to 'New Handover Form Item', new_handover_form_item_path %>

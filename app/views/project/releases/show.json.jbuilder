@@ -1,1 +1,1 @@
-json.partial! "project_releases/project_release", project_release: @project_release
+json.partial! "office_releases/office_release", office_release: @office_release

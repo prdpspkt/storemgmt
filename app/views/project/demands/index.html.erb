@@ -1,12 +1,14 @@
-<h1>आयोजनागत माग फाराम</h1>
+<h1>माग फारामहरू</h1>
 
-<table class="table table-sm table-bordered" id="dttb-project_demands" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="table data-table" id="dttb-demands" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="demand_no">माग फाराम नं</th>
+      <th data-data="demand_by">माग गर्नेको विवरण</th>
       <th data-data="demand_date">मिति</th>
-      <th data-data="demand_by">माग गर्ने</th>
       <th data-data="recommended_by">सिफारिस गर्ने</th>
+      <th data-data="ordered_by">स्वीकृत गर्ने</th>
+      <th data-data="recorded_by">अभिलेख राख्ने</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -15,4 +17,4 @@
 
 <br>
 
-<%= link_to new_btn.html_safe, new_project_demand_path %>
+<%= link_to new_btn.html_safe, new_office_demand_path %>

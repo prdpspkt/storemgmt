@@ -1,2 +1,3 @@
-class ProjectStock < ApplicationRecord
+class Project::Stock < ApplicationRecord
+
 end

@@ -2,83 +2,68 @@
 
 <p>
   <strong>Fy:</strong>
-  <%= @project_stock.fy %>
+  <%= @office_stock.fy %>
 </p>
 
 <p>
   <strong>Store chief name:</strong>
-  <%= @project_stock.store_chief_name %>
+  <%= @office_stock.store_chief_name %>
 </p>
 
 <p>
   <strong>Store chief designation:</strong>
-  <%= @project_stock.store_chief_designation %>
+  <%= @office_stock.store_chief_designation %>
 </p>
 
 <p>
-  <strong>Store chief signed date:</strong>
-  <%= @project_stock.store_chief_signed_date %>
+  <strong>Store chief sign date:</strong>
+  <%= @office_stock.store_chief_sign_date %>
 </p>
 
 <p>
   <strong>Section chief name:</strong>
-  <%= @project_stock.section_chief_name %>
+  <%= @office_stock.section_chief_name %>
+</p>
+
+<p>
+  <strong>Section chief designation:</strong>
+  <%= @office_stock.section_chief_designation %>
 </p>
 
 <p>
   <strong>Section chief signed date:</strong>
-  <%= @project_stock.section_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Section chief degination:</strong>
-  <%= @project_stock.section_chief_degination %>
+  <%= @office_stock.section_chief_signed_date %>
 </p>
 
 <p>
   <strong>Office chief name:</strong>
-  <%= @project_stock.office_chief_name %>
+  <%= @office_stock.office_chief_name %>
 </p>
 
 <p>
   <strong>Office chief designation:</strong>
-  <%= @project_stock.office_chief_designation %>
+  <%= @office_stock.office_chief_designation %>
 </p>
 
 <p>
   <strong>Office chief signed date:</strong>
-  <%= @project_stock.office_chief_signed_date %>
+  <%= @office_stock.office_chief_signed_date %>
 </p>
 
 <p>
   <strong>Office:</strong>
-  <%= @project_stock.office_id %>
-</p>
-
-<p>
-  <strong>Project:</strong>
-  <%= @project_stock.project_id %>
+  <%= @office_stock.office_id %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @project_stock.user_id %>
+  <%= @office_stock.user_id %>
 </p>
 
 <p>
   <strong>Fiscal year:</strong>
-  <%= @project_stock.fiscal_year_id %>
+  <%= @office_stock.fiscal_year_id %>
 </p>
 
-<p>
-  <strong>Item:</strong>
-  <%= @project_stock.item_id %>
-</p>
-
-<p>
-  <strong>Marked as final:</strong>
-  <%= @project_stock.marked_as_final %>
-</p>
-
-<%= link_to 'Edit', edit_project_stock_path(@project_stock) %> |
-<%= link_to 'Back', project_stocks_path %>
+<%= link_to 'Edit', edit_office_stock_path(@office_stock) %> |
+<%= link_to 'Back', office_stocks_path %>

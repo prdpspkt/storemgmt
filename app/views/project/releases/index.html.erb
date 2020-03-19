@@ -1,20 +1,10 @@
-<h1>Project Releases</h1>
+<h1>निकासा फारामहरू</h1>
 
-<table class="responsive nowrap table table-hover" id="dttb-project_releases" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="responsive nowrap table table-hover data-table" id="dttb-office_releases" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="fy">Fy</th>
-      <th data-data="release_no">Release no</th>
-      <th data-data="release_date">Release date</th>
-      <th data-data="store_chief_name">Store chief name</th>
-      <th data-data="store_chief_signed_date">Store chief signed date</th>
-      <th data-data="office_chief_name">Office chief name</th>
-      <th data-data="office_chief_signed_date">Office chief signed date</th>
-      <th data-data="user_id">User</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="project_id">Project</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
-      <th data-data="marked_as_final">Marked as final</th>
+      <th data-data="release_no">निकासा नं</th>
+      <th data-data="release_date">निकासा मिति</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -23,4 +13,4 @@
 
 <br>
 
-<%= link_to 'New Project Release', new_project_release_path %>
+<%= link_to new_btn.html_safe, new_office_release_path %>

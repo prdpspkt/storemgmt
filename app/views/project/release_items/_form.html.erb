@@ -1,10 +1,10 @@
-<%= form_with(model: project_release_item, local: true) do |form| %>
-  <% if project_release_item.errors.any? %>
+<%= form_with(model: office_release_item, local: true) do |form| %>
+  <% if office_release_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_release_item.errors.count, "error") %> prohibited this project_release_item from being saved:</h2>
+      <h2><%= pluralize(office_release_item.errors.count, "error") %> prohibited this office_release_item from being saved:</h2>
 
       <ul>
-      <% project_release_item.errors.full_messages.each do |message| %>
+      <% office_release_item.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -12,13 +12,8 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name_of_item_ne %>
-    <%= form.text_field :name_of_item_ne %>
-  </div>
-
-  <div class="field">
-    <%= form.label :name_of_item_en %>
-    <%= form.text_field :name_of_item_en %>
+    <%= form.label :name_of_item %>
+    <%= form.text_field :name_of_item %>
   </div>
 
   <div class="field">
@@ -32,18 +27,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :specificaiton %>
-    <%= form.text_field :specificaiton %>
+    <%= form.label :specification %>
+    <%= form.text_field :specification %>
   </div>
 
   <div class="field">
-    <%= form.label :unit_en %>
-    <%= form.text_field :unit_en %>
-  </div>
-
-  <div class="field">
-    <%= form.label :unit_ne %>
-    <%= form.text_field :unit_ne %>
+    <%= form.label :unit %>
+    <%= form.text_field :unit %>
   </div>
 
   <div class="field">
@@ -67,13 +57,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :project_item_id %>
-    <%= form.number_field :project_item_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :project_release_id %>
-    <%= form.number_field :project_release_id %>
+    <%= form.label :office_release_id %>
+    <%= form.number_field :office_release_id %>
   </div>
 
   <div class="field">
@@ -87,23 +72,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :item_id %>
-    <%= form.number_field :item_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :fiscal_year_id %>
     <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :release_from %>
-    <%= form.number_field :release_from %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_classification_no %>
-    <%= form.text_field :item_classification_no %>
   </div>
 
   <div class="actions">

@@ -2,83 +2,68 @@
 
 <p>
   <strong>Item classification no:</strong>
-  <%= @project_purchase_order_item.item_classification_no %>
+  <%= @purchase_order_item.item_classification_no %>
 </p>
 
 <p>
-  <strong>Name of item en:</strong>
-  <%= @project_purchase_order_item.name_of_item_en %>
-</p>
-
-<p>
-  <strong>Name of item ne:</strong>
-  <%= @project_purchase_order_item.name_of_item_ne %>
+  <strong>Name of item:</strong>
+  <%= @purchase_order_item.name_of_item %>
 </p>
 
 <p>
   <strong>Specification:</strong>
-  <%= @project_purchase_order_item.specification %>
+  <%= @purchase_order_item.specification %>
 </p>
 
 <p>
-  <strong>Unit ne:</strong>
-  <%= @project_purchase_order_item.unit_ne %>
-</p>
-
-<p>
-  <strong>Unit en:</strong>
-  <%= @project_purchase_order_item.unit_en %>
+  <strong>Unit:</strong>
+  <%= @purchase_order_item.unit %>
 </p>
 
 <p>
   <strong>Quantity:</strong>
-  <%= @project_purchase_order_item.quantity %>
+  <%= @purchase_order_item.quantity %>
 </p>
 
 <p>
   <strong>Rate:</strong>
-  <%= @project_purchase_order_item.rate %>
+  <%= @purchase_order_item.rate %>
 </p>
 
 <p>
   <strong>Amount:</strong>
-  <%= @project_purchase_order_item.amount %>
+  <%= @purchase_order_item.amount %>
 </p>
 
 <p>
   <strong>Remarks:</strong>
-  <%= @project_purchase_order_item.remarks %>
+  <%= @purchase_order_item.remarks %>
 </p>
 
 <p>
-  <strong>Project purchase order:</strong>
-  <%= @project_purchase_order_item.project_purchase_order_id %>
+  <strong>Purchase order:</strong>
+  <%= @purchase_order_item.purchase_order_id %>
 </p>
 
 <p>
   <strong>Office:</strong>
-  <%= @project_purchase_order_item.office_id %>
+  <%= @purchase_order_item.office_id %>
 </p>
 
 <p>
-  <strong>Item:</strong>
-  <%= @project_purchase_order_item.item_id %>
+  <strong>User:</strong>
+  <%= @purchase_order_item.user_id %>
 </p>
 
 <p>
   <strong>Fy:</strong>
-  <%= @project_purchase_order_item.fy %>
+  <%= @purchase_order_item.fy %>
 </p>
 
 <p>
   <strong>Fiscal year:</strong>
-  <%= @project_purchase_order_item.fiscal_year_id %>
+  <%= @purchase_order_item.fiscal_year_id %>
 </p>
 
-<p>
-  <strong>Project:</strong>
-  <%= @project_purchase_order_item.project_id %>
-</p>
-
-<%= link_to 'Edit', edit_project_purchase_order_item_path(@project_purchase_order_item) %> |
-<%= link_to 'Back', project_purchase_order_items_path %>
+<%= link_to 'Edit', edit_purchase_order_item_path(@purchase_order_item) %> |
+<%= link_to 'Back', purchase_order_items_path %>

@@ -1,54 +1,59 @@
-<%= form_with(model: project_demand, local: true) do |form| %>
-  <% if project_demand.errors.any? %>
+<%= form_with(model: demand, local: true) do |form| %>
+  <% if demand.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_demand.errors.count, "error") %> prohibited this project_demand from being saved:</h2>
+      <h2><%= pluralize(demand.errors.count, "error") %> prohibited this demand from being saved:</h2>
 
       <ul>
-      <% project_demand.errors.full_messages.each do |message| %>
+      <% demand.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :demand_no, class: "form-control", readonly: :readonly %>
+
 <div class="row">
-  <div class="col-4">
+  <div class="col-sm-6">
     <%= form.label :demand_date %>
-    <%= form.text_field :demand_date, class: "form-control date-picker" %>
+    <%= form.text_field :demand_date, class: "form-control date-picker", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-sm-6">
     <%= form.label :demand_by %>
-    <%= form.text_field :demand_by, class: "form-control" %>
+    <%= form.text_field :demand_by, class: "form-control preeti", required: :required%>
   </div>
 
-  <div class="col-4">
+  <div class="col-sm-6">
     <%= form.label :recommended_by %>
-    <%= form.text_field :recommended_by, class: "form-control" %>
+    <%= form.select(:recommended_by, Office::Personnel.all.collect {|p| [p.name_en, p.id]}, {include_blank: "छान्नुहोस्"}, {class: "form-control", required: :required}) %>
   </div>
 
-  <div class="col-4">
-    <%= form.label :needed_to_purchase %>
-    <%= form.check_box :needed_to_purchase %>
+  <div class="col-sm-6">
+    <%= form.label :recommended_date %>
+    <%= form.text_field :recommended_date, class: "form-control date-picker", required: true %>
   </div>
 
-  <div class="col-4">
+  <div class="col-sm-6">
+    <%= form.label :needed_to_purchase, "बजारबाट खरिद गर्नुपर्ने", :value => "true"  %>
+    <%= form.radio_button :needed_to_purchase, true %>
+    <%= form.label :needed_to_purchase, "मौज्दातबाट दिने", :value => "false" %>
+    <%= form.radio_button :needed_to_purchase, false, :checked => true %>
+  </div>
+
+
+  <div class="col-sm-6">
     <%= form.label :ordered_date %>
-    <%= form.text_field :ordered_date, class: "form-control date-picker" %>
+    <%= form.text_field :ordered_date, class: "form-control date-picker", required: true %>
   </div>
 
-  <div class="col-4">
+
+
+  <div class="col-sm-6">
     <%= form.label :recorded_date %>
-    <%= form.text_field :recorded_date, class: "form-control date-picker" %>
+    <%= form.text_field :recorded_date, class: "form-control date-picker", required: true %>
   </div>
 
-  <div class="col-4">
-    <%= form.label :project_id %>
-    <%= form.select(:project_id, @projects.all.collect{ |p| [p.name_of_project_ne, p.id]}, {include_blank: true}, {class: "form-control", required: :required}) %>
+   <div class="col-sm-12">
+    <%= form.submit save_btn.html_safe, class: "btn btn-success float-right" %>
   </div>
-
 </div>
-  <div class="float-right">
-    <%= form.submit :save, class: "btn btn-success" %>
-  </div>
 <% end %>

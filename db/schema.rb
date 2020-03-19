@@ -749,7 +749,6 @@ ActiveRecord::Schema.define(version: 2020_03_19_125250) do
     t.string "source"
     t.integer "handover_form_item_id"
     t.integer "item_classification_no"
-    t.integer "subed_from"
     t.boolean "in_use"
   end
 

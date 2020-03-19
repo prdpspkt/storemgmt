@@ -1,99 +1,69 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name of item ne:</strong>
-  <%= @project_release_item.name_of_item_ne %>
-</p>
-
-<p>
-  <strong>Name of item en:</strong>
-  <%= @project_release_item.name_of_item_en %>
+  <strong>Name of item:</strong>
+  <%= @office_release_item.name_of_item %>
 </p>
 
 <p>
   <strong>Item register page no:</strong>
-  <%= @project_release_item.item_register_page_no %>
+  <%= @office_release_item.item_register_page_no %>
 </p>
 
 <p>
   <strong>Code no:</strong>
-  <%= @project_release_item.code_no %>
+  <%= @office_release_item.code_no %>
 </p>
 
 <p>
-  <strong>Specificaiton:</strong>
-  <%= @project_release_item.specificaiton %>
+  <strong>Specification:</strong>
+  <%= @office_release_item.specification %>
 </p>
 
 <p>
-  <strong>Unit en:</strong>
-  <%= @project_release_item.unit_en %>
-</p>
-
-<p>
-  <strong>Unit ne:</strong>
-  <%= @project_release_item.unit_ne %>
+  <strong>Unit:</strong>
+  <%= @office_release_item.unit %>
 </p>
 
 <p>
   <strong>Quantity:</strong>
-  <%= @project_release_item.quantity %>
+  <%= @office_release_item.quantity %>
 </p>
 
 <p>
   <strong>Rate:</strong>
-  <%= @project_release_item.rate %>
+  <%= @office_release_item.rate %>
 </p>
 
 <p>
   <strong>Amount:</strong>
-  <%= @project_release_item.amount %>
+  <%= @office_release_item.amount %>
 </p>
 
 <p>
   <strong>Remarks:</strong>
-  <%= @project_release_item.remarks %>
+  <%= @office_release_item.remarks %>
 </p>
 
 <p>
-  <strong>Project item:</strong>
-  <%= @project_release_item.project_item_id %>
-</p>
-
-<p>
-  <strong>Project release:</strong>
-  <%= @project_release_item.project_release_id %>
+  <strong>Office release:</strong>
+  <%= @office_release_item.office_release_id %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @project_release_item.user_id %>
+  <%= @office_release_item.user_id %>
 </p>
 
 <p>
   <strong>Office:</strong>
-  <%= @project_release_item.office_id %>
-</p>
-
-<p>
-  <strong>Item:</strong>
-  <%= @project_release_item.item_id %>
+  <%= @office_release_item.office_id %>
 </p>
 
 <p>
   <strong>Fiscal year:</strong>
-  <%= @project_release_item.fiscal_year_id %>
+  <%= @office_release_item.fiscal_year_id %>
 </p>
 
-<p>
-  <strong>Release from:</strong>
-  <%= @project_release_item.release_from %>
-</p>
-
-<p>
-  <strong>Item classification no:</strong>
-  <%= @project_release_item.item_classification_no %>
-</p>
-
-<%= link_to 'Edit', edit_project_release_item_path(@project_release_item) %> |
-<%= link_to 'Back', project_release_items_path %>
+<%= link_to 'Edit', edit_office_release_item_path(@office_release_item) %> |
+<%= link_to 'Back', office_release_items_path %>

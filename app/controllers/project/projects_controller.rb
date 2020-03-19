@@ -1,6 +1,6 @@
 class Project::ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-
+load_and_authorize_resource
   # GET /projects
   # GET /projects.json
   def index
@@ -10,12 +10,12 @@ class Project::ProjectsController < ApplicationController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project_items = Project::ProjectBasedItem.where(project_id: @project.id)
+    @project_items = Project::ProjectItem.where(project_id: @project.id)
   end
 
   # GET /projects/new
   def new
-    @project = Project.new
+    @project = Project::Project.new
   end
 
   # GET /projects/1/edit
@@ -25,7 +25,7 @@ class Project::ProjectsController < ApplicationController
   # POST /projects
   # POST /projects.json
   def create
-    @project = Project.new(project_params)
+    @project = Project::Project.new(project_params)
     @project = update_general_information @project
 
     respond_to do |format|
@@ -66,12 +66,12 @@ class Project::ProjectsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:id])
+      @project = Project::Project.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def project_params
-      params.require(:project).permit(:name_of_project_ne, :name_of_project_en, :name_of_consumer_committee, :address, :phone_of_committee_representative, :name_of_committee_representative, :post_of_representative, :contractor, :phone_of_contractor_representative, :name_of_contractor_representative, :project_status)
+      params.require(:project_project).permit(:name_of_project_ne, :name_of_project_en, :name_of_consumer_committee, :address, :phone_of_committee_representative, :name_of_committee_representative, :post_of_representative, :contractor, :phone_of_contractor_representative, :name_of_contractor_representative, :project_status)
     end
 
     def update_general_information object

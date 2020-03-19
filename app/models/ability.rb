@@ -38,6 +38,7 @@ class Ability
     if user.office.has_project_access == true
       can [:view, :show, :edit, :destroy, :update, :index], Project, user_id: user.id
       can :manage, Project::Item, user_id: user.id
+      can :manage, Project::Project, user_id: user.id
       can :manage, Project::ItemCategory, user_id: user.id
       can :manage, Project::PurchaseOrder, user_id: user.id
       can :manage, Project::PurchaseOrderItem, user_id: user.id
@@ -47,19 +48,9 @@ class Ability
       can :manage, Project::ReleaseItem, user_id: user.id
       can :manage, Project::Demand, user_id: user.id
       can :manage, Project::DemandItem, user_id: user.id
-      can :manage, Project::Personnel, user_id: user.id
-      can :manage, Project::Vendor, user_id: user.id
-      can :manage, Project::FiscalYear, user_id: user.id
-      can :manage, Project::ActiveFiscalYear, user_id: user.id
       can :manage, Project::ItemTransaction, user_id: user.id
       can :manage, Project::HandoverForm, user_id: user.id
       can :manage, Project::HandoverFormItem, user_id: user.id
-      can :manage, Project::ItemAssistanceRegister, user_id: user.id
-      can :manage, Project::ItemAssistanceRegisterItem, user_id: user.id
-      can :manage, Project::RepairApplicationForm, user_id: user.id
-      can :manage, Project::RepairApplicationFormItem, user_id: user.id
-      can :manage, Project::RepairRecordRegister, user_id: user.id
-      can :manage, Project::RepairRecordRegisterItem, user_id: user.id
     end
   end
 end

@@ -1,22 +1,16 @@
 json.set! :data do
-  @i = 1
-  json.array! @project_purchase_orders do |project_purchase_order|
-    json.partial! 'project_purchase_orders/project_purchase_order', project_purchase_order: project_purchase_order
-    if project_purchase_order.marked_as_final != true
-      json.url "
-               #{link_to show_btn.html_safe, project_purchase_order }
-               #{link_to edit_btn.html_safe, edit_project_purchase_order_path(project_purchase_order)}
-               #{link_to destroy_btn.html_safe, project_purchase_order, method: :delete, data: {confirm: 'Are you sure?'}}
+  json.array! @purchase_orders do |purchase_order|
+    json.partial! 'office/purchase_orders/purchase_order', purchase_order: purchase_order
+    json.order_date "#{ndate purchase_order.order_date}"
+    json.vendor_name "#{ purchase_order.vendor.vendor_name}"
+    json.vendor_address "#{ purchase_order.vendor.vendor_address}"
+    if(purchase_order.marked_as_final != true)
+      json.url "#{link_to show_btn.html_safe, purchase_order }
+                #{link_to edit_btn.html_safe, edit_office_purchase_order_path(purchase_order)}
+                #{link_to destroy_btn.html_safe, purchase_order, method: :delete, data: { confirm: 'Are you sure?' }}
                "
     else
-      json.url "
-               #{link_to show_btn.html_safe, project_purchase_order }
-               "
+      json.url  " #{link_to show_btn.html_safe, purchase_order } "
     end
-    json.sn "#{nd @i}"
-    json.order_no "#{nd project_purchase_order.order_no}"
-    json.order_date "#{ndate project_purchase_order.order_date}"
-    @i = @i + 1
   end
-
 end

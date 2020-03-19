@@ -1,10 +1,10 @@
-<%= form_with(model: project_stock, local: true) do |form| %>
-  <% if project_stock.errors.any? %>
+<%= form_with(model: office_stock, local: true) do |form| %>
+  <% if office_stock.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_stock.errors.count, "error") %> prohibited this project_stock from being saved:</h2>
+      <h2><%= pluralize(office_stock.errors.count, "error") %> prohibited this office_stock from being saved:</h2>
 
       <ul>
-      <% project_stock.errors.full_messages.each do |message| %>
+      <% office_stock.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -27,8 +27,8 @@
   </div>
 
   <div class="field">
-    <%= form.label :store_chief_signed_date %>
-    <%= form.datetime_select :store_chief_signed_date %>
+    <%= form.label :store_chief_sign_date %>
+    <%= form.datetime_select :store_chief_sign_date %>
   </div>
 
   <div class="field">
@@ -37,13 +37,13 @@
   </div>
 
   <div class="field">
-    <%= form.label :section_chief_signed_date %>
-    <%= form.datetime_select :section_chief_signed_date %>
+    <%= form.label :section_chief_designation %>
+    <%= form.text_field :section_chief_designation %>
   </div>
 
   <div class="field">
-    <%= form.label :section_chief_degination %>
-    <%= form.text_field :section_chief_degination %>
+    <%= form.label :section_chief_signed_date %>
+    <%= form.datetime_select :section_chief_signed_date %>
   </div>
 
   <div class="field">
@@ -67,11 +67,6 @@
   </div>
 
   <div class="field">
-    <%= form.label :project_id %>
-    <%= form.number_field :project_id %>
-  </div>
-
-  <div class="field">
     <%= form.label :user_id %>
     <%= form.number_field :user_id %>
   </div>
@@ -79,16 +74,6 @@
   <div class="field">
     <%= form.label :fiscal_year_id %>
     <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :item_id %>
-    <%= form.number_field :item_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :marked_as_final %>
-    <%= form.check_box :marked_as_final %>
   </div>
 
   <div class="actions">

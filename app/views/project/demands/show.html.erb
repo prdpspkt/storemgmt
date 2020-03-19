@@ -1,48 +1,61 @@
-<h1>माग फाराम (आयोजनागत) </h1>
-<table class="table table-sm table-bordered">
+<h1>माग फाराम</h1>
+<table class="table table-bordered">
   <tr>
-    <td>माग नं</td>
-    <td>माग गरिएको मिति</td>
-    <td>आयोजनाको नाम</td>
-    <td>माग गर्नेको नाम</td>
+    <th>माग फाराम नं</th>
+    <th>मिति</th>
+    <th>माग गर्ने</th>
+    <th>सिफारिस गर्ने</th>
+    <th>आदेश दिने</th>
+    <th>जिन्सिमा चढाउने</th>
   </tr>
   <tr>
-    <td><%= nd @project_demand.demand_no %></td>
-    <td><%= ndate @project_demand.demand_date %></td>
-    <td><%= @project_demand.project.name_of_project_ne %></td>
-    <td><%= @project_demand.demand_by %></td>
+    <td><%= nd @demand.demand_no %></td>
+    <td><%= ndate @demand.demand_date %></td>
+    <td><%= @demand.demand_by %></td>
+    <td><%= @demand.recommended_by %></td>
+    <td><%= @demand.ordered_by %></td>
+    <td><%= @demand.recorded_by %></td>
   </tr>
 </table>
 <div class="text-center">
-  <%= link_to(back_btn.html_safe, project_demands_path) %>
-  <%= link_to(edit_big_btn.html_safe, edit_project_demand_path(@project_demand)) %>
-  <%= link_to(final_btn.html_safe, project_demands_path) %>
-  <%= link_to(before_final_btn.html_safe, project_demands_path) %>
-  <%= link_to(print_big_btn.html_safe, project_demands_path) %>
+<%= link_to back_btn.html_safe, office_demands_path %>
+  <% if @demand.marked_as_final == false %>
+  <%= link_to edit_big_btn.html_safe, edit_office_demand_path(@demand) %>
+  <%= link_to final_btn.html_safe, office_mark_demand_as_final_url(@demand), method: :post, data:{confirm: "If you want to modify data you will have only 3 days."} %>
+    <% end %>
+  <% if @demand.entry_generated == false && @demand.marked_as_final == true %>
+    <%= link_to before_final_btn.html_safe, office_mark_demand_as_final_url(@demand), id: :mark_as_not_final, method: :post %>
+    <%= link_to release_generate_btn.html_safe, office_generate_release_form_url(@demand), method: :post %>
+  <% end %>
+<%= link_to print_big_btn.html_safe, "/office/report/office_demand_form/#{@demand.id}" %>
+
 </div>
 <div class="separator"></div>
-<h2>सामाग्री थप गर्ने</h2>
-<%= render 'project_demands/project_demand_item_form', project_demand_item: @project_demand_item %>
+<% if @demand.marked_as_final != true %>
+<h2>जिन्सी सामान थप्ने</h2>
+<%= render("demand_item_form", demand_item: @demand_item) %>
 <div class="separator"></div>
+<% end %>
+<h2>माग भैआएको जिन्सी विवरण</h2>
 <table class="table table-bordered">
   <tr>
-    <th>क्र.स.</th>
-    <th>सामानको नाम</th>
-    <th>इकाई</th>
+    <th>सामानको विवरण </th>
+    <th>स्पेसिफिकेसन</th>
     <th>परिमाण</th>
-    <th>दर</th>
-    <th>जम्मा</th>
+    <th>कैफियत</th>
+    <th></th>
   </tr>
-  <% @i = 1 %>
   <% @items.each do |item| %>
-  <tr>
-    <td><%= nd @i %></td>
-    <td></td>
-    <td></td>
-    <td><%= nd item.quantity %></td>
-    <td></td>
-    <td></td>
+  <tr id="item-<%= item.id %>">
+    <td><%= item.item.name_of_item_ne %></td>
+    <td><%= item.item.specification %></td>
+    <td><%= item.quantity %></td>
+    <td><%= item.remark %></td>
+    <td>
+      <% if @demand.marked_as_final != true %>
+      <%= link_to(destroy_btn.html_safe, office_demand_item_path(item), method: :delete, "data-confirm": "Are you sure ?") %>
+      <% end %>
+    </td>
   </tr>
-    <% @i = @i + 1 %>
-    <% end %>
+  <% end %>
 </table>

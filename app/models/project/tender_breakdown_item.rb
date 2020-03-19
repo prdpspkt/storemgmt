@@ -1,4 +1,4 @@
-class ProjectTenderBreakdownItem < ApplicationRecord
+class Project::TenderBreakdownItem < ApplicationRecord
   belongs_to :project_tender_breakdown
   belongs_to :project_purchase_entry_item
   has_one :pneirt, dependent: :destroy
