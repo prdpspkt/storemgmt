@@ -27,46 +27,19 @@
 <table class="table table-sm table-borderless">
   <tbody>
   <tr>
-    <td>जिन्सी समानको नाम</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>पाना नं</td>
-    <td>&nbsp;</td>
+    <td colspan="9">जिन्सी समानको नाम: <%= @repair_record_register.item.name_of_item_ne %></td>
+    <td colspan="2">पाना नं: <%= nd @repair_record_register.page_no %></td>
   </tr>
   <tr>
-    <td>स्पेसिफिकेशन</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>जिन्सी संकेत नं:</td>
-    <td>&nbsp;</td>
+    <td colspan="9">स्पेसिफिकेशन: <%= @repair_record_register.item.specification %></td>
+    <td colspan="2">जिन्सी संकेत नं:<%= nd @repair_record_register.item.item_classification_no %></td>
   </tr>
   <tr>
-    <td>सामानको पहिचान नं</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>जिन्सी खाता पाना.नं.</td>
-    <td>&nbsp;</td>
+    <td colspan="9">सामानको पहिचान नं: <%=  @repair_record_register.item_transaction.item_identification_no %> </td>
+    <td colspan="2">जिन्सी खाता पाना.नं.: <%= nd @repair_record_register.item.item_register_page_no %> </td>
   </tr>
   <tr>
-    <td>मोडल नं</td>
+    <td colspan="2">मोडल नं: <%= @repair_record_register.item_transaction.model %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -74,9 +47,7 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>समानको परल मूल्य</td>
-    <td>&nbsp;</td>
+    <td colspan="2">समानको परल मूल्य<%= nd @repair_record_register.price %></td>
   </tr>
   </tbody>
 </table>
@@ -86,10 +57,8 @@
     <td>मितिः</td>
     <td>मर्मत आवेदन फारम नं</td>
     <td>आवेदन कर्ताको नाम</td>
-    <td>मर्मत गर्दा फेरिएको नँया सामान</td>
-    <td>&nbsp;</td>
-    <td>मर्मत गर्दाको अन्य खर्च</td>
-    <td>&nbsp;</td>
+    <td colspan="2">मर्मत गर्दा फेरिएको नँया सामान</td>
+    <td colspan="2">मर्मत गर्दाको अन्य खर्च</td>
     <td>जम्मा लागत</td>
     <td>मर्मत संभार गर्ने व्यक्ति वा फर्मको विवरण</td>
     <td>मर्मत संभारको निरीक्षण/प्रमाणित गर्नेको नाम र सही</td>
@@ -121,19 +90,21 @@
     <td>१०</td>
     <td>११</td>
   </tr>
+  <% @repair_record_register_items.each do |item| %>
   <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td><%= ndate item.date %></td>
+    <td><%= nd item.repair_application_no %></td>
+    <td><%= nd item.applicant_name %></td>
+    <td><%= nd item.changed_part_name %></td>
+    <td><%= nd item.changed_part_cost %></td>
+    <td><%= nd item.other_expense %></td>
+    <td><%= nd item.other_expense_cost %></td>
+    <td><%= nd item.total_expense %></td>
+    <td><%= nd item.vendor.vendor_name %></td>
+    <td><%= nd item.justified_by %></td>
+    <td><%= nd item.remarks %></td>
   </tr>
+    <% end %>
   </tbody>
 </table>
 <table class="table table-sm table-borderless">

@@ -73,6 +73,7 @@ class Office::RepairApplicationFormsController < ApplicationController
 
   def print
     @repair_application_form_items = @repair_application_form.repair_application_form_items
+    @items = @repair_application_form.repair_application_form_items.distinct(:item_id)
   end
 
   private
@@ -89,15 +90,6 @@ class Office::RepairApplicationFormsController < ApplicationController
       params.require(:office_repair_application_form).permit(:application_no, :date, :year, :month, :within_date, :section_chief_signed_date, :technical_person_name, :technical_person_designation, :technical_person_signed_date,  :office_chief_signed_date)
     end
 
-  def update_vendor_info repair_application_form, vendor_id
-    vendor = Office::Vendor.find(vendor_id)
-    repair_application_form.vendor_name = vendor.vendor_name
-    repair_application_form.vendor_address = vendor.vendor_address
-    repair_application_form.vendor_phone = vendor.vendor_phone
-    repair_application_form.vendor_registration_no = vendor.vendor_registration
-    repair_application_form.vendor_pan = vendor.vendor_pan
-    repair_application_form
-  end
 
   def update_general_information repair_application_form
     repair_application_form = set_current_information repair_application_form

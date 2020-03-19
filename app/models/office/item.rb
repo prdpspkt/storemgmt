@@ -6,6 +6,7 @@ class Office::Item < ApplicationRecord
   has_many :purchase_order_items, :class_name => 'Office::PurchaseOrderItem'
   belongs_to :item_category, :class_name => 'Office::ItemCategory'
   has_many :item_transaction, class_name: "Office::ItemTransaction"
+  has_one :repair_record_register, :class_name => 'Office::RepairRecordRegister'
 
   validates :item_category_id, numericality: true
 

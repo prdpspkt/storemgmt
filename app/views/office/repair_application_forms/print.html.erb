@@ -107,20 +107,22 @@
 </table>
 <table class="table table-sm table-black-border">
   <tbody>
-  <tr>
+  <tr class="text-center">
     <td>जिन्सी संकेत नं</td>
     <td>वारेन्टी अवधि भए / नभएको</td>
     <td>अगाडी मर्मत गरिएको पटकः</td>
     <td>यस अघि मर्मत गरिएको मितिः</td>
     <td>अगाडि मर्मत गरिएको रकमः</td>
   </tr>
+  <% @items.each do |item| %>
   <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td class="text-center"><%= nd item.item.item_register_page_no %></td>
+    <td></td>
+    <td class="text-center"><%= nd item.item.repair_record_register.repair_record_register_items.count %></td>
+    <td><%=  %></td>
     <td>&nbsp;</td>
   </tr>
+    <% end %>
   </tbody>
 </table>
 <table class="table table-sm table-borderless">

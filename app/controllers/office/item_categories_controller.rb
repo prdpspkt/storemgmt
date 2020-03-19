@@ -32,6 +32,7 @@ class Office::ItemCategoriesController < ApplicationController
   def create
     @item_category = Office::ItemCategory.new(item_category_params)
     @item_category.office_id = current_office.id
+    @item_category.user_id = current_user.id
     respond_to do |format|
       if @item_category.save
         format.html { redirect_to office_item_categories_path, notice: 'Item category was successfully created.' }
