@@ -1,4 +1,4 @@
-class ProjectEvaluationItemsController < ApplicationController
+class Project::EvaluationItemsController < ApplicationController
   before_action :set_project_evaluation_item, only: [:show, :edit, :update, :destroy]
 
   # GET /project_evaluation_items

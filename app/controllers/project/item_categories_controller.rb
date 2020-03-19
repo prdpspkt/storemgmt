@@ -1,0 +1,137 @@
+class Project::ItemCategoriesController < ApplicationController
+  before_action :set_item_category, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource except: [:create, :new]
+  # GET /item_categories
+  # GET /item_categories.json
+  def index
+    @item_categories = office(Project::ItemCategory)
+    respond_to do |format|
+      format.xlsx
+      format.html
+      format.json
+    end
+  end
+
+  # GET /item_categories/1
+  # GET /item_categories/1.json
+  def show
+    @items = @item_category.items
+  end
+
+  # GET /item_categories/new
+  def new
+    @item_category = Project::ItemCategory.new
+  end
+
+  # GET /item_categories/1/edit
+  def edit
+  end
+
+  # POST /item_categories
+  # POST /item_categories.json
+  def create
+    @item_category = Project::ItemCategory.new(item_category_params)
+    @item_category.office_id = current_office.id
+    @item_category.user_id = current_user.id
+    respond_to do |format|
+      if @item_category.save
+        format.html { redirect_to office_item_categories_path, notice: 'Item category was successfully created.' }
+        format.json { render :show, status: :created, location: @item_category }
+      else
+        format.html { render :new }
+        format.json { render json: @item_category.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # PATCH/PUT /item_categories/1
+  # PATCH/PUT /item_categories/1.json
+  def update
+    respond_to do |format|
+      if @item_category.update(item_category_params)
+        format.html { redirect_to office_item_categories_path, notice: 'Item category was successfully updated.' }
+        format.json { render :show, status: :ok, location: @item_category }
+      else
+        format.html { render :edit }
+        format.json { render json: @item_category.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  # DELETE /item_categories/1
+  # DELETE /item_categories/1.json
+  def destroy
+    @item_category.destroy
+    respond_to do |format|
+      if Project::ItemCategory.exists?(@item_category.id)
+        flash[:error] = @item_category.errors[:base][0].to_s
+        format.html { redirect_to office_item_categories_url }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to office_item_categories_url, notice: "Successfully deleted." }
+        format.json { head :no_content }
+      end
+    end
+  end
+
+  def create_import
+    file = params[:file]
+    spreadsheet = case File.extname(file.original_filename)
+                  when ".csv" then
+                    Csv.new(file.path, nil, :ignore)
+                  when ".xls" then
+                    Roo::Excel.new(file.path, nil, :ignore)
+                  when ".xlsx" then
+                    Roo::Excelx.new(file.path)
+                  else
+                    flash[:error] = " अपलोड गरिएको फाइल <b> #{file.original_filename} </b> को पहिचान हुन सकेन |"
+                    redirect_to office_item_categories_path and return
+                  end
+    header = spreadsheet.row(1)
+    items = (2..spreadsheet.last_row).map do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      item = Project::ItemCategory.find_by_id(row["id"]) || Project::ItemCategory.new
+      begin
+        item.attributes = row.to_hash
+      rescue Exception => error
+        flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
+        redirect_to office_item_categories_path and return
+      end
+      item.office_id = current_office.id
+      item.user_id = current_user.id
+      item
+    end
+    if items.map(&:valid?).all?
+      items.each(&:save!)
+      true
+    else
+      items.each_with_index do |item, index|
+        item.errors.full_messages.each do |msg|
+          errors.add :base, "Row #{index + 6}: #{msg}"
+        end
+      end
+      false
+    end
+    redirect_to office_item_categories_path
+  end
+
+  def export
+    @item_categories = office(Project::ItemCategory)
+    respond_to do |format|
+      format.xlsx
+    end
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item_category
+    @item_category = Project::ItemCategory.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_category_params
+    params.require(:project_item_category).permit(:name_ne, :name_en, :unit_ne, :unit_en, :user_id, :office_id)
+  end
+
+end
