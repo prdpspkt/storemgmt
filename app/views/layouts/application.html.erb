@@ -12,18 +12,17 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <a class="navbar-brand text-center" href="<%= root_path %>">
-    <h1>SIMS</h1>
+   <%= image_tag("logo.png", height: '30' ) %>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <% if user_signed_in? %>
     <div class="collapse navbar-collapse" id="navbarsExample09">
-      <ul class="navbar-nav mr-auto round-menu bg-success">
+      <ul class="navbar-nav mr-auto">
         
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">जिन्सी
-            सामाग्री <i class="fa fa-sitemap"></i></a>
+          <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सामाग्रीहरू <i class="fa fa-sitemap"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="<%= office_item_categories_path %>">सामाग्रीको वर्गीकरण</a>
             <a class="dropdown-item" href="<%= office_items_path %>">सामाग्रीहरू</a>
@@ -50,7 +49,7 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">जिन्सी खाताहरू <i class="fa fa-list"></i></a>
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खाताहरू <i class="fa fa-list"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdown09">
             <a class="dropdown-item" href="<%= office_oeirt_ledger_path %>">खर्च भएर जाने जिन्सी सामानको खाता</a>
             <a class="dropdown-item" href="<%= office_oneirt_ledger_path %>">खर्च भएर नजाने जिन्सी सामानको खाता</a>
@@ -85,13 +84,13 @@
           </div>
         </li>
       </ul>
-      <ul class="navbar-nav mr-auto bg-warning round-menu">
+      <ul class="navbar-nav mr-auto bg-warning">
 
        <li class="nav-item">
             <a class="nav-link" href="<%= project_projects_path %>">आयोजनाहरू <i class="fa fa-sitemap"></i></a>
           </li>
          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">जिन्सी सामाग्रि</a>
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सामाग्रीहरू</a>
            <div class="dropdown-menu" aria-labelledby="dropdown09">
            <a class="dropdown-item" href="<%= project_item_categories_path %>">सामाग्रीहरुको वर्गीकरण(मूल)</a>
             <a class="dropdown-item" href="<%= project_items_path %>">सामाग्रीहरु(मूल)</a>
@@ -118,8 +117,12 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" data-method="delete" data-confirm="Are you sure to logout ?" href="<%= destroy_user_session_path %>"><i class="fa fa-sign-out"></i> </a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> प्रोफाइल <i class="fa fa-user"></i></a>
+          <div class="dropdown-menu" aria-labelledby="dropdown09">
+            <a class="dropdown-item" href="<%= edit_user_path(current_user) %>">प्रोफाइल सम्पादन गर्ने</a>
+            <a class="dropdown-item" data-method="delete" href="<%= destroy_user_session_path  %>">बाहिरिने</a>
+          </div>
         </li>
       </ul>
     </div>
