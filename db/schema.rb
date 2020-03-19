@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_18_112050) do
+ActiveRecord::Schema.define(version: 2020_03_19_074958) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -568,11 +568,6 @@ ActiveRecord::Schema.define(version: 2020_03_18_112050) do
     t.datetime "date"
     t.string "year"
     t.string "month"
-    t.string "vendor_name"
-    t.string "vendor_address"
-    t.string "vendor_phone"
-    t.string "vendor_registration_no"
-    t.string "vendor_pan"
     t.datetime "within_date"
     t.string "office_name"
     t.string "office_address"
@@ -588,6 +583,7 @@ ActiveRecord::Schema.define(version: 2020_03_18_112050) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "vendor_id"
   end
 
   create_table "office_repair_record_register_items", force: :cascade do |t|

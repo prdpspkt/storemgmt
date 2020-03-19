@@ -128,21 +128,21 @@
 <table class="table table-sm table-borderless">
   <tbody>
   <tr>
-    <td colspan="7">श्री ...............................</td>
+    <td colspan="7">श्री ...........</td>
   </tr>
   <tr>
-    <td colspan="7">मर्मत आदेश दिइएको व्यक्ति/निकायको नाम:</td>
+    <td colspan="7">मर्मत आदेश दिइएको व्यक्ति/निकायको नाम: <%= @repair_application_form.vendor.vendor_name %></td>
   </tr>
   <tr>
-    <td colspan="3">ठेगाना :</td>
-    <td colspan="4">फोन नं:</td>
+    <td colspan="3">ठेगाना : <%= @repair_application_form.vendor.vendor_address %></td>
+    <td colspan="4">फोन नं: <%= @repair_application_form.vendor.vendor_phone %></td>
   </tr>
   <tr>
-    <td colspan="3">संस्था दर्ता नं:</td>
-    <td colspan="4">प्यान नं :</td>
+    <td colspan="3">संस्था दर्ता नं: <%= @repair_application_form.vendor.vendor_registration %></td>
+    <td colspan="4">प्यान नं : <%= @repair_application_form.vendor.vendor_pan %></td>
   </tr>
   <tr>
-    <td colspan="7">माथि उल्लिखित सामानको मर्मत गरि मिति .........भित्र ....................कार्यालय .........स्थानमा बिल
+    <td colspan="7">माथि उल्लिखित सामानको मर्मत गरि मिति <%= @repair_application_form.within_date %> भित्र <%= @repair_application_form.office.office %>,  <%= @repair_application_form.office.address %> स्थानमा बिल
       /इन्भाइससहित बुझाउनुहोला ।
     </td>
   </tr>
@@ -156,22 +156,14 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>सिफारिस गर्ने शाखा प्रमुखको सहीः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>सिफारिस गर्ने प्राविधिकको सहीः</td>
-    <td>&nbsp;</td>
-    <td>स्वीकृत गर्ने कार्यालय प्रमुखको सहीः</td>
-    <td>&nbsp;</td>
+    <td colspan="3">सिफारिस गर्ने शाखा प्रमुखको सहीः</td>
+    <td colspan="2">सिफारिस गर्ने प्राविधिकको सहीः</td>
+    <td colspan="2">स्वीकृत गर्ने कार्यालय प्रमुखको सहीः</td>
   </tr>
   <tr>
-    <td>नामः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td>&nbsp;</td>
+    <td colspan="3">नामः <%= @repair_application_form.store_body.section_chief_name %></td>
+    <td colspan="2">नामः <%= @repair_application_form.technical_person_name %></td>
+    <td colspan="2">नामः <%= @repair_application_form.store_body.office_chief_name %></td>
   </tr>
   <tr>
     <td>दर्जाः</td>
