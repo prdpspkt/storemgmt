@@ -1,10 +1,10 @@
-class Office::ItemsController < ApplicationController
+class Project::ItemsController < ProjectController
   before_action :set_office_item, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_items
   # GET /office_items.json
   def index
-    @items = office(Office::Item)
+    @items = office(Project::Item)
   end
 
   # GET /office_items/1
@@ -14,7 +14,7 @@ class Office::ItemsController < ApplicationController
 
   # GET /office_items/new
   def new
-    @item = Office::Item.new
+    @item = Project::Item.new
   end
 
   # GET /office_items/1/edit
@@ -24,16 +24,16 @@ class Office::ItemsController < ApplicationController
   # POST /office_items
   # POST /office_items.json
   def create
-    @item = Office::Item.new(office_item_params)
+    @item = Project::Item.new(project_item_params)
     @item.user_id = current_user.id
     @item.office_id = current_office.id
-    @item_category = Office::ItemCategory.find(@item.item_category_id)
+    @item_category = Project::ItemCategory.find(@item.item_category_id)
     @item.unit_en = @item_category.unit_en
     @item.unit_ne = @item_category.unit_ne
     @item.item_register_page_no = new_item_register_page_no @item.item_classification_no
     respond_to do |format|
       if @item.save
-        format.html { redirect_to office_items_path, notice: 'Office item was successfully created.' }
+        format.html { redirect_to project_items_path, notice: 'Project item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class Office::ItemsController < ApplicationController
   def update
     respond_to do |format|
       if @item.update(office_item_params)
-        format.html { redirect_to office_items_path, notice: 'Office item was successfully updated.' }
+        format.html { redirect_to office_items_path, notice: 'Project item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -61,7 +61,7 @@ class Office::ItemsController < ApplicationController
   def destroy
     @item.destroy
     respond_to do |format|
-      if Office::Item.exists?(@item.id)
+      if Project::Item.exists?(@item.id)
         flash[:error] = @item.errors[:base][0].to_s
         format.html { redirect_to office_item_categories_url }
         format.json { head :no_content }
@@ -88,7 +88,7 @@ class Office::ItemsController < ApplicationController
     header = spreadsheet.row(1)
     items = (2..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      item = Office::Item.find_by_id(row["id"]) || Office::Item.new
+      item = Project::Item.find_by_id(row["id"]) || Project::Item.new
       begin
         item.attributes = row.to_hash
       rescue Exception => error
@@ -120,18 +120,18 @@ class Office::ItemsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_office_item
-    @item = Office::Item.find(params[:id])
+  def set_project_item
+    @item = Project::Item.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def office_item_params
-    params.require(:office_item).permit(:specification, :item_classification_no, :name_of_item_ne, :name_of_item_en, :item_category_id)
+  def project_item_params
+    params.require(:project_item).permit(:specification, :item_classification_no, :name_of_item_ne, :name_of_item_en, :item_category_id)
   end
 
   def new_item_register_page_no item_classification_no
     item_register_page_no = 1
-    items = office(Office::Item).where(item_classification_no: item_classification_no)
+    items = office(Project::Item).where(item_classification_no: item_classification_no)
     if items.count > 0
       item_register_page_no = items.last.item_register_page_no + 1
     end

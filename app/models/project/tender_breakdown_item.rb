@@ -1,6 +1,6 @@
 class Project::TenderBreakdownItem < ApplicationRecord
-  belongs_to :project_tender_breakdown
-  belongs_to :project_purchase_entry_item
+  belongs_to :tender_breakdown, class_name: "Project::TenderBreakdown"
+  belongs_to :purchase_entry_item, "Project::PurchaseEntry"
   has_one :pneirt, dependent: :destroy
   has_one :peirt, dependent: :destroy
 

@@ -28,9 +28,7 @@ class Office::RepairApplicationFormsController < ApplicationController
   # POST /repair_application_forms
   # POST /repair_application_forms.json
   def create
-    @vendor_id = params[:office_repair_application_form][:vendor_id]
     @repair_application_form =  Office::RepairApplicationForm.new(repair_application_form_params)
-    @repair_application_form = update_vendor_info @repair_application_form, @vendor_id
     @repair_application_form = update_general_information @repair_application_form
     @repair_application_form.application_no = new_repair_application_no
 

@@ -1,4 +1,4 @@
-class Office::StocksController < ApplicationController
+class Office::StocksController < ProjectController
   before_action :set_office_stock, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_stocks

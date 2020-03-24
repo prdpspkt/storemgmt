@@ -1,4 +1,4 @@
-class Office::ItemDisposalsController < ApplicationController
+class Office::ItemDisposalsController < ProjectController
   before_action :set_item_disposal, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /item_disposals

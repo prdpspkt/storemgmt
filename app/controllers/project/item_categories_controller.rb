@@ -1,4 +1,4 @@
-class Project::ItemCategoriesController < ApplicationController
+class Project::ItemCategoriesController < ProjectController
   before_action :set_item_category, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /item_categories
@@ -35,7 +35,7 @@ class Project::ItemCategoriesController < ApplicationController
     @item_category.user_id = current_user.id
     respond_to do |format|
       if @item_category.save
-        format.html { redirect_to office_item_categories_path, notice: 'Item category was successfully created.' }
+        format.html { redirect_to project_item_categories_path, notice: 'Item category was successfully created.' }
         format.json { render :show, status: :created, location: @item_category }
       else
         format.html { render :new }
@@ -49,7 +49,7 @@ class Project::ItemCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @item_category.update(item_category_params)
-        format.html { redirect_to office_item_categories_path, notice: 'Item category was successfully updated.' }
+        format.html { redirect_to project_item_categories_path, notice: 'Item category was successfully updated.' }
         format.json { render :show, status: :ok, location: @item_category }
       else
         format.html { render :edit }
@@ -95,7 +95,7 @@ class Project::ItemCategoriesController < ApplicationController
         item.attributes = row.to_hash
       rescue Exception => error
         flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
-        redirect_to office_item_categories_path and return
+        redirect_to project_item_categories_path and return
       end
       item.office_id = current_office.id
       item.user_id = current_user.id
@@ -112,7 +112,7 @@ class Project::ItemCategoriesController < ApplicationController
       end
       false
     end
-    redirect_to office_item_categories_path
+    redirect_to project_item_categories_path
   end
 
   def export

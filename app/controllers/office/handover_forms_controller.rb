@@ -1,5 +1,6 @@
 class Office::HandoverFormsController < ApplicationController
-  before_action :set_handover_form, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_ledger_entry]
+  before_action :set_handover_form, only: [:show, :edit, :update, :destroy, :accept, :transaction, :print]
+  before_action :set_print_information, only: :print
   load_and_authorize_resource except: [:create, :new]
   # GET /handover_forms
   # GET /handover_forms.json
@@ -58,7 +59,7 @@ class Office::HandoverFormsController < ApplicationController
     end
   end
 
-  def mark_as_final
+  def accept
    if(@handover_form.marked_as_final == false)
       @handover_form.marked_as_final = true
    else
@@ -68,7 +69,7 @@ class Office::HandoverFormsController < ApplicationController
     redirect_to(office_handover_form_path(@handover_form))
   end
 
-  def generate_ledger_entry
+  def transaction
     items = @handover_form.handover_form_items
     items.each do |item|
       item_transaction = Office::ItemTransaction.new(item.attributes.select{|key, value| Office::ItemTransaction.column_names.include? key})
@@ -76,12 +77,14 @@ class Office::HandoverFormsController < ApplicationController
       item_transaction.entry_no = @handover_form.form_no
       item_transaction.handover_form_item_id = item.id
       item_transaction.transaction_type = -1
+      item_transaction.item_classification_no = 47
       item_transaction.transaction_date = @handover_form.date
       item_transaction.remarks = @handover_form.handovered_office_name
       item_transaction.save
     end
     @handover_form.entry_generated = true
     @handover_form.save
+    redirect_to @handover_form
   end
 
   # DELETE /handover_forms/1
@@ -92,6 +95,11 @@ class Office::HandoverFormsController < ApplicationController
       format.html { redirect_to office_handover_forms_url, notice: 'Handover form was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def print
+    @office_handover_form = Office::HandoverForm.find(params[:id])
+    @office_handover_form_items = @office_handover_form.handover_form_items
   end
 
   private
@@ -112,6 +120,11 @@ class Office::HandoverFormsController < ApplicationController
       nhn = handover_forms.last.form_no + 1
     end
     nhn
+  end
+
+  def set_print_information
+    @office = current_office
+    @fiscal_year = current_fiscal_year
   end
 
 end

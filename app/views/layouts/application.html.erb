@@ -11,8 +11,8 @@
 
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand text-center" href="<%= root_path %>">
-   <%= image_tag("logo.png", height: '30' ) %>
+  <a class="navbar-brand text-center" href="<%= project_projects_path %>">
+   <%= image_tag("osims.png", height: '30' ) %>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -51,9 +51,9 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खाताहरू <i class="fa fa-list"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <a class="dropdown-item" href="<%= office_oeirt_ledger_path %>">खर्च भएर जाने जिन्सी सामानको खाता</a>
-            <a class="dropdown-item" href="<%= office_oneirt_ledger_path %>">खर्च भएर नजाने जिन्सी सामानको खाता</a>
-            <a class="dropdown-item" href="<%= office_item_assistance_registers_path %>">जिन्सी सहायक खाता</a>
+            <a class="dropdown-item" href="<%= expense_item_register_office_ledgers_url %>">खर्च भएर जाने जिन्सी सामानको खाता</a>
+            <a class="dropdown-item" href="<%= non_expense_item_register_office_ledgers_url %>">खर्च भएर नजाने जिन्सी सामानको खाता</a>
+            <a class="dropdown-item" href="<%= office_item_assistance_registers_url %>">जिन्सी सहायक खाताहरु</a>
             
           </div>
         </li>
@@ -84,38 +84,7 @@
           </div>
         </li>
       </ul>
-      <ul class="navbar-nav mr-auto bg-warning">
 
-       <li class="nav-item">
-            <a class="nav-link" href="<%= project_projects_path %>">आयोजनाहरू <i class="fa fa-sitemap"></i></a>
-          </li>
-         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सामाग्रीहरू</a>
-           <div class="dropdown-menu" aria-labelledby="dropdown09">
-           <a class="dropdown-item" href="<%= project_item_categories_path %>">सामाग्रीहरुको वर्गीकरण(मूल)</a>
-            <a class="dropdown-item" href="<%= project_items_path %>">सामाग्रीहरु(मूल)</a>
-          </div>
-        </li>
-
-          <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खरिद <i class="fa fa-shopping-cart"></i></a>
-           <div class="dropdown-menu" aria-labelledby="dropdown09">
-           <a class="dropdown-item" href="<%= project_purchase_orders_path %>">खरिद आदेश</a>
-            <a class="dropdown-item" href="<%= project_tenders_path %>">खरिद टेन्डरहरू</a>
-            <a class="dropdown-item" href="<%= project_tender_breakdowns_path %>">खरिद ब्रेकडाउनहरू</a>
-             <a class="dropdown-item" href="<%= project_purchase_entries_path %>">दाखिला</a>
-          </div>
-          
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">निकाशा <i class="fa fa-life-ring"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-              <a class="dropdown-item" href="<%= project_demands_path %>">माग फाराम</a>
-            <a class="dropdown-item" href="<%= project_releases_path %>">निकासी फाराम</a>
-            <a class="dropdown-item" href="<%= project_handover_forms_path %>">हस्तान्तरण फाराम</a>
-          </div>
-        </li>
-      </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> प्रोफाइल <i class="fa fa-user"></i></a>

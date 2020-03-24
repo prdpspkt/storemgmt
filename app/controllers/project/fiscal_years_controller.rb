@@ -1,4 +1,4 @@
-class Office::FiscalYearsController < ApplicationController
+class Office::FiscalYearsController < ProjectController
   before_action :set_fiscal_year, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /fiscal_years

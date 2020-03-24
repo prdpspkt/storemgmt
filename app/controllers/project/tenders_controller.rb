@@ -1,23 +1,23 @@
-class ProjectTendersController < ApplicationController
+class Project::TendersController < ProjectController
   before_action :set_project_tender, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_entry]
 
   # GET /project_tenders
   # GET /project_tenders.json
   def index
-    @project_tenders = current(ProjectTender)
+    @project_tenders = current(Project::Tender)
 
   end
 
   # GET /project_tenders/1
   # GET /project_tenders/1.json
   def show
-    @project_tender_item = ProjectTenderItem.new
+    @project_tender_item = Project::TenderItem.new
     @project_tender_items = @project_tender.project_tender_items
   end
 
   # GET /project_tenders/new
   def new
-    @project_tender = ProjectTender.new
+    @project_tender = Project::Tender.new
   end
 
   # GET /project_tenders/1/edit
@@ -27,7 +27,7 @@ class ProjectTendersController < ApplicationController
   # POST /project_tenders
   # POST /project_tenders.json
   def create
-    @project_tender = ProjectTender.new(project_tender_params)
+    @project_tender = Project::Tender.new(project_tender_params)
     @project_tender = update_general_information @project_tender
     respond_to do |format|
       if @project_tender.save
@@ -86,7 +86,7 @@ class ProjectTendersController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project_tender
-    @project_tender = ProjectTender.find(params[:id])
+    @project_tender = Project::Tender.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

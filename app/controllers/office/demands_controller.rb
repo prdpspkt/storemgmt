@@ -69,7 +69,7 @@ class Office::DemandsController < ApplicationController
     end
   end
 
-  def mark_as_final
+  def accept
     if @demand.marked_as_final == true
       @demand.marked_as_final = false
     else
@@ -78,7 +78,7 @@ class Office::DemandsController < ApplicationController
     @demand.save
     redirect_to office_demand_path(@demand)
   end
-  def generate_release_form
+  def release
     @release_form = Office::Release.new
     @release_form.received_by = @demand.demand_by
     @release_form.received_date = @demand.demand_date
@@ -96,6 +96,13 @@ class Office::DemandsController < ApplicationController
     @demand.entry_generated = true
     @demand.save
     redirect_to @release_form
+  end
+
+  def print
+    @office = current_office
+    @demand = Office::Demand.find(params[:id])
+    @demand_items = @demand.demand_items
+    @fy = Office::FiscalYear.find(@demand.fiscal_year_id).fy
   end
 
 

@@ -1,4 +1,4 @@
-class Office::StockItemsController < ApplicationController
+class Office::StockItemsController < ProjectController
   before_action :set_office_stock_item, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_stock_items

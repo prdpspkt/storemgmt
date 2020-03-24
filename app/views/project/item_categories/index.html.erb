@@ -4,7 +4,7 @@
 <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
   Import
 </a>
-<%= link_to("Export", office_item_categories_url(format: :xlsx), class: "btn btn-success" ) %>
+<%= link_to("Export", project_item_categories_url(format: :xlsx), class: "btn btn-success" ) %>
 </div>
 <table class="table data-table" id="dttb-item_categories" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -22,6 +22,6 @@
 
 <br>
 
-<%= link_to new_btn.html_safe, new_office_item_category_path %>
+<%= link_to new_btn.html_safe, new_project_item_category_path %>
 
-<%= render 'office/item_categories/new_import_form' %>
+<%= render 'project/item_categories/new_import_form' %>

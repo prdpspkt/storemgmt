@@ -1,4 +1,4 @@
-class Office::HandoverFormsController < ApplicationController
+class Office::HandoverFormsController < ProjectController
   before_action :set_handover_form, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_ledger_entry]
   load_and_authorize_resource except: [:create, :new]
   # GET /handover_forms

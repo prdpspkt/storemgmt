@@ -1,35 +1,35 @@
-class Office::PurchaseOrdersController < ApplicationController
+class Project::PurchaseOrdersController < ProjectController
   before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_purchase_entry]
-  load_and_authorize_resource except: [:create, :new]
+  load_and_authorize_resource  except: [:index]
   # GET /purchase_orders
   # GET /purchase_orders.json
   def index
-    @purchase_orders = current(Office::PurchaseOrder)
+    @purchase_orders = current(Project::PurchaseOrder)
   end
 
   # GET /purchase_orders/1
   # GET /purchase_orders/1.json
   def show
-    @purchase_order_item = Office::PurchaseOrderItem.new
-    @purchase_order_items = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
+    @purchase_order_item = Project::PurchaseOrderItem.new
+    @purchase_order_items = Project::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
   end
 
   # GET /purchase_orders/new
   def new
-    @purchase_order = Office::PurchaseOrder.new
+    @purchase_order = Project::PurchaseOrder.new
     @purchase_order.order_no = new_purchase_order_no
     @vendors = current(Office::Vendor)
   end
 
   # GET /purchase_orders/1/edit
   def edit
-    @vendors = current(Office::Vendor)
+    @vendors = current(Project::Vendor)
   end
 
   # POST /purchase_orders
   # POST /purchase_orders.json
   def create
-    @purchase_order = Office::PurchaseOrder.new(purchase_order_params)
+    @purchase_order = Project::PurchaseOrder.new(purchase_order_params)
     @vendor = Office::Vendor.find(@purchase_order.vendor_id)
     @purchase_order.user_id = current_user.id
     @purchase_order.office_id = current_office.id
@@ -67,7 +67,7 @@ class Office::PurchaseOrdersController < ApplicationController
   def destroy
     @purchase_order.destroy
     respond_to do |format|
-      format.html { redirect_to office_purchase_orders_url, notice: 'Purchase order was successfully destroyed.' }
+      format.html { redirect_to project_purchase_orders_url, notice: 'Purchase order was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -87,11 +87,11 @@ class Office::PurchaseOrdersController < ApplicationController
       purchase_entry = create_purchase_entry @purchase_order
       items = @purchase_order.purchase_order_items
       items.each do |item|
-        entry_item = Office::PurchaseEntryItem.new(item.attributes.select { |key, _| Office::PurchaseEntryItem.column_names.include? key })
+        entry_item = Project::PurchaseEntryItem.new(item.attributes.select { |key, _| Project::PurchaseEntryItem.column_names.include? key })
         entry_item.id = nil
         entry_item.purchase_entry_id = purchase_entry.id
         entry_item.total_amount = item.amount
-        entry_item.save
+        entry_item.save!
       end
       @purchase_order.entry_generated = true
       @purchase_order.save
@@ -101,22 +101,19 @@ class Office::PurchaseOrdersController < ApplicationController
 
   private
 
-  def can_unmark obj
-    (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_purchase_order
-    @purchase_order = Office::PurchaseOrder.find(params[:id])
+    @purchase_order = Project::PurchaseOrder.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def purchase_order_params
-    params.require(:office_purchase_order).permit(:vendor_name, :vendor_address, :vendor_registration, :vendor_phone, :vendor_pan, :order_no, :order_date, :order_decision_no, :order_decision_date, :date_to_receive_goods, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :section_chief_name, :section_chief_signed_date, :office_cheif_signed_date, :office_cheif_name, :user_id, :fy, :fiscal_year_id, :vendor_id, :office_id)
+    params.require(:project_purchase_order).permit(:vendor_name, :vendor_address, :vendor_registration, :vendor_phone, :vendor_pan, :order_no, :order_date, :order_decision_no, :order_decision_date, :date_to_receive_goods, :office_name, :office_address, :store_chief_name, :store_chief_signed_date, :section_chief_name, :section_chief_signed_date, :office_cheif_signed_date, :office_cheif_name, :user_id, :fy, :fiscal_year_id, :vendor_id, :office_id)
   end
 
   def new_purchase_order_no
-    pos = current(Office::PurchaseOrder)
+    pos = current(Project::PurchaseOrder)
     npon = 1
     if pos.count > 0
       npon = pos.last.order_no + 1
@@ -125,7 +122,7 @@ class Office::PurchaseOrdersController < ApplicationController
   end
 
   def create_purchase_entry purchase_order
-    purchase_entry = Office::PurchaseEntry.new
+    purchase_entry = Project::PurchaseEntry.new
     purchase_entry.entry_no = purchase_entry_no
     purchase_entry.entry_date = bs_today
     purchase_entry.purchase_handover_no = purchase_order.order_no
@@ -140,7 +137,7 @@ class Office::PurchaseOrdersController < ApplicationController
   end
 
   def purchase_entry_no
-    purchase_entries = current(Office::PurchaseEntry)
+    purchase_entries = current(Project::PurchaseEntry)
     purchase_entry_no = 1
     if purchase_entries.count > 0
       purchase_entry_no = purchase_entries.last.entry_no + 1

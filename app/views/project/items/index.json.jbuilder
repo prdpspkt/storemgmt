@@ -3,7 +3,7 @@ json.set! :data do
     json.item_category "
                        #{item.item_category.name_ne}
                        "
-    json.partial! 'office/items/item', item: item
+    json.partial! 'project/items/item', item: item
     json.unit_ne "#{item.item_category.unit_ne}"
     json.item_classification_no "#{nd item.item_classification_no}"
     json.item_register_page_no "#{nd item.item_register_page_no}"

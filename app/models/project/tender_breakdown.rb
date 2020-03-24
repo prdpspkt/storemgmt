@@ -1,8 +1,9 @@
 class Project::TenderBreakdown < ApplicationRecord
-  belongs_to :office
-  belongs_to :project_purchase_entry
-  belongs_to :project
-  has_many :project_tender_breakdown_items, dependent: :destroy
+  self.table_name = "project_tender_breakdowns"
+  belongs_to :office, class_name: "Office::Office"
+  belongs_to :purchase_entry, class_name: "Project::PurchaseEntry"
+  belongs_to :project, class_name: "Project::Project"
+  has_many :tender_breakdown_items, dependent: :destroy, class_name: "Project::TenderBreakdownItem"
   after_update :create_peirt_or_pneirt
 
   private

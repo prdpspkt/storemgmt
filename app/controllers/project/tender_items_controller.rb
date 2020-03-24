@@ -1,4 +1,4 @@
-class ProjectTenderItemsController < ApplicationController
+class Project::TenderItemsController < ProjectController
   before_action :set_project_tender_item, only: [:destroy, :edit, :update]
 
   # GET /project_tender_items

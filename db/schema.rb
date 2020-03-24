@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_125250) do
+ActiveRecord::Schema.define(version: 202003211024509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_125250) do
     t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "fiscal_years", force: :cascade do |t|
@@ -946,26 +947,38 @@ ActiveRecord::Schema.define(version: 2020_03_19_125250) do
     t.datetime "entry_date"
     t.string "bill_no"
     t.integer "entry_no"
+    t.string "store_chief_name"
+    t.string "store_chief_designation"
     t.datetime "store_chief_signed_date"
+    t.string "section_chief_name"
+    t.string "section_chief_designation"
     t.datetime "section_chief_signed_date"
+    t.string "office_chief_name"
+    t.string "office_chief_designation"
     t.datetime "office_chief_signed_date"
     t.integer "user_id"
     t.integer "office_id"
-    t.integer "fiscal_year_id"
-    t.integer "item_id"
-    t.integer "item_register_page_no"
-    t.string "purchase_handover_no"
+    t.string "fy"
     t.boolean "marked_as_final"
+    t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "purchase_tender_id"
+    t.integer "purchase_handover_no"
+    t.integer "store_body_id"
+    t.boolean "ledger_entry_generated"
     t.integer "purchase_order_id"
   end
 
   create_table "project_purchase_entry_items", force: :cascade do |t|
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
     t.string "specification"
     t.string "item_identification_no"
     t.string "model_no"
+    t.string "unit_ne"
+    t.string "unit_en"
     t.decimal "quantity"
     t.decimal "rate"
     t.decimal "amount_without_vat"
@@ -980,15 +993,13 @@ ActiveRecord::Schema.define(version: 2020_03_19_125250) do
     t.string "fy"
     t.integer "item_id"
     t.integer "fiscal_year_id"
-    t.integer "project_item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "country"
     t.string "size"
     t.string "approx_age"
     t.string "source"
     t.boolean "is_vatable"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.decimal "sku"
   end
 
   create_table "project_purchase_order_items", force: :cascade do |t|
@@ -999,37 +1010,46 @@ ActiveRecord::Schema.define(version: 2020_03_19_125250) do
     t.string "remarks"
     t.integer "purchase_order_id"
     t.integer "office_id"
-    t.integer "item_id"
+    t.integer "user_id"
     t.string "fy"
     t.integer "fiscal_year_id"
-    t.integer "project_id"
+    t.integer "item_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.decimal "amount_with_out_vat"
     t.decimal "vat"
+    t.decimal "amount_without_vat"
     t.boolean "is_vatable"
   end
 
   create_table "project_purchase_orders", force: :cascade do |t|
-    t.string "order_no"
+    t.string "vendor_name"
+    t.string "vendor_address"
+    t.string "vendor_registration"
+    t.string "vendor_phone"
+    t.string "vendor_pan"
+    t.integer "order_no"
     t.datetime "order_date"
     t.integer "order_decision_no"
     t.datetime "order_decision_date"
+    t.datetime "date_to_receive_goods"
     t.string "office_name"
     t.string "office_address"
-    t.integer "store_body_id"
+    t.string "store_chief_name"
     t.datetime "store_chief_signed_date"
-    t.datetime "office_chief_signed_date"
-    t.datetime "section_cheif_signed_date"
+    t.string "section_chief_name"
+    t.datetime "section_chief_signed_date"
+    t.datetime "office_cheif_signed_date"
+    t.string "office_cheif_name"
     t.integer "user_id"
     t.string "fy"
-    t.datetime "fiscal_year_id"
+    t.integer "fiscal_year_id"
     t.integer "office_id"
-    t.integer "project_id"
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "vendor_id"
+    t.integer "store_body_id"
+    t.boolean "entry_generated"
   end
 
   create_table "project_release_items", force: :cascade do |t|
@@ -1132,6 +1152,22 @@ ActiveRecord::Schema.define(version: 2020_03_19_125250) do
     t.datetime "updated_at", null: false
     t.integer "fiscal_year_id"
     t.integer "purchase_entry_id"
+  end
+
+  create_table "project_tenders", force: :cascade do |t|
+    t.integer "office_id"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.string "tender_no"
+    t.string "tender_name"
+    t.datetime "tender_date"
+    t.boolean "marked_as_final"
+    t.string "bidders_name"
+    t.string "bidders_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "store_body_id"
+    t.boolean "entry_generated"
   end
 
   create_table "projects", force: :cascade do |t|

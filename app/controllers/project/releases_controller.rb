@@ -1,4 +1,4 @@
-class Office::ReleasesController < ApplicationController
+class Office::ReleasesController < ProjectController
   before_action :set_office_release, only: [:generate_ledger_entry, :mark_as_final, :show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_releases

@@ -1,0 +1,74 @@
+<%= form_with(model: project_purchase_entry_item, local: true) do |form| %>
+  <% if project_purchase_entry_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_purchase_entry_item.errors.count, "error") %> prohibited this project_purchase_entry_item
+        from being saved:</h2>
+
+      <ul>
+        <% project_purchase_entry_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :purchase_entry_id, value: @purchase_entry.id %>
+  <div class="row">
+
+    <div class="col-sm-4">
+      <%= form.label :name_of_item %>
+      <%= form.select(:item_id, Office::Item.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control", required: :required}) %>
+    </div>
+
+    <div class="col-sm-2">
+      <%= form.label :quantity %>
+      <%= form.text_field :quantity, class: "form-control" %>
+    </div>
+
+    <div class="col-sm-2">
+      <%= form.label :rate %>
+      <%= form.text_field :rate, class: "form-control" %>
+    </div>
+    <div class="col-sm-2">
+     <%= form.label :is_vatable_? %>
+      <%= form.check_box(:is_vatable, class: "form-control", checked: true) %>
+    </div>
+
+    <div class="col-sm-2">
+      <%= form.label :remarks %>
+      <%= form.text_field :remarks, class: "form-control" %>
+    </div>
+  </div>
+  <div id="oneirt-items">
+    <div class="row">
+      <div class="col-sm-2">
+        <%= form.label :item_identification_no %>
+        <%= form.text_field :item_identification_no, class: "form-control" %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= form.label :model_no %>
+        <%= form.text_field :model_no, class: "form-control" %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= form.label :country %>
+        <%= form.text_field :country, class: "form-control" %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.label :approx_age %>
+        <%= form.text_field :approx_age, class: "form-control" %>
+      </div>
+
+      <div class="col-sm-2">
+        <%= form.label :source %>
+        <%= form.text_field :source, class: "form-control" %>
+      </div>
+      <div class="col-sm-2">
+        <%= form.label :size %>
+        <%= form.text_field :size, class: "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="separator"></div>
+      <%= form.submit :save, class: "float-right btn btn-success" %>
+<% end %>

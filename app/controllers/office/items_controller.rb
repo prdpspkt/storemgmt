@@ -5,6 +5,11 @@ class Office::ItemsController < ApplicationController
   # GET /office_items.json
   def index
     @items = office(Office::Item)
+    respond_to do |format|
+      format.html
+      format.json
+      format.xlsx
+    end
   end
 
   # GET /office_items/1
@@ -72,7 +77,7 @@ class Office::ItemsController < ApplicationController
     end
   end
 
-  def create_import
+  def import
     file = params[:file]
     spreadsheet = case File.extname(file.original_filename)
                   when ".csv" then

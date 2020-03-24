@@ -1,5 +1,6 @@
 class Office::PurchaseOrdersController < ApplicationController
-  before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_purchase_entry]
+  before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :accept, :entry, :print]
+  before_action :set_office_information
   load_and_authorize_resource except: [:create, :new]
   # GET /purchase_orders
   # GET /purchase_orders.json
@@ -72,7 +73,7 @@ class Office::PurchaseOrdersController < ApplicationController
     end
   end
 
-  def mark_as_final
+  def accept
     if can_unmark(@purchase_order)
       @purchase_order.marked_as_final = false
     else
@@ -82,7 +83,7 @@ class Office::PurchaseOrdersController < ApplicationController
     redirect_to @purchase_order
   end
 
-  def generate_purchase_entry
+  def entry
     if @purchase_order.marked_as_final == true
       purchase_entry = create_purchase_entry @purchase_order
       items = @purchase_order.purchase_order_items
@@ -99,11 +100,15 @@ class Office::PurchaseOrdersController < ApplicationController
     redirect_to purchase_entry
   end
 
-  private
-
-  def can_unmark obj
-    (obj.marked_as_final == true) && (DateTime.now < 3.days.after(obj.updated_at))
+  def print
+    @purchase_order_items = @purchase_order.purchase_order_items
+    @fy = Office::FiscalYear.find(@purchase_order.fiscal_year_id).fy
+    @amount = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).sum(:amount)
+    @vat = @amount * 0.13
+    @total = @amount + @vat
   end
+
+  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_purchase_order
@@ -155,4 +160,7 @@ class Office::PurchaseOrdersController < ApplicationController
     object
   end
 
+  def set_office_information
+    @office = current_office
+  end
 end

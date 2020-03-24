@@ -1,12 +1,12 @@
 json.set! :data do
   json.array! @purchase_orders do |purchase_order|
-    json.partial! 'office/purchase_orders/purchase_order', purchase_order: purchase_order
+    json.partial! 'project/purchase_orders/purchase_order', purchase_order: purchase_order
     json.order_date "#{ndate purchase_order.order_date}"
     json.vendor_name "#{ purchase_order.vendor.vendor_name}"
     json.vendor_address "#{ purchase_order.vendor.vendor_address}"
     if(purchase_order.marked_as_final != true)
       json.url "#{link_to show_btn.html_safe, purchase_order }
-                #{link_to edit_btn.html_safe, edit_office_purchase_order_path(purchase_order)}
+                #{link_to edit_btn.html_safe, edit_project_purchase_order_path(purchase_order)}
                 #{link_to destroy_btn.html_safe, purchase_order, method: :delete, data: { confirm: 'Are you sure?' }}
                "
     else

@@ -1,5 +1,5 @@
 class Office::ReleasesController < ApplicationController
-  before_action :set_office_release, only: [:generate_ledger_entry, :mark_as_final, :show, :edit, :update, :destroy]
+  before_action :set_office_release, only: [:transaction, :accept, :show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_releases
   # GET /office_releases.json
@@ -31,7 +31,7 @@ class Office::ReleasesController < ApplicationController
     end
   end
 
-  def mark_as_final
+  def accept
     if @office_release.marked_as_final == true
       @office_release.marked_as_final = false
       @office_release.save
@@ -42,7 +42,7 @@ class Office::ReleasesController < ApplicationController
     redirect_to @office_release
   end
 
-  def generate_ledger_entry
+  def transaction
     @items = @office_release.release_items
     @items.each do |item|
       item_transaction = Office::ItemTransaction.new(item.attributes.select{|key, _| Office::ItemTransaction.column_names.include? key})
@@ -58,7 +58,12 @@ class Office::ReleasesController < ApplicationController
       item.save
       redirect_to @office_release
     end
+  end
 
+  def print
+    @office = current_office
+    @office_release = Office::Release.find(params[:id])
+    @office_release_items = @office_release.release_items
   end
 
   private

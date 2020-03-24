@@ -4,12 +4,12 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   protect_from_forgery
-
-  #rescue_from Exception do |exception|
+  #
+  # rescue_from Exception do |exception|
   #  flash[:error] = "#{exception_message exception}"
   #  logger.debug("#{exception.class.to_s}: #{exception.message}")
   #  redirect_to request.referrer || root_path
-  #end
+  # end
 
 
   private

@@ -1,7 +1,7 @@
-class ProjectTenderBreakdownItemsController < ApplicationController
+class Project::TenderBreakdownItemsController < ProjectController
   before_action :set_project_tender_breakdown_item, only: [:show, :edit, :update, :destroy]
 
-  # GET /project_tender_breakdown_items
+  # GET /project_tenrakder_breakdown_items
   # GET /project_tender_breakdown_items.json
   def index
     ptbis = ProjectTenderBreakdownItem.all

@@ -1,4 +1,4 @@
-class Project::ProjectsController < ApplicationController
+class Project::ProjectsController < ProjectController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
 load_and_authorize_resource
   # GET /projects

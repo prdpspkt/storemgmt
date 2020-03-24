@@ -1,0 +1,141 @@
+<table class="table table-condensed table-sm table-borderless">
+  <tbody>
+  <tr>
+    <td colspan="6" class="text-center gov_name"><%= @office.gov %></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="text-center min_name"><%= @office.ministry %></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="text-center off_name"><%= @office.office %></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="text-center min_name"><%= @office.address %></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="text-center min_name">कार्यालय कोड नं.:</td>
+  </tr>
+  <tr>
+    <td colspan="6" class="text-center form_name">माग फारम</td>
+  </tr>
+
+  <tr>
+    <td colspan="6" class="text-right">आ.व. <%= nd @fy %></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="text-right">माग नं: <%= nd @demand.demand_no %></td>
+  </tr>
+  <tr>
+    <td colspan="6" class="text-right">मितिः <%= ndate @demand.demand_date %></td>
+  </tr>
+  </tbody>
+</table>
+<table class="table table-condensed table-bordered">
+  <tbody>
+  <tr>
+    <td rowspan="2">क्र.सं.</td>
+    <td rowspan="2">सामानको नाम</td>
+    <td rowspan="2">स्पेलसिफिकेसन</td>
+    <td colspan="2">माग गरिएको</td>
+    <td rowspan="2">कैफियत</td>
+  </tr>
+  <tr>
+    <td>एकाइ</td>
+    <td>परिमाण</td>
+  </tr>
+  <tr>
+    <td>१</td>
+    <td>२</td>
+    <td>३</td>
+    <td>४</td>
+    <td>५</td>
+    <td>६</td>
+  </tr>
+  <% @demand_items.each do |item| %>
+    <tr>
+      <td></td>
+      <td class="item_name"><%= item.name_of_item_ne %></td>
+      <td><%= item.specification %></td>
+      <td><%= item.unit_ne %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= item.remark %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<table class="table table-condensed table-sm table-borderless">
+  <tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>माग गर्नेको दस्तखतः</td>
+    <td>सिफारिस गर्नेको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="fa fa-check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>नामः <%= @demand.demand_by %></td>
+    <td>नामः <%= @demand.recommended_by %></td>
+    <td>&nbsp;</td>
+    <td>ख) मौज्दातबाट दिनु ।<%= '<i class="fa fa-check"></i>'.html_safe if @demand.needed_to_purchase == false  %></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>मितिः <%= ndate @demand.demand_date %></td>
+    <td>मितिः <%= ndate @demand.recommended_date %></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>प्रयोजनः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>आदेश दिनेको दस्तखतः</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>मितिः <%= ndate @demand.ordered_date %></td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>मालसामान बुझिलिनेको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>जिन्सी खातामा चढाउनेको दस्तखतः</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>मितिः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>मितिः <%= ndate @demand.recorded_date %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

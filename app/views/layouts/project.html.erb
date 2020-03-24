@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>सरकारी भण्डार व्यवस्थापन - <%= @title %></title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true %>
+  <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+  <a class="navbar-brand text-center" href="<%= root_path %>">
+   <%= image_tag("psims.png", height: '30' ) %>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <% if user_signed_in? %>
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+      <ul class="navbar-nav mr-auto">
+       <li class="nav-item">
+            <a class="nav-link" href="<%= project_projects_path %>">आयोजनाहरू <i class="fa fa-sitemap"></i></a>
+          </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सामाग्रीहरू</a>
+           <div class="dropdown-menu" aria-labelledby="dropdown09">
+           <a class="dropdown-item" href="<%= project_item_categories_path %>">सामाग्रीहरुको वर्गीकरण(मूल)</a>
+            <a class="dropdown-item" href="<%= project_items_path %>">सामाग्रीहरु(मूल)</a>
+          </div>
+        </li>
+
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खरिद <i class="fa fa-shopping-cart"></i></a>
+           <div class="dropdown-menu" aria-labelledby="dropdown09">
+           <a class="dropdown-item" href="<%= project_purchase_orders_path %>">खरिद आदेश</a>
+            <a class="dropdown-item" href="<%= project_tenders_path %>">खरिद टेन्डरहरू</a>
+            <a class="dropdown-item" href="<%= project_tender_breakdowns_path %>">खरिद ब्रेकडाउनहरू</a>
+             <a class="dropdown-item" href="<%= project_purchase_entries_path %>">दाखिला</a>
+          </div>
+          
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">निकाशा <i class="fa fa-life-ring"></i></a>
+          <div class="dropdown-menu" aria-labelledby="dropdown09">
+              <a class="dropdown-item" href="<%= project_demands_path %>">माग फाराम</a>
+            <a class="dropdown-item" href="<%= project_releases_path %>">निकासी फाराम</a>
+            <a class="dropdown-item" href="<%= project_handover_forms_path %>">हस्तान्तरण फाराम</a>
+          </div>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> प्रोफाइल <i class="fa fa-user"></i></a>
+          <div class="dropdown-menu" aria-labelledby="dropdown09">
+            <a class="dropdown-item" href="<%= edit_user_registration_path(current_user) %>">प्रोफाइल सम्पादन गर्ने</a>
+            <a class="dropdown-item" data-method="delete" href="<%= destroy_user_session_path  %>">बाहिरिने</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  <% end %>
+</nav>
+<div class="container" style="margin-top: 20px">
+  <% if notice %>
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+  <strong>जानकारी</strong> <br> <%= notice %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  <% end %>
+  <% flash.each do |key, value| %>
+    <% if key == "error" %>
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+      <strong>त्रुटी</strong> <br> <%= value.html_safe %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+      <% end %>
+  <% end %>
+  <%= yield %>
+</div>
+<script type="text/javascript">
+
+    $(".data-table").dataTable();
+</script>
+
+<script type="text/javascript">
+  $(".date-picker").nepaliDatePicker();
+    // $(".date-picker").on("click", function () {
+    //     $(this).nepaliDatePicker();
+    // });
+    // $(".date-picker").on("focus", function () {
+    //     $(this).nepaliDatePicker();
+    // });
+</script>
+</body>
+</html>

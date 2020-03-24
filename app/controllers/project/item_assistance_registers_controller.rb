@@ -1,4 +1,4 @@
-class Office::ItemAssistanceRegistersController < ApplicationController
+class Office::ItemAssistanceRegistersController < ProjectController
   before_action :set_item_assistance_register, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /item_assistance_registers

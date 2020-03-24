@@ -1,10 +1,10 @@
-class ProjectItemsController < ApplicationController
+class Project::ProjectItemsController < ProjectController
   before_action :set_item, only: [:show, :edit, :update, :destroy]
 
   # GET /items
   # GET /items.json
   def index
-    @project_items = office(ProjectItem)
+    @project_items = office(Project::ProjectItem)
   end
 
   # GET /items/1
@@ -14,7 +14,7 @@ class ProjectItemsController < ApplicationController
 
   # GET /items/new
   def new
-    @project_item = ProjectItem.new
+    @project_item = Project::ProjectItem.new
   end
 
   # GET /items/1/edit
@@ -24,10 +24,10 @@ class ProjectItemsController < ApplicationController
   # POST /items
   # POST /items.json
   def create
-    @project_item = ProjectItem.new(item_params)
+    @project_item = Project::ProjectItem.new(item_params)
     @project_item.office_id = current_office.id
     @project_item.user_id = current_user.id
-    @project_item_category = ProjectItemCategory.find(@project_item.project_item_category_id)
+    @project_item_category = Project::ItemCategory.find(@project_item.project_item_category_id)
     @project_item.unit_ne = @project_item_category.unit_ne
     @project_item.unit_en = @project_item_category.unit_en
     @project_item.item_register_page_no = new_item_register_page_no
@@ -69,16 +69,16 @@ class ProjectItemsController < ApplicationController
   private
   # Use callbacks to share common setup or constraints between actions.
   def set_item
-    @project_item = ProjectItem.find(params[:id])
+    @project_item = Project::ProjectItem.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_params
-    params.require(:project_item).permit(:name_of_item_ne, :specification, :name_of_item_en, :project_item_category_id)
+    params.require(:project_project_item).permit(:name_of_item_ne, :specification, :name_of_item_en, :project_item_category_id)
   end
 
   def new_item_register_page_no
-    project_items = current(ProjectItem)
+    project_items = current(Project::ProjectItem)
     irpn = 1
     if project_items.count > 0
       irpn = project_items.last.item_register_page_no + 1

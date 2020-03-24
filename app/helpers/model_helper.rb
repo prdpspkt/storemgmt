@@ -9,6 +9,8 @@ module ModelHelper
   end
 
 
+
+
   def set_office_item_information item_id, object
     @office_item = Office::Item.find(item_id)
     @office_item.attributes.each do |key, value|

@@ -14,11 +14,11 @@
   <div class="row">
     <div class="col-6">
       <%= form.label "दाखिला नं" %>
-      <%= form.select(:project_purchase_entry_id, @purchase_entries.collect{|ppe| ["#{nd(ppe.entry_no)}(#{ ndate(ppe.entry_date)})", ppe.id]}, {include_blank:true}, {class: "form-control"}) %>
+      <%= form.select(:purchase_entry_id, @purchase_entries.collect{|ppe| ["#{nd(ppe.entry_no)}(#{ ndate(ppe.entry_date)})", ppe.id]}, {include_blank:true}, {class: "form-control"}) %>
     </div>
     <div class="col-6">
       <%= form.label "आयोजनाको नाम" %>
-      <%= form.select(:project_id, current_user.projects.collect { |project| [project.name_of_project_en, project.id] }, {include_blank: true}, {class: "form-control", required: :required}) %>
+      <%= form.select(:project_id, @projects.collect { |project| [project.name_of_project_en, project.id] }, {include_blank: true}, {class: "form-control", required: :required}) %>
     </div>
   </div>
   <div class="separator"></div>

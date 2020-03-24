@@ -1,12 +1,13 @@
 class Project::Tender < ApplicationRecord
-  has_many :project_tender_items, dependent: :destroy
-  belongs_to :office
-  has_one :project_purchase_entry
+  self.table_name = "project_tenders"
+  has_many :tender_items, dependent: :destroy, class_name: "Project::TenderItem"
+  belongs_to :office, class_name: "Office::Office"
+  has_one :purchase_entry, class_name:  "Project::PurchaseEntry"
   after_update :create_entry
 
   private
   def create_entry
-    items = self.project_tender_items
+    items = self.tender_items
     if self.entry_generated == true
       items.each do |item|
         if item.item_classification_no == 47

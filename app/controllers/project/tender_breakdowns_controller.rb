@@ -1,10 +1,10 @@
-class ProjectTenderBreakdownsController < ApplicationController
+class Project::TenderBreakdownsController < ProjectController
   before_action :set_project_tender_breakdown, only: [:show, :edit, :update, :destroy, :marked_as_final]
 
   # GET /project_tender_breakdowns
   # GET /project_tender_breakdowns.json
   def index
-    @project_tender_breakdowns = current_office.project_tender_breakdowns
+    @project_tender_breakdowns = current(Project::TenderBreakdown)
   end
 
   # GET /project_tender_breakdowns/1
@@ -32,13 +32,15 @@ class ProjectTenderBreakdownsController < ApplicationController
 
   # GET /project_tender_breakdowns/new
   def new
-    @project_tender_breakdown = ProjectTenderBreakdown.new
-    @tenders = ProjectTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
+    @project_tender_breakdown = Project::TenderBreakdown.new
+    @tenders = Project::Tender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
+    @purchase_entries = current(Project::PurchaseEntry)
+    @projects = office(Project::Project)
   end
 
   # GET /project_tender_breakdowns/1/edit
   def edit
-    @tenders = ProjectTender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
+    @tenders = Project::Tender.where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).where(marked_as_final: true)
   end
 
   # POST /project_tender_breakdowns
@@ -103,7 +105,7 @@ class ProjectTenderBreakdownsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project_tender_breakdown
-    @project_tender_breakdown = ProjectTenderBreakdown.find(params[:id])
+    @project_tender_breakdown = Project::TenderBreakdown.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
