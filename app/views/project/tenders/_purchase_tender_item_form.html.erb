@@ -1,17 +1,17 @@
-<%= form_with(model: project_tender_item, local: true) do |form| %>
-  <% if project_tender_item.errors.any? %>
+<%= form_with(model: tender_item, local: true) do |form| %>
+  <% if tender_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_tender_item.errors.count, "error") %> prohibited this project_tender_item
+      <h2><%= pluralize(tender_item.errors.count, "error") %> prohibited this project_tender_item
         from being saved:</h2>
 
       <ul>
-        <% project_tender_item.errors.full_messages.each do |message| %>
+        <% tender_item.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
-  <%= form.hidden_field :project_tender_id, value: @project_tender.id %>
+  <%= form.hidden_field :tender_id, value: @tender.id %>
   <div class="row">
     <div class="col-sm-4">
       <%= form.label :item_classification_no %>
@@ -20,7 +20,7 @@
 
     <div class="col-sm-6">
       <%= form.label :name_of_item %>
-      <%= form.select(:project_item_id, ProjectItem.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control", required: :required}) %>
+      <%= form.select(:item_id, Project::Item.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control", required: :required}) %>
     </div>
 
     <div class="col-sm-2">

@@ -1154,6 +1154,38 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "purchase_entry_id"
   end
 
+  create_table "project_tender_items", force: :cascade do |t|
+    t.integer "store_body_id"
+    t.decimal "quantity"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.datetime "received_date"
+    t.integer "tender_id"
+    t.string "fy"
+    t.integer "fiscal_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "item_id"
+    t.decimal "sku"
+    t.integer "item_classification_no"
+    t.string "specification"
+    t.string "item_identification_no"
+    t.string "model_no"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.boolean "is_vatable"
+    t.decimal "amount_without_vat"
+    t.decimal "vat"
+    t.decimal "other_expense"
+    t.string "country"
+    t.string "remarks"
+    t.decimal "total_amount"
+    t.integer "item_register_page_no"
+  end
+
   create_table "project_tenders", force: :cascade do |t|
     t.integer "office_id"
     t.integer "user_id"
@@ -1168,6 +1200,34 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "updated_at", null: false
     t.integer "store_body_id"
     t.boolean "entry_generated"
+  end
+
+  create_table "project_transactions", force: :cascade do |t|
+    t.string "model"
+    t.string "item_identification_no"
+    t.string "country_of_origin"
+    t.integer "office_item_id"
+    t.integer "item_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.integer "user_id"
+    t.datetime "transaction_date"
+    t.integer "transaction_type"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.decimal "quantity"
+    t.integer "purchase_entry_item_id"
+    t.string "remarks"
+    t.decimal "sku"
+    t.integer "release_item_id"
+    t.integer "entry_no"
+    t.string "country"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.integer "handover_form_item_id"
+    t.integer "item_classification_no"
+    t.boolean "in_use"
   end
 
   create_table "projects", force: :cascade do |t|

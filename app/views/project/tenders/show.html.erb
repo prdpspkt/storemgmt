@@ -7,30 +7,30 @@
     <th>बोलपत्र दाताको ठेगाना</th>
   </tr>
   <tr>
-    <td><%= nd @project_tender.tender_no %></td>
-    <td><%= @project_tender.tender_name %></td>
-    <td><%= @project_tender.bidders_name %></td>
-    <td><%= @project_tender.bidders_address %></td>
+    <td><%= nd @tender.tender_no %></td>
+    <td><%= @tender.tender_name %></td>
+    <td><%= @tender.bidders_name %></td>
+    <td><%= @tender.bidders_address %></td>
   </tr>
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_tenders_path %>
-  <% if can_unmark(@project_tender) && @project_tender.entry_generated != true %>
-    <%= link_to before_final_btn.html_safe, project_tender_maf_path(@project_tender), data: { method: :post} %>
+  <% if can_unmark(@tender) && @tender.entry_generated != true %>
+    <%= link_to before_final_btn.html_safe, accept_project_tender_url(@tender), data: { method: :post} %>
   <% end %>
-  <% if @project_tender.entry_generated == true %>
-    <%= link_to print_entry_big_btn.html_safe, project_main_entry_report_path(@project_tender) %>
+  <% if @tender.entry_generated == true %>
+    <%= link_to print_entry_big_btn.html_safe, print_project_tender_url(@tender) %>
   <% end  %>
-  <% if @project_tender.marked_as_final != true  %>
-    <%= link_to edit_big_btn.html_safe, edit_project_tender_path(@project_tender) %>
-    <%= link_to final_btn.html_safe, project_tender_maf_path(@project_tender), data: {method: :post} %>
+  <% if @tender.marked_as_final != true  %>
+    <%= link_to edit_big_btn.html_safe, edit_project_tender_path(@tender) %>
+    <%= link_to final_btn.html_safe, accept_project_tender_url(@tender), data: {method: :post} %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, edit_project_tender_path(@project_tender) %>
+  <%= link_to print_big_btn.html_safe, edit_project_tender_path(@tender) %>
 </div>
-<% if @project_tender.marked_as_final != true %>
+<% if @tender.marked_as_final != true %>
   <div class="separator"></div>
 <h2> खरिद गर्ने सामानहरू थप्ने </h2>
-<%= render 'project_tenders/purchase_tender_item_form', project_tender_item: @project_tender_item %>
+<%= render 'purchase_tender_item_form', tender_item: @tender_item %>
 <div class="separator"></div>
   <% end %>
 <h2>थप गरिएका सामाग्रीहरू</h2>
@@ -45,7 +45,7 @@
     <th></th>
   </tr>
   <% @i = 1 %>
-  <% @project_tender_items.each do |item| %>
+  <% @tender_items.each do |item| %>
     <tr>
       <td><%= nd @i %></td>
       <td><%= item.name_of_item_ne %></td>
@@ -54,9 +54,9 @@
       <td><%= nd item.rate %></td>
       <td><%= nd item.amount %></td>
       <td>
-        <% if @project_tender.marked_as_final != true %>
+        <% if @tender.marked_as_final != true %>
           <% if item.item_classification_no == 47 %>
-          <%= link_to(edit_btn.html_safe, edit_project_tender_item_path(item)) %>
+          <%= link_to(edit_btn.html_safe, edit_tender_item_path(item)) %>
             <% end  %>
           <%= link_to(destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure ? This cannot be undone."}) %>
         <% end %>

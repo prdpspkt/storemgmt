@@ -36,7 +36,7 @@ class Office::RepairRecordRegistersController < ApplicationController
     @repair_record_register.page_no = new_page_no
     @repair_record_register = set_current_information @repair_record_register
     @repair_record_register.store_body_id = current_control_body.id
-    @repair_record_register_item.price = (@item_transaction.amount / @item_transaction.quantity)
+    @repair_record_register.price = (@item_transaction.amount / @item_transaction.quantity)
     respond_to do |format|
       if @repair_record_register.save
         format.html { redirect_to @repair_record_register, notice: 'Repair record register was successfully created.' }

@@ -1,5 +1,6 @@
 class Office::ItemAssistanceRegistersController < ApplicationController
-  before_action :set_item_assistance_register, only: [:show, :edit, :update, :destroy]
+  before_action :set_item_assistance_register, only: [:show, :edit, :update, :destroy, :print]
+  before_action :set_office_information, only: [:print]
   load_and_authorize_resource except: [:create, :new]
   # GET /item_assistance_registers
   # GET /item_assistance_registers.json
@@ -60,6 +61,10 @@ class Office::ItemAssistanceRegistersController < ApplicationController
     end
   end
 
+  def print
+    @item_assistance_register_items = @item_assistance_register.item_assistance_register_items
+  end
+
   # DELETE /item_assistance_registers/1
   # DELETE /item_assistance_registers/1.json
   def destroy
@@ -88,4 +93,9 @@ class Office::ItemAssistanceRegistersController < ApplicationController
       end
       niar
     end
+  def set_office_information
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+    @cb = current_control_body
+  end
 end

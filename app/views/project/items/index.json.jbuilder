@@ -9,7 +9,7 @@ json.set! :data do
     json.item_register_page_no "#{nd item.item_register_page_no}"
     json.id "#{nd item.id}"
     json.url "
-             #{link_to edit_btn.html_safe, edit_office_item_path(item)}
+             #{link_to edit_btn.html_safe, edit_project_item_path(item)}
              #{link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: 'Are you sure?'}}
              "
   end

@@ -1,5 +1,4 @@
 class Project::TenderItem < ApplicationRecord
+  self.table_name = "project_tender_items"
   belongs_to :tender, class_name: "Project::Tender"
-  has_one :ptneit, :class_name => 'Project::Ptneit'
-  has_one :pteit, :class_name => 'Project::Pteit'
 end

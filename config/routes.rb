@@ -29,13 +29,13 @@ Rails.application.routes.draw do
     resources :repair_record_register_items
     resources :repair_record_registers do
       member do
-        post "print"
+        get "print"
       end
     end
     resources :repair_application_form_items
     resources :repair_application_forms do
       member do
-        post "print"
+        get "print"
         post "accept"
       end
     end
@@ -49,7 +49,7 @@ Rails.application.routes.draw do
     resources :item_assistance_register_items
     resources :item_assistance_registers do
       member do
-        post "print"
+        get "print"
       end
     end
     resources :evaluation_items
@@ -190,7 +190,7 @@ Rails.application.routes.draw do
     resources :repair_application_form_items
     resources :repair_application_forms do
       member do
-        post "print"
+        get "print"
         post "accept"
       end
     end
@@ -246,14 +246,16 @@ Rails.application.routes.draw do
       member do
         get "print"
         post "accept"
-        post "posting"
+        post "transaction"
       end
     end
     resources :purchase_order_items
     resources :purchase_orders do
-      post "print"
+      member do
+      get "print"
       post "accept"
-      post "entry"
+      post "transaction"
+        end
     end
 
     resources :demand_items
@@ -266,8 +268,9 @@ Rails.application.routes.draw do
     end
     resources :items do
       collection do
-        post "print"
-        post "print_stocking"
+        get "print"
+        get "print_stocking"
+        post "import"
       end
     end
     resources :tenders do
@@ -277,6 +280,7 @@ Rails.application.routes.draw do
         post "entry"
       end
     end
+    resources :tender_items
     resources :personnels do
       collection do
         post "print"
@@ -285,7 +289,7 @@ Rails.application.routes.draw do
     resources :item_categories do
       collection do
         post "import"
-        post "print"
+        get "print"
       end
     end
     resources :fiscal_years

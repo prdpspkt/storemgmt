@@ -1,32 +1,32 @@
 class Project::ItemsController < ProjectController
-  before_action :set_office_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_project_item, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
-  # GET /office_items
-  # GET /office_items.json
+  # GET /project_items
+  # GET /project_items.json
   def index
     @items = office(Project::Item)
   end
 
-  # GET /office_items/1
-  # GET /office_items/1.json
+  # GET /project_items/1
+  # GET /project_items/1.json
   def show
   end
 
-  # GET /office_items/new
+  # GET /project_items/new
   def new
     @item = Project::Item.new
   end
 
-  # GET /office_items/1/edit
+  # GET /project_items/1/edit
   def edit
   end
 
-  # POST /office_items
-  # POST /office_items.json
+  # POST /project_items
+  # POST /project_items.json
   def create
     @item = Project::Item.new(project_item_params)
     @item.user_id = current_user.id
-    @item.office_id = current_office.id
+    @item.project_id = current_project.id
     @item_category = Project::ItemCategory.find(@item.item_category_id)
     @item.unit_en = @item_category.unit_en
     @item.unit_ne = @item_category.unit_ne
@@ -42,12 +42,12 @@ class Project::ItemsController < ProjectController
     end
   end
 
-  # PATCH/PUT /office_items/1
-  # PATCH/PUT /office_items/1.json
+  # PATCH/PUT /project_items/1
+  # PATCH/PUT /project_items/1.json
   def update
     respond_to do |format|
-      if @item.update(office_item_params)
-        format.html { redirect_to office_items_path, notice: 'Project item was successfully updated.' }
+      if @item.update(project_item_params)
+        format.html { redirect_to project_items_path, notice: 'Project item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }
@@ -56,23 +56,23 @@ class Project::ItemsController < ProjectController
     end
   end
 
-  # DELETE /office_items/1
-  # DELETE /office_items/1.json
+  # DELETE /project_items/1
+  # DELETE /project_items/1.json
   def destroy
     @item.destroy
     respond_to do |format|
       if Project::Item.exists?(@item.id)
         flash[:error] = @item.errors[:base][0].to_s
-        format.html { redirect_to office_item_categories_url }
+        format.html { redirect_to project_item_categories_url }
         format.json { head :no_content }
       else
-        format.html { redirect_to office_item_categories_url, notice: "Successfully deleted." }
+        format.html { redirect_to project_item_categories_url, notice: "Successfully deleted." }
         format.json { head :no_content }
       end
     end
   end
 
-  def create_import
+  def import
     file = params[:file]
     spreadsheet = case File.extname(file.original_filename)
                   when ".csv" then
@@ -83,7 +83,7 @@ class Project::ItemsController < ProjectController
                     Roo::Excelx.new(file.path)
                   else
                     flash[:error] = " अपलोड गरिएको फाइल <b> #{file.original_filename} </b> को पहिचान हुन सकेन |"
-                    redirect_to office_items_path and return
+                    redirect_to project_items_path and return
                   end
     header = spreadsheet.row(1)
     items = (2..spreadsheet.last_row).map do |i|
@@ -93,7 +93,7 @@ class Project::ItemsController < ProjectController
         item.attributes = row.to_hash
       rescue Exception => error
         flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
-        redirect_to office_items_path and return
+        redirect_to project_items_path and return
       end
       item.office_id = current_office.id
       item.user_id = current_user.id
@@ -113,7 +113,7 @@ class Project::ItemsController < ProjectController
       end
       false
     end
-    redirect_to office_items_path
+    redirect_to project_items_path
   end
 
 

@@ -1,7 +1,7 @@
 @serial = 1
 json.set! :data do
   json.array! @purchase_entries do |project_entry|
-    json.partial! 'project/purchase_entries/project_purchase_entry', project_purchase_entry: project_entry
+    json.partial! '/project/purchase_entries/purchase_entry', project_purchase_entry: project_entry
     if project_entry.marked_as_final != true
       json.url "
                #{link_to show_btn.html_safe, project_entry }

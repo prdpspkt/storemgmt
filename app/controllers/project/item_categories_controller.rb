@@ -74,7 +74,7 @@ class Project::ItemCategoriesController < ProjectController
     end
   end
 
-  def create_import
+  def import
     file = params[:file]
     spreadsheet = case File.extname(file.original_filename)
                   when ".csv" then

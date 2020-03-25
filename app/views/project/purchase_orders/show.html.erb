@@ -25,13 +25,13 @@
   <%= link_to edit_big_btn.html_safe, edit_project_purchase_order_path(@purchase_order) %>
   <% end %>
   <% if @purchase_order.marked_as_final == false %>
-    <%= link_to final_btn.html_safe, project_mark_po_as_final_url(@purchase_order), method: :post, data: {confirm: "के तपाइँ स्वीकृत गर्न चाहानु हुन्छ ? You will have only 3 days to modify data."} %>
+    <%= link_to final_btn.html_safe, accept_project_purchase_order_path(@purchase_order), method: :post, data: {confirm: "के तपाइँ स्वीकृत गर्न चाहानु हुन्छ ? You will have only 3 days to modify data."} %>
   <% end %>
   <% if @purchase_order.marked_as_final == true && @purchase_order.entry_generated == false  %>
-    <%= link_to before_final_btn.html_safe, project_mark_po_as_final_url(@purchase_order), method: :post %>
+    <%= link_to before_final_btn.html_safe, accept_project_purchase_order_url(@purchase_order), method: :post %>
     <%= link_to purchase_entry_btn.html_safe, project_generate_purchase_entry_url(@purchase_order), method: :post %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, "/project/report/purchase_order/#{@purchase_order.id}" %>
+  <%= link_to print_big_btn.html_safe, print_project_purchase_order_url(@purchase_order.id) %>
 </div>
 <div class="separator"></div>
 <% if @purchase_order.marked_as_final != true %>

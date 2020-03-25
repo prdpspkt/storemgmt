@@ -139,14 +139,14 @@
   </tr>
   <tr>
     <td colspan="3">ठेगाना : <%= @repair_application_form.vendor.vendor_address %></td>
-    <td colspan="4">फोन नं: <%= @repair_application_form.vendor.vendor_phone %></td>
+    <td colspan="4">फोन नं: <%= nd @repair_application_form.vendor.vendor_phone %></td>
   </tr>
   <tr>
-    <td colspan="3">संस्था दर्ता नं: <%= @repair_application_form.vendor.vendor_registration %></td>
-    <td colspan="4">प्यान नं : <%= @repair_application_form.vendor.vendor_pan %></td>
+    <td colspan="3">संस्था दर्ता नं: <%= nd @repair_application_form.vendor.vendor_registration %></td>
+    <td colspan="4">प्यान नं : <%= nd @repair_application_form.vendor.vendor_pan %></td>
   </tr>
   <tr>
-    <td colspan="7">माथि उल्लिखित सामानको मर्मत गरि मिति <%= @repair_application_form.within_date %> भित्र <%= @repair_application_form.office.office %>,  <%= @repair_application_form.office.address %> स्थानमा बिल
+    <td colspan="7">माथि उल्लिखित सामानको मर्मत गरि मिति <%= ndate @repair_application_form.within_date %> भित्र <%= @repair_application_form.office.office %>,  <%= @repair_application_form.office.address %> स्थानमा बिल
       /इन्भाइससहित बुझाउनुहोला ।
     </td>
   </tr>

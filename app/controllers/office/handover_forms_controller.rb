@@ -71,6 +71,7 @@ class Office::HandoverFormsController < ApplicationController
 
   def transaction
     items = @handover_form.handover_form_items
+    ActiveRecord::Base.transaction do
     items.each do |item|
       item_transaction = Office::ItemTransaction.new(item.attributes.select{|key, value| Office::ItemTransaction.column_names.include? key})
       item_transaction.id = nil
@@ -84,6 +85,7 @@ class Office::HandoverFormsController < ApplicationController
     end
     @handover_form.entry_generated = true
     @handover_form.save
+    end
     redirect_to @handover_form
   end
 

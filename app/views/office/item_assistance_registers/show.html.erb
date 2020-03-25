@@ -17,7 +17,7 @@
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_item_assistance_registers_path %>
   <%= link_to edit_big_btn.html_safe, edit_office_item_assistance_register_path(@item_assistance_register) %>
-  <%= link_to print_big_btn.html_safe, "/office/report/office_item_assistance_register/#{@item_assistance_register.id}" %>
+  <%= link_to print_big_btn.html_safe, print_office_item_assistance_register_url(@item_assistance_register) %>
 </div>
 <div class="separator"></div>
 <h2>सामान लिएको विवरण प्रविष्ट गर्ने</h2>

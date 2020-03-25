@@ -96,4 +96,8 @@ module ApplicationHelper
     bs = NepaliDateConverter::Convert.to_nepali(y, m, d)
     "#{bs[:year]}-#{bs[:month]}-#{bs[:date]}"
   end
+
+  def short_bs_date date
+    date.strftime("%Y-%m-%d")
+  end
 end

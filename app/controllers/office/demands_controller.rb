@@ -78,6 +78,7 @@ class Office::DemandsController < ApplicationController
     @demand.save
     redirect_to office_demand_path(@demand)
   end
+
   def release
     @release_form = Office::Release.new
     @release_form.received_by = @demand.demand_by
@@ -91,10 +92,12 @@ class Office::DemandsController < ApplicationController
     @release_form.received_by = @demand.demand_by
     @release_form.received_date = bs_today
     @release_form.entry_generated = false
-    @release_form.save
-    create_release_items @release_form
-    @demand.entry_generated = true
-    @demand.save
+    ActiveRecord::Base.transaction do
+      @release_form.save
+      create_release_items @release_form
+      @demand.entry_generated = true
+      @demand.save
+    end
     redirect_to @release_form
   end
 
@@ -106,15 +109,15 @@ class Office::DemandsController < ApplicationController
   end
 
 
-
   private
+
   def create_release_items release
     @demand_items = @demand.demand_items
     @demand_items.each do |item|
       item_transactions = office_item_transactions_with_stock item.item_id
       item_transactions.each do |it|
         if it.sku >= item.quantity
-          release_item = Office::ReleaseItem.new(item.attributes.select{ |key, _| Office::ReleaseItem.column_names.include? key})
+          release_item = Office::ReleaseItem.new(item.attributes.select { |key, _| Office::ReleaseItem.column_names.include? key })
           release_item.id = nil
           release_item.release_id = release.id
           release_item = set_current_information release_item
@@ -127,7 +130,7 @@ class Office::DemandsController < ApplicationController
           it.save
           break
         else
-          release_item = Office::ReleaseItem.new(item.attributes.select{ |key, _| Office::ReleaseItem.column_names.include? key})
+          release_item = Office::ReleaseItem.new(item.attributes.select { |key, _| Office::ReleaseItem.column_names.include? key })
           release_item.id = nil
           release_item.release_id = release.id
           release_item = set_current_information release_item
@@ -143,32 +146,33 @@ class Office::DemandsController < ApplicationController
 
     end
   end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_demand
-      @demand = Office::Demand.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def demand_params
-      params.require(:office_demand).permit(:demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date,  :recorded_date, :user_id, :fiscal_year, :office_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_demand
+    @demand = Office::Demand.find(params[:id])
+  end
 
-    def get_new_office_demand_no
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def demand_params
+    params.require(:office_demand).permit(:demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date, :recorded_date, :user_id, :fiscal_year, :office_id)
+  end
+
+  def get_new_office_demand_no
     demand_no = 1
     @demands = current(Office::Demand)
     if @demands.count > 0
       demand_no = @demands.last.demand_no + 1
     end
     demand_no
-    end
+  end
 
-    def new_release_no
-      nrn = 1
-      @releases = current(Office::Release)
-      if @releases.count > 0
-        nrn = @releases.last.release_no + 1
-      end
-      nrn
+  def new_release_no
+    nrn = 1
+    @releases = current(Office::Release)
+    if @releases.count > 0
+      nrn = @releases.last.release_no + 1
     end
+    nrn
+  end
 
 end

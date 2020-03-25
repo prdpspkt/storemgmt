@@ -1,5 +1,6 @@
 class Project::PurchaseOrdersController < ProjectController
   before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_purchase_entry]
+  before_action :set_office_information, only: :print
   load_and_authorize_resource  except: [:index]
   # GET /purchase_orders
   # GET /purchase_orders.json
@@ -72,7 +73,7 @@ class Project::PurchaseOrdersController < ProjectController
     end
   end
 
-  def mark_as_final
+  def accept
     if can_unmark(@purchase_order)
       @purchase_order.marked_as_final = false
     else
@@ -82,7 +83,7 @@ class Project::PurchaseOrdersController < ProjectController
     redirect_to @purchase_order
   end
 
-  def generate_purchase_entry
+  def transaction
     if @purchase_order.marked_as_final == true
       purchase_entry = create_purchase_entry @purchase_order
       items = @purchase_order.purchase_order_items
@@ -99,12 +100,27 @@ class Project::PurchaseOrdersController < ProjectController
     redirect_to purchase_entry
   end
 
+  def print
+    @purchase_order = Project::PurchaseOrder.find(params[:id])
+    @purchase_order_items = @purchase_order.purchase_order_items
+    @fy =  Office::FiscalYear.find(@purchase_order.fiscal_year_id).fy
+    @amount =  Project::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).sum(:amount)
+    @vat = @amount * 0.13
+    @total = @amount + @vat
+  end
+
   private
 
 
   # Use callbacks to share common setup or constraints between actions.
   def set_purchase_order
     @purchase_order = Project::PurchaseOrder.find(params[:id])
+  end
+
+  def set_office_information
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+    @cb = current_control_body
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

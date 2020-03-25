@@ -1,5 +1,6 @@
 class Project::PurchaseEntriesController < ProjectController
-  before_action :set_office_entry, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_ledger_entry]
+  before_action :set_project_entry, only: [:show, :edit, :update, :destroy, :accept, :transaction]
+  before_action :set_office_information, only: :print
   load_and_authorize_resource except: [:create, :new]
   # GET /ProjectPurchaseEntries
   # GET /ProjectPurchaseEntries.json
@@ -29,7 +30,7 @@ class Project::PurchaseEntriesController < ProjectController
   # POST /ProjectPurchaseEntries
   # POST /ProjectPurchaseEntries.json
   def create
-    @purchase_entry = Project::PurchaseEntry.new(office_entry_params)
+    @purchase_entry = Project::PurchaseEntry.new(project_purchase_entry_params)
     @purchase_entry.fiscal_year_id = current_fiscal_year.id
     @purchase_entry.user_id = current_user.id
     @purchase_entry.office_id = current_office.id
@@ -52,7 +53,7 @@ class Project::PurchaseEntriesController < ProjectController
   # PATCH/PUT /ProjectPurchaseEntries/1.json
   def update
     respond_to do |format|
-      if @purchase_entry.update(office_entry_params)
+      if @purchase_entry.update(project_purchase_entry_params)
         format.html { redirect_to @purchase_entry, notice: 'Project entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @purchase_entry }
       else
@@ -77,7 +78,7 @@ class Project::PurchaseEntriesController < ProjectController
     end
   end
 
-  def mark_as_final
+  def accept
     if @purchase_entry.marked_as_final == true
       @purchase_entry.marked_as_final = false
     else
@@ -87,22 +88,31 @@ class Project::PurchaseEntriesController < ProjectController
     redirect_to @purchase_entry
   end
 
-  def generate_ledger_entry
+  def transaction
     @purchase_entry.ledger_entry_generated = true
     create_item_transaction @purchase_entry
     @purchase_entry.save
     redirect_to @purchase_entry
   end
 
+  def print
+    @purchase_entry_items = @purchase_entry.purchase_entry_items
+    @total_amount = @purchase_entry_items.sum(:total_amount)
+    @amount = @purchase_entry_items.sum(:amount)
+    @amount_without_vat = @purchase_entry_items.sum(:amount_without_vat)
+    @vat = @purchase_entry_items.sum(:vat)
+    @other_expense = @purchase_entry_items.sum(:other_expense)
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_office_entry
+  def set_project_entry
     @purchase_entry = Project::PurchaseEntry.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
-  def office_entry_params
+  def project_purchase_entry_params
     params.require(:project_purchase_entry).permit(:purchase_handover_no, :entry_date, :entry_no, :store_chief_signed_date, :section_chief_signed_date, :office_chief_signed_date)
   end
 
@@ -129,6 +139,12 @@ class Project::PurchaseEntriesController < ProjectController
       transaction = set_current_information transaction
       transaction.save
     end
+  end
+
+  def set_office_information
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+    @cb = current_control_body
   end
 
 end
