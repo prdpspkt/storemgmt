@@ -1,11 +1,11 @@
-<%= form_with(model: project_tender_item, local: true) do |form| %>
-  <% if project_tender_item.errors.any? %>
+<%= form_with(model: tender_item, local: true) do |form| %>
+  <% if tender_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_tender_item.errors.count, "error") %> prohibited this
+      <h2><%= pluralize(tender_item.errors.count, "error") %> prohibited this
         Project Tender Item from being saved:</h2>
 
       <ul>
-        <% project_tender_item.errors.full_messages.each do |message| %>
+        <% tender_item.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>

@@ -26,7 +26,7 @@ class Project::ItemsController < ProjectController
   def create
     @item = Project::Item.new(project_item_params)
     @item.user_id = current_user.id
-    @item.project_id = current_project.id
+    @item.office_id = current_office.id
     @item_category = Project::ItemCategory.find(@item.item_category_id)
     @item.unit_en = @item_category.unit_en
     @item.unit_ne = @item_category.unit_ne

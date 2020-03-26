@@ -309,6 +309,12 @@ Rails.application.routes.draw do
         post "entry"
       end
     end
+    resources :ledgers do
+      collection do
+        get "expense_item_register"
+        get "non_expense_item_register"
+      end
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
