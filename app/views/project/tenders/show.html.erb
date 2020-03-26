@@ -15,17 +15,17 @@
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_tenders_path %>
-  <% if can_unmark(@tender) && @tender.entry_generated != true %>
+  <% if @tender.entry_generated != true %>
     <%= link_to before_final_btn.html_safe, accept_project_tender_url(@tender), data: { method: :post} %>
   <% end %>
-  <% if @tender.entry_generated == true %>
-    <%= link_to print_entry_big_btn.html_safe, print_project_tender_url(@tender) %>
-  <% end  %>
-  <% if @tender.marked_as_final != true  %>
+  <% if @tender.marked_as_final != true && @tender.entry_generated != true %>
     <%= link_to edit_big_btn.html_safe, edit_project_tender_path(@tender) %>
     <%= link_to final_btn.html_safe, accept_project_tender_url(@tender), data: {method: :post} %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, edit_project_tender_path(@tender) %>
+  <% if @tender.marked_as_final == true %>
+    <%= link_to purchase_entry_btn.html_safe, entry_project_tender_url(@tender), data: {method: :post} %>
+  <% end %>
+  <%= link_to print_big_btn.html_safe, print_project_tender_url(@tender) %>
 </div>
 <% if @tender.marked_as_final != true %>
   <div class="separator"></div>

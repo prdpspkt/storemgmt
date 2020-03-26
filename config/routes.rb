@@ -275,7 +275,7 @@ Rails.application.routes.draw do
     end
     resources :tenders do
       member do
-        post "print"
+        get "print"
         post "accept"
         post "entry"
       end

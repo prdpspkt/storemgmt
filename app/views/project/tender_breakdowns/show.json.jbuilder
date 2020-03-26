@@ -1,1 +1,0 @@
-json.partial! "project_tender_breakdowns/project_tender_breakdown", project_tender_breakdown: @project_tender_breakdown

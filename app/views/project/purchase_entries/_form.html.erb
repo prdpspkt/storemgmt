@@ -1,10 +1,10 @@
-<%= form_with(model: project_purchase_entry, local: true) do |form| %>
-  <% if project_purchase_entry.errors.any? %>
+<%= form_with(model: purchase_entry, local: true) do |form| %>
+  <% if purchase_entry.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_purchase_entry.errors.count, "error") %> prohibited this project_purchase_entry from being saved:</h2>
+      <h2><%= pluralize(purchase_entry.errors.count, "error") %> prohibited this purchase_entry from being saved:</h2>
 
       <ul>
-      <% project_purchase_entry.errors.full_messages.each do |message| %>
+      <% purchase_entry.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -38,8 +38,8 @@
 
 
   <div class="col-sm-6">
-    <%= form.label :project_chief_signed_date %>
-    <%= form.text_field :project_chief_signed_date, class: "form-control date-picker", required: :required %>
+    <%= form.label :chief_signed_date %>
+    <%= form.text_field :chief_signed_date, class: "form-control date-picker", required: :required %>
   </div>
 </div>
   <div class="separator"></div>
