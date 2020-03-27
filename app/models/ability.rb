@@ -51,6 +51,8 @@ class Ability
       can :manage, Project::ItemTransaction, user_id: user.id
       can :manage, Project::HandoverForm, user_id: user.id
       can :manage, Project::HandoverFormItem, user_id: user.id
+      can :manage, Project::ProjectPurchaseEntry, user_id: user.id
+      can :manage, Project::ProjectPurchaseEntryItem, user_id: user.id
     end
   end
 end

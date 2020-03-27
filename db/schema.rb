@@ -941,6 +941,55 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "specification"
+    t.integer "item_id"
+    t.integer "item_register_page_no"
+  end
+
+  create_table "project_project_purchase_entries", force: :cascade do |t|
+    t.datetime "entry_date"
+    t.integer "entry_no"
+    t.boolean "entry_generated"
+    t.boolean "accepted"
+    t.datetime "store_keeper_signed_date"
+    t.datetime "section_chief_signed_date"
+    t.datetime "office_chief_signed_date"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.integer "store_body_id"
+    t.integer "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "purchase_entry_id"
+  end
+
+  create_table "project_project_purchase_entry_items", force: :cascade do |t|
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
+    t.integer "item_id"
+    t.integer "project_item_id"
+    t.string "model_no"
+    t.decimal "quantity"
+    t.decimal "rate"
+    t.decimal "amount_without_vat"
+    t.decimal "vat"
+    t.decimal "total_amount"
+    t.decimal "other_expense"
+    t.decimal "amount"
+    t.string "remarks"
+    t.integer "project_purchase_entry_id"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.string "country"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.boolean "is_vatable"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "item_identification_no"
+    t.integer "project_id"
   end
 
   create_table "project_project_transactions", force: :cascade do |t|

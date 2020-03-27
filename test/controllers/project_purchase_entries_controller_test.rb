@@ -1,7 +1,48 @@
 require 'test_helper'
 
 class ProjectPurchaseEntriesControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @project_purchase_entry = project_purchase_entries(:one)
+  end
+
+  test "should get index" do
+    get project_purchase_entries_url
+    assert_response :success
+  end
+
+  test "should get new" do
+    get new_project_purchase_entry_url
+    assert_response :success
+  end
+
+  test "should create project_purchase_entry" do
+    assert_difference('ProjectPurchaseEntry.count') do
+      post project_purchase_entries_url, params: { project_purchase_entry: { accepted: @project_purchase_entry.accepted, entry_date: @project_purchase_entry.entry_date, entry_generated: @project_purchase_entry.entry_generated, entry_no: @project_purchase_entry.entry_no, fiscal_year_id: @project_purchase_entry.fiscal_year_id, office_chief_signed_date: @project_purchase_entry.office_chief_signed_date, office_id: @project_purchase_entry.office_id, project_id: @project_purchase_entry.project_id, purchase_order_id: @project_purchase_entry.purchase_order_id, section_chief_signed_date: @project_purchase_entry.section_chief_signed_date, store_body_id: @project_purchase_entry.store_body_id, store_keeper_signed_date: @project_purchase_entry.store_keeper_signed_date, tender_id: @project_purchase_entry.tender_id, user_id: @project_purchase_entry.user_id } }
+    end
+
+    assert_redirected_to project_purchase_entry_url(ProjectPurchaseEntry.last)
+  end
+
+  test "should show project_purchase_entry" do
+    get project_purchase_entry_url(@project_purchase_entry)
+    assert_response :success
+  end
+
+  test "should get edit" do
+    get edit_project_purchase_entry_url(@project_purchase_entry)
+    assert_response :success
+  end
+
+  test "should update project_purchase_entry" do
+    patch project_purchase_entry_url(@project_purchase_entry), params: { project_purchase_entry: { accepted: @project_purchase_entry.accepted, entry_date: @project_purchase_entry.entry_date, entry_generated: @project_purchase_entry.entry_generated, entry_no: @project_purchase_entry.entry_no, fiscal_year_id: @project_purchase_entry.fiscal_year_id, office_chief_signed_date: @project_purchase_entry.office_chief_signed_date, office_id: @project_purchase_entry.office_id, project_id: @project_purchase_entry.project_id, purchase_order_id: @project_purchase_entry.purchase_order_id, section_chief_signed_date: @project_purchase_entry.section_chief_signed_date, store_body_id: @project_purchase_entry.store_body_id, store_keeper_signed_date: @project_purchase_entry.store_keeper_signed_date, tender_id: @project_purchase_entry.tender_id, user_id: @project_purchase_entry.user_id } }
+    assert_redirected_to project_purchase_entry_url(@project_purchase_entry)
+  end
+
+  test "should destroy project_purchase_entry" do
+    assert_difference('ProjectPurchaseEntry.count', -1) do
+      delete project_purchase_entry_url(@project_purchase_entry)
+    end
+
+    assert_redirected_to project_purchase_entries_url
+  end
 end

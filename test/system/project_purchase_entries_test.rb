@@ -14,25 +14,19 @@ class ProjectPurchaseEntriesTest < ApplicationSystemTestCase
     visit project_purchase_entries_url
     click_on "New Project Purchase Entry"
 
-    fill_in "Bill no", with: @project_purchase_entry.bill_no
+    check "Accepted" if @project_purchase_entry.accepted
     fill_in "Entry date", with: @project_purchase_entry.entry_date
+    check "Entry generated" if @project_purchase_entry.entry_generated
     fill_in "Entry no", with: @project_purchase_entry.entry_no
     fill_in "Fiscal year", with: @project_purchase_entry.fiscal_year_id
-    fill_in "Fy", with: @project_purchase_entry.fy
-    fill_in "Item", with: @project_purchase_entry.item_id
-    fill_in "Item register page no", with: @project_purchase_entry.item_register_page_no
-    check "Marked as final" if @project_purchase_entry.marked_as_final
-    fill_in "Office chief designation", with: @project_purchase_entry.office_chief_designation
-    fill_in "Office chief name", with: @project_purchase_entry.office_chief_name
     fill_in "Office chief signed date", with: @project_purchase_entry.office_chief_signed_date
     fill_in "Office", with: @project_purchase_entry.office_id
-    fill_in "Purchase handover no", with: @project_purchase_entry.purchase_handover_no
-    fill_in "Section chief designation", with: @project_purchase_entry.section_chief_designation
-    fill_in "Section chief name", with: @project_purchase_entry.section_chief_name
+    fill_in "Project", with: @project_purchase_entry.project_id
+    fill_in "Purchase order", with: @project_purchase_entry.purchase_order_id
     fill_in "Section chief signed date", with: @project_purchase_entry.section_chief_signed_date
-    fill_in "Store chief designation", with: @project_purchase_entry.store_chief_designation
-    fill_in "Store chief name", with: @project_purchase_entry.store_chief_name
-    fill_in "Store chief signed date", with: @project_purchase_entry.store_chief_signed_date
+    fill_in "Store body", with: @project_purchase_entry.store_body_id
+    fill_in "Store keeper signed date", with: @project_purchase_entry.store_keeper_signed_date
+    fill_in "Tender", with: @project_purchase_entry.tender_id
     fill_in "User", with: @project_purchase_entry.user_id
     click_on "Create Project purchase entry"
 
@@ -44,25 +38,19 @@ class ProjectPurchaseEntriesTest < ApplicationSystemTestCase
     visit project_purchase_entries_url
     click_on "Edit", match: :first
 
-    fill_in "Bill no", with: @project_purchase_entry.bill_no
+    check "Accepted" if @project_purchase_entry.accepted
     fill_in "Entry date", with: @project_purchase_entry.entry_date
+    check "Entry generated" if @project_purchase_entry.entry_generated
     fill_in "Entry no", with: @project_purchase_entry.entry_no
     fill_in "Fiscal year", with: @project_purchase_entry.fiscal_year_id
-    fill_in "Fy", with: @project_purchase_entry.fy
-    fill_in "Item", with: @project_purchase_entry.item_id
-    fill_in "Item register page no", with: @project_purchase_entry.item_register_page_no
-    check "Marked as final" if @project_purchase_entry.marked_as_final
-    fill_in "Office chief designation", with: @project_purchase_entry.office_chief_designation
-    fill_in "Office chief name", with: @project_purchase_entry.office_chief_name
     fill_in "Office chief signed date", with: @project_purchase_entry.office_chief_signed_date
     fill_in "Office", with: @project_purchase_entry.office_id
-    fill_in "Purchase handover no", with: @project_purchase_entry.purchase_handover_no
-    fill_in "Section chief designation", with: @project_purchase_entry.section_chief_designation
-    fill_in "Section chief name", with: @project_purchase_entry.section_chief_name
+    fill_in "Project", with: @project_purchase_entry.project_id
+    fill_in "Purchase order", with: @project_purchase_entry.purchase_order_id
     fill_in "Section chief signed date", with: @project_purchase_entry.section_chief_signed_date
-    fill_in "Store chief designation", with: @project_purchase_entry.store_chief_designation
-    fill_in "Store chief name", with: @project_purchase_entry.store_chief_name
-    fill_in "Store chief signed date", with: @project_purchase_entry.store_chief_signed_date
+    fill_in "Store body", with: @project_purchase_entry.store_body_id
+    fill_in "Store keeper signed date", with: @project_purchase_entry.store_keeper_signed_date
+    fill_in "Tender", with: @project_purchase_entry.tender_id
     fill_in "User", with: @project_purchase_entry.user_id
     click_on "Update Project purchase entry"
 

@@ -1,0 +1,2 @@
+json.extract! office_purchase_entry_item, :id, :purchase_handover_no, :item_classification_no, :item_registration_page_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :remarks, :office_purchase_entry_id, :user_id, :office_id, :fy, :fiscal_year, :created_at, :updated_at
+json.url office_purchase_entry_item_url(office_purchase_entry_item, format: :json)

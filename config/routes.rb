@@ -302,17 +302,19 @@ Rails.application.routes.draw do
     end
     resources :store_bodies
     resources :active_fiscal_year
-    resources :tender_breakdowns do
-      member do
-        post "print"
-        post "accept"
-        post "entry"
-      end
-    end
     resources :ledgers do
       collection do
         get "expense_item_register"
         get "non_expense_item_register"
+      end
+    end
+
+    resources :project_purchase_entry_items
+    resources :project_purchase_entries do
+      member do
+        get "print"
+        post "accept"
+        post "transaction"
       end
     end
   end

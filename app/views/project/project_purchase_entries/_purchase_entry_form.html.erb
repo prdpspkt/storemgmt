@@ -1,0 +1,34 @@
+<%= form_with(model: project_purchase_entry_item, local: true) do |form| %>
+  <% if project_purchase_entry_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(project_purchase_entry_item.errors.count, "error") %> prohibited this project_purchase_entry_item
+        from being saved:</h2>
+
+      <ul>
+        <% project_purchase_entry_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :project_purchase_entry_id, value: @project_purchase_entry.id %>
+  <div class="row">
+    <div class="col-sm-4">
+      <%= form.label :name_of_item %>
+      <%= form.select(:item_id, @items.collect { |i| [i.item.name_of_item_en, i.item.id] }, {include_blank: "select"}, {class: "form-control", required: :required}) %>
+    </div>
+
+    <div class="col-sm-4">
+      <%= form.label :quantity %>
+      <%= form.number_field :quantity, class: "form-control", step: :any %>
+    </div>
+
+
+    <div class="col-sm-4">
+      <%= form.label :remarks %>
+      <%= form.text_field :remarks, class: "form-control" %>
+    </div>
+  </div>
+  <div class="separator"></div>
+      <%= form.submit :save, class: "float-right btn btn-success" %>
+<% end %>
