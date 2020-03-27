@@ -15,7 +15,7 @@
 </table>
 <div class="separator"></div>
 <div class="text-center">
-  <%= link_to back_btn.html_safe, project_purchase_entries_path %>
+  <%= link_to back_btn.html_safe, project_project_purchase_entries_path %>
   <%= link_to print_big_btn.html_safe, print_project_project_purchase_entry_url(@project_purchase_entry) %>
   <% if @project_purchase_entry.accepted != true %>
     <%= link_to edit_big_btn.html_safe, edit_project_project_purchase_entry_path(@project_purchase_entry) %>
@@ -63,9 +63,6 @@
       <td><%= nd item.total_amount %></td>
       <td>
         <% if @project_purchase_entry.accepted != true %>
-          <% if item.item.item_classification_no == 47 %>
-            <%= link_to(edit_btn.html_safe, edit_project_project_purchase_entry_item_path(item)) %>
-          <% end %>
           <%= link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure to delete ?"} %>
         <% end %></td>
     </tr>

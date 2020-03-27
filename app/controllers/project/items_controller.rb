@@ -4,9 +4,19 @@ class Project::ItemsController < ProjectController
   # GET /project_items
   # GET /project_items.json
   def index
-    @items = office(Project::Item)
-  end
 
+  end
+ def non_expense_able
+   @title = "खर्च भएर नजाने(खप्ने) सामानहरू"
+   @items = office(Project::Item).where(item_classification_no: 47)
+   render :index
+ end
+
+  def expense_able
+    @title = "खर्च भएर जाने सामानहरू"
+    @items = office(Project::Item).where(item_classification_no: 52)
+    render :index
+  end
   # GET /project_items/1
   # GET /project_items/1.json
   def show

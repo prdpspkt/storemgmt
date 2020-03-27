@@ -29,7 +29,7 @@
   <% end %>
   <% if @purchase_order.marked_as_final == true && @purchase_order.entry_generated == false  %>
     <%= link_to before_final_btn.html_safe, accept_project_purchase_order_url(@purchase_order), method: :post %>
-    <%= link_to purchase_entry_btn.html_safe, project_generate_purchase_entry_url(@purchase_order), method: :post %>
+    <%= link_to purchase_entry_btn.html_safe, entry_project_purchase_order_url(@purchase_order), method: :post %>
   <% end %>
   <%= link_to print_big_btn.html_safe, print_project_purchase_order_url(@purchase_order.id) %>
 </div>

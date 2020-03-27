@@ -83,7 +83,7 @@ class Project::PurchaseOrdersController < ProjectController
     redirect_to @purchase_order
   end
 
-  def transaction
+  def entry
     if @purchase_order.marked_as_final == true
       purchase_entry = create_purchase_entry @purchase_order
       items = @purchase_order.purchase_order_items

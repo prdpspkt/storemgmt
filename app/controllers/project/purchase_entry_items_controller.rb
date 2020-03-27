@@ -11,6 +11,7 @@ class Project::PurchaseEntryItemsController < ProjectController
   def create
     @purchase_entry_item = Project::PurchaseEntryItem.new(project_purchase_entry_item_params)
     @purchase_entry_item = set_current_information @purchase_entry_item
+    @purchase_entry_item.sku = @purchase_entry_item.quantity
     prepare_data
     respond_to do |format|
       if @purchase_entry_item.save
@@ -60,19 +61,5 @@ class Project::PurchaseEntryItemsController < ProjectController
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_purchase_entry_item_params
     params.require(:project_purchase_entry_item).permit(:item_id, :is_vatable, :item_classification_no, :item_registration_page_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :country, :size, :approx_age, :source, :remarks, :purchase_entry_id, :user_id, :project_id, :fy, :fiscal_year)
-  end
-  def prepare_data 
-    @purchase_entry_item.amount_without_vat = @purchase_entry_item.rate * @purchase_entry_item.quantity
-    if @purchase_entry_item.is_vatable
-      @purchase_entry_item.vat = @purchase_entry_item.amount_without_vat * 0.13
-      @purchase_entry_item.amount = @purchase_entry_item.amount_without_vat + @purchase_entry_item.vat
-    else
-      @purchase_entry_item.amount = @purchase_entry_item.amount_without_vat
-    end
-    if @purchase_entry_item.other_expense.present?
-      @purchase_entry_item.total_amount = @purchase_entry_item.amount + @purchase_entry_item.other_expense
-    else
-      @purchase_entry_item.total_amount = @purchase_entry_item.amount
-    end
   end
 end

@@ -254,7 +254,7 @@ Rails.application.routes.draw do
       member do
       get "print"
       post "accept"
-      post "transaction"
+      post "entry"
         end
     end
 
@@ -268,6 +268,8 @@ Rails.application.routes.draw do
     end
     resources :items do
       collection do
+        get "non_expense_able"
+        get "expense_able"
         get "print"
         get "print_stocking"
         post "import"

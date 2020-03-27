@@ -14,6 +14,8 @@ class Project::ProjectPurchaseEntriesController < ProjectController
   def show
     @project_purchase_entry_item = Project::ProjectPurchaseEntryItem.new
     @project_purchase_entry_items = @project_purchase_entry.project_purchase_entry_items
+    @project_purchase_entry_item.project_id = @project_purchase_entry.project_id
+    @project_purchase_entry_item.project_purchase_entry_id = @project_purchase_entry.id
     @items = @project_purchase_entry.purchase_entry.purchase_entry_items
   end
 

@@ -990,6 +990,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "updated_at", null: false
     t.string "item_identification_no"
     t.integer "project_id"
+    t.integer "item_transaction_id"
+    t.integer "project_item_transaction_id"
   end
 
   create_table "project_project_transactions", force: :cascade do |t|
