@@ -13,62 +13,139 @@
     <td><%= @project.address %></td>
   </tr>
   <tr>
-    <th>समिति प्रतिनिधिको नाम: </th>
+    <th>समिति प्रतिनिधिको नाम:</th>
     <td><%= @project.name_of_committee_representative %> (<%= @project.post_of_representative %>)</td>
     <th>समिति प्रतिनिधिको सम्पर्क नं</th>
     <td><%= @project.phone_of_committee_representative %></td>
   </tr>
 
   <tr>
-    <th>ठेकेदारको नाम: </th>
+    <th>ठेकेदारको नाम:</th>
     <td><%= @project.contractor %></td>
     <th>ठेकेदार प्रतिनिधिको नाम</th>
     <td><%= @project.name_of_contractor_representative %></td>
   </tr>
 
   <tr>
-    <th>ठेकेदारको फोन </th>
+    <th>ठेकेदारको फोन</th>
     <td><%= @project.phone_of_contractor_representative %></td>
     <th>आयोजनाको अवस्था</th>
     <td><%= @project.project_status %></td>
   </tr>
 </table>
 <div class="text-center">
-<%= link_to back_btn.html_safe, project_projects_path %>
-<%= link_to edit_big_btn.html_safe, edit_project_project_path(@project) %>
+  <%= link_to back_btn.html_safe, project_projects_path %>
+  <%= link_to edit_big_btn.html_safe, edit_project_project_path(@project) %>
+  <%= link_to expense_item_ledger_btn.html_safe, expense_item_register_project_ledger_path(@project) %>
+  <%= link_to non_expense_item_ledger_btn.html_safe, non_expense_item_register_project_ledger_path(@project) %>
 </div>
 <div class="separator"></div>
-<!--<h2>सामाग्री थप्ने</h2>-->
-<%#= form_for(@project_item) do |form| %>
-<%#= form.hidden_field :project_id %>
-<!--<div class="row">-->
-<!--  <div class="col-2">सामानको नाम</div>-->
-<!--  <div class="col-3"><%#= form.select(:item_id, Item.all.collect{ |item| [item.name_of_item_en, item.id] }, {include_blank: "सामानको नाम छान्नुहोस्"}, {class: "form-control"}) %></div>-->
-<!--  <div class="col-2">सामानको प्रकार</div>-->
-<!--  <div class="col-3"><%#= form.select(:item_classification_no, {"47" => "खर्च भएर नजाने", "57" => "खर्च भएर जाने"}.collect { |no| [no.last, no.first]},{include_blank: "सामानको प्रकार छान्नुहोस्"},{class: "form-control"}) %></div>-->
-<!--  <div class="col-2">-->
-    <%#= form.submit :save, class: "btn btn-success"%>
-<!--  </div>-->
-<!--</div>-->
-<%# end %>
-<h2>आयोजनाको सामाग्रीहरु </h2>
-<table class="table table-sm table-bordered">
-  <tr>
-    <th>क्र.स.</th>
-    <th>सामानको नाम</th>
-    <th>Name of Item</th>
-    <th>परिमाण</th>
-    <th class="no-print"></th>
-  </tr>
-  <% @i = 1 %>
-  <% @project_items.each do |item| %>
-  <tr>
-    <td><%= nd @i %></td>
-    <td><%= item.name_of_item_ne %></td>
-    <td><%= item.name_of_item_en %></td>
-    <td></td>
-    <td class="no-print"></td>
-  </tr>
-  <% @i = @i + 1 %>
-  <% end %>
-</table>
+<!-- Nav tabs -->
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#home">खर्च भएर जाने जिन्सी</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#menu1">खर्च भएर नजाने(खप्ने) जिन्सी </a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#menu2">माग फारामहरू</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#menu3">निकाशा फारामहरू</a>
+  </li>
+</ul>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div id="home" class="container tab-pane active"><br>
+    <h3>खर्च भएर जाने जिन्सी सामान</h3>
+    <table class="table table-sm table-bordered">
+      <tr>
+        <th>क्र.स.</th>
+        <th>सामानको नाम</th>
+        <th>Name of Item</th>
+        <th>परिमाण</th>
+        <th class="no-print"></th>
+      </tr>
+      <% @i = 1 %>
+      <% @project_items52.each do |item| %>
+        <tr>
+          <td><%= nd @i %></td>
+          <td><%= item.name_of_item_ne %></td>
+          <td><%= item.name_of_item_en %></td>
+          <td></td>
+          <td class="no-print"></td>
+        </tr>
+        <% @i = @i + 1 %>
+      <% end %>
+    </table>  </div>
+  <div id="menu1" class="container tab-pane fade"><br>
+    <h3>खर्च भएर नजाने (खप्ने) जिन्सी सामानहरू</h3>
+    <table class="table table-sm table-bordered">
+      <tr>
+        <th>क्र.स.</th>
+        <th>सामानको नाम</th>
+        <th>Name of Item</th>
+        <th>परिमाण</th>
+        <th class="no-print"></th>
+      </tr>
+      <% @i = 1 %>
+      <% @project_items47.each do |item| %>
+        <tr>
+          <td><%= nd @i %></td>
+          <td><%= item.name_of_item_ne %></td>
+          <td><%= item.name_of_item_en %></td>
+          <td></td>
+          <td class="no-print"></td>
+        </tr>
+        <% @i = @i + 1 %>
+      <% end %>
+    </table>  </div>
+  <div id="menu2" class="container tab-pane fade"><br>
+    <h3 class="float-left">माग फारामहरू</h3>
+      <%= link_to new_btn.html_safe, demand_project_project_path(@project), class: "float-right" %>
+    <table class="table table-sm table-bordered">
+      <tr>
+        <th>क्र.स.</th>
+        <th>माग संख्या</th>
+        <th>मिति</th>
+        <th>माग कर्ता</th>
+        <th class="no-print"></th>
+      </tr>
+      <% @i = 1 %>
+      <% @demands.each do |item| %>
+        <tr>
+          <td><%= nd @i %></td>
+          <td><%= nd item.demand_no %></td>
+          <td><%= ndate item.demand_date %></td>
+          <td><%= item.demand_by %></td>
+          <td class="no-print"></td>
+        </tr>
+        <% @i = @i + 1 %>
+      <% end %>
+    </table>  </div>
+  <div id="menu3" class="container tab-pane fade"><br>
+  <h3 class="float-left">निकाशा फारामहरू</h3>
+      <%= link_to new_btn.html_safe, release_project_project_path(@project), class:"float-right"  %>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <th>क्र.स.</th>
+      <th>निकाशा नं</th>
+      <th>निकाशा मिति</th>
+      <th>सामान बुझ्ने</th>
+      <th class="no-print"></th>
+    </tr>
+    <% @i = 1 %>
+    <% @releases.each do |item| %>
+      <tr>
+        <td><%= nd @i %></td>
+        <td><%= item.release_no %></td>
+        <td><%= item.release_date %></td>
+        <td><%= item.received_by %></td>
+        <td class="no-print"></td>
+      </tr>
+      <% @i = @i + 1 %>
+    <% end %>
+  </table>  </div>
+</div>
+</div>

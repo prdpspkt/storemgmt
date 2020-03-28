@@ -74,7 +74,7 @@
     <td><%= item.item.specification %></td>
     <td><%= item.item_identification_no %></td>
     <td><%= item.model_no %></td>
-    <td><%= item.unit_ne %></td>
+    <td><%= item.item.unit_ne %></td>
     <td><%= nd item.quantity %>
     <td><%= nd item.rate %></td>
     <td><%= nd item.amount_without_vat %></td>
@@ -84,6 +84,7 @@
     <td><%= nd item.total_amount %></td>
     <td><%= item.remarks %></td>
   </tr>
+    <%= @id = @id + 1 %>
     <% end %>
   <tr class="text-center">
     <td colspan="11" class="text-right">जम्मा</td>

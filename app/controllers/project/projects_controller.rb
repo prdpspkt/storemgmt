@@ -1,5 +1,5 @@
 class Project::ProjectsController < ProjectController
-  before_action :set_project, only: [:show, :edit, :update, :destroy]
+  before_action :set_project, only: [:show, :edit, :update, :destroy, :demand, :release]
 load_and_authorize_resource
   # GET /projects
   # GET /projects.json
@@ -10,7 +10,10 @@ load_and_authorize_resource
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project_items = Project::ProjectItem.where(project_id: @project.id)
+    @project_items47 = Project::ProjectItem.where(project_id: @project.id).where(item_classification_no: 47)
+    @project_items52 = Project::ProjectItem.where(project_id: @project.id).where(item_classification_no: 52)
+    @demands = @project.demands
+    @releases = @project.releases
   end
 
   # GET /projects/new
@@ -51,6 +54,16 @@ load_and_authorize_resource
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def demand
+    @demand = Project::Demand.new
+    @demand.project_id = @project.id
+  end
+
+  def release
+    @release = Project::Release.new
+    @release.project_id = @project.id
   end
 
   # DELETE /projects/1

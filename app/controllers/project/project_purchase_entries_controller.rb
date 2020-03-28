@@ -75,17 +75,17 @@ class Project::ProjectPurchaseEntriesController < ProjectController
   end
 
   def accept
-    if @project_purchase_entry.marked_as_final == true
-      @project_purchase_entry.marked_as_final = false
+    if @project_purchase_entry.accepted == true
+      @project_purchase_entry.accepted = false
     else
-      @project_purchase_entry.marked_as_final = true
+      @project_purchase_entry.accepted = true
     end
     @project_purchase_entry.save
     redirect_to @project_purchase_entry
   end
 
   def transaction
-    @project_purchase_entry.ledger_entry_generated = true
+    @project_purchase_entry.entry_generated = true
     create_item_transaction @project_purchase_entry
     @project_purchase_entry.save
     redirect_to @project_purchase_entry
@@ -123,17 +123,19 @@ class Project::ProjectPurchaseEntriesController < ProjectController
 
   def create_item_transaction project_purchase_entry
     project_purchase_entry.project_purchase_entry_items.each do |entry_item|
-      transaction = Project::ItemTransaction.new(entry_item.attributes.select { |key, _| Project::ItemTransaction.column_names.include? key })
+      transaction = Project::ProjectItemTransaction.new(entry_item.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
       transaction.id = nil
-      transaction.item_classification_no = entry_item.item.item_classification_no
+      transaction.item_classification_no = entry_item.project_item.item_classification_no
       transaction.rate = entry_item.rate * 1.13
-      transaction.project_purchase_entry_item_id = entry_item.id
+      transaction.amount = transaction.rate * transaction.quantity
       transaction.transaction_type = 1
       transaction.entry_no = project_purchase_entry.entry_no
       transaction.sku = transaction.quantity
       transaction.transaction_date = bs_today
       transaction = set_current_information transaction
       transaction.save
+      entry_item.project_item_transaction_id = transaction.id
+      entry_item.save
     end
   end
 

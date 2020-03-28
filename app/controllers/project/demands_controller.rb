@@ -1,23 +1,16 @@
 class Project::DemandsController < ProjectController
   before_action :set_demand, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_release_form]
   load_and_authorize_resource except: [:create, :new]
-  # GET /demands
-  # GET /demands.json
-  def index
-    @demands = current(Project::Demand)
-  end
+
 
   # GET /demands/1
   # GET /demands/1.json
   def show
     @demand_item = Project::DemandItem.new
-    @items = @demand.demand_items
+    @demand_items = @demand.demand_items
+    @items = Project::ProjectItemTransaction.where("sku > 0").where(transaction_type: 1)
   end
 
-  # GET /demands/new
-  def new
-    @demand = Project::Demand.new
-  end
 
   # GET /demands/1/edit
   def edit
@@ -27,9 +20,9 @@ class Project::DemandsController < ProjectController
   # POST /demands.json
   def create
     @demand = Project::Demand.new(demand_params)
-    @demand.recommended_by = Project::Personnel.find(demand_params[:recommended_by]).name_ne
+    @demand.recommended_by = Office::Personnel.find(demand_params[:recommended_by]).name_ne
     @demand = set_current_information @demand
-    @demand.demand_no = get_new_office_demand_no
+    @demand.demand_no = get_new_project_demand_no
     @demand.marked_as_final = false
     @demand.entry_generated = false
     respond_to do |format|
@@ -76,7 +69,7 @@ class Project::DemandsController < ProjectController
       @demand.marked_as_final = true
     end
     @demand.save
-    redirect_to office_demand_path(@demand)
+    redirect_to project_demand_path(@demand)
   end
   def generate_release_form
     @release_form = Project::Release.new
@@ -84,6 +77,7 @@ class Project::DemandsController < ProjectController
     @release_form.received_date = @demand.demand_date
     @release_form = set_current_information @release_form
     @release_form.store_body_id = current_control_body.id
+    @release_form.project_id = @demand.project_id
     @release_form.marked_as_final = false
     @release_form.release_date = bs_today
     @release_form.release_no = new_release_no
@@ -98,13 +92,12 @@ class Project::DemandsController < ProjectController
     redirect_to @release_form
   end
 
-
-
   private
   def create_release_items release
     @demand_items = @demand.demand_items
+    @project = @demand.project
     @demand_items.each do |item|
-      item_transactions = office_item_transactions_with_stock item.item_id
+      item_transactions =
       item_transactions.each do |it|
         if it.sku >= item.quantity
           release_item = Project::ReleaseItem.new(item.attributes.select{ |key, _| Project::ReleaseItem.column_names.include? key})
@@ -143,10 +136,10 @@ class Project::DemandsController < ProjectController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def demand_params
-      params.require(:project_demand).permit(:demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date,  :recorded_date, :user_id, :fiscal_year, :office_id)
+      params.require(:project_demand).permit(:project_id, :demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date,  :recorded_date)
     end
 
-    def get_new_office_demand_no
+    def get_new_project_demand_no
     demand_no = 1
     @demands = current(Project::Demand)
     if @demands.count > 0

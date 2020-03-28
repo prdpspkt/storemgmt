@@ -27,33 +27,45 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
     @project_purchase_entry_item = Project::ProjectPurchaseEntryItem.new(project_purchase_entry_item_params)
     @item_transactions = Project::ItemTransaction.where(item_id: @project_purchase_entry_item.item_id).where("sku > 0")
     @item_transactions.each do |tr|
+      ppei = Project::ProjectPurchaseEntryItem.new(tr.attributes.select { |key, _| Project::ProjectPurchaseEntryItem.column_names.include? key })
+      ppei.id = nil
+      ppei.item_transaction_id = tr.id
+      rate = (tr.rate * (100.00 / 113.00)).round(2)
       if tr.sku > @project_purchase_entry_item.quantity.to_d
-        ppei = Project::ProjectPurchaseEntryItem.new(tr.attributes.select { |key, _| Project::ProjectPurchaseEntryItem.column_names.include? key })
-        ppei.id = nil
-        ppei.item_transaction_id = tr.id
-        ppei.quantity = @project_purchase_entry_item.quantity
-        ppei.amount_without_vat = (tr.amount * (100 / 13)) / ppei.quantity
-        ppei.total_amount = tr.amount / ppei.quantity
+        quantity = @project_purchase_entry_item.quantity.to_d
+        amount_without_vat = rate * quantity
+        amount = amount_without_vat * 1.13
+        total_amount = amount
+        ppei.quantity = quantity
+        ppei.rate = rate
+        ppei.amount_without_vat = amount_without_vat
+        ppei.amount = amount
+        ppei.vat = amount - amount_without_vat
+        ppei.total_amount = total_amount
         ppei.project_item_id = create_project_item(@project_purchase_entry_item.project_id, @project_purchase_entry_item.item_id).id
         ppei = set_current_information ppei
         ppei.project_purchase_entry_id = @project_purchase_entry_item.project_purchase_entry_id
-        tr.sku = tr.sku - ppei.quantity
-        if ppei.save
+        if ppei.save!
+          tr.sku = tr.sku - ppei.quantity
           tr.save
         end
         break
       else
-        ppei = Project::ProjectPurchaseEntryItem.new(tr.attributes.select { |key, _| Project::ProjectPurchaseEntryItem.column_names.include? key })
-        ppei.id = nil
-        ppei.item_transaction_id = tr.id
-        ppei.quantity = tr.sku
-        ppei.amount_without_vat = (tr.amount * (100 / 13)) / tr.sku
-        ppei.total_amount = tr.amount / tr.sku
+        quantity = tr.sku
+        amount_without_vat = rate * quantity
+        amount = amount_without_vat * 1.13
+        total_amount = amount
+        ppei.quantity = quantity
+        ppei.rate = rate
+        ppei.amount_without_vat = amount_without_vat
+        ppei.amount = amount
+        ppei.vat = amount - amount_without_vat
+        ppei.total_amount = total_amount
         ppei.project_item_id = create_project_item(@project_purchase_entry_item.project_id, @project_purchase_entry_item.item_id).id
         ppei = set_current_information ppei
         ppei.project_purchase_entry_id = @project_purchase_entry_item.project_purchase_entry_id
-        tr.sku = 0
-        if ppei.save
+        if ppei.save!
+          tr.sku = 0
           tr.save
         end
       end
@@ -80,10 +92,6 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
   # DELETE /project_purchase_entry_items/1.json
   def destroy
     project_purchase_entry = @project_purchase_entry_item.project_purchase_entry
-    #Reverse ItemTransaction and return quantity to main entry ledger
-    item_transaction = Project::ItemTransaction.find(@project_purchase_entry_item.item_transaction_id)
-    item_transaction.sku = @project_purchase_entry_item.quantity + item_transaction.sku
-    item_transaction.save
     @project_purchase_entry_item.destroy
     respond_to do |format|
       format.html { redirect_to project_purchase_entry, notice: 'Project purchase entry item was successfully destroyed.' }
@@ -113,8 +121,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
       project_item.project_id = project_id
       project_item.item_id = item_id
       project_item.item_register_page_no = new_project_item_register_page_no project_id
-      binding.pry
-      project_item.save!
+      project_item.save
     end
     project_item
   end
@@ -135,5 +142,9 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
       project_item = project_items.first
     end
     project_item
+  end
+
+  def create_entries
+
   end
 end

@@ -23,6 +23,11 @@ class Project::TenderItemsController < ProjectController
     else
       @tender_item.amount = @tender_item.amount_without_vat
     end
+    if @tender_item.other_expense.present?
+      @tender_item.total_amount = @tender_item.amount + @tender_item.other_expense
+    else
+      @tender_item.total_amount = @tender_item.amount
+    end
     @tender_item = update_general_information @tender_item
     @tender_item.sku = @tender_item.quantity
     respond_to do |format|

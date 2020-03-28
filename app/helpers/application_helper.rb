@@ -35,6 +35,13 @@ module ApplicationHelper
     '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> निकासा तयार गर्ने </span>'
   end
 
+  def expense_item_ledger_btn
+    '<span class="btn  btn-success"><i class="fa fa-eye"></i> जिन्सी खाता नं ५२ </span>'
+  end
+
+  def non_expense_item_ledger_btn
+    '<span class="btn  btn-success"><i class="fa fa-eye"></i> जिन्सी खाता नं ४७ </span>'
+  end
   def save_btn
     'सुरक्षित गर्ने '
   end

@@ -21,7 +21,7 @@
     <%= link_to edit_big_btn.html_safe, edit_project_project_purchase_entry_path(@project_purchase_entry) %>
     <%= link_to final_btn.html_safe, accept_project_project_purchase_entry_url(@project_purchase_entry), method: :post, data: {confirm: "तपाई जिन्सी खातामा दाखिला गर्दै हुनुहुन्छ, कृपया दाखिला रिपोर्ट सहि छ भन्ने यकिन गर्नुहोस् |"} %>
   <% end %>
-  <% if @project_purchase_entry.accepted == true && @project_purchase_entry.ledger_entry_generated != true %>
+  <% if @project_purchase_entry.accepted == true && @project_purchase_entry.entry_generated != true %>
     <%= link_to before_final_btn.html_safe, accept_project_project_purchase_entry_url(@project_purchase_entry), id: :mark_as_not_final, method: :post %>
     <%= link_to ledger_entry_btn.html_safe, transaction_project_project_purchase_entry_url(@project_purchase_entry), method: :post, data: { confirm: "के तपाई निश्चिन्त हुनुहुन्छ ? तपाईले जिन्सी खातामा विवरण प्रविष्ट गर्दै हुनुहुन्छ | यसरी प्रविष्ट गरेको डाटा तपाईले परिवर्तन गर्न सक्नुहुने छैन |"} %>
   <% end %>

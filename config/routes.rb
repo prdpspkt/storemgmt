@@ -301,11 +301,20 @@ Rails.application.routes.draw do
         post 'print_running'
         post 'print_completed'
       end
+      member do
+        get "demand"
+        get "release"
+      end
     end
     resources :store_bodies
     resources :active_fiscal_year
+
     resources :ledgers do
       collection do
+        get "expense_item_registers"
+        get "non_expense_item_registers"
+      end
+      member do
         get "expense_item_register"
         get "non_expense_item_register"
       end
@@ -319,6 +328,8 @@ Rails.application.routes.draw do
         post "transaction"
       end
     end
+
+
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

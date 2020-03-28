@@ -800,6 +800,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "project_demand_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "demand_id"
   end
 
   create_table "project_demands", force: :cascade do |t|
@@ -820,6 +821,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "entry_generated"
   end
 
   create_table "project_evaluation_items", force: :cascade do |t|
@@ -943,6 +945,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.string "specification"
     t.integer "item_id"
     t.integer "item_register_page_no"
+    t.integer "item_classification_no"
   end
 
   create_table "project_project_purchase_entries", force: :cascade do |t|
@@ -998,7 +1001,6 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.string "model"
     t.string "item_identification_no"
     t.string "country_of_origin"
-    t.integer "office_item_id"
     t.integer "item_id"
     t.integer "office_id"
     t.integer "fiscal_year_id"
@@ -1008,7 +1010,6 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.decimal "rate"
     t.decimal "amount"
     t.decimal "quantity"
-    t.integer "purchase_entry_item_id"
     t.string "remarks"
     t.decimal "sku"
     t.integer "release_item_id"
@@ -1021,6 +1022,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "handover_form_item_id"
     t.integer "item_classification_no"
     t.boolean "in_use"
+    t.integer "project_item_id"
   end
 
   create_table "project_purchase_entries", force: :cascade do |t|
@@ -1050,15 +1052,9 @@ ActiveRecord::Schema.define(version: 202003211024509) do
   end
 
   create_table "project_purchase_entry_items", force: :cascade do |t|
-    t.integer "item_classification_no"
-    t.integer "item_register_page_no"
-    t.string "name_of_item_ne"
-    t.string "name_of_item_en"
     t.string "specification"
     t.string "item_identification_no"
     t.string "model_no"
-    t.string "unit_ne"
-    t.string "unit_en"
     t.decimal "quantity"
     t.decimal "rate"
     t.decimal "amount_without_vat"
