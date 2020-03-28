@@ -7,16 +7,6 @@ class Project::DemandItemsController < ProjectController
     @demand_items = Project::DemandItem.all
   end
 
-  # GET /demand_items/1
-  # GET /demand_items/1.json
-  def show
-  end
-
-  # GET /demand_items/new
-  def new
-    @demand_item = Project::DemandItem.new
-    @demand_id = params[:demand_id]
-  end
 
   # GET /demand_items/1/edit
   def edit
@@ -26,14 +16,20 @@ class Project::DemandItemsController < ProjectController
   # POST /demand_items.json
   def create
     @demand_item = Project::DemandItem.new(demand_item_params)
-    @office_item = Project::Item.find(demand_item_params[:item_id])
+    @project_item = Project::ProjectItem.find(@demand_item.project_item_id)
     @demand = Project::Demand.find(@demand_item.demand_id)
+    @demand_item.project_id = @demand.project_id
     respond_to do |format|
       if @demand_item.save
         format.html { redirect_to @demand, notice: 'Demand item was successfully created.' }
         format.json { render :show, status: :created, location: @demand_item }
       else
-        format.html { render :new }
+        msgs = ""
+        @demand_item.errors.full_messages.each do |message|
+          msgs << message
+        end
+        flash[:error] = msgs
+        format.html { redirect_to @demand }
         format.json { render json: @demand_item.errors, status: :unprocessable_entity }
       end
     end
@@ -72,6 +68,6 @@ class Project::DemandItemsController < ProjectController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def demand_item_params
-      params.require(:project_demand_item).permit(:name_of_item, :item_id, :specification, :rate, :unit, :quantity, :remark, :demand_id, :user_id, :office_id, :fy, :fiscal_year_id)
+      params.require(:project_demand_item).permit(:name_of_item, :project_item_id, :specification, :rate, :unit, :quantity, :remark, :demand_id, :user_id, :office_id, :fy, :fiscal_year_id)
     end
 end

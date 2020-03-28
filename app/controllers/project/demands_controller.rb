@@ -22,6 +22,7 @@ class Project::DemandsController < ProjectController
     @demand = Project::Demand.new(demand_params)
     @demand.recommended_by = Office::Personnel.find(demand_params[:recommended_by]).name_ne
     @demand = set_current_information @demand
+    @demand.store_body_id = current_control_body.id
     @demand.demand_no = get_new_project_demand_no
     @demand.marked_as_final = false
     @demand.entry_generated = false
@@ -62,7 +63,7 @@ class Project::DemandsController < ProjectController
     end
   end
 
-  def mark_as_final
+  def accept
     if @demand.marked_as_final == true
       @demand.marked_as_final = false
     else
@@ -71,33 +72,41 @@ class Project::DemandsController < ProjectController
     @demand.save
     redirect_to project_demand_path(@demand)
   end
-  def generate_release_form
-    @release_form = Project::Release.new
-    @release_form.received_by = @demand.demand_by
-    @release_form.received_date = @demand.demand_date
-    @release_form = set_current_information @release_form
-    @release_form.store_body_id = current_control_body.id
-    @release_form.project_id = @demand.project_id
-    @release_form.marked_as_final = false
-    @release_form.release_date = bs_today
-    @release_form.release_no = new_release_no
-    @release_form.demand_id = @demand.id
-    @release_form.received_by = @demand.demand_by
-    @release_form.received_date = bs_today
-    @release_form.entry_generated = false
-    @release_form.save
-    create_release_items @release_form
+  def release
+   release = Project::Release.new
+   release.received_by = @demand.demand_by
+   release.received_date = @demand.demand_date
+   release = set_current_information release
+   release.store_body_id = current_control_body.id
+   release.project_id = @demand.project_id
+   release.marked_as_final = false
+   release.release_date = bs_today
+   release.release_no = new_release_no
+   release.demand_id = @demand.id
+   release.received_by = @demand.demand_by
+   release.received_date = bs_today
+   release.entry_generated = false
+   release.save
+    create_release_items release
     @demand.entry_generated = true
     @demand.save
-    redirect_to @release_form
+    redirect_to release
   end
+
+  def print
+    @demand = Project::Demand.find(params[:id])
+    @demand_items = @demand.demand_items
+    @fy = Office::FiscalYear.find(@demand.fiscal_year_id).fy
+    set_office_information
+  end
+
 
   private
   def create_release_items release
     @demand_items = @demand.demand_items
     @project = @demand.project
     @demand_items.each do |item|
-      item_transactions =
+      item_transactions = Project::ProjectItemTransaction.where(project_id: item.project_id).where(project_item_id: item.project_item_id)
       item_transactions.each do |it|
         if it.sku >= item.quantity
           release_item = Project::ReleaseItem.new(item.attributes.select{ |key, _| Project::ReleaseItem.column_names.include? key})
@@ -157,4 +166,8 @@ class Project::DemandsController < ProjectController
       nrn
     end
 
+  def set_office_information
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+  end
 end

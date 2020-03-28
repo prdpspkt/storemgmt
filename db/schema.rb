@@ -1157,6 +1157,10 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "received_by"
+    t.datetime "received_date"
+    t.integer "demand_id"
+    t.boolean "entry_generated"
   end
 
   create_table "project_stock_items", force: :cascade do |t|

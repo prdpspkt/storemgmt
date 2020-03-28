@@ -7,23 +7,23 @@
     <th>स्वीकृत गर्ने</th>
   </tr>
   <tr>
-    <td><%= nd @office_release.release_no %></td>
-    <td><%= ndate @office_release.release_date %></td>
-    <td><%= @office_release.store_body.store_keeper_name %></td>
-    <td><%= @office_release.store_body.office_chief_name %></td>
+    <td><%= nd @project_release.release_no %></td>
+    <td><%= ndate @project_release.release_date %></td>
+    <td><%= @project_release.store_body.store_keeper_name %></td>
+    <td><%= @project_release.store_body.office_chief_name %></td>
   </tr>
 </table>
 <div class="text-center">
-  <%= link_to back_btn.html_safe, office_releases_path %>
-  <% if @office_release.marked_as_final == false %>
-    <%= link_to edit_big_btn.html_safe, edit_office_release_path(@office_release) %>
-    <%= link_to final_btn.html_safe, office_mark_release_as_final_path(@office_release), method: :post %>
+  <%= link_to back_btn.html_safe, project_releases_path %>
+  <% if @project_release.marked_as_final != true %>
+    <%= link_to edit_big_btn.html_safe, edit_project_release_path(@project_release) %>
+    <%= link_to final_btn.html_safe,accept_project_release_url(@project_release), method: :post %>
   <% end %>
-  <% if @office_release.marked_as_final == true && @office_release.entry_generated == false %>
-    <%= link_to before_final_btn.html_safe, office_mark_release_as_final_path(@office_release), id: :mark_as_not_final, method: :post %>
-    <%= link_to ledger_entry_btn.html_safe, office_generate_ledger_entry_with_release_path(@office_release), method: :post %>
+  <% if @project_release.marked_as_final == true && @project_release.entry_generated == false %>
+    <%= link_to before_final_btn.html_safe, project_mark_release_as_final_path(@project_release), id: :mark_as_not_final, method: :post %>
+    <%= link_to ledger_entry_btn.html_safe, project_generate_ledger_entry_with_release_path(@project_release), method: :post %>
 <% end %>
-  <%= link_to print_big_btn.html_safe, office_release_report_path(@office_release) %>
+  <%= link_to print_big_btn.html_safe, print_project_release_url(@project_release) %>
 </div>
 <h2> माग भै आएका सामाग्रीहरू </h2>
 <table class="table table-sm table-bordered table-condensed">
@@ -40,7 +40,7 @@
   </tr>
   </thead>
   <tbody>
-  <% @office_release_items.each do |item| %>
+  <% @project_release_items.each do |item| %>
     <tr id="ori-<%= item.id %>">
       <td><%= nd item.item.item_register_page_no %></td>
       <td><%= item.item.name_of_item_ne %></td>
@@ -50,7 +50,7 @@
       <td><%= nd item.amount %></td>
       <td><%= item.remarks %></td>
       <td>
-        <% if @office_release.marked_as_final != true %>
+        <% if @project_release.marked_as_final != true %>
           <%= link_to destroy_btn.html_safe, item, data: {method: :delete} %>
         <% end %></td>
     </tr>

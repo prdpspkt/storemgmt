@@ -169,31 +169,6 @@ Rails.application.routes.draw do
         post 'print'
       end
     end
-    resources :land_and_structure_record_book_items
-    resources :land_and_structure_record_books do
-      member do
-        post 'print'
-      end
-    end
-    resources :rental_record_register_items
-    resources :rental_record_registers do
-      member do
-        post 'print'
-      end
-    end
-    resources :repair_record_register_items
-    resources :repair_record_registers do
-      member do
-        post "print"
-      end
-    end
-    resources :repair_application_form_items
-    resources :repair_application_forms do
-      member do
-        get "print"
-        post "accept"
-      end
-    end
     resources :stock_items
     resources :stocks do
       member do
@@ -202,15 +177,8 @@ Rails.application.routes.draw do
         post "generate"
       end
     end
-    resources :item_assistance_register_items
-    resources :item_assistance_registers do
-      member do
-        post 'accept'
-        post 'print'
-      end
-    end
     resources :item_evaluation_items
-    resources :evaluation_committees
+
     resources :item_evaluations do
       member do
         post "print"
@@ -238,7 +206,7 @@ Rails.application.routes.draw do
       member do
         post "print"
         post "accept"
-        post "posting"
+        post "transaction"
       end
     end
     resources :purchase_entry_items
@@ -261,7 +229,7 @@ Rails.application.routes.draw do
     resources :demand_items
     resources :demands do
       member do
-        post "print"
+        get "print"
         post "accept"
         post "release"
       end
@@ -297,9 +265,9 @@ Rails.application.routes.draw do
     resources :fiscal_years
     resources :projects do
       collection do
-        post 'print'
-        post 'print_running'
-        post 'print_completed'
+        get 'print'
+        get 'print_running'
+        get 'print_completed'
       end
       member do
         get "demand"
