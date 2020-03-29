@@ -44,6 +44,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
         ppei.total_amount = total_amount
         ppei.project_item_id = create_project_item(@project_purchase_entry_item.project_id, @project_purchase_entry_item.item_id).id
         ppei = set_current_information ppei
+        ppei.project_id = @project_purchase_entry_item.project_id
         ppei.project_purchase_entry_id = @project_purchase_entry_item.project_purchase_entry_id
         if ppei.save!
           tr.sku = tr.sku - ppei.quantity
@@ -61,6 +62,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
         ppei.amount = amount
         ppei.vat = amount - amount_without_vat
         ppei.total_amount = total_amount
+        ppei.project_id = @project_purchase_entry_item.project_id
         ppei.project_item_id = create_project_item(@project_purchase_entry_item.project_id, @project_purchase_entry_item.item_id).id
         ppei = set_current_information ppei
         ppei.project_purchase_entry_id = @project_purchase_entry_item.project_purchase_entry_id

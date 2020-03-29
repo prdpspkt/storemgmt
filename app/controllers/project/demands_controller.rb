@@ -72,25 +72,13 @@ class Project::DemandsController < ProjectController
     @demand.save
     redirect_to project_demand_path(@demand)
   end
+
   def release
-   release = Project::Release.new
-   release.received_by = @demand.demand_by
-   release.received_date = @demand.demand_date
-   release = set_current_information release
-   release.store_body_id = current_control_body.id
-   release.project_id = @demand.project_id
-   release.marked_as_final = false
-   release.release_date = bs_today
-   release.release_no = new_release_no
-   release.demand_id = @demand.id
-   release.received_by = @demand.demand_by
-   release.received_date = bs_today
-   release.entry_generated = false
-   release.save
-    create_release_items release
-    @demand.entry_generated = true
-    @demand.save
-    redirect_to release
+    @demand_items = @demand.demand_items
+    @demand_items.each do |demand_item|
+      trs = Project::ProjectItemTransaction.where(:project_id => @demand.project_id).where(project_item_id: demand_item.project_item_id)
+      binding.pry
+    end
   end
 
   def print
@@ -102,69 +90,35 @@ class Project::DemandsController < ProjectController
 
 
   private
-  def create_release_items release
-    @demand_items = @demand.demand_items
-    @project = @demand.project
-    @demand_items.each do |item|
-      item_transactions = Project::ProjectItemTransaction.where(project_id: item.project_id).where(project_item_id: item.project_item_id)
-      item_transactions.each do |it|
-        if it.sku >= item.quantity
-          release_item = Project::ReleaseItem.new(item.attributes.select{ |key, _| Project::ReleaseItem.column_names.include? key})
-          release_item.id = nil
-          release_item.release_id = release.id
-          release_item = set_current_information release_item
-          release_item.quantity = item.quantity
-          release_item.rate = it.rate
-          release_item.amount = release_item.quantity * release_item.rate
-          it.sku = it.sku - item.quantity
-          release_item.subed_from = it.id
-          release_item.save
-          it.save
-          break
-        else
-          release_item = Project::ReleaseItem.new(item.attributes.select{ |key, _| Project::ReleaseItem.column_names.include? key})
-          release_item.id = nil
-          release_item.release_id = release.id
-          release_item = set_current_information release_item
-          release_item.quantity = it.sku
-          release_item.rate = it.rate
-          release_item.amount = release_item.quantity * release_item.rate
-          item.quantity = item.quantity - it.sku
-          release_item.subed_from = it.id
-          release_item.save
-          it.save
-        end
-      end
 
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_demand
+    @demand = Project::Demand.find(params[:id])
   end
-    # Use callbacks to share common setup or constraints between actions.
-    def set_demand
-      @demand = Project::Demand.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def demand_params
-      params.require(:project_demand).permit(:project_id, :demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date,  :recorded_date)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def demand_params
+    params.require(:project_demand).permit(:project_id, :demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date, :recorded_date)
+  end
 
-    def get_new_project_demand_no
+  def get_new_project_demand_no
     demand_no = 1
     @demands = current(Project::Demand)
     if @demands.count > 0
       demand_no = @demands.last.demand_no + 1
     end
     demand_no
-    end
+  end
 
-    def new_release_no
-      nrn = 1
-      @releases = current(Project::Release)
-      if @releases.count > 0
-        nrn = @releases.last.release_no + 1
-      end
-      nrn
+  def new_release_no
+    nrn = 1
+    @releases = current(Project::Release)
+    if @releases.count > 0
+      nrn = @releases.last.release_no + 1
     end
+    nrn
+  end
 
   def set_office_information
     @office = current_office

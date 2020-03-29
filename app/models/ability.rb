@@ -7,7 +7,7 @@ class Ability
     user = current_user || User.new
     cannot :manage, :all
     can :create, :all
-    can [:view, :show, :edit, :destroy, :update, :index], Office, user_id: user.id
+    can [:view, :show, :edit, :destroy, :update, :index], Office::Office, user_id: user.id
     can :manage, Office::Item, user_id: user.id
     can :manage, Office::ItemCategory, user_id: user.id
     can :manage, Office::PurchaseOrder, user_id: user.id

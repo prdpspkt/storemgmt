@@ -2,11 +2,17 @@ class Project::LedgersController < ProjectController
   before_action :set_office_information
 
   def expense_item_registers
-    @items = office(Project::Item).where(item_classification_no: 52).joins(:item_transactions).where("project_transactions.sku > 0").distinct(:item_id)
+    @items = office(Project::Item)
+                 .where(item_classification_no: 52)
+                 .joins(:item_transactions).where("project_transactions.fiscal_year_id =#{current_fiscal_year.id}")
+                 .distinct(:item_id)
   end
 
   def non_expense_item_registers
-    @items = office(Project::Item).where(item_classification_no: 47).joins(:item_transactions).where("project_transactions.sku > 0").distinct(:item_id)
+    @items = office(Project::Item)
+                 .where(item_classification_no: 47)
+                 .joins(:item_transactions)
+                 .distinct(:item_id)
   end
 
   def expense_item_register

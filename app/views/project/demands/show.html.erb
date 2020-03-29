@@ -19,11 +19,11 @@
 </table>
 <div class="text-center">
 <%= link_to back_btn.html_safe, @demand.project %>
-  <% if @demand.marked_as_final == false %>
+  <% if @demand.marked_as_final != true %>
   <%= link_to edit_big_btn.html_safe, edit_project_demand_path(@demand) %>
   <%= link_to final_btn.html_safe, accept_project_demand_url(@demand), method: :post, data:{confirm: "If you want to modify data you will have only 3 days."} %>
     <% end %>
-  <% if @demand.entry_generated == false && @demand.marked_as_final == true %>
+  <% if @demand.entry_generated != true && @demand.marked_as_final == true %>
     <%= link_to before_final_btn.html_safe, accept_project_demand_url(@demand), id: :mark_as_not_final, method: :post %>
     <%= link_to release_generate_btn.html_safe, release_project_demand_url(@demand), method: :post %>
   <% end %>

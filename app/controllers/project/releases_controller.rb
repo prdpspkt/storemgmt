@@ -24,9 +24,10 @@ class Project::ReleasesController < ProjectController
 
   # GET /project_releases/new
   def destroy
+    project = @project_release.project
     @project_release.destroy
     respond_to do |format|
-      format.html { redirect_to project_releases_url, notice: 'Project release was successfully destroyed.' }
+      format.html { redirect_to project, notice: 'निकाशा फाराम सफलतापुर्वक मेटाईएको छ ' }
       format.json { head :no_content }
     end
   end

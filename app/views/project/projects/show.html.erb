@@ -1,45 +1,52 @@
-<h1> आयोजना विवरण</h1>
-<table class="table table-sm table-bordered">
-  <tr>
-    <th>आयोजनाको नाम:</th>
-    <td><%= @project.name_of_project_ne %></td>
-    <th>Name of Project</th>
-    <td><%= @project.name_of_project_en %></td>
-  </tr>
-  <tr>
-    <th>उपभोक्ता समितिको नाम:</th>
-    <td><%= @project.name_of_consumer_committee %></td>
-    <th>ठेगाना:</th>
-    <td><%= @project.address %></td>
-  </tr>
-  <tr>
-    <th>समिति प्रतिनिधिको नाम:</th>
-    <td><%= @project.name_of_committee_representative %> (<%= @project.post_of_representative %>)</td>
-    <th>समिति प्रतिनिधिको सम्पर्क नं</th>
-    <td><%= @project.phone_of_committee_representative %></td>
-  </tr>
-
-  <tr>
-    <th>ठेकेदारको नाम:</th>
-    <td><%= @project.contractor %></td>
-    <th>ठेकेदार प्रतिनिधिको नाम</th>
-    <td><%= @project.name_of_contractor_representative %></td>
-  </tr>
-
-  <tr>
-    <th>ठेकेदारको फोन</th>
-    <td><%= @project.phone_of_contractor_representative %></td>
-    <th>आयोजनाको अवस्था</th>
-    <td><%= @project.project_status %></td>
-  </tr>
-</table>
-<div class="text-center">
-  <%= link_to back_btn.html_safe, project_projects_path %>
+<div>
+  <span class="h3"><%= @project.name_of_project_ne %></span>
   <%= link_to edit_big_btn.html_safe, edit_project_project_path(@project) %>
   <%= link_to expense_item_ledger_btn.html_safe, expense_item_register_project_ledger_path(@project) %>
   <%= link_to non_expense_item_ledger_btn.html_safe, non_expense_item_register_project_ledger_path(@project) %>
+  <a class="btn btn-warning" data-toggle="collapse" href="#project_description_table" aria-expanded="false" aria-controls="project_description_table">आयोजनाको
+    विवरण</a>
 </div>
 <div class="separator"></div>
+<div id="project_description_table" class="row collapse">
+  <div class="col-12">
+    <table class="table table-sm table-bordered">
+      <tr>
+        <th>आयोजनाको नाम:</th>
+        <td><%= @project.name_of_project_ne %></td>
+        <th>Name of Project</th>
+        <td><%= @project.name_of_project_en %></td>
+      </tr>
+      <tr>
+        <th>उपभोक्ता समितिको नाम:</th>
+        <td><%= @project.name_of_consumer_committee %></td>
+        <th>ठेगाना:</th>
+        <td><%= @project.address %></td>
+      </tr>
+      <tr>
+        <th>समिति प्रतिनिधिको नाम:</th>
+        <td><%= @project.name_of_committee_representative %> (<%= @project.post_of_representative %>)</td>
+        <th>समिति प्रतिनिधिको सम्पर्क नं</th>
+        <td><%= @project.phone_of_committee_representative %></td>
+      </tr>
+
+      <tr>
+        <th>ठेकेदारको नाम:</th>
+        <td><%= @project.contractor %></td>
+        <th>ठेकेदार प्रतिनिधिको नाम</th>
+        <td><%= @project.name_of_contractor_representative %></td>
+      </tr>
+
+      <tr>
+        <th>ठेकेदारको फोन</th>
+        <td><%= @project.phone_of_contractor_representative %></td>
+        <th>आयोजनाको अवस्था</th>
+        <td><%= @project.project_status %></td>
+      </tr>
+    </table>
+    <div class="separator"></div>
+  </div>
+</div>
+
 <!-- Nav tabs -->
 <ul class="nav nav-tabs">
   <li class="nav-item">
@@ -78,7 +85,8 @@
         </tr>
         <% @i = @i + 1 %>
       <% end %>
-    </table>  </div>
+    </table>
+  </div>
   <div id="menu1" class="container tab-pane fade"><br>
     <h3>खर्च भएर नजाने (खप्ने) जिन्सी सामानहरू</h3>
     <table class="table table-sm table-bordered">
@@ -100,10 +108,11 @@
         </tr>
         <% @i = @i + 1 %>
       <% end %>
-    </table>  </div>
+    </table>
+  </div>
   <div id="menu2" class="container tab-pane fade"><br>
     <h3 class="float-left">माग फारामहरू</h3>
-      <%= link_to new_btn.html_safe, demand_project_project_path(@project), class: "float-right" %>
+    <%= link_to new_btn.html_safe, demand_project_project_path(@project), class: "float-right" %>
     <table class="table table-sm table-bordered">
       <tr>
         <th>क्र.स.</th>
@@ -119,33 +128,47 @@
           <td><%= nd item.demand_no %></td>
           <td><%= ndate item.demand_date %></td>
           <td><%= item.demand_by %></td>
-          <td class="no-print"></td>
+          <td class="no-print">
+            <% if item.marked_as_final != true %>
+              <%= link_to edit_btn.html_safe, edit_project_demand_url(item) %>
+              <%= link_to destroy_btn.html_safe, project_demand_url(item), data: {method: :delete, confirm: "Are you sure to delete this release form ?"} %>
+            <% end %>
+            <%= link_to show_btn.html_safe, project_demand_url(item) %>
+          </td>
         </tr>
         <% @i = @i + 1 %>
       <% end %>
-    </table>  </div>
+    </table>
+  </div>
   <div id="menu3" class="container tab-pane fade"><br>
-  <h3 class="float-left">निकाशा फारामहरू</h3>
-      <%= link_to new_btn.html_safe, release_project_project_path(@project), class:"float-right"  %>
-  <table class="table table-sm table-bordered">
-    <tr>
-      <th>क्र.स.</th>
-      <th>निकाशा नं</th>
-      <th>निकाशा मिति</th>
-      <th>सामान बुझ्ने</th>
-      <th class="no-print"></th>
-    </tr>
-    <% @i = 1 %>
-    <% @releases.each do |item| %>
+    <h3 class="float-left">निकाशा फारामहरू</h3>
+    <%= link_to new_btn.html_safe, release_project_project_path(@project), class: "float-right" %>
+    <table class="table table-sm table-bordered">
       <tr>
-        <td><%= nd @i %></td>
-        <td><%= nd item.release_no %></td>
-        <td><%= ndate item.release_date %></td>
-        <td><%= item.received_by %></td>
-        <td class="no-print"></td>
+        <th>क्र.स.</th>
+        <th>निकाशा नं</th>
+        <th>निकाशा मिति</th>
+        <th>सामान बुझ्ने</th>
+        <th class="no-print"></th>
       </tr>
-      <% @i = @i + 1 %>
-    <% end %>
-  </table>  </div>
+      <% @i = 1 %>
+      <% @releases.each do |item| %>
+        <tr>
+          <td><%= nd @i %></td>
+          <td><%= nd item.release_no %></td>
+          <td><%= ndate item.release_date %></td>
+          <td><%= item.received_by %></td>
+          <td class="no-print">
+            <% if item.marked_as_final != true %>
+              <%= link_to edit_btn.html_safe, edit_project_release_url(item) %>
+              <%= link_to destroy_btn.html_safe, project_release_url(item), data: {method: :delete, confirm: "Are you sure to delete this release form ?"} %>
+            <% end %>
+            <%= link_to show_btn.html_safe, project_release_url(item) %>
+          </td>
+        </tr>
+        <% @i = @i + 1 %>
+      <% end %>
+    </table>
+  </div>
 </div>
 </div>

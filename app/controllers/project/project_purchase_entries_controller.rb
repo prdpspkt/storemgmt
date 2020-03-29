@@ -134,6 +134,7 @@ class Project::ProjectPurchaseEntriesController < ProjectController
       transaction.transaction_date = bs_today
       transaction = set_current_information transaction
       transaction.save
+      entry_item.item_transaction_id = create_main_transaction(transaction).id
       entry_item.project_item_transaction_id = transaction.id
       entry_item.save
     end
@@ -148,6 +149,16 @@ class Project::ProjectPurchaseEntriesController < ProjectController
   def new_form_variables
     @purchase_entries = current(Project::PurchaseEntry)
     @projects = office(Project::Project).where(project_status: 0)
+  end
+
+
+  def create_main_transaction transaction
+    main_transaction = Project::ItemTransaction.new(transaction.attributes.select{|key, _| Project::ItemTransaction.column_names.include? key})
+    main_transaction.id = nil
+    main_transaction.transaction_type = -1
+    main_transaction.remarks = "#{project_purchase_entry.project.name_of_project_ne} मा सारिएको |"
+    main_transaction.save
+    main_transaction
   end
 
 end
