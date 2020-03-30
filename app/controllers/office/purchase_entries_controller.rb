@@ -129,7 +129,6 @@ class Office::PurchaseEntriesController < ApplicationController
       transaction = Office::ItemTransaction.new(entry_item.attributes.select { |key, _| Office::ItemTransaction.column_names.include? key })
       transaction.id = nil
       transaction.item_classification_no = entry_item.item.item_classification_no
-      binding.pry
       transaction.rate = entry_item.rate * 1.13
       transaction.purchase_entry_item_id = entry_item.id
       transaction.transaction_type = 1

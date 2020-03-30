@@ -1,6 +1,6 @@
 class Project::Project < ApplicationRecord
   belongs_to :user
-  has_many :project_items, class_name: "Project::PrivateItem"
+  has_many :project_items, class_name: "Project::ProjectItem"
   belongs_to :office, class_name: "Office::Office"
   has_many :demands, class_name: "Project::Demand"
   has_many :tender_breakdowns, :class_name => 'Project::TenderBreakdown'

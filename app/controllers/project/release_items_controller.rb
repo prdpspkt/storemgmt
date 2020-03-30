@@ -7,8 +7,10 @@ class Office::ReleaseItemsController < ProjectController
 
   def destroy
     @release = @release_item.release
-    @release_item.destroy
     respond_to do |format|
+      if @release_item.release.entry_generated != true
+        @release_item.destroy
+      end
       format.html { redirect_to @release, notice: 'Office release item was successfully destroyed.' }
       format.json { head :no_content }
     end

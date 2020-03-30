@@ -1,10 +1,14 @@
 json.set! :data do
-  json.array! @office_stocks do |office_stock|
-    json.partial! 'office_stocks/office_stock', office_stock: office_stock
+  json.array! @project_stocks do |project_stock|
+    json.partial! 'project/stocks/project_stock', project_stock: project_stock
+    json.fy "#{project_stock.fiscal_year.fy}"
+    json.office_name "#{project_stock.office.office}"
+    json.description "वार्षिक मौज्दात विवरण"
+
     json.url  "
-              #{link_to 'Show', office_stock }
-              #{link_to 'Edit', edit_office_stock_path(office_stock)}
-              #{link_to 'Destroy', office_stock, method: :delete, data: { confirm: 'Are you sure?' }}
+              #{link_to show_btn.html_safe, project_stock }
+              #{link_to edit_btn.html_safe, edit_project_stock_path(project_stock)}
+              #{link_to destroy_btn.html_safe, project_stock, method: :delete, data: { confirm: 'Are you sure?' }}
               "
   end
 end

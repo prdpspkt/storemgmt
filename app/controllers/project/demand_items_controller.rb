@@ -19,6 +19,8 @@ class Project::DemandItemsController < ProjectController
     @project_item = Project::ProjectItem.find(@demand_item.project_item_id)
     @demand = Project::Demand.find(@demand_item.demand_id)
     @demand_item.project_id = @demand.project_id
+    @demand_item.item_id = @project_item.item_id
+    @demand_item = set_current_information @demand_item
     respond_to do |format|
       if @demand_item.save
         format.html { redirect_to @demand, notice: 'Demand item was successfully created.' }

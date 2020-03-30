@@ -85,41 +85,41 @@
   </tr>
   <% @qty = 0 %>
   <% @amt = 0 %>
-  <% item.project_item_transactions.each do |oeirt| %>
-    <% if oeirt.transaction_type > 0 %>
-      <% @qty = @qty + oeirt.quantity %>
-      <% @amt = @amt + oeirt.amount %>
+  <% item.project_item_transactions.each do |transaction| %>
+    <% if transaction.transaction_type > 0 %>
+      <% @qty = @qty + transaction.quantity %>
+      <% @amt = @amt + transaction.amount %>
       <tr>
-        <td><%= ndate oeirt.transaction_date %></td>
-        <td><%= nd oeirt.entry_no %></td>
-        <td><%= nd oeirt.quantity %></td>
-        <td><%= nd oeirt.rate %></td>
-        <td><%= nd oeirt.amount %></td>
+        <td><%= ndate transaction.transaction_date %></td>
+        <td><%= nd transaction.entry_no %></td>
+        <td><%= nd transaction.quantity %></td>
+        <td><%= nd transaction.rate %></td>
+        <td><%= nd transaction.amount %></td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;<%= nd @qty %></td>
         <td>&nbsp;</td>
         <td><%= nd @amt %></td>
-        <td>&nbsp;</td>
+        <td><%= transaction.remarks %></td>
       </tr>
     <% end %>
-    <% if oeirt.transaction_type < 0 %>
-      <% @qty = @qty - oeirt.quantity %>
-      <% @amt = @amt - oeirt.amount %>
+    <% if transaction.transaction_type < 0 %>
+      <% @qty = @qty - transaction.quantity %>
+      <% @amt = @amt - transaction.amount %>
       <tr>
-        <td><%= ndate oeirt.transaction_date %></td>
-        <td><%= nd oeirt.entry_no %></td>
+        <td><%= ndate transaction.transaction_date %></td>
+        <td><%= nd transaction.entry_no %></td>
         <td></td>
         <td></td>
         <td></td>
-        <td><%= nd oeirt.quantity %></td>
-        <td><%= nd oeirt.rate %></td>
-        <td><%= nd oeirt.amount %></td>
+        <td><%= nd transaction.quantity %></td>
+        <td><%= nd transaction.rate %></td>
+        <td><%= nd transaction.amount %></td>
         <td>&nbsp;<%= nd @qty %></td>
         <td>&nbsp;</td>
         <td><%= nd @amt %></td>
-        <td>&nbsp;</td>
+        <td><%= transaction.remarks %></td>
       </tr>
     <% end %>
   <% end %>

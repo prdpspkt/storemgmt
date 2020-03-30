@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
   protect_from_forgery
-  #
+
   # rescue_from Exception do |exception|
   #  flash[:error] = "#{exception_message exception}"
   #  logger.debug("#{exception.class.to_s}: #{exception.message}")
@@ -65,9 +65,10 @@ class ApplicationController < ActionController::Base
         "ActiveRecord::StatementInvalid" => "डेटाबेस स्टेटमेन्ट एरर: #{exception.message}",
         "ActionView::Template::Error" => "टेम्प्लेट एरर: #{exception.message}",
         "NameError" => "नेम एरर: #{exception.message}",
-        "NoMethodError" => "नो मेथड एरर: #{exception.message}"
+        "NoMethodError" => "नो मेथड एरर: #{exception.message}",
+        "ActionController::RoutingError" => "४०४ एररोर: पेज भेटिएन"
     }[exception.class.to_s]
 
   end
 
-  end
+end

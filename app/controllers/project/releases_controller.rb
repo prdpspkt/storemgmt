@@ -1,5 +1,6 @@
 class Project::ReleasesController < ProjectController
-  before_action :set_project_release, only: [:generate_ledger_entry, :mark_as_final, :show, :edit, :update, :destroy]
+  before_action :set_project_release, only: [:transaction, :print, :accept, :show, :edit, :update, :destroy]
+  before_action :set_office_information, only: [:print]
   load_and_authorize_resource except: [:create, :new]
   # GET /project_releases
   # GET /project_releases.json
@@ -32,34 +33,37 @@ class Project::ReleasesController < ProjectController
     end
   end
 
-  def mark_as_final
-    if @project_release.marked_as_final == true
-      @project_release.marked_as_final = false
-      @project_release.save
+  def accept
+    if @project_release.accepted != true
+      @project_release.accepted = true
     else
-      @project_release.marked_as_final = true
-      @project_release.save
+      @project_release.accepted = false
     end
+    @project_release.save
     redirect_to @project_release
   end
 
-  def generate_ledger_entry
+  def print
+    @project_release = Project::Release.find(params[:id])
+    @project_release_items = @project_release.release_items
+  end
+
+  def transaction
     @items = @project_release.release_items
     @items.each do |item|
-      item_transaction = Project::ItemTransaction.new(item.attributes.select{|key, _| Project::ItemTransaction.column_names.include? key})
+      item_transaction = Project::ProjectItemTransaction.new(item.attributes.select{|key, _| Project::ProjectItemTransaction.column_names.include? key})
       item_transaction.transaction_type = -1
       item_transaction.id = nil
       item_transaction.transaction_date = item.release.release_date
       item_transaction.entry_no = item.release.release_no
       item_transaction.release_item_id = item.id
-      item_transaction.save
-      @project_release.entry_generated = true
-      @project_release.save
-      item.item_transaction_id = item_transaction.id
-      item.save
-      redirect_to @project_release
+      item_transaction.save!
+      item.project_item_transaction_id = item_transaction.id
+      item.save!
     end
-
+    @project_release.entry_generated = true
+    @project_release.save!
+    redirect_to @project_release
   end
 
   private
@@ -68,4 +72,13 @@ class Project::ReleasesController < ProjectController
     def set_project_release
       @project_release = Project::Release.find(params[:id])
     end
+
+  def release_params
+    params.require(:project_release).permit(:office_chief_signed_date, :store_chief_signed_date, :received_by)
+  end
+
+  def set_office_information
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+  end
 end

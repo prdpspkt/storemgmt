@@ -171,17 +171,22 @@ Rails.application.routes.draw do
     end
     resources :stock_items
     resources :stocks do
-      member do
-        post "print"
-        post "accept"
+      collection do
         post "generate"
+      end
+      member do
+        get "print"
+        post "accept"
       end
     end
     resources :item_evaluation_items
 
     resources :item_evaluations do
+      collection do
+        post "generate"
+      end
       member do
-        post "print"
+        get "print"
         post "accept"
       end
     end
@@ -204,7 +209,7 @@ Rails.application.routes.draw do
     resources :release_items
     resources :releases do
       member do
-        post "print"
+        get "print"
         post "accept"
         post "transaction"
       end
@@ -268,6 +273,7 @@ Rails.application.routes.draw do
         get 'print'
         get 'print_running'
         get 'print_completed'
+        post "import"
       end
       member do
         get "demand"

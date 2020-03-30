@@ -30,6 +30,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "updated_at", null: false
     t.integer "office_id"
     t.boolean "status"
+    t.datetime "start_date"
+    t.datetime "closing_date"
   end
 
   create_table "office_demand_items", force: :cascade do |t|
@@ -675,6 +677,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
   end
 
   create_table "office_tender_items", force: :cascade do |t|
@@ -914,6 +917,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "temp_id"
   end
 
   create_table "project_items", force: :cascade do |t|
@@ -930,6 +934,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "item_category_id"
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
+    t.integer "temp_id"
+    t.integer "temp_cat_id"
   end
 
   create_table "project_project_items", force: :cascade do |t|
@@ -1140,9 +1146,11 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "office_id"
     t.integer "item_id"
     t.integer "fiscal_year_id"
-    t.integer "release_from"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.integer "item_transaction_id"
+    t.integer "project_item_transaction_id"
   end
 
   create_table "project_releases", force: :cascade do |t|
@@ -1155,13 +1163,13 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "office_id"
     t.integer "project_id"
     t.integer "fiscal_year_id"
-    t.integer "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "received_by"
     t.datetime "received_date"
     t.integer "demand_id"
     t.boolean "entry_generated"
+    t.boolean "accepted"
   end
 
   create_table "project_stock_items", force: :cascade do |t|
@@ -1177,6 +1185,9 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_item_id"
+    t.integer "store_body_id"
+    t.integer "stock_id"
   end
 
   create_table "project_stocks", force: :cascade do |t|
@@ -1328,6 +1339,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "project_status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "temp_id"
   end
 
   create_table "users", force: :cascade do |t|

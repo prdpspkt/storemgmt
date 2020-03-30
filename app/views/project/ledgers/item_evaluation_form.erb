@@ -1,12 +1,12 @@
 <div class="container">
   <div class="row text-center">
     <div class="col-12 text-right">म.ले.प.फा.नं. ५२</div>
-    <div class="col-12 gov_name">प्रदेश सरकार</div>
-    <div class="col-12 min_name">भौतिक पूर्वाधार विकास मन्त्रालय</div>
-    <div class="col-12 off_name">खानेपानी तथा सरसफाई डिभिजन कार्यलय</div>
-    <div class="col-12 min_name">गण्डकी प्रदेश, तनहुँ</div>
+    <div class="col-12 gov_name"><%= @office.gov %>/div>
+    <div class="col-12 min_name"><%= @office.ministry %></div>
+    <div class="col-12 off_name"><%= @office.office %>></div>
+    <div class="col-12 min_name"><%= @office.address %>></div>
     <div class="col-12 form_name">जिन्सी निरीक्षण फाराम</div>
-    <div class="col-12 min_name"><b>आ.व. २०७५/०७६</b></div>
+    <div class="col-12 min_name"><b><%= nd @fiscal_year.fy %></b></div>
   </div>
   <div class="row">
     <div class="col-12">
@@ -107,7 +107,7 @@
   <% end %>
 <% end %>
 </table>
-<div class="pull-right">पेज  <%= to_nd(@page + 1) %></div>
+<div class="pull-right">पेज  <%= nd(@page + 1) %></div>
 </div>
 </div>
 </div>

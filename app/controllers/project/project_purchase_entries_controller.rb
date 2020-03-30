@@ -156,7 +156,7 @@ class Project::ProjectPurchaseEntriesController < ProjectController
     main_transaction = Project::ItemTransaction.new(transaction.attributes.select{|key, _| Project::ItemTransaction.column_names.include? key})
     main_transaction.id = nil
     main_transaction.transaction_type = -1
-    main_transaction.remarks = "#{project_purchase_entry.project.name_of_project_ne} मा सारिएको |"
+    main_transaction.remarks = "#{@project_purchase_entry.project.name_of_project_ne} मा सारिएको |"
     main_transaction.save
     main_transaction
   end

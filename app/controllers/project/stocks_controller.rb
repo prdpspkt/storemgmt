@@ -1,74 +1,66 @@
-class Office::StocksController < ProjectController
-  before_action :set_office_stock, only: [:show, :edit, :update, :destroy]
+class Project::StocksController < ProjectController
+  before_action :set_project_stock, only: [:show, :edit, :update, :destroy]
+  before_action :set_office_information, only: [:show]
   load_and_authorize_resource except: [:create, :new]
-  # GET /office_stocks
-  # GET /office_stocks.json
+  # GET /project_stocks
+  # GET /project_stocks.json
   def index
-    @office_stocks = OfficeStock.all
+    @project_stocks = Project::Stock.all
   end
 
-  # GET /office_stocks/1
-  # GET /office_stocks/1.json
+  # GET /project_stocks/P
+  # GET /project_stocks/1.json
   def show
   end
 
-  # GET /office_stocks/new
-  def new
-    @office_stock = OfficeStock.new
-  end
-
-  # GET /office_stocks/1/edit
-  def edit
-  end
-
-  # POST /office_stocks
-  # POST /office_stocks.json
-  def create
-    @office_stock = OfficeStock.new(office_stock_params)
-
-    respond_to do |format|
-      if @office_stock.save
-        format.html { redirect_to @office_stock, notice: 'Office stock was successfully created.' }
-        format.json { render :show, status: :created, location: @office_stock }
-      else
-        format.html { render :new }
-        format.json { render json: @office_stock.errors, status: :unprocessable_entity }
-      end
+  def generate
+    @project_stocks = current(Project::Stock)
+    if @project_stocks.count > 0
+      @project_stocks.destroy_all
     end
-  end
-
-  # PATCH/PUT /office_stocks/1
-  # PATCH/PUT /office_stocks/1.json
-  def update
-    respond_to do |format|
-      if @office_stock.update(office_stock_params)
-        format.html { redirect_to @office_stock, notice: 'Office stock was successfully updated.' }
-        format.json { render :show, status: :ok, location: @office_stock }
-      else
-        format.html { render :edit }
-        format.json { render json: @office_stock.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /office_stocks/1
-  # DELETE /office_stocks/1.json
-  def destroy
-    @office_stock.destroy
-    respond_to do |format|
-      format.html { redirect_to office_stocks_url, notice: 'Office stock was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @project_stock = Project::Stock.new
+    @project_stock = set_current_information @project_stock
+    @project_stock.store_body_id = current_control_body.id
+    @project_stock.save!
+    generate_stock_items @project_stock.id
+    redirect_to project_stocks_url
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_office_stock
-      @office_stock = OfficeStock.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def office_stock_params
-      params.require(:office_stock).permit(:fy, :store_chief_name, :store_chief_designation, :store_chief_sign_date, :section_chief_name, :section_chief_designation, :section_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :office_id, :user_id, :fiscal_year_id)
+  def generate_stock_items stock_id
+    @projects = office(Project::Project).where(project_status: 0)
+    @projects.each do |project|
+      project.project_items.each do |item|
+        transactions = item.project_item_transactions.where("sku > 0")
+        stock_item = Project::StockItem.new
+        stock_item.stock_id = stock_id
+        stock_item.project_id = project.id
+        stock_item = set_current_information stock_item
+        stock_item.store_body_id = current_control_body.id
+        stock_item.project_item_id = item.id
+        stock_item.quantity = transactions.sum(:sku)
+        stock_item.rate = transactions.average(:rate)
+        begin
+        stock_item.amount = stock_item.quantity * stock_item.rate
+        rescue Exception => error
+          logger.info(error.message)
+        end
+        stock_item.item_id = item.item_id
+        stock_item.save!
+      end
     end
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project_stock
+    @project_stock = Project::Stock.find(params[:id])
+  end
+
+  def set_office_information
+     @office = current_office
+    @fiscal_year = @project_stock.fiscal_year
+    @cb = @project_stock.store_body
+  end
+
 end

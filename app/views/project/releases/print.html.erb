@@ -22,7 +22,7 @@
 </table>
 <div class="row">
   <div class="col-12 text-right">
-    आ.व.: <%= @office_release.fiscal_year.fy %><br>निकाशा नं: <%= nd @office_release.release_no %><br>  निकाशा मिति: <%=  ndate @office_release.release_date %>
+    आ.व.: <%= @project_release.fiscal_year.fy %><br>निकाशा नं: <%= nd @project_release.release_no %><br>  निकाशा मिति: <%=  ndate @project_release.release_date %>
   </div>
 </div>
 <table class="table table-bordered table-sm">
@@ -63,7 +63,7 @@
     <td>१०</td>
   </tr>
   <% @i = 1 %>
-  <% @office_release_items.each do |item| %>
+  <% @project_release_items.each do |item| %>
   <tr>
     <td><%= nd @i %></td>
     <td><%= item.item.name_of_item_ne %></td>
@@ -94,25 +94,25 @@
   <tr>
     <td></td>
     <td>नामः</td>
-    <td><%= @office_release.store_body.store_keeper_name %></td>
+    <td><%= @project_release.store_body.store_keeper_name %></td>
     <td></td>
     <td></td>
     <td></td>
     <td></td>
     <td>नामः</td>
-    <td><%= @office_release.store_body.office_chief_name %></td>
+    <td><%= @project_release.store_body.office_chief_name %></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>मितिः</td>
-    <td><%= @office_release.store_keeper_signed_date %></td>
+    <td><%= ndate @project_release.store_chief_signed_date %></td>
     <td></td>
     <td></td>
     <td></td>
     <td></td>
     <td>मितिः</td>
-    <td><%= @office_release.office_chief_signed_date %></td>
+    <td><%= ndate @project_release.office_chief_signed_date %></td>
     <td></td>
   </tr>
 </table>

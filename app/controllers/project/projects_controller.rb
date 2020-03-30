@@ -4,7 +4,12 @@ load_and_authorize_resource
   # GET /projects
   # GET /projects.json
   def index
-    @projects = current(Project::Project)
+    @projects = office(Project::Project)
+    respond_to do |format|
+      format.html
+      format.xlsx
+      format.json
+    end
   end
 
   # GET /projects/1
@@ -40,6 +45,48 @@ load_and_authorize_resource
         format.json { render json: @project.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+
+  def import
+    file = params[:file]
+    spreadsheet = case File.extname(file.original_filename)
+                  when ".csv" then
+                    Csv.new(file.path, nil, :ignore)
+                  when ".xls" then
+                    Roo::Excel.new(file.path, nil, :ignore)
+                  when ".xlsx" then
+                    Roo::Excelx.new(file.path)
+                  else
+                    flash[:error] = " अपलोड गरिएको फाइल <b> #{file.original_filename} </b> को पहिचान हुन सकेन |"
+                    redirect_to project_projects_path and return
+                  end
+    header = spreadsheet.row(1)
+    projects = (2..spreadsheet.last_row).map do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      project = Project::Project.find_by_id(row["id"]) || Project::Project.new
+      begin
+        project.attributes = row.to_hash
+      rescue Exception => error
+        flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस् #{error.message}"
+        redirect_to project_projects_path and return
+      end
+      project.office_id = current_office.id
+      project.user_id = current_user.id
+      project
+    end
+    if projects.map(&:valid?).all?
+      projects.each(&:save!)
+      true
+    else
+      projects.each_with_index do |project, index|
+        project.errors.full_messages.each do |msg|
+          errors.add :base, "Row #{index + 6}: #{msg}"
+        end
+      end
+      false
+    end
+    redirect_to project_projects_path
   end
 
   # PATCH/PUT /projects/1

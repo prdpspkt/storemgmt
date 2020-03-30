@@ -14,14 +14,14 @@
   </tr>
 </table>
 <div class="text-center">
-  <%= link_to back_btn.html_safe, project_releases_path %>
-  <% if @project_release.marked_as_final != true %>
+  <%= link_to back_btn.html_safe, @project_release.project %>
+  <% if @project_release.accepted != true %>
     <%= link_to edit_big_btn.html_safe, edit_project_release_path(@project_release) %>
     <%= link_to final_btn.html_safe,accept_project_release_url(@project_release), method: :post %>
   <% end %>
-  <% if @project_release.marked_as_final == true && @project_release.entry_generated == false %>
-    <%= link_to before_final_btn.html_safe, project_mark_release_as_final_path(@project_release), id: :mark_as_not_final, method: :post %>
-    <%= link_to ledger_entry_btn.html_safe, project_generate_ledger_entry_with_release_path(@project_release), method: :post %>
+  <% if @project_release.accepted == true && @project_release.entry_generated != true %>
+    <%= link_to before_final_btn.html_safe, accept_project_release_url(@project_release), id: :mark_as_not_final, method: :post %>
+    <%= link_to ledger_entry_btn.html_safe, transaction_project_release_url(@project_release), method: :post %>
 <% end %>
   <%= link_to print_big_btn.html_safe, print_project_release_url(@project_release) %>
 </div>
@@ -50,7 +50,7 @@
       <td><%= nd item.amount %></td>
       <td><%= item.remarks %></td>
       <td>
-        <% if @project_release.marked_as_final != true %>
+        <% if @project_release.accepted != true %>
           <%= link_to destroy_btn.html_safe, item, data: {method: :delete} %>
         <% end %></td>
     </tr>

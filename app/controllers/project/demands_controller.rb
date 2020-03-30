@@ -1,5 +1,5 @@
 class Project::DemandsController < ProjectController
-  before_action :set_demand, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_release_form]
+  before_action :set_demand, only: [:show, :edit, :update, :destroy, :accept, :release, :print]
   load_and_authorize_resource except: [:create, :new]
 
 
@@ -8,7 +8,7 @@ class Project::DemandsController < ProjectController
   def show
     @demand_item = Project::DemandItem.new
     @demand_items = @demand.demand_items
-    @items = Project::ProjectItemTransaction.where("sku > 0").where(transaction_type: 1)
+    @items = Project::ProjectItemTransaction.select(:project_item_id, :sku).where(project_id: @demand.project_id).where("sku > 0").distinct
   end
 
 
@@ -75,16 +75,46 @@ class Project::DemandsController < ProjectController
 
   def release
     @demand_items = @demand.demand_items
-    @demand_items.each do |demand_item|
-      trs = Project::ProjectItemTransaction.where(:project_id => @demand.project_id).where(project_item_id: demand_item.project_item_id)
-      binding.pry
+    if @demand_items.count > 0
+      create_release ##Create a project item release form
+      @demand_items.each do |demand_item|
+        transactions = Project::ProjectItemTransaction.where(:project_id => @demand.project_id).where(project_item_id: demand_item.project_item_id)
+        transactions.each do |transaction|
+          if transaction.sku > demand_item.quantity
+            rate = transaction.amount / transaction.quantity
+            data = {
+                quantity:  demand_item.quantity,
+                amount: rate * demand_item.quantity,
+                project_item_id: demand_item.project_item_id,
+                item_transaction_id: transaction.id,
+                item_id: demand_item.item_id
+            }
+            create_release_item data
+            transaction.sku = transaction.sku - demand_item.quantity
+            transaction.save!
+            break
+          else
+            rate = transaction.amount / transaction.quantity
+            data = {
+                quantity:  transaction.sku,
+                amount: rate * transaction.sku,
+                project_item_id: demand_item.project_item_id,
+                item_transaction_id: transaction.id,
+                item_id: demand_item.item_id
+            }
+            create_release_item(data)
+            demand_item.quantity = demand_item.quantity - transaction.sku
+            transaction.sku = 0
+            transaction.save!
+          end
+        end
+      end
     end
+    redirect_to @release
   end
 
   def print
-    @demand = Project::Demand.find(params[:id])
     @demand_items = @demand.demand_items
-    @fy = Office::FiscalYear.find(@demand.fiscal_year_id).fy
     set_office_information
   end
 
@@ -102,6 +132,27 @@ class Project::DemandsController < ProjectController
     params.require(:project_demand).permit(:project_id, :demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date, :recorded_date)
   end
 
+  def create_release
+    @release = Project::Release.new()
+    @release = set_current_information @release
+    @release.store_body_id = current_control_body.id
+    @release.release_no = new_release_no
+    @release.demand_id = @demand.id
+    @release.project_id = @demand.project.id
+    @release.release_date = bs_today
+    @release.accepted = false
+    @release.entry_generated = false
+    @release.save!
+  end
+
+  def create_release_item data
+    release_item = Project::ReleaseItem.new(data)
+    release_item.project_id = @demand.project_id
+    release_item = set_current_information release_item
+    release_item.release_id = @release.id
+    release_item.save!
+  end
+
   def get_new_project_demand_no
     demand_no = 1
     @demands = current(Project::Demand)
@@ -113,9 +164,9 @@ class Project::DemandsController < ProjectController
 
   def new_release_no
     nrn = 1
-    @releases = current(Project::Release)
-    if @releases.count > 0
-      nrn = @releases.last.release_no + 1
+    releases = current(Project::Release)
+    if releases.count > 0
+      nrn = releases.last.release_no + 1
     end
     nrn
   end

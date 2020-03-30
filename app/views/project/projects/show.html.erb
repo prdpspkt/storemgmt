@@ -69,6 +69,7 @@
     <table class="table table-sm table-bordered">
       <tr>
         <th>क्र.स.</th>
+        <th>खाता पाना नं</th>
         <th>सामानको नाम</th>
         <th>Name of Item</th>
         <th>परिमाण</th>
@@ -78,6 +79,7 @@
       <% @project_items52.each do |item| %>
         <tr>
           <td><%= nd @i %></td>
+          <td><%= nd item.item_register_page_no %></td>
           <td><%= item.name_of_item_ne %></td>
           <td><%= item.name_of_item_en %></td>
           <td></td>
@@ -92,6 +94,7 @@
     <table class="table table-sm table-bordered">
       <tr>
         <th>क्र.स.</th>
+        <th>खाता पाना नं </th>
         <th>सामानको नाम</th>
         <th>Name of Item</th>
         <th>परिमाण</th>
@@ -101,6 +104,7 @@
       <% @project_items47.each do |item| %>
         <tr>
           <td><%= nd @i %></td>
+          <td><%= item.item_register_page_no %></td>
           <td><%= item.name_of_item_ne %></td>
           <td><%= item.name_of_item_en %></td>
           <td></td>
@@ -159,7 +163,7 @@
           <td><%= ndate item.release_date %></td>
           <td><%= item.received_by %></td>
           <td class="no-print">
-            <% if item.marked_as_final != true %>
+            <% if item.accepted != true %>
               <%= link_to edit_btn.html_safe, edit_project_release_url(item) %>
               <%= link_to destroy_btn.html_safe, project_release_url(item), data: {method: :delete, confirm: "Are you sure to delete this release form ?"} %>
             <% end %>
