@@ -1,4 +1,4 @@
-class Office::HandoverFormItemsController < ProjectController
+class Project::HandoverFormItemsController < ProjectController
   before_action :set_handover_form_item, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_handover_form_items

@@ -1,4 +1,4 @@
-class Office::ReleaseItemsController < ProjectController
+class Project::ReleaseItemsController < ProjectController
   before_action :set_office_release_item, only: [:destroy]
   load_and_authorize_resource except: [:create, :new]
 # DELETE /office_release_items/1
