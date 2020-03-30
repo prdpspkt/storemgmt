@@ -218,6 +218,7 @@ def create_project_item project_id, item_id
     else
       @project_item_register_page_no = 1
     end
+    @prev_project_id = project_id
     project_item.save!
   end
   project_item
