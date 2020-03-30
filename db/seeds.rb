@@ -197,7 +197,7 @@ def get_item_id old_item_id
       .where(user_id: @user.id).where(temp_id: old_item_id).first.id
 end
 
-@project_item_register_page_no = 1
+@project_item_register_page_no = 0
 @prev_project_id = 0
 def create_project_item project_id, item_id
   project_items = Project::ProjectItem.where(office_id: @office.id)
@@ -212,15 +212,15 @@ def create_project_item project_id, item_id
     project_item.id = nil
     project_item.item_id = item_id
     project_item.project_id = project_id
-    project_item.item_register_page_no = @project_item_register_page_no
     if project_id == @prev_project_id
-    @project_item_register_page_no = @project_item_register_page_no + 1
+      @project_item_register_page_no = @project_item_register_page_no + 1
     else
       @project_item_register_page_no = 1
     end
-    @prev_project_id = project_id
+    project_item.item_register_page_no = @project_item_register_page_no
     project_item.save!
   end
+  @prev_project_id = project_id
   project_item
 end
 
