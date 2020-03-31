@@ -1,5 +1,4 @@
 class Office::PurchaseEntry < ApplicationRecord
-  self.table_name = "office_purchase_entries"
   has_many :purchase_entry_items, class_name: "Office::PurchaseEntryItem", dependent: :delete_all
   belongs_to :purchase_order, :class_name => 'Office::PurchaseOrder', optional: true
   belongs_to :user

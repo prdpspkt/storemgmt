@@ -31,7 +31,13 @@ class Ability
                   Office::RepairApplicationFormItem,
                   Office::RepairRecordRegister,
                   Office::RepairRecordRegisterItem,
-                  Office::StoreBody
+                  Office::StoreBody,
+                  Office::ItemEvaluationCommittee,
+                  Office::ItemEvaluationCommitteeMember,
+                  Office::ItemEvaluation,
+                  Office::ItemEvaluationItem,
+                  Office::Stock,
+                  Office::StockItem
     ], user_id: user.id
 
     if user.is_admin == true
@@ -57,7 +63,10 @@ class Ability
                     Project::ProjectPurchaseEntry,
                     Project::ProjectPurchaseEntryItem,
                     Project::Stock,
-                    Project::StockItem], user_id: user.id
+                    Project::StockItem,
+                    Project::ItemEvaluation,
+                    Project::ItemEvaluationItem
+      ], user_id: user.id
     end
   end
 end

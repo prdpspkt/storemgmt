@@ -1,5 +1,4 @@
 class Project::ProjectPurchaseEntry < ApplicationRecord
-  self.table_name = "project_project_purchase_entries"
   belongs_to :office, class_name: "Office::Office"
   belongs_to :project, class_name: "Project::Project"
   belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'

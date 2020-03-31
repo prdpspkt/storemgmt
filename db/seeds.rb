@@ -148,8 +148,8 @@ else
   @item_register_page_no52 = 1
 end
 
-def get_category_id temp_id
-  Project::ItemCategory.find_by_temp_id(temp_id).id
+def get_category temp_id
+  Project::ItemCategory.find_by_temp_id(temp_id)
 end
 
 spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/items.xlsx")
@@ -157,7 +157,10 @@ header = spreadsheet.row(1)
 (2..spreadsheet.last_row).map do |i|
   row = Hash[[header, spreadsheet.row(i)].transpose]
   item = Project::Item.find_by_id(row["id"]) || Project::Item.new
-  item.item_category_id = get_category_id(row["temp_cat_id"])
+  category = get_category(row["temp_cat_id"])
+  item.item_category_id = category.id
+  item.unit_ne = category.unit_ne
+  item.unit_en = category.unit_en
   item.temp_id = row["temp_id"]
   item.name_of_item_ne = row["name_of_item_ne"]
   item.name_of_item_en = row["name_of_item_en"]
@@ -212,6 +215,7 @@ def create_project_item project_id, item_id
     project_item.id = nil
     project_item.item_id = item_id
     project_item.project_id = project_id
+    project_item.item_category_id = item.item_category_id
     if project_id == @prev_project_id
       @project_item_register_page_no = @project_item_register_page_no + 1
     else

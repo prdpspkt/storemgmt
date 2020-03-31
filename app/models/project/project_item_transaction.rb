@@ -1,5 +1,4 @@
 class Project::ProjectItemTransaction < ApplicationRecord
-  self.table_name = "project_project_transactions"
   belongs_to :item, class_name: "Project::Item"
   belongs_to :project_item, :class_name => 'Project::ProjectItem'
   belongs_to :project_purchase_entry_item, class_name: "Project::ProjectPurchaseEntryItem", optional: true

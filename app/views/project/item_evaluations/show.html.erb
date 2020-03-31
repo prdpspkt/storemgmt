@@ -1,39 +1,64 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-12">
+    <h1>जिन्सी निरीक्षण प्रतिवेदन फाराम</h1>
+    <table class="table table-sm data-table table-bordered">
+      <thead>
+      <tr>
+        <th rowspan="2">क्र.स.</th>
+        <th rowspan="2">खाता पाना नं</th>
+        <th rowspan="2">जिन्सी वर्गीकरण नं</th>
+        <th rowspan="2" class="bibaran" width="350px">विवरण</th>
+        <th colspan="2">मौज्दात बाँकी</th>
+        <th colspan="2">स्पेसीफिकेसन</th>
+        <th colspan="3">भौतिक परिक्षण गर्दा</th>
+        <th colspan="2">चालु हालतमा</th>
+        <th colspan="4">सामानको अवस्था</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th>परिमाण</th>
+        <th>इकाई</th>
+        <th>मिलान भएको संख्या</th>
+        <th>मिलान नभएको संख्या</th>
+        <th>घट सङ्ख्या</th>
+        <th>बढ सङ्ख्या</th>
+        <th>घटे/बढको सङ्ख्या</th>
+        <th>प्रयोगमा रहेको</th>
+        <th>प्रयोगमा नरहेको</th>
+        <th>मर्मत गर्नुपर्ने</th>
+        <th>लिलाम विक्री गर्नुपर्ने</th>
+        <th>मिन्हा गर्नु पर्ने</th>
+        <th>संरक्षण गर्नु पर्ने</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @sn = 1 %>
+      <% @item_evaluation.item_evaluation_items.each do |item| %>
+        <tr>
+          <td><%= nd @sn %></td>
+          <td><%= nd item.project_item.item_register_page_no %></td>
+          <td><%= nd item.project_item.item_classification_no %></td>
+          <td><%= nd item.project_item.name_of_item_ne %></td>
+          <td><%= nd item.quantity %></td>
+          <td><%= nd item.project_item.item.unit_ne %></td>
+          <td><%= nd item.matched %></td>
+          <td><%= nd item.mismatched %></td>
+          <td><%= nd item.mismatched %></td>
+          <td><%= nd item.dquantity %></td>
+          <td><%= nd item.iquantity %></td>
+          <td><%= nd item.diquantity %></td>
+          <td><%= nd item.working %></td>
+          <td><%= nd item.not_working %></td>
+          <td><%= nd item.to_be_repaired %></td>
+          <td><%= nd item.to_be_auctioned %></td>
+          <td><%= nd item.to_be_disposed %></td>
+          <td><%= nd item.to_be_conserved %></td>
+          <td><%= link_to edit_btn.html_safe, edit_item_of_project_item_evaluation_url(item) %></td>
+        </tr>
+        <% @sn = @sn + 1 %>
+      <% end %>
+      </tbody>
+    </table>
 
-<p>
-  <strong>Office code:</strong>
-  <%= @office_item_evaluation.office_code %>
-</p>
-
-<p>
-  <strong>Fy:</strong>
-  <%= @office_item_evaluation.fy %>
-</p>
-
-<p>
-  <strong>Committee formation date:</strong>
-  <%= @office_item_evaluation.committee_formation_date %>
-</p>
-
-<p>
-  <strong>Report submission date:</strong>
-  <%= @office_item_evaluation.report_submission_date %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @office_item_evaluation.office_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @office_item_evaluation.user_id %>
-</p>
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @office_item_evaluation.fiscal_year_id %>
-</p>
-
-<%= link_to 'Edit', edit_office_item_evaluation_path(@office_item_evaluation) %> |
-<%= link_to 'Back', office_item_evaluations_path %>
+  </div>
+</div>

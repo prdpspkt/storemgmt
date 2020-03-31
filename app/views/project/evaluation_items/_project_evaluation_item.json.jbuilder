@@ -1,2 +1,0 @@
-json.extract! project_evaluation_item, :id, :item_classification_no, :item_register_page_no, :name_of_item_ne, :name_of_item_en, :unit_ne, :unit_en, :quantity, :amount, :mached, :unmatched, :decreased_quantity, :increased_quantity, :dein_quantity, :working, :not_working, :to_be_repaired, :to_be_auctioned, :to_be_dispose, :to_be_conserved, :total_amount, :remarks, :item_id, :project_item_id, :office_id, :user_id, :fiscal_year_id, :fy, :marked_as_final, :created_at, :updated_at
-json.url project_evaluation_item_url(project_evaluation_item, format: :json)

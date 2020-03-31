@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :office do
+    resources :item_evaluation_committees
+  end
   root "office/offices#index"
   devise_for :users, controllers: {
       registrations: 'users/registrations',
@@ -179,7 +182,6 @@ Rails.application.routes.draw do
         post "accept"
       end
     end
-    resources :item_evaluation_items
 
     resources :item_evaluations do
       collection do
@@ -188,16 +190,11 @@ Rails.application.routes.draw do
       member do
         get "print"
         post "accept"
+        get "edit_item_of"
+        post "update_item_of"
       end
     end
-    resources :item_disposal_items
-    resources :item_disposals do
-      member do
-        post "print"
-        post "accept"
-        post "posting"
-      end
-    end
+
     resources :handover_form_items
     resources :handover_forms do
       member do
@@ -256,18 +253,13 @@ Rails.application.routes.draw do
       end
     end
     resources :tender_items
-    resources :personnels do
-      collection do
-        post "print"
-      end
-    end
     resources :item_categories do
       collection do
         post "import"
         get "print"
       end
     end
-    resources :fiscal_years
+
     resources :projects do
       collection do
         get 'print'
@@ -280,8 +272,6 @@ Rails.application.routes.draw do
         get "release"
       end
     end
-    resources :store_bodies
-    resources :active_fiscal_year
 
     resources :ledgers do
       collection do

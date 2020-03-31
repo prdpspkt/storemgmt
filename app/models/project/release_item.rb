@@ -1,5 +1,4 @@
 class Project::ReleaseItem < ApplicationRecord
-  self.table_name = "project_release_items"
   belongs_to :release, class_name: "Project::Release"
   belongs_to :project_item, class_name: "Project::ProjectItem"
   belongs_to :item, class_name: "Project::Item"

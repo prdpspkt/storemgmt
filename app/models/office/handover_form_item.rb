@@ -1,5 +1,4 @@
 class Office::HandoverFormItem < ApplicationRecord
-  self.table_name = "office_handover_form_items"
   belongs_to :handover_form, class_name: "Office::HandoverForm"
   belongs_to :user
   belongs_to :office, class_name: "Office::Office"

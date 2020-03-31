@@ -1,5 +1,4 @@
 class Office::ItemAssistanceRegisterItem < ApplicationRecord
-  self.table_name = "office_item_assistance_register_items"
   belongs_to :item_assistance_register, class_name: "Office::ItemAssistanceRegister"
   belongs_to :item_transaction, class_name: "Office::ItemTransaction"
   belongs_to :item, class_name: "Office::Item"

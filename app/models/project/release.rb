@@ -1,5 +1,4 @@
 class Project::Release < ApplicationRecord
-  self.table_name = "project_releases"
   has_many :release_items, class_name: "Project::ReleaseItem", dependent: :delete_all
   belongs_to :office, class_name: "Office::Office"
   belongs_to :project, class_name: "Project::Project"

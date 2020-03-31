@@ -15,23 +15,13 @@ ActiveRecord::Schema.define(version: 202003211024509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "active_fiscal_years", force: :cascade do |t|
+  create_table "office_active_fiscal_years", force: :cascade do |t|
     t.string "fy"
     t.integer "fiscal_year_id"
     t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-  end
-
-  create_table "fiscal_years", force: :cascade do |t|
-    t.string "fy"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "office_id"
-    t.boolean "status"
-    t.datetime "start_date"
-    t.datetime "closing_date"
   end
 
   create_table "office_demand_items", force: :cascade do |t|
@@ -74,6 +64,16 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "entry_generated"
+  end
+
+  create_table "office_fiscal_years", force: :cascade do |t|
+    t.string "fy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "office_id"
+    t.boolean "status"
+    t.datetime "start_date"
+    t.datetime "closing_date"
   end
 
   create_table "office_handover_form_items", force: :cascade do |t|
@@ -223,13 +223,21 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "office_item_evaluation_committees", force: :cascade do |t|
-    t.integer "office_item_evaluation_id"
-    t.string "name"
-    t.string "designation"
+  create_table "office_item_evaluation_committee_members", force: :cascade do |t|
+    t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
+    t.integer "personnel_id"
+    t.string "role"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "office_item_evaluation_committees", force: :cascade do |t|
+    t.integer "user_id"
     t.integer "office_id"
+    t.string "name"
+    t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -298,6 +306,22 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "item_category_id"
     t.integer "item_classification_no"
     t.integer "item_register_page_no"
+  end
+
+  create_table "office_offices", force: :cascade do |t|
+    t.string "gov"
+    t.string "ministry"
+    t.string "department"
+    t.string "office"
+    t.string "address"
+    t.string "phone"
+    t.string "fax"
+    t.string "email"
+    t.string "code"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "has_project_access"
   end
 
   create_table "office_personnels", force: :cascade do |t|
@@ -772,22 +796,6 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.string "vendor_name_en"
   end
 
-  create_table "offices", force: :cascade do |t|
-    t.string "gov"
-    t.string "ministry"
-    t.string "department"
-    t.string "office"
-    t.string "address"
-    t.string "phone"
-    t.string "fax"
-    t.string "email"
-    t.string "code"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "has_project_access"
-  end
-
   create_table "project_demand_items", force: :cascade do |t|
     t.decimal "quantity"
     t.decimal "amount"
@@ -832,18 +840,18 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "item_classification_no"
     t.decimal "quantity"
     t.decimal "amount"
-    t.decimal "mached"
+    t.decimal "matched"
     t.decimal "unmatched"
-    t.decimal "decreased_quantity"
-    t.decimal "increased_quantity"
-    t.decimal "dein_quantity"
+    t.decimal "dquantity"
+    t.decimal "iquantity"
+    t.decimal "diquantity"
     t.decimal "working"
     t.decimal "not_working"
     t.decimal "to_be_repaired"
     t.decimal "to_be_auctioned"
-    t.decimal "to_be_dispose"
+    t.decimal "to_be_disposed"
     t.decimal "to_be_conserved"
-    t.decimal "total_amount"
+    t.decimal "total_quantity"
     t.string "remarks"
     t.integer "item_id"
     t.integer "project_item_id"
@@ -854,6 +862,10 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_evaluation_id"
+    t.integer "project_id"
+    t.integer "store_body_id"
+    t.decimal "rate"
   end
 
   create_table "project_evaluations", force: :cascade do |t|
@@ -866,6 +878,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "store_body_id"
   end
 
   create_table "project_handover_form_items", force: :cascade do |t|
@@ -953,6 +966,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "item_id"
     t.integer "item_register_page_no"
     t.integer "item_classification_no"
+    t.integer "item_category_id"
   end
 
   create_table "project_project_purchase_entries", force: :cascade do |t|

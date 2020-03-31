@@ -122,6 +122,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
       project_item.id = nil
       project_item.project_id = project_id
       project_item.item_id = item_id
+      project_item.item_category_id = item.item_category_id
       project_item.item_register_page_no = new_project_item_register_page_no project_id
       project_item.save
     end
