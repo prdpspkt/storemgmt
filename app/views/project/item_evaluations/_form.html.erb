@@ -1,52 +1,30 @@
-<%= form_with(model: office_item_evaluation, local: true) do |form| %>
-  <% if office_item_evaluation.errors.any? %>
+<%= form_with(model: item_evaluation, url: generate_project_item_evaluations_url , local: true) do |form| %>
+  <% if item_evaluation.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(office_item_evaluation.errors.count, "error") %> prohibited this office_item_evaluation from being saved:</h2>
+      <h2><%= pluralize(item_evaluation.errors.count, "error") %> prohibited this item_evaluation from being saved:</h2>
 
       <ul>
-      <% office_item_evaluation.errors.full_messages.each do |message| %>
+      <% item_evaluation.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+<div class="row">
 
-  <div class="field">
-    <%= form.label :office_code %>
-    <%= form.text_field :office_code %>
+  <div class="col-6">
+    <%= form.label :name %>
+    <%= form.text_field :name, class: "form-control", required: :required %>
   </div>
 
-  <div class="field">
-    <%= form.label :fy %>
-    <%= form.text_field :fy %>
+  <div class="col-6">
+    <%= form.label :select_a_committee %>
+    <%= form.select(:item_evaluation_committee_id, @item_evaluation_committees.collect{|committee| [committee.name, committee.id]}, {include_blank: true}, {class: 'form-control', required: :required}) %>
   </div>
 
-  <div class="field">
-    <%= form.label :committee_formation_date %>
-    <%= form.datetime_select :committee_formation_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :report_submission_date %>
-    <%= form.datetime_select :report_submission_date %>
-  </div>
-
-  <div class="field">
-    <%= form.label :office_id %>
-    <%= form.number_field :office_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fiscal_year_id %>
-    <%= form.number_field :fiscal_year_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+</div>
+  <div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :generate, class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -1,0 +1,28 @@
+<%= form_with(model: committee_member, url: create_member_office_item_evaluation_committees_url , local: true) do |form| %>
+  <% if committee_member.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(committee_member.errors.count, "error") %> prohibited this committee from being saved:</h2>
+
+      <ul>
+        <% committee_member.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :item_evaluation_committee_id %>
+  <div class="row">
+    <div class="col-6">
+        <%= form.label :name %>
+        <%= form.select(:personnel_id, Office::Personnel.all.collect{|p|[p.name_en, p.id]}, {include_blank: true}, {class: "form-control", required: :required}) %>
+    </div>
+    <div class="col-6">
+      <%= form.label :role %>
+      <%= form.select(:role, {"संयोजक" => "संयोजक", "सदस्य" => "सदस्य"}, {include_blank: true}, {class: "form-control", required: :required}) %>
+    </div>
+  </div>
+  <div class="separator"></div>
+  <div class="float-right">
+    <%= form.submit :save, class: " btn btn-success " %>
+  </div>
+<% end %>

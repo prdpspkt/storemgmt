@@ -4,7 +4,8 @@ class Project::LedgersController < ProjectController
   def expense_item_registers
     @items = office(Project::Item)
                  .where(item_classification_no: 52)
-                 .joins(:item_transactions).where("project_transactions.fiscal_year_id =#{current_fiscal_year.id}")
+                 .joins(:item_transactions)
+                 .where("project_item_transactions.fiscal_year_id =#{current_fiscal_year.id}")
                  .distinct(:item_id)
   end
 

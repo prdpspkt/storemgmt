@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  namespace :office do
-    resources :item_evaluation_committees
-  end
+
   root "office/offices#index"
   devise_for :users, controllers: {
       registrations: 'users/registrations',
@@ -15,6 +13,7 @@ Rails.application.routes.draw do
         post "print"
       end
     end
+
     resources :land_and_structure_record_book_items
     resources :land_and_structure_record_books do
       member do
@@ -55,8 +54,15 @@ Rails.application.routes.draw do
         get "print"
       end
     end
-    resources :evaluation_items
-    resources :evaluation_committees
+    resources :item_evaluation_items
+    resources :item_evaluation_committees do
+      collection do
+        post "create_member"
+      end
+      member do
+        delete "destroy_member"
+      end
+    end
     resources :item_evaluations do
       member do
         post "print"
@@ -167,11 +173,6 @@ Rails.application.routes.draw do
   #
   # #
   namespace :project do
-    resources :vendors, :except => ['show'] do
-      member do
-        post 'print'
-      end
-    end
     resources :stock_items
     resources :stocks do
       collection do
@@ -292,8 +293,6 @@ Rails.application.routes.draw do
         post "transaction"
       end
     end
-
-
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

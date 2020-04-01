@@ -1,1 +1,0 @@
-json.partial! "office_item_evaluation_committees/office_item_evaluation_committee", office_item_evaluation_committee: @office_item_evaluation_committee

@@ -231,6 +231,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_evaluation_committee_id"
   end
 
   create_table "office_item_evaluation_committees", force: :cascade do |t|
@@ -240,6 +241,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "committee_formation_date"
+    t.datetime "report_submission_date"
   end
 
   create_table "office_item_evaluation_items", force: :cascade do |t|
@@ -289,6 +292,34 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "user_id"
     t.integer "office_id"
     t.integer "fiscal_year_id"
+  end
+
+  create_table "office_item_transactions", force: :cascade do |t|
+    t.string "model"
+    t.string "item_identification_no"
+    t.string "country_of_origin"
+    t.integer "office_item_id"
+    t.integer "item_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.integer "user_id"
+    t.datetime "transaction_date"
+    t.integer "transaction_type"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.decimal "quantity"
+    t.integer "purchase_entry_item_id"
+    t.string "remarks"
+    t.decimal "sku"
+    t.integer "release_item_id"
+    t.integer "entry_no"
+    t.string "country"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.integer "handover_form_item_id"
+    t.integer "item_classification_no"
+    t.boolean "in_use"
   end
 
   create_table "office_items", force: :cascade do |t|
@@ -752,34 +783,6 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.boolean "entry_generated"
   end
 
-  create_table "office_transactions", force: :cascade do |t|
-    t.string "model"
-    t.string "item_identification_no"
-    t.string "country_of_origin"
-    t.integer "office_item_id"
-    t.integer "item_id"
-    t.integer "office_id"
-    t.integer "fiscal_year_id"
-    t.integer "user_id"
-    t.datetime "transaction_date"
-    t.integer "transaction_type"
-    t.decimal "rate"
-    t.decimal "amount"
-    t.decimal "quantity"
-    t.integer "purchase_entry_item_id"
-    t.string "remarks"
-    t.decimal "sku"
-    t.integer "release_item_id"
-    t.integer "entry_no"
-    t.string "country"
-    t.string "size"
-    t.string "approx_age"
-    t.string "source"
-    t.integer "handover_form_item_id"
-    t.integer "item_classification_no"
-    t.boolean "in_use"
-  end
-
   create_table "office_vendors", force: :cascade do |t|
     t.string "vendor_name"
     t.string "vendor_registration"
@@ -933,6 +936,76 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "temp_id"
   end
 
+  create_table "project_item_evaluation_items", force: :cascade do |t|
+    t.decimal "quantity"
+    t.decimal "amount"
+    t.decimal "matched"
+    t.decimal "unmatched"
+    t.decimal "dquantity"
+    t.decimal "iquantity"
+    t.decimal "diquantity"
+    t.decimal "working"
+    t.integer "item_evaluation_id"
+    t.decimal "notworking"
+    t.decimal "to_be_repaired"
+    t.decimal "to_be_auctioned"
+    t.decimal "to_be_disposed"
+    t.decimal "to_be_conserved"
+    t.decimal "total_amount"
+    t.string "remarks"
+    t.integer "item_id"
+    t.integer "office_item_id"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.integer "store_body_id"
+    t.integer "project_item_id"
+    t.decimal "rate"
+    t.decimal "total_quantity"
+  end
+
+  create_table "project_item_evaluations", force: :cascade do |t|
+    t.datetime "report_submission_date"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.integer "item_evaluation_committee_id"
+    t.string "report_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "project_item_transactions", force: :cascade do |t|
+    t.string "model"
+    t.string "item_identification_no"
+    t.string "country_of_origin"
+    t.integer "office_item_id"
+    t.integer "item_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.integer "user_id"
+    t.datetime "transaction_date"
+    t.integer "transaction_type"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.decimal "quantity"
+    t.integer "purchase_entry_item_id"
+    t.string "remarks"
+    t.decimal "sku"
+    t.integer "release_item_id"
+    t.integer "entry_no"
+    t.string "country"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.integer "handover_form_item_id"
+    t.integer "item_classification_no"
+    t.boolean "in_use"
+  end
+
   create_table "project_items", force: :cascade do |t|
     t.string "name_of_item_ne"
     t.string "name_of_item_en"
@@ -949,6 +1022,34 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "item_register_page_no"
     t.integer "temp_id"
     t.integer "temp_cat_id"
+  end
+
+  create_table "project_project_item_transactions", force: :cascade do |t|
+    t.string "model"
+    t.string "item_identification_no"
+    t.string "country_of_origin"
+    t.integer "project_item_id"
+    t.integer "item_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.integer "user_id"
+    t.datetime "transaction_date"
+    t.integer "transaction_type"
+    t.decimal "rate"
+    t.decimal "amount"
+    t.decimal "quantity"
+    t.integer "project_purchase_entry_item_id"
+    t.string "remarks"
+    t.decimal "sku"
+    t.integer "release_item_id"
+    t.integer "entry_no"
+    t.string "country"
+    t.string "size"
+    t.string "approx_age"
+    t.string "source"
+    t.integer "handover_form_item_id"
+    t.integer "item_classification_no"
+    t.boolean "in_use"
   end
 
   create_table "project_project_items", force: :cascade do |t|
@@ -1044,6 +1145,26 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "item_classification_no"
     t.boolean "in_use"
     t.integer "project_item_id"
+  end
+
+  create_table "project_projects", force: :cascade do |t|
+    t.string "name_of_project_ne"
+    t.string "name_of_project_en"
+    t.string "name_of_consumer_committee"
+    t.string "address"
+    t.string "phone_of_committee_representative"
+    t.string "name_of_committee_representative"
+    t.string "post_of_representative"
+    t.string "contractor"
+    t.string "phone_of_contractor_representative"
+    t.string "name_of_contractor_representative"
+    t.integer "user_id"
+    t.integer "office_id"
+    t.integer "fiscal_year_id"
+    t.integer "project_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "temp_id"
   end
 
   create_table "project_purchase_entries", force: :cascade do |t|
@@ -1306,54 +1427,6 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "updated_at", null: false
     t.integer "store_body_id"
     t.boolean "entry_generated"
-  end
-
-  create_table "project_transactions", force: :cascade do |t|
-    t.string "model"
-    t.string "item_identification_no"
-    t.string "country_of_origin"
-    t.integer "office_item_id"
-    t.integer "item_id"
-    t.integer "office_id"
-    t.integer "fiscal_year_id"
-    t.integer "user_id"
-    t.datetime "transaction_date"
-    t.integer "transaction_type"
-    t.decimal "rate"
-    t.decimal "amount"
-    t.decimal "quantity"
-    t.integer "purchase_entry_item_id"
-    t.string "remarks"
-    t.decimal "sku"
-    t.integer "release_item_id"
-    t.integer "entry_no"
-    t.string "country"
-    t.string "size"
-    t.string "approx_age"
-    t.string "source"
-    t.integer "handover_form_item_id"
-    t.integer "item_classification_no"
-    t.boolean "in_use"
-  end
-
-  create_table "projects", force: :cascade do |t|
-    t.string "name_of_project_ne"
-    t.string "name_of_project_en"
-    t.string "name_of_consumer_committee"
-    t.string "address"
-    t.string "phone_of_committee_representative"
-    t.string "name_of_committee_representative"
-    t.string "post_of_representative"
-    t.string "contractor"
-    t.string "phone_of_contractor_representative"
-    t.string "name_of_contractor_representative"
-    t.integer "user_id"
-    t.integer "office_id"
-    t.integer "fiscal_year_id"
-    t.integer "project_status"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "temp_id"
   end
 
   create_table "users", force: :cascade do |t|

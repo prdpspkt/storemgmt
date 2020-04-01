@@ -1,20 +1,22 @@
 class Office::ItemEvaluationCommitteesController < ApplicationController
-  before_action :set_office_item_evaluation_committee, only: [:show, :edit, :update, :destroy]
+  before_action :set_committee, only: [:show, :edit, :update, :destroy]
 
   # GET /office/item_evaluation_committees
   # GET /office/item_evaluation_committees.json
   def index
-    @office_item_evaluation_committees = Office::ItemEvaluationCommittee.all
+    @committees = current(Office::ItemEvaluationCommittee)
   end
 
   # GET /office/item_evaluation_committees/1
   # GET /office/item_evaluation_committees/1.json
   def show
+    @committee_member = Office::ItemEvaluationCommitteeMember.new
+    @committee_member.item_evaluation_committee_id = @committee.id
   end
 
   # GET /office/item_evaluation_committees/new
   def new
-    @office_item_evaluation_committee = Office::ItemEvaluationCommittee.new
+    @committee = Office::ItemEvaluationCommittee.new
   end
 
   # GET /office/item_evaluation_committees/1/edit
@@ -24,29 +26,47 @@ class Office::ItemEvaluationCommitteesController < ApplicationController
   # POST /office/item_evaluation_committees
   # POST /office/item_evaluation_committees.json
   def create
-    @office_item_evaluation_committee = Office::ItemEvaluationCommittee.new(office_item_evaluation_committee_params)
-
+    @committee = Office::ItemEvaluationCommittee.new(committee_params)
+    @committee = set_current_information @committee
     respond_to do |format|
-      if @office_item_evaluation_committee.save
-        format.html { redirect_to @office_item_evaluation_committee, notice: 'Item evaluation committee was successfully created.' }
-        format.json { render :show, status: :created, location: @office_item_evaluation_committee }
+      if @committee.save
+        format.html { redirect_to @committee, notice: 'Item evaluation committee was successfully created.' }
+        format.json { render :show, status: :created, location: @committee }
       else
         format.html { render :new }
-        format.json { render json: @office_item_evaluation_committee.errors, status: :unprocessable_entity }
+        format.json { render json: @committee.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_member
+    @committee_member = Office::ItemEvaluationCommitteeMember.new(committee_member_params)
+    @committee_member = set_current_information(@committee_member)
+    @committee = @committee_member.item_evaluation_committee
+    if @committee_member.save!
+      redirect_to @committee
+    else
+      render :show
+    end
+  end
+
+  def destroy_member
+    @committee_member = Office::ItemEvaluationCommitteeMember.find(params[:id])
+    @committee = @committee_member.item_evaluation_committee
+    @committee_member.destroy
+
   end
 
   # PATCH/PUT /office/item_evaluation_committees/1
   # PATCH/PUT /office/item_evaluation_committees/1.json
   def update
     respond_to do |format|
-      if @office_item_evaluation_committee.update(office_item_evaluation_committee_params)
-        format.html { redirect_to @office_item_evaluation_committee, notice: 'Item evaluation committee was successfully updated.' }
-        format.json { render :show, status: :ok, location: @office_item_evaluation_committee }
+      if @committee.update(committee_params)
+        format.html { redirect_to @committee, notice: 'Item evaluation committee was successfully updated.' }
+        format.json { render :show, status: :ok, location: @committee }
       else
         format.html { render :edit }
-        format.json { render json: @office_item_evaluation_committee.errors, status: :unprocessable_entity }
+        format.json { render json: @committee.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,7 +74,7 @@ class Office::ItemEvaluationCommitteesController < ApplicationController
   # DELETE /office/item_evaluation_committees/1
   # DELETE /office/item_evaluation_committees/1.json
   def destroy
-    @office_item_evaluation_committee.destroy
+    @committee.destroy
     respond_to do |format|
       format.html { redirect_to office_item_evaluation_committees_url, notice: 'Item evaluation committee was successfully destroyed.' }
       format.json { head :no_content }
@@ -63,12 +83,16 @@ class Office::ItemEvaluationCommitteesController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_office_item_evaluation_committee
-      @office_item_evaluation_committee = Office::ItemEvaluationCommittee.find(params[:id])
+    def set_committee
+      @committee = Office::ItemEvaluationCommittee.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def office_item_evaluation_committee_params
-      params.require(:office_item_evaluation_committee).permit(:user_id, :office_id, :name, :fiscal_year_id)
+    def committee_params
+      params.require(:office_item_evaluation_committee).permit(:name, :committee_formation_date, :report_submission_date)
     end
+
+  def committee_member_params
+    params.required(:office_item_evaluation_committee_member).permit(:personnel_id, :item_evaluation_committee_id, :role)
+  end
 end

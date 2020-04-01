@@ -1,24 +1,41 @@
-<p id="notice"><%= notice %></p>
+<h1>जिन्सी निरीक्षण समिति</h1>
+<table class="table table-sm table-bordered">
+  <tr>
+    <th>आ.व.</th>
+    <th>समितिको नाम</th>
+    <th>समिति गठन</th>
+    <th>रिपोर्ट दिने अन्तिम मिति</th>
+  </tr>
+  <tr>
+    <td><%= @committee.fiscal_year.fy %></td>
+    <td><%= @committee.name %></td>
+    <td><%= ndate @committee.committee_formation_date %></td>
+    <td><%= ndate @committee.report_submission_date %></td>
+  </tr>
+</table>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, office_item_evaluation_committees_url %>
+  <%= link_to edit_big_btn.html_safe, office_item_evaluation_committee_url(@committee) %>
+</div>
+<div class="separator"></div>
+<h2> सदस्य थप्ने </h2>
+<%= render "committee_member_form", committee_member: @committee_member %>
+<table class="table table-sm ">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सदस्यको नाम</th>
+    <th>जिम्मेवारी</th>
+    <th></th>
+  </tr>
+  <% @i = 1 %>
+  <% @committee.item_evaluation_committee_members.each do |member| %>
+  <tr>
+    <td><%= @i %></td>
+    <td><%= member.personnel.name_ne %></td>
+    <td><%= member.role %></td>
+    <td><%= link_to destroy_btn.html_safe, destroy_member_office_item_evaluation_committee_path(member), data: { method: :delete, confirm: "Are you sure ?"}  %></td>
+  </tr>
+    <% @i = @i + 1 %>
+    <% end %>
+</table>
 
-<p>
-  <strong>User:</strong>
-  <%= @office_item_evaluation_committee.user_id %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @office_item_evaluation_committee.office_id %>
-</p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @office_item_evaluation_committee.name %>
-</p>
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @office_item_evaluation_committee.fiscal_year_id %>
-</p>
-
-<%= link_to 'Edit', edit_office_item_evaluation_committee_path(@office_item_evaluation_committee) %> |
-<%= link_to 'Back', office_item_evaluation_committees_path %>
