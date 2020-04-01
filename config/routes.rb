@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  require 'sidekiq/web'
+  mount Sidekiq::Web => '/sidekiq'
+  Sidekiq::Web.set :sessions, false
 
   root "office/offices#index"
   devise_for :users, controllers: {
@@ -173,6 +176,8 @@ Rails.application.routes.draw do
   #
   # #
   namespace :project do
+    
+    resources :item_evaluation_items
     resources :stock_items
     resources :stocks do
       collection do
@@ -191,8 +196,6 @@ Rails.application.routes.draw do
       member do
         get "print"
         post "accept"
-        get "edit_item_of"
-        post "update_item_of"
       end
     end
 

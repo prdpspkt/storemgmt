@@ -1,6 +1,4 @@
-<h1>Editing Office Item Evaluation Item</h1>
+<h1><%= @item_evaluation_item.project_item.name_of_item_ne %> <small>सम्पादन गर्ने</small></h1>
+<%= render 'form', item_evaluation_item: @item_evaluation_item %>
 
-<%= render 'form', office_item_evaluation_item: @office_item_evaluation_item %>
-
-<%= link_to 'Show', @office_item_evaluation_item %> |
-<%= link_to 'Back', project_item_evaluation_items_path %>
+<%= link_to back_btn.html_safe, project_item_evaluation_url(@item_evaluation_item.item_evaluation) %>

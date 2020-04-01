@@ -965,10 +965,13 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "project_item_id"
     t.decimal "rate"
     t.decimal "total_quantity"
+    t.string "name_of_item_ne"
+    t.integer "item_register_page_no"
+    t.integer "item_classification_no"
+    t.string "unit_ne"
   end
 
   create_table "project_item_evaluations", force: :cascade do |t|
-    t.datetime "report_submission_date"
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
@@ -1050,6 +1053,7 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "handover_form_item_id"
     t.integer "item_classification_no"
     t.boolean "in_use"
+    t.integer "project_id"
   end
 
   create_table "project_project_items", force: :cascade do |t|
