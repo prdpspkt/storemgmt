@@ -23,7 +23,8 @@ class GenerateItemEvaluationForm
   def generate_evaluation_items item_evaluation
     projects = Project::Project.where(user_id: item_evaluation.user_id).where(office_id: item_evaluation.office_id).where(project_status: 0)
     projects.each do |project|
-      project.project_items.each do |item|
+      project_items = Project::ProjectItem.where(office_id: item_evaluation.office_id).where(project_id: project.id).order("item_register_page_no ASC")
+      project_items.each do |item|
         transactions = item.project_item_transactions.where("sku > 0").where(transaction_type: 1)
         if transactions.count > 0
           evaluation_item = Project::ItemEvaluationItem.new

@@ -16,7 +16,7 @@ class Project::ItemEvaluationsController < ProjectController
 
   def show
     @item_evaluation_items = Project::ItemEvaluationItem.where(item_evaluation_id: @item_evaluation.id)
-        .order("id ASC")
+        .order("project_id ASC")
   end
 
 

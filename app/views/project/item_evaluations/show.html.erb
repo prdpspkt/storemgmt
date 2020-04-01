@@ -1,13 +1,13 @@
 <div class="row">
   <div class="col-12">
     <h1>जिन्सी निरीक्षण प्रतिवेदन फाराम</h1>
-    <table class="table table-sm data-table table-bordered">
+    <table class="table table-sm table-bordered">
       <thead>
       <tr>
-        <th rowspan="2">क्र.स.</th>
-        <th rowspan="2">खाता पाना नं</th>
-        <th rowspan="2">जिन्सी वर्गीकरण नं</th>
-        <th rowspan="2" class="bibaran" width="350px">विवरण</th>
+        <th >क्र.स.</th>
+        <th >खाता पाना नं</th>
+        <th >जिन्सी वर्गीकरण नं</th>
+        <th class="bibaran" width="350px">विवरण</th>
         <th>परिमाण</th>
         <th>इकाई</th>
         <th>मिलान भएको संख्या</th>
@@ -26,9 +26,17 @@
       </thead>
       <tbody>
       <% @sn = 1 %>
+      <% @project_id = 0 %>
       <% @item_evaluation_items.each do |item| %>
+      <% if @project_id != item.project_id %>
         <tr>
-          <td><%= nd @sn %></td>
+          <td colspan="3"> आयोजनाको नाम: </td>
+          <td colspan="17"> <%= item.project.name_of_project_ne %></td>
+        </tr>
+      <% end %>
+        <% @project_id = item.project_id %>
+        <tr>
+          <td><%= @sn %></td>
           <td><%= nd item.item_register_page_no %></td>
           <td><%= nd item.item_classification_no %></td>
           <td><%= nd item.name_of_item_ne %></td>
