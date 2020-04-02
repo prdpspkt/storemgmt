@@ -4,7 +4,7 @@ class Office::ItemDisposalsController < ApplicationController
   # GET /item_disposals
   # GET /item_disposals.json
   def index
-    @item_disposals = ItemDisposal.all
+    @item_disposals = Office::ItemDisposal.all
   end
 
   # GET /item_disposals/1
@@ -14,7 +14,7 @@ class Office::ItemDisposalsController < ApplicationController
 
   # GET /item_disposals/new
   def new
-    @item_disposal = ItemDisposal.new
+    @item_disposal = Office::ItemDisposal.new
   end
 
   # GET /item_disposals/1/edit
@@ -24,8 +24,9 @@ class Office::ItemDisposalsController < ApplicationController
   # POST /item_disposals
   # POST /item_disposals.json
   def create
-    @item_disposal = ItemDisposal.new(item_disposal_params)
-
+    @item_disposal = Office::ItemDisposal.new(item_disposal_params)
+    @item_disposal = set_current_information @item_disposal
+    @item_disposal.store_body_id = current_control_body.id
     respond_to do |format|
       if @item_disposal.save
         format.html { redirect_to @item_disposal, notice: 'Item disposal was successfully created.' }
@@ -64,11 +65,11 @@ class Office::ItemDisposalsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_item_disposal
-      @item_disposal = ItemDisposal.find(params[:id])
+      @item_disposal = Office::ItemDisposal.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_disposal_params
-      params.require(:item_disposal).permit(:fy, :decision_date, :decision_made_by, :store_chief_name, :store_chief_designation, :store_chief_signed_date, :section_chief_name, :section_chief_designation, :section_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :office_id, :user_id, :fiscal_year_id)
+      params.require(:office_item_disposal).permit( :decision_date, :decision_made_by, :store_keeper_signed_date, :section_chief_signed_date,  :office_chief_signed_date, :description)
     end
 end

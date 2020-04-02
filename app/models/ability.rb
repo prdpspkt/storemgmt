@@ -37,7 +37,13 @@ class Ability
                   Office::ItemEvaluation,
                   Office::ItemEvaluationItem,
                   Office::Stock,
-                  Office::StockItem
+                  Office::StockItem,
+                  Office::LandAndStructureRecordBook,
+                  Office::LandAndStructureRecordBookItem,
+                  Office::RentalRecordRegister,
+                  Office::RentalRecordRegisterItem,
+                  Office::ItemDisposal,
+                  Office::ItemDisposalItem
     ], user_id: user.id
 
     if user.is_admin == true

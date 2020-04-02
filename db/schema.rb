@@ -200,13 +200,16 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.string "fy"
     t.datetime "decision_date"
     t.string "decision_made_by"
-    t.string "store_chief_name"
     t.integer "store_body_id"
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "description"
+    t.datetime "store_keeper_signed_date"
+    t.datetime "section_chief_signed_date"
+    t.datetime "office_chief_signed_date"
   end
 
   create_table "office_item_entries", force: :cascade do |t|

@@ -1,79 +1,30 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Fy:</strong>
-  <%= @item_disposal.fy %>
-</p>
-
-<p>
-  <strong>Decision date:</strong>
-  <%= @item_disposal.decision_date %>
-</p>
-
-<p>
-  <strong>Decision made by:</strong>
-  <%= @item_disposal.decision_made_by %>
-</p>
-
-<p>
-  <strong>Store chief name:</strong>
-  <%= @item_disposal.store_chief_name %>
-</p>
-
-<p>
-  <strong>Store chief designation:</strong>
-  <%= @item_disposal.store_chief_designation %>
-</p>
-
-<p>
-  <strong>Store chief signed date:</strong>
-  <%= @item_disposal.store_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Section chief name:</strong>
-  <%= @item_disposal.section_chief_name %>
-</p>
-
-<p>
-  <strong>Section chief designation:</strong>
-  <%= @item_disposal.section_chief_designation %>
-</p>
-
-<p>
-  <strong>Section chief signed date:</strong>
-  <%= @item_disposal.section_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Office chief name:</strong>
-  <%= @item_disposal.office_chief_name %>
-</p>
-
-<p>
-  <strong>Office chief designation:</strong>
-  <%= @item_disposal.office_chief_designation %>
-</p>
-
-<p>
-  <strong>Office chief signed date:</strong>
-  <%= @item_disposal.office_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @item_disposal.office_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @item_disposal.user_id %>
-</p>
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @item_disposal.fiscal_year_id %>
-</p>
-
-<%= link_to 'Edit', edit_item_disposal_path(@item_disposal) %> |
-<%= link_to 'Back', item_disposals_path %>
+<h1>जिन्सी निसर्ग/मिन्हा फाराम</h1>
+<table class="table table-sm table-bordered text-center">
+  <tr>
+    <th>विवरण</th>
+    <th>निर्णय मिति</th>
+    <th>निर्णयको नाम, पद</th>
+  </tr>
+  <tr>
+    <td><%= @item_disposal.description %></td>
+    <td><%= ndate @item_disposal.decision_date %></td>
+    <td><%= @item_disposal.decision_made_by %></td>
+  </tr>
+</table>
+<div class="text-center">
+  <%= link_to back_btn.html_safe, office_item_disposals_path %>
+  <%= link_to edit_big_btn.html_safe, edit_office_item_disposal_path(@item_disposal) %>
+</div>
+<div class="separator"></div>
+<h2>विवरण थप गर्ने</h2>
+<%= render 'disposal_item_form' %>
+<table class="table table-sm table-bordered">
+  <tr>
+    <td>क्र.स.</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+</table>

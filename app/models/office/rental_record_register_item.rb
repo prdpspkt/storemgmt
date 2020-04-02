@@ -1,2 +1,2 @@
-class RentalRecordRegisterItem < ApplicationRecord
+class Office::RentalRecordRegisterItem < ApplicationRecord
 end
