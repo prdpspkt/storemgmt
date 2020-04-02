@@ -1,11 +1,11 @@
-class GenerateItemEvaluationForm
+class GenerateProjectItemEvaluationForm
   include Sidekiq::Worker
   sidekiq_options retry: false
   def perform(data)
     item_evaluations = Project::ItemEvaluation
-        .where(office_id: data["office_id"])
-        .where(fiscal_year_id: data["fiscal_year_id"])
-        .where(user_id: data["user_id"])
+                           .where(office_id: data["office_id"])
+                           .where(fiscal_year_id: data["fiscal_year_id"])
+                           .where(user_id: data["user_id"])
     if item_evaluations.count > 0
       item_evaluations.destroy_all
     end

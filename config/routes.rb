@@ -46,8 +46,11 @@ Rails.application.routes.draw do
     end
     resources :stock_items
     resources :stocks do
+      collection do
+        post "generate"
+      end
       member do
-        post "print"
+        get "print"
         post "accept"
       end
     end
@@ -67,10 +70,12 @@ Rails.application.routes.draw do
       end
     end
     resources :item_evaluations do
-      member do
-        post "print"
-        post "accept"
+      collection do
         post "generate"
+      end
+      member do
+        get "print"
+        post "accept"
       end
     end
     resources :item_disposal_items

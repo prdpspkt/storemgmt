@@ -1,21 +1,16 @@
-<h1>Office Item Evaluations</h1>
+<h1>जिन्सी निरीक्षण फाराम</h1>
 
 <table class="responsive nowrap table table-hover" id="dttb-office_item_evaluations" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="office_code">Office code</th>
-      <th data-data="fy">Fy</th>
-      <th data-data="committee_formation_date">Committee formation date</th>
-      <th data-data="report_submission_date">Report submission date</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="user_id">User</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
-    </tr>
+      <th data-data="fy">आर्थिक वर्ष</th>
+      <th data-data="office_name">कार्यालयको नाम</th>
+      <th data-data="description">रिपोर्ट विवरण</th>
+     </tr>
   </thead>
 
 </table>
 
 <br>
 
-<%= link_to 'New Office Item Evaluation', new_office_item_evaluation_path %>
+<%= link_to new_btn.html_safe, new_office_item_evaluation_url %>

@@ -1,0 +1,4 @@
+<h1><%= @item_evaluation_item.item.name_of_item_ne %> <small>सम्पादन गर्ने</small></h1>
+<%= render 'form', item_evaluation_item: @item_evaluation_item %>
+
+<%= link_to back_btn.html_safe, office_item_evaluation_url(@item_evaluation_item.item_evaluation) %>

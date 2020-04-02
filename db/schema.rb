@@ -248,37 +248,42 @@ ActiveRecord::Schema.define(version: 202003211024509) do
   create_table "office_item_evaluation_items", force: :cascade do |t|
     t.decimal "quantity"
     t.decimal "amount"
-    t.decimal "mached"
+    t.decimal "matched"
     t.decimal "unmatched"
-    t.decimal "decreased_quantity"
-    t.decimal "increased_quantity"
-    t.decimal "decreased_increased_quantity"
+    t.decimal "dquantity"
+    t.decimal "iquantity"
+    t.decimal "diquantity"
     t.decimal "working"
+    t.integer "item_evaluation_id"
     t.decimal "notworking"
     t.decimal "to_be_repaired"
     t.decimal "to_be_auctioned"
-    t.decimal "to_be_dispose"
+    t.decimal "to_be_disposed"
     t.decimal "to_be_conserved"
     t.decimal "total_amount"
     t.string "remarks"
     t.integer "item_id"
-    t.integer "office_item_id"
     t.integer "user_id"
     t.integer "office_id"
-    t.string "fy"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "project_id"
+    t.integer "store_body_id"
+    t.decimal "rate"
+    t.decimal "total_quantity"
+    t.string "name_of_item_ne"
+    t.integer "item_register_page_no"
+    t.integer "item_classification_no"
+    t.string "unit_ne"
   end
 
   create_table "office_item_evaluations", force: :cascade do |t|
-    t.string "office_code"
-    t.string "fy"
-    t.datetime "committee_formation_date"
-    t.datetime "report_submission_date"
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
+    t.integer "item_evaluation_committee_id"
+    t.string "report_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -692,31 +697,31 @@ ActiveRecord::Schema.define(version: 202003211024509) do
   end
 
   create_table "office_stock_items", force: :cascade do |t|
-    t.integer "item_register_page_no"
-    t.integer "item_classification_no"
-    t.string "name_of_item_en"
-    t.string "name_of_item_ne"
-    t.string "unit_en"
-    t.string "unit_ne"
     t.decimal "quantity"
     t.decimal "rate"
     t.decimal "amount"
     t.string "physical_status"
     t.string "remarks"
     t.integer "office_id"
-    t.integer "office_item_id"
+    t.integer "item_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "store_body_id"
+    t.integer "stock_id"
   end
 
   create_table "office_stocks", force: :cascade do |t|
-    t.string "fy"
+    t.datetime "store_chief_signed_date"
+    t.datetime "section_chief_signed_date"
+    t.datetime "office_chief_signed_date"
     t.integer "store_body_id"
     t.integer "office_id"
+    t.integer "project_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
+    t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

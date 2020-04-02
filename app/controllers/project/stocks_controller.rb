@@ -14,43 +14,18 @@ class Project::StocksController < ProjectController
   end
 
   def generate
-    @project_stocks = current(Project::Stock)
-    if @project_stocks.count > 0
-      @project_stocks.destroy_all
-    end
-    @project_stock = Project::Stock.new
-    @project_stock = set_current_information @project_stock
-    @project_stock.store_body_id = current_control_body.id
-    @project_stock.save!
-    generate_stock_items @project_stock.id
-    redirect_to project_stocks_url
+    data = {
+        office_id: current_office.id,
+        user_id: current_user.id,
+        store_body_id: current_control_body.id,
+        fiscal_year_id: current_fiscal_year.id
+    }
+    GenerateProjectStock.perform_async(data)
+    redirect_to project_stocks_url, notice: "We are generating stock report in background please come back after few Minutes."
   end
 
   private
 
-  def generate_stock_items stock_id
-    @projects = office(Project::Project).where(project_status: 0)
-    @projects.each do |project|
-      project.project_items.each do |item|
-        transactions = item.project_item_transactions.where("sku > 0")
-        stock_item = Project::StockItem.new
-        stock_item.stock_id = stock_id
-        stock_item.project_id = project.id
-        stock_item = set_current_information stock_item
-        stock_item.store_body_id = current_control_body.id
-        stock_item.project_item_id = item.id
-        stock_item.quantity = transactions.sum(:sku)
-        stock_item.rate = transactions.average(:rate)
-        begin
-        stock_item.amount = stock_item.quantity * stock_item.rate
-        rescue Exception => error
-          logger.info(error.message)
-        end
-        stock_item.item_id = item.item_id
-        stock_item.save!
-      end
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project_stock

@@ -1,21 +1,11 @@
-<h1>Office Stocks</h1>
+<h1>आयोजनागत वार्षिक मौज्दात</h1>
 
 <table class="responsive nowrap table table-hover" id="dttb-office_stocks" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="fy">Fy</th>
-      <th data-data="store_chief_name">Store chief name</th>
-      <th data-data="store_chief_designation">Store chief designation</th>
-      <th data-data="store_chief_sign_date">Store chief sign date</th>
-      <th data-data="section_chief_name">Section chief name</th>
-      <th data-data="section_chief_designation">Section chief designation</th>
-      <th data-data="section_chief_signed_date">Section chief signed date</th>
-      <th data-data="office_chief_name">Office chief name</th>
-      <th data-data="office_chief_designation">Office chief designation</th>
-      <th data-data="office_chief_signed_date">Office chief signed date</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="user_id">User</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="fy">आर्थिक वर्ष</th>
+      <th data-data="office_name">कार्यालयको नाम</th>
+      <th data-data="description">विवरणको प्रकार</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -24,4 +14,4 @@
 
 <br>
 
-<%= link_to 'New Office Stock', new_office_stock_path %>
+<%= link_to 'वार्षिक मौज्दात तयार गर्ने', generate_office_stocks_url, class: "btn btn-primary text-white", method: :post %>

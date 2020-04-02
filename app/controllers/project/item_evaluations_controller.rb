@@ -1,5 +1,5 @@
 class Project::ItemEvaluationsController < ProjectController
-  before_action :set_project_item_evaluation, only: [:show, :update]
+  before_action :set_project_item_evaluation, only: [:show, :update, :print]
   load_and_authorize_resource except: [:create, :new]
 
   def index
@@ -16,24 +16,30 @@ class Project::ItemEvaluationsController < ProjectController
 
   def show
     @item_evaluation_items = Project::ItemEvaluationItem.where(item_evaluation_id: @item_evaluation.id)
-        .order("project_id ASC")
+                                 .order("project_id ASC")
   end
 
 
   def generate
-      data = {
-          name: item_evaluation_params[:name],
-          committee_id: item_evaluation_params[:item_evaluation_committee_id],
-          office_id: current_office.id,
-          user_id: current_user.id,
-          fiscal_year_id: current_fiscal_year.id
-      }
-      GenerateItemEvaluationForm.perform_async(data)
+    data = {
+        name: item_evaluation_params[:name],
+        committee_id: item_evaluation_params[:item_evaluation_committee_id],
+        office_id: current_office.id,
+        user_id: current_user.id,
+        fiscal_year_id: current_fiscal_year.id
+    }
+    GenerateItemEvaluationForm.perform_async(data)
     redirect_to project_item_evaluations_url, notice: "जिन्सी निरीक्षण कार्य हुँदै छ, कृपया केहि समय पछि यो पेज रिफ्रेस गर्नु होस्, धन्यवाद |"
   end
 
-  private
+  def print
+    @item_evaluation_items = Project::ItemEvaluationItem.where(item_evaluation_id: @item_evaluation.id)
+                                 .order("project_id ASC")
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+  end
 
+  private
 
 
   # Use callbacks to share common setup or constraints between actions.

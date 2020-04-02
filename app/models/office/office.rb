@@ -6,4 +6,5 @@ class Office::Office < ApplicationRecord
 	has_many :project_tenders, :class_name => 'Project::Tender'
 	has_many :projects, :class_name => 'Project::Project'
 	has_many :project_item_categories, :class_name => 'Project::ItemCategory'
+	has_many :items, class_name: "Office::Item"
 end

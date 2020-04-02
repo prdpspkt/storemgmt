@@ -1,0 +1,48 @@
+class GenerateProjectStock
+  include Sidekiq::Worker
+  sidekiq_options retry: false
+
+  def perform data
+    project_stocks = Project::Stock.where(office_id: data["office_id"])
+                         .where(user_id: data["user_id"])
+                         .where(fiscal_year_id: data["fiscal_year_id"])
+    if project_stocks.count > 0
+      project_stocks.destroy_all
+    end
+    project_stock = Project::Stock.new
+    project_stock.office_id = data["office_id"]
+    project_stock.fiscal_year_id = data["fiscal_year_id"]
+    project_stock.user_id = data["user_id"]
+    project_stock.store_body_id = data["store_body_id"]
+    project_stock.save!
+    generate_stock_items project_stock
+  end
+
+  private
+
+  def generate_stock_items stock
+    projects = Project::Project.where(office_id: stock.office_id).where(user_id: stock.user_id).where(project_status: 0)
+    projects.each do |project|
+      project.project_items.each do |item|
+        transactions = item.project_item_transactions.where("sku > 0")
+        stock_item = Project::StockItem.new
+        stock_item.stock_id = stock.id
+        stock_item.project_id = project.id
+        stock_item.office_id = stock.office_id
+        stock_item.user_id = stock.user_id
+        stock_item.project_item_id = item.id
+        stock_item.fiscal_year_id = stock.fiscal_year_id
+        stock_item.store_body_id = stock.store_body_id
+        stock_item.quantity = transactions.sum(:sku)
+        stock_item.rate = transactions.average(:rate)
+        begin
+          stock_item.amount = stock_item.quantity * stock_item.rate
+        rescue Exception => error
+          logger.info(error.message)
+        end
+        stock_item.item_id = item.item_id
+        stock_item.save!
+      end
+    end
+  end
+end
