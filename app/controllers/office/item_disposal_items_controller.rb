@@ -27,7 +27,7 @@ class Office::ItemDisposalItemsController < ApplicationController
     @item_disposal_item = Office::ItemDisposalItem.new(item_disposal_item_params)
     @item_disposal_item = set_current_information @item_disposal_item
     @item_disposal_item.store_body_id = current_control_body.id
-    @item_disposal_item.item_id = Office::ItemTransaction.find(@item_disposal_item.item_transaction_id).item.id
+    @item_disposal_item.item_id = Office::ItemTransaction.find(@item_disposal_item.item_transaction_id).item_id
     transaction = Office::ItemTransaction.find(@item_disposal_item.item_transaction_id)
     @item_disposal_item.amount = (transaction.amount / transaction.quantity) * @item_disposal_item.quantity
     respond_to do |format|
