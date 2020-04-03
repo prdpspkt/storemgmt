@@ -84,10 +84,10 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: storeman
+  database: wssdb
   pool: 5
   host: localhost
   port: 5432
   username: postgres
-  password: Br41n@H4ck3d
+  password: Br41nh4ck3d
 
