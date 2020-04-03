@@ -1,5 +1,5 @@
 class Office::ItemDisposalsController < ApplicationController
-  before_action :set_item_disposal, only: [:show, :edit, :update, :destroy]
+  before_action :set_item_disposal, only: [:show, :edit, :update, :destroy, :accept, :transaction, :print]
   load_and_authorize_resource except: [:create, :new]
   # GET /item_disposals
   # GET /item_disposals.json
@@ -10,6 +10,9 @@ class Office::ItemDisposalsController < ApplicationController
   # GET /item_disposals/1
   # GET /item_disposals/1.json
   def show
+    @item_disposal_item = Office::ItemDisposalItem.new
+    @items = Office::ItemTransaction.where(:item_classification_no => 47).where("sku > 0").where(transaction_type: 1)
+    @item_disposal_item.item_disposal_id = @item_disposal.id
   end
 
   # GET /item_disposals/new
@@ -57,19 +60,58 @@ class Office::ItemDisposalsController < ApplicationController
   def destroy
     @item_disposal.destroy
     respond_to do |format|
-      format.html { redirect_to item_disposals_url, notice: 'Item disposal was successfully destroyed.' }
+      format.html { redirect_to office_item_disposals_url, notice: 'Item disposal was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_item_disposal
-      @item_disposal = Office::ItemDisposal.find(params[:id])
+  def accept
+    if @item_disposal.entry_generated != true
+      if @item_disposal.accepted == true
+        @item_disposal.accepted = false
+        @item_disposal.save
+        redirect_to @item_disposal, notice: "सफलता पुर्वक अस्वीकृत भयो" and return
+      else
+        @item_disposal.accepted = true
+        @item_disposal.save
+        redirect_to @item_disposal, notice: "सफलता पुर्वक स्वीकृत भयो" and return
+      end
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def item_disposal_params
-      params.require(:office_item_disposal).permit( :decision_date, :decision_made_by, :store_keeper_signed_date, :section_chief_signed_date,  :office_chief_signed_date, :description)
+  end
+
+  def transaction
+    @item_disposal.disposal_items.each do |item|
+      transaction = item.item_transaction
+      new_transaction = Office::ItemTransaction.new(transaction.attributes.select { |key, _| Office::ItemTransaction.column_names.include? key })
+      new_transaction.id = nil
+      new_transaction.quantity = item.quantity
+      new_transaction.amount = item.amount
+      new_transaction.transaction_type = -1
+      new_transaction.remarks = "मिति #{ ndate item.item_disposal.decision_date} को निर्णयबाट निसर्ग/मिन्हा भएको"
+      new_transaction.transaction_date = item.item_disposal.office_chief_signed_date
+      item.new_item_transaction_id = new_transaction.id
+      new_transaction.save
     end
+    @item_disposal.entry_generated = true
+    @item_disposal.save
+    redirect_to @item_disposal, notice: 'अभिलेख जिन्सी खातामा प्रविष्ट भयो |'
+  end
+
+  def print
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+  end
+
+  private
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_item_disposal
+    @item_disposal = Office::ItemDisposal.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def item_disposal_params
+    params.require(:office_item_disposal).permit(:decision_date, :decision_made_by, :store_keeper_signed_date, :section_chief_signed_date, :office_chief_signed_date, :description)
+  end
 end

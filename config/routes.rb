@@ -81,7 +81,7 @@ Rails.application.routes.draw do
     resources :item_disposal_items
     resources :item_disposals do
       member do
-        post "print"
+        get "print"
         post "accept"
         post "transaction"
       end

@@ -4,6 +4,7 @@
   <title>सरकारी भण्डार व्यवस्थापन - <%= @title %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <%= stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true %>
   <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
@@ -55,9 +56,12 @@
             <a class="dropdown-item" href="<%= non_expense_item_register_office_ledgers_url %>">खर्च भएर नजाने जिन्सी सामानको खाता</a>
             <a class="dropdown-item" href="<%= office_item_assistance_registers_url %>">जिन्सी सहायक खाताहरु</a>
             <a class="dropdown-item" href="<%= office_item_disposals_path %>">जिन्सी मिनाहा फारामहरू</a>
-            <a class="dropdown-item" href="<%= office_rental_record_registers_url %>">भाडा सम्बन्धी विवरण</a>
-            <a class="dropdown-item" href="<%= office_land_and_structure_record_books_path %>"> अचल सम्पत्ति विवरण</a>
-            
+            <div class="separator"></div>
+            <a class="dropdown-item"><b class="text-primary">Comming Soon...</b></a>
+            <a class="dropdown-item">भाडामा लिएको/दिएको सम्पत्ति अभिलेख खाता</a>
+            <a class="dropdown-item"> घर जग्गाको लगत किताव</a>
+            <a class="dropdown-item"> स्थिर सम्पत्तिको मुल्यांकन फाराम</a>
+            <a class="dropdown-item"> विन कार्ड</a>
           </div>
         </li>
 

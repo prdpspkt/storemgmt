@@ -172,14 +172,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
   end
 
   create_table "office_item_disposal_items", force: :cascade do |t|
-    t.integer "item_classification_no"
-    t.integer "item_register_page_no"
     t.integer "item_id"
-    t.string "name_of_item_ne"
-    t.string "name_of_item_en"
     t.string "unit_ne"
-    t.boolean "is_office_item"
-    t.boolean "is_project_item"
     t.string "specification"
     t.datetime "received_date"
     t.string "used_year"
@@ -194,6 +188,10 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "fiscal_year_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_disposal_id"
+    t.integer "item_transaction_id"
+    t.integer "new_item_transaction_id"
+    t.integer "store_body_id"
   end
 
   create_table "office_item_disposals", force: :cascade do |t|
@@ -210,6 +208,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "store_keeper_signed_date"
     t.datetime "section_chief_signed_date"
     t.datetime "office_chief_signed_date"
+    t.boolean "accepted"
+    t.boolean "entry_generated"
   end
 
   create_table "office_item_entries", force: :cascade do |t|

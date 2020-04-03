@@ -13,18 +13,49 @@
 </table>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_item_disposals_path %>
-  <%= link_to edit_big_btn.html_safe, edit_office_item_disposal_path(@item_disposal) %>
+  <% if @item_disposal.accepted != true %>
+    <%= link_to edit_big_btn.html_safe, edit_office_item_disposal_path(@item_disposal) %>
+    <%= link_to final_btn.html_safe, accept_office_item_disposal_url(@item_disposal), method: :post %>
+  <% end %>
+  <% if @item_disposal.accepted == true && @item_disposal.entry_generated != true %>
+    <%= link_to before_final_btn.html_safe, accept_office_item_disposal_url(@item_disposal), method: :post %>
+    <%= link_to ledger_entry_btn.html_safe, transaction_office_item_disposal_url(@item_disposal), method: :post, confirm: "Are you sure you cannot entry ?" %>
+  <% end %>
+  <%= link_to print_big_btn.html_safe, print_office_item_disposal_url(@item_disposal) %>
 </div>
+<% if @item_disposal.accepted != true %>
+  <div class="separator"></div>
+  <h2>विवरण थप गर्ने</h2>
+  <%= render 'disposal_item_form', item_disposal_item: @item_disposal_item %>
+<% end %>
 <div class="separator"></div>
-<h2>विवरण थप गर्ने</h2>
-<%= render 'disposal_item_form' %>
+<h2>मिन्हा गर्नुपर्ने जिन्सी सामाग्रीहरू</h2>
 <table class="table table-sm table-bordered">
   <tr>
     <td>क्र.स.</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td>जिन्सी खाता पाना नं</td>
+    <td>जिन्सी वर्गीकरण नं</td>
+    <td>सामानको नाम</td>
+    <td>परिमाण</td>
+    <td>जम्मा परल मूल्य</td>
+    <td>मिन्हा गर्नुपर्ने कारण</td>
     <td></td>
   </tr>
+  <% @sn = 1 %>
+  <% @item_disposal.disposal_items.each do |item| %>
+    <tr>
+      <td><%= nd @sn %></td>
+      <td><%= nd item.item.item_register_page_no %></td>
+      <td><%= nd item.item.item_classification_no %></td>
+      <td><%= item.item.name_of_item_ne %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= nd item.amount %></td>
+      <td><%= item.reason_for_disposal %></td>
+      <td>
+        <% if @item_disposal.accepted != true %>
+          <%= link_to destroy_btn.html_safe, office_item_disposal_item_path(item), data: {method: :delete, confirm: "Are you sure to delete ?"} %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 </table>

@@ -33,7 +33,7 @@ en:
   hello: "Hello world"
   activerecord:
     attributes:
-        office:
+        office/office:
           gov: "सरकारको नाम"
           ministry: "मन्त्रालय"
           department: "विभाग"
@@ -42,11 +42,11 @@ en:
           phone: "फोन"
           fax: "फ्याक्स"
           email: "इमेल"
-        office_item_category:
+        office/item_category:
           name: "जिन्सी बर्गिकरणको नाम"
           unit_ne: "जिन्सी सामानको इकाई(नेपाली)"
           unit_en: "जिन्सी सामानको इकाई (अंग्रेजी)"
-        demand:
+        office/demand:
           demand_no: "माग फाराम नं."
           demand_date: "माग गरेको मिति"
           demand_by: "माग गर्नेको नाम"
@@ -57,14 +57,17 @@ en:
           ordered_date: "आदेश मिति"
           recorded_by: "जिन्सी खातामा चढाउनेको सहि"
           recorded_date: "जिन्सी खातामा चढाएको मिति"
-        demand_item:
+        office/demand_item:
           item_id: "सामाग्रीको नाम"
           quantity: "परिमाण"
           remark: "कैफियत"
-        office_item:
-          item_id: "जिन्सी सामानको नाम"
-          type: "जिन्सी वर्गीकरण नं"
-        vendor:
+        office/item:
+          item_classification_no: "जिन्सी वर्गीकरण नं"
+          name_of_item_ne: "जिन्सीको नाम"
+          name_of_item_en: "जिन्सीको नाम (अंग्रेजीमा)"
+          specification: "स्पेसिफिकेसन"
+          item_category: "सामाग्रीको वर्ग"
+        office/vendor:
           vendor_name: "व्यवसायको नाम"
           vendor_address: "व्यवसायको ठेगाना"
           vendor_pan: "भ्याट/प्यान"
@@ -73,7 +76,7 @@ en:
           vendor_registration: "दर्ता नं"
           vendor_representive: "प्रतिनिधि"
           vendor_name_en: "व्यवसायको नाम(अंग्रेजीमा)"
-        purchase_order:
+        office/purchase_order:
           vendor_name: "व्यवसायको नाम"
           order_no: "खरिद आदेश नं"
           order_date: "मिति"
@@ -83,21 +86,22 @@ en:
           store_chief_signed_date: "भण्डार प्रमुखको हस्ताक्षर मिति"
           section_chief_signed_date: "शाखा प्रमुखको हस्ताक्षर मिति"
           office_cheif_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
-        purchase_order_item:
+        office/purchase_order_item:
           item_classification_no: "जिन्सी वर्गीकरण नं"
           name_of_item: "जिन्सी सामानको नाम"
           quantity: "परिमाण"
           rate: "दर"
           remarks: "कैफियत"
-        office_purchase_entry:
+          is_vatable: "भ्याट लाग्छ ?"
+        office/purchase_entry:
           entry_no: "दाखिला नं"
           entry_date: "दाखिला मिति"
           store_cheif_sign_date: "भण्डार प्रमुखको हस्ताक्षर मिति"
           section_chief_signed_date: "शाखा प्रमुख हस्ताक्षर मिति"
           office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
           purchase_handover_no: "खरिद/हस्तान्तरण नं"
-        office_purchase_entry_item:
-          is_vatable: "कर योग्य सामाग्री हो ?"
+        office/purchase_entry_item:
+          is_vatable: "कर योग्य छ ?"
           item_classification_no: "जिन्सी वर्गीकरण"
           name_of_item: "जिन्सी सामाग्रीको नाम"
           item_identification_no: "जिन्सी पहिचान नं"
@@ -110,21 +114,21 @@ en:
           source: "प्राप्तिको श्रोत"
           remarks: "कैफियत"
           purchase_handover_no: "खरिद/हस्तान्तरण नं"
-        office_release:
+        office/release:
           release_no: "निकासा नं"
           release_date: "निकासा मिति"
           store_chief_signed_date: "स्टोर प्रमुखले हस्ताक्षर गर्ने मिति"
           office_chief_signed_date: "कार्यालय प्रमुखले हस्ताक्षर गर्ने मिति"
-        office_release_item:
+        office/release_item:
           name_of_item:  "सामानको नाम"
           quantity: "परिमाण"
           remarks: "कैफियत"
-        item_assistance_register:
+        office/item_assistance_register:
           register_page_no: "खाता पाना नं"
-          name_of_item: "जिन्सी सामानको नाम"
-          store_chief_signed_date: "स्टोर प्रमुखको दस्तखत मिति"
+          name_of_person: "जिन्सी सामानको नाम"
+          store_keeper_signed_date: "स्टोर प्रमुखको दस्तखत मिति"
           office_chief_signed_date: "कार्यालय प्रमुखको दस्तखत मिति"
-        item_assistance_register_item:
+        office/item_assistance_register_item:
           name_of_item: "सामानको नाम"
           date: "मिति"
           order_release_no: "माग/निकासा फाराम"
@@ -132,19 +136,34 @@ en:
           taken_date: "सामान लागेको मिति"
           date_to_be_returned: "सामान फिर्ता गर्नुपर्ने मिति"
           name_of_user: "प्रयोग कर्ताको नाम"
-        office_handover_form:
+        office/item_disposal:
+          description: "विवरण"
+          decision_date: "निर्णय मिति"
+          decision_made_by: "निर्णय गर्ने अधिकार, पद"
+          store_keeper_signed_date: "स्टोर प्रमुख हस्ताक्षर मिति"
+          section_chief_signed_date: "शाखा प्रमुख हस्ताक्षर मिति"
+          office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
+        office/item_disposal_item:
+          received_date: "सुरु प्राप्ति मिति"
+          item_transaction_id: "सामानको नाम र विवरण"
+          used_year: "प्रयोग भएको वर्ष"
+          quantity: "परिमाण"
+          current_marked_price: "हालको अंकित मुल्य"
+          reason_for_disposal: "मिन्हा गर्नुपर्ने कारण"
+
+        office/handover_form:
           handover_form_no: "हस्तान्तरण फाराम नं"
           date: "हस्तान्तरण मिति"
           decision_date: "निर्णय मिति"
           decision_no: "निर्णय नं"
           handovered_office_name: "हस्तान्तरण गरिएको कार्यालय"
-          store_chief_signed_date: "स्टोर प्रमुखको हस्ताक्षर मिति"
+          store_keeper_signed_date: "स्टोर प्रमुखको हस्ताक्षर मिति"
           office_chief_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
-        office_handover_form_item:
+        office/handover_form_item:
           name_of_item_ne: "सामानको नाम"
           quantity: "परिमाण"
           physical_status: "भौतिक अवस्था"
-        personnel:
+        office/personnel:
           name_ne: "नाम/थर"
           name_en: "नाम/थर (अँग्रेजी)"
           post: "पद"
@@ -155,7 +174,7 @@ en:
           group: "समूह"
           sub_group: "उपसमूह"
           ctroll: "सिट्रोल"
-        repair_application_form:
+        office/repair_application_form:
           application_no: "आवेदन नं"
           date: "मिति"
           year: "बर्ष"
@@ -167,7 +186,7 @@ en:
           technical_person_designation: "प्राविधिक व्यक्तिको पद"
           technical_person_signed_date: "प्राविधिकको हस्ताक्षर मिति"
           office_chief_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
-        repair_record_register:
+        office/repair_record_register:
           name_of_item: "सामानको नाम"
           page_no: "पेज नं"
           price: "मूल्य"
@@ -175,13 +194,13 @@ en:
           office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
           month: "महीना"
           year: "साल"
-        repair_application_form_item:
+        office/repair_application_form_item:
           name_of_item: "सामाग्रीको नाम"
           item_identification_no: "जिन्सी पहिचान नं"
           approx_repair_cost: "अनुमानित मर्मत लागत"
           reason_to_repair: "मर्मत गर्नुपर्ने कारण"
           remarks: "कैफियत"
-        project:
+        project/project:
           name_of_project_ne: "आयोजनाको नाम"
           name_of_project_en: "आयोजनाको नाम अँग्रेजी"
           name_of_consumer_committee: "उपभोक्ता समितिको नाम"
@@ -193,27 +212,27 @@ en:
           phone_of_contractor_representative: "ठेकेदारको प्रतिनिधिको फोन नं"
           name_of_contractor_representative: "ठेकेदारको प्रतिनिधिको नाम"
           project_status: "आयोजनाको अवस्था"
-        project_purchase_tender:
+        project/tender:
           tender_no: "बोलपत्र सुचना नं"
           tender_name: "बोलपत्रको नाम"
           tender_date: "बोलपत्र प्रकाशित मिति"
           bidders_name: "छनोट भएको बोलपत्र दाता"
           bidders_address: "बोलपत्र दाताको ठेगाना"
-        project_tender_item:
+        project/tender_item:
           name_of_item: "सामानको नाम"
           quantity: "परिमाण"
           rate: "दर"
           received_date: "प्राप्ति मिति"
-        active_fiscal_year:
+        office/active_fiscal_year:
           select_fiscal_year: "आर्थिक वर्ष छान्नुहोस्"
-        store_body:
+        office/store_body:
           office_chief: "कार्यालय प्रमुख"
           office_chief_degination: "कार्यालय प्रमुखको पद"
           section_chief: "शाखा प्रमुखको नाम"
           section_chief_degination: "शाखा प्रमुखको पद"
           store_keeper_designation: "स्टोर फाँट प्रमुखको पद"
           store_keeper_name: "स्टोर फाँट प्रमुखको नाम"
-        project_purchase_entry:
+        project/purchase_entry:
           entry_date: "दाखिला मिति"
           bill_no: "विल नं"
           entry_no: "दाखिला नं"
@@ -221,7 +240,7 @@ en:
           section_chief_signed_date: "शाखा प्रमुख हस्ताक्षर मिति"
           office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
           purchase_handover_no: "खरिद हस्तान्तरण नं"
-        project_purchase_entry_item:
+        project/purchase_entry_item:
           item_classification_no: "जिन्सी वर्गीकरण"
           name_of_item: "सामानको नाम"
           quantity: "परिमाण"
@@ -234,19 +253,19 @@ en:
           approx_age: "अनुमानित आयु"
           source: "प्राप्तिको श्रोत"
           size: "साइज"
-        project_purchase_order:
+        project/purchase_order:
           vendor_name: "व्यवसायीको नाम"
           order_no: "खरिद आदेश नं"
           order_date: "खरिद आदेशको मिति"
           order_decision_no: "खरिदको निर्णय नं"
           order_decision_date: "खरिदको निर्णय मिति"
-        project_purchase_order_item:
+        project/purchase_order_item:
           item_classification_no: "जिन्सी वर्गीकरण संकेत नं"
           name_of_item_en: "सामानको नाम"
           quantity: "परिमाण"
           rate: "दर"
           remarks: "कैफियत"
-        project_demand:
+        project/demand:
           demand_no: "माग नं"
           demand_date: "माग गरिएको मिति"
           demand_by: "माग गर्नेको नाम"
@@ -255,9 +274,12 @@ en:
           ordered_date: "आदेश दिएको मिति"
           recorded_date: "अभिलेख राखेको मिति"
           project_id: "आयोजनाको नाम"
-        project_demand_item:
+        project/demand_item:
           name_of_item: "सामाग्रीको नाम"
           quantity: "परिमाण"
           remark: "कैफियत"
+
+
+
 
 

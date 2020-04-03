@@ -28,6 +28,7 @@ class Office::DemandItemsController < ApplicationController
     @demand_item = Office::DemandItem.new(demand_item_params)
     @office_item = Office::Item.find(demand_item_params[:item_id])
     @demand = Office::Demand.find(@demand_item.demand_id)
+    @demand_item = set_current_information @demand_item
     respond_to do |format|
       if @demand_item.save
         format.html { redirect_to @demand, notice: 'Demand item was successfully created.' }
