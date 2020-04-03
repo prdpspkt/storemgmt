@@ -4,7 +4,6 @@ gem 'roo'
 gem 'sidekiq'
 # gem 'redis-server'
 gem 'caxlsx_rails'
-gem 'roo'
 gem 'bootstrap'
 gem 'jquery-rails'
 gem 'pry'
@@ -68,7 +67,7 @@ group :test do
 end
 
 group :production do
-	# gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
+	gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 	gem 'bootsnap', '>= 1.1.0', require: false
 end
 
