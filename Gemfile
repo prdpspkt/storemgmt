@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'roo'
-gem 'sidekiq', '4.1.2'
+gem 'sidekiq', '4.2.5'
 # gem 'redis-server'
 gem 'caxlsx_rails'
 gem 'bootstrap'
