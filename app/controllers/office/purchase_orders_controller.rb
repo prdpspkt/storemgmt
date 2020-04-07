@@ -140,6 +140,7 @@ class Office::PurchaseOrdersController < ApplicationController
     purchase_entry.purchase_order_id = purchase_order.id
     purchase_entry.marked_as_final = false
     purchase_entry.ledger_entry_generated = false
+    purchase_entry.generated_from = "purchase_order"
     purchase_entry.save
     purchase_entry
   end

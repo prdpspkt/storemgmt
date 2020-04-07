@@ -66,7 +66,6 @@ class Office::PurchaseEntriesController < ApplicationController
   # DELETE /OfficePurchaseEntries/1
   # DELETE /OfficePurchaseEntries/1.json
   def destroy
-    if @purchase_entry.purchase_order.blank? == false
       if @purchase_entry.generated_from == "tender"
         @tender = @purchase_entry.tender
         @tender.entry_generated = false
@@ -74,7 +73,7 @@ class Office::PurchaseEntriesController < ApplicationController
         @purchase_entry.destroy
         redirect_to @tender, notice: "Successfully deleted related purchase entry." and return
       end
-      if @purchase_entry.generated_from == "purchase_entry"
+      if @purchase_entry.generated_from == "purchase_order"
         @purchase_order = @purchase_entry.purchase_order
         @purchase_order.entry_generated = false
         @purchase_order.save
@@ -84,7 +83,6 @@ class Office::PurchaseEntriesController < ApplicationController
         @purchase_entry.destroy
         redirect_to office_purchase_entries_url, notice: "Purchase entry successfully deleted" and return
       end
-    end
   end
 
   def accept

@@ -1,0 +1,48 @@
+<div class="row">
+  <h1>ड्यासबोर्ड</h1>
+</div>
+<div class="row">
+  <div class="col-md-3 col-sm-12">
+    <div class="card">
+      <div class="card-header text-center text-white bg-primary">
+        <span class="h4">कार्यालय</span>
+      </div>
+      <div class="card-body">
+        <div>
+          <b><%= @office.office %></b> <br> <%= @office.address %>
+          <div class="text-left">
+            आ.व.: <%= @fiscal_year.fy %>, मिति: <%= ndate @bs_today %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-12">
+    <div class="card">
+      <div class="card-header text-white bg-warning text-center">
+        <span class="h4">आयोजना विवरण</span>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li>जम्मा आयोजना: <%= nd @projects.count %></li>
+          <li>संचालित आयोजना: <%= nd @projects.where(project_status: 0).count %></li>
+          <li>सम्पन्न आयोजना: <%= nd @projects.where(project_status: 1).count %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-12">
+  <div class="card">
+    <div class="card-header text-white bg-success text-center">
+      <span class="h4">सामाग्रीहरू</span>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled">
+        <li>जम्मा सामाग्री: <%= nd @items.count %></li>
+        <li>खर्च भएर जाने: <%= nd @items.where(item_classification_no: 52).count %></li>
+        <li>खर्च भएर नजाने: <%= nd @items.where(item_classification_no: 47).count %></li>
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>

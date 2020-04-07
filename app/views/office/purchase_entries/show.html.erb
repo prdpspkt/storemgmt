@@ -29,7 +29,7 @@
   <% end %>
 </div>
 <div class="separator"></div>
-<% if @purchase_entry.marked_as_final != true %>
+<% if @purchase_entry.marked_as_final != true && @purchase_entry.generated_from == nil %>
   <h2>सामाग्री दाखिला गर्ने</h2>
   <%= render "office_purchase_entry_form", office_purchase_entry_item: @purchase_entry_item %>
   <div class="separator"></div>

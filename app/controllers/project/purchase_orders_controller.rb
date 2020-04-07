@@ -147,6 +147,7 @@ class Project::PurchaseOrdersController < ProjectController
     purchase_entry.store_body_id = current_control_body.id
     purchase_entry.purchase_order_id = purchase_order.id
     purchase_entry.marked_as_final = false
+    purchase_entry.generated_from = "purchase_order"
     purchase_entry.ledger_entry_generated = false
     purchase_entry.save
     purchase_entry

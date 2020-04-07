@@ -9,4 +9,8 @@ class Office::Office < ApplicationRecord
 	has_many :items, class_name: "Office::Item"
 	has_many :purchase_orders, :class_name => 'Office::PurchaseOrder'
 	has_many :purchase_entries, :class_name => 'Office::PurchaseEntry'
+	has_many :tenders, :class_name => 'Office::Tender'
+	has_many :demands, :class_name => 'Office::Demand'
+	has_many :releases, :class_name => 'Office::Release'
+	has_many :handover_forms, :class_name => 'Office::HandoverForm'
 end

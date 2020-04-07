@@ -22,7 +22,7 @@
   <% if @tender.marked_as_final == true && @tender.entry_generated != true %>
     <%= link_to before_final_btn.html_safe, accept_office_tender_url(@tender), data: { method: :post} %>
   <% end %>
-  <% if @tender.marked_as_final == true %>
+  <% if @tender.marked_as_final == true && @tender.entry_generated != true %>
     <%= link_to purchase_entry_btn.html_safe, entry_office_tender_url(@tender), data: {method: :post} %>
   <% end %>
   <%= link_to print_big_btn.html_safe, print_office_tender_url(@tender) %>

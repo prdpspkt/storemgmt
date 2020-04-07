@@ -1,16 +1,25 @@
 <div class="row">
-  <div class="h1">ड्यासबोर्ड</div>
-  <div class="ml-auto text-white bg-success office_widget text-center">
-    <b><%= @office.office %></b> <br> <%= @office.address %>
-    <div class="text-left">
-      आ.व.: <%= @fiscal_year.fy %>, मिति: <%= ndate @bs_today %>
-    </div>
-  </div>
+  <h1>ड्यासबोर्ड</h1>
 </div>
 <div class="row">
   <div class="col-md-3 col-sm-12">
+    <div class="card">
+      <div class="card-header text-center text-white bg-primary">
+        <span class="h4">कार्यालय</span>
+      </div>
+      <div class="card-body">
+        <div>
+          <b><%= @office.office %></b> <br> <%= @office.address %>
+          <div class="text-left">
+            आ.व.: <%= @fiscal_year.fy %>, मिति: <%= ndate @bs_today %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-12">
   <div class="card">
-    <div class="card-header text-center">
+    <div class="card-header text-white bg-warning text-center">
       <span class="h4">सामाग्रीहरू</span>
     </div>
     <div class="card-body">
@@ -24,7 +33,7 @@
   </div>
   <div class="col-md-3 col-sm-12">
     <div class="card">
-      <div class="card-header text-center">
+      <div class="card-header text-white bg-success text-center">
         <span class="h4">खरिद विवरण</span>
       </div>
       <div class="card-body">
@@ -32,6 +41,20 @@
           <li>खरिद आदेश: <%= nd @office.purchase_orders.where(fiscal_year_id: @fiscal_year.id).count %></li>
           <li>खरिद ठेक्का: <%= nd @office.tenders.where(fiscal_year_id: @fiscal_year.id).count %></li>
           <li>दाखिला फाराम: <%= nd @office.purchase_entries.where(fiscal_year_id: @fiscal_year.id).count %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3 col-sm-12">
+    <div class="card">
+      <div class="card-header text-white bg-danger text-center">
+        <span class="h4">निकासा विवरण</span>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li>माग फाराम: <%= nd @office.demands.where(fiscal_year_id: @fiscal_year.id).count %></li>
+          <li>निकाशा फाराम: <%= nd @office.releases.where(fiscal_year_id: @fiscal_year.id).count %></li>
+          <li>हस्तान्तरण फाराम: <%= nd @office.handover_forms.where(fiscal_year_id: @fiscal_year.id).count %></li>
         </ul>
       </div>
     </div>

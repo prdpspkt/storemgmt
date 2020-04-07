@@ -117,15 +117,16 @@ class Office::TendersController < OfficeController
     @purchase_entry = Office::PurchaseEntry.new
     @purchase_entry = set_current_information @purchase_entry
     @purchase_entry.entry_no = new_entry_no
+    @purchase_entry.entry_date = bs_today
     @purchase_entry.store_body_id = current_control_body.id
     @purchase_entry.store_chief_signed_date = bs_today
     @purchase_entry.section_chief_signed_date = bs_today
     @purchase_entry.office_chief_signed_date = bs_today
-    @purchase_entry.generated_from = "purchase_entry"
+    @purchase_entry.generated_from = "tender"
     @purchase_entry.tender_id = @tender.id
-    @purchase_entry.save
+    @purchase_entry.save!
     @tender.entry_generated = true
-    @tender.save
+    @tender.save!
   end
 
   def new_entry_no

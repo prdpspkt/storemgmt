@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   Sidekiq::Web.set :sessions, false
 
   root "office/dashboard#index"
+  get "project/dashboard" => "project/dashboard#index", as: :project_dashboard
   devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions'

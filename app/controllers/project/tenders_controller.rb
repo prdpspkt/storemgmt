@@ -113,7 +113,7 @@ class Project::TendersController < ProjectController
     @cb = current_control_body
   end
 
-  def create_purchase_entry
+  def entry
     @purchase_entry = Project::PurchaseEntry.new
     @purchase_entry = set_current_information @purchase_entry
     @purchase_entry.entry_no = new_entry_no
@@ -124,9 +124,9 @@ class Project::TendersController < ProjectController
     @purchase_entry.office_chief_signed_date = bs_today
     @purchase_entry.generated_from = "tender"
     @purchase_entry.tender_id = @tender.id
-    @purchase_entry.save
+    @purchase_entry.save!
     @tender.entry_generated = true
-    @tender.save
+    @tender.save!
   end
 
   def new_entry_no
