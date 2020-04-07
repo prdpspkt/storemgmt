@@ -18,7 +18,7 @@ class Office::Item < ApplicationRecord
     if_used = true if self.purchase_order_items.count > 0
     if_used = true if self.purchase_entry_items.count > 0
     if_used = true if self.release_items.count > 0
-    if_used = true if self.expense_transactions.count > 0
+    if_used = true if self.item_transactions.count > 0
     if if_used
       errors[:base] << "यो जिन्सी सामानसंग सम्बन्धित कारोबार अन्य दाखिला, खरिद आदेश, मागफरामहरूमा देखिएकोले हटाउन सकिएन |"
       throw(:abort)

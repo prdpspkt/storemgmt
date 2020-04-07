@@ -68,7 +68,11 @@ class Office::FiscalYearsController < ApplicationController
     @office = current_office
     @fiscal_year = Office::FiscalYear.find(params[:fiscal_year_id])
     if @fiscal_year.office_id == @office.id
-
+      create_office_item_transactions
+      create_project_item_transactions
+      @fiscal_year.status = true
+      @fiscal_year.save
+      Devise.sign_out_all_scopes
     end
   end
 
@@ -77,7 +81,7 @@ class Office::FiscalYearsController < ApplicationController
   def destroy
     @fiscal_year.destroy
     respond_to do |format|
-      format.html { redirect_to fiscal_years_url, notice: 'Fiscal year was successfully destroyed.' }
+      format.html { redirect_to office_fiscal_years_url, notice: 'Fiscal year was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -102,28 +106,32 @@ class Office::FiscalYearsController < ApplicationController
                          .where(item_id: item.id)
                          .where("sku > 0")
                          .where(item_classification_no: 52)
-      transaction = Office::ItemTransaction.new(transactions.last.attributes.select { |key, _| Office::ItemTransaction.column_names.include? key })
-      transaction.id = nil
-      transaction.rate = transactions.average(:rate)
-      transaction.quantity = transactions.sum(:sku)
-      transaction.amount = transaction.rate * transaction.quantity
-      transaction.transaction_date = @fiscal_year.start_date
-      transaction.transaction_type = 1
-      transaction.fiscal_year_id = current_fiscal_year.id
-      transaction.remarks = "गत आ.व. बाट अल्या"
-      transaction.save!
+      if transactions.count > 0
+        transaction = Office::ItemTransaction.new(transactions.last.attributes.select { |key, _| Office::ItemTransaction.column_names.include? key })
+        transaction.id = nil
+        transaction.rate = transactions.average(:rate)
+        transaction.quantity = transactions.sum(:sku)
+        transaction.amount = transaction.rate * transaction.quantity
+        transaction.transaction_date = @fiscal_year.start_date
+        transaction.transaction_type = 1
+        transaction.fiscal_year_id = current_fiscal_year.id
+        transaction.remarks = "गत आ.व. बाट अल्या"
+        transaction.save!
+      end
     end
+  end
 
-    def create_project_item_transactions
-      @projects = Project::Project.where(office_id: current_office.id).where(project_status: false)
-      @projects.each do |project|
-        items = project.project_items
-        items.each do |item|
-          transactions = Project::ProjectItemTransaction.where(office_id: @office.id)
-                             .where(fiscal_year_id: @fiscal_year.id)
-                             .where(project_id: project.id)
-                             .where(project_item_id: item.id)
-                             .where("sku > 0")
+  def create_project_item_transactions
+    @projects = Project::Project.where(office_id: current_office.id).where(project_status: false)
+    @projects.each do |project|
+      items = project.project_items
+      items.each do |item|
+        transactions = Project::ProjectItemTransaction.where(office_id: @office.id)
+                           .where(fiscal_year_id: @fiscal_year.id)
+                           .where(project_id: project.id)
+                           .where(project_item_id: item.id)
+                           .where("sku > 0")
+        if transactions.count > 0
           transaction = Project::ProjectItemTransaction.new(transactions.last.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
           transaction.id = nil
           transaction.rate = transactions.average(:rate)
@@ -137,6 +145,7 @@ class Office::FiscalYearsController < ApplicationController
         end
       end
     end
-
   end
+
 end
+

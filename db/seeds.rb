@@ -81,6 +81,7 @@ puts "Creating control body..."
 @store_body = Office::StoreBody.new
 @store_body.office_id = @office.id
 @store_body.fiscal_year_id = @fiscal_year.id
+@store_body.user_id = @user.id
 @store_body.office_chief_name = "हरि प्रसाद तिमिल्सिना"
 @store_body.office_chief_degination = "डिभिजन प्रमुख"
 @store_body.store_keeper_name = "रामचन्द्र पण्डित"
