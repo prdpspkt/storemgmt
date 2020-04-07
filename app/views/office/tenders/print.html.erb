@@ -1,0 +1,85 @@
+<table class="table table-sm table-borderless text-center">
+  <tr>
+    <td class="gov_name"><%= @office.gov %></td>
+  </tr>
+  <tr>
+    <td class="min_name"><%= @office.ministry %></td>
+  </tr>
+  <tr>
+    <td class="off_name"><%= @office.office %></td>
+  </tr>
+  <tr>
+    <td class="min_name"><%= @office.address %></td>
+  </tr>
+  <tr>
+    <td class="off_name">ठेक्का विवरण</td>
+  </tr>
+</table>
+<table class="table table-sm table-borderless">
+  <tr>
+    <td>ठेक्का विवरण:</td>
+    <td><%= @tender.tender_name %></td>
+    <td>ठेक्का नं: <%= nd @tender.tender_no %></td>
+  </tr>
+  <tr>
+    <td>निर्माण व्यवसायी:</td>
+    <td><%= @tender.bidders_name %></td>
+    <td>प्रकाशित मिति: <%= ndate @tender.tender_date %></td>
+  </tr>
+</table>
+<table class="table table-sm table-black-border">
+  <tr>
+    <th>क्र.स.</th>
+    <th>सामानको नाम</th>
+    <th>खाता पाना नं</th>
+    <th>एकाई</th>
+    <th>परिमाण</th>
+    <th>दर</th>
+    <th>जम्मा</th>
+    <th>कैफियत</th>
+  </tr>
+  <% @i = 1 %>
+  <% @tender.tender_items.each do |item| %>
+    <tr>
+      <td class="text-center"><%= nd @i %></td>
+      <td><%= item.item.name_of_item_ne %></td>
+      <td class="text-center"><%= nd item.item.item_register_page_no %></td>
+      <td class="text-center"><%= nd item.quantity %></td>
+      <td class="text-center"><%= item.item.unit_ne %></td>
+      <td class="text-center"><%= nd item.rate %></td>
+      <td class="text-center"><%= nd item.amount_without_vat %></td>
+      <td><%= item.remarks %></td>
+    </tr>
+    <% @i = @i + 1 %>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>जम्मा</td>
+    <td class="text-center"><%= nd @tender.tender_items.sum(:amount_without_vat) %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>भ्याट (१३%)</td>
+    <td class="text-center"><%= nd @tender.tender_items.sum(:amount_without_vat)*0.13 %></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>कुल जम्मा</td>
+    <td class="text-center"><%= nd @tender.tender_items.sum(:amount_without_vat)*1.13 %></td>
+    <td></td>
+  </tr>
+</table>

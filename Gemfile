@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'roo'
-gem 'sidekiq', '4.2.5'
 gem 'sinatra', :require => nil
 # gem 'redis-server'
 gem 'caxlsx_rails'
@@ -56,7 +55,9 @@ end
 group :development do
 	gem 'puma', '~> 4.3.1'
   	# Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  	gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 3.3.0'
+  gem 'sidekiq'
+
 end
 
 group :test do
@@ -69,7 +70,8 @@ end
 
 group :production do
 	gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
-	gem 'bootsnap', '>= 1.1.0', require: false
+	# gem 'bootsnap', '>= 1.1.0', require: false
+  # gem 'sidekiq', '4.2.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

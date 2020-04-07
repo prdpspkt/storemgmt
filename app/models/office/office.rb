@@ -7,4 +7,6 @@ class Office::Office < ApplicationRecord
 	has_many :projects, :class_name => 'Project::Project'
 	has_many :project_item_categories, :class_name => 'Project::ItemCategory'
 	has_many :items, class_name: "Office::Item"
+	has_many :purchase_orders, :class_name => 'Office::PurchaseOrder'
+	has_many :purchase_entries, :class_name => 'Office::PurchaseEntry'
 end

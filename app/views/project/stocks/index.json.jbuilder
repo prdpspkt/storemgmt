@@ -8,7 +8,6 @@ json.set! :data do
     json.url  "
               #{link_to show_btn.html_safe, project_stock }
               #{link_to edit_btn.html_safe, edit_project_stock_path(project_stock)}
-              #{link_to destroy_btn.html_safe, project_stock, method: :delete, data: { confirm: 'Are you sure?' }}
               "
   end
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   Sidekiq::Web.set :sessions, false
 
-  root "office/offices#index"
+  root "office/dashboard#index"
   devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions'
@@ -17,6 +17,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :tenders do
+      member do
+        get "print"
+        post "accept"
+        post "entry"
+      end
+    end
+    resources :tender_items
     resources :land_and_structure_record_book_items
     resources :land_and_structure_record_books do
       member do
@@ -95,7 +103,7 @@ Rails.application.routes.draw do
       end
     end
     resources :release_items
-    resources :releases do
+    resources :releases, except: [:new] do
       member do
         get "print"
         post "accept"
@@ -149,7 +157,12 @@ Rails.application.routes.draw do
         post "import"
       end
     end
-    resources :fiscal_years
+    resources :fiscal_years do
+      collection do
+        get "close_form"
+        post "close"
+      end
+    end
     resources :offices do
       collection do
         post "print"

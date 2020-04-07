@@ -20,7 +20,6 @@ class Ability
                   Office::DemandItem,
                   Office::Personnel,
                   Office::Vendor,
-                  Office::FiscalYear,
                   Office::ActiveFiscalYear,
                   Office::ItemTransaction,
                   Office::HandoverForm,
@@ -45,6 +44,8 @@ class Ability
                   Office::ItemDisposal,
                   Office::ItemDisposalItem
     ], user_id: user.id
+
+    can :manage,  Office::FiscalYear, office_id: user.office_id
 
     if user.is_admin == true
       can :manage, User

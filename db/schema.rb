@@ -447,6 +447,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "store_body_id"
     t.boolean "ledger_entry_generated"
     t.integer "purchase_order_id"
+    t.string "generated_from"
+    t.integer "tender_id"
   end
 
   create_table "office_purchase_entry_items", force: :cascade do |t|
@@ -1203,6 +1205,8 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "store_body_id"
     t.boolean "ledger_entry_generated"
     t.integer "purchase_order_id"
+    t.string "generated_from"
+    t.integer "tender_id"
   end
 
   create_table "project_purchase_entry_items", force: :cascade do |t|

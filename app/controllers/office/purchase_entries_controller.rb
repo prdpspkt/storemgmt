@@ -67,14 +67,23 @@ class Office::PurchaseEntriesController < ApplicationController
   # DELETE /OfficePurchaseEntries/1.json
   def destroy
     if @purchase_entry.purchase_order.blank? == false
-      @purchase_order = @purchase_entry.purchase_order
-      @purchase_order.entry_generated = false
-      @purchase_order.save
-    end
-    @purchase_entry.destroy
-    respond_to do |format|
-      format.html { redirect_to @purchase_order, notice: 'Office entry was successfully destroyed.' }
-      format.json { head :no_content }
+      if @purchase_entry.generated_from == "tender"
+        @tender = @purchase_entry.tender
+        @tender.entry_generated = false
+        @tender.save
+        @purchase_entry.destroy
+        redirect_to @tender, notice: "Successfully deleted related purchase entry." and return
+      end
+      if @purchase_entry.generated_from == "purchase_entry"
+        @purchase_order = @purchase_entry.purchase_order
+        @purchase_order.entry_generated = false
+        @purchase_order.save
+        @purchase_entry.destroy
+        redirect_to @purchase_order, notice: "Successfully deleted related purchase entry" and return
+      else
+        @purchase_entry.destroy
+        redirect_to office_purchase_entries_url, notice: "Purchase entry successfully deleted" and return
+      end
     end
   end
 

@@ -1,0 +1,39 @@
+<div class="row">
+  <div class="h1">ड्यासबोर्ड</div>
+  <div class="ml-auto text-white bg-success office_widget text-center">
+    <b><%= @office.office %></b> <br> <%= @office.address %>
+    <div class="text-left">
+      आ.व.: <%= @fiscal_year.fy %>, मिति: <%= ndate @bs_today %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-3 col-sm-12">
+  <div class="card">
+    <div class="card-header text-center">
+      <span class="h4">सामाग्रीहरू</span>
+    </div>
+    <div class="card-body">
+      <ul class="list-unstyled">
+        <li>जम्मा सामाग्री: <%= nd @office.items.count %></li>
+        <li>खर्च भएर जाने: <%= nd @office.items.where(item_classification_no: 52).count %></li>
+        <li>खर्च भएर नजाने: <%= nd @office.items.where(item_classification_no: 47).count %></li>
+      </ul>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-3 col-sm-12">
+    <div class="card">
+      <div class="card-header text-center">
+        <span class="h4">खरिद विवरण</span>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li>खरिद आदेश: <%= nd @office.purchase_orders.where(fiscal_year_id: @fiscal_year.id).count %></li>
+          <li>खरिद ठेक्का: <%= nd @office.tenders.where(fiscal_year_id: @fiscal_year.id).count %></li>
+          <li>दाखिला फाराम: <%= nd @office.purchase_entries.where(fiscal_year_id: @fiscal_year.id).count %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

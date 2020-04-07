@@ -5,5 +5,5 @@ end
 
 # so one sidekiq can have 7 connections
 Sidekiq.configure_server do |config|
-  config.redis = { :size => 7 }
+  config.redis = { :size => 15 }
 end

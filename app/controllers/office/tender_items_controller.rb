@@ -1,10 +1,10 @@
-class Project::TenderItemsController < ProjectController
+class Office::TenderItemsController < OfficeController
   before_action :set_tender_item, only: [:destroy, :edit, :update]
 
   # GET /tender_items
   # GET /tender_items.json
   def index
-    @tender_items = Project::TenderItem.all
+    @tender_items = Office::TenderItem.all
   end
 
 
@@ -15,8 +15,8 @@ class Project::TenderItemsController < ProjectController
   # POST /tender_items
   # POST /tender_items.json
   def create
-    @tender_item = Project::TenderItem.new(tender_item_params)
-    @item = Project::Item.find(@tender_item.item_id)
+    @tender_item = Office::TenderItem.new(tender_item_params)
+    @item = Office::Item.find(@tender_item.item_id)
     @tender_item.item_classification_no = @item.item_classification_no
     @tender_item.amount_without_vat = @tender_item.rate * @tender_item.quantity
     if @tender_item.is_vatable
@@ -34,10 +34,10 @@ class Project::TenderItemsController < ProjectController
     @tender_item.sku = @tender_item.quantity
     respond_to do |format|
       if @tender_item.save
-        format.html { redirect_to @tender_item.tender, notice: 'Project tender item was successfully created.' }
+        format.html { redirect_to @tender_item.tender, notice: 'Office tender item was successfully created.' }
         format.json { render :show, status: :created, location: @tender_item }
       else
-        format.html { redirect_to Project::Tender.find(@tender_item.tender_id) }
+        format.html { redirect_to Office::Tender.find(@tender_item.tender_id) }
         format.json { render json: @tender_item.errors, status: :unprocessable_entity }
       end
     end
@@ -46,7 +46,7 @@ class Project::TenderItemsController < ProjectController
   def update
     respond_to do |format|
       if@tender_item.update(tender_item_update_params)
-        format.html { redirect_to@tender_item.tender, notice: 'Project Tender Item was successfully updated.' }
+        format.html { redirect_to@tender_item.tender, notice: 'Office Tender Item was successfully updated.' }
         format.json { render :show, status: :ok, location:@tender_item }
       else
         format.html { render :edit }
@@ -60,7 +60,7 @@ class Project::TenderItemsController < ProjectController
     tender = @tender_item.tender
     @tender_item.destroy
     respond_to do |format|
-      format.html { redirect_to tender, notice: 'Project tender item was successfully destroyed.' }
+      format.html { redirect_to tender, notice: 'Office tender item was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -69,12 +69,12 @@ class Project::TenderItemsController < ProjectController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_tender_item
-    @tender_item = Project::TenderItem.find(params[:id])
+    @tender_item = Office::TenderItem.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tender_item_params
-    params.require(:project_tender_item).permit(:quantity, :rate, :amount, :is_vatable, :tender_id, :item_id)
+    params.require(:office_tender_item).permit(:item_classification_no, :quantity, :rate, :amount, :is_vatable, :tender_id, :item_id)
   end
 
   def update_general_information object
