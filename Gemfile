@@ -1,8 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'roo'
-gem 'sinatra', :require => nil
-# gem 'redis-server'
+gem 'sidekiq'
 gem 'caxlsx_rails'
 gem 'bootstrap'
 gem 'jquery-rails'
@@ -56,8 +55,6 @@ group :development do
 	gem 'puma', '~> 4.3.1'
   	# Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
-  gem 'sidekiq'
-
 end
 
 group :test do
