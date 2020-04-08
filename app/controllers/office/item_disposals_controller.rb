@@ -88,6 +88,7 @@ class Office::ItemDisposalsController < ApplicationController
       new_transaction.quantity = item.quantity
       new_transaction.amount = item.amount
       new_transaction.transaction_type = -1
+      new_transaction.store_body_id = current_control_body.id
       new_transaction.remarks = "मिति #{ ndate item.item_disposal.decision_date} को निर्णयबाट निसर्ग/मिन्हा भएको"
       new_transaction.transaction_date = item.item_disposal.office_chief_signed_date
       item.new_item_transaction_id = new_transaction.id

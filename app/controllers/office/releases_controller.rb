@@ -51,6 +51,7 @@ class Office::ReleasesController < ApplicationController
       item_transaction.transaction_date = item.release.release_date
       item_transaction.entry_no = item.release.release_no
       item_transaction.release_item_id = item.id
+      item_transaction.store_body_id = current_control_body.id
       item_transaction.save
       @office_release.entry_generated = true
       @office_release.save

@@ -139,6 +139,7 @@ class Office::PurchaseEntriesController < ApplicationController
       transaction.rate = entry_item.rate * 1.13
       transaction.purchase_entry_item_id = entry_item.id
       transaction.transaction_type = 1
+      transaction.store_body_id = current_control_body.id
       transaction.entry_no = purchase_entry.entry_no
       transaction.sku = transaction.quantity
       transaction.transaction_date = bs_today

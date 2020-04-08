@@ -79,6 +79,7 @@ class Office::HandoverFormsController < ApplicationController
       item_transaction.handover_form_item_id = item.id
       item_transaction.transaction_type = -1
       item_transaction.item_classification_no = 47
+      item_transaction.store_body_id = current_control_body.id
       item_transaction.transaction_date = @handover_form.date
       item_transaction.remarks = @handover_form.handovered_office_name
       item_transaction.save
