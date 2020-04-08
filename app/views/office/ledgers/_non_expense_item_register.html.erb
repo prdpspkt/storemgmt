@@ -88,8 +88,8 @@
     <td>१७</td>
   </tr>
   <% @transactions = item.item_transactions %>
-    <% @qty = 0 %>
-    <% @amt = 0 %>
+    <% @qty = 0.00 %>
+    <% @amt = 0.00 %>
     <% @transactions.each do |t| %>
       <tr>
         <td><%= ndate t.transaction_date %></td>

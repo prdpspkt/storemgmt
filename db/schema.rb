@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 202003211024509) do
+ActiveRecord::Schema.define(version: 2020_04_08_112639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -721,6 +721,10 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.datetime "updated_at", null: false
     t.integer "store_body_id"
     t.integer "stock_id"
+    t.string "name_of_item_ne"
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
+    t.string "unit_ne"
   end
 
   create_table "office_stocks", force: :cascade do |t|
@@ -1141,7 +1145,6 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "project_item_transaction_id"
   end
 
-
   create_table "project_projects", force: :cascade do |t|
     t.string "name_of_project_ne"
     t.string "name_of_project_en"
@@ -1318,6 +1321,10 @@ ActiveRecord::Schema.define(version: 202003211024509) do
     t.integer "project_item_id"
     t.integer "store_body_id"
     t.integer "stock_id"
+    t.string "name_of_item_ne"
+    t.integer "item_classification_no"
+    t.integer "item_register_page_no"
+    t.string "unit_ne"
   end
 
   create_table "project_stocks", force: :cascade do |t|

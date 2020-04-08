@@ -89,7 +89,7 @@ puts "Creating control body..."
 @store_body.office_chief_name = "हरि प्रसाद तिमिल्सिना"
 @store_body.office_chief_designation = "डिभिजन प्रमुख"
 @store_body.store_keeper_name = "रामचन्द्र पण्डित"
-@store_body.store_chief_designation = "अधिकृत"
+@store_body.store_keeper_designation = "अधिकृत"
 @store_body.section_chief_designation = "इन्जिनियर"
 @store_body.section_chief_name = "इन्द्रप्रताप बोहरा"
 @store_body.save
@@ -163,10 +163,14 @@ header = spreadsheet.row(1)
   item.transaction_date = @fiscal_year.start_date
   item.item_classification_no = 47
   item.office_id = @office.id
+  item.rate = 0
+  item.amount = 0
+  item.item_id = get_office_item_id item.temp_item_id
   item.user_id = @user.id
-  if item.valid?
+  item.store_body_id = @store_body.id
+  # if item.valid?
     item.save!
-  end
+  # end
 end
 
 

@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   def current_control_body
     store_body = Office::StoreBody.new
     if current_fiscal_year.store_bodies.empty?
-      redirect_to new_store_body_path
+      redirect_to new_office_store_body_path
     else
       store_body = current_fiscal_year.store_bodies.last
     end

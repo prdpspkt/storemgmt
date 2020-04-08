@@ -27,6 +27,10 @@ class GenerateProjectStock
         transactions = item.project_item_transactions.where("sku > 0")
         stock_item = Project::StockItem.new
         stock_item.stock_id = stock.id
+        stock_item.name_of_item_ne = item.name_of_item_ne
+        stock_item.item_classification_no = item.item_classification_no
+        stock_item.item_register_page_no = item.item_register_page_no
+        stock_item.unit_ne = item.unit_ne
         stock_item.project_id = project.id
         stock_item.office_id = stock.office_id
         stock_item.user_id = stock.user_id

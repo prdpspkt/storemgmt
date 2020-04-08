@@ -61,20 +61,26 @@ class Office::FiscalYearsController < ApplicationController
   end
 
   def close_form
-    @fiscal_years = Office::FiscalYear.where(office_id: current_office.id).where.not(status: true)
+      @fiscal_years = Office::FiscalYear.where(office_id: current_office.id).where.not(status: true)
   end
 
   def close
     @office = current_office
     @fiscal_year = Office::FiscalYear.find(params[:fiscal_year_id])
-    if @fiscal_year.office_id == @office.id
-      create_store_body
-      create_office_item_transactions
-      create_project_item_transactions
-      @fiscal_year.status = true
-      @fiscal_year.save
-      sign_out current_user
-      redirect_to '/', notice: "Please login to new Fiscal Year."
+    if @fiscal_year.bs_today >= @fiscal_year.closing_date
+      data = {
+          old_fiscal_year_id: @fiscal_year.id,
+          fiscal_year_id: current_fiscal_year.id,
+          office_id: current_office.id
+      }
+      if @fiscal_year.office_id == @office.id
+        FiscalYearClosingWorker.perform_async(data)
+        sign_out current_user
+        redirect_to '/', notice: "तपाइले बन्द गर्नु भएको आर्थिक वर्षबाट जिन्सीखाताहरुमा विवरण सार्ने काम भैरहेको छ कृपया ५ मिनेट पछि पुन लगिन गर्नुहोस" and return
+      end
+    else
+      flash[:error] = "May be you are trying to perform unauthorized action."
+      redirect_to '/'
     end
   end
 
@@ -98,64 +104,6 @@ class Office::FiscalYearsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def fiscal_year_params
     params.require(:office_fiscal_year).permit(:fy, :start_date, :closing_date)
-  end
-
-  def create_office_item_transactions
-    items = Office::Item.where(office_id: @office.id)
-    items.each do |item|
-      transactions = Office::ItemTransaction.where(office_id: @office.id)
-                         .where(fiscal_year_id: @fiscal_year.id)
-                         .where(item_id: item.id)
-                         .where("sku > 0")
-                         .where(item_classification_no: 52)
-      if transactions.count > 0
-        transaction = Office::ItemTransaction.new(transactions.last.attributes.select { |key, _| Office::ItemTransaction.column_names.include? key })
-        transaction.id = nil
-        transaction.rate = transactions.average(:rate)
-        transaction.quantity = transactions.sum(:sku)
-        transaction.amount = transaction.rate * transaction.quantity
-        transaction.transaction_date = @fiscal_year.start_date
-        transaction.transaction_type = 1
-        transaction.store_body_id = @store_body.id
-        transaction.fiscal_year_id = current_fiscal_year.id
-        transaction.remarks = "गत आ.व. बाट अल्या"
-        transaction.save!
-      end
-    end
-  end
-
-  def create_project_item_transactions
-    @projects = Project::Project.where(office_id: current_office.id).where(project_status: false)
-    @projects.each do |project|
-      items = project.project_items
-      items.each do |item|
-        transactions = Project::ProjectItemTransaction.where(office_id: @office.id)
-                           .where(fiscal_year_id: @fiscal_year.id)
-                           .where(project_id: project.id)
-                           .where(project_item_id: item.id)
-                           .where("sku > 0")
-        if transactions.count > 0
-          transaction = Project::ProjectItemTransaction.new(transactions.last.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
-          transaction.id = nil
-          transaction.rate = transactions.average(:rate)
-          transaction.quantity = transactions.sum(:sku)
-          transaction.amount = transaction.rate * transaction.quantity
-          transaction.transaction_date = @fiscal_year.start_date
-          transaction.transaction_type = 1
-          transaction.store_body_id = @store_body.id
-          transaction.fiscal_year_id = current_fiscal_year.id
-          transaction.remarks = "गत आ.व. बाट अल्या"
-          transaction.save!
-        end
-      end
-    end
-  end
-
-  def create_store_body
-    store_body = @fiscal_year.store_bodies.last
-    @store_body = Office::StoreBody.new(store_body.attributes.select{|key, _| Office::StoreBody.column_names.include? key})
-    @store_body.fiscal_year_id = current_fiscal_year.id
-    @store_body.save
   end
 
 end

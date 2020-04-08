@@ -22,6 +22,10 @@ private
     items.each do |item|
       transactions = item.item_transactions.where("sku > 0").where(item_classification_no: 47)
       stock_item = Office::StockItem.new
+      stock_item.name_of_item_ne = item.name_of_item_ne
+      stock_item.item_register_page_no = item.item_register_page_no
+      stock_item.item_classification_no = item.item_classification_no
+      stock_item.unit_ne = item.unit_ne
       stock_item.stock_id = stock.id
       stock_item.office_id = stock.office_id
       stock_item.user_id = stock.user_id
