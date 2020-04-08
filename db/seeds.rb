@@ -36,11 +36,15 @@ puts "Creating Fiscal Year...."
 @fiscal_year = Office::FiscalYear.new
 @fiscal_year.fy = "०७६/७७"
 @fiscal_year.office_id = @office.id
+@fiscal_year.start_date = '2076-04-01'
+@fiscal_year.closing_date = '2077-03-31'
+@fiscal_year.status = false
 @fiscal_year.save
 
 @active_fiscal_year = Office::ActiveFiscalYear.new
 @active_fiscal_year.fiscal_year_id = @fiscal_year.id
 @active_fiscal_year.office_id = @office.id
+@active_fiscal_year.user_id = @user.id
 @active_fiscal_year.save
 puts "Completed"
 
@@ -67,15 +71,15 @@ puts "Creating sample Personnels"
 @person1.save
 
 @person1 = Office::Personnel.new
-@person1.name_en = "Bamdev Paudel"
-@person1.name_ne = "बामदेव पौडेल"
+@person1.name_en = "Indra Pratap Bohara"
+@person1.name_ne = "इन्द्रप्रताप बोहरा"
 @person1.post = "इन्जिनियर"
 @person1.office_id = @fiscal_year.id
 @person1.user_id = @user.id
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "8th Level Officer"
 @person1.save
- puts "Completed..."
+puts "Completed..."
 
 puts "Creating control body..."
 @store_body = Office::StoreBody.new
@@ -83,18 +87,94 @@ puts "Creating control body..."
 @store_body.fiscal_year_id = @fiscal_year.id
 @store_body.user_id = @user.id
 @store_body.office_chief_name = "हरि प्रसाद तिमिल्सिना"
-@store_body.office_chief_degination = "डिभिजन प्रमुख"
+@store_body.office_chief_designation = "डिभिजन प्रमुख"
 @store_body.store_keeper_name = "रामचन्द्र पण्डित"
-@store_body.office_chief_degination = "अधिकृत"
+@store_body.store_chief_designation = "अधिकृत"
+@store_body.section_chief_designation = "इन्जिनियर"
+@store_body.section_chief_name = "इन्द्रप्रताप बोहरा"
 @store_body.save
 
 puts "Completed..."
+
+
+puts "Creating Office Item Categories...."
+spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_cats.xlsx")
+header = spreadsheet.row(1)
+(2..spreadsheet.last_row).map do |i|
+  row = Hash[[header, spreadsheet.row(i)].transpose]
+  category = Office::ItemCategory.find_by_id(row["id"]) || Office::ItemCategory.new
+  begin
+    category.attributes = row.to_hash
+  rescue Exception => error
+    puts error.message
+  end
+  category.office_id = @office.id
+  category.user_id = @user.id
+  if category.valid?
+    category.save!
+  end
+end
+puts "Completed ... "
+puts "Creating Office Items"
+
+def get_office_cat_id temp_cat_id
+  Office::ItemCategory.find_by_temp_id(temp_cat_id).id
+end
+
+@item_register_page_no = 1
+spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_items.xlsx")
+header = spreadsheet.row(1)
+(2..spreadsheet.last_row).map do |i|
+  row = Hash[[header, spreadsheet.row(i)].transpose]
+  item = Office::Item.find_by_id(row["id"]) || Office::Item.new
+  begin
+    item.attributes = row.to_hash
+  rescue Exception => error
+    puts error.message
+  end
+  item.item_category_id = get_office_cat_id item.temp_cat_id
+  item.item_classification_no = 47
+  item.office_id = @office.id
+  item.user_id = @user.id
+  item.item_register_page_no = @item_register_page_no
+  if item.valid?
+    item.save!
+    @item_register_page_no = @item_register_page_no + 1
+  end
+end
+
+puts "Completed..."
+puts "Importing last year balance"
+def get_office_item_id temp_id
+  Office::Item.find_by_temp_id(temp_id).id
+end
+
+spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_trans.xlsx")
+header = spreadsheet.row(1)
+(2..spreadsheet.last_row).map do |i|
+  row = Hash[[header, spreadsheet.row(i)].transpose]
+  item = Office::ItemTransaction.find_by_id(row["id"]) || Office::ItemTransaction.new
+  begin
+    item.attributes = row.to_hash
+  rescue Exception => error
+    puts error.message
+  end
+  item.transaction_type = 1
+  item.transaction_date = @fiscal_year.start_date
+  item.item_classification_no = 47
+  item.office_id = @office.id
+  item.user_id = @user.id
+  if item.valid?
+    item.save!
+  end
+end
+
 
 puts "Creating projects.."
 
 spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/projects.xlsx")
 header = spreadsheet.row(1)
-projects = (2..spreadsheet.last_row).map do |i|
+(2..spreadsheet.last_row).map do |i|
   row = Hash[[header, spreadsheet.row(i)].transpose]
   project = Project::Project.find_by_id(row["id"]) || Project::Project.new
   begin
@@ -228,7 +308,6 @@ def create_project_item project_id, item_id
   @prev_project_id = project_id
   project_item
 end
-
 
 spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/last_year_balance.xlsx")
 header = spreadsheet.row(1)

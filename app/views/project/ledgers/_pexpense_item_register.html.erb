@@ -85,7 +85,7 @@
   </tr>
   <% @qty = 0 %>
   <% @amt = 0 %>
-  <% item.project_item_transactions.each do |transaction| %>
+  <% item.project_item_transactions.where(fiscal_year_id: @fiscal_year.id).each do |transaction| %>
     <% if transaction.transaction_type > 0 %>
       <% @qty = @qty + transaction.quantity %>
       <% @amt = @amt + transaction.amount %>

@@ -1,4 +1,5 @@
 <% @items.each do |item| %>
-
+  <% if item.item_transactions.count > 0 %>
   <%= render "office/ledgers/non_expense_item_register", item: item %>
+  <% end %>
 <% end %>

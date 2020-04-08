@@ -88,7 +88,6 @@
     <td>१७</td>
   </tr>
   <% @transactions = item.item_transactions %>
-  <% if @transactions.blank? == false %>
     <% @qty = 0 %>
     <% @amt = 0 %>
     <% @transactions.each do |t| %>
@@ -127,7 +126,6 @@
         <td><%= t.remarks %></td>
       </tr>
     <% end %>
-  <% end %>
 </table>
 <table class="table table-sm table-borderless">
   <tr>
@@ -150,7 +148,7 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>नामः <%=  %></td>
+    <td>नामः <%=   %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

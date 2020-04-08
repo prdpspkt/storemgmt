@@ -68,11 +68,13 @@ class Office::FiscalYearsController < ApplicationController
     @office = current_office
     @fiscal_year = Office::FiscalYear.find(params[:fiscal_year_id])
     if @fiscal_year.office_id == @office.id
+      create_store_body
       create_office_item_transactions
       create_project_item_transactions
       @fiscal_year.status = true
       @fiscal_year.save
-      Devise.sign_out_all_scopes
+      sign_out current_user
+      redirect_to '/', notice: "Please login to new Fiscal Year."
     end
   end
 
@@ -114,6 +116,7 @@ class Office::FiscalYearsController < ApplicationController
         transaction.amount = transaction.rate * transaction.quantity
         transaction.transaction_date = @fiscal_year.start_date
         transaction.transaction_type = 1
+        transaction.store_body_id = @store_body.id
         transaction.fiscal_year_id = current_fiscal_year.id
         transaction.remarks = "गत आ.व. बाट अल्या"
         transaction.save!
@@ -139,12 +142,20 @@ class Office::FiscalYearsController < ApplicationController
           transaction.amount = transaction.rate * transaction.quantity
           transaction.transaction_date = @fiscal_year.start_date
           transaction.transaction_type = 1
+          transaction.store_body_id = @store_body.id
           transaction.fiscal_year_id = current_fiscal_year.id
           transaction.remarks = "गत आ.व. बाट अल्या"
           transaction.save!
         end
       end
     end
+  end
+
+  def create_store_body
+    store_body = @fiscal_year.store_bodies.last
+    @store_body = Office::StoreBody.new(store_body.attributes.select{|key, _| Office::StoreBody.column_names.include? key})
+    @store_body.fiscal_year_id = current_fiscal_year.id
+    @store_body.save
   end
 
 end

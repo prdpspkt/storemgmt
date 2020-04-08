@@ -69,7 +69,7 @@
     <td>दर</td>
     <td>रकम</td>
   </tr>
-  <tr>
+  <tr class="text-center">
     <td>१</td>
     <td>२</td>
     <td>३</td>
@@ -89,7 +89,7 @@
     <% if oeirt.transaction_type > 0 %>
       <% @qty = @qty + oeirt.quantity %>
       <% @amt = @amt + oeirt.amount %>
-      <tr>
+      <tr class="text-center">
         <td><%= ndate oeirt.transaction_date %></td>
         <td><%= nd oeirt.entry_no %></td>
         <td><%= nd oeirt.quantity %></td>
@@ -107,7 +107,7 @@
     <% if oeirt.transaction_type < 0 %>
       <% @qty = @qty - oeirt.quantity %>
       <% @amt = @amt - oeirt.amount %>
-      <tr>
+      <tr class="text-center">
         <td><%= ndate oeirt.transaction_date %></td>
         <td><%= nd oeirt.entry_no %></td>
         <td></td>
@@ -159,12 +159,12 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>दर्जाः</td>
-    <td><%= @cb.section_chief_degination %></td>
+    <td><%= @cb.section_chief_designation %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>दर्जाः</td>
-    <td><%= @cb.office_chief_degination %></td>
+    <td><%= @cb.office_chief_designation %></td>
     <td>&nbsp;</td>
   </tr>
   <tr>

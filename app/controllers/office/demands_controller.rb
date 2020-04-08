@@ -29,6 +29,7 @@ class Office::DemandsController < ApplicationController
     @demand = Office::Demand.new(demand_params)
     @demand.recommended_by = Office::Personnel.find(demand_params[:recommended_by]).name_ne
     @demand = set_current_information @demand
+    @demand.store_body_id = current_control_body.id
     @demand.demand_no = get_new_office_demand_no
     @demand.marked_as_final = false
     @demand.entry_generated = false

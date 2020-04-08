@@ -26,8 +26,7 @@ class Office::StoreBodiesController < ApplicationController
   # POST /store_bodies.json
   def create
     @store_body = Office::StoreBody.new(store_body_params)
-    @store_body.office_id = current_office.id
-    @store_body.user_id = current_user.id
+    @store_body = set_current_information(@store_body)
     respond_to do |format|
       if @store_body.save
         format.html { redirect_to new_office_active_fiscal_year_path, notice: 'Store body was successfully created.' }

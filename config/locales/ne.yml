@@ -125,7 +125,7 @@ en:
           remarks: "कैफियत"
         office/item_assistance_register:
           register_page_no: "खाता पाना नं"
-          name_of_person: "जिन्सी सामानको नाम"
+          name_of_person: "प्रयोग गर्ने व्यक्ति"
           store_keeper_signed_date: "स्टोर प्रमुखको दस्तखत मिति"
           office_chief_signed_date: "कार्यालय प्रमुखको दस्तखत मिति"
         office/item_assistance_register_item:

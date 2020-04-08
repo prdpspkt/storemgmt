@@ -41,6 +41,7 @@ class Office::HandoverFormItemsController < ApplicationController
       @transaction.sku = 0
     end
     @handover_item.subed_from = @transaction.id
+    @handover_item.received_date = @transaction.transaction_date
     @handover_form = Office::HandoverForm.find(@handover_item.handover_form_id)
     respond_to do |format|
       if @handover_item.save

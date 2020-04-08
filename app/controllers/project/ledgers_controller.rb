@@ -13,15 +13,16 @@ class Project::LedgersController < ProjectController
     @items = office(Project::Item)
                  .where(item_classification_no: 47)
                  .joins(:item_transactions)
+                 .where("project_item_transactions.fiscal_year_id =#{current_fiscal_year.id}")
                  .distinct(:item_id)
   end
 
   def expense_item_register
-    @items = Project::ProjectItem.where(project_id: params[:id]).where(item_classification_no: 52)
+    @items = office(Project::ProjectItem).where(project_id: params[:id]).where(item_classification_no: 52)
   end
 
   def non_expense_item_register
-    @items = Project::ProjectItem.where(project_id: params[:id]).where(item_classification_no: 47)
+    @items = office(Project::ProjectItem).where(project_id: params[:id]).where(item_classification_no: 47)
   end
 
   def set_office_information

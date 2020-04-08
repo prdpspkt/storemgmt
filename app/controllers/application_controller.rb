@@ -18,15 +18,6 @@ class ApplicationController < ActionController::Base
     current_user.office
   end
 
-  def current_control_body
-    store_body = Office::StoreBody.new
-    if current_office.store_bodies.empty?
-      redirect_to new_store_body_path
-    else
-      store_body = current_office.store_bodies.last
-    end
-    store_body
-  end
 
   def current_fiscal_year
     cfy = false
@@ -36,6 +27,15 @@ class ApplicationController < ActionController::Base
     cfy
   end
 
+  def current_control_body
+    store_body = Office::StoreBody.new
+    if current_fiscal_year.store_bodies.empty?
+      redirect_to new_store_body_path
+    else
+      store_body = current_fiscal_year.store_bodies.last
+    end
+    store_body
+  end
   def after_sign_in_path_for(resource_or_scope)
     #check if office has been created for user
     url = '/'
