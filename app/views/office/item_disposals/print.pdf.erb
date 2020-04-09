@@ -1,0 +1,114 @@
+<table class="table">
+  <tr>
+    <td>निर्णयको विवरण</td>
+  </tr>
+  <tr>
+    <td colspan="3">मिन्हा/निसर्गको निर्णय मितिः <%= ndate @item_disposal.decision_date %></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="3">आर्थिक बर्ष: <%= @item_disposal.fiscal_year.fy %></td>
+  </tr>
+  <tr>
+    <td colspan="8">निर्णय गर्ने पदाधिकारीको नाम र पदः <%= @item_disposal.decision_made_by %></td>
+    <td>&nbsp;</td>
+    <td colspan="3">मितिः <%= ndate @item_disposal.office_chief_signed_date %></td>
+  </tr>
+</table>
+<table class="table black-border">
+  <thead>
+  <tr>
+    <td>क्र.सं.</td>
+    <td>जिन्सी सङ्केत नं.</td>
+    <td>जिन्सी खाता पाना नं.</td>
+    <td>मालसामानको नाम</td>
+    <td>स्पेसिफिकेसन</td>
+    <td>सुरु प्राप्त मिति</td>
+    <td>प्रयोग भएको बर्ष</td>
+    <td>परिमाण</td>
+    <td>परल मूल्य</td>
+    <td>हालको मूल्याङ्कित मूल्य</td>
+    <td>जिन्सी निसर्ग / मिन्हा गर्नुपर्ने कारण</td>
+    <td>कैफियत</td>
+  </tr>
+  <tr>
+    <td>१</td>
+    <td>२</td>
+    <td>३</td>
+    <td>४</td>
+    <td>५</td>
+    <td>६</td>
+    <td>७</td>
+    <td>८</td>
+    <td>९</td>
+    <td>१०</td>
+    <td>११</td>
+    <td>१२</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sn = 1 %>
+  <% @item_disposal.disposal_items.each do |item| %>
+    <tr>
+      <td><%= nd @sn %></td>
+      <td><%= nd item.item.item_classification_no %></td>
+      <td><%= nd item.item.item_register_page_no %></td>
+      <td><%= item.item.name_of_item_ne %></td>
+      <td><%= item.item.specification %></td>
+      <td><%= ndate item.received_date %></td>
+      <td><%= nd item.used_year %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= nd item.amount %></td>
+      <td><%= nd item.current_marked_price %></td>
+      <td><%= item.reason_for_disposal %></td>
+      <td><%= item.remarks %></td>
+    </tr>
+    <% @sn = @sn + 1 %>
+  <% end %>
+  </tbody>
+</table>
+<table class="table ">
+  <tr>
+    <td>&nbsp;</td>
+    <td>स्टोर प्रमुखको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>शाखा प्रमुखको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>आदेश दिनेको दस्तखत:</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">नामः <%= @item_disposal.store_body.store_keeper_name %></td>
+    <td>&nbsp;</td>
+    <td colspan="3">नामः <%= @item_disposal.store_body.section_chief_name %></td>
+    <td>&nbsp;</td>
+    <td colspan="3">नामः <%= @item_disposal.store_body.office_chief_name %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td colspan="3">दर्जाः <%= @item_disposal.store_body.store_keeper_designation %></td>
+    <td>&nbsp;</td>
+    <td colspan="3">दर्जाः <%= @item_disposal.store_body.section_chief_designation %></td>
+    <td>&nbsp;</td>
+    <td colspan="3">दर्जाः <%= @item_disposal.store_body.office_chief_designation %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+
+
+    <td colspan="3">मितिः <%= ndate @item_disposal.store_keeper_signed_date %></td>
+    <td>&nbsp;</td>
+    <td colspan="3">मितिः <%= ndate @item_disposal.section_chief_signed_date %></td>
+    <td>&nbsp;</td>
+    <td colspan="3">मितिः <%= ndate @item_disposal.office_chief_signed_date %></td>
+  </tr>
+</table>

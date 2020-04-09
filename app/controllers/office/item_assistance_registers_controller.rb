@@ -63,6 +63,17 @@ class Office::ItemAssistanceRegistersController < ApplicationController
 
   def print
     @item_assistance_register_items = @item_assistance_register.item_assistance_register_items
+    @office = @item_assistance_register.office
+    @fiscal_year = current_fiscal_year
+    @report_name = "जिन्सी सहायक खाता"
+    @form_no = 412
+    @old_form_no = ''
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "item_assistance_register", layout: "pdf_print", orientation: "landscape", margin: {left: '25mm'}
+      end
+    end
   end
 
   # DELETE /item_assistance_registers/1

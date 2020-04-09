@@ -11,6 +11,18 @@ class Project::StocksController < ProjectController
   # GET /project_stocks/P
   # GET /project_stocks/1.json
   def show
+    @office = current_office
+    @fiscal_year = @project_stock.fiscal_year
+    @report_name = "वार्षिक मौज्दात विवरण (आयोजनागत)"
+    @old_form_no = ""
+    @form_no = ""
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'item_stock_project_wise', layout: 'pdf_print',  margin: {right: '10mm', left: "30mm"}
+      end
+    end
+
   end
 
   def generate

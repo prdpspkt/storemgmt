@@ -1,5 +1,5 @@
 class Office::DemandsController < ApplicationController
-  before_action :set_demand, only: [:show, :edit, :update, :destroy, :mark_as_final, :generate_release_form]
+  before_action :set_demand, only: [:show, :edit, :update, :destroy, :accept, :release, :print]
   load_and_authorize_resource except: [:create, :new]
   # GET /demands
   # GET /demands.json
@@ -104,9 +104,17 @@ class Office::DemandsController < ApplicationController
 
   def print
     @office = current_office
-    @demand = Office::Demand.find(params[:id])
+    @fiscal_year = @demand.fiscal_year
     @demand_items = @demand.demand_items
-    @fy = Office::FiscalYear.find(@demand.fiscal_year_id).fy
+    @report_name = "माग फाराम"
+    @form_no = 401
+    @old_form_no = 51
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'mag_pharam', layout: 'pdf_print', margin: {left: '30mm'}
+      end
+    end
   end
 
 

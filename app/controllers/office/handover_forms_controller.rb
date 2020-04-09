@@ -103,6 +103,17 @@ class Office::HandoverFormsController < ApplicationController
   def print
     @office_handover_form = Office::HandoverForm.find(params[:id])
     @office_handover_form_items = @office_handover_form.handover_form_items
+    @office = current_office
+    @fiscal_year = @office_handover_form.fiscal_year
+    @report_name = "हस्तान्तरण फाराम"
+    @form_no =  406
+    @old_form_no = 48
+    respond_to do |format|
+      format.html
+      format.pdf {
+        render pdf: "handover_form", layout: 'pdf_print', orientation: 'landscape', margin: {left: '30mm'}
+      }
+    end
   end
 
   private

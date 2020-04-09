@@ -100,8 +100,18 @@ class Office::ItemDisposalsController < ApplicationController
   end
 
   def print
-    @office = current_office
-    @fiscal_year = current_fiscal_year
+    @office = @item_disposal.office
+    @fiscal_year = @item_disposal.fiscal_year
+    @report_name = "जिन्सी मिन्हा/निसर्ग फाराम"
+    @form_no = "४१०"
+    @old_form_no = "५०"
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "item_disposal", layout: "pdf_print", orientation: "landscape", margin: { left: '30mm'}
+      end
+    end
+
   end
 
   private
