@@ -6,7 +6,6 @@ json.set! :data do
     json.partial! 'project/items/item', item: item
     json.unit_ne "#{item.item_category.unit_ne}"
     json.item_classification_no "#{nd item.item_classification_no}"
-    json.item_register_page_no "#{nd item.item_register_page_no}"
     if item.project_item_transactions.count > 0
     json.url "
              #{link_to edit_btn.html_safe, edit_project_item_path(item)}

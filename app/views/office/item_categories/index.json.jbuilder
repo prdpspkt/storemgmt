@@ -14,8 +14,5 @@ json.set! :data do
                 "
     end
 
-    json.id "
-            #{nd item_category.id}
-            "
   end
 end

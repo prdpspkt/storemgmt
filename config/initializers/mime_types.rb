@@ -5,3 +5,4 @@
  Mime::Type.register "application/xls", :xlsx
  Mime::Type.register "application/xls", :csx
  Mime::Type.register "application/xls", :xls
+ Mime::Type.register "application/pdf", :pdf

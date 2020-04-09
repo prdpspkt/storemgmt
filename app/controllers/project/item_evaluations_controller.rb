@@ -37,10 +37,18 @@ class Project::ItemEvaluationsController < ProjectController
                                  .order("project_id ASC")
     @office = current_office
     @fiscal_year = current_fiscal_year
+    @form_no = "411"
+    @old_form_no = "49"
+    @report_name = "जिन्सी निरीक्षण प्रतिवेदन फाराम"
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'ItemEvaluation', layout: 'pdf_print', orientation: 'landscape'
+      end
+    end
   end
 
   private
-
 
   # Use callbacks to share common setup or constraints between actions.
   def set_project_item_evaluation

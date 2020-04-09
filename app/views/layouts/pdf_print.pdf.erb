@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= wicked_pdf_stylesheet_link_tag 'pdf.css'%>
+  <%= wicked_pdf_javascript_include_tag 'page_numbers' %>
+  <script>
+      function number_pages() {
+          var vars={};
+          var x=document.location.search.substring(1).split('&');
+          for(var i in x) {var z=x[i].split('=',2);vars[z[0]] = decodeURIComponent(z[1]);}
+          var x=['frompage','topage','page','webpage','section','subsection','subsubsection'];
+          for(var i in x) {
+              var y = document.getElementsByClassName(x[i]);
+              for(var j=0; j<y.length; ++j) y[j].textContent = vars[x[i]];
+          }
+      }
+  </script>
+</head>
+<body onload="number_pages()">
+<%= yield %>
+</body>
+</html>

@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'roo'
+gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 gem 'sidekiq'
 gem 'caxlsx_rails'
 gem 'bootstrap'

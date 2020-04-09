@@ -5,6 +5,7 @@ before_action :set_office_information
   end
   def non_expense_item_register
     @items = office(Office::Item).where(item_classification_no: 47)
+    render layout: false
   end
 
   def set_office_information

@@ -1,0 +1,22 @@
+<table class="table">
+  <tr>
+    <td style="width: 25%">
+      <%= wicked_pdf_image_tag('nepgovlogo.png', width: '45%') %>
+    </td>
+    <td style="width: 50%" class="text-center">
+      <div class="government"><%= @office.gov %></div>
+      <div class="ministry"><%= @office.ministry %></div>
+      <%if @office.department.present? %>
+        <div class="department"><%= @office.department %></div>
+      <% end %>
+      <div class="office"><%= @office.office %></div>
+      <div class="ministry"><%= @office.address %></div>
+      <div class="office"><%= @report_name %></div>
+      <div class="ministry"><%= @fiscal_year.fy %></div>
+    </td>
+    <td style="width: 25%" class="text-right">
+      <div>म. ले. प. फा. नं. <%= nd @form_no %></div>
+      <div>साविकको फा. नं. <%= nd @old_form_no %></div>
+    </td>
+  </tr>
+</table>
