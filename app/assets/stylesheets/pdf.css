@@ -63,3 +63,17 @@ td, th{
     font-size: 24px;
     font-weight: bold;
 }
+.table-wide{
+    width: 98%;
+}
+.check::before{
+    content: "√";
+}
+
+@media print {
+    .page-break{
+        page-break-after: always;
+        clear: both;
+        height: 0px;
+    }
+}

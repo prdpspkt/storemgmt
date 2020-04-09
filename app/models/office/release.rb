@@ -5,6 +5,7 @@ class Office::Release < ApplicationRecord
   belongs_to :fiscal_year, class_name: "Office::FiscalYear"
   belongs_to :store_body, class_name: "Office::StoreBody"
 
+
   before_destroy :restore_demand
   before_destroy :delete_and_restore_transactions
   private

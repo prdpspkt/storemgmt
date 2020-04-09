@@ -31,7 +31,7 @@
     <%= link_to before_final_btn.html_safe, accept_office_purchase_order_path(@purchase_order), method: :post %>
     <%= link_to purchase_entry_btn.html_safe, entry_office_purchase_order_path(@purchase_order), method: :post %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, print_office_purchase_order_path(@purchase_order) %>
+  <%= link_to print_big_btn.html_safe, print_office_purchase_order_path(@purchase_order, format: :pdf), target: "_blank" %>
 </div>
 <div class="separator"></div>
 <% if @purchase_order.marked_as_final != true %>

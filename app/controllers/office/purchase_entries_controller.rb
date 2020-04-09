@@ -103,12 +103,23 @@ class Office::PurchaseEntriesController < ApplicationController
   end
 
   def print
+    @office = @purchase_entry.office
+    @fiscal_year = @purchase_entry.fiscal_year
+    @report_name = "दाखिला प्रतिवेदन फाराम"
+    @form_no = 403
+    @old_form_no = 46
     @purchase_entry_items = @purchase_entry.purchase_entry_items
     @total_amount = @purchase_entry_items.sum(:total_amount)
     @amount = @purchase_entry_items.sum(:amount)
     @amount_without_vat = @purchase_entry_items.sum(:amount_without_vat)
     @vat = @purchase_entry_items.sum(:vat)
     @other_expense = @purchase_entry_items.sum(:other_expense)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "Entry Report Form", layout: "pdf_print", orientation: "landscape"
+      end
+    end
   end
   private
 

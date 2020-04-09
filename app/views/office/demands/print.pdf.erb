@@ -1,12 +1,13 @@
-  <table>
+ <table class="table table-wide">
   <tr>
-    <td colspan="6" class="text-right">माग नं: <%= nd @demand.demand_no %></td>
+    <td colspan="3"> श्री भण्डार शाखा,</td>
+    <td colspan="3" class="text-right">माग नं: <%= nd @demand.demand_no %></td>
   </tr>
   <tr>
     <td colspan="6" class="text-right">मितिः <%= ndate @demand.demand_date %></td>
   </tr>
 </table>
-<table class="table black-border">
+<table class="table table-wide black-border">
   <thead>
   <tr>
     <td rowspan="2">क्र.सं.</td>
@@ -29,15 +30,17 @@
   </tr>
   </thead>
   <tbody>
+  <% @sn = 1 %>
   <% @demand_items.each do |item| %>
     <tr>
-      <td></td>
-      <td ><%= item.name_of_item_ne %></td>
-      <td><%= item.specification %></td>
-      <td><%= item.unit_ne %></td>
+      <td><%= nd @sn %></td>
+      <td ><%= item.item.name_of_item_ne %></td>
+      <td><%= item.item.specification %></td>
+      <td><%= item.item.unit_ne %></td>
       <td><%= nd item.quantity %></td>
       <td><%= item.remark %></td>
     </tr>
+  <% @sn = @sn + 1 %>
   <% end %>
   </tbody>
 </table>
@@ -47,7 +50,7 @@
     <td>माग गर्नेको दस्तखतः</td>
     <td>सिफारिस गर्नेको दस्तखतः</td>
     <td>&nbsp;</td>
-    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="fa fa-check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
+    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -55,7 +58,7 @@
     <td>नामः <%= @demand.demand_by %></td>
     <td>नामः <%= @demand.recommended_by %></td>
     <td>&nbsp;</td>
-    <td>ख) मौज्दातबाट दिनु ।<%= '<i class="fa fa-check"></i>'.html_safe if @demand.needed_to_purchase == false  %></td>
+    <td>ख) मौज्दातबाट दिनु ।<%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == false  %></td>
     <td>&nbsp;</td>
   </tr>
   <tr>

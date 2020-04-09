@@ -18,7 +18,7 @@
     <%= link_to edit_big_btn.html_safe, edit_office_handover_form_path(@handover_form) %>
     <%= link_to final_btn.html_safe, accept_office_handover_form_path(@handover_form), method: :post %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, print_office_handover_form_path(@handover_form) %>
+  <%= link_to print_big_btn.html_safe, print_office_handover_form_path(@handover_form, format: :pdf), target: "_blank" %>
   <% if @handover_form.marked_as_final == true && @handover_form.entry_generated == false %>
     <%= link_to before_final_btn.html_safe, accept_office_handover_form_path(@handover_form), method: :post %>
     <%= link_to ledger_entry_btn.html_safe, transaction_office_handover_form_path(@handover_form), method: :post %>

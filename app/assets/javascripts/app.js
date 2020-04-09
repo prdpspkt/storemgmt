@@ -8,23 +8,9 @@ $(function(){
         var text = $(this).val();
         $(this).val(convert(text, all_rules['pcs nepali']));
     });
-    $("#office_purchase_entry_item_item_classification_no").on("change", function () {
-        if($(this).val() == 47){
-            $("#oneirt-items").show();
-        }
-        else{
-            $("#oneirt-items").hide();
-        }
+
+    $(".preeti").on("blur", function(){
+        var text = $(this).val();
+        $(this).val(convert(text, all_rules['preeti']));
     });
-    $("#project_purchase_entry_item_item_classification_no").on("change", function () {
-        if($(this).val() == 47){
-            $("#oneirt-items").show();
-        }
-        else{
-            $("#oneirt-items").hide();
-        }
-    });
-
-
-
 });

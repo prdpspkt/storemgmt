@@ -102,10 +102,20 @@ class Office::PurchaseOrdersController < ApplicationController
 
   def print
     @purchase_order_items = @purchase_order.purchase_order_items
-    @fy = Office::FiscalYear.find(@purchase_order.fiscal_year_id).fy
-    @amount = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).sum(:amount)
+    @fiscal_year = @purchase_order.fiscal_year
+    @office = @purchase_order.office
+    @report_name = "खरिद आदेश"
+    @old_form_no = 45
+    @form_no = 402
+    @amount = @purchase_order_items.sum(:amount)
     @vat = @amount * 0.13
     @total = @amount + @vat
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "purchase_order", layout: "pdf_print", margin: {left: "25mm"}
+      end
+    end
   end
 
   private

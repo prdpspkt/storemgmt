@@ -51,15 +51,17 @@
     <td>५</td>
     <td>६</td>
   </tr>
+  <% @sn = 1 %>
   <% @demand_items.each do |item| %>
     <tr>
-      <td></td>
-      <td class="item_name"><%= item.name_of_item_ne %></td>
-      <td><%= item.specification %></td>
-      <td><%= item.unit_ne %></td>
+      <td><%= nd @sn %></td>
+      <td class="item_name"><%= item.item.name_of_item_ne %></td>
+      <td><%= item.item.specification %></td>
+      <td><%= item.item.unit_ne %></td>
       <td><%= nd item.quantity %></td>
       <td><%= item.remark %></td>
     </tr>
+  <% @sn = @sn + 1 %>
   <% end %>
   </tbody>
 </table>
@@ -70,7 +72,7 @@
     <td>माग गर्नेको दस्तखतः</td>
     <td>सिफारिस गर्नेको दस्तखतः</td>
     <td>&nbsp;</td>
-    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="fa fa-check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
+    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
     <td>&nbsp;</td>
   </tr>
   <tr>

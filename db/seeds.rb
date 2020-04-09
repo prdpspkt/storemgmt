@@ -117,8 +117,8 @@ end
 puts "Completed ... "
 puts "Creating Office Items"
 
-def get_office_cat_id temp_cat_id
-  Office::ItemCategory.find_by_temp_id(temp_cat_id).id
+def get_office_cat temp_cat_id
+  Office::ItemCategory.find_by_temp_id(temp_cat_id)
 end
 
 @item_register_page_no = 1
@@ -132,7 +132,10 @@ header = spreadsheet.row(1)
   rescue Exception => error
     puts error.message
   end
-  item.item_category_id = get_office_cat_id item.temp_cat_id
+  category = get_category item.temp_cat_id
+  item.item_category_id = category.id
+  item.unit_ne = category.unit_ne
+  item.unit_en = category.unit_en
   item.item_classification_no = 47
   item.office_id = @office.id
   item.user_id = @user.id

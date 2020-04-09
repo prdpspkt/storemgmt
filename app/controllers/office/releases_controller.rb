@@ -1,5 +1,5 @@
 class Office::ReleasesController < ApplicationController
-  before_action :set_office_release, only: [:transaction, :accept, :show, :edit, :update, :destroy]
+  before_action :set_office_release, only: [:transaction, :print, :accept, :show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_releases
   # GET /office_releases.json
@@ -62,9 +62,20 @@ class Office::ReleasesController < ApplicationController
   end
 
   def print
-    @office = current_office
+    @office = @office_release.office
+    @fiscal_year = @office_release.fiscal_year
+    @report_name = "खर्च/निकासा फाराम"
+    @old_form_no = 51
+    @form_no = 404
     @office_release = Office::Release.find(params[:id])
     @office_release_items = @office_release.release_items
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: 'expense form', layout: "pdf_print"
+      end
+    end
   end
 
   private

@@ -76,7 +76,15 @@ class Office::TendersController < OfficeController
   end
 
   def print
-
+    @office = @tender.office
+    @fiscal_year = @tender.fiscal_year
+    @report_name = "ठेक्का विवरण"
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "tender_report", layout: "pdf_print"
+      end
+    end
   end
 
   # DELETE /tenders/1

@@ -25,7 +25,7 @@
   <% if @tender.marked_as_final == true && @tender.entry_generated != true %>
     <%= link_to purchase_entry_btn.html_safe, entry_office_tender_url(@tender), data: {method: :post} %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, print_office_tender_url(@tender) %>
+  <%= link_to print_big_btn.html_safe, print_office_tender_url(@tender, format: :pdf), target: "_blank" %>
 </div>
 <% if @tender.marked_as_final != true %>
   <div class="separator"></div>

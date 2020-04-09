@@ -21,7 +21,7 @@
     <%= link_to before_final_btn.html_safe, accept_office_item_disposal_url(@item_disposal), method: :post %>
     <%= link_to ledger_entry_btn.html_safe, transaction_office_item_disposal_url(@item_disposal), method: :post, confirm: "Are you sure you cannot entry ?" %>
   <% end %>
-  <%= link_to print_big_btn.html_safe, print_office_item_disposal_url(@item_disposal) %>
+  <%= link_to print_big_btn.html_safe, print_office_item_disposal_url(@item_disposal, format: :pdf), target: "_blank" %>
 </div>
 <% if @item_disposal.accepted != true %>
   <div class="separator"></div>
