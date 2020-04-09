@@ -35,8 +35,17 @@ class Office::ItemEvaluationsController < ApplicationController
   def print
     @item_evaluation_items = Office::ItemEvaluationItem.where(item_evaluation_id: @item_evaluation.id)
                                  .order("item_id ASC")
-    @office = current_office
-    @fiscal_year = current_fiscal_year
+    @office = @item_evaluation.office
+    @fiscal_year = @item_evaluation.fiscal_year
+    @form_no = 411
+    @old_form_no = 49
+    @report_name = "जिन्सी निरीक्षण प्रतिवेदन फाराम"
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "item_evaluation", layout: "pdf_print", orientation: "landscape", margin: {left: "25mm"}
+      end
+    end
   end
 
   private

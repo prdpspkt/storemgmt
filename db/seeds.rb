@@ -167,6 +167,7 @@ header = spreadsheet.row(1)
   item.amount = 0
   item.item_id = get_office_item_id item.temp_item_id
   item.user_id = @user.id
+  item.sku = item.quantity
   item.store_body_id = @store_body.id
   # if item.valid?
     item.save!

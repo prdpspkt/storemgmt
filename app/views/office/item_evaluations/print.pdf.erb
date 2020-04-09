@@ -1,10 +1,10 @@
     <table class="table black-border">
-      <thead class="">
+      <thead>
       <tr class="text-center" >
         <th rowspan="2">क्र.स.</th>
         <th rowspan="2">खाता पाना नं</th>
         <th rowspan="2">जिन्सी वर्गीकरण नं</th>
-        <th rowspan="2"  style="min-width: 200px">विवरण</th>
+        <th rowspan="2" class="bibaran" width="350px">विवरण</th>
         <th rowspan="2">परिमाण</th>
         <th rowspan="2">इकाई</th>
         <th rowspan="2">दर</th>
@@ -31,21 +31,12 @@
       </thead>
       <tbody>
       <% @sn = 1 %>
-      <% @project_id = 0 %>
       <% @item_evaluation_items.each do |item| %>
-        <% if @project_id != item.project_id %>
-          <tr class="text-left bg-black text-white">
-            <td colspan="3"> आयोजनाको नाम: </td>
-            <td colspan="17"> <%= item.project.name_of_project_ne %></td>
-          </tr>
-      <% @sn = 1 %>
-        <% end %>
-        <% @project_id = item.project_id %>
         <tr class="text-center">
           <td><%= nd @sn %></td>
           <td><%= nd item.item_register_page_no %></td>
           <td><%= nd item.item_classification_no %></td>
-          <td class="text-left"><%= nd item.name_of_item_ne %></td>
+          <td class="text-left" style="min-width: 250px"><%= nd item.name_of_item_ne %></td>
           <td><%= nd item.quantity %></td>
           <td><%= nd item.unit_ne %></td>
           <td><%= nd item.rate %></td>
@@ -90,4 +81,3 @@
         <% end %>
       </table>
     </div>
-

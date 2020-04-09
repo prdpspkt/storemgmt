@@ -1,5 +1,5 @@
 class Office::StocksController < ApplicationController
-  before_action :set_office_stock, only: [:show, :edit, :update, :destroy]
+  before_action :set_office_stock, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_office_information, only: [:show]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_stocks
@@ -22,6 +22,20 @@ class Office::StocksController < ApplicationController
     }
     GenerateOfficeStock.perform_async(data)
     redirect_to office_stocks_url, notice: "We are generating stock report in background please refresh page after few minutes. Thanks"
+  end
+
+  def print
+    @office = @office_stock.office
+    @fiscal_year = @office_stock.fiscal_year
+    @report_name = "वार्षिक मौज्दात विवरण"
+    @form_no = 113
+    @old_form_no = 57
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "office_yearly_stock", layout: "pdf_print", margin: {left: "30mm"}
+      end
+    end
   end
 
   private
