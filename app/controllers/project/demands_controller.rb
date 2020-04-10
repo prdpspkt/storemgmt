@@ -56,9 +56,10 @@ class Project::DemandsController < ProjectController
   # DELETE /demands/1
   # DELETE /demands/1.json
   def destroy
+    project = @demand.project
     @demand.destroy
     respond_to do |format|
-      format.html { redirect_to demands_url, notice: 'Demand was successfully destroyed.' }
+      format.html { redirect_to project, notice: 'माग फारम पूर्ण रुपले सफलतापुर्वक हटाईयो' }
       format.json { head :no_content }
     end
   end
@@ -78,7 +79,7 @@ class Project::DemandsController < ProjectController
     if @demand_items.count > 0
       create_release ##Create a project item release form
       @demand_items.each do |demand_item|
-        transactions = Project::ProjectItemTransaction.where(:project_id => @demand.project_id).where(project_item_id: demand_item.project_item_id)
+        transactions = Project::ProjectItemTransaction.where(:project_id => @demand.project_id).where(project_item_id: demand_item.project_item_id).where("sku > 0")
         transactions.each do |transaction|
           if transaction.sku > demand_item.quantity
             rate = transaction.amount / transaction.quantity
@@ -110,12 +111,24 @@ class Project::DemandsController < ProjectController
         end
       end
     end
+    @demand.entry_generated = true
+    @demand.save!
     redirect_to @release
   end
 
   def print
     @demand_items = @demand.demand_items
-    set_office_information
+   @fiscal_year = @demand.fiscal_year
+    @office = @demand.office
+    @report_name = "माग फाराम"
+    @form_no = 401
+    @old_form_no = 51
+    respond_to do |format|
+      format.html
+      format.pdf do
+          render pdf: "Mag Pharam", layout: "pdf_print"
+      end
+    end
   end
 
 

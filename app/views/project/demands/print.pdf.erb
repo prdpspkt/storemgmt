@@ -1,29 +1,4 @@
-<table class="table table-condensed table-sm table-borderless">
-  <tbody>
-  <tr>
-    <td colspan="6" class="text-center gov_name"><%= @office.gov %></td>
-  </tr>
-  <tr>
-    <td colspan="6" class="text-center min_name"><%= @office.ministry %></td>
-  </tr>
-  <tr>
-    <td colspan="6" class="text-center off_name"><%= @office.office %></td>
-  </tr>
-  <tr>
-    <td colspan="6" class="text-center min_name"><%= @office.address %></td>
-  </tr>
-  <tr>
-    <td colspan="6" class="text-center min_name">कार्यालय कोड नं.:</td>
-  </tr>
-  <tr>
-    <td colspan="6" class="text-center off_name"><%= @demand.project.name_of_project_ne %></td>
-  </tr>
-  <tr>
-    <td colspan="6" class="text-center form_name">माग फारम</td>
-  </tr>
-  </tbody>
-</table>
-<table class="table table-borderless table-sm">
+<table class="table">
   <tr>
     <td class="text-left">आ.व. <%= nd @fiscal_year.fy %></td>
     <td class="text-right">माग नं <%= nd @demand.demand_no %></td>
@@ -37,8 +12,8 @@
   </tr>
   </tbody>
 </table>
-<table class="table table-condensed table-sm table-black-border">
-  <tbody>
+<table class="table black-border table-wide">
+  <thead>
   <tr class="text-center">
     <td rowspan="2">क्र.सं.</td>
     <td rowspan="2">सामानको नाम</td>
@@ -58,6 +33,8 @@
     <td>५</td>
     <td>६</td>
   </tr>
+  </thead>
+  <tbody>
   <% @sn = 1 %>
   <% @demand_items.each do |item| %>
     <tr>
@@ -72,14 +49,13 @@
   <% end %>
   </tbody>
 </table>
-<table class="table table-condensed table-sm table-borderless">
-  <tbody>
+<table class="table">
   <tr>
     <td>&nbsp;</td>
     <td>माग गर्नेको दस्तखतः</td>
     <td>सिफारिस गर्नेको दस्तखतः</td>
     <td>&nbsp;</td>
-    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="fa fa-check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
+    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -87,7 +63,7 @@
     <td>नामः <%= @demand.demand_by %></td>
     <td>नामः <%= @demand.recommended_by %></td>
     <td>&nbsp;</td>
-    <td>ख) मौज्दातबाट दिनु ।<%= '<i class="fa fa-check"></i>'.html_safe if @demand.needed_to_purchase == false  %></td>
+    <td>ख) मौज्दातबाट दिनु ।<%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == false  %></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -146,5 +122,4 @@
     <td>&nbsp;</td>
     <td></td>
   </tr>
-  </tbody>
 </table>

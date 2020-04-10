@@ -27,7 +27,7 @@
     <%= link_to before_final_btn.html_safe, accept_project_demand_url(@demand), id: :mark_as_not_final, method: :post %>
     <%= link_to release_generate_btn.html_safe, release_project_demand_url(@demand), method: :post %>
   <% end %>
-<%= link_to print_big_btn.html_safe, print_project_demand_url(@demand) %>
+<%= link_to print_big_btn.html_safe, print_project_demand_url(@demand, format: :pdf), target: "_blank" %>
 
 </div>
 <div class="separator"></div>
