@@ -1,9 +1,11 @@
-<div class="row">
-  <div class="col-12 text-right">
-    आ.व.: <%= @project_release.fiscal_year.fy %><br>निकाशा नं: <%= nd @project_release.release_no %><br>  निकाशा मिति: <%=  ndate @project_release.release_date %>
-  </div>
-</div>
-<table class="table black-border">
+<table class="table table-wide">
+  <tr>
+    <td>आयोजनाको नाम: <b><%= @project_release.project.name_of_project_ne %></b></td>
+    <td class="text-right"> आ.व.: <%= @project_release.fiscal_year.fy %><br>निकाशा नं: <%= nd @project_release.release_no %><br>  निकाशा मिति: <%=  ndate @project_release.release_date %>
+    </td>
+  </tr>
+</table>
+<table class="table table-wide black-border">
   <thead>
   <tr>
     <td>क्र.सं.</td>

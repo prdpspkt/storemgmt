@@ -3,4 +3,6 @@ class Project::PurchaseEntry < ApplicationRecord
   belongs_to :purchase_order, :class_name => 'Office::PurchaseOrder', optional: true
   belongs_to :tender, :class_name => 'Project::Tender', optional:  true
   belongs_to :store_body, :class_name => 'Office::StoreBody'
+  belongs_to :office, :class_name => 'Office::Office'
+  belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'
 end

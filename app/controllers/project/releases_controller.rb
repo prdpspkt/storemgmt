@@ -46,6 +46,17 @@ class Project::ReleasesController < ProjectController
   def print
     @project_release = Project::Release.find(params[:id])
     @project_release_items = @project_release.release_items
+    @office = @project_release.office
+    @fiscal_year = @project_release.fiscal_year
+    @report_name = "खर्च/निकाशा फाराम"
+    @form_no = 404
+    @old_form_no = 51
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "expense_form", layout: 'pdf_print'
+      end
+    end
   end
 
   def transaction

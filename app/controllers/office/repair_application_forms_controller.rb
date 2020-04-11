@@ -69,6 +69,16 @@ class Office::RepairApplicationFormsController < ApplicationController
 
   def print
     @repair_application_form_items = @repair_application_form.repair_application_form_items
+    @office = @repair_application_form.office
+    @fiscal_year = @repair_application_form.fiscal_year
+    @report_name = "मर्मत, संरक्षण आवेदन फाराम"
+    @form_no = 414
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "repair_application_form", layout: "pdf_print"
+      end
+    end
   end
 
   private

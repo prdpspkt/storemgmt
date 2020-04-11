@@ -19,11 +19,8 @@
     <td>पान नं: <%= nd @purchase_order.vendor.vendor_pan %></td>
     <td>निर्णय मिति: <%= ndate @purchase_order.order_decision_date %></td>
   </tr>
-  <tr>
-    <td colspan="3"></td>
-  </tr>
 </table>
-<table class="table table-wide black-border">
+<table class="table black-border table-wide">
   <thead>
   <tr class="text-center">
     <td rowspan="2" >क्र.सं.</td>
@@ -74,7 +71,8 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td colspan="2">जम्मा रकम</td>
+    <td>&nbsp;</td>
+    <td>जम्मा रकम</td>
     <td><%= nd @amount %></td>
     <td>&nbsp;</td>
   </tr>
@@ -84,7 +82,8 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td colspan="2">मु.अ.कर (१३%)</td>
+    <td>&nbsp;</td>
+    <td>मु.अ.कर (१३%)</td>
     <td><%= nd @vat %></td>
     <td>&nbsp;</td>
   </tr>
@@ -94,20 +93,18 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td colspan="2">कुल जम्मा रकमः</td>
+    <td>&nbsp;</td>
+    <td>कुल जम्मा रकमः</td>
     <td><%= nd @total %></td>
     <td>&nbsp;</td>
   </tr>
   </tbody>
 </table>
-<table class="table table-wide">
+<table class="table">
   <tr>
     <td colspan="9">माथि उल्लिखित सामान मिति <%= ndate @purchase_order.date_to_receive_goods %> भित्र  <%= @purchase_order.office.office %>,  <%= @purchase_order.office.address %> स्थानमा दाखिला गरी बिल । इन्भाइस
       प्रस्तुत गर्नुहोला ।
     </td>
-  </tr>
-  <tr>
-    <td colspan="9"></td>
   </tr>
 
   <tr>
@@ -115,11 +112,14 @@
   </tr>
 
   <tr>
-    <td colspan="2">फाँटवालाको दस्तखतः</td>
+    <td>फाँटवालाको दस्तखतः</td>
     <td>&nbsp;</td>
-    <td colspan="2">शाखा प्रमुखको दस्तखतः</td>
     <td>&nbsp;</td>
-    <td colspan="2">कार्लायल प्रमुखाको दस्तखतः</td>
+    <td>शाखा प्रमुखको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>कार्लायल प्रमुखाको दस्तखतः</td>
+    <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -144,15 +144,11 @@
     <td><%= ndate @purchase_order.office_cheif_signed_date %></td>
     <td>&nbsp;</td>
   </tr>
-<tr>
-  <td colspan="9"></td>
-</tr>
+
   <tr>
     <td colspan="9">माथि उल्लिखित सामानहरू मिति <%= ndate @purchase_order.date_to_receive_goods %> भित्र <%= @purchase_order.office.office %> कार्यालयमा बुझाउने छु भनी सहिछाप गर्ने ।</td>
   </tr>
-<tr>
-  <td colspan="9"></td>
-</tr>
+
   <tr>
     <td>फर्मको नाम</td>
     <td> <%= @purchase_order.vendor.vendor_name %></td>
@@ -164,5 +160,4 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
-
 </table>

@@ -113,7 +113,7 @@ class Office::PurchaseOrdersController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "purchase_order", layout: "pdf_print", margin: {left: "25mm"}
+        render pdf: "purchase_order", layout: "pdf_print", margin: {left: "20mm"}
       end
     end
   end

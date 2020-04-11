@@ -1,9 +1,9 @@
-<table class="table">
+<table class="table table-wide header-table">
   <tr>
-    <td style="width: 25%">
-      <%= wicked_pdf_image_tag('nepgovlogo.png', width: '45%') %>
+    <td style="width: 15%">
+      <%= wicked_pdf_image_tag('nepgovlogo.png', height: '50%') %>
     </td>
-    <td style="width: 50%" class="text-center">
+    <td style="width: 70%" class="text-center">
       <div class="government"><%= @office.gov %></div>
       <div class="ministry"><%= @office.ministry %></div>
       <%if @office.department.present? %>
@@ -14,7 +14,7 @@
       <div class="office"><%= @report_name %></div>
       <div class="ministry"> आ.व. <%= @fiscal_year.fy %></div>
     </td>
-    <td style="width: 25%" class="text-right">
+    <td style="width: 15%" class="text-right form-name-text">
       <div>म. ले. प. फा. नं. <%= nd @form_no %></div>
       <div>साविकको फा. नं. <%= nd @old_form_no %></div>
     </td>

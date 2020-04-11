@@ -38,6 +38,7 @@ class Project::PurchaseEntriesController < ProjectController
     @purchase_entry.entry_no = new_entry_no
     @purchase_entry.store_body_id = current_control_body.id
     @purchase_entry.marked_as_final = false
+    @purchase_entry.generated_from = false
     respond_to do |format|
       if @purchase_entry.save
         format.html { redirect_to @purchase_entry, notice: 'Project entry was successfully created.' }
@@ -109,6 +110,17 @@ class Project::PurchaseEntriesController < ProjectController
     @amount_without_vat = @purchase_entry_items.sum(:amount_without_vat)
     @vat = @purchase_entry_items.sum(:vat)
     @other_expense = @purchase_entry_items.sum(:other_expense)
+    @office = @purchase_entry.office
+    @fiscal_year = @purchase_entry.fiscal_year
+    @report_name ="दाखिला प्रतिवेदन फाराम"
+    @form_no = 403
+    @old_form_no = 46
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "purchase_entry_#{ndate @purchase_entry.entry_date}", layout: "pdf_print", orientation: "landscape"
+      end
+    end
   end
 
   private

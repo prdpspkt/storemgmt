@@ -33,7 +33,7 @@ class Office::StocksController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "office_yearly_stock", layout: "pdf_print", margin: {left: "30mm"}
+        render pdf: "office_yearly_stock", layout: "pdf_print", margin: {left: "20mm"}
       end
     end
   end

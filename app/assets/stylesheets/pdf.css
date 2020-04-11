@@ -6,8 +6,8 @@ html{
 body{
     height: 100%;
     width: 100%;
-    font-family: 'Kokila';
-    font-size: 18px!important;
+    font-family: 'Arial Unicode Ms';
+    font-size: 16px!important;
 }
 .header-table{
     margin-top: 1px;
@@ -60,8 +60,9 @@ td, th{
     font-size: 18px;
 }
 .office{
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
+    line-height: 30px;
 }
 .table-wide{
     width: 98%;
@@ -76,4 +77,8 @@ td, th{
         clear: both;
         height: 0px;
     }
+}
+
+.form-name-text{
+    font-size: 10px!important;
 }

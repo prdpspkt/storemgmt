@@ -107,6 +107,17 @@ class Project::PurchaseOrdersController < ProjectController
     @amount =  Project::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).sum(:amount)
     @vat = @amount * 0.13
     @total = @amount + @vat
+    @office = @purchase_order.office
+    @fiscal_year = @purchase_order.fiscal_year
+    @report_name = "खरिद आदेश"
+    @form_no = 402
+    @old_form_no = 45
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "order_form-#{bs_today}", layout: "pdf_print"
+      end
+    end
   end
 
   private

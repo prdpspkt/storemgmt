@@ -1,4 +1,4 @@
-<table class="table black-border">
+<table class="table table-wide black-border">
   <thead>
   <tr class="text-center">
     <th rowspan="2">क्र.स.</th>
@@ -23,7 +23,7 @@
       <td><%= nd @i %></td>
       <td><%= nd item.item.item_register_page_no %></td>
       <td><%= nd item.item.item_classification_no %></td>
-      <td class="text-left"><%= item.item.name_of_item_ne %></td>
+      <td class="text-left" style="min-width: 200px;"><%= item.item.name_of_item_ne %></td>
       <td class="text-right"><%= nd item.quantity %></td>
       <td><%= nd item.item.unit_ne %></td>
       <td class="text-right"><%= nd item.rate %></td>

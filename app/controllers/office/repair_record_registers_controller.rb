@@ -67,7 +67,7 @@ class Office::RepairRecordRegistersController < ApplicationController
   def destroy
     @repair_record_register.destroy
     respond_to do |format|
-      format.html { redirect_to repair_record_registers_url, notice: 'Repair record register was successfully destroyed.' }
+      format.html { redirect_to office_repair_record_registers_url, notice: 'Repair record register was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

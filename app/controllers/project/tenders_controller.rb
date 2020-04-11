@@ -113,7 +113,7 @@ class Project::TendersController < ProjectController
     @cb = current_control_body
   end
 
-  def entry
+  def create_purchase_entry
     @purchase_entry = Project::PurchaseEntry.new
     @purchase_entry = set_current_information @purchase_entry
     @purchase_entry.entry_no = new_entry_no
