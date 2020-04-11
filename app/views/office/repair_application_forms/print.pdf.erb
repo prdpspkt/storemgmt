@@ -97,7 +97,7 @@
   <% @repair_application_form_items.each do |item| %>
     <% if get_current_repair_count(item) != false %>
   <tr>
-    <td class="text-center"><%= nd item.item.item_register_page_no %></td>
+    <td class="text-center"><%= nd item.item.item_classification_no %></td>
     <td></td>
     <td class="text-center">
       <%= nd get_current_repair_count(item) %>
@@ -148,13 +148,9 @@
     <td colspan="2">नामः <%= @repair_application_form.store_body.office_chief_name %></td>
   </tr>
   <tr>
-    <td>दर्जाः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td>&nbsp;</td>
+    <td colspan="3">दर्जाः <%= @repair_application_form.store_body.section_chief_designation %></td>
+    <td colspan="2">दर्जाः <%= @repair_application_form.technical_person_designation %></td>
+    <td colspan="2">दर्जाः <%= @repair_application_form.store_body.office_chief_designation %></td>
   </tr>
   <tr>
     <td>मितिः</td>

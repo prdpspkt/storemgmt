@@ -1,12 +1,13 @@
-<table class="table table-wide">
+<table class="table">
   <tr>
-    <td colspan="17" class="text-left" colspan="3">दाखिला मितिः <%= ndate @purchase_entry.entry_date %></td>
+    <td colspan="14" class="text-left" colspan="3">आयोजनाको नाम:  <%=  @project_purchase_entry.project.name_of_project_ne %></td>
+    <td colspan="3" class="text-right" colspan="3">दाखिला मितिः <%= ndate @project_purchase_entry.entry_date %></td>
   </tr>
   <tr>
-    <td colspan="17" class="text-left" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @purchase_entry.entry_no%></td>
+    <td colspan="17" class="text-left" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @project_purchase_entry.entry_no%></td>
   </tr>
   <tr>
-    <td style = " 10px"></td>
+    <td></td>
   </tr>
 </table>
 <table class="table black-border table-wide">
@@ -16,7 +17,7 @@
     <td rowspan="2">खरिद आदेश /हस्तान्तरण फारम नं</td>
     <td rowspan="2">जिन्सी करण सङ्केत न.</td>
     <td rowspan="2">जिन्सी खाता पाना.नं.</td>
-    <td rowspan="2">सामानको नाम</td>
+    <td rowspan="2"  style="min-width: 200px">सामानको नाम</td>
     <td rowspan="2">स्पेसिफिकेसन</td>
     <td rowspan="2">सामानको पहिचान नं</td>
     <td rowspan="2">मोडल नं</td>
@@ -55,17 +56,17 @@
   </thead>
   <tbody>
   <% @id = 1 %>
-  <% @purchase_entry_items.each do |item| %>
+  <% @project_purchase_entry_items.each do |item| %>
   <tr>
     <td><%= nd @id %></td>
-    <td><%= nd @purchase_entry.purchase_handover_no %></td>
-    <td><%= nd item.item.item_classification_no %></td>
-    <td><%= nd item.item.item_register_page_no %></td>
-    <td class="item_name"><%= item.item.name_of_item_ne %></td>
-    <td><%= item.item.specification %></td>
+    <td></td>
+    <td><%= nd item.project_item.item_classification_no %></td>
+    <td><%= nd item.project_item.item_register_page_no %></td>
+    <td class="item_name"><%= item.project_item.name_of_item_ne %></td>
+    <td><%= item.project_item.specification %></td>
     <td><%= item.item_identification_no %></td>
     <td><%= item.model_no %></td>
-    <td><%= item.item.unit_ne %></td>
+    <td><%= item.project_item.unit_ne %></td>
     <td><%= nd item.quantity %>
     <td><%= nd item.rate %></td>
     <td><%= nd item.amount_without_vat %></td>
@@ -75,7 +76,6 @@
     <td><%= nd item.total_amount %></td>
     <td><%= item.remarks %></td>
   </tr>
-    <% @id = @id + 1 %>
     <% end %>
   <tr class="text-center">
     <td colspan="11" class="text-right">जम्मा</td>
@@ -90,7 +90,7 @@
 </table>
 <table class="table table-wide">
   <tr>
-    <td style="height: 10px"></td>
+    <td></td>
   </tr>
   <tr>
     <td></td>
@@ -127,7 +127,7 @@
   <tr>
     <td></td>
     <td>नामः</td>
-    <td><%= @purchase_entry.store_body.store_keeper_name %></td>
+    <td><%= @project_purchase_entry.store_body.store_keeper_name %></td>
     <td></td>
     <td></td>
     <td></td>
@@ -135,18 +135,18 @@
     <td></td>
     <td></td>
     <td>नामः</td>
-    <td><%= @purchase_entry.store_body.section_chief_name %></td>
+    <td><%= @project_purchase_entry.store_body.section_chief_name %></td>
     <td></td>
     <td></td>
     <td></td>
     <td>नामः</td>
-    <td><%= @purchase_entry.store_body.office_chief_name %></td>
+    <td><%= @project_purchase_entry.store_body.office_chief_name %></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>पदः</td>
-    <td><%= @purchase_entry.store_body.store_keeper_designation %></td>
+    <td><%= @project_purchase_entry.store_body.store_keeper_designation %></td>
     <td></td>
     <td></td>
     <td></td>
@@ -154,18 +154,18 @@
     <td></td>
     <td></td>
     <td>पदः</td>
-    <td><%= @purchase_entry.store_body.section_chief_designation %></td>
+    <td><%= @project_purchase_entry.store_body.section_chief_designation %></td>
     <td></td>
     <td></td>
     <td></td>
     <td>पदः</td>
-    <td><%= @purchase_entry.store_body.office_chief_designation %></td>
+    <td><%= @project_purchase_entry.store_body.office_chief_designation %></td>
     <td></td>
   </tr>
   <tr>
     <td></td>
     <td>मितिः</td>
-    <td><%= ndate @purchase_entry.store_chief_signed_date %></td>
+    <td><%= ndate @project_purchase_entry.store_keeper_signed_date %></td>
     <td></td>
     <td></td>
     <td></td>
@@ -173,12 +173,12 @@
     <td></td>
     <td></td>
     <td>मितिः</td>
-    <td><%= ndate @purchase_entry.section_chief_signed_date %></td>
+    <td><%= ndate @project_purchase_entry.section_chief_signed_date %></td>
     <td></td>
     <td></td>
     <td></td>
     <td>मितिः</td>
-    <td><%= ndate @purchase_entry.office_chief_signed_date %></td>
+    <td><%= ndate @project_purchase_entry.office_chief_signed_date %></td>
     <td></td>
   </tr>
 </table>

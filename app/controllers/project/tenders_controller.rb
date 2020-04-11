@@ -76,6 +76,15 @@ class Project::TendersController < ProjectController
   end
 
   def print
+    @office = @tender.office
+    @fiscal_year = @tender.fiscal_year
+    @report_name = "ठेक्का विवरण"
+    respond_to do |format|
+      format.html
+      format.pdf {
+        render pdf: "tender_details", layout: "pdf_print"
+      }
+    end
 
   end
 

@@ -1,0 +1,188 @@
+<table class="table">
+  <tr>
+    <td colspan="2">आयोजनाको नाम: <%= @project.name_of_project_ne %></td>
+    <td>आर्थिक वर्षः <%= @fiscal_year.fy %></td>
+  </tr>
+  <tr>
+    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %></td>
+    <td colspan="2">जिन्सी सङ्केत नं: <%= nd item.item_classification_no %></td>
+  </tr>
+  <tr>
+    <td>इकाई: <%= item.unit_ne %></td>
+    <td></td>
+    <td colspan="2">जिन्सी खाता पाना नं: <%= nd item.item_register_page_no %></td>
+  </tr>
+  <tr>
+    <td></td>
+  </tr>
+</table>
+<table class="table  black-border table-wide">
+  <tr class="text-center">
+    <td rowspan="2">मिति</td>
+    <td rowspan="2">दाखिला नं/हस्तान्तरण नं</td>
+    <td rowspan="2">स्पेसिफिकेसन</td>
+    <td rowspan="2">सामानको पहिचान नं</td>
+    <td rowspan="2">मोडल नं</td>
+    <td colspan="4">विवरण</td>
+    <td colspan="3">आम्दानी</td>
+    <td colspan="2">हस्तान्तरण/मिन्हा/निःसर्ग</td>
+    <td colspan="2">बाँकी</td>
+    <td rowspan="2">कैफियत</td>
+  </tr>
+  <tr class="text-center">
+    <td>उत्पादन गर्ने देश वा कम्पनीको नाम</td>
+    <td>साइज</td>
+    <td>अनुमानित आयु</td>
+    <td>सामान प्राप्तिको स्रोत</td>
+    <td>परिमाण</td>
+    <td>प्रति एकाइको दर</td>
+    <td>जम्मा परल मूल्य</td>
+    <td>परिमाण</td>
+    <td>जम्मा परल मूल्य</td>
+    <td>परिमाण</td>
+    <td>जम्मा परल मूल्य</td>
+  </tr>
+  <tr>
+    <td>१</td>
+    <td>२</td>
+    <td>३</td>
+    <td>४</td>
+    <td>५</td>
+    <td>६</td>
+    <td>७</td>
+    <td>८</td>
+    <td>९</td>
+    <td>१०</td>
+    <td>११</td>
+    <td>१२</td>
+    <td>१३</td>
+    <td>१४</td>
+    <td>१५</td>
+    <td>१६</td>
+    <td>१७</td>
+  </tr>
+  <% @transactions = item.project_item_transactions.where(fiscal_year_id: @fiscal_year.id) %>
+  <% if @transactions.blank? == false %>
+    <% @qty = 0 %>
+    <% @amt = 0 %>
+    <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= ndate transaction.transaction_date %></td>
+        <td><%= nd  transaction.entry_no %></td>
+        <td><%= transaction.item.specification %></td>
+        <td><%= transaction.item_identification_no %></td>
+        <td><%= transaction.model %></td>
+        <td><%= transaction.country %></td>
+        <td><%= transaction.size %></td>
+        <td><%= transaction.approx_age %></td>
+        <td><%= transaction.source %></td>
+        <% if transaction.transaction_type > 0 %>
+          <% @qty = @qty + transaction.quantity %>
+          <% @amt = @amt + transaction.amount %>
+          <td><%= nd transaction.quantity %></td>
+          <td><%= nd transaction.rate %></td>
+          <td><%= nd transaction.amount %></td>
+          <td></td>
+          <td>&nbsp;</td>
+          <td><%= nd @qty %></td>
+          <td><%= nd @amt %></td>
+        <% end %>
+        <% if transaction.transaction_type < 0 %>
+          <% @qty = @qty - transaction.quantity %>
+          <% @amt = @amt - transaction.amount %>
+          <td></td>
+          <td>&nbsp;</td>
+          <td>&nbsp;</td>
+          <td><%= nd transaction.quantity %></td>
+          <td><%= nd transaction.amount %></td>
+          <td><%= nd @qty %></td>
+          <td><%= nd @amt %></td>
+        <% end %>
+        <td><%= transaction.remarks %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>
+<table class="table table-sm table-borderless">
+  <tr>
+    <td></td>
+  </tr>
+  <tr>
+    <td>फाँटवालाको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>शाखा प्रमुखको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>कार्यालय प्रमुखको दस्तखतः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>नामः <%=  %></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>नामः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>नामः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>पदः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>पदः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>पदः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>मितिः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>मितिः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>मितिः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>
+<div class="page-break"></div>

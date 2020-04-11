@@ -6,8 +6,7 @@ json.set! :data do
     json.description "वार्षिक मौज्दात विवरण"
 
     json.url  "
-              #{link_to show_btn.html_safe, project_stock }
-              #{link_to edit_btn.html_safe, edit_project_stock_path(project_stock)}
+              #{link_to show_btn.html_safe, project_stock_url(project_stock, format: :pdf), target: "_blank" }
               "
   end
 end

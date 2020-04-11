@@ -23,7 +23,7 @@
     <%= link_to before_final_btn.html_safe, accept_project_release_url(@project_release), id: :mark_as_not_final, method: :post %>
     <%= link_to ledger_entry_btn.html_safe, transaction_project_release_url(@project_release), method: :post %>
 <% end %>
-  <%= link_to print_big_btn.html_safe, print_project_release_url(@project_release) %>
+  <%= link_to print_big_btn.html_safe, print_project_release_url(@project_release, format: :pdf), target: "_blank" %>
 </div>
 <h2> माग भै आएका सामाग्रीहरू </h2>
 <table class="table table-sm table-bordered table-condensed">

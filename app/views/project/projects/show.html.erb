@@ -1,8 +1,8 @@
 <div>
   <span class="h3"><%= @project.name_of_project_ne %></span>
   <%= link_to edit_big_btn.html_safe, edit_project_project_path(@project) %>
-  <%= link_to expense_item_ledger_btn.html_safe, expense_item_register_project_ledger_path(@project) %>
-  <%= link_to non_expense_item_ledger_btn.html_safe, non_expense_item_register_project_ledger_path(@project) %>
+  <%= link_to expense_item_ledger_btn.html_safe, expense_item_register_project_ledger_path(@project, format: :pdf), target: "_blank" %>
+  <%= link_to non_expense_item_ledger_btn.html_safe, non_expense_item_register_project_ledger_path(@project, format: :pdf), target: "_blank"%>
   <a class="btn btn-warning" data-toggle="collapse" href="#project_description_table" aria-expanded="false" aria-controls="project_description_table">आयोजनाको
     विवरण</a>
 </div>

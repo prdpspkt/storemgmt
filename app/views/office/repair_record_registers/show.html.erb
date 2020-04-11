@@ -23,7 +23,7 @@
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_repair_record_registers_path %>
   <%= link_to edit_big_btn.html_safe, edit_office_repair_record_register_path(@repair_record_register) %>
-  <%= link_to print_big_btn.html_safe, print_office_repair_record_register_path(@repair_record_register) %>
+  <%= link_to print_big_btn.html_safe, print_office_repair_record_register_path(@repair_record_register, format: :pdf), target: "_blank" %>
 </div>
 <div class="separator"></div>
 <h2>मर्मत अभिलेख प्रविष्ट गर्ने</h2>

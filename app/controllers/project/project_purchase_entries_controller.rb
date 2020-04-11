@@ -98,6 +98,18 @@ class Project::ProjectPurchaseEntriesController < ProjectController
     @amount_without_vat = @project_purchase_entry_items.sum(:amount_without_vat)
     @vat = @project_purchase_entry_items.sum(:vat)
     @other_expense = @project_purchase_entry_items.sum(:other_expense)
+
+    @office = @project_purchase_entry.office
+    @fiscal_year = @project_purchase_entry.fiscal_year
+    @report_name = "दाखिला प्रतिवेदन फाराम"
+    @form_no = 403
+    @old_form_no = 46
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "purchase_entry", layout: "pdf_print", orientation: "landscape"
+      end
+    end
   end
 
   private

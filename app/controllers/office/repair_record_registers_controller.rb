@@ -74,6 +74,17 @@ class Office::RepairRecordRegistersController < ApplicationController
 
   def print
     @repair_record_register_items = @repair_record_register.repair_record_register_items
+    @office = @repair_record_register.office
+    @fiscal_year = @repair_record_register.fiscal_year
+    @report_name = "मर्मत सम्भार तथा संरक्षण अभिलेख खाथा"
+    @form_no = 415
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "मर्मत अभिलेख", layout: "pdf_print", orientation: "landscape", margin:  { left: "25mm"}
+      end
+    end
+
   end
 
   private

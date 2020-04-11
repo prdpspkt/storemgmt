@@ -19,7 +19,7 @@ class Project::StocksController < ProjectController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'item_stock_project_wise', layout: 'pdf_print',  margin: {right: '10mm', left: "30mm"}
+        render pdf: 'item_stock_project_wise', layout: 'pdf_print',  margin: {right: '10mm', left: "20mm"}
       end
     end
 

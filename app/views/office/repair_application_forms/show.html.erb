@@ -15,7 +15,7 @@
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_repair_application_forms_url %>
   <%= link_to edit_big_btn.html_safe, edit_office_repair_application_form_path(@repair_application_form) %>
-  <%= link_to print_big_btn.html_safe, print_office_repair_application_form_path(@repair_application_form) %>
+  <%= link_to print_big_btn.html_safe, print_office_repair_application_form_path(@repair_application_form, format: :pdf), target: "_blank" %>
 </div>
 
 <h2>मर्मत गर्नुपर्ने सामाग्रीहरु थप्ने</h2>

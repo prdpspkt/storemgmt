@@ -278,6 +278,17 @@ en:
           name_of_item: "सामाग्रीको नाम"
           quantity: "परिमाण"
           remark: "कैफियत"
+        office/repair_record_register_item:
+          date: "मिति"
+          repair_application_no: "मर्मत संरक्षण आवेदन नं"
+          applicant_name: "आवेदन कर्ता"
+          changed_part_name: "फेरिएको सामानको नाम"
+          changed_part_cost: "फेरिएको सामानको मुल्य"
+          other_expense: "अन्य खर्च विवरण"
+          other_expense_cost: "अन्य खर्च रू"
+          vendor_name: "मर्मत कर्ताको नाम"
+          justified_by: "निरीक्षण/प्रमाणित गर्ने"
+          remarks: "कैफियत"
 
 
 
