@@ -13,7 +13,7 @@ WickedPdf.config = {
     # one of the wkhtmltopdf-binary family of gems.
     # exe_path: '/usr/local/bin/wkhtmltopdf',
     #   or
-    exe_path: '/usr/bin/wkhtmltopdf',
+    exe_path: '/usr/local/bin/wkhtmltopdf',
     layout: 'print_pdf',
     page_size: 'A4',
     print_media_type: true,
