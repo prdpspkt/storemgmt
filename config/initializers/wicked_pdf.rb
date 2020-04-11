@@ -30,7 +30,8 @@ WickedPdf.config = {
     margin: {left: '17mm',
              right: '7mm',
              bottom: '10mm'
-    }
+    },
+    encoding: "utf-8"
 
     # Layout file to be used for all PDFs
     # (but can be overridden in `render :pdf` calls)
