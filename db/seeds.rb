@@ -132,7 +132,7 @@ header = spreadsheet.row(1)
   rescue Exception => error
     puts error.message
   end
-  category = get_category item.temp_cat_id
+  category = get_office_cat item.temp_cat_id
   item.item_category_id = category.id
   item.unit_ne = category.unit_ne
   item.unit_en = category.unit_en
