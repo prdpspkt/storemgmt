@@ -53,6 +53,7 @@ def change
     t.datetime "updated_at", null: false
     t.boolean "entry_generated"
     t.integer "store_body_id"
+    t.string "file"
   end
 
   create_table "office_fiscal_years"  do |t|
@@ -108,6 +109,7 @@ def change
     t.datetime "section_chief_signed_date"
     t.datetime "store_keeper_signed_date"
     t.boolean "entry_generated"
+    t.string "file"
   end
 
   create_table "office_item_assistance_register_items"  do |t|
@@ -147,6 +149,7 @@ def change
     t.string "designation"
     t.integer "personnel_id"
     t.datetime "office_chief_signed_date"
+    t.string "file"
   end
 
   create_table "office_item_categories"  do |t|
@@ -200,21 +203,9 @@ def change
     t.datetime "office_chief_signed_date"
     t.boolean "accepted"
     t.boolean "entry_generated"
+    t.string "file"
   end
 
-  create_table "office_item_entries"  do |t|
-    t.integer "item_registration_page_no"
-    t.integer "office_item_id"
-    t.integer "item_id"
-    t.decimal "rate"
-    t.decimal "quantity"
-    t.decimal "amount"
-    t.integer "user_id"
-    t.integer "office_id"
-    t.integer "fiscal_year_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "office_item_evaluation_committee_members"  do |t|
     t.integer "office_id"
@@ -279,6 +270,7 @@ def change
     t.string "report_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
   end
 
   create_table "office_item_stocks"  do |t|
@@ -290,6 +282,7 @@ def change
     t.integer "user_id"
     t.integer "office_id"
     t.integer "fiscal_year_id"
+    t.string "file"
   end
 
   create_table "office_item_transactions"  do |t|
@@ -415,6 +408,7 @@ def change
     t.integer "office_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
   end
 
   create_table "office_purchase_entries"  do |t|
@@ -443,6 +437,7 @@ def change
     t.integer "purchase_order_id"
     t.string "generated_from"
     t.integer "tender_id"
+    t.string "file"
   end
 
   create_table "office_purchase_entry_items"  do |t|
@@ -510,12 +505,9 @@ def change
     t.datetime "date_to_receive_goods"
     t.string "office_name"
     t.string "office_address"
-    t.string "store_chief_name"
     t.datetime "store_chief_signed_date"
-    t.string "section_chief_name"
     t.datetime "section_chief_signed_date"
-    t.datetime "office_cheif_signed_date"
-    t.string "office_cheif_name"
+    t.datetime "office_chief_signed_date"
     t.integer "user_id"
     t.string "fy"
     t.integer "fiscal_year_id"
@@ -526,6 +518,7 @@ def change
     t.integer "vendor_id"
     t.integer "store_body_id"
     t.boolean "entry_generated"
+    t.string "file"
   end
 
   create_table "office_release_items"  do |t|
@@ -565,6 +558,7 @@ def change
     t.datetime "store_keeper_signed_date"
     t.datetime "office_chief_signed_date"
     t.integer "demand_id"
+    t.string "file"
   end
 
   create_table "office_rental_record_register_items"  do |t|
@@ -605,6 +599,7 @@ def change
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
+    t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -646,6 +641,7 @@ def change
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "vendor_id"
+    t.string "file"
   end
 
   create_table "office_repair_record_register_items"  do |t|
@@ -674,7 +670,7 @@ def change
     t.string "name_of_item_ne"
     t.string "name_of_item_en"
     t.string "page_no"
-    t.string "specificaiton"
+    t.string "specification"
     t.string "item_identification"
     t.string "model"
     t.integer "item_register_page_no"
@@ -693,6 +689,7 @@ def change
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "item_transaction_id"
+    t.string "file"
   end
 
   create_table "office_stock_items"  do |t|
@@ -723,6 +720,7 @@ def change
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
   end
 
   create_table "office_store_bodies"  do |t|
@@ -792,7 +790,7 @@ def change
     t.string "vendor_registration"
     t.string "vendor_pan"
     t.string "vendor_address"
-    t.string "vendor_representive"
+    t.string "vendor_representative"
     t.string "vendor_phone"
     t.string "vendor_email"
     t.integer "fiscal_year_id"
@@ -841,6 +839,7 @@ def change
     t.datetime "updated_at", null: false
     t.boolean "entry_generated"
     t.integer "store_body_id"
+    t.string "file"
   end
 
   create_table "project_evaluation_items"  do |t|
@@ -886,6 +885,7 @@ def change
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "store_body_id"
+    t.string "file"
   end
 
   create_table "project_handover_form_items"  do |t|
@@ -926,6 +926,7 @@ def change
     t.integer "store_body_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
   end
 
   create_table "project_item_categories"  do |t|
@@ -983,6 +984,7 @@ def change
     t.string "report_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
   end
 
   create_table "project_item_transactions"  do |t|
@@ -1096,6 +1098,7 @@ def change
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "purchase_entry_id"
+    t.string "file"
   end
 
   create_table "project_project_purchase_entry_items"  do |t|
@@ -1174,6 +1177,7 @@ def change
     t.integer "store_body_id"
     t.boolean "ledger_entry_generated"
     t.integer "purchase_order_id"
+    t.string "file"
   end
 
   create_table "project_purchase_entry_items"  do |t|
@@ -1235,12 +1239,9 @@ def change
     t.datetime "date_to_receive_goods"
     t.string "office_name"
     t.string "office_address"
-    t.string "store_chief_name"
     t.datetime "store_chief_signed_date"
-    t.string "section_chief_name"
     t.datetime "section_chief_signed_date"
     t.datetime "office_cheif_signed_date"
-    t.string "office_cheif_name"
     t.integer "user_id"
     t.string "fy"
     t.integer "fiscal_year_id"
@@ -1251,6 +1252,7 @@ def change
     t.integer "vendor_id"
     t.integer "store_body_id"
     t.boolean "entry_generated"
+    t.string "file"
   end
 
   create_table "project_release_items"  do |t|
@@ -1288,6 +1290,7 @@ def change
     t.integer "demand_id"
     t.boolean "entry_generated"
     t.boolean "accepted"
+    t.string "file"
   end
 
   create_table "project_stock_items"  do |t|
@@ -1322,6 +1325,7 @@ def change
     t.boolean "marked_as_final"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "file"
   end
 
   create_table "project_tender_breakdown_items"  do |t|
@@ -1353,16 +1357,6 @@ def change
     t.integer "purchase_entry_item_id"
   end
 
-  create_table "project_tender_breakdowns"  do |t|
-    t.integer "office_id"
-    t.integer "user_id"
-    t.integer "project_id"
-    t.boolean "marked_as_final"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "fiscal_year_id"
-    t.integer "purchase_entry_id"
-  end
 
   create_table "project_tender_items"  do |t|
     t.integer "store_body_id"
@@ -1410,6 +1404,7 @@ def change
     t.datetime "updated_at", null: false
     t.integer "store_body_id"
     t.boolean "entry_generated"
+    t.string "file"
   end
 
   create_table "users"  do |t|
