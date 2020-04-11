@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 gem 'roo'
 gem 'wicked_pdf'
-gem 'wkhtmltopdf-binary'
 gem 'sidekiq'
 gem 'caxlsx_rails'
 gem 'bootstrap'
@@ -70,8 +69,6 @@ end
 group :production do
 	gem "passenger", ">= 5.0.25", require: "phusion_passenger/rack_handler"
 	# gem 'bootsnap', '>= 1.1.0', require: false
-  # gem 'sidekiq', '4.2.5'
-   gem 'wkhtmltopdf-heroku', '2.12.5.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

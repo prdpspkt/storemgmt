@@ -89,5 +89,5 @@ production:
   host: localhost
   port: 5432
   username: postgres
-  password: Br41nh4ck3d
+  password: wssdo2023
 
