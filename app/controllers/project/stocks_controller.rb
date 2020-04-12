@@ -19,11 +19,12 @@ class Project::StocksController < ProjectController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'item_stock_project_wise', layout: 'pdf_print',  margin: {right: '10mm', left: "20mm"}
+        data = File.open(@project_stock.file, 'rb') {|io| io.read}
+        send_data(data, type: 'application/pdf')
       end
     end
-
   end
+
 
   def generate
     data = {
@@ -45,7 +46,7 @@ class Project::StocksController < ProjectController
   end
 
   def set_office_information
-     @office = current_office
+    @office = current_office
     @fiscal_year = @project_stock.fiscal_year
     @cb = @project_stock.store_body
   end

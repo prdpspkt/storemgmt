@@ -1,10 +1,10 @@
-<table class="table black-border">
+<table class="table table-wide black-border">
   <thead>
   <tr class="text-center">
     <th rowspan="2">क्र.स.</th>
     <th rowspan="2">खाता पाना नं</th>
     <th rowspan="2">जिन्सी वर्गीकरण नं</th>
-    <th rowspan="2" >जिन्सी सामानको नाम</th>
+    <th rowspan="2" class="bibaran" width="350px">जिन्सी सामानको नाम</th>
     <th colspan="4">मौज्दात बाँकी</th>
     <th rowspan="2">जिन्सी सामानको भौतिक अवस्था</th>
     <th rowspan="2">कैफियत</th>
@@ -18,22 +18,14 @@
   </thead>
   <tbody>
   <% @i = 1 %>
-  <% @is_same_project = false %>
-  <% @project_stock.stock_items.order("project_id ASC").each do |item| %>
-    <% if item.project_id != @is_same_project %>
-      <% @is_same_project = item.project_id %>
-      <tr class="text-white bg-black">
-        <td colspan="3">आयोजनाको नाम: </td>
-        <td colspan="7"><%= item.project.name_of_project_ne %></td>
-      </tr>
-    <% end %>
+  <% stock.stock_items.order("item_id ASC").each do |item| %>
     <tr class="text-center">
       <td><%= nd @i %></td>
-      <td><%= nd item.item_register_page_no %></td>
-      <td><%= nd item.item_classification_no %></td>
-      <td class="text-left" style="min-width: 200px"><%= item.name_of_item_ne %></td>
+      <td><%= nd item.item.item_register_page_no %></td>
+      <td><%= nd item.item.item_classification_no %></td>
+      <td class="text-left" style="min-width: 250px;"><%= item.item.name_of_item_ne %></td>
       <td class="text-right"><%= nd item.quantity %></td>
-      <td><%= nd item.unit_ne %></td>
+      <td><%= nd item.item.unit_ne %></td>
       <td class="text-right"><%= nd item.rate %></td>
       <td class="text-right"><%= nd item.amount %></td>
       <td><%= item.physical_status %></td>

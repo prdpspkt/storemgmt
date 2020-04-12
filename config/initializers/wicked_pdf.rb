@@ -14,17 +14,17 @@ if Rails.env == "production"
       # exe_path: '/usr/local/bin/wkhtmltopdf',
       #   or
       exe_path: '/usr/local/bin/wkhtmltopdf',
-      layout: 'print_pdf',
+      layout: 'layouts/pdf_print.pdf',
       page_size: 'A4',
       print_media_type: true,
       header: {
           html: {
-              template: "layouts/print_header"
+              template: "layouts/print_header.pdf"
           }
       },
       footer: {
           html: {
-              template: "layouts/print_footer"
+              template: "layouts/print_footer.pdf"
           }
       },
       margin: {left: '17mm',
@@ -44,7 +44,7 @@ else
       # exe_path: '/usr/local/bin/wkhtmltopdf',
       #   or
       exe_path: 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe',
-      layout: 'print_pdf',
+      layout: 'layouts/pdf_print',
       page_size: 'A4',
       print_media_type: true,
       header: {
