@@ -14,8 +14,8 @@ class Project::StocksController < ProjectController
     @office = current_office
     @fiscal_year = @project_stock.fiscal_year
     @report_name = "वार्षिक मौज्दात विवरण (आयोजनागत)"
-    @old_form_no = ""
-    @form_no = ""
+    @old_form_no = "57"
+    @form_no = "113"
     respond_to do |format|
       format.html
       format.pdf do

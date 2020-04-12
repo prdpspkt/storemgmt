@@ -1,10 +1,11 @@
 class GenerateOfficeStock
   include Sidekiq::Worker
   sidekiq_options retry: false
+
   def perform data
     office_stocks = Office::Stock.where(office_id: data["office_id"])
-                         .where(user_id: data["user_id"])
-                         .where(fiscal_year_id: data["fiscal_year_id"])
+                        .where(user_id: data["user_id"])
+                        .where(fiscal_year_id: data["fiscal_year_id"])
     if office_stocks.count > 0
       office_stocks.destroy_all
     end
@@ -13,10 +14,15 @@ class GenerateOfficeStock
     office_stock.fiscal_year_id = data["fiscal_year_id"]
     office_stock.user_id = data["user_id"]
     office_stock.store_body_id = data["store_body_id"]
-    office_stock.save!
-    generate_stock_items office_stock
+    office_stock.file = false
+    if office_stock.save!
+      generate_stock_items office_stock
+    end
+
   end
-private
+
+  private
+
   def generate_stock_items stock
     items = Office::Item.where(office_id: stock.office_id).where(user_id: stock.user_id)
     items.each do |item|
@@ -42,4 +48,4 @@ private
       stock_item.save!
     end
   end
-end
+  end
