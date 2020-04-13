@@ -9,7 +9,7 @@ $(function () {
         $(this).val(convert(text, all_rules['pcs nepali']));
     });
 
-    $(".preeti").on("blur", function () {
+    $(".preeti").on("focusout", function () {
         var text = $(this).val();
         $(this).val(convert(text, all_rules['preeti']));
     });

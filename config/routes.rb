@@ -3,8 +3,9 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   Sidekiq::Web.set :sessions, false
 
-  root "office/dashboard#index"
+  root "setup#start"
   get "project/dashboard" => "project/dashboard#index", as: :project_dashboard
+  get "office/dashboard" => "office/dashboard#index", as: :office_dashboard
   devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions'
@@ -175,7 +176,7 @@ Rails.application.routes.draw do
       end
     end
     resources :store_bodies
-    resources :active_fiscal_year
+    resources :active_fiscal_years
 
     resources :ledgers do
       collection do

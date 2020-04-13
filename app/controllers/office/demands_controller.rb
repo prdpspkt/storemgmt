@@ -112,7 +112,7 @@ class Office::DemandsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'mag_pharam', layout: 'pdf_print', margin: {left: '30mm'}
+        render pdf: 'mag_pharam', layout: 'pdf_print'
       end
     end
   end

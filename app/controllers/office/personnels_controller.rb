@@ -72,6 +72,6 @@ class Office::PersonnelsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def personnel_params
-      params.require(:office_personnel).permit(:name_ne, :name_en, :post, :phone, :address, :level_class, :service, :group, :sub_group, :ctroll)
+      params.require(:office_personnel).permit(:name_ne, :name_en, :post, :phone, :address, :level_class, :service, :group, :sub_group, :ctroll, :working)
     end
 end

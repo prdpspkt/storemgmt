@@ -2,22 +2,22 @@
 
 <p>
   <strong>Office chief:</strong>
-  <%= @store_body.office_chief %>
+  <%= @store_body.office_chief_name %>
 </p>
 
 <p>
-  <strong>Office chief degination:</strong>
-  <%= @store_body.office_chief_degination %>
+  <strong>Office chief designation:</strong>
+  <%= @store_body.office_chief_designation %>
 </p>
 
 <p>
   <strong>Section chief:</strong>
-  <%= @store_body.section_chief %>
+  <%= @store_body.section_chief_name %>
 </p>
 
 <p>
-  <strong>Section chief degination:</strong>
-  <%= @store_body.section_chief_degination %>
+  <strong>Section chief designation:</strong>
+  <%= @store_body.section_chief_designation %>
 </p>
 
 <p>
@@ -30,10 +30,7 @@
   <%= @store_body.store_keeper_name %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @store_body.status %>
-</p>
+
 
 <p>
   <strong>Office:</strong>
@@ -45,5 +42,3 @@
   <%= @store_body.fiscal_year_id %>
 </p>
 
-<%= link_to 'Edit', edit_store_body_path(@store_body) %> |
-<%= link_to 'Back', store_bodies_path %>

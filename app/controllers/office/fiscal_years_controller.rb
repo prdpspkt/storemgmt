@@ -26,7 +26,7 @@ class Office::FiscalYearsController < ApplicationController
     respond_to do |format|
       if @fiscal_year.save
         if current_office.fiscal_years.count == 1
-          @active_fiscal_year = ActiveFiscalYear.new
+          @active_fiscal_year = Office::ActiveFiscalYear.new
           @active_fiscal_year.fy = @fiscal_year.fy
           @active_fiscal_year.fiscal_year_id = @fiscal_year.id
           @active_fiscal_year.office_id = @fiscal_year.office_id

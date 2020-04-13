@@ -57,8 +57,8 @@ class Office::ReleasesController < ApplicationController
       @office_release.save
       item.item_transaction_id = item_transaction.id
       item.save
-      redirect_to @office_release
     end
+       redirect_to @office_release
   end
 
   def print

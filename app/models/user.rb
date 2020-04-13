@@ -6,4 +6,5 @@ class User < ApplicationRecord
 
   has_one :office, class_name: "Office::Office"
   has_many :personnels, class_name: "Office::Personnel"
+  has_one :setup
 end
