@@ -1,4 +1,4 @@
-class Office::LedgersController < ApplicationController
+class Office::LedgersController < OfficeController
 before_action :set_office_information
   def expense_item_register
       @items = office(Office::Item).where(item_classification_no: 52)

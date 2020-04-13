@@ -1,4 +1,4 @@
-class Office::ItemEvaluationCommitteesController < ApplicationController
+class Office::ItemEvaluationCommitteesController < OfficeController
   before_action :set_committee, only: [:show, :edit, :update, :destroy]
 
   # GET /office/item_evaluation_committees

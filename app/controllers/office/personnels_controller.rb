@@ -1,4 +1,4 @@
-class Office::PersonnelsController < ApplicationController
+class Office::PersonnelsController < OfficeController
   before_action :set_personnel, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /personnels.html.erb

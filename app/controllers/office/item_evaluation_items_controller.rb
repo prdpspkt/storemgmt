@@ -1,4 +1,4 @@
-class Office::ItemEvaluationItemsController < ProjectController
+class Office::ItemEvaluationItemsController < OfficeController
   before_action :set_evaluation_item, only: [:edit, :update]
 
   def edit

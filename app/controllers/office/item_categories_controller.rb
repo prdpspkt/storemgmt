@@ -1,4 +1,4 @@
-class Office::ItemCategoriesController < ApplicationController
+class Office::ItemCategoriesController < OfficeController
   before_action :set_item_category, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /item_categories

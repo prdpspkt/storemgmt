@@ -1,4 +1,4 @@
-class Office::ItemEvaluationsController < ApplicationController
+class Office::ItemEvaluationsController < OfficeController
   before_action :set_office_item_evaluation, only: [:show, :update, :print, :print_pdf]
   load_and_authorize_resource except: [:create, :new]
 

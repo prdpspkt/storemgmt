@@ -1,0 +1,29 @@
+<h1>Users</h1>
+<table class="table table-bordered data-table">
+  <thead>
+  <tr>
+    <td>S.N.</td>
+    <td>User ID</td>
+    <td>User Email</td>
+    <td>Office ID</td>
+    <td>Office Name</td>
+    <td>Account Status</td>
+    <td></td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sn = 1 %>
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= @sn %></td>
+      <td><%= user.id %></td>
+      <td><%= user.email %></td>
+      <td><%= user.office.id %></td>
+      <td><%= user.office.office %>, <%= user.office.address %></td>
+      <td><% %></td>
+      <td></td>
+    </tr>
+    <% @sn = @sn + 1 %>
+  <% end %>
+  </tbody>
+</table>

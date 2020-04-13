@@ -1,4 +1,4 @@
-class Office::DemandsController < ApplicationController
+class Office::DemandsController < OfficeController
   before_action :set_demand, only: [:show, :edit, :update, :destroy, :accept, :release, :print]
   load_and_authorize_resource except: [:create, :new]
   # GET /demands

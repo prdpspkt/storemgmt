@@ -1,4 +1,4 @@
-class Office::StocksController < ApplicationController
+class Office::StocksController < OfficeController
   before_action :set_office_stock, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_office_information, only: [:show]
   load_and_authorize_resource except: [:create, :new]

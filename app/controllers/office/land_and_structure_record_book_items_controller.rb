@@ -1,4 +1,4 @@
-class Office::LandAndStructureRecordBookItemsController < ApplicationController
+class Office::LandAndStructureRecordBookItemsController < OfficeController
   before_action :set_land_and_structure_record_book_item, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /land_and_structure_record_book_items

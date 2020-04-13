@@ -1,4 +1,4 @@
-class Office::StoreBodiesController < ApplicationController
+class Office::StoreBodiesController < OfficeController
   before_action :set_store_body, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /store_bodies

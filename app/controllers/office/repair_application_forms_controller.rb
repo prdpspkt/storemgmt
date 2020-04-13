@@ -1,4 +1,4 @@
-class Office::RepairApplicationFormsController < ApplicationController
+class Office::RepairApplicationFormsController < OfficeController
   before_action :set_repair_application_form, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_office_for_printing, only: [:print]
   load_and_authorize_resource except: [:create, :new]

@@ -19,7 +19,7 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <% if user_signed_in? %>
+  <% if user_signed_in? && current_user.is_admin == false %>
     <div class="collapse navbar-collapse" id="navbarsExample09">
       <ul class="navbar-nav mr-auto">
         
@@ -101,7 +101,8 @@
           </div>
         </li>
       </ul>
-
+<% end %>
+    <% if user_signed_in? %>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
@@ -111,8 +112,8 @@
           </div>
         </li>
       </ul>
+    <% end %>
     </div>
-  <% end %>
   </div>
 </nav>
 <div class="container" style="margin-top: 20px">

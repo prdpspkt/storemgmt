@@ -1,4 +1,4 @@
-class Office::HandoverFormsController < ApplicationController
+class Office::HandoverFormsController < OfficeController
   before_action :set_handover_form, only: [:show, :edit, :update, :destroy, :accept, :transaction, :print]
   before_action :set_print_information, only: :print
   load_and_authorize_resource except: [:create, :new]

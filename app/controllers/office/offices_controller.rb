@@ -1,4 +1,4 @@
-class Office::OfficesController < ApplicationController
+class Office::OfficesController < OfficeController
   before_action :authenticate_user!
   before_action :set_office, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new, :index]

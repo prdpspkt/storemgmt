@@ -1,4 +1,4 @@
-class Office::PurchaseEntryItemsController < ApplicationController
+class Office::PurchaseEntryItemsController < OfficeController
   before_action :set_office_purchase_entry_item, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
 

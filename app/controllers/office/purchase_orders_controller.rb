@@ -1,4 +1,4 @@
-class Office::PurchaseOrdersController < ApplicationController
+class Office::PurchaseOrdersController < OfficeController
   before_action :set_purchase_order, only: [:show, :edit, :update, :destroy, :accept, :entry, :print]
   before_action :set_office_information
   load_and_authorize_resource except: [:create, :new]

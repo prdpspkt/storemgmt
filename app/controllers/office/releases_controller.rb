@@ -1,4 +1,4 @@
-class Office::ReleasesController < ApplicationController
+class Office::ReleasesController < OfficeController
   before_action :set_office_release, only: [:transaction, :print, :accept, :show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_releases

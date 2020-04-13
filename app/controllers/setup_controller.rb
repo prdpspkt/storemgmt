@@ -1,4 +1,5 @@
 class SetupController < ApplicationController
+  before_action :check_user
   def start
     @action_url = "/"
     if current_user.setup.blank? == false
@@ -72,5 +73,12 @@ class SetupController < ApplicationController
   @setup.save
   @action_url = office_dashboard_url
  end
+
+
+  def check_user
+    if current_user.is_admin = true
+        redirect_to admin_dashboard_url and return
+    end
+  end
 
 end

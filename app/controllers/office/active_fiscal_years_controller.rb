@@ -1,4 +1,4 @@
-class Office::ActiveFiscalYearsController < ApplicationController
+class Office::ActiveFiscalYearsController < OfficeController
   load_and_authorize_resource except: [:create, :new]
   before_action :set_active_fiscal_year, only: [:update]
   def new
