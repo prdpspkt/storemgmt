@@ -1,4 +1,4 @@
-class GenerateOfficeItemEvaluationForm
+class OfficeEvaluationGenerator
   include Sidekiq::Worker
   sidekiq_options retry: false
 
@@ -16,13 +16,14 @@ class GenerateOfficeItemEvaluationForm
     item_evaluation.office_id = data["office_id"]
     item_evaluation.user_id = data["user_id"]
     item_evaluation.fiscal_year_id = data["fiscal_year_id"]
+    item_evaluation.file = 'false'
     if item_evaluation.save!
       generate_evaluation_items item_evaluation
     end
   end
 
   def generate_evaluation_items item_evaluation
-    office_items = Office::Item.where(office_id: item_evaluation.office_id).where(item_classification_no: 47).order("item_register_page_no ASC")
+    office_items = Office::Item.where(office_id: item_evaluation.office_id).where(item_classification_no: 47).order("id ASC")
     office_items.each do |item|
       transactions = item.item_transactions.where("sku > 0").where(transaction_type: 1)
       if transactions.count > 0

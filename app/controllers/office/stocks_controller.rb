@@ -20,7 +20,7 @@ class Office::StocksController < ApplicationController
         store_body_id: current_control_body.id,
         user_id: current_user.id
     }
-    GenerateOfficeStock.perform_async(data)
+   OfficeStockGenerator.perform_async(data)
     redirect_to office_stocks_url, notice: "We are generating stock report in background please refresh page after few minutes. Thanks"
   end
 
@@ -33,7 +33,8 @@ class Office::StocksController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-         render pdf: "office_yearly_stock", layout: "pdf_print", margin: {left: "20mm"}
+        data = File.open(@office_stock.file, 'rb') {|io| io.read}
+        send_data(data, type: 'application/pdf', disposition: :inline)
       end
       end
   end

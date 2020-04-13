@@ -1,5 +1,5 @@
 class Office::ItemEvaluationsController < ApplicationController
-  before_action :set_office_item_evaluation, only: [:show, :update, :print]
+  before_action :set_office_item_evaluation, only: [:show, :update, :print, :print_pdf]
   load_and_authorize_resource except: [:create, :new]
 
   def index
@@ -35,17 +35,18 @@ class Office::ItemEvaluationsController < ApplicationController
   def print
     @item_evaluation_items = Office::ItemEvaluationItem.where(item_evaluation_id: @item_evaluation.id)
                                  .order("item_id ASC")
-    @office = @item_evaluation.office
-    @fiscal_year = @item_evaluation.fiscal_year
-    @form_no = 411
-    @old_form_no = 49
-    @report_name = "जिन्सी निरीक्षण प्रतिवेदन फाराम"
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "item_evaluation", layout: "pdf_print", orientation: "landscape", margin: {left: "25mm"}
+          data = File.open(@item_evaluation.file, 'rb') { |io| io.read }
+          send_data(data, type: 'application/pdf', disposition: :inline)
       end
     end
+  end
+
+  def print_pdf
+      OfficeEvaluationReportGenerator.perform_async(@item_evaluation.id)
+      redirect_to @item_evaluation, notice:  "Generating printable pdf file in background please come back later."
   end
 
   private
@@ -59,5 +60,6 @@ class Office::ItemEvaluationsController < ApplicationController
   def item_evaluation_params
     params.require(:office_item_evaluation).permit(:name, :item_evaluation_committee_id)
   end
+
 
 end

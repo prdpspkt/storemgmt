@@ -1,4 +1,4 @@
-class GenerateOfficeStock
+class OfficeStockGenerator
   include Sidekiq::Worker
   sidekiq_options retry: false
 
@@ -17,6 +17,7 @@ class GenerateOfficeStock
     office_stock.file = false
     if office_stock.save!
       generate_stock_items office_stock
+      generate_and_save_pdf office_stock
     end
 
   end
@@ -48,4 +49,27 @@ class GenerateOfficeStock
       stock_item.save!
     end
   end
+
+  def generate_and_save_pdf stock
+    data = {
+        office: stock.office,
+        fiscal_year: stock.fiscal_year,
+        report_name: "बार्षिक मौज्दात विवरण",
+        form_no: 413,
+        old_form_no: 57,
+        office_stock: stock
+    }
+    generator = PdfGenerator.new('office/stocks/print.pdf', data, "portrait")
+    pdf = generator.generate
+    dir = Rails.root.join("pdfs", "#{stock.office.id}", "#{stock.fiscal_year.id}")
+    if File.directory?(dir) == false
+      FileUtils.mkdir_p dir
+    end
+    pdf_path = Rails.root.join("pdfs", "#{stock.office.id}", "#{stock.fiscal_year.id}", "office_stock_report.pdf")
+    File.open(pdf_path, 'wb') do |file|
+      file << pdf
+    end
+    stock.file = pdf_path
+    stock.save
   end
+end

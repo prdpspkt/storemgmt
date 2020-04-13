@@ -1,5 +1,5 @@
 class Project::ItemEvaluationsController < ProjectController
-  before_action :set_project_item_evaluation, only: [:show, :update, :print]
+  before_action :set_project_item_evaluation, only: [:show, :update, :print, :print_pdf]
   load_and_authorize_resource except: [:create, :new]
 
   def index
@@ -28,8 +28,13 @@ class Project::ItemEvaluationsController < ProjectController
         user_id: current_user.id,
         fiscal_year_id: current_fiscal_year.id
     }
-    GenerateProjectItemEvaluationForm.perform_async(data)
+   ProjectEvaluationGenerator.perform_async(data)
     redirect_to project_item_evaluations_url, notice: "जिन्सी निरीक्षण कार्य हुँदै छ, कृपया केहि समय पछि यो पेज रिफ्रेस गर्नु होस्, धन्यवाद |"
+  end
+
+  def print_pdf
+    ProjectEvaluationReportGenerator.perform_async(@item_evaluation.id)
+    redirect_to @item_evaluation, notice: "We are printing pdf in background please refresh and try print after few minutes."
   end
 
   def print
@@ -43,7 +48,8 @@ class Project::ItemEvaluationsController < ProjectController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'ItemEvaluation', layout: 'pdf_print', orientation: 'landscape'
+        data = File.open(@item_evaluation.file, 'rb') {|io| io.read}
+        send_data(data, type: 'application/pdf', disposition: :inline)
       end
     end
   end

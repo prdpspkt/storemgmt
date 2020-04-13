@@ -1,4 +1,4 @@
-class GenerateProjectItemEvaluationForm
+class ProjectEvaluationGenerator
   include Sidekiq::Worker
   sidekiq_options retry: false
   def perform(data)

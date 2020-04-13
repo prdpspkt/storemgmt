@@ -85,6 +85,7 @@ Rails.application.routes.draw do
       member do
         get "print"
         post "accept"
+        post "print_pdf"
       end
     end
     resources :item_disposal_items
@@ -215,6 +216,7 @@ Rails.application.routes.draw do
       member do
         get "print"
         post "accept"
+        post "print_pdf"
       end
     end
 

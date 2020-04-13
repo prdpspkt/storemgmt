@@ -1,13 +1,20 @@
 <div class="row">
+  <div class="col-md-6"><h1>जिन्सी निरीक्षण प्रतिवेदन फाराम</h1></div>
+  <div class="col-md-6 text-right">
+    <a class="btn btn-success no-print" href="<%= print_pdf_project_item_evaluation_url(@item_evaluation) %>" data-method="post" ><i class="fa fa-life-ring"></i>
+      Generate Pdf </a>
+    <a class="btn btn-primary  no-print" href="<%= print_project_item_evaluation_url(@item_evaluation, format: :pdf) %>" target="_blank"><i class="fa fa-print"></i>
+      Print </a>
+  </div>
+</div>
+<div class="row">
   <div class="col-12">
-    <h1>जिन्सी निरीक्षण प्रतिवेदन फाराम</h1>
-    <a class="btn btn-primary float-right no-print" href="<%= print_project_item_evaluation_url(@item_evaluation, format: :pdf) %>" target="_blank"><i class="fa fa-print"></i> Print </a>
     <table class="table table-sm table-bordered">
       <thead>
       <tr>
-        <th >क्र.स.</th>
-        <th >खाता पाना नं</th>
-        <th >जिन्सी वर्गीकरण नं</th>
+        <th>क्र.स.</th>
+        <th>खाता पाना नं</th>
+        <th>जिन्सी वर्गीकरण नं</th>
         <th class="bibaran" width="300px">विवरण</th>
         <th>परिमाण</th>
         <th>इकाई</th>
@@ -29,12 +36,12 @@
       <% @sn = 1 %>
       <% @project_id = 0 %>
       <% @item_evaluation_items.each do |item| %>
-      <% if @project_id != item.project_id %>
-        <tr class="bg-dark text-white">
-          <td colspan="3"> आयोजनाको नाम: </td>
-          <td colspan="17"> <%= item.project.name_of_project_ne %></td>
-        </tr>
-      <% end %>
+        <% if @project_id != item.project_id %>
+          <tr class="bg-dark text-white">
+            <td colspan="3"> आयोजनाको नाम:</td>
+            <td colspan="17"> <%= item.project.name_of_project_ne %></td>
+          </tr>
+        <% end %>
         <% @project_id = item.project_id %>
         <tr>
           <td><%= @sn %></td>
@@ -43,19 +50,19 @@
           <td><%= nd item.name_of_item_ne %></td>
           <td><%= nd item.quantity %></td>
           <td><%= nd item.unit_ne %></td>
-          <td id="matched-<%= item.id  %>"><%= nd item.matched %></td>
-          <td id="unmatched-<%= item.id  %>"><%= nd item.unmatched %></td>
-          <td id="dquantity-<%= item.id  %>"><%= nd item.dquantity %></td>
-          <td id="iquantity-<%= item.id  %>"><%= nd item.iquantity %></td>
-          <td id="diquantity-<%= item.id  %>"><%= nd item.diquantity %></td>
-          <td id="working-<%= item.id  %>"><%= nd item.working %></td>
-          <td id="notworking-<%= item.id  %>"><%= nd item.notworking %></td>
-          <td id="to_be_repaired-<%= item.id  %>"><%= nd item.to_be_repaired %></td>
-          <td id="to_be_auctioned-<%= item.id  %>"><%= nd item.to_be_auctioned %></td>
-          <td id="to_be_disposed-<%= item.id  %>"><%= nd item.to_be_disposed %></td>
-          <td id="to_be_conserved-<%= item.id  %>"><%= nd item.to_be_conserved %></td>
+          <td id="matched-<%= item.id %>"><%= nd item.matched %></td>
+          <td id="unmatched-<%= item.id %>"><%= nd item.unmatched %></td>
+          <td id="dquantity-<%= item.id %>"><%= nd item.dquantity %></td>
+          <td id="iquantity-<%= item.id %>"><%= nd item.iquantity %></td>
+          <td id="diquantity-<%= item.id %>"><%= nd item.diquantity %></td>
+          <td id="working-<%= item.id %>"><%= nd item.working %></td>
+          <td id="notworking-<%= item.id %>"><%= nd item.notworking %></td>
+          <td id="to_be_repaired-<%= item.id %>"><%= nd item.to_be_repaired %></td>
+          <td id="to_be_auctioned-<%= item.id %>"><%= nd item.to_be_auctioned %></td>
+          <td id="to_be_disposed-<%= item.id %>"><%= nd item.to_be_disposed %></td>
+          <td id="to_be_conserved-<%= item.id %>"><%= nd item.to_be_conserved %></td>
           <td>
-          <a data-url = "<%= edit_project_item_evaluation_item_url(item) %>" class="btn btn-primary btn-sm oiei_form"><i class="fa fa-pencil text-white"></i></a>
+            <a data-url="<%= edit_project_item_evaluation_item_url(item) %>" class="btn btn-primary btn-sm oiei_form"><i class="fa fa-pencil text-white"></i></a>
           </td>
         </tr>
         <% @sn = @sn + 1 %>
@@ -66,10 +73,10 @@
   </div>
 </div>
 <script type="text/javascript">
-  $(".oiei_form").click(function(e){
-      e.stopPropagation();
-      e.preventDefault();
-     url = $(this).data("url");
-     edwin = window.open(url, "Item Evaluation Item", "scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no, width=700,height=400,left=100,top=100")
-  });
+    $(".oiei_form").click(function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        url = $(this).data("url");
+        edwin = window.open(url, "Item Evaluation Item", "scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no, width=700,height=400,left=100,top=100")
+    });
 </script>

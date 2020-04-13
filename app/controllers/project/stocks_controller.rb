@@ -20,7 +20,7 @@ class Project::StocksController < ProjectController
       format.html
       format.pdf do
         data = File.open(@project_stock.file, 'rb') {|io| io.read}
-        send_data(data, type: 'application/pdf')
+        send_data(data, type: 'application/pdf', disposition: :inline)
       end
     end
   end
@@ -33,7 +33,7 @@ class Project::StocksController < ProjectController
         store_body_id: current_control_body.id,
         fiscal_year_id: current_fiscal_year.id
     }
-    GenerateProjectStock.perform_async(data)
+    ProjectStockGenerator.perform_async(data)
     redirect_to project_stocks_url, notice: "We are generating stock report in background please come back after few Minutes."
   end
 

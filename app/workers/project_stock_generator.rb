@@ -1,4 +1,4 @@
-class GenerateProjectStock
+class ProjectStockGenerator
   include Sidekiq::Worker
   sidekiq_options retry: false
 
@@ -14,6 +14,7 @@ class GenerateProjectStock
     project_stock.fiscal_year_id = data["fiscal_year_id"]
     project_stock.user_id = data["user_id"]
     project_stock.store_body_id = data["store_body_id"]
+    project_stock.file = false
     if project_stock.save!
       generate_stock_items project_stock
       generate_and_save_pdf project_stock
@@ -63,7 +64,7 @@ class GenerateProjectStock
         old_form_no: 57,
         project_stock: stock
     }
-    generator = PdfGenerator.new('project/stocks/show.pdf', data)
+    generator = PdfGenerator.new('project/stocks/show.pdf', data, "portrait")
     pdf = generator.generate
     dir = Rails.root.join("pdfs", "#{stock.office.id}", "#{stock.fiscal_year.id}")
     if File.directory?(dir) == false
