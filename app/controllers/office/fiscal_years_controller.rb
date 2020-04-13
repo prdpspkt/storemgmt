@@ -24,19 +24,15 @@ class Office::FiscalYearsController < ApplicationController
     @fiscal_year.office_id = current_office.id
     @fiscal_year.status = false
     respond_to do |format|
-      if @fiscal_year.save
-        if current_office.fiscal_years.count == 1
-          @active_fiscal_year = Office::ActiveFiscalYear.new
-          @active_fiscal_year.fy = @fiscal_year.fy
-          @active_fiscal_year.fiscal_year_id = @fiscal_year.id
-          @active_fiscal_year.office_id = @fiscal_year.office_id
-          @active_fiscal_year.save
-        end
-        if @fiscal_year.office.fiscal_years.count > 1
+      if @fiscal_year.save!
+        setup = current_user.setup
+        setup.fiscal_year = true
+        setup.save
+        if current_user.setup.complete
           format.html { redirect_to office_fiscal_years_path, notice: 'Fiscal year was successfully created.' }
           format.json { render :show, status: :created, location: @fiscal_year }
         else
-          format.html { redirect_to new_office_store_body_path, notice: 'Fiscal year was successfully created.' }
+          format.html { redirect_to root_path, notice: 'Fiscal year was successfully created.' }
           format.json { render :show, status: :created, location: @fiscal_year }
         end
       else

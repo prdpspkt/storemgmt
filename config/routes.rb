@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  devise_for :users, path: "users", controllers: {
+      registrations: 'users/registrations',
+      sessions: 'users/sessions',
+      passwords: 'users/passwords',
+      confirmations: 'users/confirmations',
+      unlocks: "users/unlocks",
+      omniatuh_callbacks: "users/omniauth_callbacks"
+  }
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   Sidekiq::Web.set :sessions, false
@@ -6,13 +14,8 @@ Rails.application.routes.draw do
   root "setup#start"
   get "project/dashboard" => "project/dashboard#index", as: :project_dashboard
   get "office/dashboard" => "office/dashboard#index", as: :office_dashboard
-  devise_for :users, controllers: {
-      registrations: 'users/registrations',
-      sessions: 'users/sessions'
-  }
-  resources :users
 
-  namespace :office do
+ namespace :office do
     resources :vendors, :except => ['show'] do
       collection do
         post "print"

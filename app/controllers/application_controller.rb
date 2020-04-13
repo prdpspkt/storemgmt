@@ -17,38 +17,16 @@ class ApplicationController < ActionController::Base
   private
 
   def current_office
-    office = Office::Office.new
-    if has_office? current_user
-    office = current_user.office
-    else
-      redirect_to new_office_office_path and return
-    end
-    office
+    current_user.office
   end
 
 
   def current_fiscal_year
-    fiscal_year = Office::FiscalYear.new
-    if has_fiscal_year? current_office
-      if has_active_fiscal_year? current_office
-        fiscal_year = current_office.fiscal_year.find(office.active_fiscal_year)
-      else
-        redirect_to new_office_active_fiscal_year_path and return
-      end
-    else
-      redirect_to new_office_fiscal_year_path and return
-    end
-    fiscal_year
+    Office::FiscalYear.find(current_office.active_fiscal_year.fiscal_year_id)
   end
 
   def current_control_body
-    store_body = Office::StoreBody.new
-    if has_store_body? current_office
-        store_body = current_office.store_bodies.last
-    else
-      redirect_to new_office_store_body_path and return
-    end
-    store_body
+   current_office.store_bodies.last
   end
 
 

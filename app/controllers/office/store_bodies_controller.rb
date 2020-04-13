@@ -33,12 +33,17 @@ class Office::StoreBodiesController < ApplicationController
     @store_body = Office::StoreBody.new(store_body_params)
     @store_body = set_current_information(@store_body)
     respond_to do |format|
-      if @store_body.save
-        format.html { redirect_to new_office_active_fiscal_year_path, notice: 'Store body was successfully created.' }
-        format.json { render :show, status: :created, location: @store_body }
+      if @store_body.save!
+        setup = current_user.setup
+        setup.store_body = true
+        setup.save
+        if setup.complete == false
+          format.html { redirect_to '/', notice: 'Store body was successfully created.' }
+        else
+          format.html {redirect_to office_store_bodies_url, notice: 'Store body was successfully created.'}
+        end
       else
         format.html { render :new }
-        format.json { render json: @store_body.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,13 +73,14 @@ class Office::StoreBodiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_store_body
-      @store_body = Office::StoreBody.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def store_body_params
-      params.require(:office_store_body).permit(:office_chief_name, :office_chief_designation, :section_chief_name, :section_chief_designation, :store_keeper_designation, :store_keeper_name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_store_body
+    @store_body = Office::StoreBody.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def store_body_params
+    params.require(:office_store_body).permit(:office_chief_name, :office_chief_designation, :section_chief_name, :section_chief_designation, :store_keeper_designation, :store_keeper_name)
+  end
 end
