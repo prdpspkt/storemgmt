@@ -1,4 +1,7 @@
 class Office::Item < ApplicationRecord
+
+  self.per_page = 30
+
   has_many :item_transactions, class_name: "Office::ItemTransaction"
   has_many :purchase_entry_items, :class_name => 'Office::PurchaseEntryItem'
   has_many :release_items, class_name: "Office::ReleaseItem"

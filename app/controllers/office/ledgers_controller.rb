@@ -2,7 +2,7 @@ class Office::LedgersController < OfficeController
   before_action :set_office_information
 
   def expense_item_register
-    @items = office(Office::Item).where(item_classification_no: 52)
+    @items = office(Office::Item).where(item_classification_no: 52).paginate(page: params[:page])
     @office = current_office
     @fiscal_year = current_fiscal_year
     @report_name = "खर्च भएर जाने जिन्सी सामानको खाता"
@@ -32,7 +32,7 @@ class Office::LedgersController < OfficeController
   end
 
   def non_expense_item_register
-    @items = office(Office::Item).where(item_classification_no: 47)
+    @items = office(Office::Item).where(item_classification_no: 47).paginate(page: params[:page])
     @office = current_office
     @fiscal_year = current_fiscal_year
     @report_name = "खर्च भएर नजाने (खप्ने) जिन्सी सामानको खाता"
