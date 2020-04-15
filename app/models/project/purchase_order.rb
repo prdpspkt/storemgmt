@@ -4,5 +4,7 @@ class Project::PurchaseOrder < ApplicationRecord
   belongs_to :vendor, class_name: "Office::Vendor"
   belongs_to :store_body, class_name: "Office::StoreBody"
   belongs_to  :office, class_name:  "Office::Office"
+  belongs_to :user
   belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'
+
 end

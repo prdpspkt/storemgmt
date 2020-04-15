@@ -1,4 +1,6 @@
 class Project::ReleaseItem < ApplicationRecord
+  belongs_to :office, class_name: "Office::Office"
+  belongs_to :user
   belongs_to :release, class_name: "Project::Release"
   belongs_to :project_item, class_name: "Project::ProjectItem"
   belongs_to :item, class_name: "Project::Item"

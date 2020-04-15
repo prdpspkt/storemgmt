@@ -1,5 +1,6 @@
 class Project::ProjectPurchaseEntry < ApplicationRecord
   belongs_to :office, class_name: "Office::Office"
+  belongs_to :user
   belongs_to :project, class_name: "Project::Project"
   belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'
   belongs_to :store_body, :class_name => 'Office::StoreBody'

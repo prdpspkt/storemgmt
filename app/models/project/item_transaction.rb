@@ -3,6 +3,7 @@ class Project::ItemTransaction < ApplicationRecord
   belongs_to :purchase_entry_item, class_name: "Project::PurchaseEntryItem", optional: true
   belongs_to :release_item, class_name: "Project::ReleaseItem", optional: true
   belongs_to :office, class_name: "Office::Office"
+  belongs_to :user
 
   before_destroy :check_if_items_are_released
 
