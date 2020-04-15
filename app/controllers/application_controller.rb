@@ -3,12 +3,14 @@ include ApplicationHelper
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
 
-  protect_from_forgery
 
-  rescue_from Exception do |exception|
-   flash[:error] = "#{exception_message exception}"
-   logger.debug("#{exception.class.to_s}: #{exception.message}")
-   redirect_to request.referrer || root_path
+  protect_from_forgery
+  if Rails.env == "production"
+    rescue_from Exception do |exception|
+      flash[:error] = "#{exception_message exception}"
+      logger.debug("#{exception.class.to_s}: #{exception.message}")
+      redirect_to request.referrer || root_path
+    end
   end
 
 
@@ -20,36 +22,14 @@ class ApplicationController < ActionController::Base
 
 
   def current_fiscal_year
-    cfy = false
-    if user_signed_in?
-      cfy = Office::FiscalYear.find(current_office.active_fiscal_year.fiscal_year_id)
-    end
-    cfy
+    Office::FiscalYear.find(current_office.active_fiscal_year.fiscal_year_id)
   end
 
   def current_control_body
-    store_body = Office::StoreBody.new
-    if current_fiscal_year.store_bodies.empty?
-      redirect_to new_office_store_body_path
-    else
-      store_body = current_fiscal_year.store_bodies.last
-    end
-    store_body
+   current_office.store_bodies.last
   end
-  def after_sign_in_path_for(resource_or_scope)
-    #check if office has been created for user
-    url = '/'
-    if resource_or_scope.office.blank?
-      url = new_office_office_path
-    end
-    #check if office has fiscal year
-    if resource_or_scope.office.blank? == false
-      if current_office.fiscal_years.blank?
-        url = new_office_fiscal_year_path
-      end
-    end
-    url
-  end
+
+
 
   def set_current_information object
     object.office_id = current_office.id
@@ -57,6 +37,7 @@ class ApplicationController < ActionController::Base
     object.user_id = current_user.id
     object
   end
+
 
   def exception_message exception
     {
@@ -69,6 +50,38 @@ class ApplicationController < ActionController::Base
         "ActionController::RoutingError" => "४०४ एररोर: पेज भेटिएन"
     }[exception.class.to_s]
 
+  end
+
+
+
+  def has_office? user
+    if user.office.blank? == false
+      true
+    else
+      false
+    end
+  end
+
+  def has_fiscal_year? office
+    if office.fiscal_years.count > 0
+      true
+    end
+  end
+
+  def has_active_fiscal_year? office
+    if office.active_fiscal_year.blank? == false
+      true
+    else
+      false
+    end
+  end
+
+  def has_store_body? office
+    if current_fiscal_year.store_bodies.count > 0
+      true
+    else
+      false
+    end
   end
 
 end

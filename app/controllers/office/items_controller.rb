@@ -1,4 +1,4 @@
-class Office::ItemsController < ApplicationController
+class Office::ItemsController < OfficeController
   before_action :set_office_item, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_items

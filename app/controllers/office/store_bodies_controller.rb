@@ -1,10 +1,15 @@
-class Office::StoreBodiesController < ApplicationController
+class Office::StoreBodiesController < OfficeController
   before_action :set_store_body, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /store_bodies
   # GET /store_bodies.json
   def index
-    @store_body = office(Office::StoreBody).last
+    @store_body = office(Office::StoreBody)
+    if @store_body.count > 0
+      @store_body = @store_body.last
+    else
+      redirect_to new_office_store_body_path
+    end
   end
 
   # GET /store_bodies/1
@@ -28,12 +33,17 @@ class Office::StoreBodiesController < ApplicationController
     @store_body = Office::StoreBody.new(store_body_params)
     @store_body = set_current_information(@store_body)
     respond_to do |format|
-      if @store_body.save
-        format.html { redirect_to new_office_active_fiscal_year_path, notice: 'Store body was successfully created.' }
-        format.json { render :show, status: :created, location: @store_body }
+      if @store_body.save!
+        setup = current_user.setup
+        setup.store_body = true
+        setup.save
+        if setup.complete == false
+          format.html { redirect_to '/', notice: 'Store body was successfully created.' }
+        else
+          format.html {redirect_to office_store_bodies_url, notice: 'Store body was successfully created.'}
+        end
       else
         format.html { render :new }
-        format.json { render json: @store_body.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -43,7 +53,7 @@ class Office::StoreBodiesController < ApplicationController
   def update
     respond_to do |format|
       if @store_body.update(store_body_params)
-        format.html { redirect_to @store_body, notice: 'Store body was successfully updated.' }
+        format.html { redirect_to office_store_bodies_path, notice: 'Store body was successfully updated.' }
         format.json { render :show, status: :ok, location: @store_body }
       else
         format.html { render :edit }
@@ -57,19 +67,20 @@ class Office::StoreBodiesController < ApplicationController
   def destroy
     @store_body.destroy
     respond_to do |format|
-      format.html { redirect_to store_bodies_url, notice: 'Store body was successfully destroyed.' }
+      format.html { redirect_to office_store_bodies_url, notice: 'Store body was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_store_body
-      @store_body = Office::StoreBody.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def store_body_params
-      params.require(:office_store_body).permit(:office_chief_name, :office_chief_degination, :section_chief_name, :section_chief_degination, :store_keeper_designation, :store_keeper_name, :status, :office_id, :fiscal_year_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_store_body
+    @store_body = Office::StoreBody.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def store_body_params
+    params.require(:office_store_body).permit(:office_chief_name, :office_chief_designation, :section_chief_name, :section_chief_designation, :store_keeper_designation, :store_keeper_name)
+  end
 end

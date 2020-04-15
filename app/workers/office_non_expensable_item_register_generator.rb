@@ -1,0 +1,37 @@
+class OfficeNonExpensableItemRegisterGenerator
+  include Sidekiq::Worker
+  sidekiq_options retry: false
+
+  def perform office_id, fiscal_year_id, store_body_id
+      items = Office::Item.where(office_id: office_id).where(item_classification_no: 47)
+    office = Office::Office.find(office_id)
+    fiscal_year = Office::FiscalYear.find(fiscal_year_id)
+      cb = Office::StoreBody.find(store_body_id)
+    generate_and_save_pdf office, fiscal_year, items, cb
+  end
+
+  private
+
+
+  def generate_and_save_pdf office, fiscal_year, items, cb
+    data = {
+        office: office,
+        fiscal_year: fiscal_year,
+        report_name: "खर्च भएर नजाने(खप्ने) जिन्सी खाता",
+        form_no: 408,
+        old_form_no: 47,
+        items: items,
+        cb: cb
+    }
+    generator = PdfGenerator.new('office/ledgers/non_expense_item_register.pdf', data, "landscape")
+    pdf = generator.generate
+    dir = Rails.root.join("pdfs", "#{office.id}", "#{fiscal_year.id}")
+    if File.directory?(dir) == false
+      FileUtils.mkdir_p dir
+    end
+    pdf_path = Rails.root.join("pdfs", "#{office.id}", "#{fiscal_year.id}", "office-non-expensable-item-register.pdf")
+    File.open(pdf_path, 'wb') do |file|
+      file << pdf
+    end
+  end
+end

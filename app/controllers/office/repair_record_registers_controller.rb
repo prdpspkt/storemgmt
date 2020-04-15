@@ -1,4 +1,4 @@
-class Office::RepairRecordRegistersController < ApplicationController
+class Office::RepairRecordRegistersController < OfficeController
   before_action :set_repair_record_register, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_office_information, only: [:print]
   load_and_authorize_resource except: [:create, :new]

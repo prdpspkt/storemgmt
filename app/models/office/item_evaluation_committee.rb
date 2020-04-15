@@ -3,4 +3,5 @@ class Office::ItemEvaluationCommittee < ApplicationRecord
   belongs_to :user, class_name: "User"
   belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'
   has_many :item_evaluation_committee_members, :class_name => 'Office::ItemEvaluationCommitteeMember'
+  belongs_to :user
 end

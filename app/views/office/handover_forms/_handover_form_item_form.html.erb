@@ -12,16 +12,16 @@
   <% end %>
   <%= form.hidden_field :handover_form_id, value: @handover_form.id %>
   <div class="row">
-    <div class="col-4">
+    <div class="col-md-4 col-sm-12">
       <%= form.label :name_of_item_ne %>
-      <%= form.select(:transaction_id, @transactions.collect.map{|transaction| ["#{transaction.item.name_of_item_en} ( SKU: #{transaction.sku} MOD: #{transaction.model} IDN: #{transaction.item_identification_no})", transaction.id] },{include_blank: true}, {class: "form-control"}) %>
+      <%= form.select(:transaction_id, @transactions.collect.map{|transaction| ["#{transaction.item.name_of_item_en} ( SKU: #{transaction.sku} MOD: #{transaction.model} IDN: #{transaction.item_identification_no})", transaction.id] },{include_blank: true}, {class: "form-control select2"}) %>
     </div>
-    <div class="col-4">
+    <div class="col-md-4 col-6">
       <%= form.label :quantity %>
       <%= form.text_field :quantity, class: "form-control" %>
     </div>
 
-    <div class="col-4">
+    <div class="col-md-4 col-6">
       <%= form.label :physical_status %>
       <%= form.text_field :physical_status, class: "form-control" %>
     </div>

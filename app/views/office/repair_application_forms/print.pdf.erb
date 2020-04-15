@@ -153,12 +153,8 @@
     <td colspan="2">दर्जाः <%= @repair_application_form.store_body.office_chief_designation %></td>
   </tr>
   <tr>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td></td>
+    <td colspan="3">मितिः <%= ndate @repair_application_form.section_chief_signed_date %></td>
+    <td colspan="2">मितिः <%= ndate @repair_application_form.technical_person_signed_date %></td>
+    <td colspan="2">मितिः <%= ndate @repair_application_form.office_chief_signed_date %></td>
   </tr>
 </table>

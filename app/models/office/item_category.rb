@@ -1,6 +1,7 @@
 class Office::ItemCategory < ApplicationRecord
   has_many :items, class_name: "Office::Item"
-
+  belongs_to :user
+  belongs_to :office, class_name: "Office::Office"
 
   before_destroy :check_items
 

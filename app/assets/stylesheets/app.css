@@ -1,3 +1,6 @@
+.data-table{
+    width: 100%!important;
+}
 .office_widget{
     border-radius: 10px!important;
     border-color: white!important;
@@ -109,4 +112,26 @@ html, body{
 }
 .form-control{
     height: 40px!important;
+}
+
+
+@media screen and (max-width: 767px) {
+ div.dataTables_length, div.dataTables_filter {
+        text-align: left!important;
+    }
+
+    div.dataTables_wrapper div.dataTables_filter input {
+        width: 200px!important;
+    }
+
+    div.dataTables_wrapper div.dataTables_length select {
+        width: 200px!important;
+    }
+    .imex{
+        margin-bottom: 5px;
+        text-align: right;
+        width: 100%;
+        float: none!important
+
+    }
 }

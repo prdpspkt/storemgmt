@@ -1,4 +1,4 @@
-class Office::RepairApplicationFormsController < ApplicationController
+class Office::RepairApplicationFormsController < OfficeController
   before_action :set_repair_application_form, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_office_for_printing, only: [:print]
   load_and_authorize_resource except: [:create, :new]
@@ -13,6 +13,7 @@ class Office::RepairApplicationFormsController < ApplicationController
   def show
     @repair_application_form_items = @repair_application_form.repair_application_form_items
     @repair_application_form_item =  Office::RepairApplicationFormItem.new
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
   end
 
   # GET /repair_application_forms/new

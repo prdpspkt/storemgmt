@@ -1,4 +1,4 @@
-class Office::ItemAssistanceRegistersController < ApplicationController
+class Office::ItemAssistanceRegistersController < OfficeController
   before_action :set_item_assistance_register, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_office_information, only: [:print]
   load_and_authorize_resource except: [:create, :new]

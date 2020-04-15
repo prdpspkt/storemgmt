@@ -4,28 +4,19 @@
 <table class="table table-wide black-border text-center">
   <thead>
   <tr>
-    <td>क्र.सं.</td>
-    <td class="text-left">सामानको नाम</td>
-    <td>कोड नं</td>
-    <td>स्पेसिफिकेसन</td>
-    <td>निकासा गरिएको</td>
-    <td></td>
-    <td></td>
-    <td>जम्मा रकम</td>
-    <td>जिन्सी खाता पाना नम्बर</td>
-    <td>कैफियत</td>
+    <td rowspan="2">क्र.सं.</td>
+    <td rowspan="2" class="text-left" style="min-width: 175px">सामानको नाम</td>
+    <td rowspan="2">कोड नं</td>
+    <td rowspan="2">स्पेसिफिकेसन</td>
+    <td colspan="3">निकासा गरिएको</td>
+    <td rowspan="2">जम्मा रकम</td>
+    <td rowspan="2">जिन्सी खाता पाना नम्बर</td>
+    <td rowspan="2">कैफियत</td>
   </tr>
   <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td>एकाइ</td>
     <td>परिमाण</td>
     <td>दर</td>
-    <td></td>
-    <td></td>
-    <td></td>
   </tr>
   <tr>
     <td>१</td>
@@ -45,7 +36,7 @@
   <% @office_release_items.each do |item| %>
   <tr>
     <td><%= nd @i %></td>
-    <td><%= item.item.name_of_item_ne %></td>
+    <td class="text-left"><%= item.item.name_of_item_ne %></td>
     <td><%= nd item.item.item_classification_no %></td>
     <td><%= item.item.specification %></td>
     <td><%= item.item.unit_ne %></td>
@@ -55,6 +46,7 @@
     <td><%= nd item.item.item_register_page_no %></td>
     <td><%= item.remarks %></td>
   </tr>
+  <% @i = @i + 1%>
     <% end %>
   </tbody>
 </table>

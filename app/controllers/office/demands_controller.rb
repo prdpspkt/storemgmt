@@ -1,4 +1,4 @@
-class Office::DemandsController < ApplicationController
+class Office::DemandsController < OfficeController
   before_action :set_demand, only: [:show, :edit, :update, :destroy, :accept, :release, :print]
   load_and_authorize_resource except: [:create, :new]
   # GET /demands
@@ -112,7 +112,7 @@ class Office::DemandsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: 'mag_pharam', layout: 'pdf_print', margin: {left: '30mm'}
+        render pdf: 'mag_pharam', layout: 'pdf_print'
       end
     end
   end

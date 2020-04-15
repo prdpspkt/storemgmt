@@ -1,2 +1,0 @@
-json.extract! project_handover_form_item, :id, :item_classification_no, :item_register_page_no, :name_of_item_ne, :name_of_item_en, :specification, :item_identification_no, :model_no, :unit_ne, :unit_en, :quantity, :amount, :received_date, :physical_status, :fy, :fiscal_year_id, :user_id, :office_id, :project_id, :handover_form_id, :item_id, :project_item_id, :project_handover_form_id, :country, :size, :approx_age, :source, :created_at, :updated_at
-json.url project_handover_form_item_url(project_handover_form_item, format: :json)

@@ -8,7 +8,6 @@ class Office::Release < ApplicationRecord
 
 
   before_destroy :restore_demand
-  before_destroy :delete_and_restore_transactions
 
   private
 

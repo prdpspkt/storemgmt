@@ -1,4 +1,4 @@
-<table class="table">
+<table class="table table-wide">
   <tr>
     <td colspan="12">यस कार्यालयको तपसिल अनुसारको मालसामान हस्तान्तरण गरिएको छ ।</td>
   </tr>
@@ -14,7 +14,7 @@
     <td >हस्तान्तरण फारम नं: <%= nd @office_handover_form.form_no %></td>
   </tr>
 </table>
-<table class="table black-border">
+<table class="table black-border table-wide">
   <thead>
   <tr>
     <th>क्र.सं.</th>
@@ -52,7 +52,7 @@
     <td><%= nd @id %></td>
     <td><%= nd item.item.item_classification_no %></td>
     <td><%= nd item.item.item_register_page_no %></td>
-    <td><%= item.item.name_of_item_ne %></td>
+    <td style="min-width: 200px"><%= item.item.name_of_item_ne %></td>
     <td><%= item.specification %></td>
     <td><%= item.item_identification_no %></td>
     <td><%= item.model_no %></td>
@@ -66,7 +66,7 @@
     <% end %>
   </tbody>
 </table>
-<table class="table" >
+<table class="table table-wide" >
   <tr>
     <td>सामान हस्तान्तरण गर्ने कार्यालयले भर्नेः</td>
     <td></td>

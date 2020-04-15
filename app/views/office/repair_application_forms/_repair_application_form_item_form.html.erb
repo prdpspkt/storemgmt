@@ -12,24 +12,24 @@
   <% end %>
   <div class="row">
     <%= form.hidden_field :repair_application_form_id, value: @repair_application_form.id %>
-    <div class="col-3">
+    <div class="col-md-3">
       <%= form.label :name_of_item %>
-      <%= form.select(:item_transaction_id, Office::ItemTransaction.where(item_classification_no: 47).where("sku > 0").collect{ |item| [item.item.name_of_item_en, item.id]}, {include_blank: true},{class: "form-control", required: true}) %>
+      <%= form.select(:item_transaction_id, @transactions.collect{ |item| [item.item.name_of_item_en, item.id]}, {include_blank: true},{class: "form-control select2", required: true}) %>
     </div>
-    <div class="col-2">
+    <div class="col-md-2">
       <%= form.label :approx_repair_cost %>
       <%= form.number_field :approx_repair_cost, class: "form-control", step: "0.01", required: true %>
     </div>
 
-    <div class="col-2">
+    <div class="col-md-2">
       <%= form.label :reason_to_repair %>
       <%= form.text_field :reason_to_repair, class: "form-control", required: true %>
     </div>
-    <div class="col-2">
+    <div class="col-md-2">
       <%= form.label :applicant_sign %>
       <%= form.text_field :applicant_sign, class: "form-control", required: true %>
     </div>
-    <div class="col-2">
+    <div class="col-md-2">
       <%= form.label :remarks %>
       <%= form.text_field :remarks, class: "form-control" %>
     </div>

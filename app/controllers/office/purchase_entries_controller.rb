@@ -1,4 +1,4 @@
-class Office::PurchaseEntriesController < ApplicationController
+class Office::PurchaseEntriesController < OfficeController
   before_action :set_office_entry, only: [:show, :edit, :update, :destroy, :accept, :print, :transaction]
   before_action :set_office_information
   load_and_authorize_resource except: [:create, :new]
@@ -14,6 +14,7 @@ class Office::PurchaseEntriesController < ApplicationController
   def show
     @purchase_entry_item = Office::PurchaseEntryItem.new
     @purchase_entry_items = @purchase_entry.purchase_entry_items
+    @items = office(Office::Item)
 
   end
 

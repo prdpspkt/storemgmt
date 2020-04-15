@@ -1,4 +1,4 @@
-class Office::HandoverFormsController < ApplicationController
+class Office::HandoverFormsController < OfficeController
   before_action :set_handover_form, only: [:show, :edit, :update, :destroy, :accept, :transaction, :print]
   before_action :set_print_information, only: :print
   load_and_authorize_resource except: [:create, :new]
@@ -111,7 +111,7 @@ class Office::HandoverFormsController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf {
-        render pdf: "handover_form", layout: 'pdf_print', orientation: 'landscape', margin: {left: '30mm'}
+        render pdf: "handover_form", layout: 'pdf_print', orientation: 'landscape', margin: {left: '20mm'}
       }
     end
   end

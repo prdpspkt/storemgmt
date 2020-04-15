@@ -1,11 +1,11 @@
-class Office::StocksController < ApplicationController
+class Office::StocksController < OfficeController
   before_action :set_office_stock, only: [:show, :edit, :update, :destroy, :print]
   before_action :set_office_information, only: [:show]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_stocks
   # GET /office_stocks.json
   def index
-    @office_stocks = Office::Stock.all
+    @office_stocks = current(Office::Stock)
   end
 
   # GET /office_stocks/P

@@ -1,4 +1,4 @@
-class Office::OfficesController < ApplicationController
+class Office::OfficesController < OfficeController
   before_action :authenticate_user!
   before_action :set_office, only: [:show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new, :index]
@@ -34,8 +34,11 @@ class Office::OfficesController < ApplicationController
     @office = Office::Office.new(office_params)
     @office.user_id = current_user.id
     respond_to do |format|
-      if @office.save
-        format.html { redirect_to new_office_fiscal_year_path, notice: 'Office was successfully created.' }
+      if @office.save!
+        setup = current_user.setup
+        setup.office = true
+        setup.save
+        format.html { redirect_to root_path, notice: 'Office was successfully created.' }
         format.json { render :show, status: :created, location: @office }
       else
         format.html { render :new }

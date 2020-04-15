@@ -85,7 +85,7 @@ en:
           date_to_receive_goods: "कार्यालयमा मालसामान दाखिला गर्नुपर्ने मिति"
           store_chief_signed_date: "भण्डार प्रमुखको हस्ताक्षर मिति"
           section_chief_signed_date: "शाखा प्रमुखको हस्ताक्षर मिति"
-          office_cheif_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
+          office_chief_signed_date: "कार्यालय प्रमुखको हस्ताक्षर मिति"
         office/purchase_order_item:
           item_classification_no: "जिन्सी वर्गीकरण नं"
           name_of_item: "जिन्सी सामानको नाम"
@@ -227,9 +227,9 @@ en:
           select_fiscal_year: "आर्थिक वर्ष छान्नुहोस्"
         office/store_body:
           office_chief: "कार्यालय प्रमुख"
-          office_chief_degination: "कार्यालय प्रमुखको पद"
+          office_chief_designation: "कार्यालय प्रमुखको पद"
           section_chief: "शाखा प्रमुखको नाम"
-          section_chief_degination: "शाखा प्रमुखको पद"
+          section_chief_designation: "शाखा प्रमुखको पद"
           store_keeper_designation: "स्टोर फाँट प्रमुखको पद"
           store_keeper_name: "स्टोर फाँट प्रमुखको नाम"
         project/purchase_entry:
@@ -289,6 +289,12 @@ en:
           vendor_name: "मर्मत कर्ताको नाम"
           justified_by: "निरीक्षण/प्रमाणित गर्ने"
           remarks: "कैफियत"
+        office/tender:
+          tender_no: "बोलपत्र नं"
+          tender_name: "बोलपत्रको नाम"
+          tender_date: "प्रकाशित मिति"
+          bidders_name: "स्वीकृत बोलपत्रदाता"
+          bidders_address: "बोलपत्र दाताको ठेगाना"
 
 
 

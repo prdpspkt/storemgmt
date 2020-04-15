@@ -1,4 +1,4 @@
-class Office::ReleasesController < ApplicationController
+class Office::ReleasesController < OfficeController
   before_action :set_office_release, only: [:transaction, :print, :accept, :show, :edit, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_releases
@@ -57,8 +57,8 @@ class Office::ReleasesController < ApplicationController
       @office_release.save
       item.item_transaction_id = item_transaction.id
       item.save
-      redirect_to @office_release
     end
+       redirect_to @office_release
   end
 
   def print

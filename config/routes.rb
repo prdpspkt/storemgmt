@@ -1,15 +1,24 @@
 Rails.application.routes.draw do
+
   require 'sidekiq/web'
   mount Sidekiq::Web => '/sidekiq'
   Sidekiq::Web.set :sessions, false
 
-  root "office/dashboard#index"
+  root "setup#start"
   get "project/dashboard" => "project/dashboard#index", as: :project_dashboard
-  devise_for :users, controllers: {
+  get "office/dashboard" => "office/dashboard#index", as: :office_dashboard
+
+  devise_for :users, path: "users", controllers: {
       registrations: 'users/registrations',
-      sessions: 'users/sessions'
+      sessions: 'users/sessions',
+      passwords: 'users/passwords',
+      confirmations: 'users/confirmations',
+      unlocks: "users/unlocks",
+      omniatuh_callbacks: "users/omniauth_callbacks"
   }
-  resources :users
+  namespace :admin do
+    get '/dashboard' => "dashboard#index", as: :dashboard
+  end
 
   namespace :office do
     resources :vendors, :except => ['show'] do
@@ -175,12 +184,14 @@ Rails.application.routes.draw do
       end
     end
     resources :store_bodies
-    resources :active_fiscal_year
+    resources :active_fiscal_years
 
     resources :ledgers do
       collection do
-       get "expense_item_register"
-       get "non_expense_item_register"
+        get "expense_item_register"
+        get "non_expense_item_register"
+        post "print_pdf_expense_item_register"
+        post "print_pdf_non_expense_item_register"
       end
     end
 
@@ -196,7 +207,7 @@ Rails.application.routes.draw do
   #
   # #
   namespace :project do
-    
+
     resources :item_evaluation_items
     resources :stock_items
     resources :stocks do
@@ -247,10 +258,10 @@ Rails.application.routes.draw do
     resources :purchase_order_items
     resources :purchase_orders do
       member do
-      get "print"
-      post "accept"
-      post "entry"
-        end
+        get "print"
+        post "accept"
+        post "entry"
+      end
     end
 
     resources :demand_items

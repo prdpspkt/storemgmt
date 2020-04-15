@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_10_025004) do
+ActiveRecord::Schema.define(version: 2020_04_13_072622) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -377,6 +377,7 @@ ActiveRecord::Schema.define(version: 2020_04_10_025004) do
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
+    t.boolean "working"
   end
 
   create_table "office_property_register_items", force: :cascade do |t|
@@ -1424,6 +1425,17 @@ ActiveRecord::Schema.define(version: 2020_04_10_025004) do
     t.integer "store_body_id"
     t.boolean "entry_generated"
     t.string "file"
+  end
+
+  create_table "setups", force: :cascade do |t|
+    t.boolean "office"
+    t.boolean "fiscal_year"
+    t.boolean "active_fiscal_year"
+    t.boolean "store_body"
+    t.boolean "complete"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
