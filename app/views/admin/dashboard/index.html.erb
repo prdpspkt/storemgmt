@@ -4,6 +4,7 @@
   <tr>
     <td>S.N.</td>
     <td>User ID</td>
+    <td>User Name</td>
     <td>User Email</td>
     <td>Office ID</td>
     <td>Office Name</td>
@@ -17,10 +18,18 @@
     <tr>
       <td><%= @sn %></td>
       <td><%= user.id %></td>
+      <td><%= user.name %></td>
       <td><%= user.email %></td>
-      <td><%= user.office.id %></td>
-      <td><%= user.office.office %>, <%= user.office.address %></td>
-      <td><% %></td>
+      <td>
+        <% if !user.is_admin %>
+          <%= user.office.id %>
+        <% end %></td>
+      <td>
+        <% if !user.is_admin %>
+        <%= user.office.office %>, <%= user.office.address %>
+        <% end %></td>
+      <td>
+        <% %></td>
       <td></td>
     </tr>
     <% @sn = @sn + 1 %>

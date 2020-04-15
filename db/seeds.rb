@@ -31,7 +31,7 @@ puts "Creating user ...."
 @user = User.new
 @user.email = 'wss.tanahun.nawalpur@gmail.com'
 @user.password = '12345678'
-@user.is_admin = true
+@user.is_admin = false
 @user.name = "Ramchandra Pandit"
 @user.office_id = @office.id
 @user.save
@@ -43,6 +43,7 @@ puts "Creating Fiscal Year...."
 @fiscal_year = Office::FiscalYear.new
 @fiscal_year.fy = "०७६/७७"
 @fiscal_year.office_id = @office.id
+@fiscal_year.user_id = @user.id
 @fiscal_year.start_date = '2076-04-01'
 @fiscal_year.closing_date = '2077-03-31'
 @fiscal_year.status = false
