@@ -190,6 +190,8 @@ Rails.application.routes.draw do
       collection do
         get "expense_item_register"
         get "non_expense_item_register"
+        post "print_pdf_expense_item_register"
+        post "print_pdf_non_expense_item_register"
       end
     end
 

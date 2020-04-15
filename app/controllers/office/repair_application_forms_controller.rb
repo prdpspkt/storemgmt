@@ -13,6 +13,7 @@ class Office::RepairApplicationFormsController < OfficeController
   def show
     @repair_application_form_items = @repair_application_form.repair_application_form_items
     @repair_application_form_item =  Office::RepairApplicationFormItem.new
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
   end
 
   # GET /repair_application_forms/new

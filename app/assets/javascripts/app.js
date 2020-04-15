@@ -14,7 +14,7 @@ $(function () {
         $(this).val(convert(text, all_rules['preeti']));
     });
 
-   $('select').select2({
+   $('.select2').select2({
        theme: 'bootstrap'
    });
 

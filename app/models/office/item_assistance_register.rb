@@ -3,4 +3,5 @@ class Office::ItemAssistanceRegister < ApplicationRecord
   belongs_to :personnel, class_name: "Office::Personnel"
   belongs_to :office, :class_name => 'Office::Office'
   # belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'
+   belongs_to :user
 end

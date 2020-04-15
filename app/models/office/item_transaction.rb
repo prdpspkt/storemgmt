@@ -2,6 +2,7 @@ class Office::ItemTransaction < ApplicationRecord
   belongs_to :item, class_name: "Office::Item"
   belongs_to :purchase_entry_item, class_name: "Office::PurchaseEntryItem", optional: true
   belongs_to :release_item, class_name: "Office::ReleaseItem", optional: true
+  belongs_to :user
 
   before_destroy :check_if_items_are_released
 

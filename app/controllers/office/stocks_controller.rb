@@ -5,7 +5,7 @@ class Office::StocksController < OfficeController
   # GET /office_stocks
   # GET /office_stocks.json
   def index
-    @office_stocks = Office::Stock.all
+    @office_stocks = current(Office::Stock)
   end
 
   # GET /office_stocks/P

@@ -1,27 +1,31 @@
-<h1>जिन्सी सामाग्रीको बर्गिकरणहरु</h1>
-<!-- Button trigger modal -->
-<div class="float-right">
-<a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
-  Import
-</a>
-<%= link_to("Export", office_item_categories_url(format: :xlsx), class: "btn btn-success" ) %>
+<div class="row">
+  <div class="col-12">
+    <h1>जिन्सी सामाग्रीको बर्गिकरणहरु</h1>
+    <!-- Button trigger modal -->
+    <div class="float-right imex">
+      <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
+        Import
+      </a>
+      <%= link_to("Export", office_item_categories_url(format: :xlsx), class: "btn btn-success") %>
+    </div>
+    <table class="table data-table table-responsive" id="dttb-item_categories" data-sort="true" data-source="<%= url_for(format: :json) %>">
+      <thead>
+      <tr>
+        <th data-data="id">ID</th>
+        <th data-data="name_ne"><%= t("activerecord.attributes.item_category.name") %></th>
+        <th data-data="name_en"></th>
+        <th data-data="unit_ne"><%= t("activerecord.attributes.item_category.unit") %></th>
+        <th data-data="unit_en"></th>
+        <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+      </tr>
+      </thead>
+
+    </table>
+
+    <br>
+
+    <%= link_to new_btn.html_safe, new_office_item_category_path %>
+
+    <%= render 'office/item_categories/new_import_form' %>
+  </div>
 </div>
-<table class="table data-table" id="dttb-item_categories" data-sort="true" data-source="<%= url_for(format: :json)%>">
-  <thead>
-    <tr>
-      <th data-data="id">ID</th>
-      <th data-data="name_ne"><%= t("activerecord.attributes.item_category.name") %></th>
-      <th data-data="name_en"></th>
-      <th data-data="unit_ne"><%= t("activerecord.attributes.item_category.unit") %></th>
-      <th data-data="unit_en"></th>
-      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
-    </tr>
-  </thead>
-
-</table>
-
-<br>
-
-<%= link_to new_btn.html_safe, new_office_item_category_path %>
-
-<%= render 'office/item_categories/new_import_form' %>

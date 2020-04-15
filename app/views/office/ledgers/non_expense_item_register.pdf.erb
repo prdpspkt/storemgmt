@@ -1,5 +1,9 @@
-<% @items.each do |item| %>
-  <% if item.item_transactions.count > 0 %>
-  <%= render "office/ledgers/non_expense_item_register", item: item %>
-  <% end %>
-<% end %>
+<div class="row">
+  <div class="col-12">
+    <% @items.each do |item| %>
+      <% if item.item_transactions.count > 0 %>
+        <%= render "office/ledgers/non_expense_item_register", item: item %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

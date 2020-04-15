@@ -3,4 +3,5 @@ class Office::Tender < ApplicationRecord
   belongs_to :office, class_name: "Office::Office"
   has_one :purchase_entry, class_name:  "Office::PurchaseEntry"
   belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'
+  belongs_to :user
 end

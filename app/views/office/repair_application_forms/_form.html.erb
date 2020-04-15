@@ -11,58 +11,58 @@
     </div>
   <% end %>
 <div class="row">
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :application_no %>
     <%= form.number_field :application_no, class: "form-control", required: :required, readOnly: :readOnly %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :date %>
     <%= form.text_field :date, class: "form-control date-picker", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :year %>
     <%= form.text_field :year, class: "form-control", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :month %>
     <%= form.text_field :month, class: "form-control", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :vendor_name %>
-    <%= form.select(:vendor_id, Office::Vendor.all.collect { |v| [v.vendor_name, v.id] }, {include_blank: "Select One"}, {class: "form-control", required: :required}) %>
+    <%= form.select(:vendor_id, Office::Vendor.all.collect { |v| [v.vendor_name, v.id] }, {include_blank: "Select One"}, {class: "form-control select2", required: :required}) %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :within_date %>
     <%= form.text_field :within_date, class: "form-control date-picker", required: :required %>
   </div>
 
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :section_chief_signed_date %>
     <%= form.text_field :section_chief_signed_date, class: "form-control date-picker", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :tecnical_person_name %>
     <%= form.text_field :technical_person_name, class: "form-control", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :technical_person_designation %>
     <%= form.text_field :technical_person_designation, class: "form-control", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :technical_person_signed_date %>
     <%= form.text_field :technical_person_signed_date, class: "form-control date-picker", required: :required %>
   </div>
 
-  <div class="col-4">
+  <div class="col-md-4">
     <%= form.label :office_chief_signed_date %>
     <%= form.text_field :office_chief_signed_date, class: "form-control date-picker", required: :required %>
   </div>

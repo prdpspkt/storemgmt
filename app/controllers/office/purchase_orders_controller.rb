@@ -13,6 +13,7 @@ class Office::PurchaseOrdersController < OfficeController
   def show
     @purchase_order_item = Office::PurchaseOrderItem.new
     @purchase_order_items = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
+    @items = office(Office::Item)
   end
 
   # GET /purchase_orders/new

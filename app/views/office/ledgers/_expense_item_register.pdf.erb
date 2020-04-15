@@ -1,165 +1,169 @@
-<table class="table table-wide">
-  <tbody>
-  <tr>
-    <td>जिन्सी सामानको नामः</td>
-    <td><%= item.name_of_item_ne %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>आर्थिक बर्षः</td>
-    <td><%= @fiscal_year.fy %></td>
-  </tr>
-  <tr>
-    <td>एकाइ:</td>
-    <td><%= item.unit_ne %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>जिन्सी सङ्केत नं:</td>
-    <td><%= nd item.item_classification_no %></td>
-  </tr>
-  <tr>
-    <td>स्पेसिफिकेसनः</td>
-    <td><%= item.specification %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>जिन्सी खाता पाना.नं:</td>
-    <td><%= nd item.item_register_page_no %></td>
-  </tr>
-  </tbody>
-</table>
-<table class="table  table-wide black-border">
-  <thead>
-  <tr class="text-center">
-    <td rowspan="2">मितिः</td>
-    <td rowspan="2">दाखिला / निकासा नं</td>
-    <td colspan="3">स्टोर दाखिला (आम्दानी)</td>
-    <td colspan="3">निकासा (खर्च)</td>
-    <td colspan="3">बाँकी</td>
-    <td rowspan="2">कैफियत</td>
-  </tr>
-  <tr class="text-center">
-    <td>परिमाण</td>
-    <td>दर</td>
-    <td>रकम</td>
-    <td>परिमाण</td>
-    <td>दर</td>
-    <td>रकम</td>
-    <td>परिमाण</td>
-    <td>दर</td>
-    <td>रकम</td>
-  </tr>
-  <tr class="text-center">
-    <td>१</td>
-    <td>२</td>
-    <td>३</td>
-    <td>४</td>
-    <td>५</td>
-    <td>६</td>
-    <td>७</td>
-    <td>८</td>
-    <td>९</td>
-    <td>१०</td>
-    <td>११</td>
-    <td>१२</td>
-  </tr>
-  </thead>
-  <tbody>
-  <% @qty = 0 %>
-  <% @amt = 0 %>
-  <% item.item_transactions.each do |oeirt| %>
-    <% if oeirt.transaction_type > 0 %>
-      <% @qty = @qty + oeirt.quantity %>
-      <% @amt = @amt + oeirt.amount %>
+<div class="row">
+  <div class="col-12">
+    <table class="table table-wide">
+      <tbody>
+      <tr>
+        <td>जिन्सी सामानको नामः</td>
+        <td><%= item.name_of_item_ne %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>आर्थिक बर्षः</td>
+        <td><%= @fiscal_year.fy %></td>
+      </tr>
+      <tr>
+        <td>एकाइ:</td>
+        <td><%= item.unit_ne %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>जिन्सी सङ्केत नं:</td>
+        <td><%= nd item.item_classification_no %></td>
+      </tr>
+      <tr>
+        <td>स्पेसिफिकेसनः</td>
+        <td><%= item.specification %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>जिन्सी खाता पाना.नं:</td>
+        <td><%= nd item.item_register_page_no %></td>
+      </tr>
+      </tbody>
+    </table>
+    <table class="table  table-wide black-border">
+      <thead>
       <tr class="text-center">
-        <td><%= ndate oeirt.transaction_date %></td>
-        <td><%= nd oeirt.entry_no %></td>
-        <td><%= nd oeirt.quantity %></td>
-        <td><%= nd oeirt.rate %></td>
-        <td><%= nd oeirt.amount %></td>
+        <td rowspan="2">मितिः</td>
+        <td rowspan="2">दाखिला / निकासा नं</td>
+        <td colspan="3">स्टोर दाखिला (आम्दानी)</td>
+        <td colspan="3">निकासा (खर्च)</td>
+        <td colspan="3">बाँकी</td>
+        <td rowspan="2">कैफियत</td>
+      </tr>
+      <tr class="text-center">
+        <td>परिमाण</td>
+        <td>दर</td>
+        <td>रकम</td>
+        <td>परिमाण</td>
+        <td>दर</td>
+        <td>रकम</td>
+        <td>परिमाण</td>
+        <td>दर</td>
+        <td>रकम</td>
+      </tr>
+      <tr class="text-center">
+        <td>१</td>
+        <td>२</td>
+        <td>३</td>
+        <td>४</td>
+        <td>५</td>
+        <td>६</td>
+        <td>७</td>
+        <td>८</td>
+        <td>९</td>
+        <td>१०</td>
+        <td>११</td>
+        <td>१२</td>
+      </tr>
+      </thead>
+      <tbody>
+      <% @qty = 0 %>
+      <% @amt = 0 %>
+      <% item.item_transactions.each do |oeirt| %>
+        <% if oeirt.transaction_type > 0 %>
+          <% @qty = @qty + oeirt.quantity %>
+          <% @amt = @amt + oeirt.amount %>
+          <tr class="text-center">
+            <td><%= ndate oeirt.transaction_date %></td>
+            <td><%= nd oeirt.entry_no %></td>
+            <td><%= nd oeirt.quantity %></td>
+            <td><%= nd oeirt.rate %></td>
+            <td><%= nd oeirt.amount %></td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;</td>
+            <td>&nbsp;<%= nd @qty %></td>
+            <td>&nbsp;</td>
+            <td><%= nd @amt %></td>
+            <td>&nbsp;</td>
+          </tr>
+        <% end %>
+        <% if oeirt.transaction_type < 0 %>
+          <% @qty = @qty - oeirt.quantity %>
+          <% @amt = @amt - oeirt.amount %>
+          <tr class="text-center">
+            <td><%= ndate oeirt.transaction_date %></td>
+            <td><%= nd oeirt.entry_no %></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><%= nd oeirt.quantity %></td>
+            <td><%= nd oeirt.rate %></td>
+            <td><%= nd oeirt.amount %></td>
+            <td>&nbsp;<%= nd @qty %></td>
+            <td>&nbsp;</td>
+            <td><%= nd @amt %></td>
+            <td>&nbsp;</td>
+          </tr>
+        <% end %>
+      <% end %>
+      </thead>
+      </table>
+    <table class="table table-wide">
+      <tbody>
+      <tr>
+        <td>स्टोर प्रमुखको दस्तखतः</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
         <td>&nbsp;</td>
-        <td>&nbsp;<%= nd @qty %></td>
+        <td>शाखा प्रमुखको दस्तखतः</td>
         <td>&nbsp;</td>
-        <td><%= nd @amt %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>कार्यालय प्रमुखको दस्तखतः</td>
+        <td>&nbsp;</td>
         <td>&nbsp;</td>
       </tr>
-    <% end %>
-    <% if oeirt.transaction_type < 0 %>
-      <% @qty = @qty - oeirt.quantity %>
-      <% @amt = @amt - oeirt.amount %>
-      <tr class="text-center">
-        <td><%= ndate oeirt.transaction_date %></td>
-        <td><%= nd oeirt.entry_no %></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td><%= nd oeirt.quantity %></td>
-        <td><%= nd oeirt.rate %></td>
-        <td><%= nd oeirt.amount %></td>
-        <td>&nbsp;<%= nd @qty %></td>
+      <tr>
+        <td>नामः</td>
+        <td colspan="2"><%= @cb.store_keeper_name %></td>
         <td>&nbsp;</td>
-        <td><%= nd @amt %></td>
+        <td>नामः</td>
+        <td colspan="2"><%= @cb.section_chief_name %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>नामः</td>
+        <td colspan="2"><%= @cb.office_chief_name %></td>
+      </tr>
+      <tr>
+        <td>दर्जाः</td>
+        <td><%= @cb.store_keeper_designation %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>दर्जाः</td>
+        <td><%= @cb.section_chief_designation %></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>दर्जाः</td>
+        <td><%= @cb.office_chief_designation %></td>
         <td>&nbsp;</td>
       </tr>
-    <% end %>
-  <% end %>
-  </thead>
-</table>
-<table class="table table-wide">
-  <tbody>
-  <tr>
-    <td>स्टोर प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>शाखा प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>कार्यालय प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.store_keeper_name %></td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.section_chief_name %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.office_chief_name %></td>
-  </tr>
-  <tr>
-    <td>दर्जाः</td>
-    <td><%= @cb.store_keeper_designation %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td><%= @cb.section_chief_designation %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td><%= @cb.office_chief_designation %></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
+      <tr>
+        <td>मितिः</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>मितिः</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>मितिः</td>
+        <td>&nbsp;</td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
 <div class="page-break"></div>

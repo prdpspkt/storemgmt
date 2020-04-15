@@ -8,6 +8,14 @@
 # #   Character.create(name: 'Luke', movie: movies.first)
 #
 @tr_date = "2076-04-01"
+
+@user = User.new
+@user.email = 'prdpspkt@gmail.com'
+@user.password = '12345678'
+@user.is_admin = true
+@user.name = "Pradeep Sapkota"
+@user.save
+
 puts "Creating office..."
 @office = Office::Office.new
 @office.gov ="प्रदेश सरकार"
@@ -15,19 +23,18 @@ puts "Creating office..."
 @office.department = ""
 @office.office = "खानेपानी तथा सरसफाई डिभिजन कार्यालय"
 @office.address = "तनहुँ गण्डकी प्रदेश"
-@office.user_id = 1
 @office.has_project_access = true
 @office.save
+
 puts "Completed..."
 puts "Creating user ...."
 @user = User.new
-@user.email = 'prdpspkt@gmail.com'
-@user.password = '123456'
+@user.email = 'wss.tanahun.nawalpur@gmail.com'
+@user.password = '12345678'
 @user.is_admin = true
-@user.name = "Pradeep Sapkota"
+@user.name = "Ramchandra Pandit"
 @user.office_id = @office.id
 @user.save
-
 @office.user_id = @user.id
 @office.save
 puts "Completed..."
@@ -96,6 +103,14 @@ puts "Creating control body..."
 
 puts "Completed..."
 
+@setup = Setup.new
+@setup.user_id = @user.id
+@setup.office = true
+@setup.fiscal_year = true
+@setup.active_fiscal_year = true
+@setup.store_body = true
+@setup.complete = true
+@setup.save
 
 puts "Creating Office Item Categories...."
 spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_cats.xlsx")
@@ -184,7 +199,7 @@ spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/projects.xlsx")
 header = spreadsheet.row(1)
 (2..spreadsheet.last_row).map do |i|
   row = Hash[[header, spreadsheet.row(i)].transpose]
-  project = Project::Project.find_by_id(row["id"]) || Project::Project.new
+  project = Project::Project.new
   begin
     project.attributes = row.to_hash
   rescue Exception => error
@@ -194,6 +209,8 @@ header = spreadsheet.row(1)
   project.user_id = @user.id
   if project.valid?
     project.save!
+  else
+   binding.pry
   end
 end
 puts "Completed..."
@@ -280,13 +297,11 @@ puts "Copying last year stock balance..."
 
 
 def get_project_id old_project_id
-  Project::Project.where(office_id: @office.id)
-      .where(user_id: @user.id).where(temp_id: old_project_id).first.id
+  Project::Project.where(office_id: @office.id).where(temp_id: old_project_id).first.id
 end
 
 def get_item_id old_item_id
-  Project::Item.where(office_id: @office.id)
-      .where(user_id: @user.id).where(temp_id: old_item_id).first.id
+  Project::Item.where(office_id: @office.id).where(temp_id: old_item_id).first.id
 end
 
 @project_item_register_page_no = 0
@@ -323,6 +338,7 @@ header = spreadsheet.row(1)
   row = Hash[[header, spreadsheet.row(i)].transpose]
   tr = Project::ProjectItemTransaction.new
   tr.item_id = get_item_id row["old_item_id"]
+  puts row.to_s
   tr.project_id = get_project_id row["old_project_id"]
   tr.project_item_id = create_project_item(tr.project_id, tr.item_id).id
   tr.fiscal_year_id = @fiscal_year.id

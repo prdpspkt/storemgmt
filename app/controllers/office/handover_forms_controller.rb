@@ -111,7 +111,7 @@ class Office::HandoverFormsController < OfficeController
     respond_to do |format|
       format.html
       format.pdf {
-        render pdf: "handover_form", layout: 'pdf_print', orientation: 'landscape', margin: {left: '30mm'}
+        render pdf: "handover_form", layout: 'pdf_print', orientation: 'landscape', margin: {left: '20mm'}
       }
     end
   end

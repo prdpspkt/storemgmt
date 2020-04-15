@@ -25,14 +25,14 @@ module ApplicationHelper
   end
 
   def ledger_entry_btn
-    '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> जिन्सी खातामा प्रविष्ट गर्ने</span>'
+    '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> खातामा प्रविष्ट </span>'
   end
 
   def purchase_entry_btn
-    '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> दाखिला तयार गर्ने </span>'
+    '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> दाखिला गर्ने </span>'
   end
   def release_generate_btn
-    '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> निकासा तयार गर्ने </span>'
+    '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> निकासा गर्ने </span>'
   end
 
   def expense_item_ledger_btn

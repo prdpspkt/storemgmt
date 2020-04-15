@@ -1,9 +1,9 @@
 <h1>सामाग्रीहरू</h1>
-<div class="float-right"><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
+<div class="imex float-right"><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
   Import
 </a>
   <%= link_to "Export", office_items_url(format: :xlsx), class: "btn btn-success" %></div>
-<table class="table data-table" id="dttb-items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<table class="table data-table table-responsive" id="dttb-items" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="item_register_page_no">जिन्सी खाता पाना नं</th>
