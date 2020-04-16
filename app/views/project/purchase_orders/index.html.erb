@@ -1,5 +1,5 @@
 <h1>खरिद आदेशहरू</h1>
-
+<div class="table-responsive">
 <table class="table table-sm table-condensed data-table" id="dttb-purchase_orders" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -12,7 +12,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_project_purchase_order_path %>

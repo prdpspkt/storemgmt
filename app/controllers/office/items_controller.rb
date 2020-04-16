@@ -1,10 +1,19 @@
 class Office::ItemsController < OfficeController
-  before_action :set_office_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_office_item, only: [:show, :edit, :update, :destroy, :expense_register]
   load_and_authorize_resource except: [:create, :new]
   # GET /office_items
   # GET /office_items.json
-  def index
-    @items = office(Office::Item)
+  def expense_index
+    @items = office(Office::Item).where(item_classification_no: 52)
+    respond_to do |format|
+      format.html
+      format.json
+      format.xlsx
+    end
+  end
+
+  def non_expense_index
+    @items = office(Office::Item).where(item_classification_no: 47)
     respond_to do |format|
       format.html
       format.json
@@ -64,14 +73,19 @@ class Office::ItemsController < OfficeController
   # DELETE /office_items/1
   # DELETE /office_items/1.json
   def destroy
+    if @item.item_classification_no == 47
+      url_to_go = non_expense_index_office_items_url
+    else
+      url_to_go = expense_index_office_items_url
+    end
     @item.destroy
     respond_to do |format|
       if Office::Item.exists?(@item.id)
         flash[:error] = @item.errors[:base][0].to_s
-        format.html { redirect_to office_item_categories_url }
+        format.html { redirect_to url_to_go }
         format.json { head :no_content }
       else
-        format.html { redirect_to office_item_categories_url, notice: "Successfully deleted." }
+        format.html { redirect_to url_to_go office_item_categories_url, notice: "Successfully deleted." }
         format.json { head :no_content }
       end
     end
@@ -121,6 +135,17 @@ class Office::ItemsController < OfficeController
     redirect_to office_items_path
   end
 
+
+  def item_register
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+    @cb = current_control_body
+    if @item.item_classification_no == 47
+      render 'non_expense_register' and return
+    else
+      render 'expense_register' and return
+    end
+  end
 
   private
 

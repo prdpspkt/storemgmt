@@ -1,5 +1,6 @@
 <h1>टेन्डर विवरण</h1>
-<table class="table table-responsive table-sm table-bordered">
+<div class="table-responsive">
+<table class="table table-sm table-bordered">
   <tr>
     <th>बोलपत्र सूचना नं</th>
     <th>बोलपत्रको विवरण</th>
@@ -13,6 +14,7 @@
     <td><%= @tender.bidders_address %></td>
   </tr>
 </table>
+</div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_tenders_path %>
   <% if @tender.marked_as_final != true && @tender.entry_generated != true %>
@@ -34,7 +36,8 @@
 <div class="separator"></div>
   <% end %>
 <h2>थप गरिएका सामाग्रीहरू</h2>
-<table class="table table-responsive table-sm table-bordered">
+<div class="table-responsive">
+<table class="table table-sm table-bordered">
   <tr>
     <th>क्र.स.</th>
     <th>सामानको नाम</th>
@@ -62,3 +65,4 @@
     <% @i = @i + 1 %>
   <% end %>
 </table>
+</div>

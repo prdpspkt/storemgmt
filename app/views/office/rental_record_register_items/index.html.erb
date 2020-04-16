@@ -1,6 +1,6 @@
 <h1>Rental Record Register Items</h1>
-
-<table class="responsive nowrap table table-hover" id="dttb-rental_record_register_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<div class="table-responsive">
+<table class="table" id="dttb-rental_record_register_items" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="date">Date</th>
@@ -27,7 +27,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to 'New Rental Record Register Item', new_rental_record_register_item_path %>

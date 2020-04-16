@@ -1,5 +1,5 @@
 <h1>सहायक जिन्सी खाताहरू</h1>
-
+<div class="table-responsive">
 <table class="table data-table" id="dttb-item_assistance_registers" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -10,7 +10,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_office_item_assistance_register_path %>

@@ -1,4 +1,5 @@
 <h1>मर्मत आवेदन फाराम</h1>
+<div class="table-responsive">
 <table class="table table-sm table-bordered table-condensed">
   <tr>
     <th>आर्थिक वर्ष</th>
@@ -12,6 +13,7 @@
     <td></td>
   </tr>
 </table>
+</div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_repair_application_forms_url %>
   <%= link_to edit_big_btn.html_safe, edit_office_repair_application_form_path(@repair_application_form) %>
@@ -20,7 +22,7 @@
 
 <h2>मर्मत गर्नुपर्ने सामाग्रीहरु थप्ने</h2>
 <%= render "repair_application_form_item_form", repair_application_form_item: @repair_application_form_item %>
-
+<div class="table-responsive">
 <table class="table tabhe-sm table-striped">
   <tr>
     <th>क्र.स.</th>
@@ -43,5 +45,5 @@
     <% @i = @i + 1 %>
     <% end %>
 </table>
-
+</div>
 <%= link_to back_btn.html_safe, office_repair_application_forms_path %>

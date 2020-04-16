@@ -3,6 +3,7 @@
   Import
 </a>
   <%= link_to "Export", project_projects_url(format: :xlsx), class: "btn btn-success" %></div>
+  <div class="table-responsive">
 <table class="table table-sm data-table" id="dttb-projects" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -15,7 +16,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_project_project_path %>

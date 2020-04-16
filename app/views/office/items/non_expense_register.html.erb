@@ -1,4 +1,9 @@
-<table class="table table-condensed table-sm table-borderless">
+<div class="row no-print">
+  <div class="col-12 text-center">
+    <%= link_to back_btn.html_safe, non_expense_index_office_items_url %>
+  </div>
+</div>
+<table class="table  table-responsiive table-sm table-borderless">
   <tr class="text-center">
     <td colspan="17" class="gov_name"><%= @office.gov %></td>
   </tr>
@@ -18,31 +23,31 @@
     <td colspan="17" class="off_name">खर्च भएर नजाने (खप्ने) सामानको जिन्सी खाता</td>
   </tr>
 </table>
-<table class="table table-condensed table-borderless table-sm">
+<table class="table table-responsive  table-borderless table-sm">
   <tr>
     <td>जिन्सी सामानको नामः</td>
     <td colspan="2">
-      <%= item.name_of_item_ne %>
+      <%= @item.name_of_item_ne %>
     </td>
     <td>आर्थिक वर्षः</td>
     <td><%= @fiscal_year.fy %></td>
   </tr>
   <tr>
     <td>इकाई:</td>
-    <td><%= item.unit_ne %></td>
+    <td><%= @item.unit_ne %></td>
     <td>&nbsp;</td>
     <td>जिन्सी सङ्केत नं:</td>
-    <td><%= nd item.item_classification_no %></td>
+    <td><%= nd @item.item_classification_no %></td>
   </tr>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>जिन्सी खाता पाना नं:</td>
-    <td><%= nd item.item_register_page_no %></td>
+    <td><%= nd @item.item_register_page_no %></td>
   </tr>
 </table>
-<table class="table table-sm table-black-border">
+<table class="table table-responsive table-sm table-black-border">
   <tr class="text-center">
     <td rowspan="2">मिति</td>
     <td rowspan="2">दाखिला नं/हस्तान्तरण नं</td>
@@ -87,10 +92,9 @@
     <td>१६</td>
     <td>१७</td>
   </tr>
-  <% @transactions = item.item_transactions %>
-  <% if @transactions.blank? == false %>
-    <% @qty = 0 %>
-    <% @amt = 0 %>
+  <% @transactions = @item.item_transactions %>
+    <% @qty = 0.00 %>
+    <% @amt = 0.00 %>
     <% @transactions.each do |t| %>
       <tr>
         <td><%= ndate t.transaction_date %></td>
@@ -124,23 +128,17 @@
           <td><%= nd @qty %></td>
           <td><%= nd @amt %></td>
         <% end %>
-        <td>&nbsp;</td>
+        <td><%= t.remarks %></td>
       </tr>
     <% end %>
-  <% end %>
 </table>
-<table class="table table-sm table-borderless">
+<table class="table  table-sm table-borderless">
   <tr>
-    <td>फाँटवालाको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
+    <td>फाँटवालाको दस्तखतः </td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>शाखा प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -150,58 +148,43 @@
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>नामः <%=  %></td>
+    <td>नामः <%= @cb.store_keeper_name  %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+    <td>नामः <%= @cb.section_chief_name %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>नामः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
+    <td>नामः <%= @cb.office_chief_name %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>पदः</td>
+    <td>पदः <%= @cb.store_keeper_designation %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+    <td>पदः <%= @cb.section_chief_designation %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>पदः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>पदः</td>
+    <td>पदः <%= @cb.office_chief_designation %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
   </tr>
   <tr>
-    <td>मितिः</td>
+    <td>मितिः <%= ndate @fiscal_year.closing_date %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
+    <td>मितिः <%= ndate @fiscal_year.closing_date %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
+    <td>मितिः <%= ndate @fiscal_year.closing_date %></td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td></td>

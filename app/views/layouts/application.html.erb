@@ -4,8 +4,7 @@
   <title>सरकारी भण्डार व्यवस्थापन - <%= @title %></title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <meta name="viewport" content="width=device-width, user-scalable=no">
   <%= stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true %>
   <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
 </head>
@@ -27,8 +26,8 @@
           <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सामाग्रीहरू <i class="fa fa-sitemap"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="<%= office_item_categories_path %>">सामाग्रीको वर्गीकरण</a>
-            <a class="dropdown-item" href="<%= office_items_path %>">सामाग्रीहरू</a>
-            <a class="dropdown-item" href="<%= office_fiscal_years_path %>">आ.व.हरू</a>
+            <a class="dropdown-item" href="<%= expense_index_office_items_path %>">खर्च भएर जाने सामाग्रीहरू</a>
+            <a class="dropdown-item" href="<%= non_expense_index_office_items_path %>">खर्च नहुने सामाग्रीहरू</a>
           </div>
         </li>
 

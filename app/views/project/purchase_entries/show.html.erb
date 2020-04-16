@@ -1,4 +1,5 @@
 <h1>दाखिला प्रतिवेदन</h1>
+<div class="table-responsive">
 <table class="table table-sm table-condensed table-bordered">
   <tr>
     <th>खरिद/हस्तान्तरण नं</th>
@@ -15,6 +16,7 @@
     <td><%= @purchase_entry.store_body.office_chief_name %></td>
   </tr>
 </table>
+</div>
 <div class="separator"></div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_purchase_entries_path %>
@@ -35,6 +37,7 @@
   <div class="separator"></div>
 <% end %>
 <h2>दाखिला भएका जिन्सि सामाग्रीहरु</h2>
+<div class="table-responsive">
 <table class="table table-sm table-condensed">
   <tr>
     <th>जिन्सी वर्गीकरण नं</th>
@@ -87,3 +90,4 @@
     <td></td>
   </tr>
 </table>
+</div>

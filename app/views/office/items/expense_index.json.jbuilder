@@ -7,6 +7,7 @@ json.set! :data do
     json.unit_ne "#{item.item_category.unit_ne}"
     json.item_classification_no "#{nd item.item_classification_no}"
     json.url "
+             #{link_to show_btn.html_safe, item_register_office_item_url(item)}
              #{link_to edit_btn.html_safe, edit_office_item_path(item)}
              #{link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: 'Are you sure?'}}
              "

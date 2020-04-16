@@ -76,7 +76,7 @@ class SetupController < ApplicationController
 
 
   def check_user
-    if current_user.is_admin = true
+    if current_user.is_admin == true
         redirect_to admin_dashboard_url and return
     end
   end

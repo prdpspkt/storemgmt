@@ -1,6 +1,6 @@
 <h1>मर्मत सम्भार अभिलेख खाता</h1>
-
-<table class="table table-responsive data-table" id="dttb-repair_record_registers" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<div class="table-responsive">
+<table class="table  data-table" id="dttb-repair_record_registers" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="name_of_item_ne">सामानको नाम</th>
@@ -11,7 +11,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_office_repair_record_register_path %>

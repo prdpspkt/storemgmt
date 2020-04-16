@@ -1,5 +1,5 @@
 <h1>जिन्सी निरीक्षण फाराम</h1>
-
+<div class="table-responsive">
 <table class="responsive nowrap table table-hover" id="dttb-office_item_evaluations" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -10,7 +10,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_office_item_evaluation_url %>

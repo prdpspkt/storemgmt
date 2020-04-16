@@ -1,4 +1,5 @@
 <h1>मर्मत संरक्षण अभिलेख खाता पाना नं <%= nd @repair_record_register.page_no %></h1>
+<div class="table-responsive">
 <table class="table table-sm table-bordered table-condensed">
   <tr>
     <th>आर्थिक वर्ष</th>
@@ -19,6 +20,7 @@
     <td><%= nd @repair_record_register.item_transaction.rate * 1.13 %></td>
   </tr>
 </table>
+</div>
 <div class="separator"></div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_repair_record_registers_path %>
@@ -29,7 +31,8 @@
 <h2>मर्मत अभिलेख प्रविष्ट गर्ने</h2>
 <%= render 'office/repair_record_registers/item_form', repair_record_register_item: @repair_record_register_item %>
 <h2>मर्मत संरक्षण अभिलेख विवरण</h2>
-<table class="table table-responsive table-sm">
+<div class="table-responsive">
+<table class="table table-sm">
   <tr>
     <th>क्र.स.</th>
     <th>मिति</th>
@@ -60,3 +63,4 @@
     <% @i = @i + 1 %>
     <% end %>
 </table>
+</div>

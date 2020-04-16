@@ -1,6 +1,6 @@
 <h1>दर्ता भएका व्यवसायहरू</h1>
-
-<table class="table data-table table-responsive" id="dttb-vendors" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<div class="table-responsive">
+<table class="table data-table" id="dttb-vendors" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="vendor_name">व्यवसायको नाम</th>
@@ -15,7 +15,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_office_vendor_path %>

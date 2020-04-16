@@ -1,5 +1,5 @@
 <h1>आयोजनागत वार्षिक मौज्दात</h1>
-
+<div class="table-responsive">
 <table class="responsive nowrap table table-hover" id="dttb-office_stocks" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -11,7 +11,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to 'वार्षिक मौज्दात तयार गर्ने', generate_project_stocks_url, class: "btn btn-primary text-white", method: :post %>

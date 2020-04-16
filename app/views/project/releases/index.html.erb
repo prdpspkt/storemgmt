@@ -1,5 +1,5 @@
 <h1>निकासा फारामहरू</h1>
-
+<div class="table-responsive">
 <table class="responsive nowrap table table-hover data-table" id="dttb-office_releases" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -10,7 +10,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_office_release_path %>

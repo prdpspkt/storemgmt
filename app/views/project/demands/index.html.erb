@@ -1,5 +1,5 @@
 <h1>माग फारामहरू</h1>
-
+<div class="table-responsive">
 <table class="table data-table" id="dttb-demands" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -14,7 +14,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_office_demand_path %>

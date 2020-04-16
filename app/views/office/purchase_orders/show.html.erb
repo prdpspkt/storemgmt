@@ -1,5 +1,6 @@
 <h1>खरिद आदेश</h1>
-<table class="table table-sm table-responsive table-condensed table-bordered">
+<div class="table-responsive">
+<table class="table table-sm table-condensed table-bordered">
   <tr>
     <th>खरिद आदेश नं</th>
     <th>मिति</th>
@@ -19,6 +20,7 @@
     <td><%= @purchase_order.store_body.office_chief_name %></td>
   </tr>
 </table>
+</div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_purchase_orders_path %>
   <% if @purchase_order.marked_as_final == false %>
@@ -40,7 +42,8 @@
 <div class="separator"></div>
 <% end %>
 <h2>खरिद माग भएका सामानहरू</h2>
-<table class="table table-sm table-responsive table-condensed table-bordered">
+<div class="table-responsive">
+<table class="table table-sm table-condensed table-bordered">
   <tr>
     <th>जिन्सी वर्गीकरण नं</th>
     <th>जिन्सी सामानको नाम</th>
@@ -84,3 +87,4 @@
     <td class="no-print"></td>
   </tr>
 </table>
+</div>

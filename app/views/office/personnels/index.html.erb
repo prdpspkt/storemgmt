@@ -1,4 +1,5 @@
 <h1>कर्मचारीहरु</h1>
+<div class="table-responsive">
 <table class="table data-table" id="dttb-personnels" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -11,7 +12,7 @@
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
-
 </table>
+</div>
 <div class="separator"></div>
 <%= link_to new_btn.html_safe, new_office_personnel_path %>

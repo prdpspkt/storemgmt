@@ -1,5 +1,11 @@
 .data-table{
-    width: 100%!important;
+    min-width: 100%!important;
+}
+
+.responsive {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 .office_widget{
     border-radius: 10px!important;
@@ -68,6 +74,9 @@ th{
     font-size: 16px!important;
 }
 
+.top-10{
+    margin-top: 10px;
+}
 
 @media print
 {
@@ -138,7 +147,7 @@ html, body{
     font-style: normal;
     border: none;
 }
-.disabled{
+.paginate-btn.disabled{
     background-color: gray!important
 }
 

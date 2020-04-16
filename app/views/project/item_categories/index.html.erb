@@ -6,6 +6,7 @@
 </a>
 <%= link_to("Export", project_item_categories_url(format: :xlsx), class: "btn btn-success" ) %>
 </div>
+<div class="table-responsive">
 <table class="table data-table" id="dttb-item_categories" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -19,7 +20,7 @@
   </thead>
 
 </table>
-
+<div class="table-responsive">
 <br>
 
 <%= link_to new_btn.html_safe, new_project_item_category_path %>

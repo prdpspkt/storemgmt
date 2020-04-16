@@ -1,4 +1,5 @@
 <h1>जिन्सी निरीक्षण समिति</h1>
+<div class="table-responsive">
 <table class="table table-sm table-bordered">
   <tr>
     <th>आ.व.</th>
@@ -13,6 +14,7 @@
     <td><%= ndate @committee.report_submission_date %></td>
   </tr>
 </table>
+</div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_item_evaluation_committees_url %>
   <%= link_to edit_big_btn.html_safe, office_item_evaluation_committee_url(@committee) %>
@@ -20,6 +22,7 @@
 <div class="separator"></div>
 <h2> सदस्य थप्ने </h2>
 <%= render "committee_member_form", committee_member: @committee_member %>
+<div class="table-responsive">
 <table class="table table-sm ">
   <tr>
     <th>क्र.स.</th>
@@ -39,3 +42,4 @@
     <% end %>
 </table>
 
+</div>

@@ -147,12 +147,14 @@ Rails.application.routes.draw do
         post "release"
       end
     end
-    resources :items do
+    resources :items, except: [:index] do
       collection do
-        post "print"
-        post "print_having_stock"
-        post "print_having_no_stock"
         post "import"
+        get "expense_index"
+        get "non_expense_index"
+      end
+      member do
+        get 'item_register'
       end
     end
     resources :personnels do

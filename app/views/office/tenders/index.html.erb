@@ -1,6 +1,6 @@
 <h1>खरिद बोलपत्रहरू</h1>
-
-<table class="table table-responsive table-sm" id="dttb-project_purchase_tenders" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<div class="table-responsive">
+<table class="table table-sm" id="dttb-project_purchase_tenders" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="tender_no">टेन्डर सङ्ख्या</th>
@@ -11,7 +11,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_office_tender_path %>

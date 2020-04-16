@@ -1,6 +1,6 @@
 <h1>Land And Structure Record Books</h1>
-
-<table class="responsive nowrap table table-hover" id="dttb-land_and_structure_record_books" data-sort="true" data-source="<%= url_for(format: :json)%>">
+<div class="table-responsive">
+<table class="table table-sm" id="dttb-land_and_structure_record_books" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
       <th data-data="store_chief_name">Store chief name</th>
@@ -18,7 +18,7 @@
   </thead>
 
 </table>
-
+</div>
 <br>
 
 <%= link_to 'New Land And Structure Record Book', new_land_and_structure_record_book_path %>

@@ -1,4 +1,5 @@
 <h1>निकासा फाराम</h1>
+<div class="table-responsive">
 <table class="table table-sm table-condensed table-bordered">
   <tr>
     <th>निकासा नं</th>
@@ -13,6 +14,7 @@
     <td><%= @office_release.store_body.office_chief_name %></td>
   </tr>
 </table>
+</div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_releases_path %>
   <% if @office_release.marked_as_final == false %>
@@ -26,6 +28,7 @@
   <%= link_to print_big_btn.html_safe, print_office_release_path(@office_release, format: :pdf), target: "_blank" %>
 </div>
 <h2> माग भै आएका सामाग्रीहरू </h2>
+<div class="table-responsive">
 <table class="table table-sm table-bordered table-condensed">
   <thead>
   <tr>
@@ -56,5 +59,5 @@
     </tr>
   <% end %>
   </tbody>
-
 </table>
+</div>

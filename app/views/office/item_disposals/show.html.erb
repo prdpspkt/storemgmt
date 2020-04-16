@@ -1,4 +1,5 @@
 <h1>जिन्सी निसर्ग/मिन्हा फाराम</h1>
+<div class="table-responsive">
 <table class="table table-sm table-bordered text-center">
   <tr>
     <th>विवरण</th>
@@ -11,6 +12,7 @@
     <td><%= @item_disposal.decision_made_by %></td>
   </tr>
 </table>
+</div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_item_disposals_path %>
   <% if @item_disposal.accepted != true %>
@@ -30,6 +32,7 @@
 <% end %>
 <div class="separator"></div>
 <h2>मिन्हा गर्नुपर्ने जिन्सी सामाग्रीहरू</h2>
+<div class="table-responsive">
 <table class="table table-sm table-bordered">
   <tr>
     <td>क्र.स.</td>
@@ -59,3 +62,4 @@
     </tr>
   <% end %>
 </table>
+</div>

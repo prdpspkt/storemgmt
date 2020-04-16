@@ -1,5 +1,5 @@
 <h1>आयोजनागत खरिद टेन्डरहरू</h1>
-
+<div class="table-responsive">
 <table class="responsive nowrap table table-hover" id="dttb-project_purchase_tenders" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
@@ -9,9 +9,8 @@
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
-
 </table>
-
+</div>
 <br>
 
 <%= link_to new_btn.html_safe, new_project_tender_path %>
