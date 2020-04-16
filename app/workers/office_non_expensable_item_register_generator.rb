@@ -3,10 +3,10 @@ class OfficeNonExpensableItemRegisterGenerator
   sidekiq_options retry: false
 
   def perform office_id, fiscal_year_id, store_body_id
-      items = Office::Item.where(office_id: office_id).where(item_classification_no: 47)
+    items = Office::Item.where(office_id: office_id).where(item_classification_no: 47)
     office = Office::Office.find(office_id)
     fiscal_year = Office::FiscalYear.find(fiscal_year_id)
-      cb = Office::StoreBody.find(store_body_id)
+    cb = Office::StoreBody.find(store_body_id)
     generate_and_save_pdf office, fiscal_year, items, cb
   end
 
