@@ -1,3 +1,9 @@
+.login-box{
+    width: 350px;
+    height: 300px;
+    border-radius: 10px;
+    padding: 20px;
+}
 .data-table{
     min-width: 100%!important;
 }
@@ -172,3 +178,20 @@ html, body{
 
     }
 }
+
+@media screen and (max-width: 415px) {
+  .login-box{
+    height: 270px;
+    width: 300px;
+    padding: 10px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .login-box{
+    height: 270px;
+    width: 290px;
+    padding: 10px;
+  }
+}
+
