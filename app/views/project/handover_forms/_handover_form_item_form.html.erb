@@ -1,7 +1,8 @@
 <%= form_with(model: handover_form_item, local: true) do |form| %>
   <% if handover_form_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(handover_form_item.errors.count, "error") %> prohibited this handover_form_item from being saved:</h2>
+      <h2><%= pluralize(handover_form_item.errors.count, "error") %> prohibited this handover_form_item from being
+        saved:</h2>
 
       <ul>
         <% handover_form_item.errors.full_messages.each do |message| %>
@@ -14,7 +15,7 @@
   <div class="row">
     <div class="col-4">
       <%= form.label :name_of_item_ne %>
-      <%= form.select(:transaction_id, @transactions.collect.map{|transaction| ["#{transaction.item.name_of_item_en} ( SKU: #{transaction.sku} MOD: #{transaction.model} IDN: #{transaction.item_identification_no})", transaction.id] },{include_blank: true}, {class: "form-control"}) %>
+      <%= form.select(:transaction_id, @transactions.collect.map { |transaction| ["#{transaction.item.name_of_item_en} ( SKU: #{transaction.sku} MOD: #{transaction.model} IDN: #{transaction.item_identification_no})", transaction.id] }, {include_blank: true}, {class: "form-control"}) %>
     </div>
     <div class="col-4">
       <%= form.label :quantity %>

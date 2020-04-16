@@ -32,17 +32,17 @@
     </div>
   </div>
   <div class="col-md-3 col-sm-12">
-  <div class="card">
-    <div class="card-header text-white bg-success text-center">
-      <span class="h4">सामाग्रीहरू</span>
+    <div class="card">
+      <div class="card-header text-white bg-success text-center">
+        <span class="h4">सामाग्रीहरू</span>
+      </div>
+      <div class="card-body">
+        <ul class="list-unstyled">
+          <li>जम्मा सामाग्री: <%= nd @items.count %></li>
+          <li>खर्च भएर जाने: <%= nd @items.where(item_classification_no: 52).count %></li>
+          <li>खर्च भएर नजाने: <%= nd @items.where(item_classification_no: 47).count %></li>
+        </ul>
+      </div>
     </div>
-    <div class="card-body">
-      <ul class="list-unstyled">
-        <li>जम्मा सामाग्री: <%= nd @items.count %></li>
-        <li>खर्च भएर जाने: <%= nd @items.where(item_classification_no: 52).count %></li>
-        <li>खर्च भएर नजाने: <%= nd @items.where(item_classification_no: 47).count %></li>
-      </ul>
-    </div>
-  </div>
   </div>
 </div>

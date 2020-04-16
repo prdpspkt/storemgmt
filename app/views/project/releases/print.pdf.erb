@@ -1,7 +1,8 @@
 <table class="table table-wide">
   <tr>
     <td>आयोजनाको नाम: <b><%= @project_release.project.name_of_project_ne %></b></td>
-    <td class="text-right"> आ.व.: <%= @project_release.fiscal_year.fy %><br>निकाशा नं: <%= nd @project_release.release_no %><br>  निकाशा मिति: <%=  ndate @project_release.release_date %>
+    <td class="text-right"> आ.व.: <%= @project_release.fiscal_year.fy %><br>निकाशा
+      नं: <%= nd @project_release.release_no %><br> निकाशा मिति: <%= ndate @project_release.release_date %>
     </td>
   </tr>
 </table>
@@ -47,19 +48,19 @@
   <tbody>
   <% @i = 1 %>
   <% @project_release_items.each do |item| %>
-  <tr>
-    <td><%= nd @i %></td>
-    <td><%= item.item.name_of_item_ne %></td>
-    <td><%= nd item.item.item_classification_no %></td>
-    <td><%= item.item.specification %></td>
-    <td><%= item.item.unit_ne %></td>
-    <td><%= nd item.quantity %></td>
-    <td><%= nd item.rate %></td>
-    <td><%= nd item.amount %></td>
-    <td><%= nd item.item.item_register_page_no %></td>
-    <td><%= item.remarks %></td>
-  </tr>
-    <% end %>
+    <tr>
+      <td><%= nd @i %></td>
+      <td><%= item.item.name_of_item_ne %></td>
+      <td><%= nd item.item.item_classification_no %></td>
+      <td><%= item.item.specification %></td>
+      <td><%= item.item.unit_ne %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= nd item.rate %></td>
+      <td><%= nd item.amount %></td>
+      <td><%= nd item.item.item_register_page_no %></td>
+      <td><%= item.remarks %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 <table class="table">

@@ -4,9 +4,9 @@
       <h2><%= pluralize(stock.errors.count, "error") %> prohibited this office_stock from being saved:</h2>
 
       <ul>
-      <% stock.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% stock.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>

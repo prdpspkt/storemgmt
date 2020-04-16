@@ -4,33 +4,33 @@
       <h2><%= pluralize(item_category.errors.count, "error") %> prohibited this item_category from being saved:</h2>
 
       <ul>
-      <% item_category.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% item_category.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-<div class="row">
-  <div class="col-sm-6">
-    <%= form.label :name %>
-    <%= form.text_field :name_ne, class: "form-control" %>
-  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= form.label :name %>
+      <%= form.text_field :name_ne, class: "form-control" %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :name_in_english %>
-    <%= form.text_field :name_en, class: "form-control" %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :name_in_english %>
+      <%= form.text_field :name_en, class: "form-control" %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :unit %>
-    <%= form.text_field :unit_ne, class: "form-control" %>
+    <div class="col-sm-6">
+      <%= form.label :unit %>
+      <%= form.text_field :unit_ne, class: "form-control" %>
+    </div>
+    <div class="col-sm-6">
+      <%= form.label :unit_in_english %>
+      <%= form.text_field :unit_en, class: "form-control" %>
+    </div>
   </div>
-  <div class="col-sm-6">
-    <%= form.label :unit_in_english %>
-    <%= form.text_field :unit_en, class: "form-control" %>
-  </div>
-</div>
-<div class="separator"></div>
+  <div class="separator"></div>
   <%= form.submit :save, class: "btn btn-success float-right" %>
 
 <% end %>

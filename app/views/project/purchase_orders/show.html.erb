@@ -22,12 +22,12 @@
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_purchase_orders_path %>
   <% if @purchase_order.marked_as_final == false %>
-  <%= link_to edit_big_btn.html_safe, edit_project_purchase_order_path(@purchase_order) %>
+    <%= link_to edit_big_btn.html_safe, edit_project_purchase_order_path(@purchase_order) %>
   <% end %>
   <% if @purchase_order.marked_as_final == false %>
     <%= link_to final_btn.html_safe, accept_project_purchase_order_path(@purchase_order), method: :post, data: {confirm: "के तपाइँ स्वीकृत गर्न चाहानु हुन्छ ? You will have only 3 days to modify data."} %>
   <% end %>
-  <% if @purchase_order.marked_as_final == true && @purchase_order.entry_generated == false  %>
+  <% if @purchase_order.marked_as_final == true && @purchase_order.entry_generated == false %>
     <%= link_to before_final_btn.html_safe, accept_project_purchase_order_url(@purchase_order), method: :post %>
     <%= link_to purchase_entry_btn.html_safe, entry_project_purchase_order_url(@purchase_order), method: :post %>
   <% end %>
@@ -35,9 +35,9 @@
 </div>
 <div class="separator"></div>
 <% if @purchase_order.marked_as_final != true %>
-<h2>खरिद गर्नुपर्ने सामाग्री थप्ने</h2>
-<%= render "purchase_item_form", purchase_order_item: @purchase_order_item %>
-<div class="separator"></div>
+  <h2>खरिद गर्नुपर्ने सामाग्री थप्ने</h2>
+  <%= render "purchase_item_form", purchase_order_item: @purchase_order_item %>
+  <div class="separator"></div>
 <% end %>
 <h2>खरिद माग भएका सामानहरू</h2>
 <table class="table table-sm table-condensed table-bordered">
@@ -79,7 +79,7 @@
     <td></td>
     <td></td>
     <td>कुल जम्मा</td>
-    <td><%= nd @purchase_order_items.sum(:amount)  %></td>
+    <td><%= nd @purchase_order_items.sum(:amount) %></td>
     <td></td>
     <td class="no-print"></td>
   </tr>

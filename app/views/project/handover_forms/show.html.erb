@@ -1,17 +1,17 @@
 <h1>हस्तान्तरण फाराम</h1>
 <div class="table-responsive">
-<table class="table table-bordered">
-  <tr>
-    <th>हस्तान्तरण नं</th>
-    <th>हस्तान्तरण मिति</th>
-    <th>हस्तान्तरण गरिएको कार्यालय</th>
-  </tr>
-  <tr>
-    <td><%= @handover_form.form_no %></td>
-    <td><%= ndate @handover_form.date %></td>
-    <td><%= @handover_form.handovered_office_name %></td>
-  </tr>
-</table>
+  <table class="table table-bordered">
+    <tr>
+      <th>हस्तान्तरण नं</th>
+      <th>हस्तान्तरण मिति</th>
+      <th>हस्तान्तरण गरिएको कार्यालय</th>
+    </tr>
+    <tr>
+      <td><%= @handover_form.form_no %></td>
+      <td><%= ndate @handover_form.date %></td>
+      <td><%= @handover_form.handovered_office_name %></td>
+    </tr>
+  </table>
 </div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_handover_forms_path %>
@@ -23,7 +23,7 @@
   <% if @handover_form.marked_as_final == true && @handover_form.entry_generated == false %>
     <%= link_to before_final_btn.html_safe, office_mark_office_handover_form_as_final_path(@handover_form), method: :post %>
     <%= link_to ledger_entry_btn.html_safe, office_generate_ledger_entry_with_handover_form_path(@handover_form), method: :post %>
-<% end %>
+  <% end %>
 
 </div>
 <% if @handover_form.marked_as_final != true %>
@@ -35,32 +35,32 @@
 
 <h2>हस्तान्तरण गर्ने सामाग्रीहरु</h2>
 <div class="table-responsive">
-<table class="table">
-  <tr>
-    <th>क्र.स.</th>
-    <th>सामानको नाम</th>
-    <th>मोडल नं</th>
-    <th>परिमाण</th>
-    <th>जम्मा रकम</th>
-    <th>भौतिक अवस्था</th>
-    <th class="no-print"></th>
-  </tr>
-  <% @i = 1 %>
-  <% @handover_form_items.each do |item| %>
+  <table class="table">
     <tr>
-      <td><%= nd @i %></td>
-      <td><%= item.item.name_of_item_ne %></td>
-      <td><%= item.model_no %></td>
-      <td><%= item.quantity %></td>
-      <td><%= item.amount %></td>
-      <td><%= item.physical_status %></td>
-      <td class="no-print">
-        <% if @handover_form.marked_as_final != true %>
-          <%= link_to destroy_btn.html_safe, item, method: :delete, confirm: "Are you sure ?" %>
-        <% end %>
-      </td>
+      <th>क्र.स.</th>
+      <th>सामानको नाम</th>
+      <th>मोडल नं</th>
+      <th>परिमाण</th>
+      <th>जम्मा रकम</th>
+      <th>भौतिक अवस्था</th>
+      <th class="no-print"></th>
     </tr>
-    <% @i = @i + 1 %>
-  <% end %>
-</table>
+    <% @i = 1 %>
+    <% @handover_form_items.each do |item| %>
+      <tr>
+        <td><%= nd @i %></td>
+        <td><%= item.item.name_of_item_ne %></td>
+        <td><%= item.model_no %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.amount %></td>
+        <td><%= item.physical_status %></td>
+        <td class="no-print">
+          <% if @handover_form.marked_as_final != true %>
+            <%= link_to destroy_btn.html_safe, item, method: :delete, confirm: "Are you sure ?" %>
+          <% end %>
+        </td>
+      </tr>
+      <% @i = @i + 1 %>
+    <% end %>
+  </table>
 </div>

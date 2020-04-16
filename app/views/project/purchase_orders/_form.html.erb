@@ -4,66 +4,66 @@
       <h2><%= pluralize(purchase_order.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
 
       <ul>
-      <% purchase_order.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% purchase_order.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-<div class="row">
-  <div class="col-sm-6">
-    <%= form.label :vendor_name %>
-    <% if @vendors.blank? != true %>
-    <%= form.select(:vendor_id, @vendors.collect { |p| [p.vendor_name_en, p.id]}, {include_blank: "छनोट गर्ने"}, {class: "form-control", required: :required}) %>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= form.label :vendor_name %>
+      <% if @vendors.blank? != true %>
+        <%= form.select(:vendor_id, @vendors.collect { |p| [p.vendor_name_en, p.id] }, {include_blank: "छनोट गर्ने"}, {class: "form-control", required: :required}) %>
       <% else %>
-    <b class="badge badge-danger">कृपया सूची दर्ता गर्नुहोस</b>
-      <a href="<%= new_office_vendor_path %>"><b class="badge badge-success">सूची दर्ता गर्ने </b></a>
-    <% end %>
-  </div>
- 
-  <div class="col-sm-6">
-    <%= form.label :order_no %>
-    <%= form.number_field :order_no, class: "form-control", readOnly: :true %>
-  </div>
+        <b class="badge badge-danger">कृपया सूची दर्ता गर्नुहोस</b>
+        <a href="<%= new_office_vendor_path %>"><b class="badge badge-success">सूची दर्ता गर्ने </b></a>
+      <% end %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :order_date %>
-    <%= form.text_field :order_date, class: "form-control date-picker" %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :order_no %>
+      <%= form.number_field :order_no, class: "form-control", readOnly: :true %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :order_decision_no %>
-    <%= form.number_field :order_decision_no, class: "form-control" %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :order_date %>
+      <%= form.text_field :order_date, class: "form-control date-picker" %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :order_decision_date %>
-    <%= form.text_field :order_decision_date, class: "form-control date-picker" %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :order_decision_no %>
+      <%= form.number_field :order_decision_no, class: "form-control" %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :date_to_receive_goods %>
-    <%= form.text_field :date_to_receive_goods, class: "form-control date-picker" %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :order_decision_date %>
+      <%= form.text_field :order_decision_date, class: "form-control date-picker" %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :store_chief_signed_date %>
-    <%= form.text_field :store_chief_signed_date, class: "form-control date-picker" %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :date_to_receive_goods %>
+      <%= form.text_field :date_to_receive_goods, class: "form-control date-picker" %>
+    </div>
+
+    <div class="col-sm-6">
+      <%= form.label :store_chief_signed_date %>
+      <%= form.text_field :store_chief_signed_date, class: "form-control date-picker" %>
+    </div>
 
 
-  <div class="col-sm-6">
-    <%= form.label :section_chief_signed_date %>
-    <%= form.text_field :section_chief_signed_date, class: "form-control date-picker" %>
-  </div>
+    <div class="col-sm-6">
+      <%= form.label :section_chief_signed_date %>
+      <%= form.text_field :section_chief_signed_date, class: "form-control date-picker" %>
+    </div>
 
-  <div class="col-sm-6">
-    <%= form.label :office_cheif_signed_date %>
-    <%= form.text_field :office_cheif_signed_date, class: "form-control date-picker" %>
+    <div class="col-sm-6">
+      <%= form.label :office_cheif_signed_date %>
+      <%= form.text_field :office_cheif_signed_date, class: "form-control date-picker" %>
+    </div>
   </div>
-</div>
   <div class="separator"></div>
   <div class="float-right">
-    <%= form.submit :save, class: "btn btn-success"%>
+    <%= form.submit :save, class: "btn btn-success" %>
   </div>
 <% end %>

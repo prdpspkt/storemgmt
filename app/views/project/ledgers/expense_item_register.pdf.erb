@@ -1,5 +1,5 @@
 <% @items.each do |item| %>
-<% if item.item_transactions.count > 0 %>
-  <%= render "project/ledgers/expense_item_register", item: item %>
+  <% if item.item_transactions.count > 0 %>
+    <%= render "project/ledgers/expense_item_register", item: item %>
   <% end %>
 <% end %>

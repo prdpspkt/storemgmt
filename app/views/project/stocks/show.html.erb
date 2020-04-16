@@ -1,67 +1,67 @@
 <div class="table-responsive">
-<table class="table table-sm table-borderless text-center ">
-  <tbody>
-  <tr>
-    <td class="gov_name"><%= @office.gov %></td>
-  </tr>
-  <tr>
-    <td class="min_name"><%= @office.ministry %></td>
-  </tr>
-  <tr>
-    <td class="off_name"><%= @office.office %></td>
-  </tr>
-  <tr>
-    <td class="min_name"><%= @office.address %></td>
-  </tr>
-  <tr>
-    <td class="min_name">कार्यालय कोड नं.: <%= @office.code %></td>
-  </tr>
-  <tr>
-    <td class="off_name">वार्षिक मौज्दात विवरण <%= @fiscal_year.fy %> (<small>आयोजनागत</small>)</td>
-  </tr>
-  </tbody>
-</table>
+  <table class="table table-sm table-borderless text-center ">
+    <tbody>
+    <tr>
+      <td class="gov_name"><%= @office.gov %></td>
+    </tr>
+    <tr>
+      <td class="min_name"><%= @office.ministry %></td>
+    </tr>
+    <tr>
+      <td class="off_name"><%= @office.office %></td>
+    </tr>
+    <tr>
+      <td class="min_name"><%= @office.address %></td>
+    </tr>
+    <tr>
+      <td class="min_name">कार्यालय कोड नं.: <%= @office.code %></td>
+    </tr>
+    <tr>
+      <td class="off_name">वार्षिक मौज्दात विवरण <%= @fiscal_year.fy %> (<small>आयोजनागत</small>)</td>
+    </tr>
+    </tbody>
+  </table>
 </div>
 <div class="table-responsive">
-<table class="table table-sm table-bordered table-black-border">
-  <tr class="text-center">
-    <th rowspan="2">क्र.स.</th>
-    <th rowspan="2">खाता पाना नं</th>
-    <th rowspan="2">जिन्सी वर्गीकरण नं</th>
-    <th rowspan="2" class="bibaran" width="350px">जिन्सी सामानको नाम</th>
-    <th colspan="4">मौज्दात बाँकी</th>
-    <th rowspan="2">जिन्सी सामानको भौतिक अवस्था</th>
-    <th rowspan="2">कैफियत</th>
-  </tr>
-  <tr class="text-center">
-    <th>परिमाण</th>
-    <th>इकाई</th>
-    <th>दर</th>
-    <th>जम्मा रू</th>
-  </tr>
-  <% @i = 1 %>
-  <% @is_same_project = false %>
-  <% @project_stock.stock_items.order("project_id ASC").each do |item| %>
-    <% if item.project_id != @is_same_project %>
-      <% @is_same_project = item.project_id %>
-      <tr>
-        <td colspan="3">आयोजनाको नाम: </td>
-        <td colspan="7"><%= item.project.name_of_project_ne %></td>
-      </tr>
-    <% end %>
+  <table class="table table-sm table-bordered table-black-border">
     <tr class="text-center">
-      <td><%= nd @i %></td>
-      <td><%= nd item.item_register_page_no %></td>
-      <td><%= nd item.item_classification_no %></td>
-      <td class="text-left"><%= item.name_of_item_ne %></td>
-      <td class="text-right"><%= nd item.quantity %></td>
-      <td><%= nd item.unit_ne %></td>
-      <td class="text-right"><%= nd item.rate %></td>
-      <td class="text-right"><%= nd item.amount %></td>
-      <td><%= item.physical_status %></td>
-      <td><%= item.remarks %></td>
+      <th rowspan="2">क्र.स.</th>
+      <th rowspan="2">खाता पाना नं</th>
+      <th rowspan="2">जिन्सी वर्गीकरण नं</th>
+      <th rowspan="2" class="bibaran" width="350px">जिन्सी सामानको नाम</th>
+      <th colspan="4">मौज्दात बाँकी</th>
+      <th rowspan="2">जिन्सी सामानको भौतिक अवस्था</th>
+      <th rowspan="2">कैफियत</th>
     </tr>
-    <% @i = @i + 1 %>
-  <% end %>
-</table>
+    <tr class="text-center">
+      <th>परिमाण</th>
+      <th>इकाई</th>
+      <th>दर</th>
+      <th>जम्मा रू</th>
+    </tr>
+    <% @i = 1 %>
+    <% @is_same_project = false %>
+    <% @project_stock.stock_items.order("project_id ASC").each do |item| %>
+      <% if item.project_id != @is_same_project %>
+        <% @is_same_project = item.project_id %>
+        <tr>
+          <td colspan="3">आयोजनाको नाम:</td>
+          <td colspan="7"><%= item.project.name_of_project_ne %></td>
+        </tr>
+      <% end %>
+      <tr class="text-center">
+        <td><%= nd @i %></td>
+        <td><%= nd item.item_register_page_no %></td>
+        <td><%= nd item.item_classification_no %></td>
+        <td class="text-left"><%= item.name_of_item_ne %></td>
+        <td class="text-right"><%= nd item.quantity %></td>
+        <td><%= nd item.unit_ne %></td>
+        <td class="text-right"><%= nd item.rate %></td>
+        <td class="text-right"><%= nd item.amount %></td>
+        <td><%= item.physical_status %></td>
+        <td><%= item.remarks %></td>
+      </tr>
+      <% @i = @i + 1 %>
+    <% end %>
+  </table>
 </div>

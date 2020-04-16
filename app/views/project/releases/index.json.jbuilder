@@ -13,5 +13,5 @@ json.set! :data do
                #{link_to destroy_btn.html_safe, office_release, method: :delete, data: {confirm: 'Are you sure?'}}
                "
     end
-    end
   end
+end

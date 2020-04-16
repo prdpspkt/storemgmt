@@ -9,7 +9,7 @@ json.set! :data do
                #{link_to destroy_btn.html_safe, project_entry, data: {method: :delete, confirm: "Are you sure ?"}}"
     else
       json.url "
-                #{link_to show_btn.html_safe, project_entry}
+               #{link_to show_btn.html_safe, project_entry}
                "
     end
     json.serial "

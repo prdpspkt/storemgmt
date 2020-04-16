@@ -310,6 +310,12 @@ Rails.application.routes.draw do
       member do
         get "demand"
         get "release"
+        get "expense_item_register"
+        get "non_expense_item_register"
+        post "print_pdf_expense_item_register"
+        post "print_pdf_non_expense_item_register"
+        get "download_pdf_expense_item_register"
+        get "download_pdf_non_expense_item_register"
       end
     end
 

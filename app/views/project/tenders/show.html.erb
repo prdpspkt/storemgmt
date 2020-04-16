@@ -1,19 +1,19 @@
 <h1>टेन्डर विवरण</h1>
 <div class="table-responsive">
-<table class="table table-sm table-bordered">
-  <tr>
-    <th>बोलपत्र सूचना नं</th>
-    <th>बोलपत्रको विवरण</th>
-    <th>छनोट भएको बोलपत्र दाताको नाम</th>
-    <th>बोलपत्र दाताको ठेगाना</th>
-  </tr>
-  <tr>
-    <td><%= nd @tender.tender_no %></td>
-    <td><%= @tender.tender_name %></td>
-    <td><%= @tender.bidders_name %></td>
-    <td><%= @tender.bidders_address %></td>
-  </tr>
-</table>
+  <table class="table table-sm table-bordered">
+    <tr>
+      <th>बोलपत्र सूचना नं</th>
+      <th>बोलपत्रको विवरण</th>
+      <th>छनोट भएको बोलपत्र दाताको नाम</th>
+      <th>बोलपत्र दाताको ठेगाना</th>
+    </tr>
+    <tr>
+      <td><%= nd @tender.tender_no %></td>
+      <td><%= @tender.tender_name %></td>
+      <td><%= @tender.bidders_name %></td>
+      <td><%= @tender.bidders_address %></td>
+    </tr>
+  </table>
 </div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, project_tenders_path %>
@@ -22,7 +22,7 @@
     <%= link_to final_btn.html_safe, accept_project_tender_url(@tender), data: {method: :post} %>
   <% end %>
   <% if @tender.marked_as_final == true && @tender.entry_generated != true %>
-    <%= link_to before_final_btn.html_safe, accept_project_tender_url(@tender), data: { method: :post} %>
+    <%= link_to before_final_btn.html_safe, accept_project_tender_url(@tender), data: {method: :post} %>
   <% end %>
   <% if @tender.marked_as_final == true && @tender.entry_generated != true %>
     <%= link_to purchase_entry_btn.html_safe, entry_project_tender_url(@tender), data: {method: :post} %>
@@ -31,41 +31,41 @@
 </div>
 <% if @tender.marked_as_final != true %>
   <div class="separator"></div>
-<h2> खरिद गर्ने सामानहरू थप्ने </h2>
-<%= render 'purchase_tender_item_form', tender_item: @tender_item %>
-<div class="separator"></div>
-  <% end %>
+  <h2> खरिद गर्ने सामानहरू थप्ने </h2>
+  <%= render 'purchase_tender_item_form', tender_item: @tender_item %>
+  <div class="separator"></div>
+<% end %>
 <h2>थप गरिएका सामाग्रीहरू</h2>
 <div class="table-responsive">
-<table class="table table-sm table-bordered">
-  <tr>
-    <th>क्र.स.</th>
-    <th>सामानको नाम</th>
-    <th>इकाई</th>
-    <th>परिमाण</th>
-    <th>दर</th>
-    <th>जम्मा</th>
-    <th></th>
-  </tr>
-  <% @i = 1 %>
-  <% @tender_items.each do |item| %>
+  <table class="table table-sm table-bordered">
     <tr>
-      <td><%= nd @i %></td>
-      <td><%= item.item.name_of_item_ne %></td>
-      <td><%= item.item.unit_ne %></td>
-      <td><%= nd item.quantity %></td>
-      <td><%= nd item.rate %></td>
-      <td><%= nd item.amount %></td>
-      <td>
-        <% if @tender.marked_as_final != true %>
-          <% if item.item_classification_no == 47 %>
-          <%= link_to(edit_btn.html_safe, edit_project_tender_url(item)) %>
-            <% end  %>
-          <%= link_to(destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure ? This cannot be undone."}) %>
-        <% end %>
-      </td>
+      <th>क्र.स.</th>
+      <th>सामानको नाम</th>
+      <th>इकाई</th>
+      <th>परिमाण</th>
+      <th>दर</th>
+      <th>जम्मा</th>
+      <th></th>
     </tr>
-    <% @i = @i + 1 %>
-  <% end %>
-</table>
+    <% @i = 1 %>
+    <% @tender_items.each do |item| %>
+      <tr>
+        <td><%= nd @i %></td>
+        <td><%= item.item.name_of_item_ne %></td>
+        <td><%= item.item.unit_ne %></td>
+        <td><%= nd item.quantity %></td>
+        <td><%= nd item.rate %></td>
+        <td><%= nd item.amount %></td>
+        <td>
+          <% if @tender.marked_as_final != true %>
+            <% if item.item_classification_no == 47 %>
+              <%= link_to(edit_btn.html_safe, edit_project_tender_url(item)) %>
+            <% end %>
+            <%= link_to(destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure ? This cannot be undone."}) %>
+          <% end %>
+        </td>
+      </tr>
+      <% @i = @i + 1 %>
+    <% end %>
+  </table>
 </div>

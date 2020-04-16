@@ -3,10 +3,10 @@
     <td colspan="17" class="text-left" colspan="3">दाखिला मितिः <%= ndate @purchase_entry.entry_date %></td>
   </tr>
   <tr>
-    <td colspan="17" class="text-left" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @purchase_entry.entry_no%></td>
+    <td colspan="17" class="text-left" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @purchase_entry.entry_no %></td>
   </tr>
   <tr>
-    <td style = " 10px"></td>
+    <td style=" 10px"></td>
   </tr>
 </table>
 <table class="table black-border table-wide">
@@ -56,27 +56,27 @@
   <tbody>
   <% @id = 1 %>
   <% @purchase_entry_items.each do |item| %>
-  <tr>
-    <td><%= nd @id %></td>
-    <td><%= nd @purchase_entry.purchase_handover_no %></td>
-    <td><%= nd item.item.item_classification_no %></td>
-    <td><%= nd item.item.item_register_page_no %></td>
-    <td class="item_name"><%= item.item.name_of_item_ne %></td>
-    <td><%= item.item.specification %></td>
-    <td><%= item.item_identification_no %></td>
-    <td><%= item.model_no %></td>
-    <td><%= item.item.unit_ne %></td>
-    <td><%= nd item.quantity %>
-    <td><%= nd item.rate %></td>
-    <td><%= nd item.amount_without_vat %></td>
-    <td><%= nd item.vat %></td>
-    <td><%= nd item.amount %></td>
-    <td><%= nd item.other_expense %></td>
-    <td><%= nd item.total_amount %></td>
-    <td><%= item.remarks %></td>
-  </tr>
+    <tr>
+      <td><%= nd @id %></td>
+      <td><%= nd @purchase_entry.purchase_handover_no %></td>
+      <td><%= nd item.item.item_classification_no %></td>
+      <td><%= nd item.item.item_register_page_no %></td>
+      <td class="item_name"><%= item.item.name_of_item_ne %></td>
+      <td><%= item.item.specification %></td>
+      <td><%= item.item_identification_no %></td>
+      <td><%= item.model_no %></td>
+      <td><%= item.item.unit_ne %></td>
+      <td><%= nd item.quantity %>
+      <td><%= nd item.rate %></td>
+      <td><%= nd item.amount_without_vat %></td>
+      <td><%= nd item.vat %></td>
+      <td><%= nd item.amount %></td>
+      <td><%= nd item.other_expense %></td>
+      <td><%= nd item.total_amount %></td>
+      <td><%= item.remarks %></td>
+    </tr>
     <% @id = @id + 1 %>
-    <% end %>
+  <% end %>
   <tr class="text-center">
     <td colspan="11" class="text-right">जम्मा</td>
     <td><%= nd @amount_without_vat %></td>

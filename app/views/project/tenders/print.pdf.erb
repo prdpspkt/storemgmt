@@ -12,7 +12,9 @@
     <td><%= @tender.bidders_name %></td>
     <td>प्रकाशित मिति: <%= ndate @tender.tender_date %></td>
   </tr>
-  <tr><td style="height: 10px"></td></tr>
+  <tr>
+    <td style="height: 10px"></td>
+  </tr>
 </table>
 <table class="table black-border table-wide">
   <thead>
@@ -60,7 +62,7 @@
     <td></td>
     <td></td>
     <td>भ्याट (१३%)</td>
-    <td class="text-center"><%= nd @tender.tender_items.sum(:amount_without_vat)*0.13 %></td>
+    <td class="text-center"><%= nd @tender.tender_items.sum(:amount_without_vat) * 0.13 %></td>
     <td></td>
   </tr>
   <tr>
@@ -70,7 +72,7 @@
     <td></td>
     <td></td>
     <td>कुल जम्मा</td>
-    <td class="text-center"><%= nd @tender.tender_items.sum(:amount_without_vat)*1.13 %></td>
+    <td class="text-center"><%= nd @tender.tender_items.sum(:amount_without_vat) * 1.13 %></td>
     <td></td>
   </tr>
   </tbody>

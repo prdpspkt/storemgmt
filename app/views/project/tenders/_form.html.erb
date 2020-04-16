@@ -4,38 +4,38 @@
       <h2><%= pluralize(tender.errors.count, "error") %> prohibited this project__tender from being saved:</h2>
 
       <ul>
-      <% tender.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% tender.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-<div class="row">
-  <div class="col-6">
-    <%= form.label :tender_no %>
-    <%= form.text_field :tender_no, class: "form-control" %>
-  </div>
+  <div class="row">
+    <div class="col-6">
+      <%= form.label :tender_no %>
+      <%= form.text_field :tender_no, class: "form-control" %>
+    </div>
 
-  <div class="col-6">
-    <%= form.label :tender_name %>
-    <%= form.text_field :tender_name, class: "form-control" %>
-  </div>
+    <div class="col-6">
+      <%= form.label :tender_name %>
+      <%= form.text_field :tender_name, class: "form-control" %>
+    </div>
 
-  <div class="col-6">
-    <%= form.label :tender_date %>
-    <%= form.text_field :tender_date, class: "form-control date-picker" %>
-  </div>
+    <div class="col-6">
+      <%= form.label :tender_date %>
+      <%= form.text_field :tender_date, class: "form-control date-picker" %>
+    </div>
 
-  <div class="col-6">
-    <%= form.label :bidders_name %>
-    <%= form.text_field :bidders_name, class: "form-control" %>
-  </div>
+    <div class="col-6">
+      <%= form.label :bidders_name %>
+      <%= form.text_field :bidders_name, class: "form-control" %>
+    </div>
 
-  <div class="col-6">
-    <%= form.label :bidders_address %>
-    <%= form.text_field :bidders_address, class: "form-control" %>
+    <div class="col-6">
+      <%= form.label :bidders_address %>
+      <%= form.text_field :bidders_address, class: "form-control" %>
+    </div>
   </div>
-</div>
   <div class="separator"></div>
   <div class="float-right">
     <%= form.submit :save, class: "btn btn-success" %>

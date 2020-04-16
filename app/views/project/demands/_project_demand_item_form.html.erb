@@ -1,32 +1,33 @@
 <%= form_with(model: project_demand_item, local: true) do |form| %>
   <% if project_demand_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_demand_item.errors.count, "error") %> prohibited this project_demand_item from being saved:</h2>
+      <h2><%= pluralize(project_demand_item.errors.count, "error") %> prohibited this project_demand_item from being
+        saved:</h2>
 
       <ul>
-      <% project_demand_item.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% project_demand_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-    <%= form.hidden_field :project_demand_id %>
+  <%= form.hidden_field :project_demand_id %>
 
-<div class="row">
-  <div class="col-4">
-    <%= form.label :name_of_item %>
-    <%= form.select(:project_item_id, @project_items.collect{|item| [item.name_of_item_en, item.id]}, {} , {class: "form-control", required: :required}) %>
-  </div>
-  <div class="col-2">
-    <%= form.label :quantity %>
-    <%= form.text_field :quantity, class: "form-control" %>
-  </div>
+  <div class="row">
+    <div class="col-4">
+      <%= form.label :name_of_item %>
+      <%= form.select(:project_item_id, @project_items.collect { |item| [item.name_of_item_en, item.id] }, {}, {class: "form-control", required: :required}) %>
+    </div>
+    <div class="col-2">
+      <%= form.label :quantity %>
+      <%= form.text_field :quantity, class: "form-control" %>
+    </div>
 
-  <div class="col-4">
-    <%= form.label :remark %>
-    <%= form.text_field :remark, class: "form-control" %>
+    <div class="col-4">
+      <%= form.label :remark %>
+      <%= form.text_field :remark, class: "form-control" %>
+    </div>
   </div>
-</div>
   <div class="float-right">
     <%= form.submit :save, class: "btn btn-success" %>
   </div>

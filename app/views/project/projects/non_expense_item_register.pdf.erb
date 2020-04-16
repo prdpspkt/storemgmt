@@ -1,5 +1,5 @@
 <% @items.each do |item| %>
-<% if item.item_transactions.where(fiscal_year_id: @fiscal_year.id).count > 0  %>
-  <%= render "project/ledgers/non_expense_item_register", item: item %>
+  <% if item.project_item_transactions.where(fiscal_year_id: @fiscal_year.id).count > 0 %>
+    <%= render "project/projects/non_expense_item_register", item: item %>
   <% end %>
 <% end %>

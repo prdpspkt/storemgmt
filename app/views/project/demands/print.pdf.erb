@@ -8,7 +8,7 @@
     <td class="text-right">मितिः <%= ndate @demand.demand_date %></td>
   </tr>
   <tr>
-    <td colspan="2" class="text-left"> श्री भण्डार शाखा, </td>
+    <td colspan="2" class="text-left"> श्री भण्डार शाखा,</td>
   </tr>
   </tbody>
 </table>
@@ -45,7 +45,7 @@
       <td class="text-center"><%= nd item.quantity %></td>
       <td><%= item.remark %></td>
     </tr>
-  <% @sn = @sn + 1 %>
+    <% @sn = @sn + 1 %>
   <% end %>
   </tbody>
 </table>
@@ -55,7 +55,7 @@
     <td>माग गर्नेको दस्तखतः</td>
     <td>सिफारिस गर्नेको दस्तखतः</td>
     <td>&nbsp;</td>
-    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == true  %> </td>
+    <td>क) बजारबाट खरिद गरि दिनु । <%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == true %> </td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -63,7 +63,7 @@
     <td>नामः <%= @demand.demand_by %></td>
     <td>नामः <%= @demand.recommended_by %></td>
     <td>&nbsp;</td>
-    <td>ख) मौज्दातबाट दिनु ।<%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == false  %></td>
+    <td>ख) मौज्दातबाट दिनु ।<%= '<i class="check"></i>'.html_safe if @demand.needed_to_purchase == false %></td>
     <td>&nbsp;</td>
   </tr>
   <tr>

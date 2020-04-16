@@ -1,7 +1,8 @@
 <%= form_with(model: project_purchase_entry_item, local: true) do |form| %>
   <% if project_purchase_entry_item.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(project_purchase_entry_item.errors.count, "error") %> prohibited this project_purchase_entry_item
+      <h2><%= pluralize(project_purchase_entry_item.errors.count, "error") %> prohibited this
+        project_purchase_entry_item
         from being saved:</h2>
 
       <ul>
@@ -31,5 +32,5 @@
     </div>
   </div>
   <div class="separator"></div>
-      <%= form.submit :save, class: "float-right btn btn-success" %>
+  <%= form.submit :save, class: "float-right btn btn-success" %>
 <% end %>

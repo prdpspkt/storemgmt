@@ -1,21 +1,21 @@
 <h1>दाखिला प्रतिवेदन</h1>
 <div class="table-responsive">
-<table class="table table-sm table-condensed table-bordered">
-  <tr>
-    <th>खरिद/हस्तान्तरण नं</th>
-    <th>दाखिला नं</th>
-    <th>दाखिला मिति</th>
-    <th>दाखिला गर्ने</th>
-    <th>प्रमाणित गर्ने</th>
-  </tr>
-  <tr>
-    <td><%= nd @purchase_entry.purchase_handover_no %></td>
-    <td><%= nd @purchase_entry.entry_no %></td>
-    <td><%= ndate @purchase_entry.entry_date %></td>
-    <td><%= @purchase_entry.store_body.store_keeper_name %></td>
-    <td><%= @purchase_entry.store_body.office_chief_name %></td>
-  </tr>
-</table>
+  <table class="table table-sm table-condensed table-bordered">
+    <tr>
+      <th>खरिद/हस्तान्तरण नं</th>
+      <th>दाखिला नं</th>
+      <th>दाखिला मिति</th>
+      <th>दाखिला गर्ने</th>
+      <th>प्रमाणित गर्ने</th>
+    </tr>
+    <tr>
+      <td><%= nd @purchase_entry.purchase_handover_no %></td>
+      <td><%= nd @purchase_entry.entry_no %></td>
+      <td><%= ndate @purchase_entry.entry_date %></td>
+      <td><%= @purchase_entry.store_body.store_keeper_name %></td>
+      <td><%= @purchase_entry.store_body.office_chief_name %></td>
+    </tr>
+  </table>
 </div>
 <div class="separator"></div>
 <div class="text-center">
@@ -27,7 +27,7 @@
   <% end %>
   <% if @purchase_entry.marked_as_final == true && @purchase_entry.ledger_entry_generated != true %>
     <%= link_to before_final_btn.html_safe, accept_project_purchase_entry_url(@purchase_entry), id: :mark_as_not_final, method: :post %>
-    <%= link_to ledger_entry_btn.html_safe, transaction_project_purchase_entry_url(@purchase_entry), method: :post, data: { confirm: "के तपाई निश्चिन्त हुनुहुन्छ ? तपाईले जिन्सी खातामा विवरण प्रविष्ट गर्दै हुनुहुन्छ | यसरी प्रविष्ट गरेको डाटा तपाईले परिवर्तन गर्न सक्नुहुने छैन |"} %>
+    <%= link_to ledger_entry_btn.html_safe, transaction_project_purchase_entry_url(@purchase_entry), method: :post, data: {confirm: "के तपाई निश्चिन्त हुनुहुन्छ ? तपाईले जिन्सी खातामा विवरण प्रविष्ट गर्दै हुनुहुन्छ | यसरी प्रविष्ट गरेको डाटा तपाईले परिवर्तन गर्न सक्नुहुने छैन |"} %>
   <% end %>
 </div>
 <div class="separator"></div>
@@ -38,56 +38,56 @@
 <% end %>
 <h2>दाखिला भएका जिन्सि सामाग्रीहरु</h2>
 <div class="table-responsive">
-<table class="table table-sm table-condensed">
-  <tr>
-    <th>जिन्सी वर्गीकरण नं</th>
-    <th>सामानको नाम</th>
-    <th>जिन्सी पहिचान नं</th>
-    <th>इकाई</th>
-    <th>परिमाण</th>
-    <th>दर</th>
-    <th>जम्मा</th>
-    <th>भ्याट</th>
-    <th>जम्मा रकम</th>
-    <th>अन्य खर्च</th>
-    <th>कुल जम्मा</th>
-    <th class="no-print"></th>
-  </tr>
-  <% @purchase_entry_items.each do |item| %>
-    <tr id="<%= item.id %>-opei">
-      <td><%= nd item.item.item_classification_no %></td>
-      <td><%= item.item.name_of_item_ne %></td>
-      <td><%= item.item_identification_no %></td>
-      <td><%= item.item.unit_ne %></td>
-      <td><%= nd item.quantity %></td>
-      <td><%= nd item.rate %></td>
-      <td><%= nd item.amount_without_vat %></td>
-      <td><%= nd item.vat %></td>
-      <td><%= nd item.amount %></td>
-      <td><%= nd item.other_expense %></td>
-      <td><%= nd item.total_amount %></td>
-      <td>
-        <% if @purchase_entry.marked_as_final != true %>
-          <% if item.item.item_classification_no == 47 %>
-            <%= link_to(edit_btn.html_safe, edit_project_purchase_entry_item_path(item)) %>
-          <% end %>
-          <%= link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure to delete ?"} %>
-        <% end %></td>
+  <table class="table table-sm table-condensed">
+    <tr>
+      <th>जिन्सी वर्गीकरण नं</th>
+      <th>सामानको नाम</th>
+      <th>जिन्सी पहिचान नं</th>
+      <th>इकाई</th>
+      <th>परिमाण</th>
+      <th>दर</th>
+      <th>जम्मा</th>
+      <th>भ्याट</th>
+      <th>जम्मा रकम</th>
+      <th>अन्य खर्च</th>
+      <th>कुल जम्मा</th>
+      <th class="no-print"></th>
     </tr>
-  <% end %>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td>जम्मा</td>
-    <td><%= nd @purchase_entry_items.sum(:amount_without_vat) %></td>
-    <td><%= nd @purchase_entry_items.sum(:vat) %></td>
-    <td><%= nd @purchase_entry_items.sum(:amount) %></td>
-    <td><%= nd @purchase_entry_items.sum(:other_expense) %></td>
-    <td><%= nd @purchase_entry_items.sum(:total_amount) %></td>
-    <td></td>
-  </tr>
-</table>
+    <% @purchase_entry_items.each do |item| %>
+      <tr id="<%= item.id %>-opei">
+        <td><%= nd item.item.item_classification_no %></td>
+        <td><%= item.item.name_of_item_ne %></td>
+        <td><%= item.item_identification_no %></td>
+        <td><%= item.item.unit_ne %></td>
+        <td><%= nd item.quantity %></td>
+        <td><%= nd item.rate %></td>
+        <td><%= nd item.amount_without_vat %></td>
+        <td><%= nd item.vat %></td>
+        <td><%= nd item.amount %></td>
+        <td><%= nd item.other_expense %></td>
+        <td><%= nd item.total_amount %></td>
+        <td>
+          <% if @purchase_entry.marked_as_final != true %>
+            <% if item.item.item_classification_no == 47 %>
+              <%= link_to(edit_btn.html_safe, edit_project_purchase_entry_item_path(item)) %>
+            <% end %>
+            <%= link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure to delete ?"} %>
+          <% end %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>जम्मा</td>
+      <td><%= nd @purchase_entry_items.sum(:amount_without_vat) %></td>
+      <td><%= nd @purchase_entry_items.sum(:vat) %></td>
+      <td><%= nd @purchase_entry_items.sum(:amount) %></td>
+      <td><%= nd @purchase_entry_items.sum(:other_expense) %></td>
+      <td><%= nd @purchase_entry_items.sum(:total_amount) %></td>
+      <td></td>
+    </tr>
+  </table>
 </div>

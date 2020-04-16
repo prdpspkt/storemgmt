@@ -1,6 +1,6 @@
 <%= form_with(model: office_purchase_entry_item, local: true) do |form| %>
-<%= render 'layouts/form_errors', object: office_purchase_entry_item %>
-   <div class="row">
+  <%= render 'layouts/form_errors', object: office_purchase_entry_item %>
+  <div class="row">
 
     <div class="col-sm-4">
       <%= form.label :item_identification_no %>
@@ -12,20 +12,20 @@
       <%= form.text_field :size, class: "form-control" %>
     </div>
 
-     <div class="col-sm-4">
-       <%= form.label :country %>
-       <%= form.text_field :country, class: "form-control" %>
-     </div>
+    <div class="col-sm-4">
+      <%= form.label :country %>
+      <%= form.text_field :country, class: "form-control" %>
+    </div>
 
-     <div class="col-sm-4">
-       <%= form.label :source %>
-       <%= form.text_field :source, class: "form-control" %>
-     </div>
+    <div class="col-sm-4">
+      <%= form.label :source %>
+      <%= form.text_field :source, class: "form-control" %>
+    </div>
 
-     <div class="col-sm-4">
-       <%= form.label :approx_age %>
-       <%= form.text_field :approx_age, class: "form-control" %>
-     </div>
+    <div class="col-sm-4">
+      <%= form.label :approx_age %>
+      <%= form.text_field :approx_age, class: "form-control" %>
+    </div>
 
     <div class="col-sm-4">
       <%= form.label :remarks %>
@@ -33,5 +33,5 @@
     </div>
   </div>
   <div class="separator"></div>
-    <%= form.submit :save, class: "float-right btn btn-success" %>
+  <%= form.submit :save, class: "float-right btn btn-success" %>
 <% end %>

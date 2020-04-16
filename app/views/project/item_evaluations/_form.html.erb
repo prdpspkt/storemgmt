@@ -1,28 +1,28 @@
-<%= form_with(model: item_evaluation, url: generate_project_item_evaluations_url , local: true) do |form| %>
+<%= form_with(model: item_evaluation, url: generate_project_item_evaluations_url, local: true) do |form| %>
   <% if item_evaluation.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(item_evaluation.errors.count, "error") %> prohibited this item_evaluation from being saved:</h2>
 
       <ul>
-      <% item_evaluation.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% item_evaluation.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-<div class="row">
+  <div class="row">
 
-  <div class="col-6">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: "form-control", required: :required %>
+    <div class="col-6">
+      <%= form.label :name %>
+      <%= form.text_field :name, class: "form-control", required: :required %>
+    </div>
+
+    <div class="col-6">
+      <%= form.label :select_a_committee %>
+      <%= form.select(:item_evaluation_committee_id, @item_evaluation_committees.collect { |committee| [committee.name, committee.id] }, {include_blank: true}, {class: 'form-control', required: :required}) %>
+    </div>
+
   </div>
-
-  <div class="col-6">
-    <%= form.label :select_a_committee %>
-    <%= form.select(:item_evaluation_committee_id, @item_evaluation_committees.collect{|committee| [committee.name, committee.id]}, {include_blank: true}, {class: 'form-control', required: :required}) %>
-  </div>
-
-</div>
   <div class="separator"></div>
   <div class="float-right">
     <%= form.submit :generate, class: "btn btn-primary" %>

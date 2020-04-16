@@ -1,8 +1,8 @@
 <div>
   <span class="h3"><%= @project.name_of_project_ne %></span>
   <%= link_to edit_big_btn.html_safe, edit_project_project_path(@project) %>
-  <%= link_to expense_item_ledger_btn.html_safe, expense_item_register_project_ledger_path(@project, format: :pdf), target: "_blank" %>
-  <%= link_to non_expense_item_ledger_btn.html_safe, non_expense_item_register_project_ledger_path(@project, format: :pdf), target: "_blank"%>
+  <%= link_to expense_item_ledger_btn.html_safe, expense_item_register_project_project_url(@project) %>
+  <%= link_to non_expense_item_ledger_btn.html_safe, non_expense_item_register_project_project_url(@project) %>
   <a class="btn btn-warning" data-toggle="collapse" href="#project_description_table" aria-expanded="false" aria-controls="project_description_table">आयोजनाको
     विवरण</a>
 </div>
@@ -67,124 +67,137 @@
   <div id="home" class="container tab-pane active"><br>
     <h3>खर्च भएर जाने जिन्सी सामान</h3>
     <div class="table-responsive">
-    <table class="table table-sm table-bordered">
-      <tr>
-        <th>क्र.स.</th>
-        <th>खाता पाना नं</th>
-        <th>सामानको नाम</th>
-        <th>Name of Item</th>
-        <th>वर्ग</th>
-        <th>परिमाण</th>
-        <th class="no-print"></th>
-      </tr>
-      <% @i = 1 %>
-      <% @project_items52.each do |item| %>
+      <table class="table data-table table-sm table-bordered">
+        <thead>
         <tr>
-          <td><%= nd @i %></td>
-          <td><%= nd item.item_register_page_no %></td>
-          <td><%= item.name_of_item_ne %></td>
-          <td><%= item.name_of_item_en %></td>
-          <td><%= item.item_category.name_ne %></td>
-          <td></td>
-          <td class="no-print"></td>
+          <th>क्र.स.</th>
+          <th>खाता पाना नं</th>
+          <th>सामानको नाम</th>
+          <th>Name of Item</th>
+          <th>परिमाण</th>
+          <th>इकाई</th>
         </tr>
-        <% @i = @i + 1 %>
-      <% end %>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+        <% @i = 1 %>
+        <% @project_items52.each do |item| %>
+          <tr>
+            <td><%= nd @i %></td>
+            <td><%= nd item.item_register_page_no %></td>
+            <td><%= item.name_of_item_ne %></td>
+            <td><%= item.name_of_item_en %></td>
+            <td><%= nd get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 52) %></td>
+            <td><%= item.unit_ne %></td>
+          </tr>
+          <% @i = @i + 1 %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div id="menu1" class="container tab-pane fade"><br>
     <h3>खर्च भएर नजाने (खप्ने) जिन्सी सामानहरू</h3>
     <div class="table-responsive">
-    <table class="table table-sm table-bordered">
-      <tr>
-        <th>क्र.स.</th>
-        <th>खाता पाना नं </th>
-        <th>सामानको नाम</th>
-        <th>Name of Item</th>
-        <th>वर्ग</th>
-        <th>परिमाण</th>
-        <th class="no-print"></th>
-      </tr>
-      <% @i = 1 %>
-      <% @project_items47.each do |item| %>
+      <table class="table table-sm data-table table-bordered">
+        <thead>
         <tr>
-          <td><%= nd @i %></td>
-          <td><%= item.item_register_page_no %></td>
-          <td><%= item.name_of_item_ne %></td>
-          <td><%= item.name_of_item_en %></td>
-          <td><%= item.item_category.name_ne %></td>
-          <td></td>
-          <td class="no-print"></td>
+          <th>क्र.स.</th>
+          <th>खाता पाना नं</th>
+          <th>सामानको नाम</th>
+          <th>Name of Item</th>
+          <th>परिमाण</th>
+          <th>इकाई</th>
+          <th class="no-print"></th>
         </tr>
-        <% @i = @i + 1 %>
-      <% end %>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+        <% @i = 1 %>
+        <% @project_items47.each do |item| %>
+          <tr>
+            <td><%= nd @i %></td>
+            <td><%= item.item_register_page_no %></td>
+            <td><%= item.name_of_item_ne %></td>
+            <td><%= item.name_of_item_en %></td>
+            <td><%= nd get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 47) %></td>
+            <td><%= item.unit_ne %></td>
+            <td class="no-print"></td>
+          </tr>
+          <% @i = @i + 1 %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div id="menu2" class="container tab-pane fade"><br>
     <h3 class="float-left">माग फारामहरू</h3>
     <%= link_to new_btn.html_safe, demand_project_project_path(@project), class: "float-right" %>
     <div class="table-responsive">
-    <table class="table table-sm table-bordered">
-      <tr>
-        <th>क्र.स.</th>
-        <th>माग संख्या</th>
-        <th>मिति</th>
-        <th>माग कर्ता</th>
-        <th class="no-print"></th>
-      </tr>
-      <% @i = 1 %>
-      <% @demands.each do |item| %>
+      <table class="table table-sm data-table table-bordered">
+        <thead>
         <tr>
-          <td><%= nd @i %></td>
-          <td><%= nd item.demand_no %></td>
-          <td><%= ndate item.demand_date %></td>
-          <td><%= item.demand_by %></td>
-          <td class="no-print">
-            <% if item.marked_as_final != true %>
-              <%= link_to edit_btn.html_safe, edit_project_demand_url(item) %>
-              <%= link_to destroy_btn.html_safe, project_demand_url(item), data: {method: :delete, confirm: "Are you sure to delete this release form ?"} %>
-            <% end %>
-            <%= link_to show_btn.html_safe, project_demand_url(item) %>
-          </td>
+          <th>क्र.स.</th>
+          <th>माग संख्या</th>
+          <th>मिति</th>
+          <th>माग कर्ता</th>
+          <th class="no-print"></th>
         </tr>
-        <% @i = @i + 1 %>
-      <% end %>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+        <% @i = 1 %>
+        <% @demands.each do |item| %>
+          <tr>
+            <td><%= nd @i %></td>
+            <td><%= nd item.demand_no %></td>
+            <td><%= ndate item.demand_date %></td>
+            <td><%= item.demand_by %></td>
+            <td class="no-print">
+              <% if item.marked_as_final != true %>
+                <%= link_to edit_btn.html_safe, edit_project_demand_url(item) %>
+                <%= link_to destroy_btn.html_safe, project_demand_url(item), data: {method: :delete, confirm: "Are you sure to delete this release form ?"} %>
+              <% end %>
+              <%= link_to show_btn.html_safe, project_demand_url(item) %>
+            </td>
+          </tr>
+          <% @i = @i + 1 %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
   <div id="menu3" class="container tab-pane fade"><br>
     <h3 class="float-left">निकाशा फारामहरू</h3>
-    <%= link_to new_btn.html_safe, release_project_project_path(@project), class: "float-right" %>
     <div class="table-responsive">
-    <table class="table table-sm table-bordered">
-      <tr>
-        <th>क्र.स.</th>
-        <th>निकाशा नं</th>
-        <th>निकाशा मिति</th>
-        <th>सामान बुझ्ने</th>
-        <th class="no-print"></th>
-      </tr>
-      <% @i = 1 %>
-      <% @releases.each do |item| %>
+      <table class="table table-sm data-table table-bordered">
+        <thead>
         <tr>
-          <td><%= nd @i %></td>
-          <td><%= nd item.release_no %></td>
-          <td><%= ndate item.release_date %></td>
-          <td><%= item.received_by %></td>
-          <td class="no-print">
-            <% if item.accepted != true %>
-              <%= link_to edit_btn.html_safe, edit_project_release_url(item) %>
-              <%= link_to destroy_btn.html_safe, project_release_url(item), data: {method: :delete, confirm: "Are you sure to delete this release form ?"} %>
-            <% end %>
-            <%= link_to show_btn.html_safe, project_release_url(item) %>
-          </td>
+          <th>क्र.स.</th>
+          <th>निकाशा नं</th>
+          <th>निकाशा मिति</th>
+          <th>सामान बुझ्ने</th>
+          <th class="no-print"></th>
         </tr>
-        <% @i = @i + 1 %>
-      <% end %>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+        <% @i = 1 %>
+        <% @releases.each do |item| %>
+          <tr>
+            <td><%= nd @i %></td>
+            <td><%= nd item.release_no %></td>
+            <td><%= ndate item.release_date %></td>
+            <td><%= item.received_by %></td>
+            <td class="no-print">
+              <% if item.accepted != true %>
+                <%= link_to edit_btn.html_safe, edit_project_release_url(item) %>
+                <%= link_to destroy_btn.html_safe, project_release_url(item), data: {method: :delete, confirm: "Are you sure to delete this release form ?"} %>
+              <% end %>
+              <%= link_to show_btn.html_safe, project_release_url(item) %>
+            </td>
+          </tr>
+          <% @i = @i + 1 %>
+        <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
 </div>

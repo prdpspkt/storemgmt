@@ -4,7 +4,7 @@
     <th rowspan="2">क्र.स.</th>
     <th rowspan="2">खाता पाना नं</th>
     <th rowspan="2">जिन्सी वर्गीकरण नं</th>
-    <th rowspan="2" >जिन्सी सामानको नाम</th>
+    <th rowspan="2">जिन्सी सामानको नाम</th>
     <th colspan="4">मौज्दात बाँकी</th>
     <th rowspan="2">जिन्सी सामानको भौतिक अवस्था</th>
     <th rowspan="2">कैफियत</th>
@@ -23,7 +23,7 @@
     <% if item.project_id != @is_same_project %>
       <% @is_same_project = item.project_id %>
       <tr class="text-white bg-black">
-        <td colspan="3">आयोजनाको नाम: </td>
+        <td colspan="3">आयोजनाको नाम:</td>
         <td colspan="7"><%= item.project.name_of_project_ne %></td>
         <% @i = 1 %>
       </tr>
@@ -47,7 +47,7 @@
 <table class="table">
   <tr>
     <td>स्टोर प्रमुखको हस्ताक्षर</td>
-    <td>शाखा प्रमुखको हस्ताक्षर </td>
+    <td>शाखा प्रमुखको हस्ताक्षर</td>
     <td>कार्यालय प्रमुखको हस्ताक्षर</td>
   </tr>
   <tr>

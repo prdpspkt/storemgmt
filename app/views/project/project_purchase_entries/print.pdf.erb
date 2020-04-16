@@ -1,10 +1,12 @@
 <table class="table">
   <tr>
-    <td colspan="14" class="text-left" colspan="3">आयोजनाको नाम:  <%=  @project_purchase_entry.project.name_of_project_ne %></td>
+    <td colspan="14" class="text-left" colspan="3">आयोजनाको
+      नाम:  <%= @project_purchase_entry.project.name_of_project_ne %></td>
     <td colspan="3" class="text-right" colspan="3">दाखिला मितिः <%= ndate @project_purchase_entry.entry_date %></td>
   </tr>
   <tr>
-    <td colspan="17" class="text-left" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @project_purchase_entry.entry_no%></td>
+    <td colspan="17" class="text-left" colspan="3">दाखिला प्रतिवेदन
+      नम्बरः <%= nd @project_purchase_entry.entry_no %></td>
   </tr>
   <tr>
     <td></td>
@@ -17,7 +19,7 @@
     <td rowspan="2">खरिद आदेश /हस्तान्तरण फारम नं</td>
     <td rowspan="2">जिन्सी करण सङ्केत न.</td>
     <td rowspan="2">जिन्सी खाता पाना.नं.</td>
-    <td rowspan="2"  style="min-width: 200px">सामानको नाम</td>
+    <td rowspan="2" style="min-width: 200px">सामानको नाम</td>
     <td rowspan="2">स्पेसिफिकेसन</td>
     <td rowspan="2">सामानको पहिचान नं</td>
     <td rowspan="2">मोडल नं</td>
@@ -57,26 +59,26 @@
   <tbody>
   <% @id = 1 %>
   <% @project_purchase_entry_items.each do |item| %>
-  <tr>
-    <td><%= nd @id %></td>
-    <td></td>
-    <td><%= nd item.project_item.item_classification_no %></td>
-    <td><%= nd item.project_item.item_register_page_no %></td>
-    <td class="item_name"><%= item.project_item.name_of_item_ne %></td>
-    <td><%= item.project_item.specification %></td>
-    <td><%= item.item_identification_no %></td>
-    <td><%= item.model_no %></td>
-    <td><%= item.project_item.unit_ne %></td>
-    <td><%= nd item.quantity %>
-    <td><%= nd item.rate %></td>
-    <td><%= nd item.amount_without_vat %></td>
-    <td><%= nd item.vat %></td>
-    <td><%= nd item.amount %></td>
-    <td><%= nd item.other_expense %></td>
-    <td><%= nd item.total_amount %></td>
-    <td><%= item.remarks %></td>
-  </tr>
-    <% end %>
+    <tr>
+      <td><%= nd @id %></td>
+      <td></td>
+      <td><%= nd item.project_item.item_classification_no %></td>
+      <td><%= nd item.project_item.item_register_page_no %></td>
+      <td class="item_name"><%= item.project_item.name_of_item_ne %></td>
+      <td><%= item.project_item.specification %></td>
+      <td><%= item.item_identification_no %></td>
+      <td><%= item.model_no %></td>
+      <td><%= item.project_item.unit_ne %></td>
+      <td><%= nd item.quantity %>
+      <td><%= nd item.rate %></td>
+      <td><%= nd item.amount_without_vat %></td>
+      <td><%= nd item.vat %></td>
+      <td><%= nd item.amount %></td>
+      <td><%= nd item.other_expense %></td>
+      <td><%= nd item.total_amount %></td>
+      <td><%= item.remarks %></td>
+    </tr>
+  <% end %>
   <tr class="text-center">
     <td colspan="11" class="text-right">जम्मा</td>
     <td><%= nd @amount_without_vat %></td>

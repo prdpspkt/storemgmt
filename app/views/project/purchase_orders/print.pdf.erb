@@ -23,13 +23,13 @@
 <table class="table black-border table-wide">
   <thead>
   <tr class="text-center">
-    <td rowspan="2" >क्र.सं.</td>
+    <td rowspan="2">क्र.सं.</td>
     <td colspan="5">सामानको</td>
     <td colspan="2">मूल्य</td>
     <td rowspan="2">कैफियत</td>
   </tr>
   <tr class="text-center">
-    <td >जिन्सी वर्गीकरण सङ्केत नं</td>
+    <td>जिन्सी वर्गीकरण सङ्केत नं</td>
     <td>नाम</td>
     <td>स्पेसिफिकेसन</td>
     <td>इकार्इ</td>
@@ -52,19 +52,19 @@
   <tbody>
   <% @i = 1 %>
   <% @purchase_order_items.each do |item| %>
-  <tr>
-    <td class="text-center"><%= nd @i %></td>
-    <td class="text-center"><%= nd item.item.item_classification_no %></td>
-    <td class="item_name"><%= item.item.name_of_item_ne %></td>
-    <td><%= item.item.specification %></td>
-    <td><%= item.item.unit_ne %></td>
-    <td><%= nd item.quantity %></td>
-    <td><%= nd item.rate %></td>
-    <td><%= nd item.amount %></td>
-    <td><%= item.remarks %></td>
-  </tr>
+    <tr>
+      <td class="text-center"><%= nd @i %></td>
+      <td class="text-center"><%= nd item.item.item_classification_no %></td>
+      <td class="item_name"><%= item.item.name_of_item_ne %></td>
+      <td><%= item.item.specification %></td>
+      <td><%= item.item.unit_ne %></td>
+      <td><%= nd item.quantity %></td>
+      <td><%= nd item.rate %></td>
+      <td><%= nd item.amount %></td>
+      <td><%= item.remarks %></td>
+    </tr>
     <% @i = @i + 1 %>
-    <% end %>
+  <% end %>
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -102,7 +102,9 @@
 </table>
 <table class="table">
   <tr>
-    <td colspan="9">माथि उल्लिखित सामान मिति <%= ndate @purchase_order.date_to_receive_goods %> भित्र  <%= @purchase_order.office.office %>,  <%= @purchase_order.office.address %> स्थानमा दाखिला गरी बिल । इन्भाइस
+    <td colspan="9">माथि उल्लिखित सामान मिति <%= ndate @purchase_order.date_to_receive_goods %>
+      भित्र  <%= @purchase_order.office.office %>,  <%= @purchase_order.office.address %> स्थानमा दाखिला गरी बिल ।
+      इन्भाइस
       प्रस्तुत गर्नुहोला ।
     </td>
   </tr>
@@ -146,7 +148,9 @@
   </tr>
 
   <tr>
-    <td colspan="9">माथि उल्लिखित सामानहरू मिति <%= ndate @purchase_order.date_to_receive_goods %> भित्र <%= @purchase_order.office.office %> कार्यालयमा बुझाउने छु भनी सहिछाप गर्ने ।</td>
+    <td colspan="9">माथि उल्लिखित सामानहरू मिति <%= ndate @purchase_order.date_to_receive_goods %>
+      भित्र <%= @purchase_order.office.office %> कार्यालयमा बुझाउने छु भनी सहिछाप गर्ने ।
+    </td>
   </tr>
 
   <tr>
