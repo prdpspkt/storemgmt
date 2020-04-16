@@ -113,6 +113,12 @@ load_and_authorize_resource
     @release.project_id = @project.id
   end
 
+
+  def expense_item_register
+  end 
+
+  def non_expense_item_register
+  end 
   # DELETE /projects/1
   # DELETE /projects/1.json
   def destroy

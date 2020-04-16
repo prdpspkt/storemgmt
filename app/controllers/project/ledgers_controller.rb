@@ -1,64 +1,53 @@
 class Project::LedgersController < ProjectController
   before_action :set_office_information
 
-  def expense_item_registers
-    @items = office(Project::Item)
-                 .where(item_classification_no: 52)
-                 .joins(:item_transactions)
-                 .where("project_item_transactions.fiscal_year_id =#{current_fiscal_year.id}")
-                 .distinct(:item_id)
-    @report_name = "खर्च भएर जाने जिन्सी खाता"
-    @form_no = 407
-    @old_form_no = 52
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "खर्च भएर जाने जिन्सि खाता", layout: "pdf_print", orientation: "landscape"
-      end
-    end
-  end
-
-  def non_expense_item_registers
-    @items = office(Project::Item)
-                 .where(item_classification_no: 47)
-                 .joins(:item_transactions)
-                 .where("project_item_transactions.fiscal_year_id =#{current_fiscal_year.id}")
-                 .distinct(:item_id)
-    @report_name = "खर्च भएर नजाने (खप्ने मालसामानको) जिन्सी खाता"
-    @form_no = 408
-    @old_form_no = 47
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "खर्च भएर नजाने जिन्सि खाता", layout: "pdf_print", orientation: "landscape"
-      end
-    end
-  end
-
   def expense_item_register
-    @items = office(Project::ProjectItem).where(project_id: params[:id]).where(item_classification_no: 52)
-    @project = Project::Project.find(params[:id])
+    @generate_url = print_pdf_expense_item_register_project_ledgers_url
+    @download_url =  download_pdf_expense_item_register_project_ledgers_url(format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
-    @form_no = 407
-    @old_form_no = 52
+    render 'index'
+  end
+
+  def print_pdf_expense_item_register
+    ProjectExpensableItemRegisterGenerator.perform_async(@office.id, @fiscal_year.id, current_control_body.id)
+    redirect_to expense_item_register_project_ledgers_url, notice: "Your file is being generated in background please try print button after few minutes."
+  end
+
+  def download_pdf_expense_item_register
     respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "खर्च भएर जाने जिन्सि खाता", layout: "pdf_print", orientation: "landscape"
+    format.pdf do
+        pdf_path = Rails.root.join("pdfs", "#{@office.id}", "#{@fiscal_year.id}", "project-expensable-item-register.pdf")
+        if File.exists?(pdf_path)
+          data = File.open(pdf_path, 'rb') { |io| io.read }
+          send_data(data, type: 'application/pdf', disposition: :inline) and return
+       end
       end
     end
   end
+
 
   def non_expense_item_register
-    @items = office(Project::ProjectItem).where(project_id: params[:id]).where(item_classification_no: 47)
-    @project = Project::Project.find(params[:id])
-    @report_name = "खर्च भएर नजाने (खप्ने मालसामानको) जिन्सी खाता"
-    @form_no = 408
-    @old_form_no = 47
+    @generate_url = print_pdf_non_expense_item_register_project_ledgers_url
+    @download_url = download_pdf_non_expense_item_register_project_ledgers_url(format: :pdf)
+    @report_name = "खर्च भएर नजाने(खप्ने) जिन्सी खाता"
+    render 'index'
+  end
+
+  def print_pdf_non_expense_item_register
+    ProjectNonExpensableItemRegisterGenerator.perform_async(@office.id, @fiscal_year.id, current_control_body.id)
+    redirect_to non_expense_item_register_project_ledgers_url, notice: "Your file is being generated in background please try download button after few minutes."
+  end
+
+
+  def download_pdf_non_expense_item_register
     respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "खर्च भएर नजाने जिन्सि खाता", layout: "pdf_print", orientation: "landscape"
+    format.html { redirect_to non_expense_item_register_project_ledgers_url, notice: "Please press download button."}
+    format.pdf do
+        pdf_path = Rails.root.join("pdfs", "#{@office.id}", "#{@fiscal_year.id}", "project-non-expensable-item-register.pdf")
+        if File.exists?(pdf_path)
+          data = File.open(pdf_path, 'rb') { |io| io.read }
+          send_data(data, type: 'application/pdf', disposition: :inline) and return
+      end
       end
     end
   end

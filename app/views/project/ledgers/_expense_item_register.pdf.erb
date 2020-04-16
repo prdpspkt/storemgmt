@@ -68,7 +68,7 @@
   <tbody>
   <% @qty = 0 %>
   <% @amt = 0 %>
-  <% item.item_transactions.each do |oeirt| %>
+  <% item.item_transactions.where(fiscal_year_id: @fiscal_year.id).each do |oeirt| %>
     <% if oeirt.transaction_type > 0 %>
       <% @qty = @qty + oeirt.quantity %>
       <% @amt = @amt + oeirt.amount %>

@@ -194,6 +194,8 @@ Rails.application.routes.draw do
         get "non_expense_item_register"
         post "print_pdf_expense_item_register"
         post "print_pdf_non_expense_item_register"
+        get "download_pdf_expense_item_register"
+        get "download_pdf_non_expense_item_register"
       end
     end
 
@@ -313,12 +315,12 @@ Rails.application.routes.draw do
 
     resources :ledgers do
       collection do
-        get "expense_item_registers"
-        get "non_expense_item_registers"
-      end
-      member do
         get "expense_item_register"
         get "non_expense_item_register"
+        post "print_pdf_expense_item_register"
+        post "print_pdf_non_expense_item_register"
+        get "download_pdf_expense_item_register"
+        get "download_pdf_non_expense_item_register"
       end
     end
 

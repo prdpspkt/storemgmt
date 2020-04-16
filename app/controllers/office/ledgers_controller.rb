@@ -2,26 +2,10 @@ class Office::LedgersController < OfficeController
   before_action :set_office_information
 
   def expense_item_register
-    @items = office(Office::Item).where(item_classification_no: 52).paginate(page: params[:page])
-    @office = current_office
-    @fiscal_year = current_fiscal_year
-    @report_name = "खर्च भएर जाने जिन्सी सामानको खाता"
-    @form_no = 407
-    @old_form_no = 52
-
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf_path = Rails.root.join("pdfs", "#{@office.id}", "#{@fiscal_year.id}", "office-expensable-item-register.pdf")
-        if File.exists?(pdf_path)
-          data = File.open(pdf_path, 'rb') { |io| io.read }
-          send_data(data, type: 'application/pdf', disposition: :inline) and return
-        else
-          OfficeExpensableItemRegisterGenerator.perform_async(current_office.id, current_fiscal_year.id, current_control_body.id)
-          redirect_to office_dashboard_url, notice: "Your file is being generated in background please try after few minutes."
-        end
-      end
-    end
+    @generate_url = print_pdf_expense_item_register_office_ledgers_url
+    @download_url =  download_pdf_expense_item_register_office_ledgers_url(format: :pdf)
+    @report_name = "खर्च भएर जाने जिन्सी खाता"
+    render 'index'
   end
 
   def print_pdf_expense_item_register
@@ -31,34 +15,47 @@ class Office::LedgersController < OfficeController
     redirect_to expense_item_register_office_ledgers_url, notice: "Your file is being generated in background please try print button after few minutes."
   end
 
-  def non_expense_item_register
-    @items = office(Office::Item).where(item_classification_no: 47).paginate(page: params[:page])
-    @office = current_office
-    @fiscal_year = current_fiscal_year
-    @report_name = "खर्च भएर नजाने (खप्ने) जिन्सी सामानको खाता"
-    @form_no = 408
-    @old_form_no = 47
-
+  def download_pdf_expense_item_register
     respond_to do |format|
-      format.html
-      format.pdf do
-        pdf_path = Rails.root.join("pdfs", "#{@office.id}", "#{@fiscal_year.id}", "office-non-expensable-item-register.pdf")
+    format.pdf do
+        pdf_path = Rails.root.join("pdfs", "#{@office.id}", "#{@fiscal_year.id}", "office-expensable-item-register.pdf")
         if File.exists?(pdf_path)
           data = File.open(pdf_path, 'rb') { |io| io.read }
           send_data(data, type: 'application/pdf', disposition: :inline) and return
-        else
-          OfficeNonExpensableItemRegisterGenerator.perform_async(current_office.id, current_fiscal_year.id, current_control_body.id)
-          redirect_to office_dashboard_url, notice: "Your file is being generated in background please try after few minutes."
-        end
+       end
       end
     end
   end
+
+
+  def non_expense_item_register
+    @generate_url = print_pdf_non_expense_item_register_office_ledgers_url
+    @download_url = download_pdf_non_expense_item_register_office_ledgers_url(format: :pdf)
+    @report_name = "खर्च भएर नजाने(खप्ने) जिन्सी खाता"
+    render 'index'
+  end
+
   def print_pdf_non_expense_item_register
     @office = current_office
     @fiscal_year = current_fiscal_year
     OfficeNonExpensableItemRegisterGenerator.perform_async(@office.id, @fiscal_year.id, current_control_body.id)
-    redirect_to non_expense_item_register_office_ledgers_url, notice: "Your file is being generated in background please try print button after few minutes."
+    redirect_to non_expense_item_register_office_ledgers_url, notice: "Your file is being generated in background please try download button after few minutes."
   end
+
+
+  def download_pdf_non_expense_item_register
+    respond_to do |format|
+    format.html { redirect_to non_expense_item_register_office_ledgers_url, notice: "Please press download button."}
+    format.pdf do
+        pdf_path = Rails.root.join("pdfs", "#{@office.id}", "#{@fiscal_year.id}", "office-non-expensable-item-register.pdf")
+        if File.exists?(pdf_path)
+          data = File.open(pdf_path, 'rb') { |io| io.read }
+          send_data(data, type: 'application/pdf', disposition: :inline) and return
+      end
+      end
+    end
+  end
+
   def set_office_information
     @office = current_office
     @fiscal_year = current_fiscal_year
