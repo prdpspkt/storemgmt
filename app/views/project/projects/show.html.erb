@@ -82,7 +82,7 @@
         <% @i = 1 %>
         <% @project_items52.each do |item| %>
           <tr>
-            <td><%= nd @i %></td>
+            <td><%= @i %></td>
             <td><%= nd item.item_register_page_no %></td>
             <td><%= item.name_of_item_ne %></td>
             <td><%= item.name_of_item_en %></td>
@@ -114,7 +114,7 @@
         <% @i = 1 %>
         <% @project_items47.each do |item| %>
           <tr>
-            <td><%= nd @i %></td>
+            <td><%=  @i %></td>
             <td><%= item.item_register_page_no %></td>
             <td><%= item.name_of_item_ne %></td>
             <td><%= item.name_of_item_en %></td>
@@ -146,7 +146,7 @@
         <% @i = 1 %>
         <% @demands.each do |item| %>
           <tr>
-            <td><%= nd @i %></td>
+            <td><%=  @i %></td>
             <td><%= nd item.demand_no %></td>
             <td><%= ndate item.demand_date %></td>
             <td><%= item.demand_by %></td>
@@ -181,7 +181,7 @@
         <% @i = 1 %>
         <% @releases.each do |item| %>
           <tr>
-            <td><%= nd @i %></td>
+            <td><%=  @i %></td>
             <td><%= nd item.release_no %></td>
             <td><%= ndate item.release_date %></td>
             <td><%= item.received_by %></td>
