@@ -39,8 +39,24 @@
         <% @item_evaluation_items.each do |item| %>
           <% if @project_id != item.project_id %>
             <tr class="bg-dark text-white">
-              <td colspan="3"> आयोजनाको नाम:</td>
-              <td colspan="17"> <%= item.project.name_of_project_ne %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td> <%= item.project.name_of_project_en %></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
             </tr>
           <% end %>
           <% @project_id = item.project_id %>
@@ -48,9 +64,9 @@
             <td><%= @sn %></td>
             <td><%= nd item.item_register_page_no %></td>
             <td><%= nd item.item_classification_no %></td>
-            <td><%= nd item.name_of_item_ne %></td>
+            <td><%= nd item.name_of_item_en %></td>
             <td><%= nd item.quantity %></td>
-            <td><%= nd item.unit_ne %></td>
+            <td><%= nd item.unit_en %></td>
             <td id="matched-<%= item.id %>"><%= nd item.matched %></td>
             <td id="unmatched-<%= item.id %>"><%= nd item.unmatched %></td>
             <td id="dquantity-<%= item.id %>"><%= nd item.dquantity %></td>

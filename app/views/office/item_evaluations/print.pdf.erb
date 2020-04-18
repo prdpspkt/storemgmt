@@ -1,34 +1,34 @@
     <table class="table black-border">
-      <thead>
-      <tr class="text-center" >
-        <th rowspan="2">क्र.स.</th>
-        <th rowspan="2">खाता पाना नं</th>
-        <th rowspan="2">जिन्सी वर्गीकरण नं</th>
-        <th rowspan="2" class="bibaran" width="350px">विवरण</th>
-        <th rowspan="2">परिमाण</th>
-        <th rowspan="2">इकाई</th>
-        <th rowspan="2">दर</th>
-        <th colspan="2">स्पेसिफिकेसन</th>
-        <th colspan="3">भौतिक अवस्था</th>
-        <th colspan="2">प्रयोगमा</th>
-        <th colspan="4">भौतिक अवस्था</th>
-        <th rowspan="2">जम्मा मुल्य</th>
-        <th rowspan="2">कुल परिमाण</th>
-      </tr>
-      <tr>
-        <th>मिलान भएको संख्या</th>
-        <th>मिलान नभएको संख्या</th>
-        <th>घट सङ्ख्या</th>
-        <th>बढ सङ्ख्या</th>
-        <th>घटे/बढको सङ्ख्या</th>
-        <th>प्रयोगमा रहेको</th>
-        <th>प्रयोगमा नरहेको</th>
-        <th>मर्मत गर्नुपर्ने</th>
-        <th>लिलाम विक्री गर्नुपर्ने</th>
-        <th>मिन्हा गर्नु पर्ने</th>
-        <th>संरक्षण गर्नु पर्ने</th>
-      </tr>
-      </thead>
+  <thead class="">
+  <tr class="text-center">
+    <th rowspan="2">क्र.स.</th>
+    <th rowspan="2">खाता पाना नं</th>
+    <th rowspan="2">जिन्सी वर्गीकरण नं</th>
+    <th rowspan="2" style="min-width: 200px">विवरण</th>
+    <th rowspan="2">इकाई</th>
+     <th colspan="2">जिन्सी खाता बमोजिमको मौज्दात</th>
+    <th colspan="2">स्पेसिफिकेसन</th>
+    <th colspan="3">भौतिक अवस्था</th>
+    <th colspan="2">प्रयोगमा</th>
+    <th colspan="4">भौतिक अवस्था</th>
+    <th rowspan="2">कुल परिमाण</th>
+  </tr>
+  <tr>
+    <th>परिमाण</th>
+    <th>मुल्य</th>
+    <th>मिलान भएको संख्या</th>
+    <th>मिलान नभएको संख्या</th>
+    <th>घट सङ्ख्या</th>
+    <th>बढ सङ्ख्या</th>
+    <th>घटे/बढको सङ्ख्या</th>
+    <th>प्रयोगमा रहेको</th>
+    <th>प्रयोगमा नरहेको</th>
+    <th>मर्मत गर्नुपर्ने</th>
+    <th>लिलाम विक्री गर्नुपर्ने</th>
+    <th>मिन्हा गर्नु पर्ने</th>
+    <th>संरक्षण गर्नु पर्ने</th>
+  </tr>
+  </thead>
       <tbody>
       <% @sn = 1 %>
       <% @item_evaluation.item_evaluation_items.order("id ASC").each do |item| %>
@@ -37,9 +37,8 @@
           <td><%= nd item.item_register_page_no %></td>
           <td><%= nd item.item_classification_no %></td>
           <td class="text-left" style="min-width: 250px"><%= nd item.name_of_item_ne %></td>
-          <td><%= nd item.quantity %></td>
           <td><%= nd item.unit_ne %></td>
-          <td><%= nd item.rate %></td>
+          <td><%= nd item.quantity %></td>
           <td class="text-right"><%= nd item.amount %></td>
           <td id="matched-<%= item.id  %>"><%= nd item.matched %></td>
           <td id="unmatched-<%= item.id  %>"><%= nd item.unmatched %></td>

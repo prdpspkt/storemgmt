@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_15_072102) do
+ActiveRecord::Schema.define(version: 2020_04_17_053529) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -272,6 +272,8 @@ ActiveRecord::Schema.define(version: 2020_04_15_072102) do
     t.integer "item_register_page_no"
     t.integer "item_classification_no"
     t.string "unit_ne"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "office_item_evaluations", force: :cascade do |t|
@@ -283,6 +285,8 @@ ActiveRecord::Schema.define(version: 2020_04_15_072102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "office_item_stocks", force: :cascade do |t|
@@ -991,6 +995,8 @@ ActiveRecord::Schema.define(version: 2020_04_15_072102) do
     t.integer "item_register_page_no"
     t.integer "item_classification_no"
     t.string "unit_ne"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "project_item_evaluations", force: :cascade do |t|
@@ -1002,6 +1008,8 @@ ActiveRecord::Schema.define(version: 2020_04_15_072102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "project_item_transactions", force: :cascade do |t|

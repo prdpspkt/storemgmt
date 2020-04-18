@@ -18,5 +18,10 @@ $(function () {
        theme: 'bootstrap'
    });
 
+ $(".data-table").dataTable();
+  $(".date-picker").nepaliDatePicker();
+  $(".data-table-no-sort").dataTable({
+    ordering: false
+  });
 
 });

@@ -28,7 +28,7 @@ class Office::ItemEvaluationsController < OfficeController
         user_id: current_user.id,
         fiscal_year_id: current_fiscal_year.id
     }
-    GenerateOfficeItemEvaluationForm.perform_async(data)
+    OfficeEvaluationGenerator.perform_async(data)
     redirect_to office_item_evaluations_url, notice: "जिन्सी निरीक्षण कार्य हुँदै छ, कृपया केहि समय पछि यो पेज रिफ्रेस गर्नु होस्, धन्यवाद |"
   end
 

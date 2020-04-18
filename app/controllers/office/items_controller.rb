@@ -45,9 +45,14 @@ class Office::ItemsController < OfficeController
     @item.unit_en = @item_category.unit_en
     @item.unit_ne = @item_category.unit_ne
     @item.item_register_page_no = new_item_register_page_no @item.item_classification_no
+    if @item.item_classification_no == 52
+      url_to_go = expense_index_office_items_url
+    else
+      url_to_go = non_expense_index_office_items_url
+    end 
     respond_to do |format|
       if @item.save
-        format.html { redirect_to office_items_path, notice: 'Office item was successfully created.' }
+        format.html { redirect_to url_to_go, notice: 'Office item was successfully created.' }
         format.json { render :show, status: :created, location: @item }
       else
         format.html { render :new }
@@ -59,9 +64,14 @@ class Office::ItemsController < OfficeController
   # PATCH/PUT /office_items/1
   # PATCH/PUT /office_items/1.json
   def update
+    if @item.item_classification_no == 52
+      url_to_go = expense_index_office_items_url
+    else
+      url_to_go = non_expense_index_office_items_url
+    end 
     respond_to do |format|
       if @item.update(office_item_params)
-        format.html { redirect_to office_items_path, notice: 'Office item was successfully updated.' }
+        format.html { redirect_to url_to_go, notice: 'Office item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
         format.html { render :edit }

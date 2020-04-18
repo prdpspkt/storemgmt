@@ -10,6 +10,7 @@ class ProjectEvaluationReportGenerator
         report_name: "जिन्सी निरीक्षण प्रतिवेदन फाराम",
         form_no: 411,
         old_form_no: 49,
+        item_evaluation_items: item_evaluation.item_evaluation_items.order("project_id ASC"),
         item_evaluation: item_evaluation
     }
     generator = PdfGenerator.new('project/item_evaluations/print.pdf', data, "landscape")

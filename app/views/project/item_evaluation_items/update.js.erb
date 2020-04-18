@@ -1,0 +1,29 @@
+doc  = window.opener.document;
+matched = doc.getElementById("matched-<%=@item_evaluation_item.id%>");
+unmatched = doc.getElementById("unmatched-<%=@item_evaluation_item.id%>");
+dquantity = doc.getElementById("dquantity-<%=@item_evaluation_item.id%>");
+iquantity = doc.getElementById("iquantity-<%=@item_evaluation_item.id%>");
+diquantity = doc.getElementById("diquantity-<%=@item_evaluation_item.id%>");
+working = doc.getElementById("working-<%=@item_evaluation_item.id%>");
+notworking = doc.getElementById("notworking-<%=@item_evaluation_item.id%>");
+to_be_repaired = doc.getElementById("to_be_repaired-<%=@item_evaluation_item.id%>");
+to_be_disposed = doc.getElementById("to_be_disposed-<%=@item_evaluation_item.id%>");
+to_be_conserved = doc.getElementById("to_be_conserved-<%=@item_evaluation_item.id%>");
+to_be_auctioned = doc.getElementById("to_be_auctioned-<%=@item_evaluation_item.id%>")
+
+matched.innerText = "<%= nd @item_evaluation_item.matched %>";
+unmatched.innerText = "<%= nd @item_evaluation_item.unmatched %>";
+working.innerText = "<%= nd @item_evaluation_item.working %>";
+notworking.innerText = "<%=nd @item_evaluation_item.notworking %>";
+dquantity.innerText = "<%= nd @item_evaluation_item.dquantity %>";
+iquantity.innerText = "<%= nd  @item_evaluation_item.iquantity %>";
+diquantity.innerText = "<%= nd  @item_evaluation_item.diquantity %>";
+to_be_repaired.innerText = "<%=  nd @item_evaluation_item.to_be_repaired %>";
+to_be_disposed.innerText = "<%=  nd @item_evaluation_item.to_be_disposed %>";
+to_be_conserved.innerText = "<%=  nd @item_evaluation_item.to_be_conserved %>";
+to_be_auctioned.innerText = "<%=  nd @item_evaluation_item.to_be_auctioned %>";
+
+window.close();
+
+
+

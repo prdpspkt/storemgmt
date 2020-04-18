@@ -35,11 +35,13 @@ class ProjectEvaluationGenerator
           evaluation_item.fiscal_year_id = item_evaluation.fiscal_year_id
           evaluation_item.project_item_id = item.id
           evaluation_item.name_of_item_ne = item.name_of_item_ne
+          evaluation_item.name_of_item_en = item.name_of_item_en
           evaluation_item.item_classification_no = item.item_classification_no
           evaluation_item.item_register_page_no = item.item_register_page_no
           evaluation_item.unit_ne = item.unit_ne
+          evaluation_item.unit_en = item.unit_en
           evaluation_item.quantity = transactions.sum(:sku)
-          evaluation_item.rate = transactions.average(:rate)
+          evaluation_item.rate = transactions.sum(:amount)/transactions.sum(:quantity)
           evaluation_item.matched = evaluation_item.quantity
           evaluation_item.working = evaluation_item.quantity
           evaluation_item.total_quantity = evaluation_item.quantity
