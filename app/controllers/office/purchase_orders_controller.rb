@@ -108,7 +108,7 @@ class Office::PurchaseOrdersController < OfficeController
     @report_name = "खरिद आदेश"
     @old_form_no = 45
     @form_no = 402
-    @amount = @purchase_order_items.sum(:amount)
+    @amount = @purchase_order_items.sum(:amount_without_vat)
     @vat = @amount * 0.13
     @total = @amount + @vat
     respond_to do |format|

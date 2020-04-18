@@ -1,5 +1,6 @@
 <h1>माग फाराम</h1>
-<table class="table-responsive table table-bordered">
+<div class="table-responsive">
+<table class="table table-bordered">
   <tr>
     <th>माग फाराम नं</th>
     <th>मिति</th>
@@ -17,6 +18,7 @@
     <td><%= @demand.store_body.store_keeper_name %></td>
   </tr>
 </table>
+</div>
 <div class="text-center">
 <%= link_to back_btn.html_safe, office_demands_path %>
   <% if @demand.marked_as_final == false %>

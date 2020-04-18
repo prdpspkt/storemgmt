@@ -7,4 +7,5 @@ class Office::PurchaseOrder < ApplicationRecord
   belongs_to :user
   validates_presence_of :vendor_id
   validates_numericality_of :vendor_id
+  validates_presence_of :order_date
 end

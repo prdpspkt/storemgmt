@@ -4,7 +4,7 @@
     <h2><%= @project.name_of_project_ne %></h2>
   </div>
   <div class="col-12 text-center">
-    <a class="btn btn-success" href="<%= @generate_url %>" data-method="post"><i class="fa fa-life-ring"></i> Generate
+    <a class="btn btn-success" data-confirm="Are you sure ? Previous file will be overwritten." href="<%= @generate_url %>" data-method="post"><i class="fa fa-life-ring"></i> Generate
       PDF</a>
     <a class="btn btn-primary" href="<%= @download_url %>" target="_blank"><i class="fa fa-save"></i> Downlaod</a>
   </div>

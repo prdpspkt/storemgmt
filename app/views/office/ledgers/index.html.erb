@@ -3,7 +3,7 @@
 		<h1><%= @report_name %></h1>
 	</div>
 	<div class="col-12 text-center">
-		<a class="btn btn-success" href="<%= @generate_url %>" data-method="post"><i class="fa fa-life-ring"></i> Generate PDF</a>
-		<a class="btn btn-primary" href="<%= @download_url %>"><i class="fa fa-save"></i> Downlaod</a>
+		<a class="btn btn-success" href="<%= @generate_url %>" data-method="post" data-confirm="Are you sure to generate again? Prevous file will overwrite."><i class="fa fa-life-ring"></i> Generate PDF</a>
+		<a class="btn btn-primary" target="_blank"> href="<%= @download_url %>"><i class="fa fa-save"></i> Downlaod</a>
 	</div>
 </div>
