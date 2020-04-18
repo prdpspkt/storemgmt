@@ -13,6 +13,7 @@ class Office::ActiveFiscalYearsController < OfficeController
   def create
     @active_fiscal_year = Office::ActiveFiscalYear.new(active_fiscal_year_params)
     @active_fiscal_year.office_id = current_office.id
+    @active_fiscal_year.user_id = current_user.id
     @active_fiscal_year.save!
 
     setup = current_user.setup
