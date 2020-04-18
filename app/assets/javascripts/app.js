@@ -1,4 +1,4 @@
-$(function () {
+$(document).on('turbolinks:load', function() {
     $(".preeti").on("change", function () {
         var text = $(this).val();
         $(this).val(convert(text, all_rules['preeti']));
