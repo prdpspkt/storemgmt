@@ -22,6 +22,7 @@ class Office::FiscalYearsController < OfficeController
   def create
     @fiscal_year = Office::FiscalYear.new(fiscal_year_params)
     @fiscal_year.office_id = current_office.id
+    @fiscal_year.user_id = current_user.id
     @fiscal_year.status = false
     respond_to do |format|
       if @fiscal_year.save!
