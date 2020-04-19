@@ -1,14 +1,4 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name of item:</strong>
-  <%= @rental_record_register.name_of_item %>
-</p>
-
-<p>
-  <strong>Item classification no:</strong>
-  <%= @rental_record_register.item_classification_no %>
-</p>
 
 <p>
   <strong>Is taken in rent:</strong>
@@ -45,30 +35,12 @@
   <%= @rental_record_register.total_price %>
 </p>
 
-<p>
-  <strong>Sotre chief name:</strong>
-  <%= @rental_record_register.sotre_chief_name %>
-</p>
 
-<p>
-  <strong>Store chief designation:</strong>
-  <%= @rental_record_register.store_chief_designation %>
-</p>
 
-<p>
-  <strong>Store chief signed date:</strong>
-  <%= @rental_record_register.store_chief_signed_date %>
-</p>
 
-<p>
-  <strong>Office chief name:</strong>
-  <%= @rental_record_register.office_chief_name %>
-</p>
 
-<p>
-  <strong>Office chief designation:</strong>
-  <%= @rental_record_register.office_chief_designation %>
-</p>
+
+
 
 <p>
   <strong>Office chief signed date:</strong>
@@ -90,15 +62,10 @@
   <%= @rental_record_register.user_id %>
 </p>
 
-<p>
-  <strong>Fy:</strong>
-  <%= @rental_record_register.fy %>
-</p>
 
 <p>
   <strong>Fiscal year:</strong>
   <%= @rental_record_register.fiscal_year_id %>
 </p>
 
-<%= link_to 'Edit', edit_rental_record_register_path(@rental_record_register) %> |
-<%= link_to 'Back', rental_record_registers_path %>
+<%= link_to 'Back', office_rental_record_registers_path %>

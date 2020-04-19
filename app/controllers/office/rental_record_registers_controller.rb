@@ -4,7 +4,7 @@ class Office::RentalRecordRegistersController < OfficeController
   # GET /rental_record_registers
   # GET /rental_record_registers.json
   def index
-    @rental_record_registers = RentalRecordRegister.all
+    @rental_record_registers = Office::RentalRecordRegister.all
   end
 
   # GET /rental_record_registers/1
@@ -14,7 +14,8 @@ class Office::RentalRecordRegistersController < OfficeController
 
   # GET /rental_record_registers/new
   def new
-    @rental_record_register = RentalRecordRegister.new
+    @items = office(Office::Item).where(item_classification_no: 47)
+    @rental_record_register = Office::RentalRecordRegister.new
   end
 
   # GET /rental_record_registers/1/edit
@@ -24,7 +25,10 @@ class Office::RentalRecordRegistersController < OfficeController
   # POST /rental_record_registers
   # POST /rental_record_registers.json
   def create
-    @rental_record_register = RentalRecordRegister.new(rental_record_register_params)
+    @items = office(Office::Item).where(item_classification_no: 47)
+    @rental_record_register = Office::RentalRecordRegister.new(rental_record_register_params)
+    @rental_record_register = set_current_information @rental_record_register
+    @rental_record_register.store_body_id = current_control_body.id
 
     respond_to do |format|
       if @rental_record_register.save
@@ -64,11 +68,11 @@ class Office::RentalRecordRegistersController < OfficeController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rental_record_register
-      @rental_record_register = RentalRecordRegister.find(params[:id])
+      @rental_record_register = Office::RentalRecordRegister.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def rental_record_register_params
-      params.require(:rental_record_register).permit(:name_of_item, :item_classification_no, :is_taken_in_rent, :is_given_in_rent, :specification, :model_no, :item_identification_no, :item_register_page_no, :total_price, :sotre_chief_name, :store_chief_designation, :store_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :item_id, :office_id, :user_id, :fy, :fiscal_year_id)
+      params.require(:office_rental_record_register).permit(:name_of_item,  :is_taken_in_rent, :is_given_in_rent,  :store_keeper_signed_date,  :office_chief_signed_date)
     end
 end

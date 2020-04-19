@@ -83,11 +83,7 @@ class Office::ItemsController < OfficeController
   # DELETE /office_items/1
   # DELETE /office_items/1.json
   def destroy
-    if @item.item_classification_no == 47
-      url_to_go = non_expense_index_office_items_url
-    else
-      url_to_go = expense_index_office_items_url
-    end
+    url_to_go = request.referer || root_path
     @item.destroy
     respond_to do |format|
       if Office::Item.exists?(@item.id)

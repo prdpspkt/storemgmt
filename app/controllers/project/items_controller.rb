@@ -69,14 +69,15 @@ class Project::ItemsController < ProjectController
   # DELETE /project_items/1
   # DELETE /project_items/1.json
   def destroy
+    url_to_go = request.referer || root_path
     @item.destroy
     respond_to do |format|
       if Project::Item.exists?(@item.id)
         flash[:error] = @item.errors[:base][0].to_s
-        format.html { redirect_to project_item_categories_url }
+        format.html { redirect_to url_to_go }
         format.json { head :no_content }
       else
-        format.html { redirect_to project_item_categories_url, notice: "Successfully deleted." }
+        format.html { redirect_to url_to_go, notice: "Successfully deleted." }
         format.json { head :no_content }
       end
     end

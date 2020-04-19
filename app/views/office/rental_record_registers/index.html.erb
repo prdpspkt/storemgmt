@@ -1,28 +1,12 @@
-<h1>Rental Record Registers</h1>
+<h1>भाडामा लिएको/दिएको सम्पत्ति अभिलेख खाता</h1>
 <div class="table-responsive">
 <table class="responsive nowrap table table-hover" id="dttb-rental_record_registers" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
     <tr>
-      <th data-data="name_of_item">Name of item</th>
-      <th data-data="item_classification_no">Item classification no</th>
-      <th data-data="is_taken_in_rent">Is taken in rent</th>
-      <th data-data="is_given_in_rent">Is given in rent</th>
-      <th data-data="specification">Specification</th>
-      <th data-data="model_no">Model no</th>
-      <th data-data="item_identification_no">Item identification no</th>
-      <th data-data="item_register_page_no">Item register page no</th>
-      <th data-data="total_price">Total price</th>
-      <th data-data="sotre_chief_name">Sotre chief name</th>
-      <th data-data="store_chief_designation">Store chief designation</th>
-      <th data-data="store_chief_signed_date">Store chief signed date</th>
-      <th data-data="office_chief_name">Office chief name</th>
-      <th data-data="office_chief_designation">Office chief designation</th>
-      <th data-data="office_chief_signed_date">Office chief signed date</th>
-      <th data-data="item_id">Item</th>
-      <th data-data="office_id">Office</th>
-      <th data-data="user_id">User</th>
-      <th data-data="fy">Fy</th>
-      <th data-data="fiscal_year_id">Fiscal year</th>
+      <th data-data="sn"> क्र.स.</th>
+      <th data-data="name_of_item">जिन्सीको नाम</th>
+      <th data-data="is_taken_in_rent">भाडामा लिएको</th>
+      <th data-data="is_given_in_rent">भाडामा दिएको</th>
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
@@ -31,4 +15,4 @@
 </div>
 <br>
 
-<%= link_to 'New Rental Record Register', new_rental_record_register_path %>
+<%= link_to new_btn.html_safe, new_office_rental_record_register_path %>

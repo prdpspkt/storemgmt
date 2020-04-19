@@ -12,102 +12,121 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
-  <a class="navbar-brand text-center" href="<%= project_dashboard_path %>">
-   <%= image_tag("osims.png", height: '30' ) %>
-  </a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <% if user_signed_in? && current_user.is_admin == false %>
-    <div class="collapse navbar-collapse" id="navbarsExample09">
-      <ul class="navbar-nav mr-auto">
-        
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सामाग्रीहरू <i class="fa fa-sitemap"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="<%= office_item_categories_path %>">सामाग्रीको वर्गीकरण</a>
-            <a class="dropdown-item" href="<%= expense_index_office_items_path %>">खर्च भएर जाने सामाग्रीहरू</a>
-            <a class="dropdown-item" href="<%= non_expense_index_office_items_path %>">खर्च नहुने सामाग्रीहरू</a>
-          </div>
-        </li>
+    <% if current_user.office.has_project_access %>
+      <a class="navbar-brand text-center" href="<%= project_dashboard_path %>">
+        <%= image_tag("osims.png", height: '30') %>
+      </a>
+    <% else %>
+      <a class="navbar-brand text-center" href="<%= office_dashboard_path %>">
+        <%= image_tag("osims.png", height: '30') %>
+      </a>
+    <% end %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <% if user_signed_in? && current_user.is_admin == false %>
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="<%= office_dashboard_url %>">गृह पृष्ठ <i class="fa fa-home"></i></a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सामाग्रीहरू
+              <i class="fa fa-sitemap"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="<%= office_item_categories_path %>">सामाग्रीको वर्गीकरण</a>
+              <a class="dropdown-item" href="<%= expense_index_office_items_path %>">खर्च भएर जाने सामाग्रीहरू</a>
+              <a class="dropdown-item" href="<%= non_expense_index_office_items_path %>">खर्च नहुने सामाग्रीहरू</a>
+            </div>
+          </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खरिद <i class="fa fa-shopping-cart"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <a class="dropdown-item" href="<%= office_purchase_orders_path %>">खरिद आदेश</a>
-            <a class="dropdown-item" href="<%= office_tenders_url %>">खरिद बोलपत्र</a>
-            <a class="dropdown-item" href="<%= office_purchase_entries_path %>">दाखिला फाराम</a>
-            
-          </div>
-        </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खरिद
+              <i class="fa fa-shopping-cart"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+              <a class="dropdown-item" href="<%= office_purchase_orders_path %>">खरिद आदेश</a>
+              <a class="dropdown-item" href="<%= office_tenders_url %>">खरिद बोलपत्र</a>
+              <a class="dropdown-item" href="<%= office_purchase_entries_path %>">दाखिला फाराम</a>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">निकाशा <i class="fa fa-life-ring"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <a class="dropdown-item" href="<%= office_demands_path %>">माग फाराम</a>
-            <a class="dropdown-item" href="<%= office_releases_path %>">निकाशा फाराम</a>
-            <a class="dropdown-item" href="<%= office_handover_forms_path %>">हस्तान्तरण फाराम</a>
-            
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खाताहरू <i class="fa fa-list"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <a class="dropdown-item" href="<%= expense_item_register_office_ledgers_url %>">खर्च भएर जाने जिन्सी सामानको खाता</a>
-            <a class="dropdown-item" href="<%= non_expense_item_register_office_ledgers_url %>" >खर्च भएर नजाने जिन्सी सामानको खाता</a>
-            <a class="dropdown-item" href="<%= office_item_assistance_registers_url %>">जिन्सी सहायक खाताहरु</a>
-            <a class="dropdown-item" href="<%= office_item_disposals_path %>">जिन्सी मिनाहा फारामहरू</a>
-            <div class="separator"></div>
-            <a class="dropdown-item"><b class="text-primary">Comming Soon...</b></a>
-            <a class="dropdown-item">भाडामा लिएको/दिएको सम्पत्ति अभिलेख खाता</a>
-            <a class="dropdown-item"> घर जग्गाको लगत किताव</a>
-            <a class="dropdown-item"> स्थिर सम्पत्तिको मुल्यांकन फाराम</a>
-            <a class="dropdown-item"> विन कार्ड</a>
-          </div>
-        </li>
+            </div>
+          </li>
 
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">विविध <i class="fa fa-modx"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <a class="dropdown-item" href="<%= office_personnels_path %>">कर्मचारीहरू</a>
-             <a class="dropdown-item" href="<%= office_vendors_path %>">दर्ता भएका व्यवसायहरू</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">मर्मत
-            सम्भार <i class="fa fa-gavel"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown09">
-            <a class="dropdown-item" href="<%= office_repair_application_forms_path %>">मर्मत सम्भार तथा संरक्षण आवेदन
-              फाराम</a>
-            <a class="dropdown-item" href="<%= office_repair_record_registers_path %>">मर्मत सम्भार तथा संरक्षण अभिलेख खाता</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> वार्षिक प्रतिवेदन <i class="fa fa-flag"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="<%= office_stocks_url %>">वार्षिक मौज्दात</a>
-            <a class="dropdown-item" href="<%= office_item_evaluation_committees_url %>">जिन्सी निरिक्षण समिति</a>
-            <a class="dropdown-item" href="<%= office_item_evaluations_url %>">जिन्सी निरीक्षण प्रतिवेदन फाराम</a>
-          </div>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सेटिङ्ग <i class="fa fa-cog"></i></a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="<%= office_store_bodies_path %>">नियन्त्रण संयन्त्र</a>
-            <a class="dropdown-item" href="<%= new_office_active_fiscal_year_path %>">सक्रिय आर्थिक वर्ष</a>
-            <a class="dropdown-item" href="<%= office_fiscal_years_path %>">आ.व.हरू</a>
-            <a class="dropdown-item" href="<%= office_offices_path %>">कार्यालय सबन्धि सेटिङ्ग</a>
-          </div>
-        </li>
-      </ul>
-<% end %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">निकाशा
+              <i class="fa fa-life-ring"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+              <a class="dropdown-item" href="<%= office_demands_path %>">माग फाराम</a>
+              <a class="dropdown-item" href="<%= office_releases_path %>">निकाशा फाराम</a>
+              <a class="dropdown-item" href="<%= office_handover_forms_path %>">हस्तान्तरण फाराम</a>
+
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">खाताहरू
+              <i class="fa fa-list"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+              <a class="dropdown-item" href="<%= expense_item_register_office_ledgers_url %>">खर्च भएर जाने जिन्सी
+                सामानको खाता</a>
+              <a class="dropdown-item" href="<%= non_expense_item_register_office_ledgers_url %>">खर्च भएर नजाने जिन्सी
+                सामानको खाता</a>
+              <a class="dropdown-item" href="<%= office_item_assistance_registers_url %>">जिन्सी सहायक खाताहरु</a>
+              <a class="dropdown-item" href="<%= office_item_disposals_path %>">जिन्सी मिनाहा फारामहरू</a>
+              <a class="dropdown-item" href="<%= office_rental_record_registers_url %>">भाडामा लिएको/दिएको सम्पत्ति
+                अभिलेख खाता</a>
+              <div class="separator"></div>
+              <a class="dropdown-item"><b class="text-primary">Comming Soon...</b></a>
+              <a class="dropdown-item"> घर जग्गाको लगत किताव</a>
+              <a class="dropdown-item"> स्थिर सम्पत्तिको मुल्यांकन फाराम</a>
+              <a class="dropdown-item"> विन कार्ड</a>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">विविध
+              <i class="fa fa-modx"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+              <a class="dropdown-item" href="<%= office_personnels_path %>">कर्मचारीहरू</a>
+              <a class="dropdown-item" href="<%= office_vendors_path %>">दर्ता भएका व्यवसायहरू</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">मर्मत
+              सम्भार <i class="fa fa-gavel"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown09">
+              <a class="dropdown-item" href="<%= office_repair_application_forms_path %>">मर्मत सम्भार तथा संरक्षण आवेदन
+                फाराम</a>
+              <a class="dropdown-item" href="<%= office_repair_record_registers_path %>">मर्मत सम्भार तथा संरक्षण अभिलेख
+                खाता</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              वार्षिक प्रतिवेदन <i class="fa fa-flag"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="<%= office_stocks_url %>">वार्षिक मौज्दात</a>
+              <a class="dropdown-item" href="<%= office_item_evaluation_committees_url %>">जिन्सी निरिक्षण समिति</a>
+              <a class="dropdown-item" href="<%= office_item_evaluations_url %>">जिन्सी निरीक्षण प्रतिवेदन फाराम</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown01" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">सेटिङ्ग
+              <i class="fa fa-cog"></i></a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" href="<%= office_store_bodies_path %>">नियन्त्रण संयन्त्र</a>
+              <a class="dropdown-item" href="<%= new_office_active_fiscal_year_path %>">सक्रिय आर्थिक वर्ष</a>
+              <a class="dropdown-item" href="<%= office_fiscal_years_path %>">आ.व.हरू</a>
+              <a class="dropdown-item" href="<%= office_offices_path %>">कार्यालय सबन्धि सेटिङ्ग</a>
+            </div>
+          </li>
+        </ul>
+    <% end %>
     <% if user_signed_in? %>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="dropdown09" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
           <div class="dropdown-menu" aria-labelledby="dropdown09">
             <a class="dropdown-item" href="<%= edit_user_registration_path(current_user) %>">प्रोफाइल सम्पादन गर्ने</a>
-            <a class="dropdown-item" data-method="delete" href="<%= destroy_user_session_path  %>">बाहिरिने</a>
+            <a class="dropdown-item" data-method="delete" href="<%= destroy_user_session_path %>">बाहिरिने</a>
           </div>
         </li>
       </ul>
@@ -117,22 +136,22 @@
 </nav>
 <div class="container" style="margin-top: 20px">
   <% if notice %>
-  <div class="alert alert-info alert-dismissible fade show" role="alert">
-  <strong>जानकारी</strong> <br> <%= notice %>
-  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button>
-</div>
-  <% end %>
-  <% flash.each do |key, value| %>
-    <% if key == "error" %>
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-      <strong>त्रुटी</strong> <br> <%= value.html_safe %>
+    <div class="alert alert-info alert-dismissible fade show" role="alert">
+      <strong>जानकारी</strong> <br> <%= notice %>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
-      <% end %>
+  <% end %>
+  <% flash.each do |key, value| %>
+    <% if key == "error" %>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>त्रुटी</strong> <br> <%= value.html_safe %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
   <% end %>
   <%= yield %>
 </div>

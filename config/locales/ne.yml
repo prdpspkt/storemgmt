@@ -295,7 +295,12 @@ en:
           tender_date: "प्रकाशित मिति"
           bidders_name: "स्वीकृत बोलपत्रदाता"
           bidders_address: "बोलपत्र दाताको ठेगाना"
-
+        office/rental_record_register:
+          name_of_item: "जिन्सीको नाम"
+          is_taken_in_rent: "भाडामा लिएको ?"
+          is_given_in_rent: "भाडामा दिएको ?"
+          store_keeper_signed_date: "भण्डार प्रमुखको दस्तखत मिति"
+          office_chief_signed_date: "कार्यालय प्रमुखको दस्तखत मिति"
 
 
 

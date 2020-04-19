@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_053529) do
+ActiveRecord::Schema.define(version: 2020_04_19_014709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -610,7 +610,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_053529) do
     t.string "item_identification_no"
     t.integer "item_register_page_no"
     t.decimal "total_price"
-    t.datetime "store_chief_signed_date"
+    t.datetime "store_keeper_signed_date"
     t.datetime "office_chief_signed_date"
     t.integer "item_id"
     t.integer "office_id"
@@ -619,6 +619,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_053529) do
     t.string "file"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_classification_no"
   end
 
   create_table "office_repair_application_form_items", force: :cascade do |t|
