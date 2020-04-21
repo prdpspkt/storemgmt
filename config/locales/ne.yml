@@ -301,6 +301,16 @@ en:
           is_given_in_rent: "भाडामा दिएको ?"
           store_keeper_signed_date: "भण्डार प्रमुखको दस्तखत मिति"
           office_chief_signed_date: "कार्यालय प्रमुखको दस्तखत मिति"
+        office/rental_record_register_item:
+          date: "मिति"
+          name_of_vendor: "भाडामा लिने/दिने व्यक्ति/व्यवसाय"
+          approval_date: "स्वीकृत मिति"
+          start_date: "मिति देखि"
+          end_date: "मिति सम्म"
+          unit: "एकाई"
+          duration: "अवधि"
+          rate: "प्रति इकाई/अवधि दर"
+
 
 
 

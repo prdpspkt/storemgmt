@@ -1,0 +1,247 @@
+<table class="table table-sm table-borderless text-center">
+  </thead>
+  <tbody>
+  <tr>
+    <td class="gov_name"><%= @office.gov %></td>
+  </tr>
+  <tr>
+    <td class="min_name"><%= @office.ministry %></td>
+  </tr>
+  <tr>
+    <td class="off_name"><%= @office.office %></td>
+  </tr>
+  <tr>
+    <td class="min_name"><%= @office.address %></td>
+  </tr>
+  <tr>
+    <td class="gov_name">कार्यालय कोड नं.:</td>
+  </tr>
+  <tr>
+    <td class="off_name">भाडामा लिए/दिएको सम्पत्तिको अभिलेख किताव</td>
+  </tr>
+  </tbody>
+</table>
+<table class="table table-borderless table-sm">
+  <tr>
+    <td colspan="5">जिन्सी समानको नाम: <%= @rental_record_register.item.name_of_item_ne %></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4">जिन्सी सङ्केत नं: <%= nd @rental_record_register.item.item_classification_no %></td>
+  </tr>
+  <tr>
+    <td colspan="4">भाडामाः दिएको लिएकोः
+      <% if @rental_record_register.is_taken_in_rent %>
+        लिएको
+      <% else %>
+        दिएको
+      <% end %>
+    </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4">स्पेसिफिकेशन: <%= @rental_record_register.item.specification %></td>
+  </tr>
+  <tr>
+    <td colspan="7">सामानको पहिचान नं </td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4">जिन्सी खाता पाना.नं.</td>
+
+  </tr>
+  <tr>
+    <td colspan="6">मोडल नं</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td colspan="4">समानको परल मूल्य</td>
+  </tr>
+</table>
+<table class="table table-black-border table-sm">
+  <thead class="text-center">
+  <tr>
+    <td rowspan="3">क्र.स.</td>
+    <td rowspan="3">मिति</td>
+    <td colspan="2">भाडामा लिने /दिने व्यक्ति वा कार्यालयको</td>
+    <td rowspan="3">सङ्ख्या</td>
+    <td rowspan="3">भाडा दिने /लिने आदेश स्वीकृत मिति</td>
+    <td colspan="4">भाडा अवधि</td>
+    <td rowspan="3">प्रति इकाई/अवधिको दर</td>
+    <td rowspan="3">जम्मा भाडा रकम</td>
+    <td rowspan="3">रसिद/भौचर नं</td>
+    <td colspan="2">जम्मा भाडा रकम</td>
+    <td rowspan="3">फिर्ता प्राप्त/गरेको मिति</td>
+    <td rowspan="3">कैफियत</td>
+  </tr>
+  <tr>
+    <td rowspan="2">नाम</td>
+    <td rowspan="2">ठेगाना</td>
+    <td rowspan="2">देखि</td>
+    <td rowspan="2">सम्म</td>
+    <td colspan="2">जम्मा</td>
+    <td rowspan="2">कार्यालयमा प्राप्त रकम</td>
+    <td rowspan="2">कार्यालयले भुक्तानी रकम</td>
+  </tr>
+  <tr>
+    <td>इकाई</td>
+    <td>अवधि</td>
+  </tr>
+  <tr>
+    <td>१</td>
+    <td>२</td>
+    <td>३</td>
+    <td>४</td>
+    <td>५</td>
+    <td>६</td>
+    <td>७</td>
+    <td>८</td>
+    <td>९</td>
+    <td>१०</td>
+    <td>११</td>
+    <td>१२</td>
+    <td>१३</td>
+    <td>१४</td>
+    <td>१५</td>
+    <td>१६</td>
+    <td>१७</td>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  </tbody>
+</table>
+<table class="table table-sm table-borderless">
+  <tr>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>भण्डार/शाखा प्रमुखको सहीः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>कार्यालय प्रमुखको सहीः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>नामः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>नामः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>दर्जाः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>दर्जाः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>मितिः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td>मितिः</td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+    <td></td>
+  </tr>
+  </tbody>
+</table>

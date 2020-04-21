@@ -1,71 +1,70 @@
-
-
-<p>
-  <strong>Is taken in rent:</strong>
-  <%= @rental_record_register.is_taken_in_rent %>
-</p>
-
-<p>
-  <strong>Is given in rent:</strong>
-  <%= @rental_record_register.is_given_in_rent %>
-</p>
-
-<p>
-  <strong>Specification:</strong>
-  <%= @rental_record_register.specification %>
-</p>
-
-<p>
-  <strong>Model no:</strong>
-  <%= @rental_record_register.model_no %>
-</p>
-
-<p>
-  <strong>Item identification no:</strong>
-  <%= @rental_record_register.item_identification_no %>
-</p>
-
-<p>
-  <strong>Item register page no:</strong>
-  <%= @rental_record_register.item_register_page_no %>
-</p>
-
-<p>
-  <strong>Total price:</strong>
-  <%= @rental_record_register.total_price %>
-</p>
-
-
-
-
-
-
-
-
-<p>
-  <strong>Office chief signed date:</strong>
-  <%= @rental_record_register.office_chief_signed_date %>
-</p>
-
-<p>
-  <strong>Item:</strong>
-  <%= @rental_record_register.item_id %>
-</p>
-
-<p>
-  <strong>Office:</strong>
-  <%= @rental_record_register.office_id %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @rental_record_register.user_id %>
-</p>
-
-
-<p>
-  <strong>Fiscal year:</strong>
-  <%= @rental_record_register.fiscal_year_id %>
-</p>
-
-<%= link_to 'Back', office_rental_record_registers_path %>
+<div class="row">
+  <div class="col-12">
+    <h1>भाडामा लिए/दिएको सम्पत्तिको अभिलेख</h1>
+  </div>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table table-sm table-bordered">
+        <tr>
+          <td>जिन्सी खाता पाना नं</td>
+          <td>जिन्सी संकेत नं</td>
+          <td>सामानको नाम</td>
+          <td>जिन्सी पहिचान नं</td>
+          <td>भाडामा लिएको/दिएको विवरण</td>
+        </tr>
+        <tr>
+          <td><%= nd @rental_record_register.item_register_page_no %> </td>
+          <td><%= nd @rental_record_register.item_classification_no %></td>
+          <td><%= @rental_record_register.item.name_of_item_ne %></td>
+          <td><%= @rental_record_register.item_identification_no %></td>
+          <td>
+            <% if @rental_record_register.is_taken_in_rent %>
+              लिएको
+            <% else %>
+              दिएको
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="text-center">
+      <%= link_to back_btn.html_safe, office_rental_record_registers_url %>
+      <%= link_to edit_big_btn.html_safe, edit_office_rental_record_register_url(@rental_record_register) %>
+      <%= link_to print_big_btn.html_safe, print_office_rental_record_register_url(@rental_record_register) %>
+    </div>
+  </div>
+  <div class="col-12">
+    <h1>विवरण थप गर्ने</h1>
+    <%= render 'record_form', rental_record_register_item: @rental_record_register_item %>
+  </div>
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table table-sm">
+        <thead>
+        <tr>
+          <td>क्र.स.</td>
+          <td>मिति</td>
+          <td>भाडामा लिए/दिएको मिति</td>
+          <td>फिर्ता गरेको मिति</td>
+          <td>जम्मा अवधि</td>
+          <td>दर</td>
+          <td>लिए/दिएको जम्मा रकम</td>
+          <td>भाडामा लिए/दिएको</td>
+        </tr>
+        </thead>
+        <tbody>
+        <% @sn = 1 %>
+        <% @rental_record_register_items.each do |item| %>
+          <tr>
+            <td><%= @sn %></td>
+            <td><%= ndate item.date %></td>
+          </tr>
+        <% end %>
+        <% @sn = @sn + 1 %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

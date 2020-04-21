@@ -16,6 +16,14 @@ module ApplicationHelper
     '<span class="btn  btn-danger"><i class="fa fa-arrow-left"></i> पछि जाने</span>'
   end
 
+  def accept_btn
+    '<span class="btn  btn-danger"><i class="fa fa-check"></i></span>'
+  end
+
+  def addi_btn
+    '<span class="btn  btn-danger"><i class="fa fa-plus"></i></span>'
+  end
+
   def show_btn
     '<span class="btn btn-sm btn-success"><i class="fa fa-eye"></i></span>'
   end

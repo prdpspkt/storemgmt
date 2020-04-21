@@ -35,21 +35,32 @@ Rails.application.routes.draw do
       end
     end
     resources :tender_items
-    resources :land_and_structure_record_book_items
+    resources :land_and_structure_record_book_items do
+      member do
+        post "accepted"
+      end
+    end
     resources :land_and_structure_record_books do
       member do
         post "print"
         post "accept"
       end
     end
-    resources :rental_record_register_items
-    resources :rental_record_registers do
+    resources :rental_record_register_items do
       member do
-        post "print"
         post "accept"
       end
     end
-    resources :repair_record_register_items
+    resources :rental_record_registers do
+      member do
+        get "print"
+      end
+    end
+    resources :repair_record_register_items do
+      member do
+        post "accept"
+      end
+    end
     resources :repair_record_registers do
       member do
         get "print"

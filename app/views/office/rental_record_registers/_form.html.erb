@@ -13,7 +13,7 @@
 <div class="row">
   <div class="col-md-3">
     <%= form.label :name_of_item %>
-    <%= form.select(:item_id, @items.collect{|item| [item.name_of_item_en, item.id]}, {include_blank: true}, {class: "form-control select2", required: true} ) %>
+    <%= form.select(:item_transaction_id, @transactions.collect{|item| ["#{item.item.name_of_item_en} ( SKU:  #{item.sku}, IDN: #{item.item_identification_no}", item.id]}, {include_blank: true}, {class: "form-control select2", required: true} ) %>
   </div>
 
 

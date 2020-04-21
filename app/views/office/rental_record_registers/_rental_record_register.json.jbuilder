@@ -1,2 +1,2 @@
-json.extract! rental_record_register, :id, :name_of_item, :item_classification_no, :is_taken_in_rent, :is_given_in_rent, :specification, :model_no, :item_identification_no, :item_register_page_no, :total_price, :sotre_chief_name, :store_chief_designation, :store_chief_signed_date, :office_chief_name, :office_chief_designation, :office_chief_signed_date, :item_id, :office_id, :user_id, :fy, :fiscal_year_id, :created_at, :updated_at
-json.url rental_record_register_url(rental_record_register, format: :json)
+json.extract! rental_record_register, :id, :is_taken_in_rent, :is_given_in_rent, :item_register_page_no
+json.url office_rental_record_register_url(rental_record_register, format: :json)
