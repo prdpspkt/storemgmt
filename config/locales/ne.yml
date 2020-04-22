@@ -42,6 +42,11 @@ en:
           phone: "फोन"
           fax: "फ्याक्स"
           email: "इमेल"
+          input_system: "प्रविष्ट प्रणाली"
+          regular: "नियमित"
+          preeti: "प्रीति"
+          kantipur: "कान्तिपुर"
+          pcs_nepali: "पिसिएस नेपाली"
         office/item_category:
           name: "जिन्सी बर्गिकरणको नाम"
           unit_ne: "जिन्सी सामानको इकाई(नेपाली)"

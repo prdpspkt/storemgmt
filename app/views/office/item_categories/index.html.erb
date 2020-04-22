@@ -1,13 +1,20 @@
 <div class="row">
-  <div class="col-12">
+  <div class="col-6">
     <h1>जिन्सी सामाग्रीको बर्गिकरणहरु</h1>
+  </div>
+<div class="col-6">
     <!-- Button trigger modal -->
     <div class="float-right imex">
+      <%= link_to new_btn.html_safe, new_office_item_category_path %>
       <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
         Import
       </a>
       <%= link_to("Export", office_item_categories_url(format: :xlsx), class: "btn btn-success") %>
     </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
     <div class="table-responsive">
     <table class="table data-table " id="dttb-item_categories" data-sort="true" data-source="<%= url_for(format: :json) %>">
       <thead>
@@ -23,10 +30,6 @@
 
     </table>
 </div>
-    <br>
-
-    <%= link_to new_btn.html_safe, new_office_item_category_path %>
-
     <%= render 'office/item_categories/new_import_form' %>
   </div>
 </div>

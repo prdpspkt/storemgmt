@@ -11,47 +11,60 @@
     </div>
   <% end %>
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :gov %>
     <%= form.text_field :gov, class: "form-control" %>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :ministry %>
     <%= form.text_field :ministry, class: "form-control" %>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :department %>
     <%= form.text_field :department, class: "form-control" %>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :office %>
     <%= form.text_field :office, class: "form-control" %>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :address %>
     <%= form.text_field :address, class: "form-control" %>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :phone %>
     <%= form.text_field :phone, class: "form-control" %>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :fax %>
     <%= form.text_field :fax, class: "form-control" %>
   </div>
 
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <%= form.label :email %>
     <%= form.text_field :email, class: "form-control" %>
   </div>
+  
+  <div class="col-md-6">
+    <%= form.label :input_system %> <br>
+    <p>नियमित बाहेकका प्रविष्ट प्रणालीका अक्षरहरु स्वत युनिकोडमा परिवर्तन हुने छन </p>
+    <%= form.label :regular %>
+    <%= form.radio_button :input_system, value: :regular %>
+    <%= form.label :preeti %>
+    <%= form.radio_button :input_system, value: :preeti %>
+    <%= form.label :pcs_nepali %>
+    <%= form.radio_button :input_system, value: :pcs_nepali %>
+    <%= form.label :kantipur %>
+    <%= form.radio_button :input_system, value: :kantipur %>
+  </div>
 
-  <div class="col-sm-12">
+  <div class="col-md-12">
     <%= form.submit "save", class: "float-right btn btn-success" %>
   </div>
 </div>

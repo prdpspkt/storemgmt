@@ -2,6 +2,7 @@
   <div class="col-md-6"><h1> खर्च नहुने जिन्सी</h1></div>
   <div class="col-md-6">
     <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_office_item_path %>
       <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
         Import
       </a>
@@ -23,10 +24,6 @@
       </thead>
     </table>
   </div>
-
-    <br>
-
-    <%= link_to new_btn.html_safe, new_office_item_path %>
     <%= render 'import_form' %>
   </div>
 </div>

@@ -148,6 +148,8 @@ class Office::ItemsController < OfficeController
           end
         end
         @last_item = item
+        item.unit_ne = get_category(item.item_category_id).unit_ne
+        item.unit_en = get_category(item.item_category_id).unit_en
         item.save!
       else
         item.errors.full_message.each do |msg|
@@ -156,7 +158,7 @@ class Office::ItemsController < OfficeController
       end
     end
     if @last_item.item_classification_no == 47
-      redirect_to office_dashboard_url
+      redirect_to non_expense_index_office_items_url
     else
       redirect_to expense_index_office_items_url
     end
@@ -194,4 +196,7 @@ class Office::ItemsController < OfficeController
     item_register_page_no
   end
 
+  def get_category id
+    Office::ItemCategory.find(id)
+  end
 end

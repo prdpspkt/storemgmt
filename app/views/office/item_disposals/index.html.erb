@@ -1,4 +1,14 @@
-<h1>जिन्सी निसर्ग/मिन्हा फारामहरू</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>जिन्सी निसर्ग/मिन्हा फारामहरू</h1>
+    <!-- Button trigger modal -->
+  </div>
+  <div class="col-6">
+    <div class="float-right imex">
+      <%= link_to new_btn.html_safe, new_office_item_disposal_path %>
+    </div>
+  </div>
+</div>
 <div class="table-responsive">
 <table class="table table-sm" id="dttb-item_disposals" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -16,4 +26,3 @@
 
 <br>
 
-<%= link_to new_btn.html_safe, new_office_item_disposal_path %>

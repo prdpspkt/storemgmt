@@ -2,10 +2,12 @@
   <div class="col-md-6"><h1> खर्च भएर जाने जिन्सी</h1></div>
   <div class="col-md-6">
     <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_office_item_path %>
       <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
         Import
       </a>
-      <%= link_to "Export", expense_index_office_items_url(format: :xlsx), class: "btn btn-success" %></div>
+      <%= link_to "Export", expense_index_office_items_url(format: :xlsx), class: "btn btn-success" %>
+    </div>
   </div>
 
 <div class="col-12">
@@ -25,9 +27,6 @@
 
   </table>
 </div>
-  <br>
-
-  <%= link_to new_btn.html_safe, new_office_item_path %>
   <%= render 'import_form' %>
 </div>
 </div>

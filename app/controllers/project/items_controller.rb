@@ -113,18 +113,30 @@ class Project::ItemsController < ProjectController
       end
       item
     end
-    if items.map(&:valid?).all?
-      items.each(&:save!)
-      true
-    else
-      items.each_with_index do |item, index|
-        item.errors.full_messages.each do |msg|
+    items.each do |item|
+      if item.valid?
+        unless Office::Item.exists?(item.id)
+          if item.item_classification_no == 47
+            item.item_register_page_no = @nirpn
+            @nirpn = @nirpn + 1
+          else
+            item.item_register_page_no = @eirpn
+            @eirpn = @eirpn + 1
+          end
+        end
+        @last_item = item
+        item.save!
+      else
+        item.errors.full_message.each do |msg|
           errors.add :base, "Row #{index + 6}: #{msg}"
         end
       end
-      false
     end
-    redirect_to project_items_path
+    if @last_item.item_classification_no == 47
+      redirect_to non_expense_index_project_items_url
+    else
+      redirect_to expense_index_project_items_url
+    end
   end
 
 

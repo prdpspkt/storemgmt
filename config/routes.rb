@@ -289,8 +289,8 @@ Rails.application.routes.draw do
     end
     resources :items do
       collection do
-        get "non_expense_able"
-        get "expense_able"
+        get "non_expense_index"
+        get "expense_index"
         get "print"
         get "print_stocking"
         post "import"

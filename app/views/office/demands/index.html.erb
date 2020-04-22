@@ -1,4 +1,14 @@
-<h1>माग फारामहरू</h1>
+<div class="row">
+  <div class="col-md-4">
+    <h1>माग फारामहरू</h1>
+  </div>
+  <div class="col-md-8">
+    <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_office_demand_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
 <table class="table data-table table-condensed table-sm" id="dttb-demands" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -16,6 +26,4 @@
 </table>
 </div>
 
-<br>
 
-<%= link_to new_btn.html_safe, new_office_demand_path %>

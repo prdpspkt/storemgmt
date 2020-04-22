@@ -1,5 +1,12 @@
-<h1>आर्थिक वर्षहरु </h1>
-<a class="btn btn-danger text-white float-right" data-confirm="Are you sure ?" href="<%= close_form_office_fiscal_years_url %>"><i class="fa fa-close"></i> आ.व. बन्द गर्ने</a>
+<div class="row">
+  <div class="col-md-6"><h1>आर्थिक वर्षहरु </h1></div>
+  <div class="col-md-6">
+    <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_office_fiscal_year_path %>
+      <a class="btn btn-danger text-white " data-confirm="Are you sure ?" href="<%= close_form_office_fiscal_years_url %>"><i class="fa fa-close"></i> आ.व. बन्द गर्ने</a>
+    </div>
+    </div>
+</div>
 <div class="table-responsive">
 <table class="table data-table" id="dttb-fiscal_years" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -13,7 +20,3 @@
   </thead>
 </table>
 </div>
-
-<br>
-
-<%= link_to new_btn.html_safe, new_office_fiscal_year_path %>

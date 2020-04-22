@@ -68,7 +68,6 @@ class Office::RentalRecordRegistersController < OfficeController
     @office = @rental_record_register.office
     @cb = @rental_record_register.store_body
     @fiscal_year = @rental_record_register.fiscal_year
-
   end
 
   # DELETE /rental_record_registers/1

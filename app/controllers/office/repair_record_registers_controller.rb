@@ -76,7 +76,7 @@ class Office::RepairRecordRegistersController < OfficeController
     @repair_record_register_items = @repair_record_register.repair_record_register_items
     @office = @repair_record_register.office
     @fiscal_year = @repair_record_register.fiscal_year
-    @report_name = "मर्मत सम्भार तथा संरक्षण अभिलेख खाथा"
+    @report_name = "मर्मत सम्भार तथा संरक्षण अभिलेख खाता"
     @form_no = 415
     respond_to do |format|
       format.html
