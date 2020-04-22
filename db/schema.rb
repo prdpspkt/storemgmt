@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_22_072535) do
+ActiveRecord::Schema.define(version: 2020_04_22_094527) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -382,6 +382,8 @@ ActiveRecord::Schema.define(version: 2020_04_22_072535) do
     t.integer "user_id"
     t.integer "fiscal_year_id"
     t.boolean "working"
+    t.string "email"
+    t.string "remarks"
   end
 
   create_table "office_property_register_items", force: :cascade do |t|

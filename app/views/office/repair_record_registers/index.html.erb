@@ -1,4 +1,14 @@
-<h1>मर्मत सम्भार अभिलेख खाता</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>मर्मत सम्भार अभिलेख खाता</h1>
+  </div>
+  <div class="col-6">
+    <div class="float-right imex">
+      <%= link_to new_btn.html_safe, new_office_repair_record_register_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
 <table class="table  data-table" id="dttb-repair_record_registers" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -9,9 +19,7 @@
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
   </thead>
-
 </table>
 </div>
-<br>
 
-<%= link_to new_btn.html_safe, new_office_repair_record_register_path %>
+

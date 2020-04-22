@@ -23,7 +23,7 @@ Rails.application.routes.draw do
   namespace :office do
     resources :vendors, :except => ['show'] do
       collection do
-        post "print"
+        get "print"
       end
     end
 

@@ -1,0 +1,29 @@
+<table class="table table-wide black-border">
+  <thead>
+  <tr>
+    <td>क्र.स.</td>
+    <td>व्यवसायको नाम</td>
+    <td>प्रतिनिधिको नाम</td>
+    <td>ठेगाना</td>
+    <td>व्यवसाय दर्ता नं</td>
+    <td>पान नं</td>
+    <td>फोन नं</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sn = 1 %>
+  <% @vendors.each do |v| %>
+    <tr>
+      <td><%= nd @sn %></td>
+      <td><%= v.vendor_name %></td>
+      <td><%= v.vendor_representative %></td>
+      <td><%= v.vendor_address %></td>
+      <td><%= v.vendor_registration %></td>
+      <td><%= v.vendor_pan %></td>
+      <td><%= v.vendor_phone %></td>
+    </tr>
+    <% @sn = @sn + 1 %>
+  <% end %>
+  </tbody>
+
+</table>

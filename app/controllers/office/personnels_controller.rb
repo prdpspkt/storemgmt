@@ -4,7 +4,17 @@ class Office::PersonnelsController < OfficeController
   # GET /personnels.html.erb
   # GET /personnels.html.erb.json
   def index
-    @personnels = current(Office::Personnel)
+    @personnels = office(Office::Personnel).where(working: true)
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = "कार्यरत कर्मचारी विवरण"
+        render pdf: "कर्मचारी विवरण"
+      end
+    end
   end
 
   # GET /personnels.html.erb/1

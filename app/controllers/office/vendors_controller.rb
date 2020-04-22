@@ -5,6 +5,16 @@ class Office::VendorsController < OfficeController
   # GET /vendors.json
   def index
     @vendors = current(Office::Vendor)
+    respond_to do |format|
+      format.html
+      format.json
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = "सुची दर्ता"
+        render pdf: "सुची दर्ता"
+      end
+    end
   end
 
   # GET /vendors/1

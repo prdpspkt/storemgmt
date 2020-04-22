@@ -59,7 +59,7 @@ module ApplicationHelper
   end
 
   def print_big_btn
-    '<span class="btn  btn-success"><i class="fa fa-print"></i> प्रिन्ट गर्ने</span>'
+    '<span class="btn  btn-info"><i class="fa fa-print"></i> प्रिन्ट गर्ने</span>'
   end
 
   def print_entry_big_btn

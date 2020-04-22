@@ -1,4 +1,16 @@
-<h1>खरिद आदेशहरू</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>खरिद आदेशहरू</h1>
+  </div>
+  <div class="col-6">
+    <!-- Button trigger modal -->
+    <div class="float-right imex">
+
+      <%= link_to new_btn.html_safe, new_office_purchase_order_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
 <table class="table table-sm table-condensed data-table" id="dttb-purchase_orders" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -13,6 +25,4 @@
 
 </table>
 </div>
-<br>
 
-<%= link_to new_btn.html_safe, new_office_purchase_order_path %>

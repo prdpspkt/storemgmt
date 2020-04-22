@@ -1,4 +1,14 @@
-<h1>दर्ता भएका व्यवसायहरू</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>दर्ता भएका व्यवसायहरू</h1>
+  </div>
+  <div class="col-6">
+    <div class="float-right imex">
+      <%= link_to new_btn.html_safe, new_office_vendor_path %>
+      <%= link_to print_big_btn.html_safe, office_vendors_url(format: :pdf), target: "_blank" %>
+    </div>
+  </div>
+</div>
 <div class="table-responsive">
 <table class="table data-table" id="dttb-vendors" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -16,6 +26,3 @@
 
 </table>
 </div>
-<br>
-
-<%= link_to new_btn.html_safe, new_office_vendor_path %>

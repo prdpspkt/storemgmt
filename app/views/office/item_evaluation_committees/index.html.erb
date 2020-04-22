@@ -1,4 +1,15 @@
-<h1>जिन्सी निरीक्षण समिति</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>जिन्सी निरीक्षण समिति</h1>
+  </div>
+  <div class="col-6">
+    <!-- Button trigger modal -->
+    <div class="float-right imex">
+      <%= link_to new_btn.html_safe, new_office_item_evaluation_committee_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
 <table class="responsive nowrap table table-hover" id="dttb-office_item_evaluation_committees" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -10,4 +21,3 @@
   </thead>
 </table>
 </div>
-<%= link_to new_btn.html_safe, new_office_item_evaluation_committee_path %>

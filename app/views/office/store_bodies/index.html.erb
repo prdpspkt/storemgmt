@@ -1,4 +1,15 @@
-<h1>नियन्त्रण संयन्त्र</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>नियन्त्रण संयन्त्र</h1>
+  </div>
+  <div class="col-6">
+    <div class="float-right imex">
+      <%= link_to new_btn.html_safe, new_office_store_body_path %>
+      <%= link_to edit_big_btn.html_safe, edit_office_store_body_path(@store_body) %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
 <table class="table table-bordered">
   <tr>
@@ -21,7 +32,3 @@
   </tr>
 </table>
 </div>
-<br>
-
-<%= link_to new_btn.html_safe, new_office_store_body_path %>
-<%= link_to edit_big_btn.html_safe, edit_office_store_body_path(@store_body) %>

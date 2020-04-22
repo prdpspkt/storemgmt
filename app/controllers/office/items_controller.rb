@@ -5,23 +5,36 @@ class Office::ItemsController < OfficeController
   # GET /office_items.json
   def expense_index
     @items = Office::Item.where(item_classification_no: 52)
+    @print_url = expense_index_office_items_url(format: :pdf)
     respond_to do |format|
       format.html
       format.json
       format.xlsx do
         render 'index'
       end
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = "खर्च भएर जाने जिन्सी सामानको सूची"
+        render pdf: "items", template: "office/items/index"
+      end
     end
   end
 
   def non_expense_index
     @items = office(Office::Item).where(item_classification_no: 47)
+    @print_url = non_expense_index_office_items_url(format: :pdf)
     respond_to do |format|
       format.html
       format.json
       format.xlsx do
-
         render 'index'
+      end
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = "खर्च भएर नजाने जिन्सी सामानको सूची"
+        render pdf: "items", template: "office/items/index"
       end
     end
   end

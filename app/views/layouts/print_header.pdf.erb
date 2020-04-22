@@ -5,7 +5,9 @@
     </td>
     <td style="width: 70%" class="text-center">
       <div class="government"><%= @office.gov %></div>
+      <% if @office.ministry.present? %>
       <div class="ministry"><%= @office.ministry %></div>
+        <% end %>
       <%if @office.department.present? %>
         <div class="department"><%= @office.department %></div>
       <% end %>
@@ -15,8 +17,12 @@
       <div class="ministry"> आ.व. <%= @fiscal_year.fy %></div>
     </td>
     <td style="width: 15%" class="text-right form-name-text">
+      <% if @form_no.nil? == false %>
       <div>म. ले. प. फा. नं. <%= nd @form_no %></div>
+        <% end %>
+      <% if @old_form_no.nil? == false %>
       <div>साविकको फा. नं. <%= nd @old_form_no %></div>
+        <% end %>
     </td>
   </tr>
 </table>

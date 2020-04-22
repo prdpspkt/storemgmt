@@ -1,4 +1,16 @@
-<h1>Land And Structure Record Books</h1>
+<div class="row">
+  <div class="col-6">
+    <h1>Land And Structure Record Books</h1>
+  </div>
+  <div class="col-6">
+    <!-- Button trigger modal -->
+    <div class="float-right imex">
+
+      <%= link_to new_btn.html_safe, new_land_and_structure_record_book_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
 <table class="table table-sm" id="dttb-land_and_structure_record_books" data-sort="true" data-source="<%= url_for(format: :json)%>">
   <thead>
@@ -20,5 +32,3 @@
 </table>
 </div>
 <br>
-
-<%= link_to 'New Land And Structure Record Book', new_land_and_structure_record_book_path %>

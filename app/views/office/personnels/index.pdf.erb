@@ -1,0 +1,29 @@
+<table class="table table-wide black-border">
+  <thead>
+  <tr>
+    <td>क्र.स.</td>
+    <td>सिटरोल नं</td>
+    <td>कर्मचारीको नाम/थर</td>
+    <td>पद</td>
+    <td>फोन नं</td>
+    <td>इमेल नं</td>
+    <td>कैफियत</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sn = 1 %>
+  <% @personnels.each do |p| %>
+    <tr>
+      <td><%= nd @sn %></td>
+      <td><%= p.ctroll %></td>
+      <td><%= p.name_ne %></td>
+      <td><%= p.post %></td>
+      <td><%= p.phone %></td>
+      <td><%= p.email %></td>
+      <td><%= p.remarks %></td>
+    </tr>
+    <% @sn = @sn + 1 %>
+  <% end %>
+  </tbody>
+
+</table>

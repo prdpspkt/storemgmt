@@ -9,7 +9,8 @@
       <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
         Import
       </a>
-      <%= link_to("Export", office_item_categories_url(format: :xlsx), class: "btn btn-success") %>
+      <%= link_to("Export", office_item_categories_url(format: :xlsx), class: "btn btn-primary") %>
+      <%= link_to print_big_btn.html_safe, office_item_categories_path(format: :pdf), target: "_blank" %>
     </div>
   </div>
 </div>

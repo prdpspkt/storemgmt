@@ -4,11 +4,17 @@ class Office::ItemCategoriesController < OfficeController
   # GET /item_categories
   # GET /item_categories.json
   def index
-    @item_categories = office(Office::ItemCategory)
+    @item_categories = office(Office::ItemCategory).order("id DESC")
     respond_to do |format|
       format.xlsx
       format.html
       format.json
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = "सामानको वर्गहरु"
+        render pdf: "office_item_categories"
+      end
     end
   end
 
