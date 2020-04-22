@@ -4,7 +4,7 @@ class Office::ItemsController < OfficeController
   # GET /office_items
   # GET /office_items.json
   def expense_index
-    @items = office(Office::Item).where(item_classification_no: 52)
+    @items = current(Office::Item).where(item_classification_no: 52)
     respond_to do |format|
       format.html
       format.json

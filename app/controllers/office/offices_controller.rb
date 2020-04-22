@@ -33,6 +33,9 @@ class Office::OfficesController < OfficeController
   def create
     @office = Office::Office.new(office_params)
     @office.user_id = current_user.id
+    @user = current_user
+    @user.office_id = @office.id
+    @user.save
     respond_to do |format|
       if @office.save!
         setup = current_user.setup
