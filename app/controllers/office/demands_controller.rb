@@ -12,6 +12,7 @@ class Office::DemandsController < OfficeController
   def show
     @demand_item = Office::DemandItem.new
     @items = @demand.demand_items
+    @office_items = office(Office::Item)
   end
 
   # GET /demands/new
