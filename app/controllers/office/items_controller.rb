@@ -8,7 +8,9 @@ class Office::ItemsController < OfficeController
     respond_to do |format|
       format.html
       format.json
-      format.xlsx
+      format.xlsx do
+        render 'index'
+      end
     end
   end
 
@@ -17,7 +19,10 @@ class Office::ItemsController < OfficeController
     respond_to do |format|
       format.html
       format.json
-      format.xlsx
+      format.xlsx do
+
+        render 'index'
+      end
     end
   end
 
@@ -49,7 +54,7 @@ class Office::ItemsController < OfficeController
       url_to_go = expense_index_office_items_url
     else
       url_to_go = non_expense_index_office_items_url
-    end 
+    end
     respond_to do |format|
       if @item.save
         format.html { redirect_to url_to_go, notice: 'Office item was successfully created.' }
@@ -68,7 +73,7 @@ class Office::ItemsController < OfficeController
       url_to_go = expense_index_office_items_url
     else
       url_to_go = non_expense_index_office_items_url
-    end 
+    end
     respond_to do |format|
       if @item.update(office_item_params)
         format.html { redirect_to url_to_go, notice: 'Office item was successfully updated.' }
@@ -83,21 +88,28 @@ class Office::ItemsController < OfficeController
   # DELETE /office_items/1
   # DELETE /office_items/1.json
   def destroy
-    url_to_go = request.referer || root_path
+    icn = @item.item_classification_no
+    if icn == 47
+      @url_to_go = non_expense_index_office_items_url
+    else
+      @url_to_go = expense_index_office_items_path
+    end
     @item.destroy
     respond_to do |format|
       if Office::Item.exists?(@item.id)
         flash[:error] = @item.errors[:base][0].to_s
-        format.html { redirect_to url_to_go }
+        format.html { redirect_to @url_to_go }
         format.json { head :no_content }
       else
-        format.html { redirect_to url_to_go office_item_categories_url, notice: "Successfully deleted." }
+        format.html { redirect_to @url_to_go, notice: "Successfully deleted." }
         format.json { head :no_content }
       end
     end
   end
 
   def import
+    @eirpn = new_item_register_page_no 52
+    @nirpn = new_item_register_page_no 47
     file = params[:file]
     spreadsheet = case File.extname(file.original_filename)
                   when ".csv" then
@@ -110,8 +122,8 @@ class Office::ItemsController < OfficeController
                     flash[:error] = " अपलोड गरिएको फाइल <b> #{file.original_filename} </b> को पहिचान हुन सकेन |"
                     redirect_to office_items_path and return
                   end
-    header = spreadsheet.row(1)
-    items = (2..spreadsheet.last_row).map do |i|
+    header = spreadsheet.row(2)
+    items = (3..spreadsheet.last_row).map do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       item = Office::Item.find_by_id(row["id"]) || Office::Item.new
       begin
@@ -122,25 +134,33 @@ class Office::ItemsController < OfficeController
       end
       item.office_id = current_office.id
       item.user_id = current_user.id
-      if item.item_register_page_no.present? == false
-        item.item_register_page_no = new_item_register_page_no item.item_classification_no
-      end
       item
     end
-    if items.map(&:valid?).all?
-      items.each(&:save!)
-      true
-    else
-      items.each_with_index do |item, index|
-        item.errors.full_messages.each do |msg|
+    items.each do |item|
+      if item.valid?
+        unless Office::Item.exists?(item.id)
+          if item.item_classification_no == 47
+            item.item_register_page_no = @nirpn
+            @nirpn = @nirpn + 1
+          else
+            item.item_register_page_no = @eirpn
+            @eirpn = @eirpn + 1
+          end
+        end
+        @last_item = item
+        item.save!
+      else
+        item.errors.full_message.each do |msg|
           errors.add :base, "Row #{index + 6}: #{msg}"
         end
       end
-      false
     end
-    redirect_to office_items_path
+    if @last_item.item_classification_no == 47
+      redirect_to office_dashboard_url
+    else
+      redirect_to expense_index_office_items_url
+    end
   end
-
 
   def item_register
     @office = current_office
@@ -168,7 +188,7 @@ class Office::ItemsController < OfficeController
   def new_item_register_page_no item_classification_no
     item_register_page_no = 1
     items = office(Office::Item).where(item_classification_no: item_classification_no)
-    if items.count > 0
+    if items.count.positive?
       item_register_page_no = items.last.item_register_page_no + 1
     end
     item_register_page_no
