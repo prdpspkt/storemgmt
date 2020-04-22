@@ -1,0 +1,31 @@
+<table class="table table-wide black-border">
+  <thead>
+  <tr>
+    <td>क्र.स.</td>
+    <td>ID</td>
+    <td>आयोजनाको नाम</td>
+    <td>उपभोक्ता समितिको नाम</td>
+    <td>ठेगाना</td>
+    <td>अध्यक्ष/सचिवको नाम</td>
+    <td>फोन नं</td>
+    <td>कैफियत</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sn = 1 %>
+  <% @projects.each do |item| %>
+    <tr>
+      <td><%= nd @sn %></td>
+      <td><%= item.id %></td>
+      <td><%= item.name_of_project_ne %></td>
+      <td><%= item.name_of_consumer_committee %></td>
+      <td><%= item.address %></td>
+      <td><%= item.name_of_committee_representative %></td>
+      <td><%= item.phone_of_committee_representative %></td>
+      <td></td>
+    </tr>
+    <% @sn = @sn + 1 %>
+  <% end %>
+  </tbody>
+
+</table>

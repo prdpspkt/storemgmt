@@ -20,6 +20,12 @@ load_and_authorize_resource
       format.html
       format.xlsx
       format.json
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = "संचालित आयोजनाको विवरण"
+        render pdf: "running-projects", template: 'project/projects/index', orientation: "landscape", margin: {bottom: "12mm"}
+      end
     end
   end
 
@@ -117,11 +123,6 @@ load_and_authorize_resource
   def demand
     @demand = Project::Demand.new
     @demand.project_id = @project.id
-  end
-
-  def release
-    @release = Project::Release.new
-    @release.project_id = @project.id
   end
 
 

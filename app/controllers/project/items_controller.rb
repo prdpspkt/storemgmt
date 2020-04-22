@@ -6,16 +6,38 @@ class Project::ItemsController < ProjectController
   def index
 
   end
- def non_expense_able
+ def non_expense_index
    @title = "खर्च भएर नजाने(खप्ने) सामानहरू"
    @items = office(Project::Item).where(item_classification_no: 47)
-   render :index
+   @print_url = non_expense_index_project_items_url(format: :pdf)
+   respond_to do |format|
+     format.html { render :index}
+     format.xlsx { render :index}
+     format.json {render :index}
+     format.pdf do
+       @office = current_office
+       @fiscal_year = current_fiscal_year
+       @report_name = @title
+       render pdf: "non-expense-item", template: 'project/items/index'
+     end
+   end
  end
 
-  def expense_able
+  def expense_index
     @title = "खर्च भएर जाने सामानहरू"
     @items = office(Project::Item).where(item_classification_no: 52)
-    render :index
+    @print_url = expense_index_project_items_url(format: :pdf)
+    respond_to do |format|
+      format.html { render :index}
+      format.xlsx { render :index}
+      format.json {render :index}
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = @title
+        render pdf: "expense-item", template: 'project/items/index'
+      end
+    end
   end
   # GET /project_items/1
   # GET /project_items/1.json

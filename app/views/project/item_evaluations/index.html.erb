@@ -1,4 +1,14 @@
-<h1>जिन्सी निरीक्षण फाराम</h1>
+<div class="row">
+  <div class="col-md-4">
+    <h1>जिन्सी निरीक्षण फारामहरु</h1>
+  </div>
+  <div class="col-md-8">
+    <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_project_item_evaluation_url %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table class="responsive nowrap table table-hover" id="dttb-office_item_evaluations" data-sort="true" data-source="<%= url_for(format: :json) %>">
     <thead>
@@ -8,9 +18,7 @@
       <th data-data="description">रिपोर्ट विवरण</th>
     </tr>
     </thead>
-
   </table>
 </div>
 <br>
 
-<%= link_to new_btn.html_safe, new_project_item_evaluation_url %>

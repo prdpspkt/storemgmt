@@ -9,6 +9,12 @@ class Project::ItemCategoriesController < ProjectController
       format.xlsx
       format.html
       format.json
+      format.pdf do
+        @office = current_office
+        @fiscal_year = current_fiscal_year
+        @report_name = "आयोजनाका सामाग्रीहरुको वर्गहरु"
+        render pdf: "सामाग्रीको वर्ग"
+      end
     end
   end
 

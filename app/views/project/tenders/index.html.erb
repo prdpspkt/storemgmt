@@ -1,4 +1,14 @@
-<h1>आयोजनागत खरिद टेन्डरहरू</h1>
+<div class="row">
+  <div class="col-md-4">
+    <h1>आयोजनागत खरिद टेन्डरहरू</h1>
+  </div>
+  <div class="col-md-8">
+    <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_project_tender_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table class="responsive nowrap table table-hover" id="dttb-project_purchase_tenders" data-sort="true" data-source="<%= url_for(format: :json) %>">
     <thead>
@@ -12,5 +22,3 @@
   </table>
 </div>
 <br>
-
-<%= link_to new_btn.html_safe, new_project_tender_path %>

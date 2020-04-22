@@ -1,8 +1,18 @@
-<h1>आयोजनाहरू</h1>
-<div class="float-right"><a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
-  Import
-</a>
-  <%= link_to "Export", project_projects_url(format: :xlsx), class: "btn btn-success" %></div>
+<div class="row">
+  <div class="col-md-4">
+    <h1>आयोजनाहरू</h1>
+  </div>
+  <div class="col-md-8">
+    <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_project_project_path %>
+      <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
+        Import
+      </a>
+      <%= link_to "Export", project_projects_url(format: :xlsx), class: "btn btn-primary" %>
+      <%= link_to print_big_btn.html_safe, project_projects_url(format: :pdf), target: "_blank" %>
+    </div>
+  </div>
+</div>
 <div class="table-responsive">
   <table class="table table-sm data-table" id="dttb-projects" data-sort="true" data-source="<%= url_for(format: :json) %>">
     <thead>
@@ -17,7 +27,4 @@
 
   </table>
 </div>
-<br>
-
-<%= link_to new_btn.html_safe, new_project_project_path %>
 <%= render "import_form" %>

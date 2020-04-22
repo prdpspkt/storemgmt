@@ -1,4 +1,14 @@
-<h1>जिन्सी दाखिला प्रतिवेदनहरू</h1>
+<div class="row">
+  <div class="col-md-4">
+    <h1>जिन्सी दाखिला प्रतिवेदनहरू</h1>
+  </div>
+  <div class="col-md-8">
+    <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_project_purchase_entry_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table class="table table-sm  data-table" id="dttb-office_entries" data-sort="true" data-source="<%= url_for(format: :json) %>">
     <thead>
@@ -11,7 +21,4 @@
     </thead>
 
   </table>
-  <div class="table-responsive">
-    <br>
-
-<%= link_to new_btn.html_safe, new_project_purchase_entry_path %>
+</div>

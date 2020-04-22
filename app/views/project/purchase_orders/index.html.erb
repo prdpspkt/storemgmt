@@ -1,4 +1,14 @@
-<h1>खरिद आदेशहरू</h1>
+<div class="row">
+  <div class="col-md-4">
+    <h1>खरिद आदेशहरू</h1>
+  </div>
+  <div class="col-md-8">
+    <div class="imex float-right">
+      <%= link_to new_btn.html_safe, new_project_purchase_order_path %>
+    </div>
+  </div>
+</div>
+
 <div class="table-responsive">
   <table class="table table-sm table-condensed data-table" id="dttb-purchase_orders" data-sort="true" data-source="<%= url_for(format: :json) %>">
     <thead>
@@ -10,9 +20,7 @@
       <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
     </tr>
     </thead>
-
   </table>
 </div>
-<br>
 
-<%= link_to new_btn.html_safe, new_project_purchase_order_path %>
+
