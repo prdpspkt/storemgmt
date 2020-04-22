@@ -82,6 +82,6 @@ class Office::OfficesController < OfficeController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def office_params
-      params.require(:office_office).permit(:gov, :ministry, :department, :office, :address, :phone, :fax, :email, :user_id)
+      params.require(:office_office).permit(:input_system, :gov, :ministry, :department, :office, :address, :phone, :fax, :email, :user_id)
     end
 end

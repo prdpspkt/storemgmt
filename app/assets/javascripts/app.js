@@ -1,27 +1,12 @@
-$(document).on('turbolinks:load', function() {
-    $(".preeti").on("change", function () {
-        var text = $(this).val();
-        $(this).val(convert(text, all_rules['preeti']));
+$(document).on('turbolinks:load', function () {
+    $('.select2').select2({
+        theme: 'bootstrap'
     });
 
-    $(".pcs-nepali").on("change", function () {
-        var text = $(this).val();
-        $(this).val(convert(text, all_rules['pcs nepali']));
+    $(".data-table").dataTable();
+    $(".date-picker").nepaliDatePicker();
+    $(".data-table-no-sort").dataTable({
+        ordering: false
     });
-
-    $(".preeti").on("focusout", function () {
-        var text = $(this).val();
-        $(this).val(convert(text, all_rules['preeti']));
-    });
-
-   $('.select2').select2({
-       theme: 'bootstrap'
-   });
-
- $(".data-table").dataTable();
-  $(".date-picker").nepaliDatePicker();
-  $(".data-table-no-sort").dataTable({
-    ordering: false
-  });
 
 });

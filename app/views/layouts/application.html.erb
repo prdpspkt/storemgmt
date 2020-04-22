@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>सरकारी भण्डार व्यवस्थापन - <%= @title %></title>
@@ -155,5 +155,21 @@
   <% end %>
   <%= yield %>
 </div>
+<script>
+    $(document).ready( function () {
+        <% if current_user.office.input_system == 'preeti' %>
+        $(".preeti").on("change", function () {
+            var text = $(this).val();
+            $(this).val(convert(text, all_rules['preeti']));
+        });
+
+        $(".preeti").on("focusout", function () {
+            var text = $(this).val();
+            $(this).val(convert(text, all_rules['preeti']));
+        });
+
+        <% end %>
+    });
+</script>
 </body>
 </html>

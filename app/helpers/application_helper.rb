@@ -39,6 +39,7 @@ module ApplicationHelper
   def purchase_entry_btn
     '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> दाखिला गर्ने </span>'
   end
+
   def release_generate_btn
     '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> निकासा गर्ने </span>'
   end
@@ -50,6 +51,7 @@ module ApplicationHelper
   def non_expense_item_ledger_btn
     '<span class="btn  btn-success"><i class="fa fa-eye"></i> जिन्सी खाता नं ४७ </span>'
   end
+
   def save_btn
     'सुरक्षित गर्ने '
   end
@@ -65,6 +67,7 @@ module ApplicationHelper
   def print_entry_big_btn
     '<span class="btn  btn-success"><i class="fa fa-print"></i> दाखिला रिपोर्ट प्रिन्ट गर्ने</span>'
   end
+
   def add_big_btn
     '<span class="btn  btn-warning"><i class="fa fa-plus"></i> जिन्सी थप गर्ने</span>'
   end
@@ -97,11 +100,11 @@ module ApplicationHelper
 
   def ndate input
     if input.nil? == false
-    begin
-    nd DateTime.parse(input.to_s).strftime("%Y-%m-%d")
-    rescue ArgumentError
-      "Invalid Date"
-    end
+      begin
+        nd DateTime.parse(input.to_s).strftime("%Y-%m-%d")
+      rescue ArgumentError
+        "Invalid Date"
+      end
     else
       ''
     end

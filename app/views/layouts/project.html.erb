@@ -8,6 +8,13 @@
 
   <%= stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true %>
   <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
+  <style type="text/css">
+    <% if current_user.office.input_system == 'preeti' %>
+    .preeti {
+      font-family: "preeti", Kokila;
+    }
+    <% end %>
+  </style>
 </head>
 
 <body>
@@ -106,14 +113,21 @@
     $(".data-table").dataTable();
 </script>
 
-<script type="text/javascript">
-    $(".date-picker").nepaliDatePicker();
-    // $(".date-picker").on("click", function () {
-    //     $(this).nepaliDatePicker();
-    // });
-    // $(".date-picker").on("focus", function () {
-    //     $(this).nepaliDatePicker();
-    // });
+<script>
+    $(document).ready( function () {
+        <% if current_user.office.input_system == 'preeti' %>
+        $(".preeti").on("change", function () {
+            var text = $(this).val();
+            $(this).val(convert(text, all_rules['preeti']));
+        });
+
+        $(".preeti").on("focusout", function () {
+            var text = $(this).val();
+            $(this).val(convert(text, all_rules['preeti']));
+        });
+
+        <% end %>
+    });
 </script>
 </body>
 </html>

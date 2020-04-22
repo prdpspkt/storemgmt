@@ -13,17 +13,17 @@
 <div class="row">
   <div class="col-md-6">
     <%= form.label :gov %>
-    <%= form.text_field :gov, class: "form-control" %>
+    <%= form.text_field :gov, class: "form-control preeti" %>
   </div>
 
   <div class="col-md-6">
     <%= form.label :ministry %>
-    <%= form.text_field :ministry, class: "form-control" %>
+    <%= form.text_field :ministry, class: "form-control preeti" %>
   </div>
 
   <div class="col-md-6">
     <%= form.label :department %>
-    <%= form.text_field :department, class: "form-control" %>
+    <%= form.text_field :department, class: "form-control preeti" %>
   </div>
 
   <div class="col-md-6">
@@ -55,13 +55,9 @@
     <%= form.label :input_system %> <br>
     <p>नियमित बाहेकका प्रविष्ट प्रणालीका अक्षरहरु स्वत युनिकोडमा परिवर्तन हुने छन </p>
     <%= form.label :regular %>
-    <%= form.radio_button :input_system, value: :regular %>
+    <%= form.radio_button :input_system, "regular", required: true%>
     <%= form.label :preeti %>
-    <%= form.radio_button :input_system, value: :preeti %>
-    <%= form.label :pcs_nepali %>
-    <%= form.radio_button :input_system, value: :pcs_nepali %>
-    <%= form.label :kantipur %>
-    <%= form.radio_button :input_system, value: :kantipur %>
+    <%= form.radio_button :input_system, "preeti" %>
   </div>
 
   <div class="col-md-12">

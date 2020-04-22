@@ -67,9 +67,7 @@ input{
 .borderless td, .borderless th {
     border: none;
 }
-.preeti{
-    font-family: "preeti", Kokila;
-}
+
 .select2-container--default .select2-selection--single {
     background-color: #fff;
     border: 1px solid #aaa;
