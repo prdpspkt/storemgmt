@@ -51,10 +51,14 @@ en:
         name: "जिन्सी बर्गिकरणको नाम"
         unit_ne: "जिन्सी सामानको इकाई(नेपाली)"
         unit_en: "जिन्सी सामानको इकाई (अंग्रेजी)"
+        name_in_english: "नाम (अंग्रेजी)"
+        unit_in_english: "इकाई (अंग्रेजी)"
       project/item_category:
         name: "जिन्सी बर्गिकरणको नाम"
         unit_ne: "जिन्सी सामानको इकाई(नेपाली)"
         unit_en: "जिन्सी सामानको इकाई (अंग्रेजी)"
+        name_in_english: "नाम (अंग्रेजी)"
+        unit_in_english: "इकाई (अंग्रेजी)"
       office/demand:
         demand_no: "माग फाराम नं."
         demand_date: "माग गरेको मिति"
