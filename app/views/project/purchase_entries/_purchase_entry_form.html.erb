@@ -17,17 +17,17 @@
 
     <div class="col-sm-4">
       <%= form.label :name_of_item %>
-      <%= form.select(:item_id, Project::Item.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control", required: :required}) %>
+      <%= form.select(:item_id, Project::Item.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control select2", required: :required}) %>
     </div>
 
     <div class="col-sm-2">
       <%= form.label :quantity %>
-      <%= form.text_field :quantity, class: "form-control" %>
+      <%= form.number_field :quantity, setp: :any, class: "form-control" %>
     </div>
 
     <div class="col-sm-2">
       <%= form.label :rate %>
-      <%= form.text_field :rate, class: "form-control" %>
+      <%= form.number_field :rate, setp: :any, class: "form-control" %>
     </div>
     <div class="col-sm-2">
       <%= form.label :is_vatable_? %>
@@ -36,7 +36,7 @@
 
     <div class="col-sm-2">
       <%= form.label :remarks %>
-      <%= form.text_field :remarks, class: "form-control" %>
+      <%= form.text_field :remarks, class: "form-control preeti" %>
     </div>
   </div>
   <div id="oneirt-items">
@@ -53,7 +53,7 @@
 
       <div class="col-sm-2">
         <%= form.label :country %>
-        <%= form.text_field :country, class: "form-control" %>
+        <%= form.text_field :country, class: "form-control preeti" %>
       </div>
       <div class="col-sm-2">
         <%= form.label :approx_age %>
@@ -62,7 +62,7 @@
 
       <div class="col-sm-2">
         <%= form.label :source %>
-        <%= form.text_field :source, class: "form-control" %>
+        <%= form.text_field :source, class: "form-control preeti" %>
       </div>
       <div class="col-sm-2">
         <%= form.label :size %>

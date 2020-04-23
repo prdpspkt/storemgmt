@@ -290,6 +290,8 @@ ActiveRecord::Schema.define(version: 2020_04_23_055043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "office_item_stocks", force: :cascade do |t|
@@ -1018,6 +1020,8 @@ ActiveRecord::Schema.define(version: 2020_04_23_055043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "project_item_transactions", force: :cascade do |t|

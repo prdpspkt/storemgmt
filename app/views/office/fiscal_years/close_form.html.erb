@@ -2,7 +2,7 @@
 <%= form_tag(close_office_fiscal_years_path, method: :post) do %>
   <div class="form-group">
     <%= label_tag :"बन्द गर्नुपर्ने आर्थिक वर्ष" %>
-    <%= select_tag(:fiscal_year_id, options_for_select(@fiscal_years.collect{|fy| [fy.fy, fy.id]}), {include_blank: "Select a Fiscal Year", class: "form-control", required: true }) %>
+    <%= select_tag(:fiscal_year_id, options_for_select(@fiscal_years.collect{|fy| [fy.fy, fy.id]}), {include_blank: "Select a Fiscal Year", class: "form-control select-2", required: true }) %>
   </div>
   <div class="separator"></div>
   <%= button_tag :save, class: "btn btn-success float-right" %>

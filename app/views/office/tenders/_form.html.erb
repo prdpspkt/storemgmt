@@ -18,22 +18,22 @@
 
   <div class="col-6">
     <%= form.label :tender_name %>
-    <%= form.text_field :tender_name, class: "form-control" %>
+    <%= form.text_field :tender_name, class: "form-control preeti" %>
   </div>
 
   <div class="col-6">
     <%= form.label :tender_date %>
-    <%= form.text_field :tender_date, class: "form-control date-picker" %>
+    <%= form.text_field :tender_date, class: "form-control date-picker", readonly: true, required: true %>
   </div>
 
   <div class="col-6">
     <%= form.label :bidders_name %>
-    <%= form.text_field :bidders_name, class: "form-control" %>
+    <%= form.text_field :bidders_name, class: "form-control", required: true %>
   </div>
 
   <div class="col-6">
     <%= form.label :bidders_address %>
-    <%= form.text_field :bidders_address, class: "form-control" %>
+    <%= form.text_field :bidders_address, class: "form-control", required: true %>
   </div>
 </div>
   <div class="separator"></div>

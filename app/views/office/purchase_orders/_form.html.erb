@@ -14,7 +14,7 @@
   <div class="col-sm-6">
     <%= form.label :vendor_name %>
     <% if @vendors.blank? != true %>
-    <%= form.select(:vendor_id, @vendors.collect { |p| [p.vendor_name_en, p.id]}, {include_blank: "छनोट गर्ने"}, {class: "form-control", required: :required}) %>
+    <%= form.select(:vendor_id, @vendors.collect { |p| [p.vendor_name_en, p.id]}, {include_blank: "छनोट गर्ने"}, {class: "form-control select2", required: :required}) %>
       <% else %>
     <b class="badge badge-danger">कृपया सूची दर्ता गर्नुहोस</b>
       <a href="<%= new_office_vendor_path %>"><b class="badge badge-success">सूची दर्ता गर्ने </b></a>
@@ -28,7 +28,7 @@
 
   <div class="col-sm-6">
     <%= form.label :order_date %>
-    <%= form.text_field :order_date, class: "form-control date-picker", readOnly: true %>
+    <%= form.text_field :order_date, class: "form-control date-picker", readOnly: true, required: true %>
   </div>
 
   <div class="col-sm-6">
@@ -38,28 +38,28 @@
 
   <div class="col-sm-6">
     <%= form.label :order_decision_date %>
-    <%= form.text_field :order_decision_date, class: "form-control date-picker" %>
+    <%= form.text_field :order_decision_date, class: "form-control date-picker", readOnly: true, required: true %>
   </div>
 
   <div class="col-sm-6">
     <%= form.label :date_to_receive_goods %>
-    <%= form.text_field :date_to_receive_goods, class: "form-control date-picker" %>
+    <%= form.text_field :date_to_receive_goods, class: "form-control date-picker",  readOnly: true, required: true %>
   </div>
 
   <div class="col-sm-6">
     <%= form.label :store_chief_signed_date %>
-    <%= form.text_field :store_chief_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :store_chief_signed_date, class: "form-control date-picker",  readOnly: true, required: true %>
   </div>
 
 
   <div class="col-sm-6">
     <%= form.label :section_chief_signed_date %>
-    <%= form.text_field :section_chief_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :section_chief_signed_date, class: "form-control date-picker",  readOnly: true, required: true %>
   </div>
 
   <div class="col-sm-6">
     <%= form.label :office_chief_signed_date %>
-    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker",  readOnly: true, required: true %>
   </div>
 </div>
   <div class="separator"></div>

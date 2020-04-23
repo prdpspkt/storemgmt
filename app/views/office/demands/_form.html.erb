@@ -20,7 +20,7 @@
 
   <div class="col-sm-6">
     <%= form.label :demand_by %>
-    <%= form.select(:personnel_id, @personnels.collect { |p| [p.name_ne, p.id] }, {include_blank: "छान्नुहोस्"}, {class: "form-control preeti", required: :required})%>
+    <%= form.select(:personnel_id, @personnels.collect { |p| [p.name_ne, p.id] }, {include_blank: "छान्नुहोस्"}, {class: "form-control select2", required: :required})%>
   </div>
 
   <div class="col-sm-6">
@@ -45,8 +45,6 @@
     <%= form.label :ordered_date %>
     <%= form.text_field :ordered_date, class: "form-control date-picker", required: true %>
   </div>
-
-
 
   <div class="col-sm-6">
     <%= form.label :recorded_date %>

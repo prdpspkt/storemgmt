@@ -21,12 +21,12 @@
 
     <div class="col-sm-2">
       <%= form.label :quantity %>
-      <%= form.text_field :quantity, class: "form-control" %>
+      <%= form.number_field :quantity, step: :any, class: "form-control" %>
     </div>
 
     <div class="col-sm-2">
       <%= form.label :rate %>
-      <%= form.text_field :rate, class: "form-control" %>
+      <%= form.number_field :rate, step: :any, class: "form-control" %>
     </div>
     <div class="col-sm-2">
      <%= form.label :is_vatable_? %>
@@ -35,7 +35,7 @@
 
     <div class="col-sm-2">
       <%= form.label :remarks %>
-      <%= form.text_field :remarks, class: "form-control" %>
+      <%= form.text_field :remarks, class: "form-control preeti" %>
     </div>
   </div>
   <div id="oneirt-items">
@@ -52,16 +52,16 @@
 
       <div class="col-sm-2">
         <%= form.label :country %>
-        <%= form.text_field :country, class: "form-control" %>
+        <%= form.text_field :country, class: "form-control preeti" %>
       </div>
       <div class="col-sm-2">
         <%= form.label :approx_age %>
-        <%= form.text_field :approx_age, class: "form-control" %>
+        <%= form.text_field :approx_age, class: "form-control preeti" %>
       </div>
 
       <div class="col-sm-2">
         <%= form.label :source %>
-        <%= form.text_field :source, class: "form-control" %>
+        <%= form.text_field :source, class: "form-control preeti" %>
       </div>
       <div class="col-sm-2">
         <%= form.label :size %>
