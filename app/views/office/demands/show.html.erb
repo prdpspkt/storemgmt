@@ -1,65 +1,78 @@
 <h1>माग फाराम</h1>
 <div class="table-responsive">
-<table class="table table-bordered">
-  <tr>
-    <th>माग फाराम नं</th>
-    <th>मिति</th>
-    <th>माग गर्ने</th>
-    <th>सिफारिस गर्ने</th>
-    <th>आदेश दिने</th>
-    <th>जिन्सिमा चढाउने</th>
-  </tr>
-  <tr>
-    <td><%= nd @demand.demand_no %></td>
-    <td><%= ndate @demand.demand_date %></td>
-    <td><%= @demand.demand_by %></td>
-    <td><%= @demand.recommended_by %></td>
-    <td><%= @demand.store_body.office_chief_name %></td>
-    <td><%= @demand.store_body.store_keeper_name %></td>
-  </tr>
-</table>
+  <table class="table table-bordered">
+    <tr>
+      <th>माग फाराम नं</th>
+      <th>मिति</th>
+      <th>माग गर्ने</th>
+      <th>सिफारिस गर्ने</th>
+      <th>आदेश दिने</th>
+      <th>जिन्सिमा चढाउने</th>
+    </tr>
+    <tr>
+      <td><%= nd @demand.demand_no %></td>
+      <td><%= ndate @demand.demand_date %></td>
+      <td><%= @demand.demand_by %></td>
+      <td><%= @demand.recommended_by %></td>
+      <td><%= @demand.store_body.office_chief_name %></td>
+      <td><%= @demand.store_body.store_keeper_name %></td>
+    </tr>
+  </table>
 </div>
 <div class="text-center">
-<%= link_to back_btn.html_safe, office_demands_path %>
+  <%= link_to back_btn.html_safe, @back_url %>
+
   <% if @demand.marked_as_final == false %>
-  <%= link_to edit_big_btn.html_safe, edit_office_demand_path(@demand) %>
-  <%= link_to final_btn.html_safe, accept_office_demand_path(@demand), method: :post, data:{confirm: "If you want to modify data you will have only 3 days."} %>
-    <% end %>
+    <%= link_to edit_big_btn.html_safe, edit_office_demand_path(@demand) %>
+    <%= link_to final_btn.html_safe, accept_office_demand_path(@demand), method: :post, data: {confirm: "If you want to modify data you will have only 3 days."} %>
+  <% end %>
+
   <% if @demand.entry_generated == false && @demand.marked_as_final == true %>
     <%= link_to before_final_btn.html_safe, accept_office_demand_path(@demand), id: :mark_as_not_final, method: :post %>
-    <%= link_to release_generate_btn.html_safe, release_office_demand_path(@demand), method: :post %>
+
+    <% if @demand.classification_no == 407 %>
+      <%= link_to release_generate_btn.html_safe, release_office_demand_path(@demand), method: :post %>
+    <% else %>
+      <%= link_to item_assistance_register_btn.html_safe, item_assistance_register_office_demand_path(@demand), method: :post %>
+    <% end %>
+
   <% end %>
-<%= link_to print_big_btn.html_safe, print_office_demand_path(@demand, format: :pdf), target: "_blank" %>
+  <%= link_to print_big_btn.html_safe, print_office_demand_path(@demand, format: :pdf), target: "_blank" %>
 
 </div>
 <div class="separator"></div>
 <% if @demand.marked_as_final != true %>
-<h2>जिन्सी सामान थप्ने</h2>
-<%= render("demand_item_form", demand_item: @demand_item) %>
-<div class="separator"></div>
+  <h2>जिन्सी सामान थप्ने</h2>
+  <% if @demand.classification_no == 407 %>
+    <%= render("demand_item_form", demand_item: @demand_item) %>
+  <% end %>
+  <% if @demand.classification_no == 408 %>
+    <%= render("demand_non_expense_item_form", demand_item: @demand_item) %>
+  <% end %>
+  <div class="separator"></div>
 <% end %>
 <h2>माग भैआएको जिन्सी विवरण</h2>
 <div class="table-responsive">
-<table class="table table-sm  table-bordered">
-  <tr>
-    <th>सामानको विवरण </th>
-    <th>स्पेसिफिकेसन</th>
-    <th>परिमाण</th>
-    <th>कैफियत</th>
-    <th></th>
-  </tr>
-  <% @items.each do |item| %>
-  <tr id="item-<%= item.id %>">
-    <td><%= item.item.name_of_item_ne %></td>
-    <td><%= item.item.specification %></td>
-    <td><%= item.quantity %></td>
-    <td><%= item.remark %></td>
-    <td>
-      <% if @demand.marked_as_final != true %>
-      <%= link_to(destroy_btn.html_safe, office_demand_item_path(item), method: :delete, "data-confirm": "Are you sure ?") %>
-      <% end %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+  <table class="table table-sm  table-bordered">
+    <tr>
+      <th>सामानको विवरण</th>
+      <th>स्पेसिफिकेसन</th>
+      <th>परिमाण</th>
+      <th>कैफियत</th>
+      <th></th>
+    </tr>
+    <% @items.each do |item| %>
+      <tr id="item-<%= item.id %>">
+        <td><%= item.item.name_of_item_ne %></td>
+        <td><%= item.item.specification %></td>
+        <td><%= item.quantity %></td>
+        <td><%= item.remark %></td>
+        <td>
+          <% if @demand.marked_as_final != true %>
+            <%= link_to(destroy_btn.html_safe, office_demand_item_path(item), method: :delete, "data-confirm": "Are you sure ?") %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
 </div>

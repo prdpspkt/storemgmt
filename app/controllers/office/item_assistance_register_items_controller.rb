@@ -1,5 +1,5 @@
 class Office::ItemAssistanceRegisterItemsController < OfficeController
-  before_action :set_item_assistance_register_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item_assistance_register_item, only: [:show, :edit, :accpet, :update, :destroy]
   load_and_authorize_resource except: [:create, :new]
   # GET /item_assistance_register_items
   # GET /item_assistance_register_items.json
@@ -11,6 +11,12 @@ class Office::ItemAssistanceRegisterItemsController < OfficeController
   # GET /item_assistance_register_items/1.json
   def show
     @item_assistance_register_item
+  end
+
+  def accept
+    @item_assistance_register_item.accepted = true
+    @item_assistance_register_item.save
+    redirect_to @item_assistance_register_item.item_assistance_register
   end
 
   # GET /item_assistance_register_items/new
@@ -26,8 +32,9 @@ class Office::ItemAssistanceRegisterItemsController < OfficeController
   # POST /item_assistance_register_items.json
   def create
     @item_transaction = Office::ItemTransaction.find(params[:office_item_assistance_register_item][:item_transaction_id])
-    @item_assistance_register_item = Office::ItemAssistanceRegisterItem.new(@item_transaction.attributes.select{|key, _| Office::ItemAssistanceRegisterItem.column_names.include? key})
+    @item_assistance_register_item = Office::ItemAssistanceRegisterItem.new(@item_transaction.attributes.select { |key, _| Office::ItemAssistanceRegisterItem.column_names.include? key })
     @item_assistance_register_item.id = nil
+    @item_assistance_register_item.accepted = false
     @item_assistance_register_item.quantity = item_assistance_register_item_params[:quantity]
     @item_assistance_register_item.amount = @item_transaction.rate * item_assistance_register_item_params[:quantity].to_d
     @item_assistance_register_item.item_assistance_register_id = item_assistance_register_item_params[:item_assistance_register_id]
@@ -51,8 +58,13 @@ class Office::ItemAssistanceRegisterItemsController < OfficeController
   # PATCH/PUT /item_assistance_register_items/1
   # PATCH/PUT /item_assistance_register_items/1.json
   def update
+    if item_assistance_register_item_update_params["returned"] == "true"
+      transaction = Office::ItemTransaction.find(@item_assistance_register_item.item_transaction_id)
+      transaction.in_use = false
+      transaction.save
+    end
     respond_to do |format|
-      if @item_assistance_register_item.update(item_assistance_register_item_params)
+      if @item_assistance_register_item.update(item_assistance_register_item_update_params)
         format.html { redirect_to @item_assistance_register_item.item_assistance_register, notice: 'Item assistance register item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item_assistance_register_item }
       else
@@ -82,6 +94,10 @@ class Office::ItemAssistanceRegisterItemsController < OfficeController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def item_assistance_register_item_params
-    params.require(:office_item_assistance_register_item).permit(:date, :order_release_no, :item_transaction_id, :quantity, :amount, :taken_date, :date_to_be_returned, :returned_quantity, :returned_date,:returned_by, :item_assistance_register_id)
+    params.require(:office_item_assistance_register_item).permit(:returned, :date, :order_release_no, :item_transaction_id, :quantity, :amount, :taken_date, :date_to_be_returned, :returned_quantity, :returned_date, :returned_by, :item_assistance_register_id)
+  end
+
+  def item_assistance_register_item_update_params
+    params.require(:office_item_assistance_register_item).permit(:returned, :returned_quantity, :returned_date, :returned_by, :item_assistance_register_id)
   end
 end

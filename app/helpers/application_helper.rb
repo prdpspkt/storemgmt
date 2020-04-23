@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def accept_btn
-    '<span class="btn  btn-danger"><i class="fa fa-check"></i></span>'
+    '<span class="btn btn-sm btn-success"><i class="fa fa-check"></i></span>'
   end
 
   def addi_btn
@@ -40,9 +40,14 @@ module ApplicationHelper
     '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> दाखिला गर्ने </span>'
   end
 
+  def item_assistance_register_btn
+    '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> सहायक जिन्सी खातामा प्रविष्ट गर्ने </span>'
+  end
+
   def release_generate_btn
     '<span class="btn  btn-success"><i class="fa fa-arrow-circle-right"></i> निकासा गर्ने </span>'
   end
+
 
   def expense_item_ledger_btn
     '<span class="btn  btn-success"><i class="fa fa-eye"></i> जिन्सी खाता नं ५२ </span>'

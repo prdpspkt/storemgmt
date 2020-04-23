@@ -83,7 +83,11 @@ Rails.application.routes.draw do
         post "accept"
       end
     end
-    resources :item_assistance_register_items
+    resources :item_assistance_register_items do
+      member do
+        post "accept"
+      end
+    end
     resources :item_assistance_registers do
       member do
         get "print"
@@ -152,10 +156,15 @@ Rails.application.routes.draw do
 
     resources :demand_items
     resources :demands do
+      collection do
+        get 'non_expense_new'
+        get 'non_expense_index'
+      end
       member do
         get "print"
         post "accept"
         post "release"
+        post "item_assistance_register"
       end
     end
     resources :items, except: [:index] do

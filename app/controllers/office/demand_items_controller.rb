@@ -26,11 +26,13 @@ class Office::DemandItemsController < OfficeController
   # POST /demand_items.json
   def create
     @demand_item = Office::DemandItem.new(demand_item_params)
-    @office_item = Office::Item.find(demand_item_params[:item_id])
+    unless @demand_item.item_id.present?
+      @demand_item.item_id = Office::ItemTransaction.find(@demand_item.item_transaction_id).item_id
+    end
     @demand = Office::Demand.find(@demand_item.demand_id)
     @demand_item = set_current_information @demand_item
     respond_to do |format|
-      if @demand_item.save
+      if @demand_item.save!
         format.html { redirect_to @demand, notice: 'Demand item was successfully created.' }
         format.json { render :show, status: :created, location: @demand_item }
       else
@@ -39,6 +41,7 @@ class Office::DemandItemsController < OfficeController
       end
     end
   end
+
 
   # PATCH/PUT /demand_items/1
   # PATCH/PUT /demand_items/1.json
@@ -66,13 +69,14 @@ class Office::DemandItemsController < OfficeController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_demand_item
-      @demand_item = Office::DemandItem.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def demand_item_params
-      params.require(:office_demand_item).permit(:name_of_item, :item_id, :specification, :rate, :unit, :quantity, :remark, :demand_id, :user_id, :office_id, :fy, :fiscal_year_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_demand_item
+    @demand_item = Office::DemandItem.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def demand_item_params
+    params.require(:office_demand_item).permit(:name_of_item, :item_id, :item_transaction_id, :specification, :rate, :unit, :quantity, :remark, :demand_id, :user_id, :office_id, :fy, :fiscal_year_id)
+  end
 end

@@ -10,19 +10,20 @@
       </ul>
     </div>
   <% end %>
+  <%= form.hidden_field :returned, value: true %>
 <div class="row">
   <div class="col-6">
     <%= form.label :returned_by %>
-    <%= form.text_field :returned_by, class: "form-control" %>
+    <%= form.text_field :returned_by, class: "form-control", required: true %>
   </div>
   <div class="col-6">
     <%= form.label :returned_quantity %>
-    <%= form.text_field :returned_quantity, class: "form-control" %>
+    <%= form.text_field :returned_quantity, class: "form-control", required: true %>
   </div>
 
   <div class="col-6">
     <%= form.label :returned_date %>
-    <%= form.text_field :returned_date, class: "form-control date-picker" %>
+    <%= form.text_field :returned_date, class: "form-control date-picker", required: true %>
   </div>
 
 </div>

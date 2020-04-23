@@ -1,0 +1,24 @@
+<%= form_with(model: demand_item, local: true) do |form| %>
+ <%= form.hidden_field :demand_id, value: @demand.id %>
+<div class="row">
+  <div class="col-sm-3">
+    <%= form.label :item_id %>
+    <%= form.select(:item_transaction_id,  @non_expense_transactions.collect{|t| ["#{t.item.name_of_item_en} (MODEL: #{t.model}, (#{t.item_identification_no})", t.id]}, {include_blank: true}, {class: "form-control select2", required: true}) %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= form.label :quantity %>
+    <%= form.number_field :quantity, class: "form-control", step: :any, required: true %>
+  </div>
+
+  <div class="col-sm-3">
+    <%= form.label :remark %>
+    <%= form.text_field :remark, class: "form-control" %>
+  </div>
+   
+  <div class="col-sm-3">
+    <br>
+    <%= form.submit save_btn.html_safe, class: "btn btn-success" %>
+  </div>
+</div>
+<% end %>

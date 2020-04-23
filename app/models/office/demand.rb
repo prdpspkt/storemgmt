@@ -4,4 +4,5 @@ class Office::Demand < ApplicationRecord
 	belongs_to :store_body, :class_name => 'Office::StoreBody'
 	belongs_to :user
 	belongs_to :fiscal_year, :class_name => 'Office::FiscalYear'
+	belongs_to :personnel, :class_name => 'Office::Personnel'
 end

@@ -24,37 +24,42 @@
 <%= render "iarf_1", item_assistance_register_item: @item_assistance_register_item %>
 <h2>जिन्सी प्रयोगको विवरण</h2>
 <div class="table-responsive">
-<table class="table table-sm table-bordered">
-  <tr>
-    <th>क्र.स.</th>
-    <th>जिन्सी खाता पाना नं</th>
-    <th>जिन्सी पहिचान नं</th>
-    <th>सामानको नाम</th>
-    <th>मोडल नं</th>
-    <th>इकाई</th>
-    <th>परिमाण</th>
-    <th>सामान बुझेको मिति</th>
-    <th>फिर्ता गर्नुपर्ने मिति</th>
-    <th></th>
-  </tr>
-  <% @i = 1 %>
-  <% @item_assistance_register_items.each do |item| %>
+  <table class="table table-sm table-bordered">
     <tr>
-      <td><%= @i %></td>
-      <td><%= nd item.item.item_register_page_no %></td>
-      <td><%= nd item.item_identification_no %></td>
-      <td><%= item.item.name_of_item_ne %></td>
-      <td><%= item.model_no %></td>
-      <td><%= item.item.unit_ne %></td>
-      <td><%= nd item.quantity %></td>
-      <td><%= ndate item.taken_date %></td>
-      <td><%= ndate item.date_to_be_returned %></td>
-      <td>
-        <%= link_to edit_btn.html_safe, edit_office_item_assistance_register_item_path(item) %>
-        <%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure to delete this record?"} %>
-      </td>
+      <th>क्र.स.</th>
+      <th>जिन्सी खाता पाना नं</th>
+      <th>जिन्सी पहिचान नं</th>
+      <th>सामानको नाम</th>
+      <th>मोडल नं</th>
+      <th>इकाई</th>
+      <th>परिमाण</th>
+      <th>सामान बुझेको मिति</th>
+      <th>फिर्ता गर्नुपर्ने मिति</th>
+      <th></th>
     </tr>
-    <% @i = @i + 1 %>
-  <% end %>
-</table>
+    <% @i = 1 %>
+    <% @item_assistance_register_items.each do |item| %>
+      <tr>
+        <td><%= @i %></td>
+        <td><%= nd item.item.item_register_page_no %></td>
+        <td><%= nd item.item_identification_no %></td>
+        <td><%= item.item.name_of_item_ne %></td>
+        <td><%= item.model_no %></td>
+        <td><%= item.item.unit_ne %></td>
+        <td><%= nd item.quantity %></td>
+        <td><%= ndate item.taken_date %></td>
+        <td><%= ndate item.date_to_be_returned %></td>
+        <td>
+          <% unless item.accepted == true %>
+            <%= link_to accept_btn.html_safe, accept_office_item_assistance_register_item_path(item), data: {method: :post, confirm: "के तपाई यस इन्ट्रीलाई स्वीकृत गर्न चाहनुहुन्छ? स्वीकृत गरिसके पछि यसलाई हटाउन सकिने छैन |"} %>
+          <% end %>
+          <%= link_to edit_btn.html_safe, edit_office_item_assistance_register_item_path(item) %>
+          <% unless item.accepted == true %>
+            <%= link_to destroy_btn.html_safe, item, data: {method: :delete, confirm: "Are you sure to delete this record?"} %>
+          <% end %>
+        </td>
+      </tr>
+      <% @i = @i + 1 %>
+    <% end %>
+  </table>
 </div>

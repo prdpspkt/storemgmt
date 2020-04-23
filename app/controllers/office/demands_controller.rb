@@ -1,27 +1,49 @@
 class Office::DemandsController < OfficeController
-  before_action :set_demand, only: [:show, :edit, :update, :destroy, :accept, :release, :print]
+  before_action :set_demand, only: [:show, :edit, :update, :destroy, :accept, :item_assistance_register, :release, :print]
   load_and_authorize_resource except: [:create, :new]
   # GET /demands
   # GET /demands.json
   def index
-    @demands = current(Office::Demand)
+    @demands = current(Office::Demand).where(classification_no: 407)
+    @title = "खर्च भएर जाने जिन्सीको माग फारामहरू"
+    @new_url = new_office_demand_url
+  end
+
+  def non_expense_index
+    @demands = current(Office::Demand).where(classification_no: 408)
+    @title = "खर्च नहुने जिन्सीको माग फारामहरू"
+    @new_url = non_expense_new_office_demands_url
+    render 'index'
   end
 
   # GET /demands/1
   # GET /demands/1.json
   def show
+    @back_url = if @demand.classification_no == 408
+                  non_expense_index_office_demands_url
+                else
+                  office_demands_url
+                end
     @demand_item = Office::DemandItem.new
     @items = @demand.demand_items
     @office_items = office(Office::Item)
+    @non_expense_transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
   end
 
   # GET /demands/new
   def new
     @demand = Office::Demand.new
+    @personnels = office(Office::Personnel).where(working: true)
+  end
+
+  def non_expense_new
+    @demand = Office::Demand.new
+    @personnels = office(Office::Personnel).where(working: true)
   end
 
   # GET /demands/1/edit
   def edit
+    @personnels = office(Office::Personnel).where(working: true)
   end
 
   # POST /demands
@@ -34,12 +56,17 @@ class Office::DemandsController < OfficeController
     @demand.demand_no = get_new_office_demand_no
     @demand.marked_as_final = false
     @demand.entry_generated = false
+    @template = if @demand.classification_no == 407
+                  :new
+                else
+                  :non_expense_new
+                end
     respond_to do |format|
       if @demand.save
         format.html { redirect_to @demand, notice: 'Demand was successfully created.' }
         format.json { render :show, status: :created, location: @demand }
       else
-        format.html { render :new }
+        format.html { render @template }
         format.json { render json: @demand.errors, status: :unprocessable_entity }
       end
     end
@@ -64,21 +91,51 @@ class Office::DemandsController < OfficeController
   # DELETE /demands/1
   # DELETE /demands/1.json
   def destroy
+    @url_to_go = if @demand.classification_no == 407
+                   office_demands_url
+                 else
+                   non_expense_index_office_demands_url
+                 end
     @demand.destroy
     respond_to do |format|
-      format.html { redirect_to demands_url, notice: 'Demand was successfully destroyed.' }
+      format.html { redirect_to @url_to_go, notice: 'Demand was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def accept
-    if @demand.marked_as_final == true
-      @demand.marked_as_final = false
-    else
-      @demand.marked_as_final = true
-    end
+    @demand.marked_as_final = if @demand.marked_as_final == true
+                                false
+                              else
+                                true
+                              end
     @demand.save
     redirect_to office_demand_path(@demand)
+  end
+
+  def item_assistance_register
+    @person = @demand.personnel
+    @item_assistance_register = if @person.item_assistance_register.blank?
+                                  create_item_assistance_register @person.id
+                                else
+                                  @person.item_assistance_register
+                                end
+    @demand_items = @demand.demand_items
+    @demand_items.each do |demand_item|
+      transaction = Office::ItemTransaction.find(demand_item.item_transaction_id)
+      @item_assistance_register_item = Office::ItemAssistanceRegisterItem.new(demand_item.attributes.select{ |key, _|Office::ItemAssistanceRegisterItem.column_names.include? key})
+      @item_assistance_register_item.id = nil
+      @item_assistance_register_item.accepted = false
+      @item_assistance_register_item.taken_date = @demand.demand_date
+      @item_assistance_register_item = set_current_information @item_assistance_register_item
+      @item_assistance_register_item.item_assistance_register_id = @item_assistance_register.id
+      if @item_assistance_register_item.save
+        transaction.in_use = true
+      end
+    end
+    @demand.entry_generated = true
+    @demand.save
+    redirect_to @demand
   end
 
   def release
@@ -120,6 +177,14 @@ class Office::DemandsController < OfficeController
 
 
   private
+
+  def create_item_assistance_register personnel_id
+    @item_assistance_register = Office::ItemAssistanceRegister.first_or_create(personnel_id: personnel_id) do |iar|
+      iar.office_id = current_office.id
+      iar.user_id = current_user.id
+      iar.register_page_no = new_item_assistance_register_page_no
+    end
+  end
 
   def create_release_items release
     @demand_items = @demand.demand_items
@@ -164,7 +229,7 @@ class Office::DemandsController < OfficeController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def demand_params
-    params.require(:office_demand).permit(:demand_no, :demand_date, :demand_by, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date, :recorded_date, :user_id, :fiscal_year, :office_id)
+    params.require(:office_demand).permit(:demand_no, :demand_date, :classification_no, :personnel_id, :recommended_by, :recommended_date, :needed_to_purchase, :ordered_date, :recorded_date, :user_id, :fiscal_year, :office_id)
   end
 
   def get_new_office_demand_no
@@ -181,6 +246,15 @@ class Office::DemandsController < OfficeController
     @releases = current(Office::Release)
     if @releases.count > 0
       nrn = @releases.last.release_no + 1
+    end
+    nrn
+  end
+
+  def new_item_assistance_register_page_no
+    nrn = 1
+    @item_assistance_register = office(Office::ItemAssistanceRegister)
+    if @item_assistance_register.count.positive?
+      nrn = @item_assistance_register.last.register_page_no + 1
     end
     nrn
   end

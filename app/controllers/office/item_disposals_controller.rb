@@ -92,7 +92,10 @@ class Office::ItemDisposalsController < OfficeController
       new_transaction.remarks = "मिति #{ ndate item.item_disposal.decision_date} को निर्णयबाट निसर्ग/मिन्हा भएको"
       new_transaction.transaction_date = item.item_disposal.office_chief_signed_date
       item.new_item_transaction_id = new_transaction.id
-      new_transaction.save
+      if new_transaction.save!
+        transaction.sku = transaction.sku - new_transaction.quantity
+        transaction.save
+      end
     end
     @item_disposal.entry_generated = true
     @item_disposal.save
