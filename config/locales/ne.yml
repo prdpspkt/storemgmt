@@ -332,6 +332,14 @@ en:
         to_be_auctioned: "लिलाम गर्नुपर्ने"
         to_be_disposed: "मिन्हा गर्नुपर्ने"
         to_be_conserved: "संरक्षण गर्नुपर्ने"
+      project/item:
+        item_classification_no: "जिन्सी वर्गीकरण"
+        name_of_item_ne: "जिन्सीको नाम"
+        name_of_item_en: "जिन्सीको नाम (अंग्रेजी)"
+        specification: "स्पेसिफिकेसन"
+        item_category_id: "जिन्सीको वर्ग"
+
+
 
 
 
