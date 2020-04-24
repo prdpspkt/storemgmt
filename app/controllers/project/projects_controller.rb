@@ -10,8 +10,8 @@ class Project::ProjectsController < ProjectController
                                      :print_pdf_expense_item_register,
                                      :print_pdf_non_expense_item_register,
                                      :download_pdf_expense_item_register,
-                                     :download_pdf_non_expense_item_register ]
-load_and_authorize_resource
+                                     :download_pdf_non_expense_item_register]
+  load_and_authorize_resource
   # GET /projects
   # GET /projects.json
   def index
@@ -131,7 +131,7 @@ load_and_authorize_resource
     @download_url = download_pdf_expense_item_register_project_project_url(@project, format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
     render 'item_register'
-  end 
+  end
 
   def non_expense_item_register
     @generate_url = print_pdf_non_expense_item_register_project_project_url(@project)
@@ -174,6 +174,50 @@ load_and_authorize_resource
     end
   end
 
+  def sapati
+    @items = office(Project::Item)
+  end
+
+  def sapati_data
+    @project_id = params[:id]
+    item_id = params[:item_id]
+    @quantity = params[:quantity]
+    @projects = office(Project::Project).where(project_status: 0)
+    @data = []
+    @projects.map do |project|
+      quantity = office(Project::ProjectItemTransaction)
+                     .where(project_id: project.id)
+                     .where(fiscal_year_id: current_fiscal_year.id)
+                     .where(item_id: item_id).where("sku > 0")
+                     .sum(:sku)
+      if quantity > 0
+        @data.push({:name_of_project_ne => project.name_of_project_ne, :quantity => quantity, :from => project.id, :to => @project_id, :item_id => item_id})
+      end
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def sapati_create
+    from = sapati_params[:from]
+    to = sapati_params[:to]
+    item_id = sapati_params[:item_id]
+    @quantity = sapati_params[:quantity].to_d
+    transactions = current(Project::ProjectItemTransaction).where(project_id: from).where(item_id: item_id).where("sku > 0")
+    transactions.each do |tr|
+      if @quantity > 0
+      if tr.sku > @quantity
+        create_sapati_transaction to, tr, @quantity
+        break;
+      else
+        create_sapati_transaction to, tr, tr.sku
+      end
+      else
+        break;
+      end
+    end
+  end
 
   # DELETE /projects/1
   # DELETE /projects/1.json
@@ -186,23 +230,75 @@ load_and_authorize_resource
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_project
-      @project = Project::Project.find(params[:id])
-      @office = current_office
-      @fiscal_year = current_fiscal_year
-      @cb = current_control_body
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def project_params
-      params.require(:project_project).permit(:name_of_project_ne, :name_of_project_en, :name_of_consumer_committee, :address, :phone_of_committee_representative, :name_of_committee_representative, :post_of_representative, :contractor, :phone_of_contractor_representative, :name_of_contractor_representative, :project_status)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_project
+    @project = Project::Project.find(params[:id])
+    @office = current_office
+    @fiscal_year = current_fiscal_year
+    @cb = current_control_body
+  end
 
-    def update_general_information object
-      object.office_id = current_office.id
-      object.user_id = current_user.id
-      object.fiscal_year_id = current_fiscal_year.id
-      object
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def project_params
+    params.require(:project_project).permit(:name_of_project_ne, :name_of_project_en, :name_of_consumer_committee, :address, :phone_of_committee_representative, :name_of_committee_representative, :post_of_representative, :contractor, :phone_of_contractor_representative, :name_of_contractor_representative, :project_status)
+  end
+
+  def sapati_params
+    params.require(:sapati).permit(:to, :from, :item_id, :quantity)
+  end
+
+  def update_general_information object
+    object.office_id = current_office.id
+    object.user_id = current_user.id
+    object.fiscal_year_id = current_fiscal_year.id
+    object
+  end
+
+  def create_sapati_transaction to, tr, quantity
+    ntr = Project::ProjectItemTransaction.new(tr.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
+    ntr.id = nil
+    ntr.project_id = to
+    ntr.quantity = quantity
+    ntr.transaction_date = bs_today
+    ntr.project_item_id = get_project_item_id to, tr.item_id
+    ntr.sku = quantity
+    ntr.remarks = "#{tr.project.name_of_project_ne} बाट सापटी लिएको"
+    if ntr.save!
+      ntr2 = Project::ProjectItemTransaction.new(ntr.attributes.select{|key, _| Project::ProjectItemTransaction.column_names.include? key})
+      ntr2.id = nil
+      ntr2.transaction_type = -1
+      ntr2.project_id = tr.project_id
+      ntr2.project_item_id = tr.project_item_id
+      ntr2.remarks = "#{Project::Project.find(to).name_of_project_ne} लाई सापटी दिएको"
+      ntr2.save!
+      create_sapati_record to, tr, quantity
     end
+    tr.sku = tr.sku - quantity
+    tr.save
+    @quantity = @quantity - quantity
+  end
+
+  def create_sapati_record to, tr, quantity
+    sapati_record = Project::SapatiRecord.new
+    sapati_record.to = to
+    sapati_record.from = tr.project_id
+    sapati_record.item_id = tr.item_id
+    sapati_record.project_item_id = get_project_item_id to, sapati_record.item_id
+    sapati_record.quantity = quantity
+    sapati_record = set_current_information sapati_record
+    sapati_record.type = 1
+    sapati_record.save!
+  end
+
+  def get_project_item_id project_id, item_id
+    pi = Project::ProjectItem.first_or_create!(project_id: project_id, item_id: item_id, office_id: current_office.id) do |project_item|
+      item = Project::Item.find(item_id)
+      project_item.name_of_item_ne = item.name_of_item_ne
+      project_item.name_of_item_en = item.name_of_item_en
+      project_item.unit_ne = item.unit_ne
+      project_item.unit_en = item.unit_en
+    end
+    pi.id
+  end
 end

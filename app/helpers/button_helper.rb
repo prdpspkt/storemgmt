@@ -93,11 +93,15 @@ module ButtonHelper
   end
 
   def sapati_btn
-    '<span class="btn  btn-warning"><i class="fa fa-sign-in"></i>सापटी</span>'
+    '<span class="btn  btn-warning"><i class="fa fa-arrow-left"></i> सापटी</span>'
+  end
+
+  def create_sapati_btn
+    '<span class="btn  btn-warning">सापटी लिनुहोस् <i class="fa fa-arrow-left"></i></span>'
   end
 
   def sapati_return_btn
-    '<span class="btn  btn-info"><i class="fa fa-sign-out"></i>सापटी फिर्ता</span>'
+    '<span class="btn  btn-info">सापटी फिर्ता <i class="fa fa-arrow-right"></i></span>'
   end
 
 end

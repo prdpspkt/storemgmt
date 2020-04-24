@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_050801) do
+ActiveRecord::Schema.define(version: 2020_04_24_110632) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -368,6 +368,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_050801) do
     t.datetime "updated_at", null: false
     t.boolean "has_project_access"
     t.string "input_system"
+    t.boolean "sapati"
   end
 
   create_table "office_personnels", force: :cascade do |t|
@@ -1349,6 +1350,8 @@ ActiveRecord::Schema.define(version: 2020_04_24_050801) do
     t.integer "store_body_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id"
+    t.integer "project_item_id"
   end
 
   create_table "project_stock_items", force: :cascade do |t|

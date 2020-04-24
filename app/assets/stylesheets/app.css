@@ -1,3 +1,19 @@
+.progress_bar{
+   position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background-color: rgba(0, 0, 0, 0.46);
+    z-index: 1000000;
+}
+.progress_image{
+    height: 67px;
+    width: 67px;
+    position: fixed;
+    top: 45%;
+    left: 50%;
+}
 .form-control[readonly] {
     background-color: #ffffff!important;
     opacity: 1;

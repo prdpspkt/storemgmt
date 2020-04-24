@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-12">
+    <h1>अन्य आयोजना बाट सापटी लिने</h1>
+  </div>
+  <div class="col-md-12">
+    <form class="form" method="post" data-remote="true" action="<%= sapati_data_project_project_url(@project.id, format: :js) %>">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="item">सामानको नाम</label>
+          <%= select_tag :item_id, options_from_collection_for_select(@items, "id", "name_of_item_en"), {include_blank: "--select--", class: "form-control select2", required: true} %>
+        </div>
+        <div class="col-md-3">
+          <label for="item">परिमाण</label>
+          <%= text_field_tag(:quantity, nil , class: "form-control", required: true) %>
+        </div>
+
+        <div class="col-md-3">
+          <div style="margin-top: 38px">
+          <button class="btn btn-success" type="submit">खोजि गर्ने</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="col-12">
+    <div class="separator"></div>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <td>क्र.स.</td>
+        <td>आयोजनाको नाम</td>
+        <td>उपलब्ध परिमाण</td>
+        <td>Action</td>
+      </tr>
+      </thead>
+      <tbody id="display-table">
+
+      </tbody>
+    </table>
+  </div>
+</div>

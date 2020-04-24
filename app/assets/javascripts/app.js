@@ -8,5 +8,10 @@ $(document).on('turbolinks:load', function () {
     $(".data-table-no-sort").dataTable({
         ordering: false
     });
+    $(".progress_bar").hide();
+
+    $("form").on("submit", function(){
+        $(".progress_bar").show();
+    });
 
 });

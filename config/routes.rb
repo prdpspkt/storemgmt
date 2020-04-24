@@ -333,6 +333,12 @@ Rails.application.routes.draw do
         post "print_pdf_non_expense_item_register"
         get "download_pdf_expense_item_register"
         get "download_pdf_non_expense_item_register"
+        get "sapati"
+        post "sapati_data"
+        post "sapati_create"
+        get "sapati_return"
+        post "sapati_return_data"
+        post "sapati_return_create"
       end
     end
 

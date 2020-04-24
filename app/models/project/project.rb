@@ -6,4 +6,5 @@ class Project::Project < ApplicationRecord
   has_many :releases, class_name: "Project::Release"
   has_many :purchase_entry, class_name: "Project::PurchaseEntry"
   has_many :purchase_order, class_name: "Project::PurchaseOrder"
+  has_many :project_item_transactions, :class_name => 'Project::ProjectItemTransaction'
 end
