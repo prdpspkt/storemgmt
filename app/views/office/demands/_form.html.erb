@@ -15,7 +15,7 @@
 <div class="row">
   <div class="col-sm-6">
     <%= form.label :demand_date %>
-    <%= form.text_field :demand_date, class: "form-control date-picker", required: :required %>
+    <%= form.text_field :demand_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
 
   <div class="col-sm-6">
@@ -30,7 +30,7 @@
 
   <div class="col-sm-6">
     <%= form.label :recommended_date %>
-    <%= form.text_field :recommended_date, class: "form-control date-picker", required: true %>
+    <%= form.text_field :recommended_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
 
   <div class="col-sm-6">
@@ -43,12 +43,12 @@
 
   <div class="col-sm-6">
     <%= form.label :ordered_date %>
-    <%= form.text_field :ordered_date, class: "form-control date-picker", required: true %>
+    <%= form.text_field :ordered_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
 
   <div class="col-sm-6">
     <%= form.label :recorded_date %>
-    <%= form.text_field :recorded_date, class: "form-control date-picker", required: true %>
+    <%= form.text_field :recorded_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
 
    <div class="col-sm-12">

@@ -1,2 +1,0 @@
-json.extract! rental_record_register_item, :id, :date, :name_of_vendor, :address_of_vendor, :approval_date, :start_date, :end_date, :unit, :duration, :rate, :total_amount, :receipt_or_voucher_no, :total_amount, :returned_date, :remarks, :user_id, :office_id, :fy, :fiscal_year_id, :rental_record_register_id, :created_at, :updated_at
-json.url rental_record_register_item_url(rental_record_register_item, format: :json)

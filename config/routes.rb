@@ -70,7 +70,7 @@ Rails.application.routes.draw do
     resources :repair_application_forms do
       member do
         get "print"
-        post "accept"
+        post "completed"
       end
     end
     resources :stock_items
