@@ -27,7 +27,7 @@
     </div>
     <div class="col-md-2">
       <%= form.label :applicant_sign %>
-      <%= form.text_field :applicant_sign, class: "form-control preeti", required: true %>
+      <%= form.select(:personnel_id, @personnels.collect{|p|[p.name_en, p.id]}, {include_blank: "select"}, { class: "form-control select2", required: true}) %>
     </div>
     <div class="col-md-2">
       <%= form.label :remarks %>

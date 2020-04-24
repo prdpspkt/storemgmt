@@ -4,5 +4,6 @@ class Office::RepairApplicationFormItem < ApplicationRecord
   belongs_to :fiscal_year, class_name: "Office::FiscalYear"
   belongs_to :item_transaction, class_name: "Office::ItemTransaction"
   belongs_to :office, class_name: "Office::Office"
+  belongs_to :personnel, :class_name => 'Office::Personnel'
   belongs_to :user
 end

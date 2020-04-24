@@ -98,7 +98,7 @@ class Office::RepairRecordRegistersController < OfficeController
   end
 
   def new_page_no
-    rrrs = office(Office::RepairRecordRegister)
+    rrrs = current(Office::RepairRecordRegister)
     new_rrr_no = 1
     if rrrs.count > 0
       new_rrr_no = rrrs.last.page_no + 1

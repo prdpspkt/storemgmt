@@ -23,7 +23,7 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
-    <td colspan="2">समानको परल मूल्य<%= nd @repair_record_register.price %></td>
+    <td colspan="2">समानको परल मूल्य: <%= nd @repair_record_register.price %></td>
   </tr>
   <tr>
     <td style="height: 10px;"></td>
@@ -81,7 +81,7 @@
     <td><%= nd item.other_expense_cost %></td>
     <td><%= nd item.total_expense %></td>
     <td><%= nd item.vendor.vendor_name %></td>
-    <td><%= nd item.justified_by %></td>
+    <td><%= Office::Personnel.find(item.justified_by).name_ne %></td>
     <td><%= nd item.remarks %></td>
   </tr>
     <% end %>

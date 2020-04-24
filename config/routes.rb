@@ -56,11 +56,7 @@ Rails.application.routes.draw do
         get "print"
       end
     end
-    resources :repair_record_register_items do
-      member do
-        post "accept"
-      end
-    end
+
     resources :repair_record_registers do
       member do
         get "print"
@@ -71,7 +67,7 @@ Rails.application.routes.draw do
       member do
         get "print"
         post "accept"
-        post "completed"
+        post "complete"
       end
     end
     resources :stock_items

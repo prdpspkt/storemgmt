@@ -214,6 +214,13 @@ en:
         approx_repair_cost: "अनुमानित मर्मत लागत"
         reason_to_repair: "मर्मत गर्नुपर्ने कारण"
         remarks: "कैफियत"
+        repaired_date: "मर्मत गरिएको मिति"
+        changed_part_name: "फेरिएको सामानको नाम"
+        changed_part_cost: "फेरिएको सामानको मुल्य"
+        other_expense: "अन्य खर्च विवरण"
+        other_expense_cost: "अन्य खर्चको मुल्य"
+        justified_by: "निरीक्षण प्रमाणित गर्ने"
+        applicant_sign: "आवेदकको नाम"
       project/project:
         name_of_project_ne: "आयोजनाको नाम"
         name_of_project_en: "आयोजनाको नाम अँग्रेजी"

@@ -1,0 +1,68 @@
+<div class="row">
+  <div class="col-md-6">
+    <h1>मर्मत विवरण प्रविष्ट गर्ने</h1>
+    <p>सामानको नाम: <%= @repair_application_form_item.item.name_of_item_ne %></p>
+  </div>
+  <div class="col-md-6">
+    <div class="text-right">
+      <%= link_to back_btn.html_safe, @repair_application_form_item.repair_application_form %>
+    </div>
+  </div>
+</div>
+<%= form_with(model: @repair_application_form_item, local: true) do |form| %>
+  <% if @repair_application_form_item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@repair_application_form_item.errors.count, "error") %> prohibited this
+        repair_record_register_item from being saved:</h2>
+
+      <ul>
+        <% @repair_application_form_item.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= form.hidden_field :repair_application_form_id, value: @repair_application_form_item.repair_application_form_id %>
+  <div class="row">
+    <div class="col-3">
+      <%= form.label :repaired_date %>
+      <%= form.text_field :repaired_date, class: "form-control date-picker", required: true, readonly: true %>
+    </div>
+
+
+    <div class="col-3">
+      <%= form.label :changed_part_name %>
+      <%= form.text_field :changed_part_name, class: "form-control preeti", required: true %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :changed_part_cost %>
+      <%= form.number_field :changed_part_cost, step: :any, class: "form-control", required: true %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :other_expense %>
+      <%= form.text_field :other_expense, class: "form-control preeti" %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :other_expense_cost %>
+      <%= form.number_field :other_expense_cost, step: :any, class: "form-control" %>
+    </div>
+
+
+    <div class="col-3">
+      <%= form.label :justified_by %>
+      <%= form.select(:justified_by, @personnels.collect{|p| [p.name_en, p.id]},{include_blank: "select"}, {class: "form-control", required: true}) %>
+    </div>
+
+    <div class="col-3">
+      <%= form.label :remarks %>
+      <%= form.text_field :remarks, class: "form-control preeti" %>
+    </div>
+
+  </div>
+  <div class="float-right">
+    <%= form.submit :save, class: "btn btn-success" %>
+  </div>
+<% end %>

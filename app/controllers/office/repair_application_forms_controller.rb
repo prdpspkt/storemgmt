@@ -1,5 +1,5 @@
 class Office::RepairApplicationFormsController < OfficeController
-  before_action :set_repair_application_form, only: [:show, :edit, :update, :destroy, :print]
+  before_action :set_repair_application_form, only: [:show, :edit, :update, :destroy, :print, :accept, :complete]
   before_action :set_office_for_printing, only: [:print]
   load_and_authorize_resource except: [:create, :new]
   # GET /repair_application_forms
@@ -12,13 +12,14 @@ class Office::RepairApplicationFormsController < OfficeController
   # GET /repair_application_forms/1.json
   def show
     @repair_application_form_items = @repair_application_form.repair_application_form_items
-    @repair_application_form_item =  Office::RepairApplicationFormItem.new
+    @repair_application_form_item = Office::RepairApplicationFormItem.new
     @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
+    @personnels = office(Office::Personnel).where(working: true)
   end
 
   # GET /repair_application_forms/new
   def new
-    @repair_application_form =  Office::RepairApplicationForm.new
+    @repair_application_form = Office::RepairApplicationForm.new
     @repair_application_form.application_no = new_repair_application_no
   end
 
@@ -29,9 +30,11 @@ class Office::RepairApplicationFormsController < OfficeController
   # POST /repair_application_forms
   # POST /repair_application_forms.json
   def create
-    @repair_application_form =  Office::RepairApplicationForm.new(repair_application_form_params)
+    @repair_application_form = Office::RepairApplicationForm.new(repair_application_form_params)
     @repair_application_form = update_general_information @repair_application_form
     @repair_application_form.application_no = new_repair_application_no
+    @repair_application_form.accepted = false
+    @repair_application_form.completed = false
 
     respond_to do |format|
       if @repair_application_form.save
@@ -56,6 +59,36 @@ class Office::RepairApplicationFormsController < OfficeController
         format.json { render json: @repair_application_form.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def accept
+    if @repair_application_form.accepted == true
+      @repair_application_form.accepted = false
+    else
+      @repair_application_form.accepted = true
+    end
+    @repair_application_form.save
+    redirect_to @repair_application_form, notice: "Operation Successful."
+  end
+
+
+  def complete
+    @items = @repair_application_form.repair_application_form_items
+    @items.each do |item|
+      register = create_repair_record_register item.item_id
+      record_item = Office::RepairRecordRegisterItem.new(item.attributes.select { |key, value| Office::RepairRecordRegisterItem.column_names.include? key })
+      record_item.id = nil
+      record_item.repair_record_register_id = register.id
+      record_item.vendor_id = @repair_application_form.vendor_id
+      record_item.applicant_name = item.personnel.name_ne
+      record_item.date = item.repaired_date
+      record_item.total_expense = item.changed_part_cost + item.other_expense_cost
+      record_item.repair_application_no = @repair_application_form.application_no
+      record_item.save!
+    end
+    @repair_application_form.completed = true
+    @repair_application_form.save
+    redirect_to @repair_application_form, notice: "विवरण सफलतापुर्वक अभिलेखीकरण गरियो |"
   end
 
   # DELETE /repair_application_forms/1
@@ -83,19 +116,33 @@ class Office::RepairApplicationFormsController < OfficeController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_repair_application_form
-      @repair_application_form =  Office::RepairApplicationForm.find(params[:id])
-    end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_repair_application_form
+    @repair_application_form = Office::RepairApplicationForm.find(params[:id])
+  end
+
   def set_office_for_printing
     @office = @repair_application_form.office
   end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def repair_application_form_params
-      params.require(:office_repair_application_form).permit(:application_no, :date, :year, :month, :within_date, :section_chief_signed_date, :technical_person_name, :technical_person_designation, :vendor_id, :technical_person_signed_date,  :office_chief_signed_date)
-    end
+  def set_repaired_record
+    @repair_application_form_item = Office::RepairApplicationFormItem.find(params[:id])
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def repair_application_form_params
+    params.require(:office_repair_application_form).permit(:date,
+                                                           :year,
+                                                           :month,
+                                                           :within_date,
+                                                           :section_chief_signed_date,
+                                                           :technical_person_name,
+                                                           :technical_person_designation,
+                                                           :vendor_id,
+                                                           :technical_person_signed_date,
+                                                           :office_chief_signed_date)
+  end
 
   def update_general_information repair_application_form
     repair_application_form = set_current_information repair_application_form
@@ -104,12 +151,31 @@ class Office::RepairApplicationFormsController < OfficeController
   end
 
   def new_repair_application_no
-    repair_application =  Office::RepairApplicationForm.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
+    repair_application = Office::RepairApplicationForm.where(user_id: current_user.id).where(office_id: current_office.id).where(fiscal_year_id: current_fiscal_year.id).last
     if !(repair_application.blank?) && repair_application.application_no.present?
       repair_application_no = repair_application.application_no + 1
     else
-      repair_application_no =  1
+      repair_application_no = 1
     end
     repair_application_no
+  end
+
+  def create_repair_record_register item_id
+    office_id = current_office.id
+    register = Office::RepairRecordRegister.first_or_create(office_id: office_id, item_id: item_id) do |register|
+      register.user_id = current_user.id
+      register.store_body_id = current_control_body.id
+      register.page_no = new_page_no
+    end
+    register
+  end
+
+  def new_page_no
+    rrrs = current(Office::RepairRecordRegister)
+    new_rrr_no = 1
+    if rrrs.count > 0
+      new_rrr_no = rrrs.last.page_no + 1
+    end
+    new_rrr_no
   end
 end

@@ -28,8 +28,6 @@
   <%= link_to print_big_btn.html_safe, print_office_repair_record_register_path(@repair_record_register, format: :pdf), target: "_blank" %>
 </div>
 <div class="separator"></div>
-<h2>मर्मत अभिलेख प्रविष्ट गर्ने</h2>
-<%= render 'office/repair_record_registers/item_form', repair_record_register_item: @repair_record_register_item %>
 <h2>मर्मत संरक्षण अभिलेख विवरण</h2>
 <div class="table-responsive">
 <table class="table table-sm">
@@ -43,7 +41,6 @@
     <th>जम्मा खर्च</th>
     <th>आवेदक</th>
     <th>कैफियत</th>
-    <th></th>
   </tr>
   <% @i = 1 %>
   <% @repair_record_register_items.each do |item| %>
@@ -57,8 +54,6 @@
     <td><%= nd item.total_expense %></td>
     <td><%= item.applicant_name %></td>
     <td><%= item.remarks %></td>
-    <td><%= link_to destroy_btn.html_safe, office_repair_record_register_item_path(item), data: {confirm: "Are you sure ?", method: :delete} %>
-    </td>
   </tr>
     <% @i = @i + 1 %>
     <% end %>

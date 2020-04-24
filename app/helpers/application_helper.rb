@@ -57,6 +57,10 @@ module ApplicationHelper
     '<span class="btn  btn-success"><i class="fa fa-eye"></i> जिन्सी खाता नं ४७ </span>'
   end
 
+  def repaired_record_entry_btn
+    '<span class="btn btn-sm btn-success"><i class="fa fa-eye"></i> मर्मत विवरण प्रविष्ट</span>'
+  end
+
   def save_btn
     'सुरक्षित गर्ने '
   end
