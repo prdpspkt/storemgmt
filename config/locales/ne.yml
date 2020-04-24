@@ -149,6 +149,9 @@ en:
         taken_date: "सामान लागेको मिति"
         date_to_be_returned: "सामान फिर्ता गर्नुपर्ने मिति"
         name_of_user: "प्रयोग कर्ताको नाम"
+        returned_by: "फिर्ता गर्नेको नाम"
+        returned_date: "फिर्ता गरेको मिति"
+        returned_quantity: "फिर्ता गरेको परिमाण"
       office/item_disposal:
         description: "विवरण"
         decision_date: "निर्णय मिति"
