@@ -1,49 +1,56 @@
 <h1>मर्मत आवेदन फाराम</h1>
 <div class="table-responsive">
-<table class="table table-sm table-bordered table-condensed">
-  <tr>
-    <th>आर्थिक वर्ष</th>
-    <th>आवेदन नं</th>
-    <th>आवेदन मिति</th>
-  </tr>
-  <tr>
-    <td><%= nd @repair_application_form.fiscal_year.fy %></td>
-    <td><%= nd @repair_application_form.application_no %></td>
-    <td><%= ndate @repair_application_form.date %></td>
-    <td></td>
-  </tr>
-</table>
+  <table class="table table-sm table-bordered table-condensed">
+    <tr>
+      <th>आर्थिक वर्ष</th>
+      <th>आवेदन नं</th>
+      <th>आवेदन मिति</th>
+    </tr>
+    <tr>
+      <td><%= nd @repair_application_form.fiscal_year.fy %></td>
+      <td><%= nd @repair_application_form.application_no %></td>
+      <td><%= ndate @repair_application_form.date %></td>
+      <td></td>
+    </tr>
+  </table>
 </div>
 <div class="text-center">
   <%= link_to back_btn.html_safe, office_repair_application_forms_url %>
-  <%= link_to edit_big_btn.html_safe, edit_office_repair_application_form_path(@repair_application_form) %>
+  <% unless @repair_application_form.accepted == true %>
+    <%= link_to edit_big_btn.html_safe, edit_office_repair_application_form_path(@repair_application_form) %>
+    <%= link_to final_btn.html_safe, accept_office_repair_application_form_url(@repair_application_form) %>
+  <% end %>
+  <% unless @repair_application_form.completed == true %>
+    <%= link_to before_final_btn.html_safe, accept_office_repair_application_form_path(@repair_application_form) %>
+    <%= link_to before_final_btn.html_safe, accept_office_repair_application_form_path(@repair_application_form) %>
+  <% end %>
   <%= link_to print_big_btn.html_safe, print_office_repair_application_form_path(@repair_application_form, format: :pdf), target: "_blank" %>
 </div>
 
 <h2>मर्मत गर्नुपर्ने सामाग्रीहरु थप्ने</h2>
 <%= render "repair_application_form_item_form", repair_application_form_item: @repair_application_form_item %>
 <div class="table-responsive">
-<table class="table tabhe-sm table-striped">
-  <tr>
-    <th>क्र.स.</th>
-    <th>सामानको नाम</th>
-    <th>जिन्सी खाता पाना नं</th>
-    <th>मर्मत गर्नुपर्ने कारण</th>
-    <th>अनुमानित मर्मत लागत</th>
-    <th></th>
-  </tr>
-  <% @i = 1 %>
-  <% @repair_application_form_items.each do |item| %>
-  <tr>
-    <td><%= nd @i %></td>
-    <td><%= item.item.name_of_item_ne %></td>
-    <td><%= nd item.item.item_register_page_no %></td>
-    <td><%= item.reason_to_repair %></td>
-    <td><%= nd item.approx_repair_cost %></td>
-    <td><%= link_to destroy_btn.html_safe, item, data: { confirm: "Are you sure to delete this ?", method: :delete} %></td>
-  </tr>
-    <% @i = @i + 1 %>
+  <table class="table tabhe-sm table-striped">
+    <tr>
+      <th>क्र.स.</th>
+      <th>सामानको नाम</th>
+      <th>जिन्सी खाता पाना नं</th>
+      <th>मर्मत गर्नुपर्ने कारण</th>
+      <th>अनुमानित मर्मत लागत</th>
+      <th></th>
+    </tr>
+    <% @i = 1 %>
+    <% @repair_application_form_items.each do |item| %>
+      <tr>
+        <td><%= nd @i %></td>
+        <td><%= item.item.name_of_item_ne %></td>
+        <td><%= nd item.item.item_register_page_no %></td>
+        <td><%= item.reason_to_repair %></td>
+        <td><%= nd item.approx_repair_cost %></td>
+        <td><%= link_to destroy_btn.html_safe, item, data: {confirm: "Are you sure to delete this ?", method: :delete} %></td>
+      </tr>
+      <% @i = @i + 1 %>
     <% end %>
-</table>
+  </table>
 </div>
 <%= link_to back_btn.html_safe, office_repair_application_forms_path %>

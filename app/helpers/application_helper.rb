@@ -85,6 +85,10 @@ module ApplicationHelper
     '<span class="btn  btn-danger"><i class="fa fa-close"></i>अस्वीकृत गर्ने</span>'
   end
 
+  def repair_complete_btn
+    '<span class="btn  btn-success"><i class="fa fa-check"></i>मर्मत सम्पन्न</span>'
+  end
+
   def can_unmark obj
     (obj.marked_as_final == true) && (DateTime.now < 30.days.after(obj.updated_at))
   end
