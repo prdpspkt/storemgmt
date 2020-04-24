@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_033449) do
+ActiveRecord::Schema.define(version: 2020_04_24_050801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1333,6 +1333,22 @@ ActiveRecord::Schema.define(version: 2020_04_24_033449) do
     t.boolean "entry_generated"
     t.boolean "accepted"
     t.string "file"
+  end
+
+  create_table "project_sapati_records", force: :cascade do |t|
+    t.integer "from"
+    t.integer "to"
+    t.integer "from_item_id"
+    t.integer "to_item_id"
+    t.decimal "quantity"
+    t.datetime "date"
+    t.integer "type"
+    t.integer "office_id"
+    t.integer "user_id"
+    t.integer "fiscal_year_id"
+    t.integer "store_body_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "project_stock_items", force: :cascade do |t|
