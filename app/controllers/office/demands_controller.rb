@@ -20,13 +20,15 @@ class Office::DemandsController < OfficeController
   # GET /demands/1.json
   def show
     @back_url = if @demand.classification_no == 408
+                  @title = "खर्च भएर नजाने जिन्सीको"
                   non_expense_index_office_demands_url
                 else
                   office_demands_url
+                  @title = "खर्च भएर जाने जिन्सीको"
                 end
     @demand_item = Office::DemandItem.new
     @items = @demand.demand_items
-    @office_items = office(Office::Item)
+    @office_items = office(Office::Item).where(item_classification_no: 52)
     @non_expense_transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
   end
 

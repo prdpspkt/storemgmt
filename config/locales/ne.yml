@@ -71,7 +71,7 @@ en:
           name_of_item_ne: "जिन्सीको नाम"
           name_of_item_en: "जिन्सीको नाम (अंग्रेजीमा)"
           specification: "स्पेसिफिकेसन"
-          item_category: "सामाग्रीको वर्ग"
+          item_category_id: "सामाग्रीको वर्ग"
         office/vendor:
           vendor_name: "व्यवसायको नाम"
           vendor_address: "व्यवसायको ठेगाना"
