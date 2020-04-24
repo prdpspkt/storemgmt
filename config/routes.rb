@@ -71,6 +71,7 @@ Rails.application.routes.draw do
       member do
         get "print"
         post "accept"
+        post "completed"
       end
     end
     resources :stock_items

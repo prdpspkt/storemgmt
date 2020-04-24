@@ -1,1 +1,0 @@
-json.partial! "rental_record_register_items/rental_record_register_item", rental_record_register_item: @rental_record_register_item

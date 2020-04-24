@@ -14,19 +14,19 @@
   <div class="col-4">
     <div class="field">
       <%= form.label :name %>
-      <%= form.text_field :name, class: "form-control", required: true %>
+      <%= form.text_field :name, class: "form-control preeti", required: true %>
     </div>
   </div>
   <div class="col-4">
     <div class="field">
       <%= form.label :committee_formation_date %>
-      <%= form.text_field :committee_formation_date, class: "form-control date-picker", required: true %>
+      <%= form.text_field :committee_formation_date, class: "form-control date-picker", required: true, readonly:true %>
     </div>
   </div>
   <div class="col-4">
     <div class="field">
       <%= form.label :report_submission_date %>
-      <%= form.text_field :report_submission_date, class: "form-control date-picker", required: true %>
+      <%= form.text_field :report_submission_date, class: "form-control date-picker", required: true, readonly:true %>
     </div>
   </div>
 </div>

@@ -26,18 +26,18 @@
 
     <div class="col-sm-2">
       <%= form.label :quantity %>
-      <%= form.text_field :quantity, class: "form-control" %>
+      <%= form.number_field :quantity, step: :any, class: "form-control", required: true %>
     </div>
 
     <div class="col-sm-2">
       <%= form.label :rate %>
-      <%= form.text_field :rate, class: "form-control" %>
+      <%= form.number_field :rate, step: :any, class: "form-control", required: true %>
     </div>
 
 
     <div class="col-sm-3">
       <%= form.label :remarks %>
-      <%= form.text_field :remarks, class: "form-control" %>
+      <%= form.text_field :remarks, class: "form-control preeti" %>
     </div>
   </div>
   <div class="separator"> </div>

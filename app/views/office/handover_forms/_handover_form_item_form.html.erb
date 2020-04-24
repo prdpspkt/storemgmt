@@ -18,12 +18,12 @@
     </div>
     <div class="col-md-4 col-6">
       <%= form.label :quantity %>
-      <%= form.text_field :quantity, class: "form-control" %>
+      <%= form.number_field :quantity, step: :any, class: "form-control", required: true %>
     </div>
 
     <div class="col-md-4 col-6">
       <%= form.label :physical_status %>
-      <%= form.text_field :physical_status, class: "form-control" %>
+      <%= form.text_field :physical_status, class: "form-control preeti" %>
     </div>
   </div>
   <div class="separator"></div>

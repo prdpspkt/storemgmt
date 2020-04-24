@@ -14,11 +14,11 @@
   <div class="row">
     <div class="col-sm-6">
       <%= form.label :project_name %>
-      <%= form.select(:project_id, @projects.collect { |project| [project.name_of_project_en, project.id] }, {include_blank: "select a project"}, {class: "form-control", required: :required}) %>
+      <%= form.select(:project_id, @projects.collect { |project| [project.name_of_project_en, project.id] }, {include_blank: "select a project"}, {class: "form-control select2", required: :required}) %>
     </div>
     <div class="col-sm-6">
       <%= form.label :main_purchase_entry %>
-      <%= form.select(:purchase_entry_id, @purchase_entries.collect { |entry| ["#{nd entry.entry_no}(#{ndate entry.entry_date})", entry.id] }, {}, {class: "form-control", required: :required}) %>
+      <%= form.select(:purchase_entry_id, @purchase_entries.collect { |entry| ["#{nd entry.entry_no}(#{ndate entry.entry_date})", entry.id] }, {}, {class: "form-control select2", required: :required}) %>
     </div>
     <div class="col-sm-6">
       <%= form.label :entry_date %>

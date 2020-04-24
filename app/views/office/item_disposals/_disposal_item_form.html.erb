@@ -15,12 +15,12 @@
 
   <div class="col-2">
     <%= form.label :item_transaction_id %>
-    <%= form.select(:item_transaction_id, @items.collect { |item| ["#{item.item.name_of_item_en} (SKU: #{item.sku}, MODEL: #{item.model})", item.id ]}, {include_blank: true}, {class: "form-control", required: true}) %>
+    <%= form.select(:item_transaction_id, @items.collect { |item| ["#{item.item.name_of_item_en} (SKU: #{item.sku}, MODEL: #{item.model})", item.id ]}, {include_blank: true}, {class: "form-control select2", required: true}) %>
   </div>
   
   <div class="col-2">
     <%= form.label :received_date %>
-    <%= form.text_field :received_date,  class: "form-control date-picker", required: :required  %>
+    <%= form.text_field :received_date,  class: "form-control date-picker", required: true, readonly:true  %>
   </div>
 
   <div class="col-2">
@@ -30,17 +30,17 @@
 
   <div class="col-2">
     <%= form.label :quantity %>
-    <%= form.text_field :quantity, class: "form-control", required: :required  %>
+    <%= form.number_field :quantity, step: :any, class: "form-control", required: :required  %>
   </div>
 
   <div class="col-2">
     <%= form.label :current_marked_price %>
-    <%= form.text_field :current_marked_price, class: "form-control", required: :required  %>
+    <%= form.number_field :current_marked_price, step: :any, class: "form-control", required: :required  %>
   </div>
 
   <div class="col-2">
     <%= form.label :reason_for_disposal %>
-    <%= form.text_field :reason_for_disposal, class: "form-control", required: :required  %>
+    <%= form.text_field :reason_for_disposal, class: "form-control preeti", required: :required  %>
   </div>
 
 </div>

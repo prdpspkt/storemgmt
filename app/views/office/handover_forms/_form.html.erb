@@ -17,11 +17,11 @@
     </div>
   <div class="col-6">
     <%= form.label :date %>
-    <%= form.text_field :date, class: "form-control date-picker" %>
+    <%= form.text_field :date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
   <div class="col-6">
     <%= form.label :decision_date %>
-    <%= form.text_field :decision_date, class: "form-control date-picker" %>
+    <%= form.text_field :decision_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
   <div class="col-6">
     <%= form.label :decision_no %>
@@ -29,18 +29,18 @@
   </div>
   <div class="col-6">
     <%= form.label :handovered_office_name %>
-    <%= form.text_field :handovered_office_name, class: "form-control" %>
+    <%= form.text_field :handovered_office_name, class: "form-control preeti" %>
   </div>
 
   <div class="col-6">
     <%= form.label :store_keeper_signed_date %>
-    <%= form.text_field :store_keeper_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :store_keeper_signed_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
 
 
   <div class="col-6">
     <%= form.label :office_chief_signed_date %>
-    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker" %>
+    <%= form.text_field :office_chief_signed_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
 </div>
   <div class="separator"></div>

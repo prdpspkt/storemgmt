@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_23_055043) do
+ActiveRecord::Schema.define(version: 2020_04_24_010659) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,6 +290,8 @@ ActiveRecord::Schema.define(version: 2020_04_23_055043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "office_item_stocks", force: :cascade do |t|
@@ -669,6 +671,7 @@ ActiveRecord::Schema.define(version: 2020_04_23_055043) do
     t.datetime "updated_at", null: false
     t.integer "vendor_id"
     t.string "file"
+    t.boolean "accepted"
   end
 
   create_table "office_repair_record_register_items", force: :cascade do |t|
@@ -1018,6 +1021,8 @@ ActiveRecord::Schema.define(version: 2020_04_23_055043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
+    t.string "name_of_item_en"
+    t.string "unit_en"
   end
 
   create_table "project_item_transactions", force: :cascade do |t|

@@ -14,18 +14,18 @@
   <div class="row">
   <div class="col-sm-4">
     <%= form.label :name_of_item %>
-    <%= form.select(:item_id, Office::Item.where(item_classification_no: 52).all.collect{ |item| [item.name_of_item_en, item.id]}, {include_blank: "--select--"}, {class: "form-control"}) %>
+    <%= form.select(:item_id, Office::Item.where(item_classification_no: 52).all.collect{ |item| [item.name_of_item_en, item.id]}, {include_blank: "--select--"}, {class: "form-control select2"}) %>
   </div>
 
   <div class="col-sm-3">
     <%= form.label :quantity %>
-    <%= form.text_field :quantity, class: "form-control" %>
+    <%= form.number_field :quantity, step: :any, class: "form-control", required: true %>
   </div>
 
 
   <div class="col-sm-3">
     <%= form.label :remarks %>
-    <%= form.text_field :remarks, class: "form-control" %>
+    <%= form.text_field :remarks, class: "form-control preeti" %>
   </div>
   <div class="col-sm-2">
     <%= form.submit :save, class: "btn btn-success" %>

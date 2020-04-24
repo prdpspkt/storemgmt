@@ -14,16 +14,16 @@
 <div class="row">
   <div class="col-6">
     <%= form.label :returned_by %>
-    <%= form.text_field :returned_by, class: "form-control", required: true %>
+    <%= form.text_field :returned_by, class: "form-control preeti", required: true %>
   </div>
   <div class="col-6">
     <%= form.label :returned_quantity %>
-    <%= form.text_field :returned_quantity, class: "form-control", required: true %>
+    <%= form.number_field :returned_quantity, step: :any, class: "form-control", required: true %>
   </div>
 
   <div class="col-6">
     <%= form.label :returned_date %>
-    <%= form.text_field :returned_date, class: "form-control date-picker", required: true %>
+    <%= form.text_field :returned_date, class: "form-control date-picker", required: true, readonly:true %>
   </div>
 
 </div>

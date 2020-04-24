@@ -14,12 +14,12 @@
 
     <div class="col-6">
       <%= form.label :name %>
-      <%= form.text_field :name, class: "form-control", required: :required %>
+      <%= form.text_field :name, class: "form-control preeti", required: :required %>
     </div>
 
     <div class="col-6">
       <%= form.label :select_a_committee %>
-      <%= form.select(:item_evaluation_committee_id, @item_evaluation_committees.collect { |committee| [committee.name, committee.id] }, {include_blank: true}, {class: 'form-control', required: :required}) %>
+      <%= form.select(:item_evaluation_committee_id, @item_evaluation_committees.collect { |committee| [committee.name, committee.id] }, {include_blank: true}, {class: 'form-control select2', required: :required}) %>
     </div>
 
   </div>
