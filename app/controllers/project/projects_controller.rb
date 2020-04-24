@@ -270,6 +270,7 @@ class Project::ProjectsController < ProjectController
       ntr2.transaction_type = -1
       ntr2.project_id = tr.project_id
       ntr2.project_item_id = tr.project_item_id
+      ntr2.sku = 0
       ntr2.remarks = "#{Project::Project.find(to).name_of_project_ne} लाई सापटी दिएको"
       ntr2.save!
       create_sapati_record to, tr, quantity
@@ -297,6 +298,7 @@ class Project::ProjectsController < ProjectController
       project_item.name_of_item_ne = item.name_of_item_ne
       project_item.name_of_item_en = item.name_of_item_en
       project_item.unit_ne = item.unit_ne
+      project_item.item_classification_no = item.item_classification_no
       project_item.unit_en = item.unit_en
     end
     pi.id
