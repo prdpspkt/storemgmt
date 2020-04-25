@@ -5,7 +5,7 @@
                  '<td>'+@sn.to_s+'</d>' +
                  '<td>'+ datam[:name_of_project_ne] + '</d>' +
                  '<td>'+ datam[:quantity].to_s + '</d>' +
-                 '<td>'+ link_to(create_sapati_btn.html_safe, sapati_create_project_project_path(@project_id, sapati: {to: @project_id, from: datam[:from], item_id: datam[:item_id], quantity: @quantity}) , data: {method: :post, remote: true, confirm: "Are you sure you want to take sapati ?"})+ '</td>' +
+                 '<td id= "item-'+ @project_id.to_s+'">'+ link_to(create_sapati_btn.html_safe, sapati_create_project_project_path(@project_id, sapati: {to: @project_id, from: datam[:from], item_id: datam[:item_id], quantity: @quantity}) , data: {method: :post, remote: true, confirm: "Are you sure you want to take sapati ?"})+ '</td>' +
                  '</tr>' %>
 <% @sn = @sn + 1 %>
 <% end %>

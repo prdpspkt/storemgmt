@@ -5,6 +5,8 @@ class Project::ProjectsController < ProjectController
                                      :destroy,
                                      :demand,
                                      :release,
+                                     :sapati,
+                                     :sapati_create,
                                      :expense_item_register,
                                      :non_expense_item_register,
                                      :print_pdf_expense_item_register,
@@ -130,6 +132,7 @@ class Project::ProjectsController < ProjectController
     @generate_url = print_pdf_expense_item_register_project_project_url(@project)
     @download_url = download_pdf_expense_item_register_project_project_url(@project, format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
+    @items = @project.project_items
     render 'item_register'
   end
 
@@ -200,18 +203,21 @@ class Project::ProjectsController < ProjectController
   end
 
   def sapati_create
-    from = sapati_params[:from].to_i
-    to = sapati_params[:to].to_i
+    from_project_id = sapati_params[:from].to_i
+    to_project_id = sapati_params[:to].to_i
     item_id = sapati_params[:item_id].to_i
-    @quantity = sapati_params[:quantity].to_d
-    transactions = current(Project::ProjectItemTransaction).where(project_id: from).where(item_id: item_id).where("sku > 0")
+    quantity = sapati_params[:quantity].to_d
+    transactions = current(Project::ProjectItemTransaction).where(project_id: from_project_id).where(item_id: item_id).where("sku > 0")
     transactions.each do |tr|
-      if @quantity > 0
-        if tr.sku > @quantity
-          create_sapati_transaction to, tr, @quantity
+      if quantity > 0
+        if tr.sku > quantity
+          create_sapati_transaction tr, to_project_id, quantity
+          create_sapati_record to_project_id, tr, quantity
           break;
         else
-          create_sapati_transaction to, tr, tr.sku
+          create_sapati_transaction tr, to_project_id, tr.sku
+          create_sapati_record to_project_id, tr, tr.sku
+          quantity = quantity - tr.sku
         end
       else
         break;
@@ -255,29 +261,37 @@ class Project::ProjectsController < ProjectController
     object
   end
 
-  def create_sapati_transaction to, tr, quantity
+  def create_sapati_transaction tr, to_project, quantity
     ntr = Project::ProjectItemTransaction.new(tr.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
     ntr.id = nil
-    ntr.project_id = to
+    ntr.project_id = to_project
+    ntr.project_item_id = get_project_item_id to_project, tr.item_id
+    ntr = set_current_information ntr
+    ntr.transaction_type = 1
     ntr.quantity = quantity
-    ntr.transaction_date = bs_today
-    ntr.project_item_id = get_project_item_id to, tr.item_id
     ntr.sku = quantity
-    ntr.remarks = "#{tr.project.name_of_project_ne} बाट सापटी लिएको"
+    ntr.amount = ntr.rate * ntr.quantity
+    ntr.remarks = "#{tr.project.name_of_project_ne} बाट सापटी"
+    ntr.transaction_date = bs_today
     if ntr.save!
-      ntr2 = Project::ProjectItemTransaction.new(ntr.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
-      ntr2.id = nil
-      ntr2.transaction_type = -1
-      ntr2.project_id = tr.project_id
-      ntr2.project_item_id = tr.project_item_id
-      ntr2.sku = 0
-      ntr2.remarks = "#{Project::Project.find(to).name_of_project_ne} लाई सापटी दिएको"
-      ntr2.save!
-      create_sapati_record to, tr, quantity
+      create_sapati_expense_transaction tr, quantity, to_project
     end
-    tr.sku = tr.sku - quantity
-    tr.save
-    @quantity = @quantity - quantity
+  end
+
+  def create_sapati_expense_transaction tr, quantity, to_project
+    ntr = Project::ProjectItemTransaction.new(tr.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
+    ntr.id = nil
+    ntr = set_current_information ntr
+    ntr.transaction_type = - 1
+    ntr.quantity = quantity
+    ntr.amount = ntr.rate * ntr.quantity
+    ntr.sku = 0
+    ntr.transaction_date = bs_today
+    ntr.remarks = "#{Project::Project.find(to_project).name_of_project_ne} लाई सापटी"
+    if ntr.save!
+      tr.sku = tr.sku - quantity
+      tr.save
+    end
   end
 
   def create_sapati_record to, tr, quantity
@@ -288,7 +302,7 @@ class Project::ProjectsController < ProjectController
     sapati_record.project_item_id = get_project_item_id to, sapati_record.item_id
     sapati_record.quantity = quantity
     sapati_record = set_current_information sapati_record
-    sapati_record.type = 1
+    sapati_record.store_body_id = current_control_body.id
     sapati_record.save!
   end
 

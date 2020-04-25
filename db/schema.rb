@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_110632) do
+ActiveRecord::Schema.define(version: 2020_04_25_051413) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,8 +290,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_110632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
-    t.string "name_of_item_en"
-    t.string "unit_en"
   end
 
   create_table "office_item_stocks", force: :cascade do |t|
@@ -679,6 +677,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_110632) do
     t.integer "vendor_id"
     t.string "file"
     t.boolean "accepted"
+    t.boolean "completed"
   end
 
   create_table "office_repair_record_register_items", force: :cascade do |t|
@@ -706,7 +705,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_110632) do
   create_table "office_repair_record_registers", force: :cascade do |t|
     t.string "name_of_item_ne"
     t.string "name_of_item_en"
-    t.string "page_no"
+    t.integer "page_no"
     t.string "specification"
     t.string "item_identification"
     t.string "model"
@@ -1028,8 +1027,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_110632) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
-    t.string "name_of_item_en"
-    t.string "unit_en"
   end
 
   create_table "project_item_transactions", force: :cascade do |t|
@@ -1342,11 +1339,8 @@ ActiveRecord::Schema.define(version: 2020_04_24_110632) do
   create_table "project_sapati_records", force: :cascade do |t|
     t.integer "from"
     t.integer "to"
-    t.integer "from_item_id"
-    t.integer "to_item_id"
     t.decimal "quantity"
     t.datetime "date"
-    t.integer "type"
     t.integer "office_id"
     t.integer "user_id"
     t.integer "fiscal_year_id"
@@ -1355,6 +1349,7 @@ ActiveRecord::Schema.define(version: 2020_04_24_110632) do
     t.datetime "updated_at", null: false
     t.integer "item_id"
     t.integer "project_item_id"
+    t.boolean "sapati_returned"
   end
 
   create_table "project_stock_items", force: :cascade do |t|

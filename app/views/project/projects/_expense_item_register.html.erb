@@ -56,7 +56,7 @@
   <% @qty = 0 %>
   <% @amt = 0 %>
   <% @transactions = get_project_item_transactions(item, @fiscal_year) %>
-  <% @transactions.where(fiscal_year_id: @fiscal_year.id).order(:id).each do |transaction| %>
+  <% @transactions.order("id ASC").each do |transaction| %>
     <% if transaction.transaction_type > 0 %>
       <% @qty = @qty + transaction.quantity %>
       <% @amt = @amt + transaction.amount %>
@@ -96,65 +96,3 @@
   <% end %>
   </tbody>
 </table>
-<table class="table table-sm table-borderless table-wide">
-  <tbody>
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td>स्टोर प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>शाखा प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>कार्यालय प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <% #TODO Also make post or designation ne and en %>
-  <tr>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.store_keeper_name %></td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.section_chief_name %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.office_chief_name %></td>
-  </tr>
-  <tr>
-    <td>दर्जाः</td>
-    <td><%= @cb.store_keeper_designation %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td><%= @cb.section_chief_designation %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td><%= @cb.office_chief_designation %></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
-<div class="page-break"></div>

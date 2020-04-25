@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-6">
+    <h1>सापटी विवरण</h1>
+  </div>
+  <div class="col-md-6 text-right">
+
+  </div>
+  <div class="col-12">
+    <table class="table table-sm table-bordered">
+      <thead>
+      <tr>
+        <td>क्र.स.</td>
+        <td>सापटी लिएको आयोजनाको नाम</td>
+        <td>सामानको नाम</td>
+        <td>परिमाण</td>
+        <td>सापटी दिएको आयोजनाको नाम</td>
+      </tr>
+      </thead>
+      <tbody>
+      <% @sn = 1 %>
+      <% @sapati_records.each do |sapati| %>
+        <tr>
+          <td><%= nd @sn %></td>
+          <td><%= Project::Project.find(sapati.to).name_of_project_ne %></td>
+          <td><%= sapati.item.name_of_item_ne %></td>
+          <td><%= sapati.quantity %></td>
+          <td>स<%= Project::Project.find(sapati.from).name_of_project_ne %></td>
+        </tr>
+        <% @sn = @sn + 1 %>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

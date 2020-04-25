@@ -82,6 +82,6 @@ module ModelHelper
         .where(office_id: project_item.office_id)
         .where(project_id: project_item.project_id)
         .where(fiscal_year_id: fiscal_year.id)
-        .where(item_id: project_item.item_id).where("sku > 0")
+        .where(item_id: project_item.item_id)
   end
 end
