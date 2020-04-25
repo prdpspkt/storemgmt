@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "office_items") do |sheet|
+sheet.add_row ["नछुने", "जिन्सी वर्गीकरण नं (५२/४७)", "नछुने", "सामानको नाम (नेपाली)", "सामानको नाम (अंग्रेजी)", "सामाग्री वर्गको आइडी"]
+sheet.add_row [:id, :item_classification_no, :item_register_page_no, :name_of_item_ne, :name_of_item_en, :item_category_id]
+@items.each do |item|
+sheet.add_row [item.id, item.item_classification_no, item.name_of_item_ne, item.name_of_item_en, item.item_category_id]
+end
+end

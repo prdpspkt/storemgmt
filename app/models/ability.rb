@@ -42,10 +42,11 @@ class Ability
                   Office::RentalRecordRegister,
                   Office::RentalRecordRegisterItem,
                   Office::ItemDisposal,
-                  Office::ItemDisposalItem
+                  Office::ItemDisposalItem,
+                  Office::PoolItem
     ], user_id: user.id
 
-    can :manage,  Office::FiscalYear, office_id: user.office_id
+    can :manage, Office::FiscalYear, office_id: user.office_id
 
     if user.is_admin == true
       can :manage, User
