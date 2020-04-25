@@ -13,6 +13,7 @@ class Office::TendersController < OfficeController
   def show
     @tender_item = Office::TenderItem.new
     @tender_items = @tender.tender_items
+    @items = office(Office::PoolItem)
   end
 
   # GET /tenders/new

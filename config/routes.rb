@@ -27,7 +27,11 @@ Rails.application.routes.draw do
       end
     end
 
-
+    resources :pool_items do
+      collection do
+        post "import"
+      end
+    end
 
     resources :tenders do
       member do
@@ -168,7 +172,6 @@ Rails.application.routes.draw do
     end
     resources :items, except: [:index] do
       collection do
-        post "import"
         get "expense_index"
         get "non_expense_index"
       end

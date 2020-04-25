@@ -16,7 +16,7 @@
 
     <div class="col-sm-3">
       <%= form.label :name_of_item %>
-      <%= form.select(:item_id, Office::Item.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control select2", required: :required}) %>
+      <%= form.select(:pool_item_id, @items.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control select2", required: :required}) %>
     </div>
 
     <div class="col-sm-2">

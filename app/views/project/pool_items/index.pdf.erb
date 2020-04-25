@@ -1,0 +1,29 @@
+<table class="table table-wide black-border">
+  <thead>
+  <tr>
+    <td>क्र.स.</td>
+    <td>ID</td>
+    <td>जिन्सी खाता पाना नं</td>
+    <td>जिन्सी वर्गीकरण नं</td>
+    <td>सामानको नाम </td>
+    <td>वर्गीकरणको नाम </td>
+    <td>कैफियत</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sn = 1 %>
+  <% @items.each do |item| %>
+    <tr>
+      <td><%= nd @sn %></td>
+      <td><%= item.id %></td>
+      <td><%= item.item_register_page_no %></td>
+      <td><%= item.item_classification_no %></td>
+      <td><%= item.name_of_item_ne %></td>
+      <td><%= item.item_category.name_ne %></td>
+      <td></td>
+    </tr>
+    <% @sn = @sn + 1 %>
+  <% end %>
+  </tbody>
+
+</table>

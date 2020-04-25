@@ -13,7 +13,7 @@ class Office::PurchaseOrdersController < OfficeController
   def show
     @purchase_order_item = Office::PurchaseOrderItem.new
     @purchase_order_items = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
-    @items = office(Office::Item)
+    @items = office(Office::PoolItem)
   end
 
   # GET /purchase_orders/new
@@ -75,7 +75,7 @@ class Office::PurchaseOrdersController < OfficeController
   end
 
   def accept
-    if can_unmark(@purchase_order)
+    if @purchase_order.marked_as_final == true
       @purchase_order.marked_as_final = false
     else
       @purchase_order.marked_as_final = true

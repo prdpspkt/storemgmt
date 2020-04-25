@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_085715) do
+ActiveRecord::Schema.define(version: 2020_04_25_125314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -351,6 +351,9 @@ ActiveRecord::Schema.define(version: 2020_04_25_085715) do
     t.integer "item_register_page_no"
     t.integer "temp_id"
     t.integer "temp_cat_id"
+    t.integer "fiscal_year_id"
+    t.integer "pool_item_id"
+    t.integer "store_body_id"
   end
 
   create_table "office_offices", force: :cascade do |t|
@@ -390,6 +393,19 @@ ActiveRecord::Schema.define(version: 2020_04_25_085715) do
     t.boolean "working"
     t.string "email"
     t.string "remarks"
+  end
+
+  create_table "office_pool_items", force: :cascade do |t|
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.integer "item_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "item_classification_no"
+    t.integer "office_id"
+    t.integer "user_id"
   end
 
   create_table "office_property_register_items", force: :cascade do |t|
@@ -514,6 +530,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_085715) do
     t.decimal "vat"
     t.decimal "amount_without_vat"
     t.boolean "is_vatable"
+    t.integer "pool_item_id"
   end
 
   create_table "office_purchase_orders", force: :cascade do |t|
@@ -807,6 +824,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_085715) do
     t.string "remarks"
     t.decimal "total_amount"
     t.integer "item_register_page_no"
+    t.integer "pool_item_id"
   end
 
   create_table "office_tenders", force: :cascade do |t|
@@ -1074,6 +1092,17 @@ ActiveRecord::Schema.define(version: 2020_04_25_085715) do
     t.integer "item_register_page_no"
     t.integer "temp_id"
     t.integer "temp_cat_id"
+    t.integer "fiscal_year_id"
+  end
+
+  create_table "project_pool_items", force: :cascade do |t|
+    t.string "name_of_item_ne"
+    t.string "name_of_item_en"
+    t.string "unit_ne"
+    t.string "unit_en"
+    t.integer "item_category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "project_project_item_transactions", force: :cascade do |t|
@@ -1122,6 +1151,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_085715) do
     t.integer "item_register_page_no"
     t.integer "item_classification_no"
     t.integer "item_category_id"
+    t.integer "fiscal_year_id"
   end
 
   create_table "project_project_purchase_entries", force: :cascade do |t|

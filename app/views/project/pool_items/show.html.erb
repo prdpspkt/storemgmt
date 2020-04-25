@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name ne:</strong>
+  <%= @item.name_ne %>
+</p>
+
+<p>
+  <strong>Name en:</strong>
+  <%= @item.name_en %>
+</p>
+
+<p>
+  <strong>Unit:</strong>
+  <%= @item.unit %>
+</p>
+
+<p>
+  <strong>Item category:</strong>
+  <%= @item.item_category_id %>
+</p>
+
+<p>
+  <strong>Office:</strong>
+  <%= @item.office_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>
