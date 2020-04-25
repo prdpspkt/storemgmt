@@ -93,7 +93,7 @@ module ButtonHelper
   end
 
   def sapati_btn
-    '<span class="btn  btn-warning"><i class="fa fa-arrow-left"></i> सापटी</span>'
+    '<span class="btn  btn-warning">सापटी <i class="fa fa-arrow-left"></i> </span>'
   end
 
   def create_sapati_btn

@@ -68,7 +68,7 @@
     <% if  @project.office.sapati %>
     <div class="text-right">
       <%= link_to sapati_btn.html_safe,  sapati_project_project_url(@project) %>
-      <%= link_to sapati_return_btn.html_safe, sapati_return_project_project_url(@project) %>
+      <%= link_to sapati_return_btn.html_safe, project_sapati_records_url %>
     </div>
     <% end %>
     <h3>खर्च भएर जाने जिन्सी सामान</h3>
@@ -87,15 +87,18 @@
         <tbody>
         <% @i = 1 %>
         <% @project_items52.each do |item| %>
+        <% quantity = get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 52)  %>
+          <% if quantity > 0  %>
           <tr>
             <td><%= @i %></td>
             <td><%= nd item.item_register_page_no %></td>
             <td><%= item.name_of_item_ne %></td>
             <td><%= item.name_of_item_en %></td>
-            <td><%= nd get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 52) %></td>
+            <td><%= nd quantity %></td>
             <td><%= item.unit_ne %></td>
           </tr>
           <% @i = @i + 1 %>
+        <% end %>
         <% end %>
         </tbody>
       </table>

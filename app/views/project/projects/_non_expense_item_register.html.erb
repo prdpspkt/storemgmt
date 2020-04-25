@@ -4,7 +4,7 @@
     <td>आर्थिक वर्षः <%= @fiscal_year.fy %></td>
   </tr>
   <tr>
-    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %></td>
+    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %> (<%= item.name_of_item_en %>)</td>
     <td colspan="2">जिन्सी सङ्केत नं: <%= nd item.item_classification_no %></td>
   </tr>
   <tr>
@@ -103,86 +103,4 @@
     <% end %>
   <% end %>
 </table>
-<table class="table table-sm table-borderless">
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td>फाँटवालाको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>शाखा प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>कार्यालय प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>नामः <%= %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>पदः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>पदः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>पदः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
-<div class="page-break"></div>
+<div class="separator"></div>

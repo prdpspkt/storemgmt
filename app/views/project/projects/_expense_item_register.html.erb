@@ -4,7 +4,7 @@
     <td>आर्थिक वर्षः <%= @fiscal_year.fy %></td>
   </tr>
   <tr>
-    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %></td>
+    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %> (<%= item.name_of_item_en %>)</td>
     <td colspan="2">जिन्सी सङ्केत नं: <%= nd item.item_classification_no %></td>
   </tr>
   <tr>
@@ -55,7 +55,7 @@
   <tbody>
   <% @qty = 0 %>
   <% @amt = 0 %>
-  <% @transactions = get_project_item_transactions(item, @fiscal_year) %>
+  <% @transactions = get_project_project_item_transactions(item, @fiscal_year) %>
   <% @transactions.order("id ASC").each do |transaction| %>
     <% if transaction.transaction_type > 0 %>
       <% @qty = @qty + transaction.quantity %>

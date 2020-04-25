@@ -1,0 +1,32 @@
+<table class="table black-border table-wide">
+  <thead>
+  <tr>
+    <td>क्र.स.</td>
+    <td>सामानको नाम</td>
+    <td>परिमाण</td>
+    <td>इकाई</td>
+    <td>सामान फिर्ता(शोधभर्ना) गर्नुपर्ने आयोजना</td>
+  </tr>
+  </thead>
+  <tbody>
+  <% @sn = 1 %>
+  <% @to = 0 %>
+  <% @sapati_records.each do |sapati| %>
+  <% unless @to == sapati.to_project %>
+      <tr class="bg-black text-white">
+        <td colspan="2">सामान खरिद गर्नुपर्ने आयोजना: </td>
+        <td colspan="3"><%= Project::Project.find(sapati.to_project).name_of_project_ne %></td>
+      </tr>
+  <% end %>
+    <% @to = sapati.to_project %>
+    <tr>
+      <td><%= nd @sn %></td>
+      <td><%= Project::Item.find(sapati.item_id).name_of_item_ne %></td>
+      <td><%= nd sapati.quantity %></td>
+      <td><%= Project::Item.find(sapati.item_id).unit_ne %></td>
+      <td><%= Project::Project.find(sapati.from_project).name_of_project_ne %></td>
+    </tr>
+    <% @sn = @sn + 1 %>
+  <% end %>
+  </tbody>
+</table>

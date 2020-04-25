@@ -364,7 +364,14 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :sapati_records
+    resources :sapati_records do
+      member do
+        post "sapati_return"
+      end
+      collection do
+        get "sapati_print"
+      end
+    end
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html

@@ -132,7 +132,7 @@ class Project::ProjectsController < ProjectController
     @generate_url = print_pdf_expense_item_register_project_project_url(@project)
     @download_url = download_pdf_expense_item_register_project_project_url(@project, format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
-    @items = @project.project_items
+    @items = @project.project_items.where(item_classification_no: 52)
     render 'item_register'
   end
 
@@ -140,6 +140,7 @@ class Project::ProjectsController < ProjectController
     @generate_url = print_pdf_non_expense_item_register_project_project_url(@project)
     @download_url = download_pdf_non_expense_item_register_project_project_url(@project, format: :pdf)
     @report_name = "खर्च भएर नजाने(खप्ने) जिन्सी खाता"
+    @items = @project.project_items.where(item_classification_no: 47)
     render 'item_register'
   end
 
@@ -210,7 +211,7 @@ class Project::ProjectsController < ProjectController
     transactions = current(Project::ProjectItemTransaction).where(project_id: from_project_id).where(item_id: item_id).where("sku > 0")
     transactions.each do |tr|
       if quantity > 0
-        if tr.sku > quantity
+        if tr.sku >= quantity
           create_sapati_transaction tr, to_project_id, quantity
           create_sapati_record to_project_id, tr, quantity
           break;
@@ -296,13 +297,14 @@ class Project::ProjectsController < ProjectController
 
   def create_sapati_record to, tr, quantity
     sapati_record = Project::SapatiRecord.new
-    sapati_record.to = to
-    sapati_record.from = tr.project_id
+    sapati_record.to_project = to
+    sapati_record.from_project = tr.project_id
     sapati_record.item_id = tr.item_id
     sapati_record.project_item_id = get_project_item_id to, sapati_record.item_id
     sapati_record.quantity = quantity
     sapati_record = set_current_information sapati_record
     sapati_record.store_body_id = current_control_body.id
+    sapati_record.sapati_returned = false
     sapati_record.save!
   end
 
@@ -316,8 +318,18 @@ class Project::ProjectsController < ProjectController
       project_item.id = nil
       project_item.project_id = project_id
       project_item.item_id = item.id
+      project_item.item_register_page_no = new_item_register_page_no
       project_item.save!
     end
     project_item.id
+  end
+
+  def new_item_register_page_no
+    project_items = current(Project::ProjectItem)
+    irpn = 1
+    if project_items.count > 0
+      irpn = project_items.last.item_register_page_no + 1
+    end
+    irpn
   end
 end

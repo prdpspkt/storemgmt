@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_051413) do
+ActiveRecord::Schema.define(version: 2020_04_25_085715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1337,8 +1337,8 @@ ActiveRecord::Schema.define(version: 2020_04_25_051413) do
   end
 
   create_table "project_sapati_records", force: :cascade do |t|
-    t.integer "from"
-    t.integer "to"
+    t.integer "from_project"
+    t.integer "to_project"
     t.decimal "quantity"
     t.datetime "date"
     t.integer "office_id"

@@ -14,6 +14,7 @@
         <td>सामानको नाम</td>
         <td>परिमाण</td>
         <td>सापटी दिएको आयोजनाको नाम</td>
+        <td>Action</td>
       </tr>
       </thead>
       <tbody>
@@ -21,10 +22,15 @@
       <% @sapati_records.each do |sapati| %>
         <tr>
           <td><%= nd @sn %></td>
-          <td><%= Project::Project.find(sapati.to).name_of_project_ne %></td>
+          <td><%= Project::Project.find(sapati.to_project).name_of_project_ne %></td>
           <td><%= sapati.item.name_of_item_ne %></td>
           <td><%= sapati.quantity %></td>
-          <td>स<%= Project::Project.find(sapati.from).name_of_project_ne %></td>
+          <td><%= Project::Project.find(sapati.from_project).name_of_project_ne %></td>
+          <td id="sapati-<%= sapati.id %>">
+            <% unless sapati.sapati_returned == true %>
+              <%= link_to sapati_return_btn.html_safe, sapati_return_project_sapati_record_url(sapati), format: :js, data: {method: :post, confirm: "पहिले सापटी फिर्ता गर्न पर्याप्त मौज्दात भएको एकिन गर्नुहोस्, उपयुक्त लागेमा Ok बटन थिच्नुहोस |"} %>
+            <% end %>
+          </td>
         </tr>
         <% @sn = @sn + 1 %>
       <% end %>
