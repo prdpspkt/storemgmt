@@ -325,7 +325,7 @@ class Project::ProjectsController < ProjectController
   end
 
   def new_item_register_page_no
-    project_items = current(Project::ProjectItem)
+    project_items = office(Project::ProjectItem)
     irpn = 1
     if project_items.count > 0
       irpn = project_items.last.item_register_page_no + 1
