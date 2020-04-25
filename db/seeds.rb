@@ -339,7 +339,6 @@ header = spreadsheet.row(1)
   row = Hash[[header, spreadsheet.row(i)].transpose]
   tr = Project::ProjectItemTransaction.new
   tr.item_id = get_item_id row["old_item_id"]
-  puts row.to_s
   tr.project_id = get_project_id row["old_project_id"]
   tr.project_item_id = create_project_item(tr.project_id, tr.item_id).id
   tr.fiscal_year_id = @fiscal_year.id

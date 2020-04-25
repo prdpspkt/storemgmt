@@ -61,7 +61,7 @@
     <td>१६</td>
     <td>१७</td>
   </tr>
-  <% @transactions = item.project_item_transactions.where(fiscal_year_id: @fiscal_year.id) %>
+  <% @transactions = item.project_item_transactions.where(fiscal_year_id: @fiscal_year.id).order(:id) %>
   <% if @transactions.blank? == false %>
     <% @qty = 0 %>
     <% @amt = 0 %>

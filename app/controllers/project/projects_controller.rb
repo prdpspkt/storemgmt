@@ -200,19 +200,19 @@ class Project::ProjectsController < ProjectController
   end
 
   def sapati_create
-    from = sapati_params[:from]
-    to = sapati_params[:to]
-    item_id = sapati_params[:item_id]
+    from = sapati_params[:from].to_i
+    to = sapati_params[:to].to_i
+    item_id = sapati_params[:item_id].to_i
     @quantity = sapati_params[:quantity].to_d
     transactions = current(Project::ProjectItemTransaction).where(project_id: from).where(item_id: item_id).where("sku > 0")
     transactions.each do |tr|
       if @quantity > 0
-      if tr.sku > @quantity
-        create_sapati_transaction to, tr, @quantity
-        break;
-      else
-        create_sapati_transaction to, tr, tr.sku
-      end
+        if tr.sku > @quantity
+          create_sapati_transaction to, tr, @quantity
+          break;
+        else
+          create_sapati_transaction to, tr, tr.sku
+        end
       else
         break;
       end
@@ -265,7 +265,7 @@ class Project::ProjectsController < ProjectController
     ntr.sku = quantity
     ntr.remarks = "#{tr.project.name_of_project_ne} बाट सापटी लिएको"
     if ntr.save!
-      ntr2 = Project::ProjectItemTransaction.new(ntr.attributes.select{|key, _| Project::ProjectItemTransaction.column_names.include? key})
+      ntr2 = Project::ProjectItemTransaction.new(ntr.attributes.select { |key, _| Project::ProjectItemTransaction.column_names.include? key })
       ntr2.id = nil
       ntr2.transaction_type = -1
       ntr2.project_id = tr.project_id
@@ -293,14 +293,17 @@ class Project::ProjectsController < ProjectController
   end
 
   def get_project_item_id project_id, item_id
-    pi = Project::ProjectItem.first_or_create!(project_id: project_id, item_id: item_id, office_id: current_office.id) do |project_item|
-      item = Project::Item.find(item_id)
-      project_item.name_of_item_ne = item.name_of_item_ne
-      project_item.name_of_item_en = item.name_of_item_en
-      project_item.unit_ne = item.unit_ne
-      project_item.item_classification_no = item.item_classification_no
-      project_item.unit_en = item.unit_en
+    item = Project::Item.find(item_id)
+    project_item = Project::ProjectItem.where(project_id: project_id)
+                       .where(item_id: item_id)
+                       .where(office_id: current_office.id).first
+    if project_item.blank?
+      project_item = Project::ProjectItem.new(item.attributes.select { |key, _| Project::ProjectItem.column_names.include? key })
+      project_item.id = nil
+      project_item.project_id = project_id
+      project_item.item_id = item.id
+      project_item.save!
     end
-    pi.id
+    project_item.id
   end
 end

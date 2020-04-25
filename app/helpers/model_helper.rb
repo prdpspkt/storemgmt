@@ -76,4 +76,12 @@ module ModelHelper
         .where(project_item_id: project_item_id)
         .where("sku > 0").sum(:sku)
   end
+
+  def get_project_item_transactions project_item, fiscal_year
+    Project::ProjectItemTransaction.where(project_item_id: project_item.id)
+        .where(office_id: project_item.office_id)
+        .where(project_id: project_item.project_id)
+        .where(fiscal_year_id: fiscal_year.id)
+        .where(item_id: project_item.item_id).where("sku > 0")
+  end
 end
