@@ -58,9 +58,9 @@
   </tr>
   <% @purchase_order_items.each do |item| %>
     <tr id="poi-<%= item.id %>">
-      <td><%= nd item.item.item_classification_no %></td>
-      <td><%= item.item.name_of_item_ne %></td>
-      <td><%= item.item.unit_ne %></td>
+      <td><%= nd item.pool_item.item_classification_no %></td>
+      <td><%= item.pool_item.name_of_item_ne %></td>
+      <td><%= item.pool_item.unit_ne %></td>
       <td><%= nd item.rate %></td>
       <td><%= nd item.quantity %></td>
       <td><%= nd item.amount_without_vat %></td>

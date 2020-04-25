@@ -16,8 +16,6 @@ class Office::TenderItemsController < OfficeController
   # POST /tender_items.json
   def create
     @tender_item = Office::TenderItem.new(tender_item_params)
-    @item = Office::Item.find(@tender_item.item_id)
-    @tender_item.item_classification_no = @item.item_classification_no
     @tender_item.amount_without_vat = @tender_item.rate * @tender_item.quantity
     if @tender_item.is_vatable
       @tender_item.vat = @tender_item.amount_without_vat * 0.13
@@ -30,10 +28,11 @@ class Office::TenderItemsController < OfficeController
     else
       @tender_item.total_amount = @tender_item.amount
     end
-    @tender_item = update_general_information @tender_item
+    @tender_item = set_current_information @tender_item
     @tender_item.sku = @tender_item.quantity
+    @tender_item.item_id = office_item(@tender_item.pool_item_id).id
     respond_to do |format|
-      if @tender_item.save
+      if @tender_item.save!
         format.html { redirect_to @tender_item.tender, notice: 'Office tender item was successfully created.' }
         format.json { render :show, status: :created, location: @tender_item }
       else
@@ -43,17 +42,7 @@ class Office::TenderItemsController < OfficeController
     end
   end
 
-  def update
-    respond_to do |format|
-      if@tender_item.update(tender_item_update_params)
-        format.html { redirect_to@tender_item.tender, notice: 'Office Tender Item was successfully updated.' }
-        format.json { render :show, status: :ok, location:@tender_item }
-      else
-        format.html { render :edit }
-        format.json { render json:@tender_item.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+
   # DELETE /tender_items/1
   # DELETE /tender_items/1.json
   def destroy
@@ -74,13 +63,35 @@ class Office::TenderItemsController < OfficeController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def tender_item_params
-    params.require(:office_tender_item).permit(:item_classification_no, :quantity, :rate, :amount, :is_vatable, :tender_id, :item_id)
+    params.require(:office_tender_item).permit(:item_classification_no, :quantity, :rate, :amount, :is_vatable, :tender_id,:pool_item_id)
   end
 
-  def update_general_information object
-    object.office_id = current_office.id
-    object.user_id = current_user.id
-    object.fiscal_year_id = current_fiscal_year.id
-    object
+
+  def office_item pool_item_id
+    @office_item = current(Office::Item).where(pool_item_id: pool_item_id).first
+    if @office_item.blank?
+      pool_item = Office::PoolItem.find(pool_item_id)
+      @office_item = Office::Item.new(pool_item.attributes.select { |key, _| Office::Item.column_names.include? key })
+      @office_item.id = nil
+      @office_item.pool_item_id = pool_item_id
+      @office_item = set_current_information @office_item
+      @office_item.item_register_page_no = office_item_register_page pool_item_id
+      @office_item.save!
+    end
+    @office_item
+  end
+
+  def office_item_register_page pool_item_id
+    @page_no = 1
+    @pool_item = Office::PoolItem.find(pool_item_id)
+    if @pool_item.item_classification_no == 47
+      @office_items = office(Office::Item)
+    else
+      @office_items = current(Office::Item)
+    end
+    if @office_items.count.positive?
+      @page_no = @office_items.last.item_register_page_no + 1
+    end
+    @page_no
   end
 end

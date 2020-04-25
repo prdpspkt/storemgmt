@@ -35,6 +35,7 @@ class ApplicationController < ActionController::Base
     object.office_id = current_office.id
     object.fiscal_year_id = current_fiscal_year.id
     object.user_id = current_user.id
+    object.store_body_id = current_control_body.id
     object
   end
 

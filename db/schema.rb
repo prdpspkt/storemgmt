@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_25_111349) do
+ActiveRecord::Schema.define(version: 2020_04_25_125314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -352,6 +352,8 @@ ActiveRecord::Schema.define(version: 2020_04_25_111349) do
     t.integer "temp_id"
     t.integer "temp_cat_id"
     t.integer "fiscal_year_id"
+    t.integer "pool_item_id"
+    t.integer "store_body_id"
   end
 
   create_table "office_offices", force: :cascade do |t|
@@ -528,6 +530,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_111349) do
     t.decimal "vat"
     t.decimal "amount_without_vat"
     t.boolean "is_vatable"
+    t.integer "pool_item_id"
   end
 
   create_table "office_purchase_orders", force: :cascade do |t|
@@ -821,6 +824,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_111349) do
     t.string "remarks"
     t.decimal "total_amount"
     t.integer "item_register_page_no"
+    t.integer "pool_item_id"
   end
 
   create_table "office_tenders", force: :cascade do |t|
