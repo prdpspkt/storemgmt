@@ -81,7 +81,7 @@ puts "Creating sample Personnels"
 @person1.name_en = "Indra Pratap Bohara"
 @person1.name_ne = "इन्द्रप्रताप बोहरा"
 @person1.post = "इन्जिनियर"
-@person1.office_id = @fiscal_year.id
+@person1.office_id = @office.id
 @person1.user_id = @user.id
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "8th Level Officer"
@@ -176,7 +176,7 @@ def get_office_item_id temp_id
   Office::Item.find_by_temp_id(temp_id).id
 end
 
-spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_trans.xlsx")
+spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_transactions.xlsx")
 header = spreadsheet.row(1)
 (2..spreadsheet.last_row).map do |i|
   row = Hash[[header, spreadsheet.row(i)].transpose]
@@ -187,7 +187,6 @@ header = spreadsheet.row(1)
     puts error.message
   end
   item.transaction_type = 1
-  item.transaction_date = @fiscal_year.start_date
   item.item_classification_no = 47
   item.office_id = @office.id
   item.rate = 0
