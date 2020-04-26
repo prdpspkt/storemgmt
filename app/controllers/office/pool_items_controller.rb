@@ -4,7 +4,7 @@ class Office::PoolItemsController < OfficeController
   # GET /office_items
   # GET /office_items.json
   def index
-  @items = office(Office::PoolItem).order("id desc")
+    @items = office(Office::PoolItem).order("id desc")
   end
 
   # GET /office_items/1
@@ -45,7 +45,7 @@ class Office::PoolItemsController < OfficeController
   # PATCH/PUT /office_items/1.json
   def update
     respond_to do |format|
-      if @item.update(office_item_params)
+      if @item.update(office_pool_item_params)
         format.html { redirect_to office_pool_items_url, notice: 'Office item was successfully updated.' }
         format.json { render :show, status: :ok, location: @item }
       else
@@ -57,7 +57,14 @@ class Office::PoolItemsController < OfficeController
 
   # DELETE /office_items/1
   # DELETE /office_items/1.json
-
+  def destroy
+    if @item.destroy
+      redirect_to office_pool_items_url, notice: "सफलता पूर्वक हटाईयो" and return
+    else
+      flash["error"] = "यो सामाग्रीसंग सम्बन्धित अन्य कारोवार देखिएकोले हटाउन सकिएन"
+      redirect_to office_pool_items_url
+    end
+  end
 
   def import
     file = params[:file]

@@ -5,7 +5,9 @@
   <div class="col-6">
     <!-- Button trigger modal -->
     <div class="float-right imex">
+      <% if @fiscal_year.status != true %>
       <%= link_to new_btn.html_safe, new_office_item_evaluation_url %>
+        <% end %>
     </div>
   </div>
 </div>

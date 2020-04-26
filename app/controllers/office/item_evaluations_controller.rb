@@ -3,6 +3,7 @@ class Office::ItemEvaluationsController < OfficeController
   load_and_authorize_resource except: [:create, :new]
 
   def index
+    @fiscal_year = current_fiscal_year
     @item_evaluations = Office::ItemEvaluation.all
   end
 

@@ -5,6 +5,7 @@ class Project::StocksController < ProjectController
   # GET /project_stocks
   # GET /project_stocks.json
   def index
+    @fiscal_year = current_fiscal_year
     @project_stocks = Project::Stock.all
   end
 

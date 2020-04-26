@@ -4,7 +4,7 @@ class Office::ItemsController < OfficeController
   # GET /office_items
   # GET /office_items.json
   def expense_index
-    @items = Office::Item.where(item_classification_no: 52)
+    @items = current(Office::Item).where(item_classification_no: 52)
     @print_url = expense_index_office_items_url(format: :pdf)
     respond_to do |format|
       format.html

@@ -27,7 +27,11 @@ class ProjectStockGenerator
     projects = Project::Project.where(office_id: stock.office_id).where(user_id: stock.user_id).where(project_status: 0)
     projects.each do |project|
       project.project_items.each do |item|
-        transactions = item.project_item_transactions.where("sku > 0")
+        transactions = Project::ProjectItemTransaction.where(office_id: stock.office_id)
+                           .where(fiscal_year_id: stock.fiscal_year_id)
+                           .where(project_id: project.id)
+                           .where(project_item_id: item.id)
+                           .where("sku > 0")
         if transactions.count > 0
           stock_item = Project::StockItem.new
           stock_item.stock_id = stock.id

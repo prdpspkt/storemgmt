@@ -74,7 +74,7 @@ class Project::PurchaseOrdersController < ProjectController
   end
 
   def accept
-    if can_unmark(@purchase_order)
+    if @purchase_order.marked_as_final == true
       @purchase_order.marked_as_final = false
     else
       @purchase_order.marked_as_final = true

@@ -4,7 +4,9 @@
   </div>
   <div class="col-6">
     <div class="float-right imex">
-      <%= link_to 'वार्षिक मौज्दात तयार गर्ने', generate_office_stocks_url, class: "btn btn-success text-white", method: :post %>
+      <% if @fiscal_year.status != true %>
+        <%= link_to 'वार्षिक मौज्दात तयार गर्ने', generate_office_stocks_url, class: "btn btn-success text-white", method: :post %>
+      <% end  %>
     </div>
   </div>
 </div>

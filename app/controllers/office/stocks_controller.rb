@@ -5,6 +5,7 @@ class Office::StocksController < OfficeController
   # GET /office_stocks
   # GET /office_stocks.json
   def index
+    @fiscal_year = current_fiscal_year
     @office_stocks = current(Office::Stock)
   end
 

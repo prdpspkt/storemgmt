@@ -3,7 +3,7 @@ class ProjectExpensableItemRegisterGenerator
   sidekiq_options retry: false
 
   def perform office_id, fiscal_year_id, store_body_id
-    items = Project::Item.where(office_id: office_id).where(item_classification_no: 52)
+    items = Project::Item.where(office_id: office_id).where(fiscal_year_id: fiscal_year_id).where(item_classification_no: 52)
     office = Office::Office.find(office_id)
     fiscal_year = Office::FiscalYear.find(fiscal_year_id)
     cb = Office::StoreBody.find(store_body_id)

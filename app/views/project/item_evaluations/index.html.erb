@@ -4,7 +4,9 @@
   </div>
   <div class="col-md-8">
     <div class="imex float-right">
-      <%= link_to new_btn.html_safe, new_project_item_evaluation_url %>
+      <% if @fiscal_year.status != true %>
+        <%= link_to new_btn.html_safe, new_project_item_evaluation_url %>
+      <% end %>
     </div>
   </div>
 </div>

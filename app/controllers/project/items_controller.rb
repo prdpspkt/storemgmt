@@ -4,8 +4,9 @@ class Project::ItemsController < ProjectController
   # GET /project_items
   # GET /project_items.json
   def index
-
+    @title = "सामाग्रीहरु (POOL)"
   end
+
  def non_expense_index
    @title = "खर्च भएर नजाने(खप्ने) सामानहरू"
    @items = office(Project::Item).where(item_classification_no: 47)

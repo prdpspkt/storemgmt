@@ -27,13 +27,16 @@
   <% @sn = 1 %>
   <% @items.each do |item| %>
     <tr>
-      <td><%= nd @sn %></td>
-      <td><%= item.id %></td>
+      <td><%= @sn %></td>
+      <td><%= nd item.id %></td>
       <td><%= item.item_classification_no %></td>
       <td><%= item.name_of_item_ne %></td>
       <td><%= item.name_of_item_en %></td>
       <td><%= item.item_category.name_ne %></td>
-      <td></td>
+      <td>
+        <%= link_to edit_btn.html_safe, edit_office_pool_item_url(item) %>
+        <%= link_to destroy_btn.html_safe, item, data: { method: :delete, confirm: "Are you sure ?"} %>
+      </td>
     </tr>
     <% @sn = @sn + 1 %>
   <% end %>

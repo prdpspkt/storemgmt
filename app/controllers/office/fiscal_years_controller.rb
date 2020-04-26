@@ -64,7 +64,7 @@ class Office::FiscalYearsController < OfficeController
   def close
     @office = current_office
     @fiscal_year = Office::FiscalYear.find(params[:fiscal_year_id])
-    if @fiscal_year.bs_today >= @fiscal_year.closing_date
+    if bs_today >= @fiscal_year.closing_date
       data = {
           old_fiscal_year_id: @fiscal_year.id,
           fiscal_year_id: current_fiscal_year.id,

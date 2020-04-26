@@ -1,4 +1,3 @@
-
 # # This file should contain all the record creation needed to seed the database with its default values.
 # # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 # #
@@ -14,17 +13,17 @@
 @user.password = '12345678'
 @user.is_admin = true
 @user.name = "Pradeep Sapkota"
-@user.save
+@user.save!
 
 puts "Creating office..."
 @office = Office::Office.new
-@office.gov ="प्रदेश सरकार"
-@office.ministry ="भौतिक पूर्वाधार विकास मन्त्रालय"
+@office.gov = "प्रदेश सरकार"
+@office.ministry = "भौतिक पूर्वाधार विकास मन्त्रालय"
 @office.department = ""
 @office.office = "खानेपानी तथा सरसफाई डिभिजन कार्यालय"
 @office.address = "तनहुँ गण्डकी प्रदेश"
 @office.has_project_access = true
-@office.save
+@office.save!
 
 puts "Completed..."
 puts "Creating user ...."
@@ -34,9 +33,9 @@ puts "Creating user ...."
 @user.is_admin = false
 @user.name = "Ramchandra Pandit"
 @user.office_id = @office.id
-@user.save
+@user.save!
 @office.user_id = @user.id
-@office.save
+@office.save!
 puts "Completed..."
 
 puts "Creating Fiscal Year...."
@@ -47,13 +46,13 @@ puts "Creating Fiscal Year...."
 @fiscal_year.start_date = '2076-04-01'
 @fiscal_year.closing_date = '2077-03-31'
 @fiscal_year.status = false
-@fiscal_year.save
+@fiscal_year.save!
 
 @active_fiscal_year = Office::ActiveFiscalYear.new
 @active_fiscal_year.fiscal_year_id = @fiscal_year.id
 @active_fiscal_year.office_id = @office.id
 @active_fiscal_year.user_id = @user.id
-@active_fiscal_year.save
+@active_fiscal_year.save!
 puts "Completed"
 
 puts "Creating sample Personnels"
@@ -65,7 +64,7 @@ puts "Creating sample Personnels"
 @person1.user_id = @user.id
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "6th Level Officer"
-@person1.save
+@person1.save!
 
 
 @person1 = Office::Personnel.new
@@ -76,7 +75,7 @@ puts "Creating sample Personnels"
 @person1.user_id = @user.id
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "9th Level Officer"
-@person1.save
+@person1.save!
 
 @person1 = Office::Personnel.new
 @person1.name_en = "Indra Pratap Bohara"
@@ -86,7 +85,7 @@ puts "Creating sample Personnels"
 @person1.user_id = @user.id
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "8th Level Officer"
-@person1.save
+@person1.save!
 puts "Completed..."
 
 puts "Creating control body..."
@@ -100,7 +99,7 @@ puts "Creating control body..."
 @store_body.store_keeper_designation = "अधिकृत"
 @store_body.section_chief_designation = "इन्जिनियर"
 @store_body.section_chief_name = "इन्द्रप्रताप बोहरा"
-@store_body.save
+@store_body.save!
 
 puts "Completed..."
 
@@ -111,7 +110,7 @@ puts "Completed..."
 @setup.active_fiscal_year = true
 @setup.store_body = true
 @setup.complete = true
-@setup.save
+@setup.save!
 
 puts "Creating Office Item Categories...."
 spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_cats.xlsx")
@@ -137,6 +136,13 @@ def get_office_cat temp_cat_id
   Office::ItemCategory.find_by_temp_id(temp_cat_id)
 end
 
+def create_office_pool_item item
+  pool_item = Office::PoolItem.new(item.attributes.select { |key, _| Office::PoolItem.column_names.include? key })
+  pool_item.id = nil
+  pool_item.save
+  pool_item
+end
+
 @item_register_page_no = 1
 spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_items.xlsx")
 header = spreadsheet.row(1)
@@ -156,6 +162,7 @@ header = spreadsheet.row(1)
   item.office_id = @office.id
   item.user_id = @user.id
   item.item_register_page_no = @item_register_page_no
+  item.pool_item_id = create_office_pool_item(item).id
   if item.valid?
     item.save!
     @item_register_page_no = @item_register_page_no + 1
@@ -164,6 +171,7 @@ end
 
 puts "Completed..."
 puts "Importing last year balance"
+
 def get_office_item_id temp_id
   Office::Item.find_by_temp_id(temp_id).id
 end
@@ -189,7 +197,7 @@ header = spreadsheet.row(1)
   item.sku = item.quantity
   item.store_body_id = @store_body.id
   # if item.valid?
-    item.save!
+  item.save!
   # end
 end
 
@@ -211,7 +219,7 @@ header = spreadsheet.row(1)
   if project.valid?
     project.save!
   else
-   binding.pry
+    binding.pry
   end
 end
 puts "Completed..."
@@ -293,7 +301,6 @@ end
 puts "completed..."
 
 
-
 puts "Copying last year stock balance..."
 
 
@@ -307,10 +314,12 @@ end
 
 @project_item_register_page_no = 0
 @prev_project_id = 0
+
 def create_project_item project_id, item_id
   project_items = Project::ProjectItem.where(office_id: @office.id)
                       .where(user_id: @user.id)
                       .where(project_id: project_id)
+                      .where(fiscal_year_id: @fiscal_year.id)
                       .where(item_id: item_id)
   if project_items.count > 0
     project_item = project_items.last
@@ -320,6 +329,10 @@ def create_project_item project_id, item_id
     project_item.id = nil
     project_item.item_id = item_id
     project_item.project_id = project_id
+    project_item.office_id = @office.id
+    project_item.item_classification_no = item.item_classification_no
+    project_item.user_id = @user.id
+    project_item.fiscal_year_id = @fiscal_year.id
     project_item.item_category_id = item.item_category_id
     if project_id == @prev_project_id
       @project_item_register_page_no = @project_item_register_page_no + 1
@@ -340,7 +353,9 @@ header = spreadsheet.row(1)
   tr = Project::ProjectItemTransaction.new
   tr.item_id = get_item_id row["old_item_id"]
   tr.project_id = get_project_id row["old_project_id"]
-  tr.project_item_id = create_project_item(tr.project_id, tr.item_id).id
+  project_item = create_project_item(tr.project_id, tr.item_id)
+  tr.project_item_id = project_item.id
+  tr.item_classification_no = project_item.item_classification_no
   tr.fiscal_year_id = @fiscal_year.id
   tr.office_id = @office.id
   tr.user_id = @user.id
@@ -349,7 +364,7 @@ header = spreadsheet.row(1)
   tr.rate = row["rate"]
   tr.amount = row["amount"]
   tr.transaction_type = 1
-  tr.transaction_date= @tr_date
+  tr.transaction_date = @tr_date
   tr.remarks = "अघिल्लो आ.व.को मौज्दातबाट अल्या"
   tr.save!
 end
