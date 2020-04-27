@@ -17,12 +17,12 @@
   </div>
   <div class="col-sm-6">
     <%= form.label :name_of_item_ne %>
-    <%= form.text_field :name_of_item_ne, class: "form-control preeti" %>
+    <%= form.text_field :name_of_item_ne, class: "form-control preeti", required: true %>
   </div>
 
   <div class="col-sm-6">
     <%= form.label :name_of_item_en %>
-    <%= form.text_field :name_of_item_en, class: "form-control" %>
+    <%= form.text_field :name_of_item_en, class: "form-control", required: true %>
   </div>
   <div class="col-sm-6">
     <%= form.label :specification %>
@@ -30,7 +30,7 @@
   </div>
   <div class="col-sm-6">
     <%= form.label :item_category_id %>
-    <%= form.select(:item_category_id, @categories.collect {|p| ["#{p.name_en} (#{p.unit_en})", p.id]}, {include_blank: '-select-'}, {class: 'form-control select2'}) %>
+    <%= form.select(:item_category_id, @categories.collect {|p| ["#{p.name_en} (#{p.unit_en})", p.id]}, {include_blank: '-select-'}, {class: 'form-control select2', required: true}) %>
   </div>
 </div>
 <div class="separator"></div>

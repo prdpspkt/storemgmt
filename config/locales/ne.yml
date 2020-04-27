@@ -356,10 +356,11 @@ en:
         name_of_item_en: "जिन्सीको नाम (अंग्रेजी)"
         specification: "स्पेसिफिकेसन"
         item_category_id: "जिन्सीको वर्ग"
-
-
-
-
-
-
-
+      project/project_purchase_entry:
+        project_name: "आयोजनाको नाम:"
+        main_purchase_entry: "मुख्य दाखिला नं"
+        entry_date: "दाखिला मिति"
+        store_keeper_signed_date: "भण्डार प्रमुखको हस्ताक्षर मिति"
+        section_chief_signed_date: "शाखा प्रमुख हस्ताक्षर मिति"
+        office_chief_signed_date: "कार्यालय प्रमुख हस्ताक्षर मिति"
+        purchase_handover_no: "खरिद/हस्तान्तरण नं"

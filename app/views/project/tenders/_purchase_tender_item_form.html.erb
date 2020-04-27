@@ -14,7 +14,7 @@
   <%= form.hidden_field :tender_id, value: @tender.id %>
   <div class="row">
    
-    <div class="col-sm-6">
+    <div class="col-sm-3">
       <%= form.label :name_of_item %>
       <%= form.select(:item_id, Project::Item.all.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control select2", required: :required}) %>
     </div>
@@ -23,57 +23,22 @@
       <span class="text-danger"><%= form.label :is_vatable %></span>
       <%= form.check_box(:is_vatable, class: "form-control", checked: true) %>
     </div>
-  </div>
-  <div id="oneirt-items">
-    <div class="row">
-      <div class="col-sm-2">
-        <%= form.label :item_identification_no %>
-        <%= form.text_field :item_identification_no, class: "form-control" %>
-      </div>
 
-      <div class="col-sm-2">
-        <%= form.label :model_no %>
-        <%= form.text_field :model_no, class: "form-control" %>
-      </div>
-
-      <div class="col-sm-2">
-        <%= form.label :country %>
-        <%= form.text_field :country, class: "form-control preeti" %>
-      </div>
-      <div class="col-sm-2">
-        <%= form.label :approx_age %>
-        <%= form.text_field :approx_age, class: "form-control" %>
-      </div>
-
-      <div class="col-sm-2">
-        <%= form.label :source %>
-        <%= form.text_field :source, class: "form-control preeti" %>
-      </div>
-      <div class="col-sm-2">
-        <%= form.label :size %>
-        <%= form.text_field :size, class: "form-control" %>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-2">
       <%= form.label :quantity %>
-      <%= form.number_field :quantity, step: :any, class: "form-control" %>
+      <%= form.number_field :quantity, step: :any, class: "form-control", required: true %>
+    </div>
+
+    <div class="col-sm-2">
+      <%= form.label :rate %>
+      <%= form.number_field :rate, step: :any,  class: "form-control", required: true %>
     </div>
 
     <div class="col-sm-3">
-      <%= form.label :rate %>
-      <%= form.number_field :rate, step: :any,  class: "form-control" %>
-    </div>
-
-
-    <div class="col-sm-4">
       <%= form.label :remarks %>
       <%= form.text_field :remarks, class: "form-control preeti" %>
     </div>
-    <div class="col-sm-2">
-      <br>
-      <%= form.submit :save, class: "btn btn-success" %>
-    </div>
   </div>
+  <div class="separator"></div>
+         <%= form.submit :save, class: "btn btn-success float-right" %>
 <% end %>
