@@ -39,7 +39,7 @@ class OfficeEvaluationGenerator
         evaluation_item.unit_ne = item.unit_ne
         evaluation_item.unit_en = item.unit_en
         evaluation_item.quantity = transactions.sum(:sku)
-        evaluation_item.rate = transactions.sum(:amount)/transactions.sum(:quantity)
+        evaluation_item.rate = (transactions.sum(:amount)/transactions.sum(:quantity)).round(2)
         evaluation_item.matched = evaluation_item.quantity
         evaluation_item.working = evaluation_item.quantity
         evaluation_item.total_quantity = evaluation_item.quantity
