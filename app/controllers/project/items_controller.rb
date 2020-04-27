@@ -48,6 +48,7 @@ class Project::ItemsController < ProjectController
   # GET /project_items/new
   def new
     @item = Project::Item.new
+    @categories = office(Project::ItemCategory)
   end
 
   # GET /project_items/1/edit

@@ -15,6 +15,7 @@ class Office::PoolItemsController < OfficeController
   # GET /office_items/new
   def new
     @item = Office::PoolItem.new
+    @categories = office(Office::ItemCategory)
   end
 
   # GET /office_items/1/edit

@@ -13,21 +13,21 @@
   <div class="row">
     <div class="col-sm-6">
       <%= form.label :name %>
-      <%= form.text_field :name_ne, class: "form-control preeti" %>
+      <%= form.text_field :name_ne, class: "form-control preeti", required: true %>
     </div>
 
     <div class="col-sm-6">
       <%= form.label :name_in_english %>
-      <%= form.text_field :name_en, class: "form-control" %>
+      <%= form.text_field :name_en, class: "form-control", required: true %>
     </div>
 
     <div class="col-sm-6">
       <%= form.label :unit %>
-      <%= form.text_field :unit_ne, class: "form-control preeti" %>
+      <%= form.text_field :unit_ne, class: "form-control preeti", required: true %>
     </div>
     <div class="col-sm-6">
       <%= form.label :unit_in_english %>
-      <%= form.text_field :unit_en, class: "form-control" %>
+      <%= form.text_field :unit_en, class: "form-control", required: true %>
     </div>
   </div>
   <div class="separator"></div>

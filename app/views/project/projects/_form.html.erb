@@ -13,12 +13,12 @@
   <div class="row">
     <div class="col-6">
       <%= form.label :name_of_project_ne %>
-      <%= form.text_field :name_of_project_ne, class: "form-control preeti" %>
+      <%= form.text_field :name_of_project_ne, class: "form-control preeti", required: true %>
     </div>
 
     <div class="col-6">
       <%= form.label :name_of_project_en %>
-      <%= form.text_field :name_of_project_en, class: "form-control" %>
+      <%= form.text_field :name_of_project_en, class: "form-control", required: true %>
     </div>
 
     <div class="col-6">
@@ -28,17 +28,17 @@
 
     <div class="col-6">
       <%= form.label :address %>
-      <%= form.text_field :address, class: "form-control preeti" %>
+      <%= form.text_field :address, class: "form-control preeti", required: true %>
     </div>
 
     <div class="col-4">
       <%= form.label :name_of_committee_representative %>
-      <%= form.text_field :name_of_committee_representative, class: "form-control" %>
+      <%= form.text_field :name_of_committee_representative, class: "form-control preeti" %>
     </div>
 
     <div class="col-4">
       <%= form.label :phone_of_committee_representative %>
-      <%= form.text_field :phone_of_committee_representative, class: "form-control preeti" %>
+      <%= form.text_field :phone_of_committee_representative, class: "form-control" %>
     </div>
 
     <div class="col-4">
@@ -62,7 +62,7 @@
 
     <div class="col-6">
       <%= form.label :project_status %>
-      <%= form.select(:project_status, {"सम्पन्न": 1, "निर्माणाधीन": 0}.collect { |status| [status.first, status.last] }, {include_blank: true}, {class: "form-control"}) %>
+      <%= form.select(:project_status, {"सम्पन्न": 1, "निर्माणाधीन": 0}.collect { |status| [status.first, status.last] }, {include_blank: true}, {class: "form-control", required: true}) %>
     </div>
   </div>
   <div class="separator"></div>

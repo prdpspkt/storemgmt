@@ -6,8 +6,5 @@ json.set! :data do
              #{link_to edit_btn.html_safe, edit_project_item_category_path(item_category)}
              #{link_to destroy_btn.html_safe, item_category, method: :delete, data: {confirm: 'Are you sure?'}}
              "
-    json.id "
-            #{nd item_category.id}
-            "
   end
 end
