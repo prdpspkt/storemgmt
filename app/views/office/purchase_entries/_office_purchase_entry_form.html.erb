@@ -16,17 +16,17 @@
 
     <div class="col-sm-4">
       <%= form.label :name_of_item %>
-      <%= form.select(:item_id, @items.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control select2", required: :required}) %>
+      <%= form.select(:item_id, @items.collect { |i| [i.name_of_item_en, i.id] }, {include_blank: "select"}, {class: "form-control select2", required: true}) %>
     </div>
 
     <div class="col-sm-2">
       <%= form.label :quantity %>
-      <%= form.number_field :quantity, step: :any, class: "form-control" %>
+      <%= form.number_field :quantity, step: :any, class: "form-control", required: true %>
     </div>
 
     <div class="col-sm-2">
       <%= form.label :rate %>
-      <%= form.number_field :rate, step: :any, class: "form-control" %>
+      <%= form.number_field :rate, step: :any, class: "form-control",  required: true %>
     </div>
     <div class="col-sm-2">
      <%= form.label :is_vatable_? %>

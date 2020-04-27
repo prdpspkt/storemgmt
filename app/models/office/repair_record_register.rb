@@ -3,7 +3,7 @@ class Office::RepairRecordRegister < ApplicationRecord
   belongs_to :store_body, class_name: "Office::StoreBody"
   belongs_to :office, class_name: "Office::Office"
   belongs_to :fiscal_year, class_name: "Office::FiscalYear"
-  belongs_to :item_transaction, class_name: "Office::ItemTransaction"
+  belongs_to :item_transaction, :class_name => 'Office::ItemTransaction'
   has_many :repair_record_register_items, :class_name => 'Office::RepairRecordRegisterItem'
   belongs_to :user
 end

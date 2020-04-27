@@ -23,10 +23,6 @@ class Office::RepairRecordRegistersController < OfficeController
     @repair_record_register.page_no = new_page_no
   end
 
-  # GET /repair_record_registers/1/edit
-  def edit
-  end
-
   # POST /repair_record_registers
   # POST /repair_record_registers.json
   def create
@@ -48,19 +44,6 @@ class Office::RepairRecordRegistersController < OfficeController
     end
   end
 
-  # PATCH/PUT /repair_record_registers/1
-  # PATCH/PUT /repair_record_registers/1.json
-  def update
-    respond_to do |format|
-      if @repair_record_register.update(repair_record_register_params)
-        format.html { redirect_to @repair_record_register, notice: 'Repair record register was successfully updated.' }
-        format.json { render :show, status: :ok, location: @repair_record_register }
-      else
-        format.html { render :edit }
-        format.json { render json: @repair_record_register.errors, status: :unprocessable_entity }
-      end
-    end
-  end
 
   # DELETE /repair_record_registers/1
   # DELETE /repair_record_registers/1.json

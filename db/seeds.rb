@@ -64,6 +64,7 @@ puts "Creating sample Personnels"
 @person1.user_id = @user.id
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "6th Level Officer"
+@person1.working = true
 @person1.save!
 
 
@@ -73,6 +74,7 @@ puts "Creating sample Personnels"
 @person1.post = "कार्यालय प्रमुख"
 @person1.office_id = @office.id
 @person1.user_id = @user.id
+@person1.working = true
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "9th Level Officer"
 @person1.save!
@@ -83,6 +85,7 @@ puts "Creating sample Personnels"
 @person1.post = "इन्जिनियर"
 @person1.office_id = @office.id
 @person1.user_id = @user.id
+@person1.working = true
 @person1.fiscal_year_id = @fiscal_year.id
 @person1.level_class = "8th Level Officer"
 @person1.save!

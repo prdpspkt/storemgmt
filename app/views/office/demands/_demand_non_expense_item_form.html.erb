@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-sm-3">
     <%= form.label :item_id %>
-    <%= form.select(:item_transaction_id,  @non_expense_transactions.collect{|t| ["#{t.item.name_of_item_en} (MODEL: #{t.model}, (#{t.item_identification_no})", t.id]}, {include_blank: true}, {class: "form-control select2", required: true}) %>
+    <%= form.select(:item_transaction_id,  @non_expense_transactions.collect{|t| ["#{t.item.name_of_item_en} (MO: #{t.model}, IN: #{t.item_identification_no})", t.id]}, {include_blank: true}, {class: "form-control select2", required: true}) %>
   </div>
 
   <div class="col-sm-3">

@@ -75,14 +75,19 @@ class Office::RepairApplicationFormsController < OfficeController
   def complete
     @items = @repair_application_form.repair_application_form_items
     @items.each do |item|
-      register = create_repair_record_register item.item_id
+      register = create_repair_record_register item
+      binding.pry
       record_item = Office::RepairRecordRegisterItem.new(item.attributes.select { |key, value| Office::RepairRecordRegisterItem.column_names.include? key })
       record_item.id = nil
       record_item.repair_record_register_id = register.id
       record_item.vendor_id = @repair_application_form.vendor_id
       record_item.applicant_name = item.personnel.name_ne
       record_item.date = item.repaired_date
+      if item.other_expense_cost.present?
       record_item.total_expense = item.changed_part_cost + item.other_expense_cost
+      else
+        record_item.total_expense = item.changed_part_cost
+      end
       record_item.repair_application_no = @repair_application_form.application_no
       record_item.save!
     end
@@ -96,7 +101,7 @@ class Office::RepairApplicationFormsController < OfficeController
   def destroy
     @repair_application_form.destroy
     respond_to do |format|
-      format.html { redirect_to repair_application_forms_url, notice: 'Repair application form was successfully destroyed.' }
+      format.html { redirect_to office_repair_application_forms_url, notice: 'Repair application form was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -160,9 +165,10 @@ class Office::RepairApplicationFormsController < OfficeController
     repair_application_no
   end
 
-  def create_repair_record_register item_id
+  def create_repair_record_register item
     office_id = current_office.id
-    register = Office::RepairRecordRegister.first_or_create(office_id: office_id, item_id: item_id) do |register|
+    fiscal_year_id = current_fiscal_year.id
+    register = Office::RepairRecordRegister.first_or_create(office_id: office_id, item_transaction_id: item.item_transaction_id, fiscal_year_id: fiscal_year_id, item_id: item.item_id) do |register|
       register.user_id = current_user.id
       register.store_body_id = current_control_body.id
       register.page_no = new_page_no
