@@ -1,4 +1,4 @@
-<table class="table table-wide">
+<table class="table table-sm table-borderless">
   <tbody>
   <tr>
     <td>जिन्सी सामानको नामः</td>
@@ -29,7 +29,7 @@
   </tr>
   </tbody>
 </table>
-<table class="table black-border table-wide">
+<table class="table table-black-border table-sm">
   <thead>
   <tr class="text-center">
     <td rowspan="2">मितिः</td>
@@ -68,7 +68,7 @@
   <tbody>
   <% @qty = 0 %>
   <% @amt = 0 %>
-  <% @transactions = get_project_item_transactions(item, @fiscal_year.id)
+  <% @transactions = get_project_item_transactions(item, @fiscal_year)
   <% @transactions.each do |oeirt| %>
     <% if oeirt.transaction_type > 0 %>
       <% @qty = @qty + oeirt.quantity %>
@@ -109,65 +109,4 @@
   <% end %>
   </tbody>
 </table>
-<table class="table table-wide">
-  <tbody>
-  <tr>
-    <td></td>
-  </tr>
-  <tr>
-    <td>स्टोर प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>शाखा प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>कार्यालय प्रमुखको दस्तखतः</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <% #TODO Also make post or designation ne and en %>
-  <tr>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.store_keeper_name %></td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.section_chief_name %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>नामः</td>
-    <td colspan="2"><%= @cb.office_chief_name %></td>
-  </tr>
-  <tr>
-    <td>दर्जाः</td>
-    <td><%= @cb.store_keeper_designation %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td><%= @cb.section_chief_designation %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>दर्जाः</td>
-    <td><%= @cb.office_chief_designation %></td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td>मितिः</td>
-    <td><%= ndate @fiscal_year.closing_date %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td><%= ndate @fiscal_year.closing_date %></td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-    <td>मितिः</td>
-    <td><%= ndate @fiscal_year.closing_date %></td>
-    <td></td>
-  </tr>
-  </tbody>
-</table>
-<div class="page-break"></div>
+<div class="separator"></div>
