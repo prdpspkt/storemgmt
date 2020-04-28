@@ -73,7 +73,7 @@
       @amount = item.amount_without_vat + @vat
       @total = @total + @amount
     else
-      @amount = item.item_without_vat
+      @amount = item.amount_without_vat
       @total = @total+@amount
     end %>
   </tr>
