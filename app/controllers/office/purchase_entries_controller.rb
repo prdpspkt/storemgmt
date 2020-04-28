@@ -118,7 +118,7 @@ class Office::PurchaseEntriesController < OfficeController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "Entry Report Form", layout: "pdf_print", orientation: "landscape"
+        render pdf: "Entry Report Form", layout: "pdf_print", orientation: "landscape", margin: {left: "5mm"}
       end
     end
   end
