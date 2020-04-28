@@ -37,7 +37,7 @@
     <td colspan="3">स्टोर दाखिला (आम्दानी)</td>
     <td colspan="3">निकासा (खर्च)</td>
     <td colspan="3">बाँकी</td>
-    <td rowspan="2">कैफियत</td>
+    <td rowspan="2" style="min-width: 200px!important;">कैफियत</td>
   </tr>
   <tr class="text-center">
     <td>परिमाण</td>
@@ -68,7 +68,7 @@
   <tbody>
   <% @qty = 0 %>
   <% @amt = 0 %>
-  <% @transactions = get_project_item_transactions(item, @fiscal_year)
+  <% @transactions = get_project_item_transactions(item, @fiscal_year) %>
   <% @transactions.each do |oeirt| %>
     <% if oeirt.transaction_type > 0 %>
       <% @qty = @qty + oeirt.quantity %>
@@ -103,7 +103,7 @@
         <td>&nbsp;<%= nd @qty %></td>
         <td>&nbsp;</td>
         <td><%= nd @amt %></td>
-        <td><%= oeirt.remarks %></td>
+        <td ><%= oeirt.remarks %></td>
       </tr>
     <% end %>
   <% end %>
