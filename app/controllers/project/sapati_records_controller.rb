@@ -87,7 +87,8 @@ class Project::SapatiRecordsController < ProjectController
     item = Project::Item.find(item_id)
     project_item = Project::ProjectItem.where(project_id: project_id)
                        .where(item_id: item_id)
-                       .where(office_id: current_office.id).first
+                       .where(office_id: current_office.id)
+                       .where(fiscal_year_id: current_fiscal_year.id).first
     if project_item.blank?
       project_item = Project::ProjectItem.new(item.attributes.select { |key, _| Project::ProjectItem.column_names.include? key })
       project_item.id = nil
