@@ -100,9 +100,7 @@ class Office::PoolItemsController < OfficeController
         item.unit_en = get_category(item.item_category_id).unit_en
         item.save!
       else
-        item.errors.full_message.each do |msg|
-          errors.add :base, "Row #{index + 6}: #{msg}"
-        end
+        flash[:error] = "डाटामा गल्ति हुन सक्छ"
       end
     end
     redirect_to office_pool_items_url

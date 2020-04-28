@@ -136,7 +136,11 @@ puts "Completed ... "
 puts "Creating Office Items"
 
 def get_office_cat temp_cat_id
-  Office::ItemCategory.find_by_temp_id(temp_cat_id)
+  @cat = Office::ItemCategory.find_by_temp_id(temp_cat_id)
+  if @cat.blank?
+    binding.pry
+  end
+  @cat
 end
 
 def create_office_pool_item item
@@ -161,9 +165,11 @@ header = spreadsheet.row(1)
   item.item_category_id = category.id
   item.unit_ne = category.unit_ne
   item.unit_en = category.unit_en
-  item.item_classification_no = 47
   item.office_id = @office.id
   item.user_id = @user.id
+  if item.item_classification_no == 52
+    item.fiscal_year_id = @fiscal_year.id
+  end
   item.item_register_page_no = @item_register_page_no
   item.pool_item_id = create_office_pool_item(item).id
   if item.valid?
