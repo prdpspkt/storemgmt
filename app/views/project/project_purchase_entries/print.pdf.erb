@@ -59,10 +59,10 @@
   <tbody>
   <% @id = 1 %>
   <% @project_purchase_entry_items.each do |item| %>
-    <tr>
-      <td class="<% if @id > 7 %>
+    <tr class="<% if @id > 7 %>
 <%= "page-break" %>
-    <% end %>"><%= nd @id %></td>
+    <% end %>">
+      <td><%= nd @id %></td>
       <td></td>
       <td><%= nd item.project_item.item_classification_no %></td>
       <td><%= nd item.project_item.item_register_page_no %></td>
