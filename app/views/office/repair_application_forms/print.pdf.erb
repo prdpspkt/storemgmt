@@ -62,7 +62,7 @@
     <td><%= item.item_transaction.item_identification_no %></td>
     <td><%= nd item.approx_repair_cost %></td>
     <td><%= item.reason_to_repair %></td>
-    <td><%= item.applicant_sign %></td>
+    <td><%= item.personnel.name_ne %></td>
     <td><%= item.remarks %></td>
   </tr>
   <% @i = @i + 1 %>
