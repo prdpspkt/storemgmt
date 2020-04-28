@@ -77,7 +77,10 @@
       <td><%= nd item.other_expense %></td>
       <td><%= nd item.total_amount %></td>
       <td><%= item.remarks %></td>
-    </tr>
+      <% @id = @id + 1%>
+    </tr class="<% if @id > 7 %>
+<%= "page-break" %>
+    <% end %>">
   <% end %>
   <tr class="text-center">
     <td colspan="11" class="text-right">जम्मा</td>
