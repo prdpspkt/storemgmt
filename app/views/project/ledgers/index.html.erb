@@ -7,4 +7,21 @@
       PDF</a>
     <a class="btn btn-primary" target="_blank" href="<%= @download_url %>"><i class="fa fa-save"></i> Downlaod</a>
   </div>
+  <div class="col-12">
+  	<% unless @eitems.nil? %>
+  	<% @eitems.each do |item| %>
+  <% if item.item_transactions.count > 0 %>
+    <%= render "project/ledgers/expense_item_register", item: item %>
+  <% end %>
+<% end %>
+  	<% end %>
+
+  	 	<% unless @nitems.nil? %>
+  	<% @nitems.each do |item| %>
+  <% if item.item_transactions.count > 0 %>
+    <%= render "project/ledgers/non_expense_item_register", item: item %>
+  <% end %>
+<% end %>
+  	<% end %>
+  </div>
 </div>

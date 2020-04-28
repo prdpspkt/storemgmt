@@ -5,6 +5,7 @@ class Project::LedgersController < ProjectController
     @generate_url = print_pdf_expense_item_register_project_ledgers_url
     @download_url =  download_pdf_expense_item_register_project_ledgers_url(format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
+    @eitems = office(Project::Item).where(item_classification_no: 52)
     render 'index'
   end
 
@@ -30,6 +31,7 @@ class Project::LedgersController < ProjectController
     @generate_url = print_pdf_non_expense_item_register_project_ledgers_url
     @download_url = download_pdf_non_expense_item_register_project_ledgers_url(format: :pdf)
     @report_name = "खर्च भएर नजाने(खप्ने) जिन्सी खाता"
+    @nitems = office(Project::Item).where(item_classification_no: 47)
     render 'index'
   end
 
