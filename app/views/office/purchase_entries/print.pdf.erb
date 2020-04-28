@@ -1,9 +1,7 @@
 <table class="table">
   <tr>
     <td colspan="17" class="text-left" colspan="3">दाखिला मितिः <%= ndate @purchase_entry.entry_date %></td>
-  </tr>
-  <tr>
-    <td colspan="17" class="text-left" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @purchase_entry.entry_no%></td>
+    <td colspan="17" class="text-right" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @purchase_entry.entry_no%></td>
   </tr>
 </table>
 <table class="table black-border">
@@ -71,6 +69,7 @@
     <td><%= nd item.other_expense %></td>
     <td><%= nd item.total_amount %></td>
     <td><%= item.remarks %></td>
+    <% @id = @id + 1 %>
   </tr>
     <% end %>
   <tr class="text-center">
