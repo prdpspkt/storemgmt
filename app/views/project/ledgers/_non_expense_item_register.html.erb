@@ -23,7 +23,7 @@
     <td colspan="3">आम्दानी</td>
     <td colspan="2">हस्तान्तरण/मिन्हा/निःसर्ग</td>
     <td colspan="2">बाँकी</td>
-    <td rowspan="2">कैफियत</td>
+    <td rowspan="2" style="min-width: 200px!important;">कैफियत</td>
   </tr>
   <tr class="text-center">
     <td>उत्पादित देश/कम्पनी</td>
@@ -94,7 +94,7 @@
           <td><%= nd @qty %></td>
           <td><%= nd @amt %></td>
         <% end %>
-        <td style="min-width: 200px!important;"><%= transaction.remarks %></td>
+        <td><%= transaction.remarks %></td>
       </tr>
     <% end %>
   <% end %>
