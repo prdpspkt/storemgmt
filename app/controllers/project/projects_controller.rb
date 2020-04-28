@@ -183,9 +183,9 @@ class Project::ProjectsController < ProjectController
   end
 
   def sapati_data
-    @project_id = params[:id]
-    item_id = params[:item_id]
-    @quantity = params[:quantity]
+    @project_id = params[:id].to_i
+    item_id = params[:item_id].to_i
+    @quantity = params[:quantity].to_d
     @projects = office(Project::Project).where(project_status: 0)
     @data = []
     @projects.map do |project|
@@ -208,6 +208,7 @@ class Project::ProjectsController < ProjectController
     to_project_id = sapati_params[:to].to_i
     item_id = sapati_params[:item_id].to_i
     quantity = sapati_params[:quantity].to_d
+    @quantity = quantity
     transactions = current(Project::ProjectItemTransaction).where(project_id: from_project_id).where(item_id: item_id).where("sku > 0")
     transactions.each do |tr|
       if quantity > 0
