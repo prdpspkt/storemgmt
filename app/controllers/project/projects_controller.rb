@@ -132,7 +132,7 @@ class Project::ProjectsController < ProjectController
     @generate_url = print_pdf_expense_item_register_project_project_url(@project)
     @download_url = download_pdf_expense_item_register_project_project_url(@project, format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
-    @items = current(Project::ProjectItem).where(item_classification_no: 52)
+    @items = current(Project::ProjectItem).where(project_id: @project.id).where(item_classification_no: 52)
     render 'item_register'
   end
 
