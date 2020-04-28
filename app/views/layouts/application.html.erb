@@ -8,10 +8,12 @@
   <%= stylesheet_link_tag 'application', media: 'all', "data-turbolinks-track" => true %>
   <%= javascript_include_tag 'application', "data-turbolinks-track" => true %>
   <style type="text/css">
+    <% unless current_user.office.blank? %>
     <% if current_user.office.input_system == 'preeti' %>
     .preeti {
       font-family: "preeti", Kokila;
     }
+    <% end %>
     <% end %>
   </style>
 </head>
@@ -24,6 +26,7 @@
 </div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container">
+    <% unless current_user.office.blank? %>
     <% if current_user.office.has_project_access %>
       <a class="navbar-brand text-center" href="<%= project_dashboard_url %>">
         <%= image_tag("osims.png", height: '30') %>
@@ -32,6 +35,7 @@
       <a class="navbar-brand text-center" href="<%= office_dashboard_url %>">
         <%= image_tag("osims.png", height: '30') %>
       </a>
+    <% end %>
     <% end %>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -171,6 +175,8 @@
 </div>
 <script>
     $(document).ready( function () {
+      <% unless current_user.office.blank? %>
+        
         <% if current_user.office.input_system == 'preeti' %>
         $(".preeti").on("change", function () {
             var text = $(this).val();
@@ -181,7 +187,7 @@
             var text = $(this).val();
             $(this).val(convert(text, all_rules['preeti']));
         });
-
+<% end %>
         <% end %>
     });
 </script>

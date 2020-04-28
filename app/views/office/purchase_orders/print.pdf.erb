@@ -54,6 +54,9 @@
   </thead>
   <tbody>
   <% @i = 1 %>
+  <% @total = 0 %>
+  <% @vat = 0 %>
+  <% @amount = 0 %>
   <% @purchase_order_items.each do |item| %>
   <tr>
     <td class="text-center"><%= nd @i %></td>
@@ -65,6 +68,14 @@
     <td><%= nd item.rate %></td>
     <td><%= nd item.amount_without_vat %></td>
     <td><%= item.remarks %></td>
+    <% if item.is_vatable
+      @vat = item.amount_without_vat * 0.13
+      @amount = item.amount_without_vat + @vat
+      @total = @total + @amount
+    else
+      @amount = item.item_without_vat
+      @total = @total+@amount
+    end %>
   </tr>
     <% @i = @i + 1 %>
     <% end %>
