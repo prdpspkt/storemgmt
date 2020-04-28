@@ -60,7 +60,9 @@
   <% @id = 1 %>
   <% @project_purchase_entry_items.each do |item| %>
     <tr>
-      <td><%= nd @id %></td>
+      <td class="<% if @id > 7 %>
+<%= "page-break" %>
+    <% end %>"><%= nd @id %></td>
       <td></td>
       <td><%= nd item.project_item.item_classification_no %></td>
       <td><%= nd item.project_item.item_register_page_no %></td>
@@ -78,9 +80,7 @@
       <td><%= nd item.total_amount %></td>
       <td><%= item.remarks %></td>
       <% @id = @id + 1%>
-    </tr class="<% if @id > 7 %>
-<%= "page-break" %>
-    <% end %>">
+    </tr>
   <% end %>
   <tr class="text-center">
     <td colspan="11" class="text-right">जम्मा</td>
