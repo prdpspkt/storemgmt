@@ -76,7 +76,6 @@ class Office::RepairApplicationFormsController < OfficeController
     @items = @repair_application_form.repair_application_form_items
     @items.each do |item|
       register = create_repair_record_register item
-      binding.pry
       record_item = Office::RepairRecordRegisterItem.new(item.attributes.select { |key, value| Office::RepairRecordRegisterItem.column_names.include? key })
       record_item.id = nil
       record_item.repair_record_register_id = register.id
