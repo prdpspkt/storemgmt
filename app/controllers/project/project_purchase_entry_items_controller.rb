@@ -115,7 +115,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
 
   def create_project_item project_id, item_id
     if project_item_exists(project_id, item_id) != false
-      project_item = Project::ProjectItem.where(project_id: project_id).where(item_id: item_id).first
+      project_item = current(Project::ProjectItem).where(project_id: project_id).where(item_id: item_id).first
     else
       item = Project::Item.find(item_id)
       project_item = Project::ProjectItem.new(item.attributes.select { |key, _| Project::ProjectItem.column_names.include? key })
@@ -131,7 +131,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
   end
 
   def new_project_item_register_page_no project_id
-    project_items = office(Project::ProjectItem).where(project_id: project_id)
+    project_items = current(Project::ProjectItem).where(project_id: project_id)
     pirpn = 1
     if project_items.count > 0
       pirpn = project_items.last.item_register_page_no + 1
@@ -141,14 +141,10 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
 
   def project_item_exists project_id, item_id
     project_item = false
-    project_items = office(Project::ProjectItem).where(project_id: project_id).where(item_id: item_id)
+    project_items = current(Project::ProjectItem).where(project_id: project_id).where(item_id: item_id)
     if project_items.count > 0
       project_item = project_items.first
     end
     project_item
-  end
-
-  def create_entries
-
   end
 end
