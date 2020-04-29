@@ -24,10 +24,10 @@
       <td><%= nd item.item.item_register_page_no %></td>
       <td><%= nd item.item.item_classification_no %></td>
       <td class="text-left" style="min-width: 225px;"><%= item.item.name_of_item_ne %></td>
-      <td class="text-right"><%= nd item.quantity %></td>
+      <td class="text-right"><%= nd item.quantity.round(2) %></td>
       <td><%= nd item.item.unit_ne %></td>
-      <td class="text-right"><%= nd item.rate %></td>
-      <td class="text-right"><%= nd item.amount %></td>
+      <td class="text-right"><%= nd item.rate.round(2) %></td>
+      <td class="text-right"><%= nd item.amount.round(2) %></td>
       <td><%= item.physical_status %></td>
       <td><%= item.remarks %></td>
     </tr>
