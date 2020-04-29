@@ -105,7 +105,7 @@ class Office::PurchaseOrdersController < OfficeController
     @purchase_order_items = @purchase_order.purchase_order_items
     @amount = @purchase_order_items.sum(:amount)
     @vat = @purchase_order_items.sum(:vat)
-    @amount_without_vat = @purchase_order_items.sum(@amount_without_vat)
+    @amount_without_vat = @purchase_order_items.sum(:amount_without_vat)
     @fiscal_year = @purchase_order.fiscal_year
     @office = @purchase_order.office
     @report_name = "खरिद आदेश"
