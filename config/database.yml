@@ -26,7 +26,14 @@ default: &default
   username: postgres
   password: 1234
 development:
-  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  database: wssdb
+  pool: 5
+  host: localhost
+  port: 5432
+  username: postgres
+  password: 2030
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
