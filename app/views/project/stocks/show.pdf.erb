@@ -35,8 +35,19 @@
       <td class="text-left" style="min-width: 250px"><%= item.name_of_item_ne %></td>
       <td class="text-right"><%= nd item.quantity.round(2) %></td>
       <td><%= nd item.unit_ne %></td>
-      <td class="text-right"><%= nd item.rate.round(2) %></td>
-      <td class="text-right"><%= nd item.amount.round(2) %></td>
+      <td class="text-right">
+        <% unless item.rate.nil? %>
+          <%= nd item.rate.round(2) %>
+          <% else %>
+          <%= nd 0.0 %>
+        <% end %></td>
+
+      <td class="text-right">
+        <% unless item.amount.nil? %>
+          <%= nd item.amount.round(2) %>
+          <% else %>
+          <%= nd 0.0 %>
+        <% end %></td>
       <td><%= item.physical_status %></td>
       <td><%= item.remarks %></td>
     </tr>

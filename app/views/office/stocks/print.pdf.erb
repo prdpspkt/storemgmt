@@ -26,8 +26,20 @@
       <td class="text-left" style="min-width: 225px;"><%= item.item.name_of_item_ne %></td>
       <td class="text-right"><%= nd item.quantity.round(2) %></td>
       <td><%= nd item.item.unit_ne %></td>
-      <td class="text-right"><%= nd item.rate.round(2) %></td>
-      <td class="text-right"><%= nd item.amount.round(2) %></td>
+      <td class="text-right">
+        <% unless item.rate.nil? %>
+          <%= nd item.rate.round(2) %>
+          <% else  %>
+        <%= nd 0.0 %>
+        <% end %>
+      </td>
+      <td class="text-right">
+        <% unless item.amount.nil? %>
+          <%= nd item.amount.round(2) %>
+          <% else %>
+          <%= nd 0.0 %>
+        <% end %>
+      </td>
       <td><%= item.physical_status %></td>
       <td><%= item.remarks %></td>
     </tr>
@@ -38,7 +50,7 @@
 <table class="table">
   <tr>
     <td>स्टोर प्रमुखको हस्ताक्षर</td>
-    <td>शाखा प्रमुखको हस्ताक्षर </td>
+    <td>शाखा प्रमुखको हस्ताक्षर</td>
     <td>कार्यालय प्रमुखको हस्ताक्षर</td>
   </tr>
   <tr>

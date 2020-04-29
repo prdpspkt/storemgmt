@@ -25,7 +25,7 @@ class OfficeStockGenerator
   private
 
   def generate_stock_items stock
-    items = Office::Item.where(office_id: stock.office_id).where(user_id: stock.user_id)
+    items = Office::Item.where(office_id: stock.office_id).where(user_id: stock.user_id).where(item_classification_no: 47)
     items.each do |item|
       transactions = item.item_transactions.where("sku > 0").where(item_classification_no: 47)
       stock_item = Office::StockItem.new
@@ -39,7 +39,7 @@ class OfficeStockGenerator
       stock_item.fiscal_year_id = stock.fiscal_year_id
       stock_item.store_body_id = stock.store_body_id
       stock_item.quantity = transactions.sum(:sku)
-      stock_item.rate = transactions.average(:rate)
+      stock_item.rate = transactions.sum(:amount)/transactions.sum(:quantity)
       begin
         stock_item.amount = stock_item.quantity * stock_item.rate
       rescue Exception => error
