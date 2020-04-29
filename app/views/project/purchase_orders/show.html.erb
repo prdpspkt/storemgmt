@@ -42,6 +42,7 @@
 <h2>खरिद माग भएका सामानहरू</h2>
 <table class="table table-sm table-condensed table-bordered">
   <tr>
+    <th>क्र.स.</th>
     <th>जिन्सी वर्गीकरण नं</th>
     <th>जिन्सी सामानको नाम</th>
     <th>इकाई</th>
@@ -53,8 +54,10 @@
     <th>कैफियत</th>
     <th class="no-print"></th>
   </tr>
+  <% @i= 1 %>
   <% @purchase_order_items.each do |item| %>
     <tr id="poi-<%= item.id %>">
+      <td><%= @i %></td>
       <td><%= nd item.item.item_classification_no %></td>
       <td><%= item.item.name_of_item_ne %></td>
       <td><%= item.item.unit_ne %></td>
