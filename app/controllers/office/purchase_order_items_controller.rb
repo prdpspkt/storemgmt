@@ -25,6 +25,7 @@ class Office::PurchaseOrderItemsController < OfficeController
       @purchase_order_item.vat = @purchase_order_item.amount_without_vat * 0.13
       @purchase_order_item.amount = @purchase_order_item.amount_without_vat * 1.13
     else
+      @purchase_order_item.vat = 0
       @purchase_order_item.amount = @purchase_order_item.amount_without_vat
     end
     @purchase_order_item.amount_without_vat = @purchase_order_item.rate * @purchase_order_item.quantity

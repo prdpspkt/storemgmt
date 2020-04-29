@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_130959) do
+ActiveRecord::Schema.define(version: 2020_04_28_124927) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -290,8 +290,6 @@ ActiveRecord::Schema.define(version: 2020_04_26_130959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
-    t.string "name_of_item_en"
-    t.string "unit_en"
   end
 
   create_table "office_item_stocks", force: :cascade do |t|
@@ -697,6 +695,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_130959) do
     t.integer "vendor_id"
     t.string "file"
     t.boolean "accepted"
+    t.boolean "completed"
   end
 
   create_table "office_repair_record_register_items", force: :cascade do |t|
@@ -724,7 +723,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_130959) do
   create_table "office_repair_record_registers", force: :cascade do |t|
     t.string "name_of_item_ne"
     t.string "name_of_item_en"
-    t.string "page_no"
+    t.integer "page_no"
     t.string "specification"
     t.string "item_identification"
     t.string "model"
@@ -1047,8 +1046,6 @@ ActiveRecord::Schema.define(version: 2020_04_26_130959) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "file"
-    t.string "name_of_item_en"
-    t.string "unit_en"
   end
 
   create_table "project_item_transactions", force: :cascade do |t|
@@ -1354,7 +1351,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_130959) do
     t.integer "release_no"
     t.datetime "release_date"
     t.integer "store_body_id"
-    t.datetime "store_chief_signed_date"
+    t.datetime "store_keeper_signed_date"
     t.datetime "office_chief_signed_date"
     t.integer "user_id"
     t.integer "office_id"
