@@ -104,9 +104,9 @@ class Project::PurchaseOrdersController < ProjectController
     @purchase_order = Project::PurchaseOrder.find(params[:id])
     @purchase_order_items = @purchase_order.purchase_order_items
     @fy =  Office::FiscalYear.find(@purchase_order.fiscal_year_id).fy
-    @amount =  Project::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).sum(:amount)
-    @vat = @amount * 0.13
-    @total = @amount + @vat
+    @amount = @purchase_order_items.sum(:amount)
+    @vat = @purchase_order_items.sum(:vat)
+    @amount_without_vat = @purchase_order_items.sum(@amount_without_vat)
     @office = @purchase_order.office
     @fiscal_year = @purchase_order.fiscal_year
     @report_name = "खरिद आदेश"

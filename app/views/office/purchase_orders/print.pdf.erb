@@ -68,14 +68,6 @@
     <td><%= nd item.rate %></td>
     <td><%= nd item.amount_without_vat %></td>
     <td><%= item.remarks %></td>
-    <% if item.is_vatable
-      @vat = item.amount_without_vat * 0.13
-      @amount = item.amount_without_vat + @vat
-      @total = @total + @amount
-    else
-      @amount = item.amount_without_vat
-      @total = @total+@amount
-    end %>
   </tr>
     <% @i = @i + 1 %>
     <% end %>
@@ -86,7 +78,7 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td colspan="2">जम्मा रकम</td>
-    <td><%= nd @amount %></td>
+    <td><%= nd @amount_without_vat %></td>
     <td>&nbsp;</td>
   </tr>
   <tr>
@@ -106,7 +98,7 @@
     <td>&nbsp;</td>
     <td>&nbsp;</td>
     <td colspan="2">कुल जम्मा रकमः</td>
-    <td><%= nd @total %></td>
+    <td><%= nd @amount %></td>
     <td>&nbsp;</td>
   </tr>
   </tbody>
