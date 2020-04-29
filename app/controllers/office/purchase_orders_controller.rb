@@ -111,6 +111,7 @@ class Office::PurchaseOrdersController < OfficeController
     @report_name = "खरिद आदेश"
     @old_form_no = 45
     @form_no = 402
+    binding.pry
     respond_to do |format|
       format.html
       format.pdf do
