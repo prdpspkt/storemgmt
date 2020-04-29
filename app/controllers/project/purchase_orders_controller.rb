@@ -115,7 +115,7 @@ class Project::PurchaseOrdersController < ProjectController
     respond_to do |format|
       format.html
       format.pdf do
-        render pdf: "order_form-#{bs_today}", layout: "pdf_print"
+        render pdf: "order_form-#{bs_today}", layout: "pdf_print", margin: {left: "20mm"}
       end
     end
   end
