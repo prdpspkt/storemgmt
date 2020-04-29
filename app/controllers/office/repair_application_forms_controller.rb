@@ -82,6 +82,7 @@ class Office::RepairApplicationFormsController < OfficeController
       record_item.vendor_id = @repair_application_form.vendor_id
       record_item.applicant_name = item.personnel.name_ne
       record_item.date = item.repaired_date
+      tecord_item = set_current_information record_item
       if item.other_expense_cost.present?
       record_item.total_expense = item.changed_part_cost + item.other_expense_cost
       else
