@@ -40,7 +40,11 @@ class OfficeStockGenerator
       stock_item.fiscal_year_id = stock.fiscal_year_id
       stock_item.store_body_id = stock.store_body_id
       stock_item.quantity = transactions.sum(:sku)
+      begin
       stock_item.rate = transactions.sum(:amount)/transactions.sum(:quantity)
+      rescue Exception => error
+        binding.pry
+      end
       begin
         stock_item.amount = stock_item.quantity * stock_item.rate
       rescue Exception => error
