@@ -3,6 +3,7 @@ class OfficeStockGenerator
   sidekiq_options retry: false
 
   def perform data
+    ActionCable.server.broadcast "progress_channel", response: { message: "We are generating report in background.."};
     office_stocks = Office::Stock.where(office_id: data["office_id"])
                         .where(user_id: data["user_id"])
                         .where(fiscal_year_id: data["fiscal_year_id"])
@@ -19,7 +20,7 @@ class OfficeStockGenerator
       generate_stock_items office_stock
       generate_and_save_pdf office_stock
     end
-
+  ActionCable.server.broadcast "progress_channel", response: {closed: true, message: "Returning to page..."}
   end
 
   private

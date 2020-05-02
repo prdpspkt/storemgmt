@@ -7,12 +7,23 @@
     background-color: rgba(0, 0, 0, 0.46);
     z-index: 1000000;
 }
-.progress_image{
+.progress_box{
     height: 67px;
-    width: 67px;
+    width: 70%;
     position: fixed;
     top: 45%;
-    left: 50%;
+    left: 35%;
+}
+.progress_image{
+    width: 80px;
+    float:left;
+}
+.progress_message{
+    line-height: 67px;
+    font-size: 30px;
+    margin-left: 20px!important;
+    padding-left: 20px!important;
+    color: white;
 }
 .form-control[readonly] {
     background-color: #ffffff!important;

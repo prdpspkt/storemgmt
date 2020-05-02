@@ -21,9 +21,8 @@ class Office::StocksController < OfficeController
         store_body_id: current_control_body.id,
         user_id: current_user.id
     }
-   OfficeStockGenerator.perform_async(data)
-    redirect_to office_stocks_url, notice: "We are generating stock report in background please refresh page after few minutes. Thanks"
-  end
+   OfficeStockGenerator.perform_async(data) and return
+   end
 
   def print
     @office = @office_stock.office

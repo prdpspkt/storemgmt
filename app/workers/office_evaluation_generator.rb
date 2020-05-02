@@ -3,6 +3,7 @@ class OfficeEvaluationGenerator
   sidekiq_options retry: false
 
   def perform(data)
+    ActionCable.server.broadcast "progress_channel", response: {message: "We are generating evaluation report in background please wait..."}
     item_evaluations = Office::ItemEvaluation
                            .where(office_id: data["office_id"])
                            .where(fiscal_year_id: data["fiscal_year_id"])
@@ -20,6 +21,7 @@ class OfficeEvaluationGenerator
     if item_evaluation.save!
       generate_evaluation_items item_evaluation
     end
+    ActionCable.server.broadcast "progress_channel", response: {closed: true, message: " "}
   end
 
   def generate_evaluation_items item_evaluation

@@ -14,4 +14,8 @@ $(document).on('turbolinks:load', function () {
         $(".progress_bar").show();
     });
 
+    $(".load-progress-bar").on("click", function(){
+$(".progress_bar").show();
+    });
+
 });

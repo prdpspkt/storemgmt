@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   require 'sidekiq/web'
+  mount ActionCable.server => '/cable'
   mount Sidekiq::Web => '/sidekiq'
   Sidekiq::Web.set :sessions, false
 

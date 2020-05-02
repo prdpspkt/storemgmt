@@ -5,15 +5,17 @@ class Office::ItemEvaluationsController < OfficeController
   def index
     @fiscal_year = current_fiscal_year
     @item_evaluations = Office::ItemEvaluation.all
+     @item_evaluation = Office::ItemEvaluation.new
+    @item_evaluation_committees = current(Office::ItemEvaluationCommittee)
   end
 
 
   # GET /office_item_evaluations/1
   # GET /office_item_evaluations/1.json
-  def new
-    @item_evaluation = Office::ItemEvaluation.new
-    @item_evaluation_committees = current(Office::ItemEvaluationCommittee)
-  end
+  # def new
+  #   @item_evaluation = Office::ItemEvaluation.new
+  #   @item_evaluation_committees = current(Office::ItemEvaluationCommittee)
+  # end
 
   def show
     @item_evaluation_items = Office::ItemEvaluationItem.where(item_evaluation_id: @item_evaluation.id)
@@ -29,9 +31,8 @@ class Office::ItemEvaluationsController < OfficeController
         user_id: current_user.id,
         fiscal_year_id: current_fiscal_year.id
     }
-    OfficeEvaluationGenerator.perform_async(data)
-    redirect_to office_item_evaluations_url, notice: "जिन्सी निरीक्षण कार्य हुँदै छ, कृपया केहि समय पछि यो पेज रिफ्रेस गर्नु होस्, धन्यवाद |"
-  end
+    OfficeEvaluationGenerator.perform_async(data) and return
+   end
 
   def print
     @item_evaluation_items = Office::ItemEvaluationItem.where(item_evaluation_id: @item_evaluation.id)
