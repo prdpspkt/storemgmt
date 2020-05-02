@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: db_sims
-  username: root
-  password: 5hr33r@m
+  username: wssdstore
+  password: Db@w55d570r3
