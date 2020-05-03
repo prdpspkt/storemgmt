@@ -13,7 +13,7 @@ if Rails.env == "production"
       # one of the wkhtmltopdf-binary family of gems.
       # exe_path: '/usr/local/bin/wkhtmltopdf',
       #   or
-      exe_path: '/usr/local/bin/wkhtmltopdf',
+      #exe_path: '/usr/local/bin/wkhtmltopdf',
       layout: 'layouts/pdf_print.pdf',
       page_size: 'A4',
       print_media_type: true,
