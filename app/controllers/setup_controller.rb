@@ -1,4 +1,5 @@
 class SetupController < ApplicationController
+  before_action :authenticate_user!, :except => [:ssl]
   before_action :check_user, only: [:start]
   def start
     @action_url = "/"
@@ -16,10 +17,11 @@ class SetupController < ApplicationController
   end
 
   def ssl 
-        data = File.open(@item_evaluation.file, 'rb') {|io| io.read}
-        send_data(data, type: 'application/pdf', disposition: :inline)
+        file = params[:file]
+        data = File.open(Rails.root.join('public','.well-known', 'acme-challenge', file), 'rb') {|io| io.read}
+        send_data(data)
   end
-
+:inline
   private
 
   def create_setup
