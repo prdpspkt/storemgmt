@@ -9,7 +9,7 @@ class Project::ItemsController < ProjectController
 
  def non_expense_index
    @title = "खर्च भएर नजाने(खप्ने) सामानहरू"
-   @items = office(Project::Item).where(item_classification_no: 47)
+   @items = office(Project::Item).where(item_classification_no: 408)
    @print_url = non_expense_index_project_items_url(format: :pdf)
    respond_to do |format|
      format.html { render :index}
@@ -26,7 +26,7 @@ class Project::ItemsController < ProjectController
 
   def expense_index
     @title = "खर्च भएर जाने सामानहरू"
-    @items = office(Project::Item).where(item_classification_no: 52)
+    @items = office(Project::Item).where(item_classification_no: 407)
     @print_url = expense_index_project_items_url(format: :pdf)
     respond_to do |format|
       format.html { render :index}
@@ -140,7 +140,7 @@ class Project::ItemsController < ProjectController
     items.each do |item|
       if item.valid?
         unless Office::Item.exists?(item.id)
-          if item.item_classification_no == 47
+          if item.item_classification_no == 408
             item.item_register_page_no = @nirpn
             @nirpn = @nirpn + 1
           else
@@ -156,7 +156,7 @@ class Project::ItemsController < ProjectController
         end
       end
     end
-    if @last_item.item_classification_no == 47
+    if @last_item.item_classification_no == 408
       redirect_to non_expense_index_project_items_url
     else
       redirect_to expense_index_project_items_url

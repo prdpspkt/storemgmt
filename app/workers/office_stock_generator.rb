@@ -26,9 +26,9 @@ class OfficeStockGenerator
   private
 
   def generate_stock_items stock
-    items = Office::Item.where(office_id: stock.office_id).where(user_id: stock.user_id).where(item_classification_no: 47)
+    items = Office::Item.where(office_id: stock.office_id).where(user_id: stock.user_id).where(item_classification_no: 408)
     items.each do |item|
-      transactions = item.item_transactions.where("sku > 0").where(item_classification_no: 47)
+      transactions = item.item_transactions.where("sku > 0").where(item_classification_no: 408)
       stock_item = Office::StockItem.new
       stock_item.name_of_item_ne = item.name_of_item_ne
       stock_item.item_register_page_no = item.item_register_page_no

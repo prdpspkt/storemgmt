@@ -14,7 +14,7 @@ class FiscalYearClosingWorker
     ## Create office_item_transaction
     items = Office::Item.where(office_id: @office.id)
                 .where(fiscal_year_id: @old_fiscal_year.id)
-                .where(item_classification_no: 52)
+                .where(item_classification_no: 407)
     items.each do |item|
       transactions = get_office_item_transactions(item.id)
       if transactions.count > 0
@@ -29,7 +29,7 @@ class FiscalYearClosingWorker
       items = Project::ProjectItem.where(project_id: project.id)
                   .where(office_id: @office.id)
                   .where(fiscal_year_id: @old_fiscal_year.id)
-                  .where(item_classification_no: 52)
+                  .where(item_classification_no: 407)
       items.each do |item|
         transactions = get_project_item_transactions project.id, item.id
         if transactions.count.positive?
@@ -57,7 +57,7 @@ class FiscalYearClosingWorker
         .where(fiscal_year_id: @old_fiscal_year.id)
         .where(project_id: project_id)
         .where(project_item_id: project_item_id)
-        .where(item_classification_no: 52)
+        .where(item_classification_no: 407)
         .where("sku > 0")
   end
 
@@ -66,11 +66,11 @@ class FiscalYearClosingWorker
                    .where(fiscal_year_id: @fiscal_year.id)
                    .where(project_id: project_item.project_id)
                    .where(item_id: project_item.item_id).
-        where(item_classification_no: 52).first
+        where(item_classification_no: 407).first
     if new_item.blank?
       new_item = Project::ProjectItem.new(project_item.attributes.select { |key, _| Project::ProjectItem.column_names.include? key })
       new_item.id = nil
-      new_item.item_classification_no = 52
+      new_item.item_classification_no = 407
       new_item.item_register_page_no = new_project_item_register_page_no project_item.project_id
       new_item.fiscal_year_id = @fiscal_year.id
       new_item.save!
@@ -83,7 +83,7 @@ class FiscalYearClosingWorker
     items = Project::ProjectItem.where(office_id: @office.id)
                 .where(fiscal_year_id: @fiscal_year.id)
                 .where(project_id: project_id)
-                .where(item_classification_no: 52)
+                .where(item_classification_no: 407)
     if items.count.positive?
       item_register_page_no = items.last.item_register_page_no + 1
     end
@@ -127,7 +127,7 @@ class FiscalYearClosingWorker
     Office::ItemTransaction.where(office_id: @office.id)
         .where(fiscal_year_id: @old_fiscal_year.id)
         .where(item_id: item_id)
-        .where(item_classification_no: 52)
+        .where(item_classification_no: 407)
         .where("sku > 0")
   end
 
@@ -147,7 +147,7 @@ class FiscalYearClosingWorker
 
   def new_office_item_register_page_no
     item_register_page_no = 1
-    items = Office::Item.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id).where(item_classification_no: 52)
+    items = Office::Item.where(office_id: @office.id).where(fiscal_year_id: @fiscal_year.id).where(item_classification_no: 407)
     if items.count.positive?
       item_register_page_no = items.last.item_register_page_no + 1
     end

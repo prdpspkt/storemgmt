@@ -34,8 +34,8 @@ class Project::ProjectsController < ProjectController
   # GET /projects/1
   # GET /projects/1.json
   def show
-    @project_items47 = current(Project::ProjectItem).where(project_id: @project.id).where(item_classification_no: 47)
-    @project_items52 = current(Project::ProjectItem).where(project_id: @project.id).where(item_classification_no: 52)
+    @project_items408 = current(Project::ProjectItem).where(project_id: @project.id).where(item_classification_no: 408)
+    @project_items407 = current(Project::ProjectItem).where(project_id: @project.id).where(item_classification_no: 407)
     @demands = @project.demands
     @releases = @project.releases
   end
@@ -132,7 +132,7 @@ class Project::ProjectsController < ProjectController
     @generate_url = print_pdf_expense_item_register_project_project_url(@project)
     @download_url = download_pdf_expense_item_register_project_project_url(@project, format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
-    @items = current(Project::ProjectItem).where(project_id: @project.id).where(item_classification_no: 52)
+    @items = current(Project::ProjectItem).where(project_id: @project.id).where(item_classification_no: 407)
     render 'item_register'
   end
 
@@ -140,7 +140,7 @@ class Project::ProjectsController < ProjectController
     @generate_url = print_pdf_non_expense_item_register_project_project_url(@project)
     @download_url = download_pdf_non_expense_item_register_project_project_url(@project, format: :pdf)
     @report_name = "खर्च भएर नजाने(खप्ने) जिन्सी खाता"
-    @items = office(Project::ProjectItem).where(item_classification_no: 47)
+    @items = office(Project::ProjectItem).where(item_classification_no: 408)
     render 'item_register'
   end
 

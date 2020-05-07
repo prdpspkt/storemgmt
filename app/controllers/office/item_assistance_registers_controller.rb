@@ -14,7 +14,7 @@ class Office::ItemAssistanceRegistersController < OfficeController
     @item_assistance_register_item = Office::ItemAssistanceRegisterItem.new
     @item_assistance_register_item.item_assistance_register_id = params[:id]
     @item_assistance_register_items = @item_assistance_register.item_assistance_register_items
-    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0").where("in_use IS NOT true")
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 408).where("sku > 0").where("in_use IS NOT true")
   end
 
   # GET /item_assistance_registers/new

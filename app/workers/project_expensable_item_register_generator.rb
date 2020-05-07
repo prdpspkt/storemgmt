@@ -4,7 +4,7 @@ class ProjectExpensableItemRegisterGenerator
 
   def perform office_id, fiscal_year_id, store_body_id
      ActionCable.server.broadcast "progress_channel", response: { message: "We are generating report in background.."};
-    items = Project::Item.where(office_id: office_id).where(item_classification_no: 52)
+    items = Project::Item.where(office_id: office_id).where(item_classification_no: 407)
     office = Office::Office.find(office_id)
     fiscal_year = Office::FiscalYear.find(fiscal_year_id)
     cb = Office::StoreBody.find(store_body_id)
@@ -22,7 +22,7 @@ class ProjectExpensableItemRegisterGenerator
         fiscal_year: fiscal_year,
         report_name: "खर्च भएर जाने जिन्सी खाता",
         form_no: 407,
-        old_form_no: 52,
+        old_form_no: 407,
         items: items,
         cb: cb
     }

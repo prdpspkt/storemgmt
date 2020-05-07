@@ -86,8 +86,8 @@
         </thead>
         <tbody>
         <% @i = 1 %>
-        <% @project_items52.each do |item| %>
-        <% quantity = get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 52)  %>
+        <% @project_items407.each do |item| %>
+        <% quantity = get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 407)  %>
           <% if quantity > 0  %>
           <tr>
             <td><%= @i %></td>
@@ -127,13 +127,13 @@
         </thead>
         <tbody>
         <% @i = 1 %>
-        <% @project_items47.each do |item| %>
+        <% @project_items408.each do |item| %>
           <tr>
             <td><%=  @i %></td>
             <td><%= item.item_register_page_no %></td>
             <td><%= item.name_of_item_ne %></td>
             <td><%= item.name_of_item_en %></td>
-            <td><%= nd get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 47) %></td>
+            <td><%= nd get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 408) %></td>
             <td><%= item.unit_ne %></td>
             <td class="no-print"></td>
           </tr>

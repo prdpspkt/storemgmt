@@ -28,8 +28,8 @@ class Office::DemandsController < OfficeController
                 end
     @demand_item = Office::DemandItem.new
     @items = @demand.demand_items
-    @office_items = office(Office::Item).where(item_classification_no: 52)
-    @non_expense_transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
+    @office_items = office(Office::Item).where(item_classification_no: 407)
+    @non_expense_transactions = office(Office::ItemTransaction).where(item_classification_no: 408).where("sku > 0")
   end
 
   # GET /demands/new

@@ -4,7 +4,7 @@ class Office::ItemsController < OfficeController
   # GET /office_items
   # GET /office_items.json
   def expense_index
-    @items = current(Office::Item).where(item_classification_no: 52)
+    @items = current(Office::Item).where(item_classification_no: 407)
     @print_url = expense_index_office_items_url(format: :pdf)
     respond_to do |format|
       format.html
@@ -22,7 +22,7 @@ class Office::ItemsController < OfficeController
   end
 
   def non_expense_index
-    @items = office(Office::Item).where(item_classification_no: 47)
+    @items = office(Office::Item).where(item_classification_no: 408)
     @print_url = non_expense_index_office_items_url(format: :pdf)
     respond_to do |format|
       format.html
@@ -49,7 +49,7 @@ class Office::ItemsController < OfficeController
   # DELETE /office_items/1.json
   def destroy
     icn = @item.item_classification_no
-    if icn == 47
+    if icn == 408
       @url_to_go = non_expense_index_office_items_url
     else
       @url_to_go = expense_index_office_items_path
@@ -72,7 +72,7 @@ class Office::ItemsController < OfficeController
     @office = current_office
     @fiscal_year = current_fiscal_year
     @cb = current_control_body
-    if @item.item_classification_no == 47
+    if @item.item_classification_no == 408
       render 'non_expense_register' and return
     else
       render 'expense_register' and return

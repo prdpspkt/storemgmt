@@ -5,7 +5,7 @@ class Office::LedgersController < OfficeController
     @generate_url = print_pdf_expense_item_register_office_ledgers_url
     @download_url =  download_pdf_expense_item_register_office_ledgers_url(format: :pdf)
     @report_name = "खर्च भएर जाने जिन्सी खाता"
-    @eitems = current(Office::Item).where(item_classification_no: 52)
+    @eitems = current(Office::Item).where(item_classification_no: 407)
     render 'index'
   end
 
@@ -32,7 +32,7 @@ class Office::LedgersController < OfficeController
     @generate_url = print_pdf_non_expense_item_register_office_ledgers_url
     @download_url = download_pdf_non_expense_item_register_office_ledgers_url(format: :pdf)
     @report_name = "खर्च भएर नजाने(खप्ने) जिन्सी खाता"
-    @nitems = office(Office::Item).where(item_classification_no: 47)
+    @nitems = office(Office::Item).where(item_classification_no: 408)
     render 'index'
   end
 

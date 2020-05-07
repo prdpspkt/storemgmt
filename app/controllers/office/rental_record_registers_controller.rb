@@ -17,7 +17,7 @@ class Office::RentalRecordRegistersController < OfficeController
 
   # GET /rental_record_registers/new
   def new
-    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 408).where("sku > 0")
     @rental_record_register = Office::RentalRecordRegister.new
   end
 
@@ -28,7 +28,7 @@ class Office::RentalRecordRegistersController < OfficeController
   # POST /rental_record_registers
   # POST /rental_record_registers.json
   def create
-    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 408).where("sku > 0")
     @rental_record_register = Office::RentalRecordRegister.new(rental_record_register_params)
     @transaction = Office::ItemTransaction.find(@rental_record_register.item_transaction_id)
     @rental_record_register.item_id = @transaction.item_id

@@ -14,7 +14,7 @@
 
   <div class="col-md-6">
     <%= form.label :name_of_item %>
-    <%= form.select(:item_transaction_id, Office::ItemTransaction.where(item_classification_no: 47).where(transaction_type: 1).collect{ |item| [item.item.name_of_item_en, item.id]}, {include_blank: "choose"}, {class: "form-control select2", required: :required})  %>
+    <%= form.select(:item_transaction_id, Office::ItemTransaction.where(item_classification_no: 408).where(transaction_type: 1).collect{ |item| [item.item.name_of_item_en, item.id]}, {include_blank: "choose"}, {class: "form-control select2", required: :required})  %>
   </div>
 
   <div class="col-md-6">

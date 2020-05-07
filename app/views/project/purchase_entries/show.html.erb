@@ -68,7 +68,7 @@
         <td><%= nd item.total_amount %></td>
         <td>
           <% if @purchase_entry.marked_as_final != true %>
-            <% if item.item.item_classification_no == 47 %>
+            <% if item.item.item_classification_no == 408 %>
               <%= link_to(edit_btn.html_safe, edit_project_purchase_entry_item_path(item)) %>
             <% end %>
             <%= link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure to delete ?"} %>

@@ -4,7 +4,7 @@ class Office::ItemCategoriesController < OfficeController
   # GET /item_categories
   # GET /item_categories.json
   def index
-    @item_categories = office(Office::ItemCategory).order("id DESC")
+    @item_categories = office(Office::ItemCategory).order("id desc")
     respond_to do |format|
       format.xlsx
       format.html

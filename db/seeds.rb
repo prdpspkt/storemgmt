@@ -167,7 +167,7 @@ header = spreadsheet.row(1)
   item.unit_en = category.unit_en
   item.office_id = @office.id
   item.user_id = @user.id
-  if item.item_classification_no == 52
+  if item.item_classification_no == 407
     item.fiscal_year_id = @fiscal_year.id
   end
   item.item_register_page_no = @item_register_page_no
@@ -196,7 +196,7 @@ header = spreadsheet.row(1)
     puts error.message
   end
   item.transaction_type = 1
-  item.item_classification_no = 47
+  item.item_classification_no = 408
   item.office_id = @office.id
   item.amount = item.rate * item.quantity
   item.item_id = get_office_item_id item.temp_item_id
@@ -252,22 +252,22 @@ puts "Completed..."
 
 puts "Started Project Item Import"
 
-@pitems47 = Project::Item.where(user_id: @user.id)
+@pitems408 = Project::Item.where(user_id: @user.id)
                 .where(office_id: @office.id)
-                .where(item_classification_no: 47)
-if @pitems47.count > 0
-  @item_register_page_no47 = @pitems47.last.item_register_page_no + 1
+                .where(item_classification_no: 408)
+if @pitems408.count > 0
+  @item_register_page_no408 = @pitems408.last.item_register_page_no + 1
 else
-  @item_register_page_no47 = 1
+  @item_register_page_no408 = 1
 end
 
-@pitems52 = Project::Item.where(user_id: @user.id)
+@pitems407 = Project::Item.where(user_id: @user.id)
                 .where(office_id: @office.id)
-                .where(item_classification_no: 52)
-if @pitems52.count > 0
-  @item_register_page_no52 = @pitems52.last.item_register_page_no + 1
+                .where(item_classification_no: 407)
+if @pitems407.count > 0
+  @item_register_page_no407 = @pitems407.last.item_register_page_no + 1
 else
-  @item_register_page_no52 = 1
+  @item_register_page_no407 = 1
 end
 
 def get_category temp_id
@@ -289,16 +289,16 @@ header = spreadsheet.row(1)
   item.item_classification_no = row["item_classification_no"]
   item.office_id = @office.id
   item.user_id = @user.id
-  if item.item_classification_no == 47
-    item.item_register_page_no = @item_register_page_no47
-    @item_register_page_no47 = @item_register_page_no47 + 1
+  if item.item_classification_no == 408
+    item.item_register_page_no = @item_register_page_no408
+    @item_register_page_no408 = @item_register_page_no408 + 1
     if item.valid?
       item.save!
     end
   end
-  if item.item_classification_no == 52
-    item.item_register_page_no = @item_register_page_no52
-    @item_register_page_no52 = @item_register_page_no52 + 1
+  if item.item_classification_no == 407
+    item.item_register_page_no = @item_register_page_no407
+    @item_register_page_no407 = @item_register_page_no407 + 1
     if item.valid?
       item.save
     end

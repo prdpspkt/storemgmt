@@ -31,7 +31,7 @@ class Office::RepairApplicationFormItemsController < OfficeController
     @repair_application_form_item.item_id = Office::ItemTransaction.find(repair_application_form_item_params[:item_transaction_id]).item_id
     @repair_application_form = Office::RepairApplicationForm.find(@repair_application_form_item.repair_application_form_id)
     @repair_application_form_items = @repair_application_form.repair_application_form_items
-    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 408).where("sku > 0")
     @personnels = office(Office::Personnel).where(working: true)
     respond_to do |format|
       if @repair_application_form_item.save

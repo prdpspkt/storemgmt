@@ -12,7 +12,7 @@ class Project::HandoverFormsController < ProjectController
   def show
     @handover_form_item = Office::HandoverFormItem.new
     @handover_form_items = @handover_form.handover_form_items
-    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 408).where("sku > 0")
   end
 
   # GET /handover_forms/new

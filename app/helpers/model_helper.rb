@@ -23,7 +23,7 @@ module ModelHelper
 
 
   def office_item_transactions_with_stock item_id
-    @transactions = current(Office::ItemTransaction).where(item_id: item_id).where(item_classification_no: 52).where("sku > 0")
+    @transactions = current(Office::ItemTransaction).where(item_id: item_id).where("sku > 0")
   end
 
   def get_last_repair_record rafi

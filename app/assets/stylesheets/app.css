@@ -167,34 +167,6 @@ html, body{
 .form-control{
     height: 40px!important;
 }
-.pagination{
-    text-align:center!important;
-    width: 100%;
-    text-align: center;
-}
-.pagination a, .pagination span, .pagination em{
-    padding-left: 10px;
-    padding-right: 10px;
-    margin: 2px;
-    border: 1px  #0076ff solid;
-    color:  #0076ff;
-    text-decoration: none
-}
-.current, .previous_page, .next_page {
-    color: white!important;
-    background-color: #0076ff
-}
-.current{
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 3px;
-    margin: 2px;
-    font-style: normal;
-    border: none;
-}
-.paginate-btn.disabled{
-    background-color: gray!important
-}
 
 
 @media screen and (max-width: 767px) {

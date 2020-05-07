@@ -13,7 +13,7 @@ class Office::HandoverFormsController < OfficeController
   def show
     @handover_form_item = Office::HandoverFormItem.new
     @handover_form_items = @handover_form.handover_form_items
-    @transactions = office(Office::ItemTransaction).where(item_classification_no: 47).where("sku > 0")
+    @transactions = office(Office::ItemTransaction).where(item_classification_no: 408).where("sku > 0")
   end
 
   # GET /handover_forms/new
@@ -78,7 +78,7 @@ class Office::HandoverFormsController < OfficeController
       item_transaction.entry_no = @handover_form.form_no
       item_transaction.handover_form_item_id = item.id
       item_transaction.transaction_type = -1
-      item_transaction.item_classification_no = 47
+      item_transaction.item_classification_no = 408
       item_transaction.store_body_id = current_control_body.id
       item_transaction.transaction_date = @handover_form.date
       item_transaction.remarks = @handover_form.handovered_office_name

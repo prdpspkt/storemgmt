@@ -58,7 +58,7 @@
         <td><%= nd item.amount %></td>
         <td>
           <% if @tender.marked_as_final != true %>
-            <% if item.item_classification_no == 47 %>
+            <% if item.item_classification_no == 408 %>
               <%= link_to(edit_btn.html_safe, edit_project_tender_url(item)) %>
             <% end %>
             <%= link_to(destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure ? This cannot be undone."}) %>

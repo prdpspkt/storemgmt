@@ -11,7 +11,7 @@ class Office::ItemDisposalsController < OfficeController
   # GET /item_disposals/1.json
   def show
     @item_disposal_item = Office::ItemDisposalItem.new
-    @items = Office::ItemTransaction.where(:item_classification_no => 47).where("sku > 0").where(transaction_type: 1)
+    @items = Office::ItemTransaction.where(:item_classification_no => 408).where("sku > 0").where(transaction_type: 1)
     @item_disposal_item.item_disposal_id = @item_disposal.id
   end
 

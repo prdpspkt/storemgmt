@@ -93,7 +93,7 @@ class Office::PurchaseOrderItemsController < OfficeController
   def office_item_register_page pool_item_id
     @page_no = 1
     @pool_item = Office::PoolItem.find(pool_item_id)
-    if @pool_item.item_classification_no == 47
+    if @pool_item.item_classification_no == 408
       @office_items = office(Office::Item)
     else
       @office_items = current(Office::Item)

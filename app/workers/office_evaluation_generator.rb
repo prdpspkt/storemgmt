@@ -25,7 +25,7 @@ class OfficeEvaluationGenerator
   end
 
   def generate_evaluation_items item_evaluation
-    office_items = Office::Item.where(office_id: item_evaluation.office_id).where(item_classification_no: 47).order("id ASC")
+    office_items = Office::Item.where(office_id: item_evaluation.office_id).where(item_classification_no: 408).order("id ASC")
     office_items.each do |item|
       transactions = item.item_transactions.where("sku > 0").where(transaction_type: 1)
       if transactions.count > 0
