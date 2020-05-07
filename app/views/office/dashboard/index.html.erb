@@ -9,9 +9,9 @@
       </div>
       <div class="card-body">
         <div>
-          <b><%= @office.office %></b> <br> <%= @office.address %>
+          <b><%= @office.office %> (<%= nd @office.id %>)</b> <br> <%= @office.address %>
           <div class="text-left">
-            आ.व.: <%= @fiscal_year.fy %>, मिति: <%= ndate @bs_today %>
+            आ.व.: <%= @fiscal_year.fy %> (<%= nd @fiscal_year.id %>), मिति: <%= ndate @bs_today %>
           </div>
         </div>
       </div>

@@ -3,6 +3,7 @@ class OfficeEvaluationReportGenerator
   sidekiq_options retry: false
 
   def perform(item_evaluation_id)
+     ActionCable.server.broadcast "progress_channel", response: { message: "We are generating report in background.."};
     @item_evaluation = Office::ItemEvaluation.find(item_evaluation_id)
     data = {
         office: @item_evaluation.office,
@@ -24,6 +25,7 @@ class OfficeEvaluationReportGenerator
     end
     @item_evaluation.file = pdf_path
     @item_evaluation.save
+     ActionCable.server.broadcast "progress_channel", response: { message: "Report generation completed", cloased: true};
   end
 end
 

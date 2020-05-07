@@ -15,7 +15,7 @@ gem 'cancancan'
 gem 'rolify'
 gem 'turbolinks'
 gem 'nepali_date_converter'
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate'
 gem 'redis'
 
 

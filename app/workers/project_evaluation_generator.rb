@@ -2,6 +2,7 @@ class ProjectEvaluationGenerator
   include Sidekiq::Worker
   sidekiq_options retry: false
   def perform(data)
+     ActionCable.server.broadcast "progress_channel", response: { message: "We are generating report in background.."};
     item_evaluations = Project::ItemEvaluation
                            .where(office_id: data["office_id"])
                            .where(fiscal_year_id: data["fiscal_year_id"])
@@ -18,6 +19,7 @@ class ProjectEvaluationGenerator
     if item_evaluation.save!
       generate_evaluation_items item_evaluation
     end
+     ActionCable.server.broadcast "progress_channel", response: { message: "Report generation completed..", closed: true};
   end
 
   def generate_evaluation_items item_evaluation

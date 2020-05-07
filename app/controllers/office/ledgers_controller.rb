@@ -13,7 +13,6 @@ class Office::LedgersController < OfficeController
     @office = current_office
     @fiscal_year = current_fiscal_year
     OfficeExpensableItemRegisterGenerator.perform_async(@office.id, @fiscal_year.id, current_control_body.id)
-    redirect_to expense_item_register_office_ledgers_url, notice: "Your file is being generated in background please try print button after few minutes."
   end
 
   def download_pdf_expense_item_register
@@ -41,7 +40,6 @@ class Office::LedgersController < OfficeController
     @office = current_office
     @fiscal_year = current_fiscal_year
     OfficeNonExpensableItemRegisterGenerator.perform_async(@office.id, @fiscal_year.id, current_control_body.id)
-    redirect_to non_expense_item_register_office_ledgers_url, notice: "Your file is being generated in background please try download button after few minutes."
   end
 
 

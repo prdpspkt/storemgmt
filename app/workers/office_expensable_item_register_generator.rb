@@ -3,11 +3,14 @@ class OfficeExpensableItemRegisterGenerator
   sidekiq_options retry: false
 
   def perform office_id, fiscal_year_id, store_body_id
+     ActionCable.server.broadcast "progress_channel", response: { message: "We are generating report in background.."};
     items = Office::Item.where(office_id: office_id).where(fiscal_year_id: fiscal_year_id).where(item_classification_no: 52)
     office = Office::Office.find(office_id)
     fiscal_year = Office::FiscalYear.find(fiscal_year_id)
     cb = Office::StoreBody.find(store_body_id)
     generate_and_save_pdf office, fiscal_year, items, cb
+     ActionCable.server.broadcast "progress_channel", response: { message: "Report generation completed", closed: true};
+   
   end
 
   private

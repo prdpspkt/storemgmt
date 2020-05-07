@@ -30,7 +30,11 @@
         <% end %></td>
       <td>
         <% %></td>
-      <td></td>
+      <td>
+        <% unless user.is_admin == true %>
+        <%=link_to '<i class="fa fa-sign-in"></i>'.html_safe, admin_sign_in_as_user_url(:id => user.id),  method: :post, class: "btn btn-success" %>
+        <% end %>
+      </td>
     </tr>
     <% @sn = @sn + 1 %>
   <% end %>

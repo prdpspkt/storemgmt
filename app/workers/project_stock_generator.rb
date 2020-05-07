@@ -3,6 +3,8 @@ class ProjectStockGenerator
   sidekiq_options retry: false
 
   def perform data
+     ActionCable.server.broadcast "progress_channel", response: { message: "We are generating report in background.."};
+   
     project_stocks = Project::Stock.where(office_id: data["office_id"])
                          .where(user_id: data["user_id"])
                          .where(fiscal_year_id: data["fiscal_year_id"])
@@ -19,6 +21,8 @@ class ProjectStockGenerator
       generate_stock_items project_stock
       generate_and_save_pdf project_stock
     end
+     ActionCable.server.broadcast "progress_channel", response: { message: "We are generating report in background..", closed: true};
+   
   end
 
   private
