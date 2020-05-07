@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
   Sidekiq::Web.set :sessions, false
 
+  get '/.well-known/acme-challenge/:file' => "setup#ssl"
+
   root "setup#start"
   get "project/dashboard" => "project/dashboard#index", as: :project_dashboard
   get "office/dashboard" => "office/dashboard#index", as: :office_dashboard

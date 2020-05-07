@@ -1,5 +1,5 @@
 class SetupController < ApplicationController
-  before_action :check_user
+  before_action :check_user, only: [:start]
   def start
     @action_url = "/"
     if current_user.setup.blank? == false
@@ -13,6 +13,11 @@ class SetupController < ApplicationController
       create_setup
     end
     redirect_to @action_url and return
+  end
+
+  def ssl 
+        data = File.open(@item_evaluation.file, 'rb') {|io| io.read}
+        send_data(data, type: 'application/pdf', disposition: :inline)
   end
 
   private
