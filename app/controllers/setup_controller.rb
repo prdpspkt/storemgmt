@@ -23,6 +23,7 @@ class SetupController < ApplicationController
     setup.fiscal_year = false
     setup.active_fiscal_year = false
     setup.store_body = false
+    setup.complete = false
     setup.user_id = current_user.id
     setup.save
     @setup = setup
