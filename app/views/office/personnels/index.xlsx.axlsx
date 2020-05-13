@@ -1,8 +1,8 @@
 wb = xlsx_package.workbook
 wb.add_worksheet(name: "personnels") do |sheet|
-  sheet.add_row ["आइडी", "नाम(नेपाली)", "नाम अंग्रेजी", "सिट्रोल", "पदनाम", "तह/श्रेणी", "सेवा", "समुह", "उपसमूह", "फोन", "इमेल", "कैफियत"]
+  sheet.add_row ["आइडी", "नाम(नेपाली)", "नाम अंग्रेजी", "सिट्रोल", "पदनाम", "तह/श्रेणी", "सेवा", "समुह", "उपसमूह", "फोन", "इमेल", "कैफियत", "कार्यारत"]
   sheet.add_row [:id, :name_ne, :name_en, :ctroll, :post, :level_class, :service, :group, :sub_group, :phone, :email, :remarks]
   @personnels.each do |person|
-    sheet.add_row [person.id, person.name_ne, person.name_en, person.ctroll, person.post, person.level_class, person.service, person.group, person.sub_group, person.phone, person.email, person.remarks]
+    sheet.add_row [person.id, person.name_ne, person.name_en, person.ctroll, person.post, person.level_class, person.service, person.group, person.sub_group, person.phone, person.email, person.remarks, person.working]
   end
 end
