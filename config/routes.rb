@@ -188,6 +188,7 @@ Rails.application.routes.draw do
         post "print"
         post "print_working"
         post "print_non_working"
+        post "import"
       end
     end
     resources :item_categories do

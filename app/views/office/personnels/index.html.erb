@@ -6,6 +6,10 @@
     <!-- Button trigger modal -->
     <div class="float-right imex">
       <%= link_to new_btn.html_safe, new_office_personnel_path %>
+      <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#import_item_category">
+        Import
+      </a>
+      <%= link_to "Export", office_personnels_url(format: :xlsx), class: "btn btn-primary" %>
       <%= link_to print_big_btn.html_safe, office_personnels_url(format: :pdf), target: "_blank" %>
     </div>
   </div>
@@ -26,4 +30,6 @@
   </thead>
 </table>
 </div>
+
+<%= render 'office/personnels/import_form' %>
 

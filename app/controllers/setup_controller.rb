@@ -21,7 +21,6 @@ class SetupController < ApplicationController
         data = File.open(Rails.root.join('public','.well-known', 'acme-challenge', file), 'rb') {|io| io.read}
         send_data(data)
   end
-:inline
   private
 
   def create_setup

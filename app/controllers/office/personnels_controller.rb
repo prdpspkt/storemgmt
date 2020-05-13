@@ -8,6 +8,7 @@ class Office::PersonnelsController < OfficeController
     respond_to do |format|
       format.html
       format.json
+      format.xlsx
       format.pdf do
         @office = current_office
         @fiscal_year = current_fiscal_year
@@ -72,6 +73,43 @@ class Office::PersonnelsController < OfficeController
       format.html { redirect_to office_personnels_url, notice: 'Personnel was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def import
+    file = params[:file]
+    spreadsheet = case File.extname(file.original_filename)
+                  when ".csv" then
+                    Csv.new(file.path, nil, :ignore)
+                  when ".xls" then
+                    Roo::Excel.new(file.path, nil, :ignore)
+                  when ".xlsx" then
+                    Roo::Excelx.new(file.path)
+                  else
+                    flash[:error] = " अपलोड गरिएको फाइल <b> #{file.original_filename} </b> को पहिचान हुन सकेन |"
+                    redirect_to office_items_path and return
+                  end
+    header = spreadsheet.row(2)
+    items = (3..spreadsheet.last_row).map do |i|
+      row = Hash[[header, spreadsheet.row(i)].transpose]
+      item = Office::Personnel.find_by_id(row["id"]) || Office::Personnel.new
+      begin
+        item.attributes = row.to_hash
+      rescue Exception => error
+        flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
+        redirect_to office_personnels_url and return
+      end
+      item.office_id = current_office.id
+      item.user_id = current_user.id
+      item
+    end
+    items.each do |item|
+      if item.valid?
+        item.save!
+      else
+        flash[:error] = "डाटामा गल्ति हुन सक्छ"
+      end
+    end
+    redirect_to office_personnels_url
   end
 
   private
