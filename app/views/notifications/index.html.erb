@@ -1,0 +1,24 @@
+<div class="row">
+<div class="col-md-6">
+<h1>सूचनाहरु</h1>
+</div>
+<div class="col-md-6 text-right">
+	<%= link_to new_btn.html_safe, new_notification_path %>
+</div>
+</div>
+<table class="responsive nowrap table table-hover" id="dttb-notifications" data-sort="true" data-source="<%= url_for(format: :json)%>">
+  <thead>
+    <tr>
+    	<th data-data="sn">क्र.स.</th>
+      <th data-data="text">सूचना</th>
+      <th data-data="created_for">प्राप्त कर्ता</th>
+      <th data-data="end_date">सूचनाको अन्तिम मिति</th>
+      <th data-data="expired">मिति गुज्रेको</th>
+      <th data-data="url" data-orderable="false" data-class-name="all" data-searchable="false" class="skip-export" width="100px"></th>
+    </tr>
+  </thead>
+
+</table>
+
+<br>
+

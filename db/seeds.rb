@@ -15,6 +15,17 @@
 @user.name = "Pradeep Sapkota"
 @user.save!
 
+puts "Completed..."
+puts "Creating user ...."
+@user = User.new
+@user.email = 'wss.tanahun.nawalpur@gmail.com'
+@user.password = '12345678'
+@user.is_admin = false
+@user.name = "Ramchandra Pandit"
+@user.save!
+
+puts "Completed..."
+
 puts "Creating office..."
 @office = Office::Office.new
 @office.gov = "प्रदेश सरकार"
@@ -23,20 +34,13 @@ puts "Creating office..."
 @office.office = "खानेपानी तथा सरसफाई डिभिजन कार्यालय"
 @office.address = "तनहुँ गण्डकी प्रदेश"
 @office.has_project_access = true
-@office.save!
-
-puts "Completed..."
-puts "Creating user ...."
-@user = User.new
-@user.email = 'wss.tanahun.nawalpur@gmail.com'
-@user.password = '12345678'
-@user.is_admin = false
-@user.name = "Ramchandra Pandit"
-@user.office_id = @office.id
-@user.save!
 @office.user_id = @user.id
 @office.save!
-puts "Completed..."
+
+@user.office_id = @office.id
+@user.save!
+
+
 
 puts "Creating Fiscal Year...."
 @fiscal_year = Office::FiscalYear.new
