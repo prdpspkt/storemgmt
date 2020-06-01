@@ -15,6 +15,17 @@
 @user.name = "Pradeep Sapkota"
 @user.save!
 
+puts "Completed..."
+puts "Creating user ...."
+@user = User.new
+@user.email = 'wss.tanahun.nawalpur@gmail.com'
+@user.password = '12345678'
+@user.is_admin = false
+@user.name = "Ramchandra Pandit"
+@user.save!
+
+puts "Completed..."
+
 puts "Creating office..."
 @office = Office::Office.new
 @office.gov = "प्रदेश सरकार"
@@ -23,20 +34,13 @@ puts "Creating office..."
 @office.office = "खानेपानी तथा सरसफाई डिभिजन कार्यालय"
 @office.address = "तनहुँ गण्डकी प्रदेश"
 @office.has_project_access = true
-@office.save!
-
-puts "Completed..."
-puts "Creating user ...."
-@user = User.new
-@user.email = 'wss.tanahun.nawalpur@gmail.com'
-@user.password = '12345678'
-@user.is_admin = false
-@user.name = "Ramchandra Pandit"
-@user.office_id = @office.id
-@user.save!
 @office.user_id = @user.id
 @office.save!
-puts "Completed..."
+
+@user.office_id = @office.id
+@user.save!
+
+
 
 puts "Creating Fiscal Year...."
 @fiscal_year = Office::FiscalYear.new
@@ -116,7 +120,7 @@ puts "Completed..."
 @setup.save!
 
 puts "Creating Office Item Categories...."
-spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_cats.xlsx")
+spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/office_item_categories.xlsx")
 header = spreadsheet.row(1)
 (2..spreadsheet.last_row).map do |i|
   row = Hash[[header, spreadsheet.row(i)].transpose]
@@ -274,8 +278,9 @@ def get_category temp_id
   Project::ItemCategory.find_by_temp_id(temp_id)
 end
 
-spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/items.xlsx")
+spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/project_items.xlsx")
 header = spreadsheet.row(1)
+puts header
 (2..spreadsheet.last_row).map do |i|
   row = Hash[[header, spreadsheet.row(i)].transpose]
   item = Project::Item.find_by_id(row["id"]) || Project::Item.new
@@ -294,13 +299,17 @@ header = spreadsheet.row(1)
     @item_register_page_no408 = @item_register_page_no408 + 1
     if item.valid?
       item.save!
+    else
+      binding.pry
     end
   end
   if item.item_classification_no == 407
     item.item_register_page_no = @item_register_page_no407
     @item_register_page_no407 = @item_register_page_no407 + 1
     if item.valid?
-      item.save
+      item.save!
+    else
+      binding.pry
     end
   end
 end
@@ -316,7 +325,12 @@ def get_project_id old_project_id
 end
 
 def get_item_id old_item_id
+  begin
   Project::Item.where(office_id: @office.id).where(temp_id: old_item_id).first.id
+rescue Exception => ex
+  puts ex.message
+  binding.pry
+end
 end
 
 @project_item_register_page_no = 0
@@ -353,7 +367,7 @@ def create_project_item project_id, item_id
   project_item
 end
 
-spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/last_year_balance.xlsx")
+spreadsheet = Roo::Excelx.new("#{Rails.root}/db/data/project_item_transactions.xlsx")
 header = spreadsheet.row(1)
 (2..spreadsheet.last_row).map do |i|
   row = Hash[[header, spreadsheet.row(i)].transpose]

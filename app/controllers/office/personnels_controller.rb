@@ -95,7 +95,7 @@ class Office::PersonnelsController < OfficeController
       begin
         item.attributes = row.to_hash
       rescue Exception => error
-        flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस्"
+        flash[:error] = "तपाईले अपलोड गर्नुभएको फाइलमा पहिचान नभएको कोलम हुन सक्छ त्यसलाई हटाएर पुन अपलोड गर्नुहोस् #{error.message}"
         redirect_to office_personnels_url and return
       end
       item.office_id = current_office.id

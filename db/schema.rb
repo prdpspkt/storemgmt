@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_28_124927) do
+ActiveRecord::Schema.define(version: 2020_05_31_045716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "notifications", force: :cascade do |t|
+    t.text "text"
+    t.integer "created_for", default: 0
+    t.datetime "end_date"
+    t.boolean "expired", default: false
+    t.text "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "office_active_fiscal_years", force: :cascade do |t|
     t.string "fy"

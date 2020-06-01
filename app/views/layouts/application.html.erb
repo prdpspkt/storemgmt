@@ -45,6 +45,19 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    <% if user_signed_in? && current_user.is_admin == true %>
+      <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="<%= admin_dashboard_path %>">गृहपृष्ठ<i class="fa fa-notification"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%= notifications_url %>">सुचनाहरू<i class="fa fa-notification"></i></a>
+          </li>
+        </ul>
+      </div>
+      <% end %>
+
     <% if user_signed_in? && current_user.is_admin == false %>
       <div class="collapse navbar-collapse" id="navbarsExample09">
         <ul class="navbar-nav mr-auto">
@@ -158,6 +171,18 @@
   </div>
 </nav>
 <div class="container" style="margin-top: 20px">
+  <% if user_signed_in? && current_user.is_admin == false %>
+ <% @notifications.each do |notification|%>
+    <div class="alert alert-<%= notification.type %> alert-dismissible fade show" role="alert">
+      <strong><%= notification.type.humanize %></strong> <br> <%= notice %>
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  <% end %>
+  <% end %>
+
+
   <% if notice %>
     <div class="alert alert-info alert-dismissible fade show" role="alert">
       <strong>जानकारी</strong> <br> <%= notice %>
