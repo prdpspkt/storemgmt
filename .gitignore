@@ -40,3 +40,8 @@ pdfs
 /pdfs
 /pdfs/*
 pdfs/*
+
+public/.well-known
+/public/.well-known
+/public/.well-known/*
+public/.well-known/*
