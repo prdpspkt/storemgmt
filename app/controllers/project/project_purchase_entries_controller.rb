@@ -173,6 +173,7 @@ class Project::ProjectPurchaseEntriesController < ProjectController
     main_transaction.id = nil
     main_transaction.transaction_type = -1
     main_transaction.transaction_date = transaction.transaction_date
+    main_transaction.sku =0
     main_transaction.remarks = "#{@project_purchase_entry.project.name_of_project_ne} मा सारिएको |"
     main_transaction.save
     main_transaction

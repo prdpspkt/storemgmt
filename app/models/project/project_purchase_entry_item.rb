@@ -11,7 +11,7 @@ class Project::ProjectPurchaseEntryItem < ApplicationRecord
   def restore_purchase_entry_item
     item_transaction = self.item_transaction
     if item_transaction.blank? == false
-      item_transaction.sku = self.quantity + item_transaction.sku
+      item_transaction.sku =  item_transaction.sku + self.quantity
       item_transaction.save
     end
   end

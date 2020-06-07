@@ -24,56 +24,29 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
   # POST /project_purchase_entry_items
   # POST /project_purchase_entry_items.json
   def create
-    @project_purchase_entry_item = Project::ProjectPurchaseEntryItem.new(project_purchase_entry_item_params)
-    @item_transactions = Project::ItemTransaction.where(item_id: @project_purchase_entry_item.item_id).where("sku > 0")
-    @item_transactions.each do |tr|
-      ppei = Project::ProjectPurchaseEntryItem.new(tr.attributes.select { |key, _| Project::ProjectPurchaseEntryItem.column_names.include? key })
+    quantity = project_purchase_entry_item_params[:quantity].to_d
+    transaction = Project::ItemTransaction.find(project_purchase_entry_item_params[:item_transaction_id].to_i)
+    project_purchase_entry = Project::ProjectPurchaseEntry.find(project_purchase_entry_item_params[:project_purchase_entry_id].to_i)
+    if transaction.sku > quantity
+      ppei = Project::ProjectPurchaseEntryItem.new(transaction.attributes.select { |key, _| Project::ProjectPurchaseEntryItem.column_names.include? key })
       ppei.id = nil
-      ppei.item_transaction_id = tr.id
-      rate = (tr.rate * (100.00 / 113.00)).round(2)
-      if tr.sku > @project_purchase_entry_item.quantity.to_d
-        quantity = @project_purchase_entry_item.quantity.to_d
-        amount_without_vat = rate * quantity
-        amount = amount_without_vat * 1.13
-        total_amount = amount
-        ppei.quantity = quantity
-        ppei.rate = rate
-        ppei.amount_without_vat = amount_without_vat
-        ppei.amount = amount
-        ppei.vat = amount - amount_without_vat
-        ppei.total_amount = total_amount
-        ppei.project_item_id = create_project_item(@project_purchase_entry_item.project_id, @project_purchase_entry_item.item_id).id
-        ppei = set_current_information ppei
-        ppei.project_id = @project_purchase_entry_item.project_id
-        ppei.project_purchase_entry_id = @project_purchase_entry_item.project_purchase_entry_id
-        if ppei.save!
-          tr.sku = tr.sku - ppei.quantity
-          tr.save
-        end
-        break
-      else
-        quantity = tr.sku
-        amount_without_vat = rate * quantity
-        amount = amount_without_vat * 1.13
-        total_amount = amount
-        ppei.quantity = quantity
-        ppei.rate = rate
-        ppei.amount_without_vat = amount_without_vat
-        ppei.amount = amount
-        ppei.vat = amount - amount_without_vat
-        ppei.total_amount = total_amount
-        ppei.project_id = @project_purchase_entry_item.project_id
-        ppei.project_item_id = create_project_item(@project_purchase_entry_item.project_id, @project_purchase_entry_item.item_id).id
-        ppei = set_current_information ppei
-        ppei.project_purchase_entry_id = @project_purchase_entry_item.project_purchase_entry_id
-        if ppei.save!
-          tr.sku = 0
-          tr.save
-        end
-      end
+      ppei = set_current_information ppei
+      ppei.project_id = project_purchase_entry.project_id
+      ppei.item_transaction_id = transaction.id
+      ppei.project_purchase_entry_id = project_purchase_entry.id
+      rate = (transaction.rate * (100.00 / 113.00)).round(2)
+      ppei.rate = rate
+      ppei.quantity = quantity
+      ppei.amount = rate * quantity
+      ppei.project_item_id = create_project_item(ppei.project_id, transaction.item_id).id
+      ppei.save!
+      transaction.sku = transaction.sku - quantity
+      transaction.save!
+      redirect_to(project_purchase_entry, notice: "सफलतापुर्वक थपियो") and return
+    else
+      flash[:alert] = "तपाईले चाहेको परिमाणमा सामाग्री उपलब्ध छैन"
+      redirect_to(project_purchase_entry) and return
     end
-    @project_purchase_entry = Project::ProjectPurchaseEntry.find(@project_purchase_entry_item.project_purchase_entry_id)
-    redirect_to @project_purchase_entry
   end
 
   # PATCH/PUT /project_purchase_entry_items/1
@@ -110,7 +83,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def project_purchase_entry_item_params
-    params.require(:project_project_purchase_entry_item).permit(:project_purchase_entry_id, :item_id, :project_id, :quantity, :remarks)
+    params.require(:project_project_purchase_entry_item).permit(:project_purchase_entry_id, :project_id, :item_transaction_id, :quantity, :remarks)
   end
 
   def create_project_item project_id, item_id

@@ -157,7 +157,10 @@ class Project::PurchaseEntriesController < ProjectController
       transaction.store_body_id = current_control_body.id
       transaction.transaction_date = bs_today
       transaction = set_current_information transaction
-      transaction.save
+      transaction.save!
+      binding.pry
+      entry_item.item_transaction_id = transaction.id
+      entry_item.save!
     end
   end
 

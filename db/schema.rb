@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_045716) do
+ActiveRecord::Schema.define(version: 2020_06_07_121252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1289,6 +1289,7 @@ ActiveRecord::Schema.define(version: 2020_05_31_045716) do
     t.string "approx_age"
     t.string "source"
     t.boolean "is_vatable"
+    t.integer "item_transaction_id"
   end
 
   create_table "project_purchase_order_items", force: :cascade do |t|
