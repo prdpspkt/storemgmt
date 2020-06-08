@@ -27,7 +27,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
     quantity = project_purchase_entry_item_params[:quantity].to_d
     transaction = Project::ItemTransaction.find(project_purchase_entry_item_params[:item_transaction_id].to_i)
     project_purchase_entry = Project::ProjectPurchaseEntry.find(project_purchase_entry_item_params[:project_purchase_entry_id].to_i)
-    if transaction.sku > quantity
+    if transaction.sku >= quantity
       ppei = Project::ProjectPurchaseEntryItem.new(transaction.attributes.select { |key, _| Project::ProjectPurchaseEntryItem.column_names.include? key })
       ppei.id = nil
       ppei = set_current_information ppei
