@@ -95,5 +95,6 @@ module ModelHelper
     Project::ItemTransaction.where(item_id: item.id)
         .where(office_id: item.office_id)
         .where(fiscal_year_id: fiscal_year.id)
+        .order("id asc")
   end
 end
