@@ -152,6 +152,7 @@ class Project::ProjectPurchaseEntriesController < ProjectController
       transaction.save!
       entry_item.project_item_transaction_id = transaction.id
       entry_item.save
+      create_main_transaction transaction
     end
   end
 
@@ -171,7 +172,6 @@ class Project::ProjectPurchaseEntriesController < ProjectController
     main_transaction = Project::ItemTransaction.new(transaction.attributes.select{|key, _| Project::ItemTransaction.column_names.include? key})
     main_transaction.id = nil
     main_transaction.transaction_type = -1
-    main_transaction.transaction_date = transaction.transaction_date
     main_transaction.sku = 0
     main_transaction.remarks = "#{@project_purchase_entry.project.name_of_project_ne} मा सारिएको |"
     main_transaction.save
