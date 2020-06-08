@@ -5,7 +5,7 @@ class Project::ProjectPurchaseEntriesController < ProjectController
   # GET /ProjectPurchaseEntries
   # GET /ProjectPurchaseEntries.json
   def index
-    @purchase_entries = current(Project::ProjectPurchaseEntry)
+    @purchase_entries = current(Project::ProjectPurchaseEntry).order("id asc")
   end
 
 

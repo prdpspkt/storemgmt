@@ -13,7 +13,7 @@ json.set! :data do
                "
     end
     json.serial "
-                #{ nd @serial}
+                #{  @serial}
                 "
     json.entry_date "#{ ndate project_entry.entry_date}"
     json.entry_no "#{ nd project_entry.entry_no}"
