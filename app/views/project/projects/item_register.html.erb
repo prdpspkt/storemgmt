@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-6 text-right">
     <%= link_to back_btn.html_safe, project_project_url(@project) %>
-    <a class="btn btn-success" data-confirm="Are you sure ? Previous file will be overwritten." href="<%= @generate_url %>" data-method="post"><i class="fa fa-life-ring"></i> Generate
+    <a class="btn btn-success load-progress-bar" data-confirm="Are you sure ? Previous file will be overwritten." href="<%= @generate_url %>" data-method="post"><i class="fa fa-life-ring"></i> Generate
       PDF</a>
     <a class="btn btn-primary" href="<%= @download_url %>" target="_blank"><i class="fa fa-save"></i> Downlaod</a>
   </div>
