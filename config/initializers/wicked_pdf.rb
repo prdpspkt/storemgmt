@@ -49,11 +49,13 @@ else
       print_media_type: true,
       header: {
           html: {
+              layout: 'layouts/pdf_print',
               template: "layouts/print_header"
           }
       },
       footer: {
           html: {
+              layout: 'layouts/pdf_print',
               template: "layouts/print_footer"
           }
       },

@@ -1,0 +1,84 @@
+html{
+    top: 0;
+    left: 0;
+    right: 0;
+}
+body{
+    height: 100%;
+    width: 100%;
+    font-family: 'Laila';
+    font-size: 16px!important;
+}
+.header-table{
+    margin-top: 1px;
+    height: 100px;
+}
+table {
+    width: 90%;
+}
+
+.black-border {
+    border-collapse: collapse;
+}
+
+.black-border td, .black-border th {
+    border: 1px black solid !important;
+    padding: 5px 10px;
+}
+td, th{
+    padding: 5px 10px;
+}
+
+
+.text-center {
+    text-align: center;
+}
+.text-left
+{
+    text-align: left;
+}
+.bg-black{
+    background: #000;
+}
+.text-white{
+    color: white;
+}
+.text-right{
+    text-align: right;
+}
+.tiny-text {
+    font-size: 10px;
+}
+
+.government{
+    font-size: 14px;
+}
+.ministry{
+    font-size: 16px;
+}
+.department {
+    font-size: 18px;
+}
+.office{
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 30px;
+}
+.table-wide{
+    width: 98%;
+}
+.check::before{
+    content: "√";
+}
+
+@media print {
+    .page-break{
+        page-break-after: always;
+        clear: both;
+        height: 0px;
+    }
+}
+
+.form-name-text{
+    font-size: 10px!important;
+}
