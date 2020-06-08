@@ -27,7 +27,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
     quantity = project_purchase_entry_item_params[:quantity].to_d
     transaction = Project::ItemTransaction.find(project_purchase_entry_item_params[:item_transaction_id].to_i)
     project_purchase_entry = Project::ProjectPurchaseEntry.find(project_purchase_entry_item_params[:project_purchase_entry_id].to_i)
-    if transaction.sku > quantity
+    if transaction.sku >= quantity
       ppei = Project::ProjectPurchaseEntryItem.new(transaction.attributes.select { |key, _| Project::ProjectPurchaseEntryItem.column_names.include? key })
       ppei.id = nil
       ppei = set_current_information ppei
@@ -37,7 +37,9 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
       rate = (transaction.rate * (100.00 / 113.00)).round(2)
       ppei.rate = rate
       ppei.quantity = quantity
-      ppei.amount = rate * quantity
+      ppei.amount_without_vat = rate * quantity
+      ppei.vat = ppei.amount_without_vat * 0.13
+      ppei.amount = ppei.amount_without_vat * 1.13
       ppei.project_item_id = create_project_item(ppei.project_id, transaction.item_id).id
       ppei.save!
       transaction.sku = transaction.sku - quantity
