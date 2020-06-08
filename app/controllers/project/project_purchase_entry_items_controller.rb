@@ -44,7 +44,7 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
       transaction.save!
       redirect_to(project_purchase_entry, notice: "सफलतापुर्वक थपियो") and return
     else
-      flash[:alert] = "तपाईले चाहेको परिमाणमा सामाग्री उपलब्ध छैन"
+      flash[:error] = "तपाईले चाहेको परिमाणमा सामाग्री उपलब्ध छैन"
       redirect_to(project_purchase_entry) and return
     end
   end
