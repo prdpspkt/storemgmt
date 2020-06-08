@@ -13,6 +13,7 @@
 //= require jquery3
 //= require popper
 //= require bootstrap-sprockets
+// require material.min
 //= require activestorage
 //= require datatables
 //= require select2
