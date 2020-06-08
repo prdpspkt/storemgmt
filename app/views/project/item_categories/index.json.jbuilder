@@ -1,7 +1,7 @@
 json.set! :data do
 	@sn = 1
   json.array! @item_categories do |item_category|
-  	json.sn "{@sn}"
+  	json.sn "#{@sn}"
     json.partial! 'project/item_categories/item_category', item_category: item_category
     json.url "
              #{link_to show_btn.html_safe, project_item_category_path(item_category)}

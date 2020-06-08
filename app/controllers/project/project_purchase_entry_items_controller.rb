@@ -37,7 +37,9 @@ class Project::ProjectPurchaseEntryItemsController < ProjectController
       rate = (transaction.rate * (100.00 / 113.00)).round(2)
       ppei.rate = rate
       ppei.quantity = quantity
-      ppei.amount = rate * quantity
+      ppei.amount_without_vat = rate * quantity
+      ppei.vat = ppei.amount_without_vat * 0.13
+      ppei.amount = ppei.amount_without_vat * 1.13
       ppei.project_item_id = create_project_item(ppei.project_id, transaction.item_id).id
       ppei.save!
       transaction.sku = transaction.sku - quantity
