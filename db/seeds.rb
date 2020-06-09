@@ -319,6 +319,7 @@
 @office = Office::Office.find(1)
 @user = User.find(2)
 @fiscal_year = Office::FiscalYear.find(1)
+@tr_date = "2076-04-01"
 #----- TO DO END ------
 
 puts "Copying last year stock balance..."
