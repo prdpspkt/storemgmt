@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'data/index'
   resources :notifications, except: [:edit, :update, :show]
   require 'sidekiq/web'
   mount ActionCable.server => '/cable'
