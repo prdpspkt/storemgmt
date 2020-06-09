@@ -316,9 +316,9 @@
 #
 # puts "completed..."
 #---- TO DO Comment ----
-@office = Office::Office.find(2)
-@user = User.find(4)
-@fiscal_year = Office::FiscalYear.find(2)
+@office = Office::Office.find(1)
+@user = User.find(2)
+@fiscal_year = Office::FiscalYear.find(1)
 #----- TO DO END ------
 
 puts "Copying last year stock balance..."
