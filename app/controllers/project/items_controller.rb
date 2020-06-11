@@ -53,6 +53,7 @@ class Project::ItemsController < ProjectController
 
   # GET /project_items/1/edit
   def edit
+    @categories = office(Project::ItemCategory)
   end
 
   # POST /project_items
