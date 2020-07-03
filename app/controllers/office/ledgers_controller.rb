@@ -32,7 +32,7 @@ class Office::LedgersController < OfficeController
     @generate_url = print_pdf_non_expense_item_register_office_ledgers_url
     @download_url = download_pdf_non_expense_item_register_office_ledgers_url(format: :pdf)
     @report_name = "खर्च भएर नजाने(खप्ने) जिन्सी खाता"
-    @nitems = office(Office::Item).where(item_classification_no: 408)
+    @nitems = office(Office::Item).where(item_classification_no: 408).includes(:item_transactions)
     render 'index'
   end
 

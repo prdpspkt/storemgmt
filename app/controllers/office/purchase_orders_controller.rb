@@ -12,7 +12,7 @@ class Office::PurchaseOrdersController < OfficeController
   # GET /purchase_orders/1.json
   def show
     @purchase_order_item = Office::PurchaseOrderItem.new
-    @purchase_order_items = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
+    @purchase_order_items = Office::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).includes(:pool_item)
     @items = office(Office::PoolItem)
   end
 

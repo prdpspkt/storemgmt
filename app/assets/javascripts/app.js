@@ -3,19 +3,19 @@ $(document).on('turbolinks:load', function () {
         theme: 'bootstrap'
     });
 
-    $(".data-table").dataTable();
-    $(".date-picker").nepaliDatePicker();
-    $(".data-table-no-sort").dataTable({
-        ordering: false
+    $(".data-table").dataTable({
+        "pageLength": 50
     });
+    $(".date-picker").nepaliDatePicker();
+
     $(".progress_bar").hide();
 
-    $("form").on("submit", function(){
+    $("form").on("submit", function () {
         $(".progress_bar").show();
     });
 
-    $(".load-progress-bar").on("click", function(){
-$(".progress_bar").show();
+    $(".load-progress-bar").on("click", function () {
+        $(".progress_bar").show();
     });
 
 });

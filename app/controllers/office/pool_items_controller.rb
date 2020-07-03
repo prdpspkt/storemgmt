@@ -4,7 +4,7 @@ class Office::PoolItemsController < OfficeController
   # GET /office_items
   # GET /office_items.json
   def index
-    @items = office(Office::PoolItem).order("id desc")
+    @items = office(Office::PoolItem).order("id desc").includes(:item_category)
   end
 
   # GET /office_items/1

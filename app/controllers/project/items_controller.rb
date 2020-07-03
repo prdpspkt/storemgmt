@@ -9,7 +9,7 @@ class Project::ItemsController < ProjectController
 
  def non_expense_index
    @title = "खर्च भएर नजाने(खप्ने) सामानहरू"
-   @items = office(Project::Item).where(item_classification_no: 408)
+   @items = office(Project::Item).where(item_classification_no: 408).includes(:item_category)
    @print_url = non_expense_index_project_items_url(format: :pdf)
    respond_to do |format|
      format.html { render :index}
@@ -26,7 +26,7 @@ class Project::ItemsController < ProjectController
 
   def expense_index
     @title = "खर्च भएर जाने सामानहरू"
-    @items = office(Project::Item).where(item_classification_no: 407)
+    @items = office(Project::Item).where(item_classification_no: 407).includes(:item_category)
     @print_url = expense_index_project_items_url(format: :pdf)
     respond_to do |format|
       format.html { render :index}

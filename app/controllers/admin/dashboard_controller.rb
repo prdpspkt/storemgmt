@@ -1,6 +1,6 @@
 class Admin::DashboardController < AdminController
   def index
-    @users = User.all
+    @users = User.includes(:office)
   end
 
   def sign_in_as_user

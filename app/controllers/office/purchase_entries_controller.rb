@@ -13,7 +13,7 @@ class Office::PurchaseEntriesController < OfficeController
   # GET /OfficePurchaseEntries/1.json
   def show
     @purchase_entry_item = Office::PurchaseEntryItem.new
-    @purchase_entry_items = @purchase_entry.purchase_entry_items
+    @purchase_entry_items = @purchase_entry.purchase_entry_items.includes(:item)
     @items = office(Office::Item)
 
   end
