@@ -1,10 +1,9 @@
+$.extend( true, $.fn.dataTable.defaults, {
+    "pageLength": 100
+} );
 $(document).on('turbolinks:load', function () {
     $('.select2').select2({
         theme: 'bootstrap'
-    });
-
-    $(".data-table").dataTable({
-        "pageLength": 50
     });
     $(".date-picker").nepaliDatePicker();
 
