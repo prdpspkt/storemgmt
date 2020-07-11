@@ -179,6 +179,14 @@
           <td colspan="17" class="text-left" colspan="3">दाखिला मितिः <%= ndate @purchase_entry.entry_date %></td>
           <td colspan="17" class="text-right" colspan="3">दाखिला प्रतिवेदन नम्बरः <%= nd @purchase_entry.entry_no %></td>
         </tr>
+        <% unless @purchase_entry.tender.blank? %>
+  <tr>
+    <td colspan="17" class="text-left" colspan="3">बोलपत्र: <%= @purchase_entry.tender.tender_name %>(<%= nd @purchase_entry.tender.tender_no %>)</td>
+    <td colspan="17" class="text-right" colspan="3">बोलपत्र दाता <%=  @purchase_entry.tender.bidders_name %>
+      <%= @purchase_entry.tender.bidders_address %>
+    </td>
+  </tr>
+  <% end %>
       </table>
       <table class="table black-border">
         <thead>
