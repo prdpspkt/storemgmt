@@ -1,7 +1,7 @@
-$.extend( true, $.fn.dataTable.defaults, {
-    "pageLength": 100
-} );
 $(document).on('turbolinks:load', function () {
+    $(".data-table").DataTable({
+        "pageLength" : 100
+    });
     $('.select2').select2({
         theme: 'bootstrap'
     });

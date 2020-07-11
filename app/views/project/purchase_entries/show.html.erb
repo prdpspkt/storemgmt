@@ -40,6 +40,7 @@
 <div class="table-responsive">
   <table class="table table-sm table-condensed">
     <tr>
+      <th>क्र.स.</th>
       <th>जिन्सी वर्गीकरण नं</th>
       <th>सामानको नाम</th>
       <th>जिन्सी पहिचान नं</th>
@@ -53,10 +54,12 @@
       <th>कुल जम्मा</th>
       <th class="no-print"></th>
     </tr>
+    <% @i = 1 %>
     <% @purchase_entry_items.each do |item| %>
       <tr id="<%= item.id %>-opei">
+        <td><%= @i %></td>
         <td><%= nd item.item.item_classification_no %></td>
-        <td><%= item.item.name_of_item_ne %></td>
+        <td><%= item.item.name_of_item_ne %> (<%= nd item.item.id %>)</td>
         <td><%= item.item_identification_no %></td>
         <td><%= item.item.unit_ne %></td>
         <td><%= nd item.quantity %></td>
@@ -74,6 +77,7 @@
             <%= link_to destroy_btn.html_safe, item, method: :delete, data: {confirm: "Are you sure to delete ?"} %>
           <% end %></td>
       </tr>
+      <% @i = @i + 1 %>
     <% end %>
     <tr>
       <td></td>
