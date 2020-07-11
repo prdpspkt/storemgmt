@@ -1,7 +1,10 @@
 $(document).on('turbolinks:load', function () {
-    $(".data-table").DataTable({
-        "pageLength" : 100
-    });
+   
+    if ( ! $.fn.DataTable.isDataTable( '.data-table' ) ) {
+        $(".data-table").DataTable({
+                "pageLength" : 100
+        });
+    }
     $('.select2').select2({
         theme: 'bootstrap'
     });
