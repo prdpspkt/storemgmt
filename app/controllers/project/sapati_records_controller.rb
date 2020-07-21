@@ -2,7 +2,7 @@ class Project::SapatiRecordsController < ProjectController
   before_action :set_sapati_record, only: [:sapati_return]
 
   def index
-    @sapati_records = current(Project::SapatiRecord).where(sapati_returned: false)
+    @sapati_records = current(Project::SapatiRecord).where(sapati_returned: false).includes(:item)
   end
 
   def sapati_return

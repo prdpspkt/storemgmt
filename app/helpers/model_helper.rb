@@ -70,7 +70,7 @@ module ModelHelper
   end
 
 
-  def get_project_item_quantity office_id, fiscal_year_id, project_item_id, item_classification_no
+  def get_project_item_quantity office_id, fiscal_year_id, project_item_id
     Project::ProjectItemTransaction.where(office_id: office_id)
         .where(fiscal_year_id: fiscal_year_id)
         .where(project_item_id: project_item_id)

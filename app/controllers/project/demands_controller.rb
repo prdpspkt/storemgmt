@@ -8,7 +8,7 @@ class Project::DemandsController < ProjectController
   def show
     @demand_item = Project::DemandItem.new
     @demand_items = @demand.demand_items
-    @items = Project::ProjectItemTransaction.select(:project_item_id, :sku).where(project_id: @demand.project_id).where("sku > 0").distinct
+    @items = @demand.project.project_items.joins(:project_item_transactions).distinct(:id).where("project_project_item_transactions.sku>0")
   end
 
 
@@ -118,7 +118,7 @@ class Project::DemandsController < ProjectController
 
   def print
     @demand_items = @demand.demand_items
-   @fiscal_year = @demand.fiscal_year
+    @fiscal_year = @demand.fiscal_year
     @office = @demand.office
     @report_name = "माग फाराम"
     @form_no = 401

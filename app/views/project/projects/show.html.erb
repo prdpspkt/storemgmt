@@ -76,7 +76,7 @@
       <table class="table data-table table-sm table-bordered">
         <thead>
         <tr>
-          <th>क्र.स.</th>
+          <th>ID</th>
           <th>खाता पाना नं</th>
           <th>सामानको नाम</th>
           <th>Name of Item</th>
@@ -85,19 +85,17 @@
         </tr>
         </thead>
         <tbody>
-        <% @i = 1 %>
         <% @project_items407.each do |item| %>
-        <% quantity = get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 407)  %>
+        <% quantity = get_project_item_quantity(@office.id, @fiscal_year.id, item.id)  %>
           <% if quantity > 0  %>
           <tr>
-            <td><%= @i %></td>
+            <td><%= item.id %></td>
             <td><%= nd item.item_register_page_no %></td>
             <td><%= item.name_of_item_ne %></td>
             <td><%= item.name_of_item_en %></td>
             <td><%= nd quantity %></td>
             <td><%= item.unit_ne %></td>
           </tr>
-          <% @i = @i + 1 %>
         <% end %>
         <% end %>
         </tbody>

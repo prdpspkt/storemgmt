@@ -320,6 +320,7 @@ class Project::ProjectsController < ProjectController
       project_item.id = nil
       project_item.project_id = project_id
       project_item.item_id = item.id
+      project_item = set_current_information(project_item)
       project_item.item_register_page_no = new_item_register_page_no
       project_item.save!
     end

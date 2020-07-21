@@ -17,10 +17,15 @@ class Project::DemandItemsController < ProjectController
   def create
     @demand_item = Project::DemandItem.new(demand_item_params)
     @project_item = Project::ProjectItem.find(@demand_item.project_item_id)
+    @quantity = @project_item.project_item_transactions.where(transaction_type: 1).where("sku>0").sum(:sku);
     @demand = Project::Demand.find(@demand_item.demand_id)
     @demand_item.project_id = @demand.project_id
     @demand_item.item_id = @project_item.item_id
     @demand_item = set_current_information @demand_item
+    if @demand_item.quantity > @quantity
+      flash[:error] =  "There is no sufficient quantity. Only #{@quantity} #{@project_item.unit_en} is present."
+      redirect_to @demand and return
+    end
     respond_to do |format|
       if @demand_item.save
         format.html { redirect_to @demand, notice: 'Demand item was successfully created.' }

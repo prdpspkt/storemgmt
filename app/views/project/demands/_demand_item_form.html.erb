@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-3">
       <%= form.label :item_id %>
-      <%= form.select(:project_item_id, @items.collect { |tr| ["#{tr.project_item.name_of_item_en} (#{tr.sku})", tr.project_item_id] }, {include_blank: true}, {class: "form-control select2", required: true}) %>
+      <%= form.select(:project_item_id, @items.collect { |item| ["#{item.name_of_item_en} (#{item.project_item_transactions.sum(:sku)})", item.id]}, {include_blank: true}, {class: "form-control select2", required: true}) %>
     </div>
 
     <div class="col-sm-3">
