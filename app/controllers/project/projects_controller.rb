@@ -186,7 +186,7 @@ class Project::ProjectsController < ProjectController
     @project_id = params[:id].to_i
     item_id = params[:item_id].to_i
     @quantity = params[:quantity].to_d
-    @projects = office(Project::Project).where(project_status: 0)
+    @projects = office(Project::Project).where(project_status: 0).where.not(id: @project_id)
     @data = []
     @projects.map do |project|
       quantity = office(Project::ProjectItemTransaction)
@@ -205,6 +205,7 @@ class Project::ProjectsController < ProjectController
 
   def sapati_create
     from_project_id = sapati_params[:from].to_i
+    @from_project_id = from_project_id
     to_project_id = sapati_params[:to].to_i
     item_id = sapati_params[:item_id].to_i
     quantity = sapati_params[:quantity].to_d

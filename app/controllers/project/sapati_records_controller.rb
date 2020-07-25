@@ -16,10 +16,7 @@ class Project::SapatiRecordsController < ProjectController
         if quantity > 0
           if tr.sku >= quantity
             create_sapati_transaction tr, to_project_id, quantity
-            break;
-          else
-            create_sapati_transaction tr, to_project_id, tr.sku
-            quantity = quantity - tr.sku
+            create_sapati_expense_transaction tr, quantity, to_project_id
           end
         end
       end
@@ -64,7 +61,10 @@ class Project::SapatiRecordsController < ProjectController
     ntr.transaction_date = bs_today
     if ntr.save!
       create_sapati_expense_transaction tr, quantity, to_project
+    else
+      redirect_to project_sapati_records_url and return
     end
+    ntr
   end
 
   def create_sapati_expense_transaction tr, quantity, to_project
@@ -81,6 +81,7 @@ class Project::SapatiRecordsController < ProjectController
       tr.sku = tr.sku - quantity
       tr.save
     end
+    ntr
   end
 
   def get_project_item_id project_id, item_id
