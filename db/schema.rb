@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_105806) do
+ActiveRecord::Schema.define(version: 2020_08_01_071908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -1394,6 +1394,7 @@ ActiveRecord::Schema.define(version: 2020_07_24_105806) do
     t.boolean "sapati_returned"
     t.integer "source_it_id"
     t.integer "destin_it_id"
+    t.string "project_item_transaction_id"
   end
 
   create_table "project_stock_items", force: :cascade do |t|

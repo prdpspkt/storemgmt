@@ -307,6 +307,7 @@ class Project::ProjectsController < ProjectController
     sapati_record = set_current_information sapati_record
     sapati_record.store_body_id = current_control_body.id
     sapati_record.sapati_returned = false
+    sapati_record.project_item_transaction_id = tr.id
     sapati_record.save!
   end
 
