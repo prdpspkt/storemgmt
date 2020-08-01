@@ -5,13 +5,13 @@ class ApplicationController < ActionController::Base
 
 
   protect_from_forgery
-  if Rails.env == "production"
-    rescue_from Exception do |exception|
-      flash[:error] = "#{exception_message exception}"
-      logger.debug("#{exception.class.to_s}: #{exception.message}")
-      redirect_to request.referrer || root_path
-    end
-  end
+  # if Rails.env == "production"
+  #   rescue_from Exception do |exception|
+  #     flash[:error] = "#{exception_message exception}"
+  #     logger.debug("#{exception.class.to_s}: #{exception.message}")
+  #     redirect_to request.referrer || root_path
+  #   end
+  # end
 
 
 
