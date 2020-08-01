@@ -152,9 +152,9 @@ class Project::DemandsController < ProjectController
     @release.release_no = new_release_no
     @release.demand_id = @demand.id
     @release.project_id = @demand.project.id
-    @release.release_date = bs_today
-    @release.office_chief_signed_date = bs_today
-    @release.store_keeper_signed_date = bs_today
+    @release.release_date = @demand.demand_date
+    @release.office_chief_signed_date = @demand.demand_date
+    @release.store_keeper_signed_date = @demand.demand_date
     @release.accepted = false
     @release.entry_generated = false
     @release.save!

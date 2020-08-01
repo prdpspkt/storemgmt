@@ -154,7 +154,7 @@ class Office::PurchaseEntriesController < OfficeController
       transaction.store_body_id = current_control_body.id
       transaction.entry_no = purchase_entry.entry_no
       transaction.sku = transaction.quantity
-      transaction.transaction_date = bs_today
+      transaction.transaction_date = purchase_entry.entry_date
       transaction = set_current_information transaction
       transaction.save
     end

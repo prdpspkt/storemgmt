@@ -5,6 +5,7 @@ class Project::ItemsController < ProjectController
   # GET /project_items.json
   def index
     @title = "सामाग्रीहरु (POOL)"
+    @items = office(Project::Item).includes(:item_category)
   end
 
  def non_expense_index
@@ -14,7 +15,7 @@ class Project::ItemsController < ProjectController
    respond_to do |format|
      format.html { render :index}
      format.xlsx { render :index}
-     format.json {render :index}
+     format.json { render :index}
      format.pdf do
        @office = current_office
        @fiscal_year = current_fiscal_year

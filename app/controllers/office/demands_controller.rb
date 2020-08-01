@@ -147,11 +147,11 @@ class Office::DemandsController < OfficeController
     @release_form = set_current_information @release_form
     @release_form.store_body_id = current_control_body.id
     @release_form.marked_as_final = false
-    @release_form.release_date = bs_today
+    @release_form.release_date = @demand.demand_date
     @release_form.release_no = new_release_no
     @release_form.demand_id = @demand.id
     @release_form.received_by = @demand.demand_by
-    @release_form.received_date = bs_today
+    @release_form.received_date = @demand.demand_date
     @release_form.entry_generated = false
     ActiveRecord::Base.transaction do
       @release_form.save
