@@ -66,6 +66,14 @@
     <%= form.check_box :sapati %>
   </div>
 
+<% if office.projects.count > 0 %>
+  <div class="col-md-6">
+     <%= form.label "सम्पन्न मर्मत आयोजना" %>
+      <%= form.select(:completed_repair_project_id, office.projects.collect { |project| ["#{project.name_of_project_en}", project.id]}, {include_blank: true}, {class: "form-control select2", required: true}) %>
+  </div>
+
+<% end %>
+
   <div class="col-md-12">
     <%= form.submit "save", class: "float-right btn btn-success" %>
   </div>
