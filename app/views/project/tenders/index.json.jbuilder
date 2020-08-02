@@ -1,7 +1,7 @@
 json.set! :data do
+  @sn = 1
   json.array! @tenders do |tender|
     json.partial! 'project/tenders/tenders', tender: tender
-    json.tender_no "#{ nd tender.tender_no}"
     json.tender_date "#{ ndate tender.tender_date}"
     if tender.marked_as_final != true
       json.url "
@@ -14,5 +14,7 @@ json.set! :data do
                #{link_to show_btn.html_safe, tender }
                "
     end
+    json.sn = @sn
+    @sn = @sn + 1
   end
 end
