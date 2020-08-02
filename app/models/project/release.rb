@@ -11,8 +11,10 @@ class Project::Release < ApplicationRecord
   private
   def restore_demand
     demand = self.demand
-    demand.entry_generated = false
-    demand.save
+    if demand.blank? == false
+      demand.entry_generated = false
+      demand.save
+  end
   end
 
 end
