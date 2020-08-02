@@ -14,7 +14,7 @@ json.set! :data do
                #{link_to show_btn.html_safe, tender }
                "
     end
-    json.sn = @sn
+    json.sn  "#{@sn}"
     @sn = @sn + 1
   end
 end
