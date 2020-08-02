@@ -11,7 +11,9 @@ class Project::ReleaseItem < ApplicationRecord
   private
   def restore_transactions
     transaction = self.item_transaction
+    if transaction.blank? == false
     transaction.sku = transaction.sku + self.quantity
     transaction.save
+  end
   end
 end
