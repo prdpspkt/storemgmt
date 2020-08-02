@@ -1,5 +1,5 @@
 class Project::Release < ApplicationRecord
-  has_many :release_items, class_name: "Project::ReleaseItem"
+  has_many :release_items, class_name: "Project::ReleaseItem", dependent: :destry
   belongs_to :office, class_name: "Office::Office"
   belongs_to :project, class_name: "Project::Project"
   belongs_to :user
