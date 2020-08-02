@@ -208,19 +208,18 @@ class Project::ProjectsController < ProjectController
     @from_project_id = from_project_id
     to_project_id = sapati_params[:to].to_i
     item_id = sapati_params[:item_id].to_i
-    quantity = sapati_params[:quantity].to_d
-    @quantity = quantity
+    @quantity = sapati_params[:quantity].to_d
     transactions = current(Project::ProjectItemTransaction).where(project_id: from_project_id).where(item_id: item_id).where("sku > 0")
     transactions.each do |tr|
-      if quantity > 0
-        if tr.sku >= quantity
-          create_sapati_transaction tr, to_project_id, quantity
-          create_sapati_record to_project_id, tr, quantity
+      if @quantity > 0
+        if tr.sku >= @quantity
+          create_sapati_transaction tr, to_project_id, @quantity
+          create_sapati_record to_project_id, tr, @quantity
           break;
         else
           create_sapati_transaction tr, to_project_id, tr.sku
           create_sapati_record to_project_id, tr, tr.sku
-          quantity = quantity - tr.sku
+          @quantity = @quantity - tr.sku
         end
       else
         break;

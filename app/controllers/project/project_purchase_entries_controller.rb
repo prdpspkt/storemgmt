@@ -143,7 +143,7 @@ class Project::ProjectPurchaseEntriesController < ProjectController
       transaction.transaction_type = 1
       transaction.entry_no = project_purchase_entry.entry_no
       transaction.sku = transaction.quantity
-      transaction.transaction_date = bs_today
+      transaction.transaction_date = project_purchase_entry.entry_date
       transaction.store_body_id = current_control_body.id
       transaction = set_current_information transaction
       transaction.project_id = project_purchase_entry.project_id
