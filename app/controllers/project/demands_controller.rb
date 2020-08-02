@@ -23,7 +23,7 @@ class Project::DemandsController < ProjectController
     @demand.recommended_by = Office::Personnel.find(demand_params[:recommended_by]).name_ne
     @demand = set_current_information @demand
     @demand.store_body_id = current_control_body.id
-    @demand.demand_no = get_new_project_demand_no
+    @demand.demand_no = get_new_project_demand_no @demand.project_id
     @demand.marked_as_final = false
     @demand.entry_generated = false
     respond_to do |format|
@@ -149,7 +149,7 @@ class Project::DemandsController < ProjectController
     @release = Project::Release.new()
     @release = set_current_information @release
     @release.store_body_id = current_control_body.id
-    @release.release_no = new_release_no
+    @release.release_no = new_release_no @release.project_id
     @release.demand_id = @demand.id
     @release.project_id = @demand.project.id
     @release.release_date = @demand.demand_date
@@ -168,18 +168,18 @@ class Project::DemandsController < ProjectController
     release_item.save!
   end
 
-  def get_new_project_demand_no
+  def get_new_project_demand_no project_id
     demand_no = 1
-    @demands = current(Project::Demand)
+    @demands = current(Project::Demand).where(project_id: project_id)
     if @demands.count > 0
       demand_no = @demands.last.demand_no + 1
     end
     demand_no
   end
 
-  def new_release_no
+  def new_release_no project_id
     nrn = 1
-    releases = current(Project::Release)
+    releases = current(Project::Release).where(project_id: project_id)
     if releases.count > 0
       nrn = releases.last.release_no + 1
     end
