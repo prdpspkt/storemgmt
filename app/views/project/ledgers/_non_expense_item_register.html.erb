@@ -14,6 +14,7 @@
 </table>
 <table class="table table-sm table-black-border">
   <tr class="text-center">
+    <td rowspan="2">ID</td>
     <td rowspan="2">मिति</td>
     <td rowspan="2">दाखिला नं/हस्तान्तरण नं</td>
     <td rowspan="2">स्पेसिफिकेसन</td>
@@ -63,6 +64,7 @@
     <% @amt = 0 %>
     <% @transactions.each do |transaction| %>
       <tr>
+         <td><%= transaction.id %></td>
         <td><%= ndate transaction.transaction_date %></td>
         <td><%= nd transaction.entry_no %></td>
         <td><%= transaction.item.specification %></td>

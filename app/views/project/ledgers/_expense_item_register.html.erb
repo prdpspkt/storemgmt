@@ -32,6 +32,7 @@
 <table class="table table-black-border table-sm">
   <thead>
   <tr class="text-center">
+     <td rowspan="2">ID</td>
     <td rowspan="2">मितिः</td>
     <td rowspan="2">दाखिला / निकासा नं</td>
     <td colspan="3">स्टोर दाखिला (आम्दानी)</td>
@@ -74,6 +75,7 @@
       <% @qty = @qty + oeirt.quantity %>
       <% @amt = @amt + oeirt.amount %>
       <tr>
+        <td><%= oeirt.id %></td>
         <td><%= ndate oeirt.transaction_date %></td>
         <td><%= nd oeirt.entry_no %></td>
         <td><%= nd oeirt.quantity %></td>
