@@ -11,7 +11,7 @@
   	<% unless @eitems.nil? %>
   	<% @eitems.each do |item| %>
   <% if item.item_transactions.count > 0 %>
-    <%= render "project/ledgers/expense_item_register", item: item %>
+    <%= render "expense_item_register", item: item %>
   <% end %>
 <% end %>
   	<% end %>
@@ -19,7 +19,7 @@
   	 	<% unless @nitems.nil? %>
   	<% @nitems.each do |item| %>
   <% if item.item_transactions.count > 0 %>
-    <%= render "project/ledgers/non_expense_item_register", item: item %>
+    <%= render "non_expense_item_register", item: item %>
   <% end %>
 <% end %>
   	<% end %>

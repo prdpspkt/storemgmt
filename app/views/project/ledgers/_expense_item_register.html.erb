@@ -1,4 +1,4 @@
-<table class="table table-sm table-borderless">
+harami <table class="table table-sm table-borderless">
   <tbody>
   <tr>
     <td>जिन्सी सामानको नामः</td>
@@ -94,6 +94,7 @@
       <% @qty = @qty - oeirt.quantity %>
       <% @amt = @amt - oeirt.amount %>
       <tr>
+        <td><%= oeirt.id %></td>
         <td><%= ndate oeirt.transaction_date %></td>
         <td><%= nd oeirt.entry_no %></td>
         <td></td>

@@ -4,13 +4,13 @@
     <td>आर्थिक वर्षः <%= @fiscal_year.fy %></td>
   </tr>
   <tr>
-    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %> (<%= item.name_of_item_en %>)</td>
+    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %>/<%= item.name_of_item_en %></td>
     <td colspan="2">जिन्सी सङ्केत नं: <%= nd item.item_classification_no %></td>
   </tr>
   <tr>
     <td>इकाई: <%= item.unit_ne %></td>
     <td></td>
-    <td colspan="2">जिन्सी खाता पाना नं: <%= nd item.item_register_page_no %></td>
+    <td colspan="2">जिन्सी खाता पाना नं: <%= nd item.item_register_page_no %>/ID: <%= item.id %></td>
   </tr>
   <tr>
     <td></td>
@@ -18,6 +18,7 @@
 </table>
 <table class="table  black-border table-wide">
   <tr class="text-center">
+    <td>ID</td>
     <td rowspan="2">मिति</td>
     <td rowspan="2">दाखिला नं/हस्तान्तरण नं</td>
     <td rowspan="2">स्पेसिफिकेसन</td>
@@ -43,6 +44,7 @@
     <td>जम्मा परल मूल्य</td>
   </tr>
   <tr>
+    <td></td>
     <td>१</td>
     <td>२</td>
     <td>३</td>
@@ -67,6 +69,7 @@
     <% @amt = 0 %>
     <% @transactions.each do |transaction| %>
       <tr>
+        <td><%= transaction.id %></td>
         <td><%= ndate transaction.transaction_date %></td>
         <td><%= nd transaction.entry_no %></td>
         <td><%= transaction.item.specification %></td>

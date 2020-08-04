@@ -1,16 +1,16 @@
 <table class="table table-sm table-borderless">
   <tr>
-    <td colspan="2">आयोजनाको नाम: <%= @project.name_of_project_ne %></td>
-    <td>आर्थिक वर्षः <%= @fiscal_year.fy %></td>
+    <td colspan="2">आयोजनाको नाम: <%= @project.name_of_project_ne %> [<%= @project.id %>]</td>
+    <td>आर्थिक वर्षः <%= @fiscal_year.fy %> [<%= @fiscal_year.id %>]</td>
   </tr>
   <tr>
-    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %> (<%= item.name_of_item_en %>)</td>
+    <td colspan="2">जिन्सी सामानको नामः  <%= item.name_of_item_ne %>/<%= item.name_of_item_en %> [<%= item.id %>]</td>
     <td colspan="2">जिन्सी सङ्केत नं: <%= nd item.item_classification_no %></td>
   </tr>
   <tr>
     <td>इकाई: <%= item.unit_ne %></td>
     <td></td>
-    <td colspan="2">जिन्सी खाता पाना नं: <%= nd item.item_register_page_no %></td>
+    <td colspan="2">जिन्सी खाता पाना नं: <%= nd item.item_register_page_no %> </td>
   </tr>
   <tr>
     <td></td>
@@ -19,6 +19,7 @@
 <table class="table table-sm table-black-border black-border table-wide">
   <thead>
   <tr class="text-center">
+    <td rowspan="2">ID</td>
     <td rowspan="2">मितिः</td>
     <td rowspan="2">दाखिला / निकासा नं</td>
     <td colspan="3">स्टोर दाखिला (आम्दानी)</td>
@@ -38,6 +39,7 @@
     <td>रकम</td>
   </tr>
   <tr>
+    <td></td>
     <td>१</td>
     <td>२</td>
     <td>३</td>
@@ -61,6 +63,7 @@
       <% @qty = @qty + transaction.quantity %>
       <% @amt = @amt + transaction.amount %>
       <tr>
+        <td><%= transaction.id %></td>
         <td><%= ndate transaction.transaction_date %></td>
         <td><%= nd transaction.entry_no %></td>
         <td><%= nd transaction.quantity %></td>
