@@ -14,16 +14,14 @@ class Project::SapatiRecordsController < ProjectController
     transactions = current(Project::ProjectItemTransaction).where(project_id: from_project_id).where(item_id: item_id).where("sku > 0")
     if transactions.sum(:sku) >= quantity
       transactions.each do |tr|
-        if quantity > 0
+        if quantity > 0 && tr.sku > 0
           if tr.sku >= quantity
             create_sapati_transaction tr, to_project_id, quantity
-            create_sapati_expense_transaction tr, quantity, to_project_id
             quantity = 0
             break;
           else
             qty = tr.sku
             create_sapati_transaction tr, to_project_id, qty
-            create_sapati_expense_transaction tr, qty, to_project_id
             quantity = quantity - qty
           end
         end

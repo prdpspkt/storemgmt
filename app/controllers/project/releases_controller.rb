@@ -11,7 +11,7 @@ class Project::ReleasesController < ProjectController
   # GET /project_releases/1
   # GET /project_releases/1.json
   def show
-    @project_release_items = @project_release.release_items
+    @project_release_items = @project_release.release_items.includes(:item)
   end
 
   def edit
