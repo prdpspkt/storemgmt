@@ -4,6 +4,7 @@ class Office::PurchaseEntryItemsController < OfficeController
 
   # GET /office_purchase_entry_items/1/edit
   def edit
+    
   end
 
   # POST /office_purchase_entry_items
