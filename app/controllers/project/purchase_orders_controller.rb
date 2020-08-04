@@ -12,7 +12,7 @@ class Project::PurchaseOrdersController < ProjectController
   # GET /purchase_orders/1.json
   def show
     @purchase_order_item = Project::PurchaseOrderItem.new
-    @purchase_order_items = Project::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id)
+    @purchase_order_items = Project::PurchaseOrderItem.where(purchase_order_id: @purchase_order.id).includes(:item)
   end
 
   # GET /purchase_orders/new

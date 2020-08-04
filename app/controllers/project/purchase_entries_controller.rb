@@ -13,7 +13,7 @@ class Project::PurchaseEntriesController < ProjectController
   # GET /ProjectPurchaseEntries/1.json
   def show
     @purchase_entry_item = Project::PurchaseEntryItem.new
-    @purchase_entry_items = @purchase_entry.purchase_entry_items
+    @purchase_entry_items = @purchase_entry.purchase_entry_items.includes(:item)
 
   end
 

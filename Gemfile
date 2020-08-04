@@ -7,7 +7,7 @@ gem 'sidekiq'
 gem 'caxlsx_rails'
 gem 'bootstrap'
 gem 'jquery-rails'
-gem 'pry'
+gem 'pry-rails'
 gem "font-awesome-rails"
 gem 'jquery-datatables'
 gem "select2-rails"

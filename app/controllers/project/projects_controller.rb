@@ -220,12 +220,10 @@ class Project::ProjectsController < ProjectController
           quantity = 0
           break;
         else
-          create_sapati_transaction tr, to_project_id, tr.sku
-          create_sapati_record to_project_id, tr, tr.sku
-          quantity = quantity - tr.sku
-          if quantity == 0
-            break;
-          end
+          qty = tr.sku
+          create_sapati_transaction tr, to_project_id, qty
+          create_sapati_record to_project_id, tr, qty
+          quantity = quantity - qty
         end
       else
         break;
