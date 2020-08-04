@@ -6,6 +6,7 @@ class Project::SapatiRecordsController < ProjectController
   end
 
   def sapati_return
+    message = ""
     from_project_id = @sapati_record.to_project
     to_project_id = @sapati_record.from_project
     item_id = @sapati_record.item_id
@@ -19,15 +20,23 @@ class Project::SapatiRecordsController < ProjectController
             create_sapati_expense_transaction tr, quantity, to_project_id
             quantity = 0
             break;
+          else
+            qty = tr.sku
+            create_sapati_transaction tr, to_project_id, qty
+            create_sapati_expense_transaction tr, qty, to_project_id
+            quantity = quantity - qty
           end
         end
       end
     else
-      redirect_to project_sapati_records_url, notice: "सापटी फिर्ता गर्न पर्याप्त मौज्दात देखिएन, कृपया मौज्दात दाखिला गरी पुन प्रयास गर्नुहोस्|" and return
+     message =  "सापटी फिर्ता गर्न पर्याप्त मौज्दात देखिएन, कृपया मौज्दात दाखिला गरी पुन प्रयास गर्नुहोस्|" and return
     end
-    @sapati_record.sapati_returned = true
-    @sapati_record.save
-    redirect_to project_sapati_records_url, notice: "सापटी फिर्ता गरियो |"
+    if quantity == 0
+      @sapati_record.sapati_returned = true
+      @sapati_record.save
+      message = "सापटी फिर्ता गरियो |"
+    end
+      redirect_to project_sapati_records_url, notice: message
   end
 
   def sapati_print
