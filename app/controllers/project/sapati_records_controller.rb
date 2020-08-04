@@ -17,6 +17,7 @@ class Project::SapatiRecordsController < ProjectController
           if tr.sku >= quantity
             create_sapati_transaction tr, to_project_id, quantity
             create_sapati_expense_transaction tr, quantity, to_project_id
+            quantity = 0
             break;
           end
         end
