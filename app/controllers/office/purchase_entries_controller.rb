@@ -14,7 +14,7 @@ class Office::PurchaseEntriesController < OfficeController
   def show
     @purchase_entry_item = Office::PurchaseEntryItem.new
     @purchase_entry_items = @purchase_entry.purchase_entry_items.includes(:item)
-    @items = office(Office::Item)
+    @items = office(Office::PoolItem)
 
   end
 
