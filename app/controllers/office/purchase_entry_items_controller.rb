@@ -12,7 +12,9 @@ class Office::PurchaseEntryItemsController < OfficeController
   def create
     @purchase_entry_item = Office::PurchaseEntryItem.new(office_purchase_entry_item_params)
     @purchase_entry_item = set_current_information @purchase_entry_item
-    @purchase_entry_item.item_id = get_item_id params[:office_purchase_entry_item][:pool_item_id]
+    item = get_item(params[:office_purchase_entry_item][:pool_item_id])
+    @purchase_entry_item.item_id = item.id
+    @purchase_entry_item.item_register_page_no = item.item_register_page_no
     prepare_data
     respond_to do |format|
       if @purchase_entry_item.save
@@ -61,7 +63,7 @@ class Office::PurchaseEntryItemsController < OfficeController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def office_purchase_entry_item_params
-    params.require(:office_purchase_entry_item).permit(:is_vatable, :item_classification_no, :item_registration_page_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :country, :size, :approx_age, :source, :remarks, :purchase_entry_id, :user_id, :office_id, :fy, :fiscal_year)
+    params.require(:office_purchase_entry_item).permit(:is_vatable, :item_classification_no, :name_of_item, :specification, :item_identification_no, :model_no, :unit, :quantity, :rate, :amount_without_vat, :vat, :total_amount, :other_expense, :amount, :country, :size, :approx_age, :source, :remarks, :purchase_entry_id, :user_id, :office_id, :fy, :fiscal_year)
   end
   def prepare_data 
     @purchase_entry_item.amount_without_vat = @purchase_entry_item.rate * @purchase_entry_item.quantity
@@ -79,16 +81,28 @@ class Office::PurchaseEntryItemsController < OfficeController
   end
 
 
-  def get_item_id pool_item_id
+  def get_item pool_item_id
     pool_item = Office::PoolItem.find(pool_item_id)
     item = current(Office::Item).where(pool_item_id: pool_item_id).first
     if item.blank?
       item = Office::Item.new(pool_item.attributes)
       item.id = nil
       item.pool_item_id = pool_item_id
+      item.item_register_page_no = item_register_page_no pool_item_id
       item = set_current_information item
       item.save
     end
-    item.id
+    item
+  end
+
+
+  def item_register_page_no pool_item_id
+      item = Office::Item.where(office_id: current_office.id).where(pool_item_id: pool_item_id).last
+      if item.item_register_page_no.present?
+        item_register_page_no = item.item_register_page_no + 1
+      else
+        item_register_page_no = 1
+      end
+      item_register_page_no
   end
 end

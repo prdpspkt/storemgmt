@@ -35,10 +35,14 @@
       </td>
       <td class="text-right">
         <% unless item.amount.nil? %>
-          <%= nd item.amount.round(2) %>
+          <%=  item.amount.round(2) %>
+          <% if item.amount.round(2) == "NaN" %>
+          <%binding.pry%>
+          <% end %>
           <% else %>
           <%= nd 0.0 %>
         <% end %>
+
       </td>
       <td><%= item.physical_status %></td>
       <td><%= item.remarks %></td>

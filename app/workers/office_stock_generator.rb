@@ -28,30 +28,39 @@ class OfficeStockGenerator
   def generate_stock_items stock
     items = Office::Item.where(office_id: stock.office_id).where(user_id: stock.user_id).where(item_classification_no: 408)
     items.each do |item|
-      transactions = item.item_transactions.where("sku > 0").where(item_classification_no: 408)
-      stock_item = Office::StockItem.new
-      stock_item.name_of_item_ne = item.name_of_item_ne
-      stock_item.item_register_page_no = item.item_register_page_no
-      stock_item.item_classification_no = item.item_classification_no
-      stock_item.unit_ne = item.unit_ne
-      stock_item.stock_id = stock.id
-      stock_item.office_id = stock.office_id
-      stock_item.user_id = stock.user_id
-      stock_item.fiscal_year_id = stock.fiscal_year_id
-      stock_item.store_body_id = stock.store_body_id
-      stock_item.quantity = transactions.sum(:sku)
-      begin
-      stock_item.rate = transactions.sum(:amount)/transactions.sum(:quantity)
-      rescue Exception => error
-        binding.pry
+      transactions = item.item_transactions.where("sku > 0").where.not(transaction_type: -1).where(item_classification_no: 408)
+      sku = transactions.sum(:sku)
+      quantity = transactions.sum(:quantity)
+      amount = transactions.sum(:amount)
+      begin 
+      if sku > 0
+        rate = amount/quantity
+      else
+        rate = 0
+        sku = 0
       end
-      begin
-        stock_item.amount = stock_item.quantity * stock_item.rate
       rescue Exception => error
-        logger.info(error.message)
+        rate = 0
+        sku = 0
       end
-      stock_item.item_id = item.id
-      stock_item.save!
+
+      if sku > 0
+        stock_item = Office::StockItem.new
+        stock_item.name_of_item_ne = item.name_of_item_ne
+        stock_item.item_register_page_no = item.item_register_page_no
+        stock_item.item_classification_no = item.item_classification_no
+        stock_item.unit_ne = item.unit_ne
+        stock_item.stock_id = stock.id
+        stock_item.office_id = stock.office_id
+        stock_item.user_id = stock.user_id
+        stock_item.fiscal_year_id = stock.fiscal_year_id
+        stock_item.store_body_id = stock.store_body_id
+        stock_item.quantity = sku
+        stock_item.rate = rate 
+        stock_item.amount = sku * rate 
+        stock_item.item_id = item.id
+        stock_item.save!
+    end
     end
   end
 
