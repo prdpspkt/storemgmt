@@ -17,7 +17,7 @@ class Project::ProjectsController < ProjectController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = office(Project::Project)
+    @projects = office(Project::Project).where(project_status: 0)
     respond_to do |format|
       format.html
       format.xlsx
