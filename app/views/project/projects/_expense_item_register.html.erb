@@ -82,6 +82,7 @@
       <% @qty = @qty - transaction.quantity %>
       <% @amt = @amt - transaction.amount %>
       <tr>
+        <td><%= transaction.id %></td>
         <td><%= ndate transaction.transaction_date %></td>
         <td><%= nd transaction.entry_no %></td>
         <td></td>
