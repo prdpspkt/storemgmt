@@ -72,7 +72,7 @@ class ProjectStockGenerator
         old_form_no: 57,
         project_stock: stock
     }
-    generator = PdfGenerator.new('project/stocks/show.pdf', data, {orientation: 'potrait'})
+    generator = PdfGenerator.new('project/stocks/show.pdf', data, "portrait")
     pdf = generator.generate
     dir = Rails.root.join("pdfs", "#{stock.office.id}", "#{stock.fiscal_year.id}")
     if File.directory?(dir) == false

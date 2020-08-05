@@ -1,8 +1,7 @@
 class PdfGenerator
-  def initialize(template, variables, setting)
+  def initialize(template, variables, orientation)
     @template = template
     @orientation = orientation
-    @setting = setting
     @av = ActionView::Base.new()
     @av.view_paths = ActionController::Base.view_paths
     @av.class_eval { include Rails.application.helpers }
@@ -15,7 +14,7 @@ class PdfGenerator
     WickedPdf.new.pdf_from_string(body,
                                   footer: {content: footer},
                                   header: {content: header},
-                                  @setting
+                                  orientation: @orientation
     )
   end
 

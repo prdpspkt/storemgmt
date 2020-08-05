@@ -13,7 +13,7 @@ class OfficeEvaluationReportGenerator
         old_form_no: 49,
         item_evaluation: @item_evaluation
     }
-    generator = PdfGenerator.new('office/item_evaluations/print.pdf', data, {orientation: "landscape"})
+    generator = PdfGenerator.new('office/item_evaluations/print.pdf', data, "landscape")
     pdf = generator.generate
     dir = Rails.root.join("pdfs", "#{@item_evaluation.office.id}", "#{@item_evaluation.fiscal_year.id}")
     if File.directory?(dir) == false
