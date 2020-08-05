@@ -47,8 +47,8 @@
       <td><%= nd item.item_classification_no %></td>
       <td class="text-left"><%= nd item.name_of_item_ne %></td>
        <td><%= nd item.unit_ne %></td>
-      <td><%= nd item.quantity %></td>
-      <td class="text-right"><%= nd item.amount %></td>
+      <td><%= nd item.quantity.round(2) %></td>
+      <td class="text-right"><%= nd item.amount.round(2) %></td>
       <td id="matched-<%= item.id %>"><%= nd item.matched %></td>
       <td id="unmatched-<%= item.id %>"><%= nd item.unmatched %></td>
       <td id="dquantity-<%= item.id %>"><%= nd item.dquantity %></td>
