@@ -8,7 +8,7 @@ json.set! :data do
     tender = purchase_entry.tender
     purchase_order = purchase_entry.purchase_order
     json.form_no  ""
-    json.purchase_entry_no = "#{purchase_entry.entry_no}"
+    json.purchase_entry_no "#{purchase_entry.entry_no}"
     unless tender.blank?
       json.form_no "टे.नं.#{tender.tender_no}" 
     end
