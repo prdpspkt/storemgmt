@@ -2,6 +2,7 @@ class PdfGenerator
   def initialize(template, variables, setting)
     @template = template
     @orientation = orientation
+    @setting = setting
     @av = ActionView::Base.new()
     @av.view_paths = ActionController::Base.view_paths
     @av.class_eval { include Rails.application.helpers }
