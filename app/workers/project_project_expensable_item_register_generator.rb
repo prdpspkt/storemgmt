@@ -28,7 +28,7 @@ class ProjectProjectExpensableItemRegisterGenerator
         cb: cb,
         project: project
     }
-    generator = PdfGenerator.new('project/projects/expense_item_register.pdf', data, "landscape")
+    generator = PdfGenerator.new('project/projects/expense_item_register.pdf', data, { orientation: "landscape"})
     pdf = generator.generate
     dir = Rails.root.join("pdfs", "#{office.id}", "#{fiscal_year.id}", "#{project.id}")
     if File.directory?(dir) == false

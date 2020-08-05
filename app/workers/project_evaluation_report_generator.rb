@@ -14,7 +14,7 @@ class ProjectEvaluationReportGenerator
         item_evaluation_items: item_evaluation.item_evaluation_items.order("project_id ASC"),
         item_evaluation: item_evaluation
     }
-    generator = PdfGenerator.new('project/item_evaluations/print.pdf', data, "landscape", "margin: { left: '0.5'}")
+    generator = PdfGenerator.new('project/item_evaluations/print.pdf', data, {orientation: "landscape", margin: { left: '0.5'}})
     pdf = generator.generate
     dir = Rails.root.join("pdfs", "#{item_evaluation.office.id}", "#{item_evaluation.fiscal_year.id}")
     if File.directory?(dir) == false

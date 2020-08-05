@@ -1,5 +1,5 @@
 class PdfGenerator
-  def initialize(template, variables, orientation)
+  def initialize(template, variables, setting)
     @template = template
     @orientation = orientation
     @av = ActionView::Base.new()
@@ -14,7 +14,7 @@ class PdfGenerator
     WickedPdf.new.pdf_from_string(body,
                                   footer: {content: footer},
                                   header: {content: header},
-                                  orientation: @orientation
+                                  @setting
     )
   end
 

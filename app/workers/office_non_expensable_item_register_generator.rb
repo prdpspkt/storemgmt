@@ -25,7 +25,7 @@ class OfficeNonExpensableItemRegisterGenerator
         items: items,
         cb: cb
     }
-    generator = PdfGenerator.new('office/ledgers/non_expense_item_register.pdf', data, "landscape")
+    generator = PdfGenerator.new('office/ledgers/non_expense_item_register.pdf', data, {orientation: "landscape"})
     pdf = generator.generate
     dir = Rails.root.join("pdfs", "#{office.id}", "#{fiscal_year.id}")
     if File.directory?(dir) == false
