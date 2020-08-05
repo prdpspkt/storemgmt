@@ -86,7 +86,8 @@
         </thead>
         <tbody>
         <% @project_items407.each do |item| %>
-        <% quantity = get_project_item_quantity(@office.id, @fiscal_year.id, item.id)  %>
+        <% quantity = get_project_item_quantity(@office.id, @fiscal_year.id, item.id, 407)  %>
+
           <% if quantity > 0  %>
           <tr>
             <td><%= item.id %></td>

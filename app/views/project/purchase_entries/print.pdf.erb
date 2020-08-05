@@ -10,6 +10,12 @@
       <%= @purchase_entry.tender.bidders_address %>
     </td>
   </tr>
+  <%end%>
+  <% unless @purchase_entry.purchase_order.blank? %>
+  <tr>
+    <td colspan="17" class="text-left" colspan="3">खरिद आदेश नं: <%= @purchase_entry.purchase_order.order_no %></td>
+    <td colspan="17" class="text-right" colspan="3">फर्म: <%=  @purchase_entry.purchase_order.vendor.vendor_name%> </td>
+  </tr>
   <% end %>
 </table>
 <table class="table black-border">

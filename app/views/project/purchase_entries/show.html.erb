@@ -5,18 +5,21 @@
 <div class="table-responsive">
   <table class="table table-sm table-condensed table-bordered">
     <tr>
-      <th>खरिद/हस्तान्तरण नं</th>
       <th>दाखिला नं</th>
       <th>दाखिला मिति</th>
-      <th>दाखिला गर्ने</th>
-      <th>प्रमाणित गर्ने</th>
+      <th>टेण्डर/खरिद आदेश नं</th>
+      <th>फर्मको नाम</th>
     </tr>
     <tr>
-      <td><%= nd @purchase_entry.purchase_handover_no %></td>
       <td><%= nd @purchase_entry.entry_no %></td>
       <td><%= ndate @purchase_entry.entry_date %></td>
-      <td><%= @purchase_entry.store_body.store_keeper_name %></td>
-      <td><%= @purchase_entry.store_body.office_chief_name %></td>
+      <% if @purchase_entry.tender_id.present? %>
+      <td> ठेक्का नं <%= @purchase_entry.tender.tender_no %></td>
+      <td><%= @purchase_entry.tender.bidders_name %></td>
+        <% else %>
+       <td> खरिद आदेश नं <%= @purchase_entry.purchase_order.order_no %></td>
+        <td><%= @purchase_entry.purchase_order.vendor.vendor_name %></td>
+      <%end%>
     </tr>
   </table>
 </div>
