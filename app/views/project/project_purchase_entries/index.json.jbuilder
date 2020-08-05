@@ -4,7 +4,7 @@ json.set! :data do
     json.partial! '/project/project_purchase_entries/purchase_entry', project_purchase_entry: project_entry
     json.project_name_ne "#{project_entry.project.name_of_project_ne}"
     json.project_name_en "#{project_entry.project.name_of_project_en}"
-    project_entry = project_entry.purchase_entry
+    purchase_entry = project_entry.purchase_entry
     if project_entry.accepted != true
       json.url "
                #{link_to show_btn.html_safe, project_entry }
