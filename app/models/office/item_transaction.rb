@@ -5,6 +5,7 @@ class Office::ItemTransaction < ApplicationRecord
   belongs_to :user
 
   before_destroy :check_if_items_are_released
+  before_update :check_and_update_amount
 
   private
   def check_if_items_are_released
@@ -12,6 +13,12 @@ class Office::ItemTransaction < ApplicationRecord
       if self.quantity > self.sku
       throw(:abort)
       end
+    end
+  end
+
+  def check_and_update_amount
+    if self.rate_changed? || self.quantity_changed?
+      self.amount = self.rate * self.quantity
     end
   end
 end

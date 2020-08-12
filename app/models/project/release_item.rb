@@ -6,14 +6,24 @@ class Project::ReleaseItem < ApplicationRecord
   belongs_to :item, class_name: "Project::Item"
   has_one :project_item_transaction, dependent: :destroy, class_name: "Project::ProjectItemTransaction"
   belongs_to :item_transaction, :class_name => 'Project::ItemTransaction', optional: true
+
   before_destroy :restore_transactions
+  before_update :check_and_update_amount
 
   private
+
   def restore_transactions
     transaction = self.item_transaction
     if transaction.blank? == false
-    transaction.sku = transaction.sku + self.quantity
-    transaction.save
+      transaction.sku = transaction.sku + self.quantity
+      transaction.save
+    end
   end
+
+  def check_and_update_amount
+    if self.rate_changed? || self.quantity_changed?
+      self.amount = self.rate * self.quantity
+    end
   end
+
 end
