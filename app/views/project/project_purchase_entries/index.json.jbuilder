@@ -5,15 +5,13 @@ json.set! :data do
     json.project_name_ne "#{project_entry.project.name_of_project_ne}"
     json.project_name_en "#{project_entry.project.name_of_project_en}"
     purchase_entry = project_entry.purchase_entry
-    tender = purchase_entry.tender
-    purchase_order = purchase_entry.purchase_order
     json.form_no  ""
     json.purchase_entry_no "#{nd purchase_entry.entry_no}"
-    unless tender.blank?
+    unless purchase_entry.tender.blank?
       json.form_no "टे.नं.#{nd tender.tender_no}" 
     end
 
-    unless purchase_order.blank?
+    unless purchase_entry.purchase_order.blank?
       json.form_no "ख.आ.#{nd purchase_order.order_no}"
     end
 
