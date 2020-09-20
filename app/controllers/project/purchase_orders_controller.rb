@@ -24,7 +24,7 @@ class Project::PurchaseOrdersController < ProjectController
 
   # GET /purchase_orders/1/edit
   def edit
-    @vendors = current(Project::Vendor)
+    @vendors = current(Office::Vendor)
   end
 
   # POST /purchase_orders
