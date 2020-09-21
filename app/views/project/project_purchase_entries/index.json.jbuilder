@@ -8,11 +8,11 @@ json.set! :data do
     json.form_no  ""
     json.purchase_entry_no "#{nd purchase_entry.entry_no}"
     unless purchase_entry.tender.blank?
-      json.form_no "टे.नं.#{nd tender.tender_no}" 
+      json.form_no "टे.नं.#{nd purchase_entry.tender.tender_no}" 
     end
 
     unless purchase_entry.purchase_order.blank?
-      json.form_no "ख.आ.#{nd purchase_order.order_no}"
+      json.form_no "ख.आ.#{nd purchase_entry.purchase_order.order_no}"
     end
 
     if project_entry.accepted != true
